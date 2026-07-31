@@ -1,8 +1,7 @@
 <title>Beyond Growth &mdash; Inequality, Populism &amp; Fragmentation in Charts</title>
 <style>
-/* ==== chapter: populism ==== */
-
-.viz-root.scope-populism {
+/* ==== ineq ==== */
+.viz-root.scope-ineq {
     color-scheme: light;
     --surface-1:      #fcfcfb;
     --page:           #f7f6f2;
@@ -29,7 +28,7 @@
   }
 
 @media (prefers-color-scheme: dark) {
-  :root:where(:not([data-theme="light"])) .viz-root.scope-populism {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-ineq {
       color-scheme: dark;
       --surface-1:      #1a1a19;
       --page:           #121211;
@@ -56,7 +55,7 @@
     }
 }
 
-:root[data-theme="dark"] .viz-root.scope-populism {
+:root[data-theme="dark"] .viz-root.scope-ineq {
     color-scheme: dark;
     --surface-1:      #1a1a19;
     --page:           #121211;
@@ -91,19 +90,19 @@ html, body {
     color: var(--text-primary);
   }
 
-.viz-root.scope-populism { min-height: 100vh; }
+.viz-root.scope-ineq { min-height: 100vh; }
 
-.scope-populism .wrap {
+.scope-ineq .wrap {
     max-width: 760px;
     margin: 0 auto;
     padding: 56px 24px 80px;
   }
 
-.scope-populism header.page-head {
+.scope-ineq header.page-head {
     margin-bottom: 48px;
   }
 
-.scope-populism .eyebrow {
+.scope-ineq .eyebrow {
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -112,7 +111,7 @@ html, body {
     font-weight: 600;
   }
 
-.scope-populism h1 {
+.scope-ineq h1 {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     font-size: 32px;
     line-height: 1.15;
@@ -122,7 +121,7 @@ html, body {
     font-weight: 600;
   }
 
-.scope-populism .lede {
+.scope-ineq .lede {
     font-size: 16px;
     line-height: 1.55;
     color: var(--text-secondary);
@@ -130,9 +129,9 @@ html, body {
     margin: 0;
   }
 
-.scope-populism .lede strong { color: var(--text-primary); }
+.scope-ineq .lede strong { color: var(--text-primary); }
 
-.scope-populism section.panel {
+.scope-ineq section.panel {
     background: var(--surface-1);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -140,9 +139,9 @@ html, body {
     margin-bottom: 32px;
   }
 
-.scope-populism .panel-head { margin-bottom: 22px; }
+.scope-ineq .panel-head { margin-bottom: 22px; }
 
-.scope-populism .panel-eyebrow {
+.scope-ineq .panel-eyebrow {
     font-size: 11px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
@@ -151,7 +150,7 @@ html, body {
     margin: 0 0 8px;
   }
 
-.scope-populism h2 {
+.scope-ineq h2 {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     font-size: 21px;
     line-height: 1.3;
@@ -160,16 +159,16 @@ html, body {
     text-wrap: balance;
   }
 
-.scope-populism .panel-sub {
+.scope-ineq .panel-sub {
     font-size: 13.5px;
     color: var(--text-secondary);
     margin: 0;
     line-height: 1.5;
   }
 
-.scope-populism .divchart { margin-top: 28px; }
+.scope-ineq .divchart { margin-top: 28px; }
 
-.scope-populism .divchart .row {
+.scope-ineq .divchart .row {
     display: grid;
     grid-template-columns: 130px 1fr 64px;
     align-items: center;
@@ -178,16 +177,16 @@ html, body {
     position: relative;
   }
 
-.scope-populism .divchart .row + .row { margin-top: 10px; }
+.scope-ineq .divchart .row + .row { margin-top: 10px; }
 
-.scope-populism .divchart .label {
+.scope-ineq .divchart .label {
     font-size: 13px;
     color: var(--text-secondary);
     text-align: right;
     line-height: 1.3;
   }
 
-.scope-populism .divchart .track {
+.scope-ineq .divchart .track {
     position: relative;
     height: 26px;
     background: var(--grid);
@@ -195,7 +194,7 @@ html, body {
     overflow: visible;
   }
 
-.scope-populism .divchart .zero-line {
+.scope-ineq .divchart .zero-line {
     position: absolute;
     top: -6px;
     bottom: -6px;
@@ -204,52 +203,52 @@ html, body {
     background: var(--baseline);
   }
 
-.scope-populism .divchart .bar {
+.scope-ineq .divchart .bar {
     position: absolute;
     top: 0;
     height: 100%;
     border-radius: 3px;
   }
 
-.scope-populism .divchart .bar.pos { background: var(--diverge-pos); left: 50%; }
+.scope-ineq .divchart .bar.pos { background: var(--diverge-pos); left: 50%; }
 
-.scope-populism .divchart .bar.neg { background: var(--diverge-neg); right: 50%; }
+.scope-ineq .divchart .bar.neg { background: var(--diverge-neg); right: 50%; }
 
-.scope-populism .divchart .value {
+.scope-ineq .divchart .value {
     font-variant-numeric: tabular-nums;
     font-size: 13.5px;
     font-weight: 600;
     white-space: nowrap;
   }
 
-.scope-populism .divchart .value.pos { color: var(--diverge-pos); }
+.scope-ineq .divchart .value.pos { color: var(--diverge-pos); }
 
-.scope-populism .divchart .value.neg { color: var(--diverge-neg); }
+.scope-ineq .divchart .value.neg { color: var(--diverge-neg); }
 
-.scope-populism .divchart .scale-labels {
+.scope-ineq .divchart .scale-labels {
     display: grid;
     grid-template-columns: 130px 1fr 64px;
     margin-top: 6px;
     gap: 12px;
   }
 
-.scope-populism .divchart .scale-labels span {
+.scope-ineq .divchart .scale-labels span {
     font-size: 10.5px;
     color: var(--muted);
   }
 
-.scope-populism .divchart .scale-labels .lo { text-align: left; }
+.scope-ineq .divchart .scale-labels .lo { text-align: left; }
 
-.scope-populism .divchart .scale-labels .hi { text-align: right; grid-column: 2; }
+.scope-ineq .divchart .scale-labels .hi { text-align: right; grid-column: 2; }
 
-.scope-populism .triptych {
+.scope-ineq .triptych {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 28px;
   }
 
-.scope-populism .quad {
+.scope-ineq .quad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
@@ -257,16 +256,16 @@ html, body {
   }
 
 @media (max-width: 640px) {
-  .scope-populism .quad { grid-template-columns: repeat(2, 1fr); }
+  .scope-ineq .quad { grid-template-columns: repeat(2, 1fr); }
 }
 
-.scope-populism .metric {
+.scope-ineq .metric {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-.scope-populism .metric .mlabel {
+.scope-ineq .metric .mlabel {
     font-size: 12.5px;
     color: var(--text-secondary);
     text-align: center;
@@ -275,30 +274,30 @@ html, body {
     min-height: 32px;
   }
 
-.scope-populism .barpair {
+.scope-ineq .barpair {
     display: flex;
     align-items: flex-end;
     gap: 10px;
     height: 120px;
   }
 
-.scope-populism .barpair .bar-col {
+.scope-ineq .barpair .bar-col {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 40px;
   }
 
-.scope-populism .barpair .bar-shape {
+.scope-ineq .barpair .bar-shape {
     width: 100%;
     border-radius: 3px 3px 0 0;
   }
 
-.scope-populism .barpair .bar-col.early .bar-shape { background: var(--blue-light); }
+.scope-ineq .barpair .bar-col.early .bar-shape { background: var(--blue-light); }
 
-.scope-populism .barpair .bar-col.late .bar-shape { background: var(--blue-dark); }
+.scope-ineq .barpair .bar-col.late .bar-shape { background: var(--blue-dark); }
 
-.scope-populism .barpair .bval {
+.scope-ineq .barpair .bval {
     font-variant-numeric: tabular-nums;
     font-size: 13px;
     font-weight: 600;
@@ -306,20 +305,20 @@ html, body {
     color: var(--text-primary);
   }
 
-.scope-populism .barpair .byr {
+.scope-ineq .barpair .byr {
     font-size: 10.5px;
     color: var(--muted);
     margin-top: 8px;
   }
 
-.scope-populism .legend-row {
+.scope-ineq .legend-row {
     display: flex;
     justify-content: center;
     gap: 22px;
     margin-top: 18px;
   }
 
-.scope-populism .legend-item {
+.scope-ineq .legend-item {
     display: flex;
     align-items: center;
     gap: 7px;
@@ -327,14 +326,14 @@ html, body {
     color: var(--text-secondary);
   }
 
-.scope-populism .swatch {
+.scope-ineq .swatch {
     width: 11px;
     height: 11px;
     border-radius: 2px;
     display: inline-block;
   }
 
-.scope-populism .source-note {
+.scope-ineq .source-note {
     font-size: 12px;
     color: var(--muted);
     margin: 20px 0 0;
@@ -343,29 +342,67 @@ html, body {
     line-height: 1.6;
   }
 
-.scope-populism .source-note code {
+.scope-ineq .source-note code {
     font-size: 11px;
     background: var(--grid);
     padding: 1px 5px;
     border-radius: 3px;
   }
 
-.scope-populism footer.foot {
+.scope-ineq footer.foot {
     font-size: 12.5px;
     color: var(--muted);
     line-height: 1.6;
     margin-top: 8px;
   }
 
-.scope-populism footer.foot a { color: var(--text-secondary); }
+.scope-ineq footer.foot a { color: var(--text-secondary); }
 
 @media (max-width: 560px) {
-  .scope-populism .triptych { grid-template-columns: 1fr; }
-  .scope-populism .divchart .row, .scope-populism .divchart .scale-labels { grid-template-columns: 100px 1fr 56px; }
+  .scope-ineq .triptych { grid-template-columns: 1fr; }
+  .scope-ineq .divchart .row, .scope-ineq .divchart .scale-labels { grid-template-columns: 100px 1fr 56px; }
 }
 
-/* ==== chapter: growth_poverty ==== */
+.scope-ineq .linechart-wrap {
+        margin-top: 24px;
+        overflow-x: auto;
+      }
 
+.scope-ineq .linechart-wrap svg {
+        width: 100%;
+        height: auto;
+        min-width: 560px;
+        display: block;
+      }
+
+.scope-ineq .rankchart { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+
+.scope-ineq .rank-row {
+        display: grid;
+        grid-template-columns: 168px 1fr 56px;
+        align-items: center;
+        gap: 12px;
+      }
+
+.scope-ineq .rank-label { font-size: 13px; color: var(--text-secondary); text-align: right; line-height: 1.3; }
+
+.scope-ineq .rank-label strong { color: var(--text-primary); font-weight: 600; }
+
+.scope-ineq .rank-track { height: 18px; background: var(--grid); border-radius: 3px; overflow: hidden; }
+
+.scope-ineq .rank-bar { height: 100%; background: var(--c1); border-radius: 3px 0 0 3px; }
+
+.scope-ineq .rank-value { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+
+@media (max-width: 560px) {
+  .scope-ineq .rank-row { grid-template-columns: 108px 1fr 48px; }
+}
+
+.scope-ineq .elephant-wrap { margin-top: 24px; overflow-x: auto; }
+
+.scope-ineq .elephant-wrap svg { width: 100%; height: auto; min-width: 480px; display: block; }
+
+/* ==== growth ==== */
 .viz-root.scope-growth {
     color-scheme: light;
     --surface-1:      #fcfcfb;
@@ -498,8 +535,7 @@ html, body {
     padding-top: 18px; border-top: 1px solid var(--grid); max-width: 72ch;
   }
 
-/* ==== chapter: district ==== */
-
+/* ==== district ==== */
 .viz-root.scope-district {
     color-scheme: light;
     --surface-1:      #fcfcfb;
@@ -624,8 +660,7 @@ html, body {
     padding-top: 18px; border-top: 1px solid var(--grid); max-width: 74ch;
   }
 
-/* ==== chapter: slide2 ==== */
-
+/* ==== slide2 ==== */
 .viz-root.scope-slide2 {
     color-scheme: light;
     --surface-1:      #fcfcfb;
@@ -725,293 +760,188 @@ html, body {
 .scope-slide2 footer.foot { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 16px; }
 
 /* ============================================================
-   Presentation shell — full-bleed, projector-legible.
-   Built for F11 fullscreen browsing, so nothing is centred in
-   a narrow column: the deck uses the whole viewport width.
+   Beyond Growth — full-bleed presentation deck.
+   Designed to be browsed in F11 fullscreen during a talk, so
+   nothing sits in a narrow centred column.
    ============================================================ */
-
 :root {
   color-scheme: light dark;
-  --shell-ink:      #14161c;
-  --shell-paper:    #f4f2ed;
-  --shell-surface:  #fffdf9;
-  --shell-rule:     #dcd8ce;
-  --shell-muted:    #6d6a63;
-  --shell-accent:   #b4451f;   /* rust — used only for structure marks */
-  --shell-accent-2: #1c4e73;   /* deep slate blue */
-  --shell-navh:     58px;
+  --shell-ink:     #14161c;
+  --shell-paper:   #f4f2ed;
+  --shell-surface: #fffdf9;
+  --shell-rule:    #dcd8ce;
+  --shell-muted:   #6d6a63;
+  --shell-accent:  #b4451f;
+  --shell-slate:   #1c4e73;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --shell-ink:      #f2f0ea;
-    --shell-paper:    #0f1013;
-    --shell-surface:  #17191e;
-    --shell-rule:     #2b2e35;
-    --shell-muted:    #9a978f;
-    --shell-accent:   #e0703f;
-    --shell-accent-2: #6fa8cd;
+    --shell-ink:     #f2f0ea;
+    --shell-paper:   #0f1013;
+    --shell-surface: #17191e;
+    --shell-rule:    #2b2e35;
+    --shell-muted:   #9a978f;
+    --shell-accent:  #e0703f;
+    --shell-slate:   #6fa8cd;
   }
 }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--shell-navh) + 12px); }
-body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
-
-/* ---------- sticky chapter nav (presentation jump bar) ---------- */
-.deck-nav {
-  position: sticky; top: 0; z-index: 50;
-  height: var(--shell-navh);
-  display: flex; align-items: center; gap: 8px;
-  padding: 0 clamp(16px, 2.5vw, 40px);
-  background: color-mix(in srgb, var(--shell-paper) 88%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--shell-rule);
-  overflow-x: auto; scrollbar-width: thin;
-}
-.deck-nav .nav-brand {
-  font-family: Georgia, "Iowan Old Style", serif;
-  font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
-  white-space: nowrap; margin-right: 12px; color: var(--shell-ink);
-  text-decoration: none;
-}
-.deck-nav .nav-brand span { color: var(--shell-accent); }
-.deck-nav a.nav-link {
-  font-size: 13px; font-weight: 600; text-decoration: none;
-  color: var(--shell-muted); white-space: nowrap;
-  padding: 7px 13px; border-radius: 999px; border: 1px solid transparent;
-  transition: color .15s, background .15s, border-color .15s;
-}
-.deck-nav a.nav-link:hover, .deck-nav a.nav-link:focus-visible {
-  color: var(--shell-ink); background: var(--shell-surface); border-color: var(--shell-rule);
-}
-.deck-nav .nav-count { margin-left: auto; font-size: 11.5px; color: var(--shell-muted); white-space: nowrap; padding-left: 16px; }
-
-/* ---------- title block ---------- */
-.combo-header {
-  max-width: none;
-  padding: clamp(48px, 7vh, 96px) clamp(20px, 4vw, 72px) clamp(28px, 4vh, 52px);
+.deck-head {
+  padding: clamp(44px, 7vh, 92px) clamp(18px, 3.5vw, 64px) clamp(26px, 4vh, 44px);
   border-bottom: 1px solid var(--shell-rule);
 }
-.combo-eyebrow {
-  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--shell-accent); margin: 0 0 18px; font-weight: 700;
-  display: flex; align-items: center; gap: 12px;
+.deck-eyebrow {
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 16px;
+  display: flex; align-items: center; gap: 14px;
 }
-.combo-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--shell-rule); max-width: 320px; }
-.combo-h1 {
+.deck-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--shell-rule); max-width: 300px; }
+.deck-h1 {
   font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  font-size: clamp(32px, 4.6vw, 66px); line-height: 1.04;
-  letter-spacing: -0.022em; margin: 0 0 22px; font-weight: 600;
-  text-wrap: balance; max-width: 22ch; color: var(--shell-ink);
+  font-size: clamp(30px, 4.3vw, 62px); line-height: 1.05; letter-spacing: -0.022em;
+  margin: 0 0 20px; font-weight: 600; text-wrap: balance; max-width: 24ch;
 }
-.combo-lede {
-  font-size: clamp(15px, 1.15vw, 19px); line-height: 1.62;
-  color: var(--shell-muted); max-width: 74ch; margin: 0;
+.deck-lede {
+  font-size: clamp(15px, 1.1vw, 18.5px); line-height: 1.62;
+  color: var(--shell-muted); max-width: 76ch; margin: 0;
 }
-.combo-lede strong { color: var(--shell-ink); font-weight: 600; }
+.deck-lede strong { color: var(--shell-ink); font-weight: 600; }
 
-/* ---------- contents grid ---------- */
-.toc {
-  list-style: none; padding: 0;
-  margin: clamp(28px, 4vh, 44px) clamp(20px, 4vw, 72px) clamp(36px, 5vh, 64px);
-  display: grid; gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* ---- the arrangement grid ---- */
+.row-pair, .row-single {
+  padding: clamp(18px, 2.2vh, 32px) clamp(18px, 3.5vw, 64px);
 }
-.toc li {
-  border: 1px solid var(--shell-rule); border-radius: 10px;
-  background: var(--shell-surface); overflow: hidden;
-  transition: border-color .15s, transform .15s;
+.row-pair {
+  display: grid; gap: clamp(16px, 1.8vw, 30px);
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
 }
-.toc li:hover { border-color: var(--shell-accent); transform: translateY(-2px); }
-.toc a {
-  display: flex; flex-direction: column; gap: 7px;
-  padding: 20px 22px; text-decoration: none; color: var(--shell-ink);
-  font-size: 16px; font-weight: 600; line-height: 1.3; height: 100%;
-  border-left: 3px solid var(--shell-accent-2);
-}
-.toc a span.toc-sub { font-weight: 400; color: var(--shell-muted); font-size: 13px; line-height: 1.5; }
+@media (max-width: 1100px) { .row-pair { grid-template-columns: 1fr; } }
+.row-pair > .viz-root, .row-single > .viz-root { min-width: 0; }
 
-/* ---------- chapter dividers ---------- */
-.chapter-divider {
-  max-width: none;
-  margin: 0; padding: clamp(44px, 6vh, 80px) clamp(20px, 4vw, 72px) clamp(14px, 2vh, 26px);
-  border-top: 1px solid var(--shell-rule);
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--shell-surface) 60%, transparent), transparent);
-}
-.chapter-eyebrow {
-  font-size: 11.5px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--shell-accent); font-weight: 700; margin: 0 0 10px;
-}
-.chapter-title {
-  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  font-size: clamp(24px, 2.7vw, 40px); font-weight: 600; margin: 0 0 10px;
-  letter-spacing: -0.018em; line-height: 1.12; text-wrap: balance; color: var(--shell-ink);
-}
-.chapter-sub { font-size: clamp(14px, 1.05vw, 17px); color: var(--shell-muted); margin: 0 0 6px; max-width: 78ch; line-height: 1.55; }
-.back-to-top {
-  display: inline-block; margin: 14px 0 0; font-size: 12.5px; font-weight: 600;
-  color: var(--shell-muted); text-decoration: none;
-  padding: 5px 12px; border: 1px solid var(--shell-rule); border-radius: 999px;
-}
-.back-to-top:hover { color: var(--shell-ink); border-color: var(--shell-accent); }
-
-.combo-footer {
-  max-width: none; margin: 0;
-  padding: clamp(28px, 4vh, 48px) clamp(20px, 4vw, 72px) clamp(56px, 8vh, 96px);
+.deck-foot {
+  padding: clamp(26px, 4vh, 44px) clamp(18px, 3.5vw, 64px) clamp(52px, 8vh, 88px);
   font-size: 13px; color: var(--shell-muted); line-height: 1.75;
   border-top: 1px solid var(--shell-rule); background: var(--shell-surface);
 }
-.combo-footer code { background: color-mix(in srgb, var(--shell-ink) 8%, transparent); }
 
 /* ============================================================
-   FULL-BLEED OVERRIDES for the imported chapters.
-   Each chapter shipped with its own centred, max-width column
-   (760-1080px). For projection we want the whole viewport, so
-   these override the per-chapter .wrap at higher specificity.
+   Full-bleed overrides: each source page shipped a centred
+   760-1080px column, which left dead space at the sides.
    ============================================================ */
+.viz-root { min-height: 0 !important; background: transparent !important; }
 .viz-root .wrap {
-  max-width: none !important;
-  width: 100%;
-  padding-left: clamp(20px, 4vw, 72px) !important;
-  padding-right: clamp(20px, 4vw, 72px) !important;
-  padding-top: 0 !important;
-  padding-bottom: clamp(32px, 5vh, 64px) !important;
-  margin: 0 !important;
+  max-width: none !important; width: 100%;
+  margin: 0 !important; padding: 0 !important;
 }
-/* chapter intro text already restated in the divider above — hide the
-   duplicated per-page header so the deck reads cleanly */
 .viz-root header.page-head { display: none !important; }
+.viz-root h2.section-head { margin-top: clamp(20px, 3vh, 34px); }
 
-/* panels: roomier, and side-by-side on wide screens */
 .viz-root section.panel, .viz-root .panel {
-  border-radius: 12px;
-  padding: clamp(20px, 1.9vw, 34px) clamp(20px, 2vw, 36px) clamp(16px, 1.6vw, 28px);
+  border-radius: 12px; height: 100%;
+  padding: clamp(18px, 1.7vw, 30px) clamp(18px, 1.8vw, 32px) clamp(14px, 1.4vw, 24px);
 }
-.viz-root h2 { font-size: clamp(19px, 1.55vw, 27px); letter-spacing: -0.012em; }
-.viz-root h3 { font-size: clamp(15px, 1.15vw, 19px); }
-.viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(13px, 1vw, 16px); }
-.viz-root .source-note, .viz-root footer.foot { font-size: clamp(12px, 0.9vw, 14.5px); line-height: 1.7; }
-.viz-root .stat-line { font-size: clamp(12px, 0.92vw, 15px); }
-.viz-root .legend-row, .viz-root .legend-item { font-size: clamp(12.5px, 0.95vw, 15.5px); }
-
-/* the 3-up scatter grids get more breathing room on wide displays */
-.viz-root .grid3 { gap: clamp(16px, 1.6vw, 28px); }
-.viz-root .grid2 { gap: clamp(16px, 1.6vw, 28px); }
-@media (min-width: 1500px) {
-  .viz-root .grid2 { grid-template-columns: repeat(2, 1fr); }
-}
-
-/* charts fill their panel */
+.viz-root h2 { font-size: clamp(18px, 1.45vw, 26px); letter-spacing: -0.012em; }
+.viz-root h3 { font-size: clamp(14.5px, 1.1vw, 18px); }
+.viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(12.5px, 0.95vw, 15.5px); }
+.viz-root .source-note, .viz-root footer.foot { font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; }
+.viz-root .stat-line { font-size: clamp(11.5px, 0.88vw, 14.5px); }
+.viz-root .legend-row, .viz-root .legend-item { font-size: clamp(12px, 0.9vw, 15px); }
 .viz-root svg { width: 100%; height: auto; }
 .viz-root .linechart-wrap svg, .viz-root .elephant-wrap svg { min-width: 0; }
 
-/* two-column reading layout for the wide single-chart panels */
-@media (min-width: 1280px) {
-  .viz-root section.panel > .source-note { max-width: 110ch; }
+/* ============================================================
+   Value-label overflow fixes.
+   The source charts used fixed px grid columns for their label
+   and value tracks (e.g. 130px / 1fr / 64px). Once type scales
+   up for projection, "-9.27 pp" and "31.1%" no longer fit their
+   track and collided with the bars. Give the value column
+   intrinsic width and stop it wrapping.
+   ============================================================ */
+.viz-root .divchart .row,
+.viz-root .divchart .scale-labels {
+  grid-template-columns: minmax(96px, 22%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
 }
+.viz-root .divchart .value { white-space: nowrap; text-align: right; }
+.viz-root .divchart .label { overflow-wrap: anywhere; }
+
+.viz-root .rankchart .rank-row {
+  grid-template-columns: minmax(110px, 24%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
+}
+.viz-root .rank-value { white-space: nowrap; text-align: right; }
+.viz-root .rank-label { overflow-wrap: anywhere; }
+
+/* before/after bar groups: let them reflow instead of overflowing
+   when the panel is only half the viewport wide */
+.viz-root .triptych, .viz-root .quad {
+  grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 11vw, 170px), 1fr)) !important;
+  gap: clamp(10px, 1vw, 20px) !important;
+}
+.viz-root .barpair { gap: clamp(6px, 0.6vw, 10px); }
+.viz-root .barpair .bar-col { width: clamp(28px, 2.6vw, 44px); }
+.viz-root .barpair .bval { font-size: clamp(11.5px, 0.85vw, 14px); white-space: nowrap; }
+.viz-root .barpair .byr { font-size: clamp(9.5px, 0.72vw, 11.5px); white-space: nowrap; }
+.viz-root .metric .mlabel { font-size: clamp(11.5px, 0.85vw, 14px); min-height: 0; }
 
 @media print {
-  .deck-nav { display: none; }
-  .chapter-divider { break-before: page; }
+  .row-pair { grid-template-columns: 1fr 1fr; }
+  .row-single, .row-pair { break-inside: avoid; }
 }
 
 </style>
 
-<a id="top"></a>
-<nav class="deck-nav">
-  <a class="nav-brand" href="#top">Beyond<span>Growth</span></a>
-  <a class="nav-link" href="#populism">Ch. 1</a>
-  <a class="nav-link" href="#growth_poverty">Ch. 2</a>
-  <a class="nav-link" href="#district">Ch. 3</a>
-  <a class="nav-link" href="#slide2">Ch. 4</a>
-  <span class="nav-count">19 charts &middot; all from primary data</span>
-</nav>
-
-<header class="combo-header">
-  <p class="combo-eyebrow">Summer School 2026</p>
-  <h1 class="combo-h1">Is inequality really what drives the populist turn?</h1>
-  <p class="combo-lede">Nineteen charts, none of them screenshots. Every figure here was rebuilt from
-    its own primary source &mdash; pulled live from the World Bank, OECD, FRED and WID.world APIs, merged
-    from ParlGov and PopuList election records, read out of an OECD StatLink spreadsheet, or, where a
-    dataset stayed locked behind a credential, <strong>traced from the original publication and labelled
-    as an estimate</strong>. The through-line: rising inequality and job polarization are beyond dispute,
-    but the causal step from there to the ballot box is exactly where the literature stops agreeing.</p>
-  <ul class="toc">
-  <li><a href="#populism">Inequality, Polarization &amp; the Far Right<span class="toc-sub">Six charts: OECD Gini trends, the hollowed-out middle of the job market, US wealth concentration, nine-country Gini series, far-right seat share in 11 parliaments, and the Elephant Curve rebuilt from Lakner-Milanovic decile data.</span></a></li>
-  <li><a href="#growth_poverty">Does Growth Reduce Poverty?<span class="toc-sub">Six scatterplots pairing GDP-per-capita growth against poverty-rate change across 397&ndash;710 country-spells, at three international poverty lines and two time horizons.</span></a></li>
-  <li><a href="#district">The Same Test, Inside One Country<span class="toc-sub">Indonesia&rsquo;s 510 districts, using World Bank INDO-DAPOER: the growth-poverty link is far weaker sub-nationally than it is across countries.</span></a></li>
-  <li><a href="#slide2">Rebuilding a Slide From Its Sources<span class="toc-sub">Every claim on one DEN presentation slide traced back to primary data: ParlGov+PopuList, WDI, FRED, WID.world&rsquo;s own R package, an OECD StatLink spreadsheet, and a traced IMF/Global Trade Alert figure.</span></a></li>
-</ul>
+<header class="deck-head">
+  <p class="deck-eyebrow">Summer School 2026</p>
+  <h1 class="deck-h1">Is inequality really what drives the populist turn?</h1>
+  <p class="deck-lede">Every chart here was rebuilt from its own primary source &mdash; pulled live from
+    the World Bank, OECD, FRED and WID.world APIs, merged from ParlGov and PopuList election records,
+    read out of an OECD StatLink spreadsheet, or, where a dataset stayed locked behind a credential,
+    <strong>traced from the original publication and labelled as an estimate</strong>. The through-line:
+    rising inequality and job polarization are beyond dispute &mdash; the causal step from there to the
+    ballot box is exactly where the literature stops agreeing.</p>
 </header>
 
-
-<div class="chapter-divider" id="populism">
-  <p class="chapter-eyebrow">Chapter 1</p>
-  <h2 class="chapter-title">Populism, Inequality &amp; Job Polarization</h2>
-  <p class="chapter-sub">Five charts on rising inequality, job polarization, and far-right seat share in European parliaments.</p>
-  <a class="back-to-top" href="#top">&uarr; back to top</a>
-</div>
-<div class="viz-root scope-populism">
-  <div class="wrap">
-
-    <header class="page-head">
-      <p class="eyebrow">Summer School 2026 &middot; Reading companion</p>
-      <h1>Two numbers behind the populism debate</h1>
-      <p class="lede">These are original charts built from the exact figures
-        reported in the papers you've downloaded &mdash; not screenshots of
-        the papers themselves. <strong>Job polarization</strong> and
-        <strong>rising inequality</strong> &mdash; including its sharpest
-        edge, the concentration of income and wealth at the very top &mdash;
-        are both real, well-measured trends; the open question in the
-        literature is whether either one is the reason people vote for
-        populists.</p>
-    </header>
-
-    <section class="panel">
-      <div class="panel-head">
-        <p class="panel-eyebrow">Chart 1 &middot; Labor market</p>
-        <h2>The middle of the job market hollowed out</h2>
-        <p class="panel-sub">Change in employment share by wage tier, 16 Western
-          European countries, 1993&ndash;2010</p>
+<section class="row-pair" aria-label="Deglobalization and trade restrictions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">Slowbalization</p>
+      <h2>World trade has stalled as a share of GDP since 2008</h2>
+      <p class="panel-sub">World Bank WDI, <code>NE.TRD.GNFS.ZS</code>, world aggregate, 1970&ndash;2024</p>
+      <svg id="chart-trade" viewBox="0 0 720 260" role="img" aria-label="Line chart of world trade as a percent of GDP, 1970 to 2024"></svg>
+      <p class="source-note">Source: World Bank World Development Indicators,
+        pulled live via the WDI API (<code>country=WLD</code>). Trade rose
+        steadily from ~27% of world GDP in 1970 to a peak of ~61% in 2008,
+        then plateaued and has oscillated in a band roughly 51&ndash;62% ever
+        since &mdash; the "slowbalization" pattern: trade didn't reverse, but its
+        multi-decade rise essentially stopped after the Global Financial Crisis.</p>
+    </section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">Increase of trade protectionism</p>
+      <h2>Trade restrictions imposed worldwide, traced from the actual source chart</h2>
+      <p class="panel-sub">Traced from IMF SDN/2023/001 "Geoeconomic Fragmentation and the Future of Multilateralism," Figure 7 (p.11) &mdash; sourced there to Global Trade Alert, updated 7 December 2022</p>
+      <svg id="chart-gtatraced" viewBox="0 0 720 300" role="img" aria-label="Stacked bar chart of the number of trade restrictions imposed worldwide by year, 2009 to 2022, split into goods, investment, and services"></svg>
+      <div class="legend-row" style="margin-top:12px;">
+        <div class="legend-item"><span class="swatch" style="background: var(--c5);"></span> Goods</div>
+        <div class="legend-item"><span class="swatch" style="background: var(--c8);"></span> Investment</div>
+        <div class="legend-item"><span class="swatch" style="background: var(--c4);"></span> Services</div>
       </div>
-
-      <div class="divchart">
-        <div class="row">
-          <div class="label">High&#8209;paying occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar pos" style="width: 28.1%;"></div>
-          </div>
-          <div class="value pos">+5.62 pp</div>
-        </div>
-        <div class="row">
-          <div class="label">Middling occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar neg" style="width: 46.35%;"></div>
-          </div>
-          <div class="value neg">&minus;9.27 pp</div>
-        </div>
-        <div class="row">
-          <div class="label">Low&#8209;paying occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar pos" style="width: 18.25%;"></div>
-          </div>
-          <div class="value pos">+3.65 pp</div>
-        </div>
-        <div class="scale-labels">
-          <span class="lo">shrank</span>
-          <span class="hi">grew</span>
-        </div>
-      </div>
-
-      <p class="source-note">Source: Goos, Manning &amp; Salomons,
-        <em>Explaining Job Polarization: Routine-Biased Technological Change and
-        Offshoring</em> (AER), Table 1. Original table:
-        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</p>
-    </section>
-
-    <section class="panel">
+      <p class="source-note"><strong>This is a traced estimate, not exact
+        data</strong> &mdash; Global Trade Alert's raw figures remain behind an
+        API credential this session doesn't have, so these values are read
+        directly off the bar heights in IMF SDN/2023/001's Figure 7, the
+        near-certain original source of the slide's chart (identical title
+        "Trade Restrictions Imposed," identical Goods/Investment/Services
+        breakdown, identical GTA sourcing). Total bar heights (read against
+        the chart's 500-unit gridlines) are reasonably reliable: roughly
+        60&ndash;160 per year from 2009&ndash;2013, climbing through 650 by
+        2018, then accelerating sharply to ~980 (2019), ~1,380 (2020),
+        ~1,900 (2021), and ~2,150 (2022). The Goods/Investment/Services
+        <em>split within each bar</em> is a much rougher visual read and
+        should be treated as illustrative, not precise &mdash; segment
+        boundaries in a small stacked bar are hard to place exactly.</p>
+    </section></div></div></section>
+<section class="row-pair" aria-label="Inequality measures, OECD and United States"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 2 &middot; Income distribution</p>
         <h2>Three ways OECD inequality rose since the 1980s</h2>
@@ -1077,9 +1007,7 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
         Working Paper No. 163 (2014), abstract and Figures 1&ndash;2.
         Original file: <code>oecd_trends_income_inequality.pdf</code>,
         pp.&nbsp;6, 9&ndash;10.</p>
-    </section>
-
-    <section class="panel">
+    </section></div></div><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 3 &middot; Concentration at the top</p>
         <h2>The same story, sharper lens: the United States</h2>
@@ -1163,9 +1091,8 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
         <code>brookings_income_inequality_within_countries.pdf</code>.
         Note the U.S. is the sharpest advanced-economy case in this brief &mdash;
         not the OECD average shown in Chart 2.</p>
-    </section>
-
-    <section class="panel">
+    </section></div></div></section>
+<section class="row-pair" aria-label="Gini coefficients and top income shares"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 4 &middot; Rebuilt from primary data</p>
         <h2>Figure 1, rebuilt &mdash; nine countries' Gini coefficients over time</h2>
@@ -1198,38 +1125,232 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
         <code>brookings_income_inequality_within_countries.pdf</code>) also
         draws on the World Bank's <em>All the Ginis</em> dataset for
         emerging-market lines not attempted here.</p>
-    </section>
-
-<div class="chapter-divider" id="growth_poverty">
-  <p class="chapter-eyebrow">Chapter 2</p>
-  <h2 class="chapter-title">Does Growth Reduce Poverty? (World Bank WDI)</h2>
-  <p class="chapter-sub">Six scatterplots of GDP growth vs. poverty-rate change, 5-year and 10-year spells, three international poverty lines.</p>
-  <a class="back-to-top" href="#top">&uarr; back to top</a>
-</div>
-<div class="viz-root scope-growth">
-  <div class="wrap">
-
-    <header class="page-head">
-      <p class="eyebrow">Summer School 2026 &middot; World Bank WDI, pulled live</p>
-      <h1>Does growth reduce poverty? Six scatterplots from the actual survey data</h1>
-      <p class="lede">Each point is one country-spell: two poverty-survey years for
-        the same country, matched to whatever gap separates them (grouped here
-        into roughly-5-year and roughly-10-year spells), with annualized GDP
-        per capita growth on the x-axis and annualized change in the poverty
-        headcount ratio on the y-axis. This mirrors the spell-based method used
-        in the actual growth-and-poverty literature (Ravallion; Dollar &amp;
-        Kraay) rather than snapping to fixed calendar years, since household
-        surveys are irregular and rarely fall exactly 5 or 10 years apart.</p>
-      <p class="lede">A point <strong>below the zero line</strong> is a spell
-        where poverty fell; a point <strong>to the right of zero</strong> is a
-        spell with positive per-capita growth. If growth reliably reduces
-        poverty, points should cluster in the bottom-right and top-left
-        quadrants, and the red line should slope downward.</p>
-      <div class="legend-row">
-        <div class="legend-item"><span class="swatch" style="background: var(--status-critical);"></span> Growth positive, poverty rose anyway</div>
-        <div class="legend-item"><span class="swatch" style="background: var(--point);"></span> All other spells</div>
+    </section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">Increase in inequality</p>
+      <h2>Top 1% income share, nine advanced economies</h2>
+      <p class="panel-sub">World Inequality Database (WID.world), official data via their R package, 1980&ndash;2024</p>
+      <svg id="chart-top1" viewBox="0 0 720 340" role="img" aria-label="Line chart of top 1 percent pretax national income share for nine countries, 1980 to 2024"></svg>
+      <p class="source-note">Source: World Inequality Database, series
+        <code>sptinc992j</code> (share of pretax national income, equal-split
+        adults), percentile <code>p99p100</code>, pulled directly from
+        WID.world's own API using their official <code>wid</code> R package
+        (not a third-party mirror). Same 9 countries as the slide: Australia,
+        Canada, France, Germany, Italy, Japan, Korea, UK, US.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+      <div class="panel-head">
+        <p class="panel-eyebrow">Chart 1 &middot; Labor market</p>
+        <h2>The middle of the job market hollowed out</h2>
+        <p class="panel-sub">Change in employment share by wage tier, 16 Western
+          European countries, 1993&ndash;2010</p>
       </div>
-    </header>
+
+      <div class="divchart">
+        <div class="row">
+          <div class="label">High&#8209;paying occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar pos" style="width: 28.1%;"></div>
+          </div>
+          <div class="value pos">+5.62 pp</div>
+        </div>
+        <div class="row">
+          <div class="label">Middling occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar neg" style="width: 46.35%;"></div>
+          </div>
+          <div class="value neg">&minus;9.27 pp</div>
+        </div>
+        <div class="row">
+          <div class="label">Low&#8209;paying occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar pos" style="width: 18.25%;"></div>
+          </div>
+          <div class="value pos">+3.65 pp</div>
+        </div>
+        <div class="scale-labels">
+          <span class="lo">shrank</span>
+          <span class="hi">grew</span>
+        </div>
+      </div>
+
+      <p class="source-note">Source: Goos, Manning &amp; Salomons,
+        <em>Explaining Job Polarization: Routine-Biased Technological Change and
+        Offshoring</em> (AER), Table 1. Original table:
+        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+      <div class="panel-head">
+        <p class="panel-eyebrow">Chart 6 &middot; Who actually gained from globalization</p>
+        <h2>The Elephant Curve, rebuilt from the original decile data</h2>
+        <p class="panel-sub">Annualized real income growth by global income percentile,
+          1988&ndash;2008 &mdash; Lakner &amp; Milanovic's World Panel Income Distribution</p>
+      </div>
+
+      <div class="elephant-wrap">
+        <svg id="elephantChart" viewBox="0 0 680 340" role="img" aria-label="Line chart of annualized real income growth by global income percentile, 1988 to 2008, showing the elephant curve shape"></svg>
+      </div>
+
+      <p class="source-note">Built from scratch, not traced from Milanovic's
+        published image: real country-decile income and population data from
+        the World Bank's Lakner-Milanovic World Panel Income Distribution
+        dataset (<code>mysample==1</code>, benchmark years 1988 and 2008; 750
+        country-decile observations in 1988, 1,209 in 2008, covering
+        4.1&ndash;6.1 billion people). Every country-decile pair was pooled,
+        population-weighted, and ranked globally by income to build the
+        1988 and 2008 global income distributions independently, then
+        linearly interpolated to whole percentiles 1&ndash;99 to compute each
+        percentile's annualized real growth rate. Because deciles (not finer
+        percentiles) are the finest grain available per country, this is
+        smoother/coarser than Milanovic's original 100-bin version but
+        reproduces the same shape: strong growth (2&ndash;3%/yr) through the
+        emerging-economy middle of the distribution (largely China, India,
+        and other Asian economies), a real dip to roughly flat or slightly
+        negative around the 80th&ndash;85th global percentile (the
+        "elephant's trunk" &mdash; rich-country lower-middle classes), then a
+        renewed rise into the global top percentiles.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">Increase of right-wing populism</p>
+      <h2>Far-right vote share has risen roughly ten-fold since the 1980s</h2>
+      <p class="panel-sub">Real election vote shares (ParlGov) classified by party family (PopuList), 30 European countries, 5-year averages</p>
+      <svg id="chart-populism" viewBox="0 0 720 320" role="img" aria-label="Stacked area chart of vote share by party category, 1900 to 2020"></svg>
+      <p class="source-note"><strong>This is an original reconstruction, not
+        a copy of the slide's exact category scheme.</strong> Built by merging
+        two real datasets: ParlGov's actual national-parliament election vote
+        shares (via <code>parlgov.fly.dev</code>, a working ParlGov mirror,
+        after the main site's Cloudflare blocked direct access) with
+        PopuList v4.0's party classification (far-right/far-left/populist
+        flags with active-year ranges, matched on each party's
+        <code>parlgov_id</code>). My classification rule, applied per party
+        per election year: far-right if PopuList flags it far-right in that
+        year; else far-left if flagged far-left; else "other populist" if
+        flagged populist but not far-left/far-right; else mainstream. Vote
+        shares are averaged in 5-year bins across all ~30 PopuList-covered
+        European countries' national elections (636 elections, 1900&ndash;2023).
+        Far-right vote share: ~1&ndash;2% through the 1970s&ndash;80s,
+        rising past 10% by 2010 and reaching ~14% in the 2015&ndash;19 bin.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+      <div class="panel-head">
+        <p class="panel-eyebrow">Chart 5 &middot; Outcomes, not just attitudes</p>
+        <h2>How large is the far right in parliament right now?</h2>
+        <p class="panel-sub">Seat share of the largest far-right party, most recent
+          national lower-house election per country</p>
+      </div>
+
+      <div class="rankchart">
+        <div class="rank-row">
+          <div class="rank-label"><strong>Austria</strong> &middot; FP&Ouml;</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 100%;"></div></div>
+          <div class="rank-value">31.1%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Italy</strong> &middot; Fratelli d&rsquo;Italia</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 94.9%;"></div></div>
+          <div class="rank-value">29.5%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Portugal</strong> &middot; Chega</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 83.9%;"></div></div>
+          <div class="rank-value">26.1%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Netherlands</strong> &middot; PVV</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 79.4%;"></div></div>
+          <div class="rank-value">24.7%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Germany</strong> &middot; AfD</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 77.5%;"></div></div>
+          <div class="rank-value">24.1%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Finland</strong> &middot; Finns Party</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 74.0%;"></div></div>
+          <div class="rank-value">23.0%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>France</strong> &middot; National Rally</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 69.8%;"></div></div>
+          <div class="rank-value">21.7%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Sweden</strong> &middot; Sweden Democrats</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 67.2%;"></div></div>
+          <div class="rank-value">20.9%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Belgium</strong> &middot; Vlaams Belang</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 42.8%;"></div></div>
+          <div class="rank-value">13.3%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Spain</strong> &middot; Vox</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 30.2%;"></div></div>
+          <div class="rank-value">9.4%</div>
+        </div>
+        <div class="rank-row">
+          <div class="rank-label"><strong>Poland</strong> &middot; Confederation</div>
+          <div class="rank-track"><div class="rank-bar" style="width: 12.5%;"></div></div>
+          <div class="rank-value">3.9%</div>
+        </div>
+      </div>
+
+      <p class="source-note">Seats and chamber totals verified individually per
+        country (most recent lower-house election as of writing): Austria
+        Nationalrat 2024 (FP&Ouml; 57/183); Italy Chamber of Deputies 2022
+        (Fratelli d&rsquo;Italia 118/400); Portugal Assembly of the Republic
+        2025 (Chega 60/230); Netherlands Tweede Kamer 2023 (PVV 37/150);
+        Germany Bundestag 2025 (AfD ~152/630); Finland Eduskunta 2023 (Finns
+        Party 46/200); France National Assembly 2024 (National Rally
+        125/577); Sweden Riksdag 2022 (Sweden Democrats 73/349); Belgium
+        Chamber of Representatives 2024 (Vlaams Belang 20/150); Spain
+        Congress of Deputies 2023 (Vox 33/350); Poland Sejm 2023
+        (Confederation 18/460). Compiled from national election results
+        (Wikipedia / IPU Parline), not from a single pre-built dataset &mdash;
+        ParlGov and the PopuList project maintain the proper long-run panel
+        version of this data but weren&rsquo;t reachable from this session.
+        Ruling coalitions blend multiple parties differently across
+        countries, so a country&rsquo;s largest far-right party is not
+        always in government even where it holds a large seat share (e.g.
+        France, Germany).</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">The great decoupling</p>
+      <h2>Productivity has outpaced compensation since the late 1990s</h2>
+      <p class="panel-sub">OECD Compendium of Productivity Indicators 2018, Figure 5.5 StatLink data, unweighted average of 20 OECD countries, 1995&ndash;2016</p>
+      <svg id="chart-decoupling" viewBox="0 0 720 280" role="img" aria-label="Line chart of labour productivity versus average compensation, indexed to 100 in 1995"></svg>
+      <p class="source-note">Source: not a re-derivation this time &mdash; this
+        is the actual OECD StatLink Excel file behind Figure 5.5 of the
+        <em>OECD Compendium of Productivity Indicators 2018</em>
+        (<code>http://dx.doi.org/10.1787/888933734303</code>), which every
+        chart/table in that publication carries at the bottom of the page.
+        Averaged here (unweighted) across all 20 countries in the figure:
+        Australia, Belgium, Canada, Czech Republic, Denmark, Finland, France,
+        Germany, Italy, Japan, Korea, Latvia, Netherlands, Poland, Slovak
+        Republic, Slovenia, Spain, Sweden, UK, US. By 2016, GVA per hour
+        worked (productivity) reached 152.9 (1995=100) while CPI-deflated
+        compensation per hour reached only 140.8 &mdash; the gap between the
+        two lines is the "decoupling."</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">Peak of global uncertainty</p>
+      <h2>Global Economic Policy Uncertainty is at historic highs</h2>
+      <p class="panel-sub">Baker, Bloom &amp; Davis Global EPU Index, annual average of the monthly series, 1997&ndash;2025</p>
+      <svg id="chart-gepu" viewBox="0 0 720 260" role="img" aria-label="Line chart of the Global Economic Policy Uncertainty Index, 1997 to 2025"></svg>
+      <p class="source-note">Source: Baker, Bloom &amp; Davis Global Economic
+        Policy Uncertainty Index, via FRED series <code>GEPUCURRENT</code>
+        (GDP-weighted average of national EPU indices), monthly data averaged
+        to annual here. The index spikes around 2008&ndash;09 (GFC), 2016
+        (Brexit/Trump), 2020 (COVID), and reaches its highest sustained level
+        in the 2024&ndash;25 data.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-growth"><div class="wrap">
+
+    
 
     <h2 class="section-head">Roughly 5-year spells</h2>
     <p class="section-sub">n = 397 country-spells per poverty line (gap of 3&ndash;7 years between surveys; Belarus 1995&ndash;1998 dropped as an outlier &mdash; a post-Soviet transition spell with +7.9%/yr growth alongside a +12 to +17.5 pp/yr jump in poverty, which doesn't reflect the general pattern)</p>
@@ -1264,44 +1385,10 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
       country and survey years.
     </footer>
 
-  </div>
-</div>
+  </div></div></section>
+<section class="row-single"><div class="viz-root scope-district"><div class="wrap">
 
-<div class="chapter-divider" id="district">
-  <p class="chapter-eyebrow">Chapter 3</p>
-  <h2 class="chapter-title">Growth vs. Poverty: Indonesian Districts (INDO-DAPOER)</h2>
-  <p class="chapter-sub">The same growth-poverty analysis applied to 510 Indonesian kabupaten/kota.</p>
-  <a class="back-to-top" href="#top">&uarr; back to top</a>
-</div>
-<div class="viz-root scope-district">
-  <div class="wrap">
-
-    <header class="page-head">
-      <p class="eyebrow">Summer School 2026 &middot; World Bank INDO-DAPOER, pulled live</p>
-      <h1>Growth and poverty across Indonesian districts (kabupaten/kota)</h1>
-      <p class="lede">Same method as the cross-country WDI charts, applied to
-        <strong>510 Indonesian districts and cities</strong> from the World
-        Bank's INDO-DAPOER sub-national database. Each point is one
-        district-window: real GRDP-per-capita growth (annualized, %/yr) against
-        the change in the district's official poverty rate (annualized,
-        percentage points/yr), using the national poverty line &mdash; INDO-DAPOER
-        does not report the $2.15/$3.65/$6.85-a-day international lines at
-        district level the way WDI does at country level, so this is a single
-        poverty definition rather than three.</p>
-      <p class="lede">District poverty rates are reported <strong>annually</strong>
-        (unlike national household surveys, which are irregular), so instead of
-        matching consecutive survey years, each window here is a direct
-        <strong>year&nbsp;&rarr;&nbsp;year+5</strong> or
-        <strong>year&nbsp;&rarr;&nbsp;year+10</strong> pair for every start year
-        a district has data for &mdash; meaning windows overlap for the same
-        district across adjacent years and are not fully independent
-        observations. That trades statistical independence for far more data
-        points; treat this as descriptive, not a formal panel regression.</p>
-      <div class="legend-row">
-        <div class="legend-item"><span class="swatch" style="background: var(--status-critical);"></span> Growth positive, poverty rose anyway</div>
-        <div class="legend-item"><span class="swatch" style="background: var(--point);"></span> All other windows</div>
-      </div>
-    </header>
+    
 
     <div class="grid2">
       <div class="panel" id="panel-5yr"></div>
@@ -1323,151 +1410,15 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
       point for its district and window years.
     </footer>
 
-  </div>
-</div>
+  </div></div></section>
 
-<div class="chapter-divider" id="slide2">
-  <p class="chapter-eyebrow">Chapter 4</p>
-  <h2 class="chapter-title">Slide 2, Rebuilt from Source Data</h2>
-  <p class="chapter-sub">Six panels tracing every story on the DEN presentation's slide 2 back to primary or original-source data.</p>
-  <a class="back-to-top" href="#top">&uarr; back to top</a>
-</div>
-<div class="viz-root scope-slide2">
-  <div class="wrap">
-
-    <header class="page-head">
-      <p class="eyebrow">Summer School 2026 &middot; Rebuilt from primary sources</p>
-      <h1>Slide 2's charts, rebuilt from the original datasets</h1>
-      <p class="lede">All five stories on the DEN slide are now covered
-        &mdash; deglobalization, policy uncertainty, rising top-end
-        inequality, the populist vote-share trend, productivity/wage
-        decoupling, and trade protectionism traced directly from what is
-        almost certainly the slide's original source chart. Only the
-        regional job-polarization chart remains out of reach.</p>
-    </header>
-
-    <section class="panel">
-      <p class="panel-eyebrow">Increase of right-wing populism</p>
-      <h2>Far-right vote share has risen roughly ten-fold since the 1980s</h2>
-      <p class="panel-sub">Real election vote shares (ParlGov) classified by party family (PopuList), 30 European countries, 5-year averages</p>
-      <svg id="chart-populism" viewBox="0 0 720 320" role="img" aria-label="Stacked area chart of vote share by party category, 1900 to 2020"></svg>
-      <p class="source-note"><strong>This is an original reconstruction, not
-        a copy of the slide's exact category scheme.</strong> Built by merging
-        two real datasets: ParlGov's actual national-parliament election vote
-        shares (via <code>parlgov.fly.dev</code>, a working ParlGov mirror,
-        after the main site's Cloudflare blocked direct access) with
-        PopuList v4.0's party classification (far-right/far-left/populist
-        flags with active-year ranges, matched on each party's
-        <code>parlgov_id</code>). My classification rule, applied per party
-        per election year: far-right if PopuList flags it far-right in that
-        year; else far-left if flagged far-left; else "other populist" if
-        flagged populist but not far-left/far-right; else mainstream. Vote
-        shares are averaged in 5-year bins across all ~30 PopuList-covered
-        European countries' national elections (636 elections, 1900&ndash;2023).
-        Far-right vote share: ~1&ndash;2% through the 1970s&ndash;80s,
-        rising past 10% by 2010 and reaching ~14% in the 2015&ndash;19 bin.</p>
-    </section>
-
-    <section class="panel">
-      <p class="panel-eyebrow">Slowbalization</p>
-      <h2>World trade has stalled as a share of GDP since 2008</h2>
-      <p class="panel-sub">World Bank WDI, <code>NE.TRD.GNFS.ZS</code>, world aggregate, 1970&ndash;2024</p>
-      <svg id="chart-trade" viewBox="0 0 720 260" role="img" aria-label="Line chart of world trade as a percent of GDP, 1970 to 2024"></svg>
-      <p class="source-note">Source: World Bank World Development Indicators,
-        pulled live via the WDI API (<code>country=WLD</code>). Trade rose
-        steadily from ~27% of world GDP in 1970 to a peak of ~61% in 2008,
-        then plateaued and has oscillated in a band roughly 51&ndash;62% ever
-        since &mdash; the "slowbalization" pattern: trade didn't reverse, but its
-        multi-decade rise essentially stopped after the Global Financial Crisis.</p>
-    </section>
-
-    <section class="panel">
-      <p class="panel-eyebrow">Peak of global uncertainty</p>
-      <h2>Global Economic Policy Uncertainty is at historic highs</h2>
-      <p class="panel-sub">Baker, Bloom &amp; Davis Global EPU Index, annual average of the monthly series, 1997&ndash;2025</p>
-      <svg id="chart-gepu" viewBox="0 0 720 260" role="img" aria-label="Line chart of the Global Economic Policy Uncertainty Index, 1997 to 2025"></svg>
-      <p class="source-note">Source: Baker, Bloom &amp; Davis Global Economic
-        Policy Uncertainty Index, via FRED series <code>GEPUCURRENT</code>
-        (GDP-weighted average of national EPU indices), monthly data averaged
-        to annual here. The index spikes around 2008&ndash;09 (GFC), 2016
-        (Brexit/Trump), 2020 (COVID), and reaches its highest sustained level
-        in the 2024&ndash;25 data.</p>
-    </section>
-
-    <section class="panel">
-      <p class="panel-eyebrow">Increase in inequality</p>
-      <h2>Top 1% income share, nine advanced economies</h2>
-      <p class="panel-sub">World Inequality Database (WID.world), official data via their R package, 1980&ndash;2024</p>
-      <svg id="chart-top1" viewBox="0 0 720 340" role="img" aria-label="Line chart of top 1 percent pretax national income share for nine countries, 1980 to 2024"></svg>
-      <p class="source-note">Source: World Inequality Database, series
-        <code>sptinc992j</code> (share of pretax national income, equal-split
-        adults), percentile <code>p99p100</code>, pulled directly from
-        WID.world's own API using their official <code>wid</code> R package
-        (not a third-party mirror). Same 9 countries as the slide: Australia,
-        Canada, France, Germany, Italy, Japan, Korea, UK, US.</p>
-    </section>
-
-    <section class="panel">
-      <p class="panel-eyebrow">The great decoupling</p>
-      <h2>Productivity has outpaced compensation since the late 1990s</h2>
-      <p class="panel-sub">OECD Compendium of Productivity Indicators 2018, Figure 5.5 StatLink data, unweighted average of 20 OECD countries, 1995&ndash;2016</p>
-      <svg id="chart-decoupling" viewBox="0 0 720 280" role="img" aria-label="Line chart of labour productivity versus average compensation, indexed to 100 in 1995"></svg>
-      <p class="source-note">Source: not a re-derivation this time &mdash; this
-        is the actual OECD StatLink Excel file behind Figure 5.5 of the
-        <em>OECD Compendium of Productivity Indicators 2018</em>
-        (<code>http://dx.doi.org/10.1787/888933734303</code>), which every
-        chart/table in that publication carries at the bottom of the page.
-        Averaged here (unweighted) across all 20 countries in the figure:
-        Australia, Belgium, Canada, Czech Republic, Denmark, Finland, France,
-        Germany, Italy, Japan, Korea, Latvia, Netherlands, Poland, Slovak
-        Republic, Slovenia, Spain, Sweden, UK, US. By 2016, GVA per hour
-        worked (productivity) reached 152.9 (1995=100) while CPI-deflated
-        compensation per hour reached only 140.8 &mdash; the gap between the
-        two lines is the "decoupling."</p>
-    </section>
-
-    <section class="panel">
-      <p class="panel-eyebrow">Increase of trade protectionism</p>
-      <h2>Trade restrictions imposed worldwide, traced from the actual source chart</h2>
-      <p class="panel-sub">Traced from IMF SDN/2023/001 "Geoeconomic Fragmentation and the Future of Multilateralism," Figure 7 (p.11) &mdash; sourced there to Global Trade Alert, updated 7 December 2022</p>
-      <svg id="chart-gtatraced" viewBox="0 0 720 300" role="img" aria-label="Stacked bar chart of the number of trade restrictions imposed worldwide by year, 2009 to 2022, split into goods, investment, and services"></svg>
-      <div class="legend-row" style="margin-top:12px;">
-        <div class="legend-item"><span class="swatch" style="background: var(--c5);"></span> Goods</div>
-        <div class="legend-item"><span class="swatch" style="background: var(--c8);"></span> Investment</div>
-        <div class="legend-item"><span class="swatch" style="background: var(--c4);"></span> Services</div>
-      </div>
-      <p class="source-note"><strong>This is a traced estimate, not exact
-        data</strong> &mdash; Global Trade Alert's raw figures remain behind an
-        API credential this session doesn't have, so these values are read
-        directly off the bar heights in IMF SDN/2023/001's Figure 7, the
-        near-certain original source of the slide's chart (identical title
-        "Trade Restrictions Imposed," identical Goods/Investment/Services
-        breakdown, identical GTA sourcing). Total bar heights (read against
-        the chart's 500-unit gridlines) are reasonably reliable: roughly
-        60&ndash;160 per year from 2009&ndash;2013, climbing through 650 by
-        2018, then accelerating sharply to ~980 (2019), ~1,380 (2020),
-        ~1,900 (2021), and ~2,150 (2022). The Goods/Investment/Services
-        <em>split within each bar</em> is a much rougher visual read and
-        should be treated as illustrative, not precise &mdash; segment
-        boundaries in a small stacked bar are hard to place exactly.</p>
-    </section>
-
-    <footer class="foot">
-      Still not rebuilt: the regional job-polarization chart (Southern/
-      Northern/Western Europe, North America, Japan, Central Europe,
-      1995&ndash;2015) &mdash; no single source for that exact regional grouping
-      was found.
-    </footer>
-
-  </div>
-</div>
-
-<footer class="combo-footer">
+<footer class="deck-foot">
   <strong>Sources.</strong> Each panel carries its own citation and caveats. Across the deck: World Bank
-  WDI and INDO-DAPOER APIs; OECD SDMX API and the StatLink spreadsheet behind Figure 5.5 of the 2018
+  WDI and INDO-DAPOER APIs; the OECD SDMX API and the StatLink spreadsheet behind Figure 5.5 of the 2018
   <em>Compendium of Productivity Indicators</em>; WID.world via its official R package; FRED; ParlGov
-  (election results) merged with PopuList v4.0 (party classification); and IMF SDN/2023/001 for the
-  traced Global Trade Alert figure. Where a number is estimated rather than pulled, the panel says so.
+  election results merged with PopuList v4.0 party classifications; the Lakner-Milanovic World Panel
+  Income Distribution; and IMF SDN/2023/001 for the traced Global Trade Alert figure. Where a number is
+  estimated rather than pulled, the panel says so.
 </footer>
 
 <script>
@@ -1522,7 +1473,7 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
         const labelG = document.getElementById("giniLabels");
         const axesG = document.getElementById("giniAxes");
 
-        const rootStyles = getComputedStyle(document.querySelector(".viz-root.scope-populism"));
+        const rootStyles = getComputedStyle(document.querySelector(".viz-root.scope-ineq"));
         const gridColor = rootStyles.getPropertyValue("--grid").trim();
         const baseline = rootStyles.getPropertyValue("--baseline").trim();
         const muted = rootStyles.getPropertyValue("--muted").trim();
@@ -1630,7 +1581,7 @@ body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
         }
 
         const svg = document.getElementById("elephantChart");
-        const rootStyles = getComputedStyle(document.querySelector(".viz-root.scope-populism"));
+        const rootStyles = getComputedStyle(document.querySelector(".viz-root.scope-ineq"));
         const gridColor = rootStyles.getPropertyValue("--grid").trim();
         const baseline = rootStyles.getPropertyValue("--baseline").trim();
         const muted = rootStyles.getPropertyValue("--muted").trim();
