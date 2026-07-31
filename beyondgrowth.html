@@ -878,14 +878,32 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 /* before/after bar groups: let them reflow instead of overflowing
    when the panel is only half the viewport wide */
 .viz-root .triptych, .viz-root .quad {
-  grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 11vw, 170px), 1fr)) !important;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 13vw, 190px), 1fr)) !important;
   gap: clamp(10px, 1vw, 20px) !important;
+  row-gap: clamp(28px, 2.4vw, 40px) !important;
 }
-.viz-root .barpair { gap: clamp(6px, 0.6vw, 10px); }
+.viz-root .metric { display: flex !important; flex-direction: column !important; align-items: center !important; }
+.viz-root .barpair { gap: clamp(6px, 0.6vw, 10px); margin-top: auto; }
 .viz-root .barpair .bar-col { width: clamp(28px, 2.6vw, 44px); }
 .viz-root .barpair .bval { font-size: clamp(11.5px, 0.85vw, 14px); white-space: nowrap; }
 .viz-root .barpair .byr { font-size: clamp(9.5px, 0.72vw, 11.5px); white-space: nowrap; }
-.viz-root .metric .mlabel { font-size: clamp(11.5px, 0.85vw, 14px); min-height: 0; }
+/* the actual overflow bug: this label used to reserve min-height:32px
+   at the original (wider, single-column) panel width, so 1-2 wrapped
+   lines never collided with the value/bar below. In the new narrower
+   half-viewport columns the same label text wraps to 2-3 lines, and
+   since min-height wasn't zero it should still reserve space — but the
+   font-size clamp shrunk while the reserved height stayed in raw px
+   from the source stylesheet, so the resize could still under-reserve.
+   min-height in em (scaled to the same clamp) plus a flex column with
+   margin-top:auto on the bar block guarantees the gap survives any
+   wrap count. */
+.viz-root .metric .mlabel {
+  font-size: clamp(11.5px, 0.85vw, 14px);
+  line-height: 1.32;
+  min-height: 3.96em !important;
+  display: flex; align-items: flex-end; justify-content: center;
+  margin-bottom: 0 !important;
+}
 
 @media print {
   .row-pair { grid-template-columns: 1fr 1fr; }
@@ -1137,82 +1155,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         (not a third-party mirror). Same 9 countries as the slide: Australia,
         Canada, France, Germany, Italy, Japan, Korea, UK, US.</p>
     </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
-      <div class="panel-head">
-        <p class="panel-eyebrow">Chart 1 &middot; Labor market</p>
-        <h2>The middle of the job market hollowed out</h2>
-        <p class="panel-sub">Change in employment share by wage tier, 16 Western
-          European countries, 1993&ndash;2010</p>
-      </div>
-
-      <div class="divchart">
-        <div class="row">
-          <div class="label">High&#8209;paying occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar pos" style="width: 28.1%;"></div>
-          </div>
-          <div class="value pos">+5.62 pp</div>
-        </div>
-        <div class="row">
-          <div class="label">Middling occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar neg" style="width: 46.35%;"></div>
-          </div>
-          <div class="value neg">&minus;9.27 pp</div>
-        </div>
-        <div class="row">
-          <div class="label">Low&#8209;paying occupations</div>
-          <div class="track">
-            <div class="zero-line"></div>
-            <div class="bar pos" style="width: 18.25%;"></div>
-          </div>
-          <div class="value pos">+3.65 pp</div>
-        </div>
-        <div class="scale-labels">
-          <span class="lo">shrank</span>
-          <span class="hi">grew</span>
-        </div>
-      </div>
-
-      <p class="source-note">Source: Goos, Manning &amp; Salomons,
-        <em>Explaining Job Polarization: Routine-Biased Technological Change and
-        Offshoring</em> (AER), Table 1. Original table:
-        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</p>
-    </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
-      <div class="panel-head">
-        <p class="panel-eyebrow">Chart 6 &middot; Who actually gained from globalization</p>
-        <h2>The Elephant Curve, rebuilt from the original decile data</h2>
-        <p class="panel-sub">Annualized real income growth by global income percentile,
-          1988&ndash;2008 &mdash; Lakner &amp; Milanovic's World Panel Income Distribution</p>
-      </div>
-
-      <div class="elephant-wrap">
-        <svg id="elephantChart" viewBox="0 0 680 340" role="img" aria-label="Line chart of annualized real income growth by global income percentile, 1988 to 2008, showing the elephant curve shape"></svg>
-      </div>
-
-      <p class="source-note">Built from scratch, not traced from Milanovic's
-        published image: real country-decile income and population data from
-        the World Bank's Lakner-Milanovic World Panel Income Distribution
-        dataset (<code>mysample==1</code>, benchmark years 1988 and 2008; 750
-        country-decile observations in 1988, 1,209 in 2008, covering
-        4.1&ndash;6.1 billion people). Every country-decile pair was pooled,
-        population-weighted, and ranked globally by income to build the
-        1988 and 2008 global income distributions independently, then
-        linearly interpolated to whole percentiles 1&ndash;99 to compute each
-        percentile's annualized real growth rate. Because deciles (not finer
-        percentiles) are the finest grain available per country, this is
-        smoother/coarser than Milanovic's original 100-bin version but
-        reproduces the same shape: strong growth (2&ndash;3%/yr) through the
-        emerging-economy middle of the distribution (largely China, India,
-        and other Asian economies), a real dip to roughly flat or slightly
-        negative around the 80th&ndash;85th global percentile (the
-        "elephant's trunk" &mdash; rich-country lower-middle classes), then a
-        renewed rise into the global top percentiles.</p>
-    </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<section class="row-pair" aria-label="Far-right vote share trend and current seat share"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">Increase of right-wing populism</p>
       <h2>Far-right vote share has risen roughly ten-fold since the 1980s</h2>
       <p class="panel-sub">Real election vote shares (ParlGov) classified by party family (PopuList), 30 European countries, 5-year averages</p>
@@ -1232,8 +1175,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         European countries' national elections (636 elections, 1900&ndash;2023).
         Far-right vote share: ~1&ndash;2% through the 1970s&ndash;80s,
         rising past 10% by 2010 and reaching ~14% in the 2015&ndash;19 bin.</p>
-    </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+    </section></div></div><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 5 &middot; Outcomes, not just attitudes</p>
         <h2>How large is the far right in parliament right now?</h2>
@@ -1317,6 +1259,81 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         countries, so a country&rsquo;s largest far-right party is not
         always in government even where it holds a large seat share (e.g.
         France, Germany).</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+      <div class="panel-head">
+        <p class="panel-eyebrow">Chart 1 &middot; Labor market</p>
+        <h2>The middle of the job market hollowed out</h2>
+        <p class="panel-sub">Change in employment share by wage tier, 16 Western
+          European countries, 1993&ndash;2010</p>
+      </div>
+
+      <div class="divchart">
+        <div class="row">
+          <div class="label">High&#8209;paying occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar pos" style="width: 28.1%;"></div>
+          </div>
+          <div class="value pos">+5.62 pp</div>
+        </div>
+        <div class="row">
+          <div class="label">Middling occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar neg" style="width: 46.35%;"></div>
+          </div>
+          <div class="value neg">&minus;9.27 pp</div>
+        </div>
+        <div class="row">
+          <div class="label">Low&#8209;paying occupations</div>
+          <div class="track">
+            <div class="zero-line"></div>
+            <div class="bar pos" style="width: 18.25%;"></div>
+          </div>
+          <div class="value pos">+3.65 pp</div>
+        </div>
+        <div class="scale-labels">
+          <span class="lo">shrank</span>
+          <span class="hi">grew</span>
+        </div>
+      </div>
+
+      <p class="source-note">Source: Goos, Manning &amp; Salomons,
+        <em>Explaining Job Polarization: Routine-Biased Technological Change and
+        Offshoring</em> (AER), Table 1. Original table:
+        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</p>
+    </section></div></div></section>
+<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+      <div class="panel-head">
+        <p class="panel-eyebrow">Chart 6 &middot; Who actually gained from globalization</p>
+        <h2>The Elephant Curve, rebuilt from the original decile data</h2>
+        <p class="panel-sub">Annualized real income growth by global income percentile,
+          1988&ndash;2008 &mdash; Lakner &amp; Milanovic's World Panel Income Distribution</p>
+      </div>
+
+      <div class="elephant-wrap">
+        <svg id="elephantChart" viewBox="0 0 680 340" role="img" aria-label="Line chart of annualized real income growth by global income percentile, 1988 to 2008, showing the elephant curve shape"></svg>
+      </div>
+
+      <p class="source-note">Built from scratch, not traced from Milanovic's
+        published image: real country-decile income and population data from
+        the World Bank's Lakner-Milanovic World Panel Income Distribution
+        dataset (<code>mysample==1</code>, benchmark years 1988 and 2008; 750
+        country-decile observations in 1988, 1,209 in 2008, covering
+        4.1&ndash;6.1 billion people). Every country-decile pair was pooled,
+        population-weighted, and ranked globally by income to build the
+        1988 and 2008 global income distributions independently, then
+        linearly interpolated to whole percentiles 1&ndash;99 to compute each
+        percentile's annualized real growth rate. Because deciles (not finer
+        percentiles) are the finest grain available per country, this is
+        smoother/coarser than Milanovic's original 100-bin version but
+        reproduces the same shape: strong growth (2&ndash;3%/yr) through the
+        emerging-economy middle of the distribution (largely China, India,
+        and other Asian economies), a real dip to roughly flat or slightly
+        negative around the 80th&ndash;85th global percentile (the
+        "elephant's trunk" &mdash; rich-country lower-middle classes), then a
+        renewed rise into the global top percentiles.</p>
     </section></div></div></section>
 <section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">The great decoupling</p>
