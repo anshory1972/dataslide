@@ -808,6 +808,15 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   color: var(--shell-muted); max-width: 76ch; margin: 0;
 }
 .deck-lede strong { color: var(--shell-ink); font-weight: 600; }
+.deck-byline {
+  margin: clamp(18px, 2.4vh, 28px) 0 0;
+  font-size: clamp(13px, 0.95vw, 15px); color: var(--shell-muted);
+}
+.deck-byline a {
+  color: var(--shell-slate); text-decoration: none; font-weight: 600;
+  border-bottom: 1px solid transparent; transition: border-color .15s;
+}
+.deck-byline a:hover, .deck-byline a:focus-visible { border-color: var(--shell-slate); }
 
 /* ---- the arrangement grid ---- */
 .row-pair, .row-single {
@@ -994,6 +1003,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
     FRED and WID.world APIs, merged from ParlGov and PopuList election records, read out of an OECD
     StatLink spreadsheet, or, where a dataset stayed locked behind a credential,
     <strong>traced from the original publication and labelled as an estimate</strong>.</p>
+  <p class="deck-byline">By <a href="https://www.linkedin.com/in/arief-yusuf-a9075240/" target="_blank" rel="noopener">Arief Anshory Yusuf</a></p>
 </header>
 
 <section class="row-pair" aria-label="Deglobalization and trade restrictions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
