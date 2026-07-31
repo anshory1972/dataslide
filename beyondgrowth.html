@@ -1,4 +1,4 @@
-<title>All Charts &mdash; Populism, Inequality &amp; Trade Fragmentation (Summer School 2026)</title>
+<title>Beyond Growth &mdash; Inequality, Populism &amp; Fragmentation in Charts</title>
 <style>
 /* ==== chapter: populism ==== */
 
@@ -724,40 +724,224 @@ html, body {
 
 .scope-slide2 footer.foot { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 16px; }
 
-.combo-header { max-width: 900px; margin: 0 auto; padding: 56px 24px 0; }
-.combo-eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
-.combo-h1 { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-size: 34px; line-height: 1.15; margin: 0 0 16px; font-weight: 600; text-wrap: balance; }
-.combo-lede { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); max-width: 68ch; margin: 0 0 28px; }
-.toc { list-style: none; margin: 0 0 48px; padding: 0; display: grid; gap: 10px; }
-.toc li { border: 1px solid var(--border); border-radius: 6px; background: var(--surface-1); }
-.toc a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 18px; text-decoration: none; color: var(--text-primary); font-size: 14.5px; font-weight: 600; }
-.toc a span.toc-sub { font-weight: 400; color: var(--text-secondary); font-size: 13px; }
-.chapter-divider { max-width: 900px; margin: 64px auto 0; padding: 0 24px; border-top: 2px solid var(--baseline); }
-.chapter-eyebrow { font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 28px 0 6px; }
-.chapter-title { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-size: 24px; font-weight: 600; margin: 0 0 6px; text-wrap: balance; }
-.chapter-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 8px; max-width: 68ch; }
-.back-to-top { display: inline-block; margin: 8px 0 0; font-size: 12.5px; color: var(--text-secondary); text-decoration: none; }
-.combo-footer { max-width: 900px; margin: 40px auto 0; padding: 24px 24px 64px; font-size: 12.5px; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--grid); }
-:root { color-scheme: light dark; }
-body { background: #f7f6f2; }
-@media (prefers-color-scheme: dark) { body { background: #121211; } }
+/* ============================================================
+   Presentation shell — full-bleed, projector-legible.
+   Built for F11 fullscreen browsing, so nothing is centred in
+   a narrow column: the deck uses the whole viewport width.
+   ============================================================ */
+
+:root {
+  color-scheme: light dark;
+  --shell-ink:      #14161c;
+  --shell-paper:    #f4f2ed;
+  --shell-surface:  #fffdf9;
+  --shell-rule:     #dcd8ce;
+  --shell-muted:    #6d6a63;
+  --shell-accent:   #b4451f;   /* rust — used only for structure marks */
+  --shell-accent-2: #1c4e73;   /* deep slate blue */
+  --shell-navh:     58px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shell-ink:      #f2f0ea;
+    --shell-paper:    #0f1013;
+    --shell-surface:  #17191e;
+    --shell-rule:     #2b2e35;
+    --shell-muted:    #9a978f;
+    --shell-accent:   #e0703f;
+    --shell-accent-2: #6fa8cd;
+  }
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--shell-navh) + 12px); }
+body { background: var(--shell-paper); color: var(--shell-ink); margin: 0; }
+
+/* ---------- sticky chapter nav (presentation jump bar) ---------- */
+.deck-nav {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--shell-navh);
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 clamp(16px, 2.5vw, 40px);
+  background: color-mix(in srgb, var(--shell-paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--shell-rule);
+  overflow-x: auto; scrollbar-width: thin;
+}
+.deck-nav .nav-brand {
+  font-family: Georgia, "Iowan Old Style", serif;
+  font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+  white-space: nowrap; margin-right: 12px; color: var(--shell-ink);
+  text-decoration: none;
+}
+.deck-nav .nav-brand span { color: var(--shell-accent); }
+.deck-nav a.nav-link {
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  color: var(--shell-muted); white-space: nowrap;
+  padding: 7px 13px; border-radius: 999px; border: 1px solid transparent;
+  transition: color .15s, background .15s, border-color .15s;
+}
+.deck-nav a.nav-link:hover, .deck-nav a.nav-link:focus-visible {
+  color: var(--shell-ink); background: var(--shell-surface); border-color: var(--shell-rule);
+}
+.deck-nav .nav-count { margin-left: auto; font-size: 11.5px; color: var(--shell-muted); white-space: nowrap; padding-left: 16px; }
+
+/* ---------- title block ---------- */
+.combo-header {
+  max-width: none;
+  padding: clamp(48px, 7vh, 96px) clamp(20px, 4vw, 72px) clamp(28px, 4vh, 52px);
+  border-bottom: 1px solid var(--shell-rule);
+}
+.combo-eyebrow {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--shell-accent); margin: 0 0 18px; font-weight: 700;
+  display: flex; align-items: center; gap: 12px;
+}
+.combo-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--shell-rule); max-width: 320px; }
+.combo-h1 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(32px, 4.6vw, 66px); line-height: 1.04;
+  letter-spacing: -0.022em; margin: 0 0 22px; font-weight: 600;
+  text-wrap: balance; max-width: 22ch; color: var(--shell-ink);
+}
+.combo-lede {
+  font-size: clamp(15px, 1.15vw, 19px); line-height: 1.62;
+  color: var(--shell-muted); max-width: 74ch; margin: 0;
+}
+.combo-lede strong { color: var(--shell-ink); font-weight: 600; }
+
+/* ---------- contents grid ---------- */
+.toc {
+  list-style: none; padding: 0;
+  margin: clamp(28px, 4vh, 44px) clamp(20px, 4vw, 72px) clamp(36px, 5vh, 64px);
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.toc li {
+  border: 1px solid var(--shell-rule); border-radius: 10px;
+  background: var(--shell-surface); overflow: hidden;
+  transition: border-color .15s, transform .15s;
+}
+.toc li:hover { border-color: var(--shell-accent); transform: translateY(-2px); }
+.toc a {
+  display: flex; flex-direction: column; gap: 7px;
+  padding: 20px 22px; text-decoration: none; color: var(--shell-ink);
+  font-size: 16px; font-weight: 600; line-height: 1.3; height: 100%;
+  border-left: 3px solid var(--shell-accent-2);
+}
+.toc a span.toc-sub { font-weight: 400; color: var(--shell-muted); font-size: 13px; line-height: 1.5; }
+
+/* ---------- chapter dividers ---------- */
+.chapter-divider {
+  max-width: none;
+  margin: 0; padding: clamp(44px, 6vh, 80px) clamp(20px, 4vw, 72px) clamp(14px, 2vh, 26px);
+  border-top: 1px solid var(--shell-rule);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--shell-surface) 60%, transparent), transparent);
+}
+.chapter-eyebrow {
+  font-size: 11.5px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 10px;
+}
+.chapter-title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(24px, 2.7vw, 40px); font-weight: 600; margin: 0 0 10px;
+  letter-spacing: -0.018em; line-height: 1.12; text-wrap: balance; color: var(--shell-ink);
+}
+.chapter-sub { font-size: clamp(14px, 1.05vw, 17px); color: var(--shell-muted); margin: 0 0 6px; max-width: 78ch; line-height: 1.55; }
+.back-to-top {
+  display: inline-block; margin: 14px 0 0; font-size: 12.5px; font-weight: 600;
+  color: var(--shell-muted); text-decoration: none;
+  padding: 5px 12px; border: 1px solid var(--shell-rule); border-radius: 999px;
+}
+.back-to-top:hover { color: var(--shell-ink); border-color: var(--shell-accent); }
+
+.combo-footer {
+  max-width: none; margin: 0;
+  padding: clamp(28px, 4vh, 48px) clamp(20px, 4vw, 72px) clamp(56px, 8vh, 96px);
+  font-size: 13px; color: var(--shell-muted); line-height: 1.75;
+  border-top: 1px solid var(--shell-rule); background: var(--shell-surface);
+}
+.combo-footer code { background: color-mix(in srgb, var(--shell-ink) 8%, transparent); }
+
+/* ============================================================
+   FULL-BLEED OVERRIDES for the imported chapters.
+   Each chapter shipped with its own centred, max-width column
+   (760-1080px). For projection we want the whole viewport, so
+   these override the per-chapter .wrap at higher specificity.
+   ============================================================ */
+.viz-root .wrap {
+  max-width: none !important;
+  width: 100%;
+  padding-left: clamp(20px, 4vw, 72px) !important;
+  padding-right: clamp(20px, 4vw, 72px) !important;
+  padding-top: 0 !important;
+  padding-bottom: clamp(32px, 5vh, 64px) !important;
+  margin: 0 !important;
+}
+/* chapter intro text already restated in the divider above — hide the
+   duplicated per-page header so the deck reads cleanly */
+.viz-root header.page-head { display: none !important; }
+
+/* panels: roomier, and side-by-side on wide screens */
+.viz-root section.panel, .viz-root .panel {
+  border-radius: 12px;
+  padding: clamp(20px, 1.9vw, 34px) clamp(20px, 2vw, 36px) clamp(16px, 1.6vw, 28px);
+}
+.viz-root h2 { font-size: clamp(19px, 1.55vw, 27px); letter-spacing: -0.012em; }
+.viz-root h3 { font-size: clamp(15px, 1.15vw, 19px); }
+.viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(13px, 1vw, 16px); }
+.viz-root .source-note, .viz-root footer.foot { font-size: clamp(12px, 0.9vw, 14.5px); line-height: 1.7; }
+.viz-root .stat-line { font-size: clamp(12px, 0.92vw, 15px); }
+.viz-root .legend-row, .viz-root .legend-item { font-size: clamp(12.5px, 0.95vw, 15.5px); }
+
+/* the 3-up scatter grids get more breathing room on wide displays */
+.viz-root .grid3 { gap: clamp(16px, 1.6vw, 28px); }
+.viz-root .grid2 { gap: clamp(16px, 1.6vw, 28px); }
+@media (min-width: 1500px) {
+  .viz-root .grid2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* charts fill their panel */
+.viz-root svg { width: 100%; height: auto; }
+.viz-root .linechart-wrap svg, .viz-root .elephant-wrap svg { min-width: 0; }
+
+/* two-column reading layout for the wide single-chart panels */
+@media (min-width: 1280px) {
+  .viz-root section.panel > .source-note { max-width: 110ch; }
+}
+
+@media print {
+  .deck-nav { display: none; }
+  .chapter-divider { break-before: page; }
+}
 
 </style>
 
 <a id="top"></a>
-<div class="combo-header">
-  <p class="combo-eyebrow">Summer School 2026 &middot; Combined chart archive</p>
-  <h1 class="combo-h1">Populism, Inequality &amp; Trade Fragmentation: Every Chart from This Project</h1>
-  <p class="combo-lede">All four chart pages built in this conversation, combined into one document, each
-    chapter CSS-scoped so styles never bleed across sections. Each chapter keeps its own sourcing notes
-    and caveats exactly as published.</p>
+<nav class="deck-nav">
+  <a class="nav-brand" href="#top">Beyond<span>Growth</span></a>
+  <a class="nav-link" href="#populism">Ch. 1</a>
+  <a class="nav-link" href="#growth_poverty">Ch. 2</a>
+  <a class="nav-link" href="#district">Ch. 3</a>
+  <a class="nav-link" href="#slide2">Ch. 4</a>
+  <span class="nav-count">19 charts &middot; all from primary data</span>
+</nav>
+
+<header class="combo-header">
+  <p class="combo-eyebrow">Summer School 2026</p>
+  <h1 class="combo-h1">Is inequality really what drives the populist turn?</h1>
+  <p class="combo-lede">Nineteen charts, none of them screenshots. Every figure here was rebuilt from
+    its own primary source &mdash; pulled live from the World Bank, OECD, FRED and WID.world APIs, merged
+    from ParlGov and PopuList election records, read out of an OECD StatLink spreadsheet, or, where a
+    dataset stayed locked behind a credential, <strong>traced from the original publication and labelled
+    as an estimate</strong>. The through-line: rising inequality and job polarization are beyond dispute,
+    but the causal step from there to the ballot box is exactly where the literature stops agreeing.</p>
   <ul class="toc">
-  <li><a href="#populism">1. Populism, Inequality &amp; Job Polarization<span class="toc-sub">5 charts &mdash; OECD, Brookings, Goos-Manning-Salomons, national election data</span></a></li>
-  <li><a href="#growth_poverty">2. Does Growth Reduce Poverty? (WDI)<span class="toc-sub">6 scatterplots &mdash; 397&ndash;710 country-spells per panel</span></a></li>
-  <li><a href="#district">3. Growth vs. Poverty: Indonesian Districts<span class="toc-sub">2 scatterplots &mdash; 510 kabupaten/kota, INDO-DAPOER</span></a></li>
-  <li><a href="#slide2">4. Slide 2, Rebuilt from Source Data<span class="toc-sub">6 panels &mdash; ParlGov+PopuList, WID.world, OECD StatLink, IMF/GTA traced</span></a></li>
+  <li><a href="#populism">Inequality, Polarization &amp; the Far Right<span class="toc-sub">Six charts: OECD Gini trends, the hollowed-out middle of the job market, US wealth concentration, nine-country Gini series, far-right seat share in 11 parliaments, and the Elephant Curve rebuilt from Lakner-Milanovic decile data.</span></a></li>
+  <li><a href="#growth_poverty">Does Growth Reduce Poverty?<span class="toc-sub">Six scatterplots pairing GDP-per-capita growth against poverty-rate change across 397&ndash;710 country-spells, at three international poverty lines and two time horizons.</span></a></li>
+  <li><a href="#district">The Same Test, Inside One Country<span class="toc-sub">Indonesia&rsquo;s 510 districts, using World Bank INDO-DAPOER: the growth-poverty link is far weaker sub-nationally than it is across countries.</span></a></li>
+  <li><a href="#slide2">Rebuilding a Slide From Its Sources<span class="toc-sub">Every claim on one DEN presentation slide traced back to primary data: ParlGov+PopuList, WDI, FRED, WID.world&rsquo;s own R package, an OECD StatLink spreadsheet, and a traced IMF/Global Trade Alert figure.</span></a></li>
 </ul>
-</div>
+</header>
 
 
 <div class="chapter-divider" id="populism">
@@ -1278,12 +1462,13 @@ body { background: #f7f6f2; }
   </div>
 </div>
 
-<div class="combo-footer">
-  Combined from four separately-built pages in this session. See each chapter's own panels for full
-  source citations (World Bank WDI/INDO-DAPOER APIs, OECD SDMX API and StatLink Excel files, WID.world's
-  official R package, FRED, ParlGov + PopuList, and IMF SDN/2023/001). Saved to
-  <code>E:\summerschool2026\combined\all_charts.html</code>.
-</div>
+<footer class="combo-footer">
+  <strong>Sources.</strong> Each panel carries its own citation and caveats. Across the deck: World Bank
+  WDI and INDO-DAPOER APIs; OECD SDMX API and the StatLink spreadsheet behind Figure 5.5 of the 2018
+  <em>Compendium of Productivity Indicators</em>; WID.world via its official R package; FRED; ParlGov
+  (election results) merged with PopuList v4.0 (party classification); and IMF SDN/2023/001 for the
+  traced Global Trade Alert figure. Where a number is estimated rather than pulled, the panel says so.
+</footer>
 
 <script>
 (function() {
