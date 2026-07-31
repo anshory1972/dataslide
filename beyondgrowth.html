@@ -883,26 +883,29 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   row-gap: clamp(28px, 2.4vw, 40px) !important;
 }
 .viz-root .metric { display: flex !important; flex-direction: column !important; align-items: center !important; }
-.viz-root .barpair { gap: clamp(6px, 0.6vw, 10px); margin-top: auto; }
+/* THE overflow bug: .barpair shipped with a hard `height: 120px` and
+   `align-items: flex-end`, but a full-height 100px bar plus its value
+   label (~19px) and year label (~18px) needs ~137px. The surplus
+   overflowed *upward* out of the box and landed on top of the metric
+   label above. Let the row size to its own content; flex-end still
+   keeps every bar sitting on a common baseline. */
+.viz-root .barpair {
+  height: auto !important;
+  min-height: clamp(120px, 11vh, 150px);
+  gap: clamp(6px, 0.6vw, 10px);
+  margin-top: auto;
+}
 .viz-root .barpair .bar-col { width: clamp(28px, 2.6vw, 44px); }
 .viz-root .barpair .bval { font-size: clamp(11.5px, 0.85vw, 14px); white-space: nowrap; }
 .viz-root .barpair .byr { font-size: clamp(9.5px, 0.72vw, 11.5px); white-space: nowrap; }
-/* the actual overflow bug: this label used to reserve min-height:32px
-   at the original (wider, single-column) panel width, so 1-2 wrapped
-   lines never collided with the value/bar below. In the new narrower
-   half-viewport columns the same label text wraps to 2-3 lines, and
-   since min-height wasn't zero it should still reserve space — but the
-   font-size clamp shrunk while the reserved height stayed in raw px
-   from the source stylesheet, so the resize could still under-reserve.
-   min-height in em (scaled to the same clamp) plus a flex column with
-   margin-top:auto on the bar block guarantees the gap survives any
-   wrap count. */
+/* label sits in its own reserved block, bottom-aligned so 1-, 2- and
+   3-line labels all leave the same gap above the bars */
 .viz-root .metric .mlabel {
   font-size: clamp(11.5px, 0.85vw, 14px);
   line-height: 1.32;
-  min-height: 3.96em !important;
+  min-height: 2.7em !important;
   display: flex; align-items: flex-end; justify-content: center;
-  margin-bottom: 0 !important;
+  margin-bottom: clamp(8px, 0.8vw, 14px) !important;
 }
 
 @media print {
