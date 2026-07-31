@@ -840,9 +840,77 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .viz-root h2.section-head { margin-top: clamp(20px, 3vh, 34px); }
 
 .viz-root section.panel, .viz-root .panel {
-  border-radius: 12px; height: 100%;
+  border-radius: 12px;
+  display: flex; flex-direction: column;
   padding: clamp(18px, 1.7vw, 30px) clamp(18px, 1.8vw, 32px) clamp(14px, 1.4vw, 24px);
 }
+
+/* Equal heights are wanted ONLY inside a pair. A blanket height:100%
+   also stretched lone panels — the panel then absorbed ~740px of free
+   space into auto margins, which is what left the labor-market chart
+   marooned in a mostly-empty box. Stretch the chain explicitly here,
+   and leave single rows at their natural height. */
+.row-pair { align-items: stretch; }
+.row-pair > .viz-root { display: flex; }
+.row-pair > .viz-root > .wrap { display: flex; flex-direction: column; flex: 1 1 auto; }
+.row-pair > .viz-root > .wrap > section.panel { flex: 1 1 auto; }
+.row-single > .viz-root > .wrap > section.panel { height: auto; }
+
+/* When a pair equalises heights, give the leftover room to the chart's
+   own margins so it sits centred instead of leaving one dead block
+   above the note. Only inside pairs — lone panels have no surplus. */
+.row-pair section.panel > svg,
+.row-pair section.panel > .divchart,
+.row-pair section.panel > .triptych,
+.row-pair section.panel > .quad,
+.row-pair section.panel > .rankchart,
+.row-pair section.panel > .linechart-wrap,
+.row-pair section.panel > .elephant-wrap {
+  margin-block: auto;
+}
+
+/* slide2 shipped legend markup but never defined the legend CSS, so its
+   swatches rendered as bare stacked text. :where() keeps specificity at
+   zero so any chapter that *does* define its own legend still wins. */
+.viz-root :where(.legend-row) {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(10px, 1.1vw, 22px); margin-top: 10px;
+  color: var(--text-secondary);
+}
+.viz-root :where(.legend-item) { display: flex; align-items: center; gap: 7px; }
+.viz-root :where(.swatch) {
+  width: 11px; height: 11px; border-radius: 3px;
+  display: inline-block; flex: none;
+}
+
+/* ---- collapsible source notes (collapsed by default) ---- */
+.viz-root details.src {
+  margin-top: auto; padding-top: clamp(10px, 1vw, 16px);
+  border-top: 1px solid var(--grid);
+}
+.viz-root details.src > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11px, 0.82vw, 13px); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted); user-select: none;
+  padding: 3px 0;
+}
+.viz-root details.src > summary::-webkit-details-marker { display: none; }
+.viz-root details.src > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.viz-root details.src[open] > summary::before { transform: rotate(90deg); }
+.viz-root details.src > summary:hover { color: var(--text-primary); }
+.viz-root details.src > summary:focus-visible { outline: 2px solid var(--point, currentColor); outline-offset: 3px; border-radius: 3px; }
+.viz-root details.src .src-body {
+  margin-top: clamp(8px, 0.8vw, 12px);
+  font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; color: var(--muted);
+}
+.viz-root details.src .src-body code { font-size: 0.92em; }
 .viz-root h2 { font-size: clamp(18px, 1.45vw, 26px); letter-spacing: -0.012em; }
 .viz-root h3 { font-size: clamp(14.5px, 1.1vw, 18px); }
 .viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(12.5px, 0.95vw, 15.5px); }
@@ -931,12 +999,12 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
       <h2>World trade has stalled as a share of GDP since 2008</h2>
       <p class="panel-sub">World Bank WDI, <code>NE.TRD.GNFS.ZS</code>, world aggregate, 1970&ndash;2024</p>
       <svg id="chart-trade" viewBox="0 0 720 260" role="img" aria-label="Line chart of world trade as a percent of GDP, 1970 to 2024"></svg>
-      <p class="source-note">Source: World Bank World Development Indicators,
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: World Bank World Development Indicators,
         pulled live via the WDI API (<code>country=WLD</code>). Trade rose
         steadily from ~27% of world GDP in 1970 to a peak of ~61% in 2008,
         then plateaued and has oscillated in a band roughly 51&ndash;62% ever
         since &mdash; the "slowbalization" pattern: trade didn't reverse, but its
-        multi-decade rise essentially stopped after the Global Financial Crisis.</p>
+        multi-decade rise essentially stopped after the Global Financial Crisis.</div></details>
     </section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">Increase of trade protectionism</p>
       <h2>Trade restrictions imposed worldwide, traced from the actual source chart</h2>
@@ -947,7 +1015,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         <div class="legend-item"><span class="swatch" style="background: var(--c8);"></span> Investment</div>
         <div class="legend-item"><span class="swatch" style="background: var(--c4);"></span> Services</div>
       </div>
-      <p class="source-note"><strong>This is a traced estimate, not exact
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body"><strong>This is a traced estimate, not exact
         data</strong> &mdash; Global Trade Alert's raw figures remain behind an
         API credential this session doesn't have, so these values are read
         directly off the bar heights in IMF SDN/2023/001's Figure 7, the
@@ -960,7 +1028,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         ~1,900 (2021), and ~2,150 (2022). The Goods/Investment/Services
         <em>split within each bar</em> is a much rougher visual read and
         should be treated as illustrative, not precise &mdash; segment
-        boundaries in a small stacked bar are hard to place exactly.</p>
+        boundaries in a small stacked bar are hard to place exactly.</div></details>
     </section></div></div></section>
 <section class="row-pair" aria-label="Inequality measures, OECD and United States"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
@@ -1023,11 +1091,11 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         <div class="legend-item"><span class="swatch" style="background: var(--blue-dark);"></span> Later</div>
       </div>
 
-      <p class="source-note">Source: Cingano, <em>Trends in Income Inequality and
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: Cingano, <em>Trends in Income Inequality and
         its Impact on Economic Growth</em>, OECD Social, Employment and Migration
         Working Paper No. 163 (2014), abstract and Figures 1&ndash;2.
         Original file: <code>oecd_trends_income_inequality.pdf</code>,
-        pp.&nbsp;6, 9&ndash;10.</p>
+        pp.&nbsp;6, 9&ndash;10.</div></details>
     </section></div></div><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 3 &middot; Concentration at the top</p>
@@ -1104,14 +1172,14 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         <div class="legend-item"><span class="swatch" style="background: var(--blue-dark);"></span> Later</div>
       </div>
 
-      <p class="source-note">Source: Dervi&#351; &amp; Qureshi, <em>Income
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: Dervi&#351; &amp; Qureshi, <em>Income
         Distribution within Countries: Rising Inequality</em>, Brookings
         Global Economy &amp; Development brief (August 2016), p.&nbsp;2&ndash;5
         (text discussion; the U.S. wealth Gini itself, about 0.85, is a level
         rather than a trend and is not charted here). Original file:
         <code>brookings_income_inequality_within_countries.pdf</code>.
         Note the U.S. is the sharpest advanced-economy case in this brief &mdash;
-        not the OECD average shown in Chart 2.</p>
+        not the OECD average shown in Chart 2.</div></details>
     </section></div></div></section>
 <section class="row-pair" aria-label="Gini coefficients and top income shares"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
@@ -1131,7 +1199,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         </svg>
       </div>
 
-      <p class="source-note">Source: OECD Income Distribution Database (IDD),
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: OECD Income Distribution Database (IDD),
         pulled via the OECD SDMX API, series <code>INC_DISP_GINI</code>,
         &ldquo;income definition until 2011&rdquo; methodology vintage (the
         longest comparable historical series available per country). Country
@@ -1145,25 +1213,25 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         Figure 1 (p.&nbsp;4 of
         <code>brookings_income_inequality_within_countries.pdf</code>) also
         draws on the World Bank's <em>All the Ginis</em> dataset for
-        emerging-market lines not attempted here.</p>
+        emerging-market lines not attempted here.</div></details>
     </section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">Increase in inequality</p>
       <h2>Top 1% income share, nine advanced economies</h2>
       <p class="panel-sub">World Inequality Database (WID.world), official data via their R package, 1980&ndash;2024</p>
       <svg id="chart-top1" viewBox="0 0 720 340" role="img" aria-label="Line chart of top 1 percent pretax national income share for nine countries, 1980 to 2024"></svg>
-      <p class="source-note">Source: World Inequality Database, series
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: World Inequality Database, series
         <code>sptinc992j</code> (share of pretax national income, equal-split
         adults), percentile <code>p99p100</code>, pulled directly from
         WID.world's own API using their official <code>wid</code> R package
         (not a third-party mirror). Same 9 countries as the slide: Australia,
-        Canada, France, Germany, Italy, Japan, Korea, UK, US.</p>
+        Canada, France, Germany, Italy, Japan, Korea, UK, US.</div></details>
     </section></div></div></section>
 <section class="row-pair" aria-label="Far-right vote share trend and current seat share"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">Increase of right-wing populism</p>
       <h2>Far-right vote share has risen roughly ten-fold since the 1980s</h2>
       <p class="panel-sub">Real election vote shares (ParlGov) classified by party family (PopuList), 30 European countries, 5-year averages</p>
       <svg id="chart-populism" viewBox="0 0 720 320" role="img" aria-label="Stacked area chart of vote share by party category, 1900 to 2020"></svg>
-      <p class="source-note"><strong>This is an original reconstruction, not
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body"><strong>This is an original reconstruction, not
         a copy of the slide's exact category scheme.</strong> Built by merging
         two real datasets: ParlGov's actual national-parliament election vote
         shares (via <code>parlgov.fly.dev</code>, a working ParlGov mirror,
@@ -1177,7 +1245,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         shares are averaged in 5-year bins across all ~30 PopuList-covered
         European countries' national elections (636 elections, 1900&ndash;2023).
         Far-right vote share: ~1&ndash;2% through the 1970s&ndash;80s,
-        rising past 10% by 2010 and reaching ~14% in the 2015&ndash;19 bin.</p>
+        rising past 10% by 2010 and reaching ~14% in the 2015&ndash;19 bin.</div></details>
     </section></div></div><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 5 &middot; Outcomes, not just attitudes</p>
@@ -1244,7 +1312,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         </div>
       </div>
 
-      <p class="source-note">Seats and chamber totals verified individually per
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Seats and chamber totals verified individually per
         country (most recent lower-house election as of writing): Austria
         Nationalrat 2024 (FP&Ouml; 57/183); Italy Chamber of Deputies 2022
         (Fratelli d&rsquo;Italia 118/400); Portugal Assembly of the Republic
@@ -1261,9 +1329,9 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         Ruling coalitions blend multiple parties differently across
         countries, so a country&rsquo;s largest far-right party is not
         always in government even where it holds a large seat share (e.g.
-        France, Germany).</p>
+        France, Germany).</div></details>
     </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
+<section class="row-pair" aria-label="Job polarization and the productivity-wage decoupling"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 1 &middot; Labor market</p>
         <h2>The middle of the job market hollowed out</h2>
@@ -1302,10 +1370,27 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         </div>
       </div>
 
-      <p class="source-note">Source: Goos, Manning &amp; Salomons,
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: Goos, Manning &amp; Salomons,
         <em>Explaining Job Polarization: Routine-Biased Technological Change and
         Offshoring</em> (AER), Table 1. Original table:
-        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</p>
+        <code>goos_manning_job_polarization_lse.pdf</code>, p.&nbsp;11.</div></details>
+    </section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+      <p class="panel-eyebrow">The great decoupling</p>
+      <h2>Productivity has outpaced compensation since the late 1990s</h2>
+      <p class="panel-sub">OECD Compendium of Productivity Indicators 2018, Figure 5.5 StatLink data, unweighted average of 20 OECD countries, 1995&ndash;2016</p>
+      <svg id="chart-decoupling" viewBox="0 0 720 280" role="img" aria-label="Line chart of labour productivity versus average compensation, indexed to 100 in 1995"></svg>
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: not a re-derivation this time &mdash; this
+        is the actual OECD StatLink Excel file behind Figure 5.5 of the
+        <em>OECD Compendium of Productivity Indicators 2018</em>
+        (<code>http://dx.doi.org/10.1787/888933734303</code>), which every
+        chart/table in that publication carries at the bottom of the page.
+        Averaged here (unweighted) across all 20 countries in the figure:
+        Australia, Belgium, Canada, Czech Republic, Denmark, Finland, France,
+        Germany, Italy, Japan, Korea, Latvia, Netherlands, Poland, Slovak
+        Republic, Slovenia, Spain, Sweden, UK, US. By 2016, GVA per hour
+        worked (productivity) reached 152.9 (1995=100) while CPI-deflated
+        compensation per hour reached only 140.8 &mdash; the gap between the
+        two lines is the "decoupling."</div></details>
     </section></div></div></section>
 <section class="row-single"><div class="viz-root scope-ineq"><div class="wrap"><section class="panel">
       <div class="panel-head">
@@ -1319,7 +1404,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         <svg id="elephantChart" viewBox="0 0 680 340" role="img" aria-label="Line chart of annualized real income growth by global income percentile, 1988 to 2008, showing the elephant curve shape"></svg>
       </div>
 
-      <p class="source-note">Built from scratch, not traced from Milanovic's
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Built from scratch, not traced from Milanovic's
         published image: real country-decile income and population data from
         the World Bank's Lakner-Milanovic World Panel Income Distribution
         dataset (<code>mysample==1</code>, benchmark years 1988 and 2008; 750
@@ -1336,37 +1421,19 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
         and other Asian economies), a real dip to roughly flat or slightly
         negative around the 80th&ndash;85th global percentile (the
         "elephant's trunk" &mdash; rich-country lower-middle classes), then a
-        renewed rise into the global top percentiles.</p>
-    </section></div></div></section>
-<section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-      <p class="panel-eyebrow">The great decoupling</p>
-      <h2>Productivity has outpaced compensation since the late 1990s</h2>
-      <p class="panel-sub">OECD Compendium of Productivity Indicators 2018, Figure 5.5 StatLink data, unweighted average of 20 OECD countries, 1995&ndash;2016</p>
-      <svg id="chart-decoupling" viewBox="0 0 720 280" role="img" aria-label="Line chart of labour productivity versus average compensation, indexed to 100 in 1995"></svg>
-      <p class="source-note">Source: not a re-derivation this time &mdash; this
-        is the actual OECD StatLink Excel file behind Figure 5.5 of the
-        <em>OECD Compendium of Productivity Indicators 2018</em>
-        (<code>http://dx.doi.org/10.1787/888933734303</code>), which every
-        chart/table in that publication carries at the bottom of the page.
-        Averaged here (unweighted) across all 20 countries in the figure:
-        Australia, Belgium, Canada, Czech Republic, Denmark, Finland, France,
-        Germany, Italy, Japan, Korea, Latvia, Netherlands, Poland, Slovak
-        Republic, Slovenia, Spain, Sweden, UK, US. By 2016, GVA per hour
-        worked (productivity) reached 152.9 (1995=100) while CPI-deflated
-        compensation per hour reached only 140.8 &mdash; the gap between the
-        two lines is the "decoupling."</p>
+        renewed rise into the global top percentiles.</div></details>
     </section></div></div></section>
 <section class="row-single"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
       <p class="panel-eyebrow">Peak of global uncertainty</p>
       <h2>Global Economic Policy Uncertainty is at historic highs</h2>
       <p class="panel-sub">Baker, Bloom &amp; Davis Global EPU Index, annual average of the monthly series, 1997&ndash;2025</p>
       <svg id="chart-gepu" viewBox="0 0 720 260" role="img" aria-label="Line chart of the Global Economic Policy Uncertainty Index, 1997 to 2025"></svg>
-      <p class="source-note">Source: Baker, Bloom &amp; Davis Global Economic
+      <details class="src"><summary>Source &amp; notes</summary><div class="src-body">Source: Baker, Bloom &amp; Davis Global Economic
         Policy Uncertainty Index, via FRED series <code>GEPUCURRENT</code>
         (GDP-weighted average of national EPU indices), monthly data averaged
         to annual here. The index spikes around 2008&ndash;09 (GFC), 2016
         (Brexit/Trump), 2020 (COVID), and reaches its highest sustained level
-        in the 2024&ndash;25 data.</p>
+        in the 2024&ndash;25 data.</div></details>
     </section></div></div></section>
 <section class="row-single"><div class="viz-root scope-growth"><div class="wrap">
 
@@ -2229,11 +2296,11 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
     [rs.getPropertyValue("--c5").trim(), rs.getPropertyValue("--c8").trim(), rs.getPropertyValue("--c4").trim()]);
 
   renderLine("chart-decoupling", {
-    "GVA per hour worked (productivity)": DATA.decoupling.gva_hr,
-    "Compensation, GVA-deflator based": DATA.decoupling.gva_defl,
-    "Compensation, CPI-deflated": DATA.decoupling.cpi
+    "Productivity": DATA.decoupling.gva_hr,
+    "Pay (GVA defl.)": DATA.decoupling.gva_defl,
+    "Pay (CPI defl.)": DATA.decoupling.cpi
   }, {
-    rightMargin: 150, labelSeries: true, yFmt: v => v.toFixed(0), xTickStep: 5
+    rightMargin: 104, labelSeries: true, yFmt: v => v.toFixed(0), xTickStep: 5
   });
 
 })();
