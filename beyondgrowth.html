@@ -809,10 +809,21 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 }
 .deck-lede strong { color: var(--shell-ink); font-weight: 600; }
 .deck-byline {
-  margin: clamp(18px, 2.4vh, 28px) 0 0;
-  font-size: clamp(13px, 0.95vw, 15px); color: var(--shell-muted);
+  margin: 0 0 clamp(20px, 3vh, 32px);
+  font-size: clamp(17px, 1.35vw, 22px); color: var(--shell-ink); font-weight: 500;
 }
-.deck-byline a {
+.deck-byline .bio-link {
+  display: inline-flex; align-items: center; gap: 5px; margin-left: 10px;
+  font-size: clamp(12.5px, 0.9vw, 14px); font-weight: 700;
+  letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--shell-accent); text-decoration: none;
+  padding: 3px 10px; border: 1px solid var(--shell-accent); border-radius: 999px;
+  transition: background .15s, color .15s;
+}
+.deck-byline .bio-link:hover, .deck-byline .bio-link:focus-visible {
+  background: var(--shell-accent); color: var(--shell-surface);
+}
+.deck-byline a { /* legacy fallback if any other link appears in the byline */
   color: var(--shell-slate); text-decoration: none; font-weight: 600;
   border-bottom: 1px solid transparent; transition: border-color .15s;
 }
@@ -995,6 +1006,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <header class="deck-head">
   <p class="deck-eyebrow">Summer School 2026</p>
   <h1 class="deck-h1">The Growth We Want</h1>
+  <p class="deck-byline">Arief Anshory Yusuf <a class="bio-link" href="https://www.linkedin.com/in/arief-yusuf-a9075240/" target="_blank" rel="noopener">Bio &#8599;</a></p>
   <p class="deck-lede">Inclusive, sustainable, and long overdue. The charts below diagnose why the old
     growth model stopped working for most people &mdash; rising inequality, a hollowed-out middle of the
     job market, and a populist backlash that tracks it closely &mdash; before turning to what a better
@@ -1003,7 +1015,6 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
     FRED and WID.world APIs, merged from ParlGov and PopuList election records, read out of an OECD
     StatLink spreadsheet, or, where a dataset stayed locked behind a credential,
     <strong>traced from the original publication and labelled as an estimate</strong>.</p>
-  <p class="deck-byline">By <a href="https://www.linkedin.com/in/arief-yusuf-a9075240/" target="_blank" rel="noopener">Arief Anshory Yusuf</a></p>
 </header>
 
 <section class="row-pair" aria-label="Deglobalization and trade restrictions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
@@ -1112,7 +1123,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
       <div class="panel-head">
         <p class="panel-eyebrow">Chart 3 &middot; Concentration at the top</p>
         <h2>The same story, sharper lens: the United States</h2>
-        <p class="panel-sub">Four separate measures, each rising over roughly
+        <p class="panel-sub">Three separate measures, each rising over roughly
           three decades &mdash; the common thread the Brookings brief points to</p>
       </div>
 
@@ -1159,21 +1170,6 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
               <span class="bval">10.4%</span>
               <div class="bar-shape" style="height: 100px;"></div>
               <span class="byr">2012</span>
-            </div>
-          </div>
-        </div>
-        <div class="metric">
-          <p class="mlabel">Wealth share held<br>by the top 1%</p>
-          <div class="barpair">
-            <div class="bar-col early">
-              <span class="bval">29%</span>
-              <div class="bar-shape" style="height: 85px;"></div>
-              <span class="byr">1980</span>
-            </div>
-            <div class="bar-col late">
-              <span class="bval">34%</span>
-              <div class="bar-shape" style="height: 100px;"></div>
-              <span class="byr">2010</span>
             </div>
           </div>
         </div>
