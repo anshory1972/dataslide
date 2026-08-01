@@ -858,16 +858,28 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   margin: 0 0 clamp(20px, 3vh, 32px);
   font-size: clamp(17px, 1.35vw, 22px); color: var(--shell-ink); font-weight: 500;
 }
-.deck-byline .bio-link {
-  display: inline-flex; align-items: center; gap: 5px; margin-left: 10px;
-  font-size: clamp(12.5px, 0.9vw, 14px); font-weight: 700;
-  letter-spacing: 0.03em; text-transform: uppercase;
-  color: var(--shell-accent); text-decoration: none;
-  padding: 3px 10px; border: 1px solid var(--shell-accent); border-radius: 999px;
-  transition: background .15s, color .15s;
+/* Bio as a collapsed note rather than an outbound link, so the deck
+   stays self-contained and the header stays quiet by default. */
+.deck-bio { margin: -4px 0 clamp(20px, 3vh, 32px); }
+.deck-bio > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11.5px, 0.85vw, 13px); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--shell-accent); user-select: none; padding: 3px 0;
 }
-.deck-byline .bio-link:hover, .deck-byline .bio-link:focus-visible {
-  background: var(--shell-accent); color: var(--shell-surface);
+.deck-bio > summary::-webkit-details-marker { display: none; }
+.deck-bio > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.deck-bio[open] > summary::before { transform: rotate(90deg); }
+.deck-bio > summary:focus-visible { outline: 2px solid var(--shell-accent); outline-offset: 3px; border-radius: 3px; }
+.deck-bio > p {
+  margin: 9px 0 0; font-size: clamp(13px, 0.98vw, 15.5px);
+  line-height: 1.62; color: var(--shell-muted); max-width: 72ch;
 }
 .deck-byline a { /* legacy fallback if any other link appears in the byline */
   color: var(--shell-slate); text-decoration: none; font-weight: 600;
@@ -1083,7 +1095,16 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
     <div class="deck-head-text">
       <p class="deck-eyebrow">FEB UNPAD Summer Program 2026 &middot; 3 August 2026 &middot; Bandung</p>
       <h1 class="deck-h1">The Growth We Want</h1>
-      <p class="deck-byline">Arief Anshory Yusuf <a class="bio-link" href="https://www.linkedin.com/in/arief-yusuf-a9075240/" target="_blank" rel="noopener">Bio &#8599;</a></p>
+      <p class="deck-byline">Arief Anshory Yusuf</p>
+      <details class="deck-bio"><summary>Bio</summary>
+        <p>Arief Anshory Yusuf is Professor of Economics at Padjadjaran University, Indonesia,
+        where he works on development economics. He is also Visiting Professor at King&rsquo;s
+        College London, Honorary Senior Lecturer at the Australian National University, and
+        Non-resident Senior Research Fellow at UNU-WIDER. He holds a Bachelor in Economics from
+        Padjadjaran University, an MSc from University College London, and a PhD from the
+        Australian National University. He is a member of Indonesia&rsquo;s National Economic
+        Council (2024&ndash;2029), advising the President on strategic economic issues.</p>
+      </details>
       <p class="deck-lede">Inclusive, sustainable, and long overdue. The charts below diagnose why the old
         growth model stopped working for most people &mdash; rising inequality, a hollowed-out middle of the
         job market, and a populist backlash that tracks it closely &mdash; before turning to what a better
