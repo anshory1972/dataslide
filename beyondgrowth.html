@@ -1,4 +1,22 @@
 <title>The Growth We Want</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Why the old growth model stopped working for most people — and what a better one has to deliver. Charts built from primary sources.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="FEB UNPAD Summer Program 2026">
+<meta property="og:title" content="The Growth We Want">
+<meta property="og:description" content="Why the old growth model stopped working for most people — and what a better one has to deliver. Arief Anshory Yusuf, Universitas Padjadjaran.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/beyondgrowth.html">
+<meta property="og:image" content="https://anshory1972.github.io/dataslide/og-preview.jpg">
+<meta property="og:image:secure_url" content="https://anshory1972.github.io/dataslide/og-preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Growth We Want — two children beside unequal stacks of books">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Growth We Want">
+<meta name="twitter:description" content="Why the old growth model stopped working for most people — and what a better one has to deliver.">
+<meta name="twitter:image" content="https://anshory1972.github.io/dataslide/og-preview.jpg">
 <style>
 /* ==== ineq ==== */
 .viz-root.scope-ineq {
@@ -927,6 +945,31 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .row-pair.row-2-1 { grid-template-columns: 2fr 1fr; }
 @media (max-width: 1100px) { .row-pair { grid-template-columns: 1fr; } }
 .row-pair > .viz-root, .row-single > .viz-root { min-width: 0; }
+
+/* ============================================================
+   Print / PDF export: one section per landscape page. The screen
+   layout is scroll-driven (built to browse, not paginate), so print
+   needs its own rules -- side-by-side pairs forced regardless of the
+   1100px screen breakpoint, one row per page, source notes opened
+   since there's no way to click a <details> on paper.
+   ============================================================ */
+@media print {
+  @page { size: 1400px 900px; margin: 0; }
+  html, body { background: var(--shell-paper) !important; }
+  .deck-head, .row-pair, .row-group, .row-single {
+    break-inside: avoid; page-break-inside: avoid;
+    break-after: page; page-break-after: always;
+  }
+  .deck-head:last-child, .row-pair:last-child, .row-group:last-child, .row-single:last-child {
+    break-after: auto; page-break-after: auto;
+  }
+  .row-pair { grid-template-columns: 1fr 1fr !important; }
+  .row-pair.row-2-1 { grid-template-columns: 2fr 1fr !important; }
+  .viz-root details.src { display: block !important; }
+  .viz-root details.src > summary { display: none !important; }
+  .viz-root details.src .src-body { font-size: 10.5px !important; }
+  a[href]::after { content: none !important; }
+}
 
 .deck-foot {
   padding: clamp(26px, 4vh, 44px) clamp(18px, 3.5vw, 64px) clamp(52px, 8vh, 88px);
