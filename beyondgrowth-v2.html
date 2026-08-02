@@ -1154,6 +1154,105 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   .row-single, .row-pair { break-inside: avoid; }
 }
 
+
+/* ---------- FT palette: light ---------- */
+:root {
+  --shell-ink:     #33302e;   /* FT Black          */
+  --shell-paper:   #fff1e5;   /* FT Pink           */
+  --shell-surface: #fff9f2;   /* panel tint on pink */
+  --shell-rule:    #e6d9ce;
+  --shell-muted:   #66605c;
+  --shell-accent:  #990f3d;   /* Claret            */
+  --shell-slate:   #0f5499;   /* Oxford blue       */
+  --shell-slate-tint: rgba(15,84,153,0.09);
+}
+.viz-root.viz-root, .viz-root.viz-root .wrap {
+  --page:           #fff1e5;
+  --surface-1:      #fff9f2;
+  --text-primary:   #33302e;
+  --text-secondary: #66605c;
+  --muted:          #8b8480;
+  --grid:           #e6d9ce;
+  --baseline:       #cdbdb0;
+  --border:         rgba(51,48,46,0.13);
+
+  --c1: #0f5499;   /* Oxford blue  -- primary series      */
+  --c2: #00994d;   /* Jade         -- positive            */
+  --c3: #c05c7e;   /* Mauve                               */
+  --c4: #b86b25;   /* Mandarin dark                       */
+  --c5: #0d7680;   /* Teal                                */
+  --c6: #ff8833;   /* Mandarin                            */
+  --c7: #593380;   /* Velvet                              */
+  --c8: #cc0000;   /* Crimson      -- alarm / negative    */
+  --c9: #262a33;   /* FT Slate -- assertive, not recessive */
+
+  --point:           #0f5499;
+  --regline:         #cc0000;
+  --status-critical: #990f3d;
+  --blue-light:      #7fa8d0;
+  --blue-dark:       #0f5499;
+  --diverge-pos:     #0f5499;
+  --diverge-neg:     #cc0000;
+  --diverge-mid:     #e6d9ce;
+}
+
+/* ---------- FT palette: dark ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --shell-ink:     #f2ece6;
+    --shell-paper:   #14110f;
+    --shell-surface: #1c1815;
+    --shell-rule:    #332d28;
+    --shell-muted:   #a49a92;
+    --shell-accent:  #e05c7e;
+    --shell-slate:   #6aa9e0;
+    --shell-slate-tint: rgba(106,169,224,0.15);
+  }
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root,
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root .wrap {
+    --page:#14110f; --surface-1:#1c1815;
+    --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+    --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+    --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+    --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+    --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+    --blue-light:#3d6d99; --blue-dark:#4a9be0;
+    --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+  }
+}
+:root[data-theme="dark"] {
+  --shell-ink:#f2ece6; --shell-paper:#14110f; --shell-surface:#1c1815;
+  --shell-rule:#332d28; --shell-muted:#a49a92; --shell-accent:#e05c7e;
+  --shell-slate:#6aa9e0; --shell-slate-tint:rgba(106,169,224,0.15);
+}
+:root[data-theme="dark"] .viz-root.viz-root,
+:root[data-theme="dark"] .viz-root.viz-root .wrap {
+  --page:#14110f; --surface-1:#1c1815;
+  --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+  --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+  --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+  --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+  --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+  --blue-light:#3d6d99; --blue-dark:#4a9be0;
+  --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+}
+:root[data-theme="light"] {
+  --shell-ink:#33302e; --shell-paper:#fff1e5; --shell-surface:#fff9f2;
+  --shell-rule:#e6d9ce; --shell-muted:#66605c; --shell-accent:#990f3d;
+  --shell-slate:#0f5499; --shell-slate-tint:rgba(15,84,153,0.09);
+}
+:root[data-theme="light"] .viz-root.viz-root,
+:root[data-theme="light"] .viz-root.viz-root .wrap {
+  --page:#fff1e5; --surface-1:#fff9f2;
+  --text-primary:#33302e; --text-secondary:#66605c; --muted:#8b8480;
+  --grid:#e6d9ce; --baseline:#cdbdb0; --border:rgba(51,48,46,0.13);
+  --c1:#0f5499; --c2:#00994d; --c3:#c05c7e; --c4:#b86b25; --c5:#0d7680;
+  --c6:#ff8833; --c7:#593380; --c8:#cc0000; --c9:#7d7975;
+  --point:#0f5499; --regline:#cc0000; --status-critical:#990f3d;
+  --blue-light:#7fa8d0; --blue-dark:#0f5499;
+  --diverge-pos:#0f5499; --diverge-neg:#cc0000; --diverge-mid:#e6d9ce;
+}
+
 </style>
 
 <header class="deck-head">
