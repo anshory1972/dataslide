@@ -1277,6 +1277,16 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .cell.sup { fill: var(--c1); } .cell.dem { fill: var(--c6); }
 .cell.both { fill: var(--c2); } .cell.none { fill: var(--grid); }
 .ds-chart .end { text-anchor:end; } .ds-chart .mid { text-anchor:middle; }
+.ds-chart .spine { stroke: var(--grid); stroke-width:1.5; }
+.ds-chart .sl { stroke: var(--baseline); stroke-width:1.4; opacity:.5; fill:none; }
+.ds-chart .sl.rise { stroke: var(--c1); stroke-width:2.6; opacity:1; }
+.ds-chart .sl.fall { stroke: var(--c6); stroke-width:2.6; opacity:1; }
+.ds-chart .dt { fill: var(--baseline); } .ds-chart .dt.rise { fill: var(--c1); }
+.ds-chart .dt.fall { fill: var(--c6); }
+.ds-chart .nm { font-size:12.5px; fill: var(--text-secondary); }
+.ds-chart .nm.rise { fill: var(--c1); font-weight:650; }
+.ds-chart .nm.fall { fill: var(--c6); font-weight:650; }
+.ds-chart .mv { font-size:11.5px; fill: var(--muted); }
 .ds-steps { list-style:none; margin:12px 0 0; padding:0; counter-reset:s; }
 .ds-steps li { counter-increment:s; display:flex; gap:12px; align-items:baseline;
   padding:9px 0; border-top:1px solid var(--border); }
@@ -2093,8 +2103,159 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Built from Table 4-22, provinces in the report's order. Column 9 is almost solid orange &mdash; industry and infrastructure is a gap nearly everywhere and a strength almost nowhere; columns 3 and 7 run the other way.</div></details>
 </section></div></div></section>
 
+<section class="row-single" aria-label="Quality-filter method"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Method</p>
+<h2>How research quality was measured</h2>
+<p class="panel-sub">978,546 journal articles and reviews indexed to Indonesian institutions on OpenAlex, 2015&ndash;2026, with no topic filter, cross-classified against Scopus.</p>
+<ol class="ds-steps">
+<li><span class="st">Journal quality</span><span class="sd">Every source matched by ISSN against the Scopus CiteScore quartile list, May 2026 edition &mdash; Q1 through Q4, delisted, indexed-but-unranked, or not indexed at all.</span></li>
+<li><span class="st">Coverage check</span><span class="sd">OpenAlex's journal register was tested directly against Elsevier's own API: 250 randomly drawn &ldquo;not in Scopus&rdquo; journals came back <strong>zero</strong> false negatives. OpenAlex is a reliable census of the literature.</span></li>
+<li><span class="st">Institution check</span><span class="sd">Not a reliable authority on who wrote it. Sampling raw affiliation strings against each institution's own name found <strong>three</strong> of the 25 largest producer records &mdash; sharing name templates like <em>IAIN X</em> or <em>STKIP X</em> &mdash; conflating an entire class of similarly-named institutions. Established universities (UGM, IPB, USU) matched at 92&ndash;99%; the three broken records matched at 1&ndash;6%. All three are excluded below.</span></li>
+<li><span class="st">Ranking</span><span class="sd">The 25 largest remaining producers, ranked twice over the same period: once by total output, once by Q1-only output.</span></li>
+</ol>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex works metadata (2015&ndash;2026), Scopus CiteScore quartile list (May 2026), and the Scopus Sources API, used to verify OpenAlex's journal register directly.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Rank flip"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 3</p>
+<h2>Counting everything inverts the ranking</h2>
+<p class="panel-sub">Only 5.2% of the 978,546 works reach a Q1 journal. Institutions that gain ground under the quality filter are named; those that lose ground are shown as letters, held consistent across both columns.</p>
+<svg class="ds-chart" viewBox="0 0 1180 589" role="img" aria-label="Rank by publication volume against rank by Q1 output, 25 largest producers">
+<text x="470" y="20" class="ph end">Rank by volume</text>
+<text x="720" y="20" class="ph">Rank by Q1 output</text>
+<line x1="470" y1="35" x2="470" y2="570.5" class="spine"/>
+<line x1="720" y1="35" x2="720" y2="570.5" class="spine"/>
+<line x1="470" y1="56.5" x2="720" y2="56.5" class="sl"/>
+<circle cx="470" cy="56.5" r="4" class="dt hold"/>
+<circle cx="720" cy="56.5" r="4" class="dt hold"/>
+<text x="456" y="60.5" class="nm end">1. Universitas Indonesia</text>
+<text x="734" y="60.5" class="nm">1. Universitas Indonesia</text>
+<line x1="470" y1="77.5" x2="720" y2="77.5" class="sl"/>
+<circle cx="470" cy="77.5" r="4" class="dt hold"/>
+<circle cx="720" cy="77.5" r="4" class="dt hold"/>
+<text x="456" y="81.5" class="nm end">2. Universitas Gadjah Mada</text>
+<text x="734" y="81.5" class="nm">2. Universitas Gadjah Mada</text>
+<line x1="470" y1="98.5" x2="720" y2="98.5" class="sl"/>
+<circle cx="470" cy="98.5" r="4" class="dt hold"/>
+<circle cx="720" cy="98.5" r="4" class="dt hold"/>
+<text x="456" y="102.5" class="nm end">3. Universitas Airlangga</text>
+<text x="734" y="102.5" class="nm">3. Universitas Airlangga</text>
+<line x1="470" y1="119.5" x2="720" y2="245.5" class="sl fall"/>
+<circle cx="470" cy="119.5" r="4" class="dt fall"/>
+<circle cx="720" cy="245.5" r="4" class="dt fall"/>
+<text x="456" y="123.5" class="nm fall end">4. University A</text>
+<text x="734" y="249.5" class="nm fall">10. University A <tspan class="mv">-6</tspan></text>
+<line x1="470" y1="140.5" x2="720" y2="140.5" class="sl"/>
+<circle cx="470" cy="140.5" r="4" class="dt hold"/>
+<circle cx="720" cy="140.5" r="4" class="dt hold"/>
+<text x="456" y="144.5" class="nm end">5. Universitas Padjadjaran</text>
+<text x="734" y="144.5" class="nm">5. Universitas Padjadjaran</text>
+<line x1="470" y1="161.5" x2="720" y2="392.5" class="sl fall"/>
+<circle cx="470" cy="161.5" r="4" class="dt fall"/>
+<circle cx="720" cy="392.5" r="4" class="dt fall"/>
+<text x="456" y="165.5" class="nm fall end">6. University B</text>
+<text x="734" y="396.5" class="nm fall">17. University B <tspan class="mv">-11</tspan></text>
+<line x1="470" y1="182.5" x2="720" y2="182.5" class="sl"/>
+<circle cx="470" cy="182.5" r="4" class="dt hold"/>
+<circle cx="720" cy="182.5" r="4" class="dt hold"/>
+<text x="456" y="186.5" class="nm end">7. Brawijaya University</text>
+<text x="734" y="186.5" class="nm">7. Brawijaya University</text>
+<line x1="470" y1="203.5" x2="720" y2="224.5" class="sl"/>
+<circle cx="470" cy="203.5" r="4" class="dt hold"/>
+<circle cx="720" cy="224.5" r="4" class="dt hold"/>
+<text x="456" y="207.5" class="nm end">8. University C</text>
+<text x="734" y="228.5" class="nm">9. University C</text>
+<line x1="470" y1="224.5" x2="720" y2="329.5" class="sl"/>
+<circle cx="470" cy="224.5" r="4" class="dt hold"/>
+<circle cx="720" cy="329.5" r="4" class="dt hold"/>
+<text x="456" y="228.5" class="nm end">9. University D</text>
+<text x="734" y="333.5" class="nm">14. University D <tspan class="mv">-5</tspan></text>
+<line x1="470" y1="245.5" x2="720" y2="287.5" class="sl"/>
+<circle cx="470" cy="245.5" r="4" class="dt hold"/>
+<circle cx="720" cy="287.5" r="4" class="dt hold"/>
+<text x="456" y="249.5" class="nm end">10. University E</text>
+<text x="734" y="291.5" class="nm">12. University E</text>
+<line x1="470" y1="266.5" x2="720" y2="308.5" class="sl"/>
+<circle cx="470" cy="266.5" r="4" class="dt hold"/>
+<circle cx="720" cy="308.5" r="4" class="dt hold"/>
+<text x="456" y="270.5" class="nm end">11. University F</text>
+<text x="734" y="312.5" class="nm">13. University F</text>
+<line x1="470" y1="287.5" x2="720" y2="371.5" class="sl"/>
+<circle cx="470" cy="287.5" r="4" class="dt hold"/>
+<circle cx="720" cy="371.5" r="4" class="dt hold"/>
+<text x="456" y="291.5" class="nm end">12. University G</text>
+<text x="734" y="375.5" class="nm">16. University G <tspan class="mv">-4</tspan></text>
+<line x1="470" y1="308.5" x2="720" y2="161.5" class="sl rise"/>
+<circle cx="470" cy="308.5" r="4" class="dt rise"/>
+<circle cx="720" cy="161.5" r="4" class="dt rise"/>
+<text x="456" y="312.5" class="nm rise end">13. IPB University</text>
+<text x="734" y="165.5" class="nm rise">6. IPB University <tspan class="mv">+7</tspan></text>
+<line x1="470" y1="329.5" x2="720" y2="497.5" class="sl fall"/>
+<circle cx="470" cy="329.5" r="4" class="dt fall"/>
+<circle cx="720" cy="497.5" r="4" class="dt fall"/>
+<text x="456" y="333.5" class="nm fall end">14. University H</text>
+<text x="734" y="501.5" class="nm fall">22. University H <tspan class="mv">-8</tspan></text>
+<line x1="470" y1="350.5" x2="720" y2="413.5" class="sl"/>
+<circle cx="470" cy="350.5" r="4" class="dt hold"/>
+<circle cx="720" cy="413.5" r="4" class="dt hold"/>
+<text x="456" y="354.5" class="nm end">15. University I</text>
+<text x="734" y="417.5" class="nm">18. University I</text>
+<line x1="470" y1="371.5" x2="720" y2="539.5" class="sl fall"/>
+<circle cx="470" cy="371.5" r="4" class="dt fall"/>
+<circle cx="720" cy="539.5" r="4" class="dt fall"/>
+<text x="456" y="375.5" class="nm fall end">16. University J</text>
+<text x="734" y="543.5" class="nm fall">24. University J <tspan class="mv">-8</tspan></text>
+<line x1="470" y1="392.5" x2="720" y2="518.5" class="sl fall"/>
+<circle cx="470" cy="392.5" r="4" class="dt fall"/>
+<circle cx="720" cy="518.5" r="4" class="dt fall"/>
+<text x="456" y="396.5" class="nm fall end">17. University K</text>
+<text x="734" y="522.5" class="nm fall">23. University K <tspan class="mv">-6</tspan></text>
+<line x1="470" y1="413.5" x2="720" y2="119.5" class="sl rise"/>
+<circle cx="470" cy="413.5" r="4" class="dt rise"/>
+<circle cx="720" cy="119.5" r="4" class="dt rise"/>
+<text x="456" y="417.5" class="nm rise end">18. Institut Teknologi Bandung</text>
+<text x="734" y="123.5" class="nm rise">4. Institut Teknologi Bandung <tspan class="mv">+14</tspan></text>
+<line x1="470" y1="434.5" x2="720" y2="203.5" class="sl rise"/>
+<circle cx="470" cy="434.5" r="4" class="dt rise"/>
+<circle cx="720" cy="203.5" r="4" class="dt rise"/>
+<text x="456" y="438.5" class="nm rise end">19. Hasanuddin University</text>
+<text x="734" y="207.5" class="nm rise">8. Hasanuddin University <tspan class="mv">+11</tspan></text>
+<line x1="470" y1="455.5" x2="720" y2="434.5" class="sl"/>
+<circle cx="470" cy="455.5" r="4" class="dt hold"/>
+<circle cx="720" cy="434.5" r="4" class="dt hold"/>
+<text x="456" y="459.5" class="nm end">20. Telkom University</text>
+<text x="734" y="438.5" class="nm">19. Telkom University</text>
+<line x1="470" y1="476.5" x2="720" y2="476.5" class="sl"/>
+<circle cx="470" cy="476.5" r="4" class="dt hold"/>
+<circle cx="720" cy="476.5" r="4" class="dt hold"/>
+<text x="456" y="480.5" class="nm end">21. Universitas Jambi</text>
+<text x="734" y="480.5" class="nm">21. Universitas Jambi</text>
+<line x1="470" y1="497.5" x2="720" y2="266.5" class="sl rise"/>
+<circle cx="470" cy="497.5" r="4" class="dt rise"/>
+<circle cx="720" cy="266.5" r="4" class="dt rise"/>
+<text x="456" y="501.5" class="nm rise end">22. Universitas Sumatera Utara</text>
+<text x="734" y="270.5" class="nm rise">11. Universitas Sumatera Utara <tspan class="mv">+11</tspan></text>
+<line x1="470" y1="518.5" x2="720" y2="560.5" class="sl"/>
+<circle cx="470" cy="518.5" r="4" class="dt hold"/>
+<circle cx="720" cy="560.5" r="4" class="dt hold"/>
+<text x="456" y="522.5" class="nm end">23. University L</text>
+<text x="734" y="564.5" class="nm">25. University L</text>
+<line x1="470" y1="539.5" x2="720" y2="455.5" class="sl"/>
+<circle cx="470" cy="539.5" r="4" class="dt hold"/>
+<circle cx="720" cy="455.5" r="4" class="dt hold"/>
+<text x="456" y="543.5" class="nm end">24. Universitas Sriwijaya</text>
+<text x="734" y="459.5" class="nm">20. Universitas Sriwijaya <tspan class="mv">+4</tspan></text>
+<line x1="470" y1="560.5" x2="720" y2="350.5" class="sl rise"/>
+<circle cx="470" cy="560.5" r="4" class="dt rise"/>
+<circle cx="720" cy="350.5" r="4" class="dt rise"/>
+<text x="456" y="564.5" class="nm rise end">25. Universitas Negeri Yogyakarta</text>
+<text x="734" y="354.5" class="nm rise">15. Universitas Negeri Yogyakarta <tspan class="mv">+10</tspan></text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Indonesia's 25 largest research producers by OpenAlex works count, 2015&ndash;2026, with the three misattributed institution records excluded (see Method). UI, UGM and Universitas Airlangga hold the top three places on both sides &mdash; the very top of Indonesian research is stable. Institut Teknologi Bandung climbs 18&rarr;4; Universitas Negeri Padang falls 6&rarr;17.</div></details>
+</section></div></div></section>
+
 <footer class="deck-foot">
-  <strong>Source.</strong> <em>SDG Center Business Model &mdash; Final Report</em> (2025),
-  prepared for the Asian Development Bank. Figures constructed from the report&rsquo;s
-  Table 4-22.
+  <strong>Sources.</strong> <em>SDG Center Business Model &mdash; Final Report</em> (2025),
+  prepared for the Asian Development Bank, for the alignment figures. OpenAlex and Scopus,
+  2015&ndash;2026, for the research-quality figure.
 </footer>
