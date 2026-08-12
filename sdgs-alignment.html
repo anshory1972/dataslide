@@ -1,15 +1,15 @@
 <title>SDGs Alignment of Indonesia's Research Strength</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments, and what its two data figures show.">
+<meta name="description" content="Whether Indonesia's university research strengths line up with the SDG goals its provinces are failing.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SDGs Center Universitas Padjadjaran">
 <meta property="og:title" content="SDGs Alignment of Indonesia&rsquo;s Research Strength">
-<meta property="og:description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments. Arief Anshory Yusuf, Universitas Padjadjaran.">
+<meta property="og:description" content="Whether Indonesia's university research strengths line up with the SDG goals its provinces are failing. Arief Anshory Yusuf, Universitas Padjadjaran.">
 <meta property="og:url" content="https://anshory1972.github.io/dataslide/sdgs-alignment.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SDGs Alignment of Indonesia&rsquo;s Research Strength">
-<meta name="twitter:description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments.">
+<meta name="twitter:description" content="Whether Indonesia's university research strengths line up with the SDG goals its provinces are failing.">
 <style>
 /* ==== ineq ==== */
 .viz-root.scope-ineq {
@@ -1256,39 +1256,44 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 </style>
 <style>.scope-biblio .ref-group { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-size: 15px; font-weight: 600; margin: 22px 0 10px; color: var(--text-primary); }.scope-biblio .ref-group:first-of-type { margin-top: 18px; }.scope-biblio .ref { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 9px; padding-left: 1.6em; text-indent: -1.6em; }.scope-biblio .ref-author { color: var(--text-primary); font-weight: 600; }.scope-biblio .ref .as-cited { color: var(--muted); font-style: italic; }.scope-biblio .ref-note { font-size: 12.5px; color: var(--muted); margin: 0 0 8px; }.scope-biblio .ref-data { padding-left: 0; text-indent: 0; }</style>
 <style>
-.ds-chart { display:block; width:100%; height:auto; margin-top:6px; }
+.ds-chart { display:block; width:100%; height:auto; margin-top:4px; }
 .ds-chart .g { stroke: var(--grid); stroke-width:1; }
-.ds-chart .b1 { fill: var(--c1); }
-.ds-chart .b1.hi { fill: var(--c6); }
-.ds-chart .track { fill: var(--grid); }
-.ds-chart .ln { fill:none; stroke: var(--c1); stroke-width:2.5; stroke-linejoin:round; }
-.ds-chart .pt { fill: var(--c1); }
+.ds-chart .conn { stroke: var(--baseline); stroke-width:2; }
+.ds-chart .dot.sup { fill: var(--c1); }
+.ds-chart .dot.dem { fill: var(--c6); }
+.ds-chart .both { fill: var(--c2); }
 .ds-chart text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
-.ds-chart .lab { font-size:12.5px; fill: var(--text-primary); }
-.ds-chart .ax  { font-size:11px; fill: var(--muted); }
-.ds-chart .val { font-size:11.5px; fill: var(--text-secondary);
+.ds-chart .lab { font-size:13px; fill: var(--text-primary); }
+.ds-chart .ax  { font-size:11.5px; fill: var(--muted); }
+.ds-chart .val { font-size:12px; fill: var(--text-secondary);
                  font-variant-numeric: tabular-nums; }
+.ds-chart .val.vs { fill: var(--c1); } .ds-chart .val.vd { fill: var(--c6); }
+.ds-chart .val.vb { fill: var(--text-secondary); }
+.ds-chart .val.muted { fill: var(--muted); }
 .ds-chart .end { text-anchor:end; } .ds-chart .mid { text-anchor:middle; }
-.ds-steps { list-style:none; margin:14px 0 0; padding:0; counter-reset:s; }
+.ds-steps { list-style:none; margin:12px 0 0; padding:0; counter-reset:s; }
 .ds-steps li { counter-increment:s; display:flex; gap:12px; align-items:baseline;
   padding:9px 0; border-top:1px solid var(--border); }
 .ds-steps li:first-child { border-top:none; }
-.ds-steps li::before { content:counter(s); flex:none; width:1.6em;
+.ds-steps li::before { content:counter(s); flex:none; width:1.5em;
   font-family:Georgia,serif; font-weight:600; color:var(--c6);
   font-size:clamp(13px,1vw,16px); }
-.ds-steps .st { flex:none; width:min(34%,190px); font-weight:600;
-  font-size:clamp(12.5px,0.95vw,14.5px); color:var(--text-primary); }
-.ds-steps .sd { flex:1 1 auto; font-size:clamp(12px,0.9vw,14px);
+.ds-steps .st { flex:none; width:min(30%,168px); font-weight:600;
+  font-size:clamp(12.5px,0.95vw,15px); color:var(--text-primary); }
+.ds-steps .sd { flex:1 1 auto; font-size:clamp(12.5px,0.92vw,14.5px);
   line-height:1.55; color:var(--text-secondary); }
 @media (max-width:640px){ .ds-steps li{flex-wrap:wrap} .ds-steps .st{width:100%} }
+.ds-key { display:flex; flex-wrap:wrap; gap:20px; align-items:center;
+  margin:10px 0 2px; font-size:clamp(12px,0.9vw,14px); color:var(--text-secondary); }
+.ds-key span.k { display:inline-flex; align-items:center; gap:8px; }
+.ds-key i { width:12px; height:12px; border-radius:3px; display:inline-block; }
+.ds-key i.s { background:var(--c1); } .ds-key i.d { background:var(--c6); }
+.ds-key i.b { background:var(--c2); }
 /* no hero image on this deck: let the title block use the full measure */
 .deck-head-text { flex: 1 1 100%; max-width: 78ch; }
 .deck-lede { max-width: 74ch; }
 @media print {
-  /* one row per slide: centre the content so short panels sit balanced */
-  .row-single, .row-group { display:flex; flex-direction:column;
-    justify-content:center; min-height:838px; box-sizing:border-box; }
-  .row-divider { display:flex; flex-direction:column; justify-content:center;
+  .row-single { display:flex; flex-direction:column; justify-content:center;
     min-height:838px; box-sizing:border-box; }
 }
 </style>
@@ -1299,308 +1304,251 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
       <p class="deck-eyebrow">SDGs Center Business Model &middot; Final Report, 2025</p>
       <h1 class="deck-h1">SDGs Alignment of Indonesia&rsquo;s Research Strength</h1>
       <p class="deck-byline">Arief Anshory Yusuf</p>
-      <p class="deck-lede">Indonesia has built <strong>62 SDG Centers</strong> in a decade. Whether
-      they are pointed at the right problems depends on two things the study had to measure
-      separately: what universities are strong at, and what provinces actually need. This section
-      sets out how each side was measured, before turning to what the numbers show.</p>
+      <p class="deck-lede">Indonesia&rsquo;s universities publish a great deal on the SDGs. The
+      question is whether they publish on the goals their own provinces are failing.</p>
     </div>
   </div>
 </header>
 
-<section class="row-single" aria-label="Contents"><div class="viz-root scope-roadmap scope-slide2"><div class="wrap"><section class="panel"><div class="panel-head"><h2>Contents</h2></div><div style="margin-top:14px; display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); column-gap:clamp(28px,4vw,64px); row-gap:0;"><div style="display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--border); break-inside:avoid;"><span style="flex:none; width:2.2em; font-family:Georgia,serif; font-weight:600; font-size:clamp(15px,1.25vw,21px); color:var(--c6);">I</span><span style="flex:1 1 auto; min-width:0;"><span style="display:block; font-family:Georgia,serif; font-weight:600; font-size:clamp(14px,1.15vw,19px); color:var(--text-primary); line-height:1.3;">How the study was done</span><span style="display:block; font-size:clamp(11.5px,0.88vw,14.5px); color:var(--text-secondary); line-height:1.45; margin-top:3px;">Four strands of evidence, two bibliometric sources, and two different definitions of demand</span></span></div><div style="display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--border); break-inside:avoid;"><span style="flex:none; width:2.2em; font-family:Georgia,serif; font-weight:600; font-size:clamp(15px,1.25vw,21px); color:var(--c6);">II</span><span style="flex:1 1 auto; min-width:0;"><span style="display:block; font-family:Georgia,serif; font-weight:600; font-size:clamp(14px,1.15vw,19px); color:var(--text-primary); line-height:1.3;">What the numbers show</span><span style="display:block; font-size:clamp(11.5px,0.88vw,14.5px); color:var(--text-secondary); line-height:1.45; margin-top:3px;">The growth of the SDG Center network, and the priorities provinces state for themselves</span></span></div></div></section></div></div></section>
-
-<section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">I</span>How the study was done</h2><p class="divider-blurb">Supply and demand are measured from entirely different sources &mdash; bibliometric databases on one side, planning documents and official indicators on the other. The gap analysis only makes sense once both are expressed as a ranking over the same 16 goals.</p></div></section>
-
-<section class="row-group" aria-label="Evidence base"><div class="row-head"><p class="row-kicker">The evidence base</p><h2 class="row-title">A mixed-methods study, with the quantitative work resting on four data sources</h2></div><div class="row-pair row-pair-inner"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">The evidence base</p>
-<h2>Four strands</h2>
+<section class="row-single" aria-label="Method"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Method</p>
+<h2>How alignment was measured</h2>
+<p class="panel-sub">Supply and demand are ranked over the same 16 goals for each of the 34 provinces, then compared.</p>
 <ol class="ds-steps">
-<li><span class="st">Desk study</span><span class="sd">RPJMD content analysis for all 34 provinces, bibliometrics from SciVal and Scopus, and a literature review on multidisciplinary research centres.</span></li>
-<li><span class="st">Surveys</span><span class="sd">Provincial Bappeda on SDG implementation and needs; SDG Centers on their institutional arrangements.</span></li>
-<li><span class="st">FGDs</span><span class="sd">Local governments, universities and operating SDG Centers, plus the ministry, to align programmes with the university resource map.</span></li>
-<li><span class="st">Quantitative</span><span class="sd">The Bappenas SDG Dashboard, used to align provincial progress with university research strengths.</span></li>
+<li><span class="st">Supply</span><span class="sd">Scopus publication counts per SDG for 457 Indonesian universities, attributed to the province the university sits in. Each province's <strong>five strongest goals</strong> are its supply.</span></li>
+<li><span class="st">Demand</span><span class="sd">285 official indicator-dimensions from the National SDGs Secretariat, normalised and aggregated by principal component analysis into a 0&ndash;100 achievement index per goal. Each province's <strong>five weakest goals</strong> are its demand.</span></li>
+<li><span class="st">Alignment</span><span class="sd">A goal on both lists is a match &mdash; a development gap the province's own universities are already strong in.</span></li>
 </ol>
-</section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Survey coverage</p>
-<h2>27 of 34 provinces responded</h2>
-<p class="panel-sub">Fieldwork ran 25 February to 14 March 2025. Coverage is strong everywhere except the east.</p>
-<svg class="ds-chart" viewBox="0 0 760 256" role="img" aria-label="Share of provinces responding to the Bappeda survey by island group">
-<line x1="190.0" y1="18" x2="190.0" y2="230" class="g"/>
-<text x="190.0" y="248" class="ax mid">0%</text>
-<line x1="308.5" y1="18" x2="308.5" y2="230" class="g"/>
-<text x="308.5" y="248" class="ax mid">25%</text>
-<line x1="427.0" y1="18" x2="427.0" y2="230" class="g"/>
-<text x="427.0" y="248" class="ax mid">50%</text>
-<line x1="545.5" y1="18" x2="545.5" y2="230" class="g"/>
-<text x="545.5" y="248" class="ax mid">75%</text>
-<line x1="664.0" y1="18" x2="664.0" y2="230" class="g"/>
-<text x="664.0" y="248" class="ax mid">100%</text>
-<text x="178" y="42" class="lab end">Bali & Nusa Tenggara</text>
-<rect x="190" y="30" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="30" width="474.0" height="15" rx="2" class="b1"/>
-<text x="674.0" y="42" class="val">3 of 3</text>
-<text x="178" y="76" class="lab end">Sumatera</text>
-<rect x="190" y="64" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="64" width="426.6" height="15" rx="2" class="b1"/>
-<text x="674.0" y="76" class="val">9 of 10</text>
-<text x="178" y="110" class="lab end">Jawa</text>
-<rect x="190" y="98" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="98" width="395.0" height="15" rx="2" class="b1"/>
-<text x="674.0" y="110" class="val">5 of 6</text>
-<text x="178" y="144" class="lab end">Sulawesi</text>
-<rect x="190" y="132" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="132" width="395.0" height="15" rx="2" class="b1"/>
-<text x="674.0" y="144" class="val">5 of 6</text>
-<text x="178" y="178" class="lab end">Kalimantan</text>
-<rect x="190" y="166" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="166" width="379.2" height="15" rx="2" class="b1"/>
-<text x="674.0" y="178" class="val">4 of 5</text>
-<text x="178" y="212" class="lab end">Maluku & Papua</text>
-<rect x="190" y="200" width="474.0" height="15" rx="2" class="track"/>
-<rect x="190" y="200" width="118.5" height="15" rx="2" class="b1"/>
-<text x="674.0" y="212" class="val">1 of 4</text>
-</svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report Table 4-18. Maluku and Papua are represented by a single province out of four, so eastern Indonesia is thinly covered in the survey strand.</div></details>
-</section></div></div></div></section>
-
-<section class="row-single" aria-label="Measuring supply"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Supply</p>
-<h2>Two bibliometric layers, merged</h2>
-<p class="panel-sub">Research strength is measured at the university, then attributed to the province the university sits in.</p>
-<ol class="ds-steps">
-<li><span class="st">SciVal &mdash; quality</span><span class="sd">181 Indonesian institutions listed; 21 excluded as non-higher-education, leaving <strong>160 universities</strong>. Metric: citation count per SDG.</span></li>
-<li><span class="st">Scopus &mdash; quantity</span><span class="sd">578 Indonesian organisations, of which <strong>457 are universities</strong>. Metric: number of documents contributing to each SDG.</span></li>
-<li><span class="st">Concordance</span><span class="sd">455 Scopus institution names matched semi-manually against the 160 SciVal names, because naming varies across Indonesian and English forms and abbreviation styles.</span></li>
-</ol>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report &sect;2 and Table 2-1. SciVal covers 160 of the 457 universities Scopus lists, and coverage is uneven across provinces &mdash; from 31 universities in East Java to none in seven provinces.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">SDG Center Business Model final report (2025), &sect;2 and Table 4-22. Supply is measured by university location, not by where the research is about.</div></details>
 </section></div></div></section>
 
-<section class="row-group" aria-label="Measuring demand"><div class="row-head"><p class="row-kicker">Two definitions</p><h2 class="row-title">Demand is measured twice, and the two measures do not have to agree</h2></div><div class="row-pair row-pair-inner"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Demand, first definition</p>
-<h2>What provinces say they want</h2>
-<p class="panel-sub">Content analysis of the medium-term development plan (RPJMD) of all 34 provinces.</p>
-<ol class="ds-steps">
-<li><span class="st">Extract</span><span class="sd">Vision, mission, goals and priority programmes from each province's RPJMD.</span></li>
-<li><span class="st">Map to SDGs</span><span class="sd">Manual review by the research team, then ChatGPT as a comparative tool, then verification by senior researchers.</span></li>
-<li><span class="st">Rank</span><span class="sd">Goals ordered by prominence; the highest priority is rank 1.</span></li>
-</ol>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Most documents pre-date the 2024 regional elections, since new RPJMDs were still being drafted. The report argues continuity is reasonable because every RPJMD must follow the longer-horizon RPJPD and the national RPJMN.</div></details>
-</section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Demand, second definition</p>
-<h2>Where provinces are actually falling short</h2>
-<p class="panel-sub">An achievement index built from the National SDGs Secretariat's indicator set.</p>
-<ol class="ds-steps">
-<li><span class="st">Normalise</span><span class="sd">Each of 285 indicator-dimensions rescaled 0&ndash;1 against official thresholds, or empirical bounds (&plusmn;2 SD) where no standard exists, with direction set by whether higher or lower is better.</span></li>
-<li><span class="st">Aggregate</span><span class="sd">Principal component analysis within each goal, producing a <strong>0&ndash;100 achievement index</strong> per goal per province.</span></li>
-<li><span class="st">Rank</span><span class="sd">Goals 1&ndash;16 ordered by index; the <em>lowest</em> score is rank 1, the goal most in need of support.</span></li>
-</ol>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">This is the demand measure used in the report's gap analysis. The two definitions can disagree: a province may rank a goal low in its plan while performing badly on it.</div></details>
-</section></div></div></div></section>
-
-<section class="row-single" aria-label="Indicator base"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">What the achievement index rests on</p>
-<h2>The indicator base is very uneven across goals</h2>
-<p class="panel-sub">Number of indicator-dimensions available per SDG in the provincial dataset. Goal 4 has 117; Goals 12 and 14 have one each.</p>
-<svg class="ds-chart" viewBox="0 0 760 430" role="img" aria-label="Number of indicator-dimensions behind each SDG goal">
-<line x1="44.0" y1="18" x2="44.0" y2="400" class="g"/>
-<text x="44.0" y="418" class="ax mid">0</text>
-<line x1="209.5" y1="18" x2="209.5" y2="400" class="g"/>
-<text x="209.5" y="418" class="ax mid">30</text>
-<line x1="375.0" y1="18" x2="375.0" y2="400" class="g"/>
-<text x="375.0" y="418" class="ax mid">60</text>
-<line x1="540.5" y1="18" x2="540.5" y2="400" class="g"/>
-<text x="540.5" y="418" class="ax mid">90</text>
-<line x1="706.0" y1="18" x2="706.0" y2="400" class="g"/>
-<text x="706.0" y="418" class="ax mid">120</text>
-<text x="35" y="39" class="lab end">1</text>
-<rect x="44" y="29" width="66.2" height="11" rx="2" class="b1"/>
-<text x="118.2" y="39" class="val">12</text>
-<text x="35" y="61" class="lab end">2</text>
-<rect x="44" y="51" width="60.7" height="11" rx="2" class="b1"/>
-<text x="112.7" y="61" class="val">11</text>
-<text x="35" y="83" class="lab end">3</text>
-<rect x="44" y="73" width="292.4" height="11" rx="2" class="b1"/>
-<text x="344.4" y="83" class="val">53</text>
-<text x="35" y="105" class="lab end">4</text>
-<rect x="44" y="95" width="645.5" height="11" rx="2" class="b1"/>
-<text x="697.5" y="105" class="val">117</text>
-<text x="35" y="127" class="lab end">5</text>
-<rect x="44" y="117" width="77.2" height="11" rx="2" class="b1"/>
-<text x="129.2" y="127" class="val">14</text>
-<text x="35" y="149" class="lab end">6</text>
-<rect x="44" y="139" width="33.1" height="11" rx="2" class="b1"/>
-<text x="85.1" y="149" class="val">6</text>
-<text x="35" y="171" class="lab end">7</text>
-<rect x="44" y="161" width="16.5" height="11" rx="2" class="b1"/>
-<text x="68.5" y="171" class="val">3</text>
-<text x="35" y="193" class="lab end">8</text>
-<rect x="44" y="183" width="60.7" height="11" rx="2" class="b1"/>
-<text x="112.7" y="193" class="val">11</text>
-<text x="35" y="215" class="lab end">9</text>
-<rect x="44" y="205" width="110.3" height="11" rx="2" class="b1"/>
-<text x="162.3" y="215" class="val">20</text>
-<text x="35" y="237" class="lab end">10</text>
-<rect x="44" y="227" width="44.1" height="11" rx="2" class="b1"/>
-<text x="96.1" y="237" class="val">8</text>
-<text x="35" y="259" class="lab end">11</text>
-<rect x="44" y="249" width="55.2" height="11" rx="2" class="b1"/>
-<text x="107.2" y="259" class="val">10</text>
-<text x="35" y="281" class="lab end">12</text>
-<rect x="44" y="271" width="5.5" height="11" rx="2" class="b1"/>
-<text x="57.5" y="281" class="val">1</text>
-<text x="35" y="303" class="lab end">13</text>
-<rect x="44" y="293" width="11.0" height="11" rx="2" class="b1"/>
-<text x="63.0" y="303" class="val">2</text>
-<text x="35" y="325" class="lab end">14</text>
-<rect x="44" y="315" width="5.5" height="11" rx="2" class="b1"/>
-<text x="57.5" y="325" class="val">1</text>
-<text x="35" y="347" class="lab end">15</text>
-<rect x="44" y="337" width="16.5" height="11" rx="2" class="b1"/>
-<text x="68.5" y="347" class="val">3</text>
-<text x="35" y="369" class="lab end">16</text>
-<rect x="44" y="359" width="55.2" height="11" rx="2" class="b1"/>
-<text x="107.2" y="369" class="val">10</text>
-<text x="35" y="391" class="lab end">17</text>
-<rect x="44" y="381" width="16.5" height="11" rx="2" class="b1"/>
-<text x="68.5" y="391" class="val">3</text>
+<section class="row-single" aria-label="National mismatch"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 1</p>
+<h2>The goals universities publish on are not the goals provinces are failing</h2>
+<p class="panel-sub">Number of provinces, out of 34, where each SDG is a top-five university strength and where it is a bottom-five achievement. Ordered by the size of the deficit.</p>
+<div class="ds-key"><span class="k"><i class="s"></i>Supply &mdash; a top-five university strength</span><span class="k"><i class="d"></i>Demand &mdash; a bottom-five achievement</span></div><svg class="ds-chart" viewBox="0 0 1180 548" role="img" aria-label="Number of provinces where each SDG is a top-five university strength versus a bottom-five achievement">
+<line x1="300.0" y1="22" x2="300.0" y2="518" class="g"/>
+<text x="300.0" y="535" class="ax mid">0</text>
+<line x1="541.2" y1="22" x2="541.2" y2="518" class="g"/>
+<text x="541.2" y="535" class="ax mid">10</text>
+<line x1="782.4" y1="22" x2="782.4" y2="518" class="g"/>
+<text x="782.4" y="535" class="ax mid">20</text>
+<line x1="1023.5" y1="22" x2="1023.5" y2="518" class="g"/>
+<text x="1023.5" y="535" class="ax mid">30</text>
+<text x="258" y="53.0" class="lab end">9. Industry, innovation &amp; infrastructure</text>
+<line x1="517.1" y1="49.0" x2="1071.8" y2="49.0" class="conn"/>
+<circle cx="517.1" cy="49.0" r="6.5" class="dot sup"/>
+<circle cx="1071.8" cy="49.0" r="6.5" class="dot dem"/>
+<text x="504.1" y="53.0" class="val end vs">9</text>
+<text x="1084.8" y="53.0" class="val vd">32</text>
+<text x="258" y="83.0" class="lab end">14. Life below water</text>
+<line x1="541.2" y1="79.0" x2="1023.5" y2="79.0" class="conn"/>
+<circle cx="541.2" cy="79.0" r="6.5" class="dot sup"/>
+<circle cx="1023.5" cy="79.0" r="6.5" class="dot dem"/>
+<text x="528.2" y="83.0" class="val end vs">10</text>
+<text x="1036.5" y="83.0" class="val vd">30</text>
+<text x="258" y="113.0" class="lab end">13. Climate action</text>
+<line x1="348.2" y1="109.0" x2="806.5" y2="109.0" class="conn"/>
+<circle cx="348.2" cy="109.0" r="6.5" class="dot sup"/>
+<circle cx="806.5" cy="109.0" r="6.5" class="dot dem"/>
+<text x="335.2" y="113.0" class="val end vs">2</text>
+<text x="819.5" y="113.0" class="val vd">21</text>
+<text x="258" y="143.0" class="lab end">5. Gender equality</text>
+<line x1="300.0" y1="139.0" x2="468.8" y2="139.0" class="conn"/>
+<circle cx="300.0" cy="139.0" r="6.5" class="dot sup"/>
+<circle cx="468.8" cy="139.0" r="6.5" class="dot dem"/>
+<text x="284.0" y="143.0" class="val end vs">0</text>
+<text x="481.8" y="143.0" class="val vd">7</text>
+<text x="258" y="173.0" class="lab end">8. Decent work &amp; growth</text>
+<line x1="661.8" y1="169.0" x2="806.5" y2="169.0" class="conn"/>
+<circle cx="661.8" cy="169.0" r="6.5" class="dot sup"/>
+<circle cx="806.5" cy="169.0" r="6.5" class="dot dem"/>
+<text x="648.8" y="173.0" class="val end vs">15</text>
+<text x="819.5" y="173.0" class="val vd">21</text>
+<text x="258" y="203.0" class="lab end">10. Reduced inequalities</text>
+<line x1="300.0" y1="199.0" x2="420.6" y2="199.0" class="conn"/>
+<circle cx="300.0" cy="199.0" r="6.5" class="dot sup"/>
+<circle cx="420.6" cy="199.0" r="6.5" class="dot dem"/>
+<text x="284.0" y="203.0" class="val end vs">0</text>
+<text x="433.6" y="203.0" class="val vd">5</text>
+<text x="258" y="233.0" class="lab end">15. Life on land</text>
+<line x1="613.5" y1="229.0" x2="661.8" y2="229.0" class="conn"/>
+<circle cx="613.5" cy="229.0" r="6.5" class="dot sup"/>
+<circle cx="661.8" cy="229.0" r="6.5" class="dot dem"/>
+<text x="600.5" y="233.0" class="val end vs">13</text>
+<text x="674.8" y="233.0" class="val vd">15</text>
+<text x="258" y="263.0" class="lab end">16. Peace, justice &amp; institutions</text>
+<line x1="300.0" y1="259.0" x2="348.2" y2="259.0" class="conn"/>
+<circle cx="300.0" cy="259.0" r="6.5" class="dot sup"/>
+<circle cx="348.2" cy="259.0" r="6.5" class="dot dem"/>
+<text x="284.0" y="263.0" class="val end vs">0</text>
+<text x="361.2" y="263.0" class="val vd">2</text>
+<text x="258" y="293.0" class="lab end">1. No poverty</text>
+<line x1="300.0" y1="289.0" x2="324.1" y2="289.0" class="conn"/>
+<circle cx="300.0" cy="289.0" r="6.5" class="dot sup"/>
+<circle cx="324.1" cy="289.0" r="6.5" class="dot dem"/>
+<text x="284.0" y="293.0" class="val end vs">0</text>
+<text x="337.1" y="293.0" class="val vd">1</text>
+<text x="258" y="323.0" class="lab end">6. Clean water &amp; sanitation</text>
+<line x1="324.1" y1="319.0" x2="348.2" y2="319.0" class="conn"/>
+<circle cx="348.2" cy="319.0" r="6.5" class="dot sup"/>
+<circle cx="324.1" cy="319.0" r="6.5" class="dot dem"/>
+<text x="284.0" y="323.0" class="val end vd">1</text>
+<text x="361.2" y="323.0" class="val vs">2</text>
+<text x="258" y="353.0" class="lab end">4. Quality education</text>
+<line x1="589.4" y1="349.0" x2="758.2" y2="349.0" class="conn"/>
+<circle cx="758.2" cy="349.0" r="6.5" class="dot sup"/>
+<circle cx="589.4" cy="349.0" r="6.5" class="dot dem"/>
+<text x="576.4" y="353.0" class="val end vd">12</text>
+<text x="771.2" y="353.0" class="val vs">19</text>
+<text x="258" y="383.0" class="lab end">2. Zero hunger</text>
+<line x1="396.5" y1="379.0" x2="637.6" y2="379.0" class="conn"/>
+<circle cx="637.6" cy="379.0" r="6.5" class="dot sup"/>
+<circle cx="396.5" cy="379.0" r="6.5" class="dot dem"/>
+<text x="383.5" y="383.0" class="val end vd">4</text>
+<text x="650.6" y="383.0" class="val vs">14</text>
+<text x="258" y="413.0" class="lab end">11. Sustainable cities</text>
+<line x1="348.2" y1="409.0" x2="613.5" y2="409.0" class="conn"/>
+<circle cx="613.5" cy="409.0" r="6.5" class="dot sup"/>
+<circle cx="348.2" cy="409.0" r="6.5" class="dot dem"/>
+<text x="335.2" y="413.0" class="val end vd">2</text>
+<text x="626.5" y="413.0" class="val vs">13</text>
+<text x="258" y="443.0" class="lab end">12. Responsible consumption</text>
+<line x1="396.5" y1="439.0" x2="758.2" y2="439.0" class="conn"/>
+<circle cx="758.2" cy="439.0" r="6.5" class="dot sup"/>
+<circle cx="396.5" cy="439.0" r="6.5" class="dot dem"/>
+<text x="383.5" y="443.0" class="val end vd">4</text>
+<text x="771.2" y="443.0" class="val vs">19</text>
+<text x="258" y="473.0" class="lab end">3. Good health &amp; well-being</text>
+<line x1="565.3" y1="469.0" x2="1071.8" y2="469.0" class="conn"/>
+<circle cx="1071.8" cy="469.0" r="6.5" class="dot sup"/>
+<circle cx="565.3" cy="469.0" r="6.5" class="dot dem"/>
+<text x="552.3" y="473.0" class="val end vd">11</text>
+<text x="1084.8" y="473.0" class="val vs">32</text>
+<text x="258" y="503.0" class="lab end">7. Affordable &amp; clean energy</text>
+<line x1="348.2" y1="499.0" x2="902.9" y2="499.0" class="conn"/>
+<circle cx="902.9" cy="499.0" r="6.5" class="dot sup"/>
+<circle cx="348.2" cy="499.0" r="6.5" class="dot dem"/>
+<text x="335.2" y="503.0" class="val end vd">2</text>
+<text x="915.9" y="503.0" class="val vs">25</text>
 </svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report Table 2-2, 285 indicator-dimensions in total. A goal measured by a single indicator carries the same weight in the ranking as one measured by 117, which is worth keeping in mind when reading the demand side.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Tabulated from Table 4-22. Industry and infrastructure (SDG&nbsp;9) is a critical weakness in 32 provinces but a university strength in 9; health (SDG&nbsp;3) runs the other way, 32 against 11.</div></details>
 </section></div></div></section>
 
-<section class="row-single" aria-label="Gap analysis"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Putting the two sides together</p>
-<h2>From supply and demand to a gap</h2>
-<p class="panel-sub">Two tests, both run province by province and for Indonesia as a whole.</p>
-<ol class="ds-steps">
-<li><span class="st">Spearman rank correlation</span><span class="sd">Correlates the ranking of SDGs by university output against the ranking of SDGs by achievement. Because rank 1 means &lsquo;most published&rsquo; on one side and &lsquo;worst performing&rsquo; on the other, a <strong>positive</strong> coefficient means research is concentrated where the province is weakest.</span></li>
-<li><span class="st">Top-5 matching</span><span class="sd">Counts how many goals appear in both a province's five strongest SDGs by publication and its five weakest by achievement.</span></li>
-</ol>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report &sect;4, Tables 4-21, 4-22 and 4-23.</div></details>
-</section></div></div></section>
-
-<section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">II</span>What the numbers show</h2><p class="divider-blurb">Two figures from the report: how fast the SDG Center network was built, and what provincial governments say they are trying to achieve.</p></div></section>
-
-<section class="row-single" aria-label="Growth of SDG Centers"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Report Figure 3-2</p>
-<h2>SDG Centers went from 2 to 62 in a decade</h2>
-<p class="panel-sub">Cumulative number of SDG Centers established in Indonesia, 2015&ndash;2025.</p>
-<svg class="ds-chart" viewBox="0 0 760 340" role="img" aria-label="Cumulative number of SDG Centers in Indonesia, 2015 to 2025">
-<line x1="48" y1="300.0" x2="726" y2="300.0" class="g"/>
-<text x="39" y="304.0" class="ax end">0</text>
-<line x1="48" y1="222.9" x2="726" y2="222.9" class="g"/>
-<text x="39" y="226.9" class="ax end">20</text>
-<line x1="48" y1="145.7" x2="726" y2="145.7" class="g"/>
-<text x="39" y="149.7" class="ax end">40</text>
-<line x1="48" y1="68.6" x2="726" y2="68.6" class="g"/>
-<text x="39" y="72.6" class="ax end">60</text>
-<polyline points="48.0,292.3 115.8,288.4 183.6,288.4 251.4,273.0 319.2,246.0 387.0,215.1 454.8,184.3 522.6,153.4 590.4,118.7 658.2,76.3 726.0,60.9" class="ln"/>
-<circle cx="48.0" cy="292.3" r="4.5" class="pt"/>
-<text x="48.0" y="280.3" class="val mid">2</text>
-<text x="48.0" y="319.0" class="ax mid">2015</text>
-<circle cx="115.8" cy="288.4" r="4.5" class="pt"/>
-<text x="115.8" y="276.4" class="val mid">3</text>
-<circle cx="183.6" cy="288.4" r="4.5" class="pt"/>
-<text x="183.6" y="276.4" class="val mid">3</text>
-<text x="183.6" y="319.0" class="ax mid">2017</text>
-<circle cx="251.4" cy="273.0" r="4.5" class="pt"/>
-<text x="251.4" y="261.0" class="val mid">7</text>
-<circle cx="319.2" cy="246.0" r="4.5" class="pt"/>
-<text x="319.2" y="234.0" class="val mid">14</text>
-<text x="319.2" y="319.0" class="ax mid">2019</text>
-<circle cx="387.0" cy="215.1" r="4.5" class="pt"/>
-<text x="387.0" y="203.1" class="val mid">22</text>
-<circle cx="454.8" cy="184.3" r="4.5" class="pt"/>
-<text x="454.8" y="172.3" class="val mid">30</text>
-<text x="454.8" y="319.0" class="ax mid">2021</text>
-<circle cx="522.6" cy="153.4" r="4.5" class="pt"/>
-<text x="522.6" y="141.4" class="val mid">38</text>
-<circle cx="590.4" cy="118.7" r="4.5" class="pt"/>
-<text x="590.4" y="106.7" class="val mid">47</text>
-<text x="590.4" y="319.0" class="ax mid">2023</text>
-<circle cx="658.2" cy="76.3" r="4.5" class="pt"/>
-<text x="658.2" y="64.3" class="val mid">58</text>
-<text x="658.2" y="319.0" class="ax mid">2024</text>
-<circle cx="726.0" cy="60.9" r="4.5" class="pt"/>
-<text x="726.0" y="48.9" class="val mid">62</text>
-<text x="726.0" y="319.0" class="ax mid">2025</text>
+<section class="row-single" aria-label="Provincial alignment"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 2</p>
+<h2>Where the expertise a province needs is already on its doorstep</h2>
+<p class="panel-sub">Goals appearing in both a province's five strongest SDGs by publication and its five weakest by achievement, with the matching goals named.</p>
+<svg class="ds-chart" viewBox="0 0 1180 564" role="img" aria-label="Number of SDGs that are both a university strength and a development gap, by province">
+<line x1="250.0" y1="18" x2="250.0" y2="536" class="g"/>
+<text x="250.0" y="554" class="ax mid">0</text>
+<line x1="450.0" y1="18" x2="450.0" y2="536" class="g"/>
+<text x="450.0" y="554" class="ax mid">1</text>
+<line x1="650.0" y1="18" x2="650.0" y2="536" class="g"/>
+<text x="650.0" y="554" class="ax mid">2</text>
+<line x1="850.0" y1="18" x2="850.0" y2="536" class="g"/>
+<text x="850.0" y="554" class="ax mid">3</text>
+<text x="238" y="36" class="lab end">Kep. Bangka Belitung</text>
+<rect x="250" y="27.5" width="600.0" height="10" rx="2" class="both"/>
+<text x="861.0" y="36" class="val vb">SDG 8, SDG 14, SDG 15</text>
+<text x="238" y="51" class="lab end">Riau</text>
+<rect x="250" y="42.5" width="600.0" height="10" rx="2" class="both"/>
+<text x="861.0" y="51" class="val vb">SDG 3, SDG 9, SDG 14</text>
+<text x="238" y="66" class="lab end">Sulawesi Barat</text>
+<rect x="250" y="57.5" width="600.0" height="10" rx="2" class="both"/>
+<text x="861.0" y="66" class="val vb">SDG 3, SDG 4, SDG 14</text>
+<text x="238" y="81" class="lab end">Sulawesi Tenggara</text>
+<rect x="250" y="72.5" width="600.0" height="10" rx="2" class="both"/>
+<text x="861.0" y="81" class="val vb">SDG 3, SDG 8, SDG 14</text>
+<text x="238" y="96" class="lab end">Banten</text>
+<rect x="250" y="87.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="96" class="val vb">SDG 3, SDG 4</text>
+<text x="238" y="111" class="lab end">Gorontalo</text>
+<rect x="250" y="102.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="111" class="val vb">SDG 3, SDG 8</text>
+<text x="238" y="126" class="lab end">Jambi</text>
+<rect x="250" y="117.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="126" class="val vb">SDG 4, SDG 8</text>
+<text x="238" y="141" class="lab end">Kalimantan Barat</text>
+<rect x="250" y="132.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="141" class="val vb">SDG 2, SDG 4</text>
+<text x="238" y="156" class="lab end">Kalimantan Tengah</text>
+<rect x="250" y="147.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="156" class="val vb">SDG 3, SDG 13</text>
+<text x="238" y="171" class="lab end">Kalimantan Utara</text>
+<rect x="250" y="162.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="171" class="val vb">SDG 8, SDG 14</text>
+<text x="238" y="186" class="lab end">Kep. Riau</text>
+<rect x="250" y="177.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="186" class="val vb">SDG 13, SDG 14</text>
+<text x="238" y="201" class="lab end">Maluku</text>
+<rect x="250" y="192.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="201" class="val vb">SDG 2, SDG 3</text>
+<text x="238" y="216" class="lab end">Nusa Tenggara Barat</text>
+<rect x="250" y="207.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="216" class="val vb">SDG 8, SDG 12</text>
+<text x="238" y="231" class="lab end">Nusa Tenggara Timur</text>
+<rect x="250" y="222.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="231" class="val vb">SDG 2, SDG 7</text>
+<text x="238" y="246" class="lab end">Papua Barat</text>
+<rect x="250" y="237.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="246" class="val vb">SDG 3, SDG 9</text>
+<text x="238" y="261" class="lab end">Sulawesi Utara</text>
+<rect x="250" y="252.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="261" class="val vb">SDG 14, SDG 15</text>
+<text x="238" y="276" class="lab end">Sumatera Utara</text>
+<rect x="250" y="267.5" width="400.0" height="10" rx="2" class="both"/>
+<text x="661.0" y="276" class="val vb">SDG 8, SDG 9</text>
+<text x="238" y="291" class="lab end">Aceh</text>
+<rect x="250" y="282.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="291" class="val vb">SDG 3</text>
+<text x="238" y="306" class="lab end">Bali</text>
+<rect x="250" y="297.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="306" class="val vb">SDG 8</text>
+<text x="238" y="321" class="lab end">DKI Jakarta</text>
+<rect x="250" y="312.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="321" class="val vb">SDG 9</text>
+<text x="238" y="336" class="lab end">Jawa Barat</text>
+<rect x="250" y="327.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="336" class="val vb">SDG 9</text>
+<text x="238" y="351" class="lab end">Kalimantan Timur</text>
+<rect x="250" y="342.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="351" class="val vb">SDG 12</text>
+<text x="238" y="366" class="lab end">Maluku Utara</text>
+<rect x="250" y="357.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="366" class="val vb">SDG 14</text>
+<text x="238" y="381" class="lab end">Sulawesi Selatan</text>
+<rect x="250" y="372.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="381" class="val vb">SDG 14</text>
+<text x="238" y="396" class="lab end">Sulawesi Tengah</text>
+<rect x="250" y="387.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="396" class="val vb">SDG 3</text>
+<text x="238" y="411" class="lab end">Sumatera Barat</text>
+<rect x="250" y="402.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="411" class="val vb">SDG 9</text>
+<text x="238" y="426" class="lab end">Sumatera Selatan</text>
+<rect x="250" y="417.5" width="200.0" height="10" rx="2" class="both"/>
+<text x="461.0" y="426" class="val vb">SDG 9</text>
+<text x="238" y="441" class="lab end">Bengkulu</text>
+<text x="255" y="441" class="val muted">no matching goal</text>
+<text x="238" y="456" class="lab end">DI Yogyakarta</text>
+<text x="255" y="456" class="val muted">no matching goal</text>
+<text x="238" y="471" class="lab end">Jawa Tengah</text>
+<text x="255" y="471" class="val muted">no matching goal</text>
+<text x="238" y="486" class="lab end">Jawa Timur</text>
+<text x="255" y="486" class="val muted">no matching goal</text>
+<text x="238" y="501" class="lab end">Kalimantan Selatan</text>
+<text x="255" y="501" class="val muted">no matching goal</text>
+<text x="238" y="516" class="lab end">Lampung</text>
+<text x="255" y="516" class="val muted">no matching goal</text>
+<text x="238" y="531" class="lab end">Papua</text>
+<text x="255" y="531" class="val muted">no matching goal</text>
 </svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Redrawn from the report's Figure 3-2. The network is recent: 3 centers as late as 2017, 22 by 2020, 62 by 2025.</div></details>
-</section></div></div></section>
-
-<section class="row-single" aria-label="Stated provincial priorities"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Report Figure 4-1</p>
-<h2>What provinces say they prioritise</h2>
-<p class="panel-sub">Mean priority rank across responding provinces. A <em>lower</em> value means a higher priority; the five highest-priority goals are highlighted.</p>
-<svg class="ds-chart" viewBox="0 0 760 481" role="img" aria-label="Average SDG priority ranking across provincial governments">
-<line x1="258.0" y1="18" x2="258.0" y2="451" class="g"/>
-<text x="258.0" y="469" class="ax mid">0</text>
-<line x1="368.0" y1="18" x2="368.0" y2="451" class="g"/>
-<text x="368.0" y="469" class="ax mid">4</text>
-<line x1="478.0" y1="18" x2="478.0" y2="451" class="g"/>
-<text x="478.0" y="469" class="ax mid">8</text>
-<line x1="588.0" y1="18" x2="588.0" y2="451" class="g"/>
-<text x="588.0" y="469" class="ax mid">12</text>
-<line x1="698.0" y1="18" x2="698.0" y2="451" class="g"/>
-<text x="698.0" y="469" class="ax mid">16</text>
-<text x="247" y="40" class="lab end">1. No poverty</text>
-<rect x="258" y="29" width="56.9" height="12" rx="2" class="b1 hi"/>
-<text x="322.9" y="40" class="val">2.07</text>
-<text x="247" y="65" class="lab end">3. Good health &amp; well-being</text>
-<rect x="258" y="54" width="93.8" height="12" rx="2" class="b1 hi"/>
-<text x="359.8" y="65" class="val">3.41</text>
-<text x="247" y="90" class="lab end">4. Quality education</text>
-<rect x="258" y="79" width="111.1" height="12" rx="2" class="b1 hi"/>
-<text x="377.1" y="90" class="val">4.04</text>
-<text x="247" y="115" class="lab end">2. Zero hunger</text>
-<rect x="258" y="104" width="113.0" height="12" rx="2" class="b1 hi"/>
-<text x="379.0" y="115" class="val">4.11</text>
-<text x="247" y="140" class="lab end">8. Decent work &amp; growth</text>
-<rect x="258" y="129" width="127.3" height="12" rx="2" class="b1 hi"/>
-<text x="393.3" y="140" class="val">4.63</text>
-<text x="247" y="165" class="lab end">6. Clean water &amp; sanitation</text>
-<rect x="258" y="154" width="206.8" height="12" rx="2" class="b1"/>
-<text x="472.8" y="165" class="val">7.52</text>
-<text x="247" y="190" class="lab end">9. Industry, innovation &amp; infrastructure</text>
-<rect x="258" y="179" width="220.0" height="12" rx="2" class="b1"/>
-<text x="486.0" y="190" class="val">8.00</text>
-<text x="247" y="215" class="lab end">10. Reduced inequalities</text>
-<rect x="258" y="204" width="243.4" height="12" rx="2" class="b1"/>
-<text x="509.4" y="215" class="val">8.85</text>
-<text x="247" y="240" class="lab end">7. Affordable &amp; clean energy</text>
-<rect x="258" y="229" width="259.6" height="12" rx="2" class="b1"/>
-<text x="525.6" y="240" class="val">9.44</text>
-<text x="247" y="265" class="lab end">5. Gender equality</text>
-<rect x="258" y="254" width="261.8" height="12" rx="2" class="b1"/>
-<text x="527.8" y="265" class="val">9.52</text>
-<text x="247" y="290" class="lab end">11. Sustainable cities</text>
-<rect x="258" y="279" width="293.4" height="12" rx="2" class="b1"/>
-<text x="559.4" y="290" class="val">10.67</text>
-<text x="247" y="315" class="lab end">12. Responsible consumption</text>
-<rect x="258" y="304" width="309.6" height="12" rx="2" class="b1"/>
-<text x="575.6" y="315" class="val">11.26</text>
-<text x="247" y="340" class="lab end">13. Climate action</text>
-<rect x="258" y="329" width="344.3" height="12" rx="2" class="b1"/>
-<text x="610.3" y="340" class="val">12.52</text>
-<text x="247" y="365" class="lab end">16. Peace, justice &amp; institutions</text>
-<rect x="258" y="354" width="383.9" height="12" rx="2" class="b1"/>
-<text x="649.9" y="365" class="val">13.96</text>
-<text x="247" y="390" class="lab end">15. Life on land</text>
-<rect x="258" y="379" width="388.0" height="12" rx="2" class="b1"/>
-<text x="654.0" y="390" class="val">14.11</text>
-<text x="247" y="415" class="lab end">14. Life below water</text>
-<rect x="258" y="404" width="389.1" height="12" rx="2" class="b1"/>
-<text x="655.1" y="415" class="val">14.15</text>
-<text x="247" y="440" class="lab end">17. Partnerships for the goals</text>
-<rect x="258" y="429" width="405.4" height="12" rx="2" class="b1"/>
-<text x="671.4" y="440" class="val">14.74</text>
-</svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Redrawn from the report's Figure 4-1, using the underlying values stored in the chart. Poverty, health, education, hunger and jobs lead; partnerships, marine and terrestrial ecosystems and institutions come last.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Matching goals and counts as published in Table 4-22. Riau, Bangka Belitung, West Sulawesi and Southeast Sulawesi align on three goals; seven provinces align on none.</div></details>
 </section></div></div></section>
 
 <footer class="deck-foot">
-  <strong>Source.</strong> All content is drawn from the <em>SDG Center Business Model &mdash;
-  Final Report</em> (2025), prepared for the Asian Development Bank. Method described in &sect;2
-  (Research Methodology) and &sect;4 (Findings and Analysis); figures redrawn from the report's
-  Figure 3-2 and Figure 4-1, with Table 2-2 and Table 4-18 shown as charts. Where a figure is
-  redrawn rather than reproduced, the underlying values are the report's own.
+  <strong>Source.</strong> <em>SDG Center Business Model &mdash; Final Report</em> (2025),
+  prepared for the Asian Development Bank. Figures constructed from the report&rsquo;s
+  Table 4-22.
 </footer>
