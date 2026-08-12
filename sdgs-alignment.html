@@ -1268,8 +1268,9 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .ds-chart .val { font-size:12px; fill: var(--text-secondary);
                  font-variant-numeric: tabular-nums; }
 .ds-chart .val.vs { fill: var(--c1); } .ds-chart .val.vd { fill: var(--c6); }
-.ds-chart .val.vb { fill: var(--text-secondary); }
-.ds-chart .val.muted { fill: var(--muted); }
+.ds-chart.matrix { max-width:800px; margin:2px auto 0; }
+.cell.sup { fill: var(--c1); } .cell.dem { fill: var(--c6); }
+.cell.both { fill: var(--c2); } .cell.none { fill: var(--grid); }
 .ds-chart .end { text-anchor:end; } .ds-chart .mid { text-anchor:middle; }
 .ds-steps { list-style:none; margin:12px 0 0; padding:0; counter-reset:s; }
 .ds-steps li { counter-increment:s; display:flex; gap:12px; align-items:baseline;
@@ -1288,7 +1289,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .ds-key span.k { display:inline-flex; align-items:center; gap:8px; }
 .ds-key i { width:12px; height:12px; border-radius:3px; display:inline-block; }
 .ds-key i.s { background:var(--c1); } .ds-key i.d { background:var(--c6); }
-.ds-key i.b { background:var(--c2); }
+.ds-key i.b { background:var(--c2); } .ds-key i.n { background:var(--grid); }
 /* no hero image on this deck: let the title block use the full measure */
 .deck-head-text { flex: 1 1 100%; max-width: 78ch; }
 .deck-lede { max-width: 74ch; }
@@ -1437,114 +1438,605 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
 <section class="row-single" aria-label="Provincial alignment"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Figure 2</p>
-<h2>Where the expertise a province needs is already on its doorstep</h2>
-<p class="panel-sub">Goals appearing in both a province's five strongest SDGs by publication and its five weakest by achievement, with the matching goals named.</p>
-<svg class="ds-chart" viewBox="0 0 1180 564" role="img" aria-label="Number of SDGs that are both a university strength and a development gap, by province">
-<line x1="250.0" y1="18" x2="250.0" y2="536" class="g"/>
-<text x="250.0" y="554" class="ax mid">0</text>
-<line x1="450.0" y1="18" x2="450.0" y2="536" class="g"/>
-<text x="450.0" y="554" class="ax mid">1</text>
-<line x1="650.0" y1="18" x2="650.0" y2="536" class="g"/>
-<text x="650.0" y="554" class="ax mid">2</text>
-<line x1="850.0" y1="18" x2="850.0" y2="536" class="g"/>
-<text x="850.0" y="554" class="ax mid">3</text>
-<text x="238" y="36" class="lab end">Kep. Bangka Belitung</text>
-<rect x="250" y="27.5" width="600.0" height="10" rx="2" class="both"/>
-<text x="861.0" y="36" class="val vb">SDG 8, SDG 14, SDG 15</text>
-<text x="238" y="51" class="lab end">Riau</text>
-<rect x="250" y="42.5" width="600.0" height="10" rx="2" class="both"/>
-<text x="861.0" y="51" class="val vb">SDG 3, SDG 9, SDG 14</text>
-<text x="238" y="66" class="lab end">Sulawesi Barat</text>
-<rect x="250" y="57.5" width="600.0" height="10" rx="2" class="both"/>
-<text x="861.0" y="66" class="val vb">SDG 3, SDG 4, SDG 14</text>
-<text x="238" y="81" class="lab end">Sulawesi Tenggara</text>
-<rect x="250" y="72.5" width="600.0" height="10" rx="2" class="both"/>
-<text x="861.0" y="81" class="val vb">SDG 3, SDG 8, SDG 14</text>
-<text x="238" y="96" class="lab end">Banten</text>
-<rect x="250" y="87.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="96" class="val vb">SDG 3, SDG 4</text>
-<text x="238" y="111" class="lab end">Gorontalo</text>
-<rect x="250" y="102.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="111" class="val vb">SDG 3, SDG 8</text>
-<text x="238" y="126" class="lab end">Jambi</text>
-<rect x="250" y="117.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="126" class="val vb">SDG 4, SDG 8</text>
-<text x="238" y="141" class="lab end">Kalimantan Barat</text>
-<rect x="250" y="132.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="141" class="val vb">SDG 2, SDG 4</text>
-<text x="238" y="156" class="lab end">Kalimantan Tengah</text>
-<rect x="250" y="147.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="156" class="val vb">SDG 3, SDG 13</text>
-<text x="238" y="171" class="lab end">Kalimantan Utara</text>
-<rect x="250" y="162.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="171" class="val vb">SDG 8, SDG 14</text>
-<text x="238" y="186" class="lab end">Kep. Riau</text>
-<rect x="250" y="177.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="186" class="val vb">SDG 13, SDG 14</text>
-<text x="238" y="201" class="lab end">Maluku</text>
-<rect x="250" y="192.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="201" class="val vb">SDG 2, SDG 3</text>
-<text x="238" y="216" class="lab end">Nusa Tenggara Barat</text>
-<rect x="250" y="207.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="216" class="val vb">SDG 8, SDG 12</text>
-<text x="238" y="231" class="lab end">Nusa Tenggara Timur</text>
-<rect x="250" y="222.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="231" class="val vb">SDG 2, SDG 7</text>
-<text x="238" y="246" class="lab end">Papua Barat</text>
-<rect x="250" y="237.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="246" class="val vb">SDG 3, SDG 9</text>
-<text x="238" y="261" class="lab end">Sulawesi Utara</text>
-<rect x="250" y="252.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="261" class="val vb">SDG 14, SDG 15</text>
-<text x="238" y="276" class="lab end">Sumatera Utara</text>
-<rect x="250" y="267.5" width="400.0" height="10" rx="2" class="both"/>
-<text x="661.0" y="276" class="val vb">SDG 8, SDG 9</text>
-<text x="238" y="291" class="lab end">Aceh</text>
-<rect x="250" y="282.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="291" class="val vb">SDG 3</text>
-<text x="238" y="306" class="lab end">Bali</text>
-<rect x="250" y="297.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="306" class="val vb">SDG 8</text>
-<text x="238" y="321" class="lab end">DKI Jakarta</text>
-<rect x="250" y="312.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="321" class="val vb">SDG 9</text>
-<text x="238" y="336" class="lab end">Jawa Barat</text>
-<rect x="250" y="327.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="336" class="val vb">SDG 9</text>
-<text x="238" y="351" class="lab end">Kalimantan Timur</text>
-<rect x="250" y="342.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="351" class="val vb">SDG 12</text>
-<text x="238" y="366" class="lab end">Maluku Utara</text>
-<rect x="250" y="357.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="366" class="val vb">SDG 14</text>
-<text x="238" y="381" class="lab end">Sulawesi Selatan</text>
-<rect x="250" y="372.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="381" class="val vb">SDG 14</text>
-<text x="238" y="396" class="lab end">Sulawesi Tengah</text>
-<rect x="250" y="387.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="396" class="val vb">SDG 3</text>
-<text x="238" y="411" class="lab end">Sumatera Barat</text>
-<rect x="250" y="402.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="411" class="val vb">SDG 9</text>
-<text x="238" y="426" class="lab end">Sumatera Selatan</text>
-<rect x="250" y="417.5" width="200.0" height="10" rx="2" class="both"/>
-<text x="461.0" y="426" class="val vb">SDG 9</text>
-<text x="238" y="441" class="lab end">Bengkulu</text>
-<text x="255" y="441" class="val muted">no matching goal</text>
-<text x="238" y="456" class="lab end">DI Yogyakarta</text>
-<text x="255" y="456" class="val muted">no matching goal</text>
-<text x="238" y="471" class="lab end">Jawa Tengah</text>
-<text x="255" y="471" class="val muted">no matching goal</text>
-<text x="238" y="486" class="lab end">Jawa Timur</text>
-<text x="255" y="486" class="val muted">no matching goal</text>
-<text x="238" y="501" class="lab end">Kalimantan Selatan</text>
-<text x="255" y="501" class="val muted">no matching goal</text>
-<text x="238" y="516" class="lab end">Lampung</text>
-<text x="255" y="516" class="val muted">no matching goal</text>
-<text x="238" y="531" class="lab end">Papua</text>
-<text x="255" y="531" class="val muted">no matching goal</text>
+<h2>Province by province, goal by goal</h2>
+<p class="panel-sub">Each row is a province, each column an SDG. Green is a match: a goal that is both one of the province's five strongest by publication and one of its five weakest by achievement.</p>
+<div class="ds-key"><span class="k"><i class="b"></i>Both &mdash; strength meets need</span><span class="k"><i class="s"></i>Supply only</span><span class="k"><i class="d"></i>Need only</span><span class="k"><i class="n"></i>Neither</span></div><svg class="ds-chart matrix" viewBox="0 0 792 638" role="img" aria-label="Province by SDG alignment matrix">
+<text x="266.0" y="24" class="ax mid">1</text>
+<text x="298.0" y="24" class="ax mid">2</text>
+<text x="330.0" y="24" class="ax mid">3</text>
+<text x="362.0" y="24" class="ax mid">4</text>
+<text x="394.0" y="24" class="ax mid">5</text>
+<text x="426.0" y="24" class="ax mid">6</text>
+<text x="458.0" y="24" class="ax mid">7</text>
+<text x="490.0" y="24" class="ax mid">8</text>
+<text x="522.0" y="24" class="ax mid">9</text>
+<text x="554.0" y="24" class="ax mid">10</text>
+<text x="586.0" y="24" class="ax mid">11</text>
+<text x="618.0" y="24" class="ax mid">12</text>
+<text x="650.0" y="24" class="ax mid">13</text>
+<text x="682.0" y="24" class="ax mid">14</text>
+<text x="714.0" y="24" class="ax mid">15</text>
+<text x="746.0" y="24" class="ax mid">16</text>
+<text x="240" y="47" class="lab end">Aceh</text>
+<rect x="252" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 1</title></rect>
+<rect x="284" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 2</title></rect>
+<rect x="316" y="36" width="28" height="13" rx="2" class="cell both"><title>Aceh — SDG 3</title></rect>
+<rect x="348" y="36" width="28" height="13" rx="2" class="cell sup"><title>Aceh — SDG 4</title></rect>
+<rect x="380" y="36" width="28" height="13" rx="2" class="cell dem"><title>Aceh — SDG 5</title></rect>
+<rect x="412" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 6</title></rect>
+<rect x="444" y="36" width="28" height="13" rx="2" class="cell sup"><title>Aceh — SDG 7</title></rect>
+<rect x="476" y="36" width="28" height="13" rx="2" class="cell sup"><title>Aceh — SDG 8</title></rect>
+<rect x="508" y="36" width="28" height="13" rx="2" class="cell dem"><title>Aceh — SDG 9</title></rect>
+<rect x="540" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 10</title></rect>
+<rect x="572" y="36" width="28" height="13" rx="2" class="cell sup"><title>Aceh — SDG 11</title></rect>
+<rect x="604" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 12</title></rect>
+<rect x="636" y="36" width="28" height="13" rx="2" class="cell dem"><title>Aceh — SDG 13</title></rect>
+<rect x="668" y="36" width="28" height="13" rx="2" class="cell dem"><title>Aceh — SDG 14</title></rect>
+<rect x="700" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 15</title></rect>
+<rect x="732" y="36" width="28" height="13" rx="2" class="cell none"><title>Aceh — SDG 16</title></rect>
+<text x="240" y="64" class="lab end">Sumatera Utara</text>
+<rect x="252" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 1</title></rect>
+<rect x="284" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 2</title></rect>
+<rect x="316" y="53" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Utara — SDG 3</title></rect>
+<rect x="348" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 4</title></rect>
+<rect x="380" y="53" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Utara — SDG 5</title></rect>
+<rect x="412" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 6</title></rect>
+<rect x="444" y="53" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Utara — SDG 7</title></rect>
+<rect x="476" y="53" width="28" height="13" rx="2" class="cell both"><title>Sumatera Utara — SDG 8</title></rect>
+<rect x="508" y="53" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Utara — SDG 9</title></rect>
+<rect x="540" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 10</title></rect>
+<rect x="572" y="53" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Utara — SDG 11</title></rect>
+<rect x="604" y="53" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Utara — SDG 12</title></rect>
+<rect x="636" y="53" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Utara — SDG 13</title></rect>
+<rect x="668" y="53" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Utara — SDG 14</title></rect>
+<rect x="700" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 15</title></rect>
+<rect x="732" y="53" width="28" height="13" rx="2" class="cell none"><title>Sumatera Utara — SDG 16</title></rect>
+<text x="240" y="81" class="lab end">Sumatera Barat</text>
+<rect x="252" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 1</title></rect>
+<rect x="284" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 2</title></rect>
+<rect x="316" y="70" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Barat — SDG 3</title></rect>
+<rect x="348" y="70" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Barat — SDG 4</title></rect>
+<rect x="380" y="70" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Barat — SDG 5</title></rect>
+<rect x="412" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 6</title></rect>
+<rect x="444" y="70" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Barat — SDG 7</title></rect>
+<rect x="476" y="70" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Barat — SDG 8</title></rect>
+<rect x="508" y="70" width="28" height="13" rx="2" class="cell both"><title>Sumatera Barat — SDG 9</title></rect>
+<rect x="540" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 10</title></rect>
+<rect x="572" y="70" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Barat — SDG 11</title></rect>
+<rect x="604" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 12</title></rect>
+<rect x="636" y="70" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Barat — SDG 13</title></rect>
+<rect x="668" y="70" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Barat — SDG 14</title></rect>
+<rect x="700" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 15</title></rect>
+<rect x="732" y="70" width="28" height="13" rx="2" class="cell none"><title>Sumatera Barat — SDG 16</title></rect>
+<text x="240" y="98" class="lab end">Riau</text>
+<rect x="252" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 1</title></rect>
+<rect x="284" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 2</title></rect>
+<rect x="316" y="87" width="28" height="13" rx="2" class="cell both"><title>Riau — SDG 3</title></rect>
+<rect x="348" y="87" width="28" height="13" rx="2" class="cell sup"><title>Riau — SDG 4</title></rect>
+<rect x="380" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 5</title></rect>
+<rect x="412" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 6</title></rect>
+<rect x="444" y="87" width="28" height="13" rx="2" class="cell sup"><title>Riau — SDG 7</title></rect>
+<rect x="476" y="87" width="28" height="13" rx="2" class="cell dem"><title>Riau — SDG 8</title></rect>
+<rect x="508" y="87" width="28" height="13" rx="2" class="cell both"><title>Riau — SDG 9</title></rect>
+<rect x="540" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 10</title></rect>
+<rect x="572" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 11</title></rect>
+<rect x="604" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 12</title></rect>
+<rect x="636" y="87" width="28" height="13" rx="2" class="cell dem"><title>Riau — SDG 13</title></rect>
+<rect x="668" y="87" width="28" height="13" rx="2" class="cell both"><title>Riau — SDG 14</title></rect>
+<rect x="700" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 15</title></rect>
+<rect x="732" y="87" width="28" height="13" rx="2" class="cell none"><title>Riau — SDG 16</title></rect>
+<text x="240" y="115" class="lab end">Jambi</text>
+<rect x="252" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 1</title></rect>
+<rect x="284" y="104" width="28" height="13" rx="2" class="cell sup"><title>Jambi — SDG 2</title></rect>
+<rect x="316" y="104" width="28" height="13" rx="2" class="cell sup"><title>Jambi — SDG 3</title></rect>
+<rect x="348" y="104" width="28" height="13" rx="2" class="cell both"><title>Jambi — SDG 4</title></rect>
+<rect x="380" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 5</title></rect>
+<rect x="412" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 6</title></rect>
+<rect x="444" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 7</title></rect>
+<rect x="476" y="104" width="28" height="13" rx="2" class="cell both"><title>Jambi — SDG 8</title></rect>
+<rect x="508" y="104" width="28" height="13" rx="2" class="cell dem"><title>Jambi — SDG 9</title></rect>
+<rect x="540" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 10</title></rect>
+<rect x="572" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 11</title></rect>
+<rect x="604" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 12</title></rect>
+<rect x="636" y="104" width="28" height="13" rx="2" class="cell dem"><title>Jambi — SDG 13</title></rect>
+<rect x="668" y="104" width="28" height="13" rx="2" class="cell dem"><title>Jambi — SDG 14</title></rect>
+<rect x="700" y="104" width="28" height="13" rx="2" class="cell sup"><title>Jambi — SDG 15</title></rect>
+<rect x="732" y="104" width="28" height="13" rx="2" class="cell none"><title>Jambi — SDG 16</title></rect>
+<text x="240" y="132" class="lab end">Sumatera Selatan</text>
+<rect x="252" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 1</title></rect>
+<rect x="284" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 2</title></rect>
+<rect x="316" y="121" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Selatan — SDG 3</title></rect>
+<rect x="348" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 4</title></rect>
+<rect x="380" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 5</title></rect>
+<rect x="412" y="121" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Selatan — SDG 6</title></rect>
+<rect x="444" y="121" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Selatan — SDG 7</title></rect>
+<rect x="476" y="121" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Selatan — SDG 8</title></rect>
+<rect x="508" y="121" width="28" height="13" rx="2" class="cell both"><title>Sumatera Selatan — SDG 9</title></rect>
+<rect x="540" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 10</title></rect>
+<rect x="572" y="121" width="28" height="13" rx="2" class="cell sup"><title>Sumatera Selatan — SDG 11</title></rect>
+<rect x="604" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 12</title></rect>
+<rect x="636" y="121" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Selatan — SDG 13</title></rect>
+<rect x="668" y="121" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Selatan — SDG 14</title></rect>
+<rect x="700" y="121" width="28" height="13" rx="2" class="cell dem"><title>Sumatera Selatan — SDG 15</title></rect>
+<rect x="732" y="121" width="28" height="13" rx="2" class="cell none"><title>Sumatera Selatan — SDG 16</title></rect>
+<text x="240" y="149" class="lab end">Bengkulu</text>
+<rect x="252" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 1</title></rect>
+<rect x="284" y="138" width="28" height="13" rx="2" class="cell sup"><title>Bengkulu — SDG 2</title></rect>
+<rect x="316" y="138" width="28" height="13" rx="2" class="cell sup"><title>Bengkulu — SDG 3</title></rect>
+<rect x="348" y="138" width="28" height="13" rx="2" class="cell sup"><title>Bengkulu — SDG 4</title></rect>
+<rect x="380" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 5</title></rect>
+<rect x="412" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 6</title></rect>
+<rect x="444" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 7</title></rect>
+<rect x="476" y="138" width="28" height="13" rx="2" class="cell dem"><title>Bengkulu — SDG 8</title></rect>
+<rect x="508" y="138" width="28" height="13" rx="2" class="cell dem"><title>Bengkulu — SDG 9</title></rect>
+<rect x="540" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 10</title></rect>
+<rect x="572" y="138" width="28" height="13" rx="2" class="cell sup"><title>Bengkulu — SDG 11</title></rect>
+<rect x="604" y="138" width="28" height="13" rx="2" class="cell dem"><title>Bengkulu — SDG 12</title></rect>
+<rect x="636" y="138" width="28" height="13" rx="2" class="cell dem"><title>Bengkulu — SDG 13</title></rect>
+<rect x="668" y="138" width="28" height="13" rx="2" class="cell dem"><title>Bengkulu — SDG 14</title></rect>
+<rect x="700" y="138" width="28" height="13" rx="2" class="cell sup"><title>Bengkulu — SDG 15</title></rect>
+<rect x="732" y="138" width="28" height="13" rx="2" class="cell none"><title>Bengkulu — SDG 16</title></rect>
+<text x="240" y="166" class="lab end">Lampung</text>
+<rect x="252" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 1</title></rect>
+<rect x="284" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 2</title></rect>
+<rect x="316" y="155" width="28" height="13" rx="2" class="cell sup"><title>Lampung — SDG 3</title></rect>
+<rect x="348" y="155" width="28" height="13" rx="2" class="cell sup"><title>Lampung — SDG 4</title></rect>
+<rect x="380" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 5</title></rect>
+<rect x="412" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 6</title></rect>
+<rect x="444" y="155" width="28" height="13" rx="2" class="cell sup"><title>Lampung — SDG 7</title></rect>
+<rect x="476" y="155" width="28" height="13" rx="2" class="cell dem"><title>Lampung — SDG 8</title></rect>
+<rect x="508" y="155" width="28" height="13" rx="2" class="cell dem"><title>Lampung — SDG 9</title></rect>
+<rect x="540" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 10</title></rect>
+<rect x="572" y="155" width="28" height="13" rx="2" class="cell sup"><title>Lampung — SDG 11</title></rect>
+<rect x="604" y="155" width="28" height="13" rx="2" class="cell sup"><title>Lampung — SDG 12</title></rect>
+<rect x="636" y="155" width="28" height="13" rx="2" class="cell dem"><title>Lampung — SDG 13</title></rect>
+<rect x="668" y="155" width="28" height="13" rx="2" class="cell dem"><title>Lampung — SDG 14</title></rect>
+<rect x="700" y="155" width="28" height="13" rx="2" class="cell dem"><title>Lampung — SDG 15</title></rect>
+<rect x="732" y="155" width="28" height="13" rx="2" class="cell none"><title>Lampung — SDG 16</title></rect>
+<text x="240" y="183" class="lab end">Kep. Bangka Belitung</text>
+<rect x="252" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 1</title></rect>
+<rect x="284" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 2</title></rect>
+<rect x="316" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 3</title></rect>
+<rect x="348" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 4</title></rect>
+<rect x="380" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 5</title></rect>
+<rect x="412" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 6</title></rect>
+<rect x="444" y="172" width="28" height="13" rx="2" class="cell sup"><title>Kep. Bangka Belitung — SDG 7</title></rect>
+<rect x="476" y="172" width="28" height="13" rx="2" class="cell both"><title>Kep. Bangka Belitung — SDG 8</title></rect>
+<rect x="508" y="172" width="28" height="13" rx="2" class="cell dem"><title>Kep. Bangka Belitung — SDG 9</title></rect>
+<rect x="540" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 10</title></rect>
+<rect x="572" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 11</title></rect>
+<rect x="604" y="172" width="28" height="13" rx="2" class="cell sup"><title>Kep. Bangka Belitung — SDG 12</title></rect>
+<rect x="636" y="172" width="28" height="13" rx="2" class="cell dem"><title>Kep. Bangka Belitung — SDG 13</title></rect>
+<rect x="668" y="172" width="28" height="13" rx="2" class="cell both"><title>Kep. Bangka Belitung — SDG 14</title></rect>
+<rect x="700" y="172" width="28" height="13" rx="2" class="cell both"><title>Kep. Bangka Belitung — SDG 15</title></rect>
+<rect x="732" y="172" width="28" height="13" rx="2" class="cell none"><title>Kep. Bangka Belitung — SDG 16</title></rect>
+<text x="240" y="200" class="lab end">Kep. Riau</text>
+<rect x="252" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 1</title></rect>
+<rect x="284" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 2</title></rect>
+<rect x="316" y="189" width="28" height="13" rx="2" class="cell sup"><title>Kep. Riau — SDG 3</title></rect>
+<rect x="348" y="189" width="28" height="13" rx="2" class="cell sup"><title>Kep. Riau — SDG 4</title></rect>
+<rect x="380" y="189" width="28" height="13" rx="2" class="cell dem"><title>Kep. Riau — SDG 5</title></rect>
+<rect x="412" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 6</title></rect>
+<rect x="444" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 7</title></rect>
+<rect x="476" y="189" width="28" height="13" rx="2" class="cell sup"><title>Kep. Riau — SDG 8</title></rect>
+<rect x="508" y="189" width="28" height="13" rx="2" class="cell dem"><title>Kep. Riau — SDG 9</title></rect>
+<rect x="540" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 10</title></rect>
+<rect x="572" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 11</title></rect>
+<rect x="604" y="189" width="28" height="13" rx="2" class="cell sup"><title>Kep. Riau — SDG 12</title></rect>
+<rect x="636" y="189" width="28" height="13" rx="2" class="cell both"><title>Kep. Riau — SDG 13</title></rect>
+<rect x="668" y="189" width="28" height="13" rx="2" class="cell both"><title>Kep. Riau — SDG 14</title></rect>
+<rect x="700" y="189" width="28" height="13" rx="2" class="cell dem"><title>Kep. Riau — SDG 15</title></rect>
+<rect x="732" y="189" width="28" height="13" rx="2" class="cell none"><title>Kep. Riau — SDG 16</title></rect>
+<text x="240" y="217" class="lab end">DKI Jakarta</text>
+<rect x="252" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 1</title></rect>
+<rect x="284" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 2</title></rect>
+<rect x="316" y="206" width="28" height="13" rx="2" class="cell sup"><title>DKI Jakarta — SDG 3</title></rect>
+<rect x="348" y="206" width="28" height="13" rx="2" class="cell sup"><title>DKI Jakarta — SDG 4</title></rect>
+<rect x="380" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 5</title></rect>
+<rect x="412" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 6</title></rect>
+<rect x="444" y="206" width="28" height="13" rx="2" class="cell sup"><title>DKI Jakarta — SDG 7</title></rect>
+<rect x="476" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 8</title></rect>
+<rect x="508" y="206" width="28" height="13" rx="2" class="cell both"><title>DKI Jakarta — SDG 9</title></rect>
+<rect x="540" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 10</title></rect>
+<rect x="572" y="206" width="28" height="13" rx="2" class="cell dem"><title>DKI Jakarta — SDG 11</title></rect>
+<rect x="604" y="206" width="28" height="13" rx="2" class="cell sup"><title>DKI Jakarta — SDG 12</title></rect>
+<rect x="636" y="206" width="28" height="13" rx="2" class="cell dem"><title>DKI Jakarta — SDG 13</title></rect>
+<rect x="668" y="206" width="28" height="13" rx="2" class="cell dem"><title>DKI Jakarta — SDG 14</title></rect>
+<rect x="700" y="206" width="28" height="13" rx="2" class="cell dem"><title>DKI Jakarta — SDG 15</title></rect>
+<rect x="732" y="206" width="28" height="13" rx="2" class="cell none"><title>DKI Jakarta — SDG 16</title></rect>
+<text x="240" y="234" class="lab end">Jawa Barat</text>
+<rect x="252" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 1</title></rect>
+<rect x="284" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 2</title></rect>
+<rect x="316" y="223" width="28" height="13" rx="2" class="cell sup"><title>Jawa Barat — SDG 3</title></rect>
+<rect x="348" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 4</title></rect>
+<rect x="380" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 5</title></rect>
+<rect x="412" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 6</title></rect>
+<rect x="444" y="223" width="28" height="13" rx="2" class="cell sup"><title>Jawa Barat — SDG 7</title></rect>
+<rect x="476" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 8</title></rect>
+<rect x="508" y="223" width="28" height="13" rx="2" class="cell both"><title>Jawa Barat — SDG 9</title></rect>
+<rect x="540" y="223" width="28" height="13" rx="2" class="cell dem"><title>Jawa Barat — SDG 10</title></rect>
+<rect x="572" y="223" width="28" height="13" rx="2" class="cell sup"><title>Jawa Barat — SDG 11</title></rect>
+<rect x="604" y="223" width="28" height="13" rx="2" class="cell sup"><title>Jawa Barat — SDG 12</title></rect>
+<rect x="636" y="223" width="28" height="13" rx="2" class="cell dem"><title>Jawa Barat — SDG 13</title></rect>
+<rect x="668" y="223" width="28" height="13" rx="2" class="cell dem"><title>Jawa Barat — SDG 14</title></rect>
+<rect x="700" y="223" width="28" height="13" rx="2" class="cell dem"><title>Jawa Barat — SDG 15</title></rect>
+<rect x="732" y="223" width="28" height="13" rx="2" class="cell none"><title>Jawa Barat — SDG 16</title></rect>
+<text x="240" y="251" class="lab end">Jawa Tengah</text>
+<rect x="252" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 1</title></rect>
+<rect x="284" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 2</title></rect>
+<rect x="316" y="240" width="28" height="13" rx="2" class="cell sup"><title>Jawa Tengah — SDG 3</title></rect>
+<rect x="348" y="240" width="28" height="13" rx="2" class="cell sup"><title>Jawa Tengah — SDG 4</title></rect>
+<rect x="380" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 5</title></rect>
+<rect x="412" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 6</title></rect>
+<rect x="444" y="240" width="28" height="13" rx="2" class="cell sup"><title>Jawa Tengah — SDG 7</title></rect>
+<rect x="476" y="240" width="28" height="13" rx="2" class="cell dem"><title>Jawa Tengah — SDG 8</title></rect>
+<rect x="508" y="240" width="28" height="13" rx="2" class="cell dem"><title>Jawa Tengah — SDG 9</title></rect>
+<rect x="540" y="240" width="28" height="13" rx="2" class="cell dem"><title>Jawa Tengah — SDG 10</title></rect>
+<rect x="572" y="240" width="28" height="13" rx="2" class="cell sup"><title>Jawa Tengah — SDG 11</title></rect>
+<rect x="604" y="240" width="28" height="13" rx="2" class="cell sup"><title>Jawa Tengah — SDG 12</title></rect>
+<rect x="636" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 13</title></rect>
+<rect x="668" y="240" width="28" height="13" rx="2" class="cell dem"><title>Jawa Tengah — SDG 14</title></rect>
+<rect x="700" y="240" width="28" height="13" rx="2" class="cell dem"><title>Jawa Tengah — SDG 15</title></rect>
+<rect x="732" y="240" width="28" height="13" rx="2" class="cell none"><title>Jawa Tengah — SDG 16</title></rect>
+<text x="240" y="268" class="lab end">DI Yogyakarta</text>
+<rect x="252" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 1</title></rect>
+<rect x="284" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 2</title></rect>
+<rect x="316" y="257" width="28" height="13" rx="2" class="cell sup"><title>DI Yogyakarta — SDG 3</title></rect>
+<rect x="348" y="257" width="28" height="13" rx="2" class="cell sup"><title>DI Yogyakarta — SDG 4</title></rect>
+<rect x="380" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 5</title></rect>
+<rect x="412" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 6</title></rect>
+<rect x="444" y="257" width="28" height="13" rx="2" class="cell sup"><title>DI Yogyakarta — SDG 7</title></rect>
+<rect x="476" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 8</title></rect>
+<rect x="508" y="257" width="28" height="13" rx="2" class="cell both"><title>DI Yogyakarta — SDG 9</title></rect>
+<rect x="540" y="257" width="28" height="13" rx="2" class="cell dem"><title>DI Yogyakarta — SDG 10</title></rect>
+<rect x="572" y="257" width="28" height="13" rx="2" class="cell sup"><title>DI Yogyakarta — SDG 11</title></rect>
+<rect x="604" y="257" width="28" height="13" rx="2" class="cell dem"><title>DI Yogyakarta — SDG 12</title></rect>
+<rect x="636" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 13</title></rect>
+<rect x="668" y="257" width="28" height="13" rx="2" class="cell dem"><title>DI Yogyakarta — SDG 14</title></rect>
+<rect x="700" y="257" width="28" height="13" rx="2" class="cell dem"><title>DI Yogyakarta — SDG 15</title></rect>
+<rect x="732" y="257" width="28" height="13" rx="2" class="cell none"><title>DI Yogyakarta — SDG 16</title></rect>
+<text x="240" y="285" class="lab end">Jawa Timur</text>
+<rect x="252" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 1</title></rect>
+<rect x="284" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 2</title></rect>
+<rect x="316" y="274" width="28" height="13" rx="2" class="cell sup"><title>Jawa Timur — SDG 3</title></rect>
+<rect x="348" y="274" width="28" height="13" rx="2" class="cell sup"><title>Jawa Timur — SDG 4</title></rect>
+<rect x="380" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 5</title></rect>
+<rect x="412" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 6</title></rect>
+<rect x="444" y="274" width="28" height="13" rx="2" class="cell sup"><title>Jawa Timur — SDG 7</title></rect>
+<rect x="476" y="274" width="28" height="13" rx="2" class="cell dem"><title>Jawa Timur — SDG 8</title></rect>
+<rect x="508" y="274" width="28" height="13" rx="2" class="cell both"><title>Jawa Timur — SDG 9</title></rect>
+<rect x="540" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 10</title></rect>
+<rect x="572" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 11</title></rect>
+<rect x="604" y="274" width="28" height="13" rx="2" class="cell sup"><title>Jawa Timur — SDG 12</title></rect>
+<rect x="636" y="274" width="28" height="13" rx="2" class="cell dem"><title>Jawa Timur — SDG 13</title></rect>
+<rect x="668" y="274" width="28" height="13" rx="2" class="cell dem"><title>Jawa Timur — SDG 14</title></rect>
+<rect x="700" y="274" width="28" height="13" rx="2" class="cell dem"><title>Jawa Timur — SDG 15</title></rect>
+<rect x="732" y="274" width="28" height="13" rx="2" class="cell none"><title>Jawa Timur — SDG 16</title></rect>
+<text x="240" y="302" class="lab end">Banten</text>
+<rect x="252" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 1</title></rect>
+<rect x="284" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 2</title></rect>
+<rect x="316" y="291" width="28" height="13" rx="2" class="cell both"><title>Banten — SDG 3</title></rect>
+<rect x="348" y="291" width="28" height="13" rx="2" class="cell both"><title>Banten — SDG 4</title></rect>
+<rect x="380" y="291" width="28" height="13" rx="2" class="cell dem"><title>Banten — SDG 5</title></rect>
+<rect x="412" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 6</title></rect>
+<rect x="444" y="291" width="28" height="13" rx="2" class="cell sup"><title>Banten — SDG 7</title></rect>
+<rect x="476" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 8</title></rect>
+<rect x="508" y="291" width="28" height="13" rx="2" class="cell sup"><title>Banten — SDG 9</title></rect>
+<rect x="540" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 10</title></rect>
+<rect x="572" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 11</title></rect>
+<rect x="604" y="291" width="28" height="13" rx="2" class="cell sup"><title>Banten — SDG 12</title></rect>
+<rect x="636" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 13</title></rect>
+<rect x="668" y="291" width="28" height="13" rx="2" class="cell dem"><title>Banten — SDG 14</title></rect>
+<rect x="700" y="291" width="28" height="13" rx="2" class="cell dem"><title>Banten — SDG 15</title></rect>
+<rect x="732" y="291" width="28" height="13" rx="2" class="cell none"><title>Banten — SDG 16</title></rect>
+<text x="240" y="319" class="lab end">Bali</text>
+<rect x="252" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 1</title></rect>
+<rect x="284" y="308" width="28" height="13" rx="2" class="cell sup"><title>Bali — SDG 2</title></rect>
+<rect x="316" y="308" width="28" height="13" rx="2" class="cell sup"><title>Bali — SDG 3</title></rect>
+<rect x="348" y="308" width="28" height="13" rx="2" class="cell sup"><title>Bali — SDG 4</title></rect>
+<rect x="380" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 5</title></rect>
+<rect x="412" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 6</title></rect>
+<rect x="444" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 7</title></rect>
+<rect x="476" y="308" width="28" height="13" rx="2" class="cell both"><title>Bali — SDG 8</title></rect>
+<rect x="508" y="308" width="28" height="13" rx="2" class="cell dem"><title>Bali — SDG 9</title></rect>
+<rect x="540" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 10</title></rect>
+<rect x="572" y="308" width="28" height="13" rx="2" class="cell sup"><title>Bali — SDG 11</title></rect>
+<rect x="604" y="308" width="28" height="13" rx="2" class="cell sup"><title>Bali — SDG 12</title></rect>
+<rect x="636" y="308" width="28" height="13" rx="2" class="cell dem"><title>Bali — SDG 13</title></rect>
+<rect x="668" y="308" width="28" height="13" rx="2" class="cell dem"><title>Bali — SDG 14</title></rect>
+<rect x="700" y="308" width="28" height="13" rx="2" class="cell dem"><title>Bali — SDG 15</title></rect>
+<rect x="732" y="308" width="28" height="13" rx="2" class="cell none"><title>Bali — SDG 16</title></rect>
+<text x="240" y="336" class="lab end">Nusa Tenggara Barat</text>
+<rect x="252" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 1</title></rect>
+<rect x="284" y="325" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Barat — SDG 2</title></rect>
+<rect x="316" y="325" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Barat — SDG 3</title></rect>
+<rect x="348" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 4</title></rect>
+<rect x="380" y="325" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Barat — SDG 5</title></rect>
+<rect x="412" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 6</title></rect>
+<rect x="444" y="325" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Barat — SDG 7</title></rect>
+<rect x="476" y="325" width="28" height="13" rx="2" class="cell both"><title>Nusa Tenggara Barat — SDG 8</title></rect>
+<rect x="508" y="325" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Barat — SDG 9</title></rect>
+<rect x="540" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 10</title></rect>
+<rect x="572" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 11</title></rect>
+<rect x="604" y="325" width="28" height="13" rx="2" class="cell both"><title>Nusa Tenggara Barat — SDG 12</title></rect>
+<rect x="636" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 13</title></rect>
+<rect x="668" y="325" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Barat — SDG 14</title></rect>
+<rect x="700" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 15</title></rect>
+<rect x="732" y="325" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Barat — SDG 16</title></rect>
+<text x="240" y="353" class="lab end">Nusa Tenggara Timur</text>
+<rect x="252" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 1</title></rect>
+<rect x="284" y="342" width="28" height="13" rx="2" class="cell both"><title>Nusa Tenggara Timur — SDG 2</title></rect>
+<rect x="316" y="342" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Timur — SDG 3</title></rect>
+<rect x="348" y="342" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Timur — SDG 4</title></rect>
+<rect x="380" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 5</title></rect>
+<rect x="412" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 6</title></rect>
+<rect x="444" y="342" width="28" height="13" rx="2" class="cell both"><title>Nusa Tenggara Timur — SDG 7</title></rect>
+<rect x="476" y="342" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Timur — SDG 8</title></rect>
+<rect x="508" y="342" width="28" height="13" rx="2" class="cell dem"><title>Nusa Tenggara Timur — SDG 9</title></rect>
+<rect x="540" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 10</title></rect>
+<rect x="572" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 11</title></rect>
+<rect x="604" y="342" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Timur — SDG 12</title></rect>
+<rect x="636" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 13</title></rect>
+<rect x="668" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 14</title></rect>
+<rect x="700" y="342" width="28" height="13" rx="2" class="cell sup"><title>Nusa Tenggara Timur — SDG 15</title></rect>
+<rect x="732" y="342" width="28" height="13" rx="2" class="cell none"><title>Nusa Tenggara Timur — SDG 16</title></rect>
+<text x="240" y="370" class="lab end">Kalimantan Barat</text>
+<rect x="252" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 1</title></rect>
+<rect x="284" y="359" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Barat — SDG 2</title></rect>
+<rect x="316" y="359" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Barat — SDG 3</title></rect>
+<rect x="348" y="359" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Barat — SDG 4</title></rect>
+<rect x="380" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 5</title></rect>
+<rect x="412" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 6</title></rect>
+<rect x="444" y="359" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Barat — SDG 7</title></rect>
+<rect x="476" y="359" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Barat — SDG 8</title></rect>
+<rect x="508" y="359" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Barat — SDG 9</title></rect>
+<rect x="540" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 10</title></rect>
+<rect x="572" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 11</title></rect>
+<rect x="604" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 12</title></rect>
+<rect x="636" y="359" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Barat — SDG 13</title></rect>
+<rect x="668" y="359" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Barat — SDG 14</title></rect>
+<rect x="700" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 15</title></rect>
+<rect x="732" y="359" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Barat — SDG 16</title></rect>
+<text x="240" y="387" class="lab end">Kalimantan Tengah</text>
+<rect x="252" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 1</title></rect>
+<rect x="284" y="376" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Tengah — SDG 2</title></rect>
+<rect x="316" y="376" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Tengah — SDG 3</title></rect>
+<rect x="348" y="376" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Tengah — SDG 4</title></rect>
+<rect x="380" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 5</title></rect>
+<rect x="412" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 6</title></rect>
+<rect x="444" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 7</title></rect>
+<rect x="476" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 8</title></rect>
+<rect x="508" y="376" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Tengah — SDG 9</title></rect>
+<rect x="540" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 10</title></rect>
+<rect x="572" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 11</title></rect>
+<rect x="604" y="376" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Tengah — SDG 12</title></rect>
+<rect x="636" y="376" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Tengah — SDG 13</title></rect>
+<rect x="668" y="376" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Tengah — SDG 14</title></rect>
+<rect x="700" y="376" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Tengah — SDG 15</title></rect>
+<rect x="732" y="376" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Tengah — SDG 16</title></rect>
+<text x="240" y="404" class="lab end">Kalimantan Selatan</text>
+<rect x="252" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 1</title></rect>
+<rect x="284" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 2</title></rect>
+<rect x="316" y="393" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Selatan — SDG 3</title></rect>
+<rect x="348" y="393" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Selatan — SDG 4</title></rect>
+<rect x="380" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 5</title></rect>
+<rect x="412" y="393" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Selatan — SDG 6</title></rect>
+<rect x="444" y="393" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Selatan — SDG 7</title></rect>
+<rect x="476" y="393" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Selatan — SDG 8</title></rect>
+<rect x="508" y="393" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Selatan — SDG 9</title></rect>
+<rect x="540" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 10</title></rect>
+<rect x="572" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 11</title></rect>
+<rect x="604" y="393" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Selatan — SDG 12</title></rect>
+<rect x="636" y="393" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Selatan — SDG 13</title></rect>
+<rect x="668" y="393" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Selatan — SDG 14</title></rect>
+<rect x="700" y="393" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Selatan — SDG 15</title></rect>
+<rect x="732" y="393" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Selatan — SDG 16</title></rect>
+<text x="240" y="421" class="lab end">Kalimantan Timur</text>
+<rect x="252" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 1</title></rect>
+<rect x="284" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 2</title></rect>
+<rect x="316" y="410" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Timur — SDG 3</title></rect>
+<rect x="348" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 4</title></rect>
+<rect x="380" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 5</title></rect>
+<rect x="412" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 6</title></rect>
+<rect x="444" y="410" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Timur — SDG 7</title></rect>
+<rect x="476" y="410" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Timur — SDG 8</title></rect>
+<rect x="508" y="410" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Timur — SDG 9</title></rect>
+<rect x="540" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 10</title></rect>
+<rect x="572" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 11</title></rect>
+<rect x="604" y="410" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Timur — SDG 12</title></rect>
+<rect x="636" y="410" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Timur — SDG 13</title></rect>
+<rect x="668" y="410" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Timur — SDG 14</title></rect>
+<rect x="700" y="410" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Timur — SDG 15</title></rect>
+<rect x="732" y="410" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Timur — SDG 16</title></rect>
+<text x="240" y="438" class="lab end">Kalimantan Utara</text>
+<rect x="252" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 1</title></rect>
+<rect x="284" y="427" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Utara — SDG 2</title></rect>
+<rect x="316" y="427" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Utara — SDG 3</title></rect>
+<rect x="348" y="427" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Utara — SDG 4</title></rect>
+<rect x="380" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 5</title></rect>
+<rect x="412" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 6</title></rect>
+<rect x="444" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 7</title></rect>
+<rect x="476" y="427" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Utara — SDG 8</title></rect>
+<rect x="508" y="427" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Utara — SDG 9</title></rect>
+<rect x="540" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 10</title></rect>
+<rect x="572" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 11</title></rect>
+<rect x="604" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 12</title></rect>
+<rect x="636" y="427" width="28" height="13" rx="2" class="cell dem"><title>Kalimantan Utara — SDG 13</title></rect>
+<rect x="668" y="427" width="28" height="13" rx="2" class="cell both"><title>Kalimantan Utara — SDG 14</title></rect>
+<rect x="700" y="427" width="28" height="13" rx="2" class="cell sup"><title>Kalimantan Utara — SDG 15</title></rect>
+<rect x="732" y="427" width="28" height="13" rx="2" class="cell none"><title>Kalimantan Utara — SDG 16</title></rect>
+<text x="240" y="455" class="lab end">Sulawesi Utara</text>
+<rect x="252" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 1</title></rect>
+<rect x="284" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 2</title></rect>
+<rect x="316" y="444" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Utara — SDG 3</title></rect>
+<rect x="348" y="444" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Utara — SDG 4</title></rect>
+<rect x="380" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 5</title></rect>
+<rect x="412" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 6</title></rect>
+<rect x="444" y="444" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Utara — SDG 7</title></rect>
+<rect x="476" y="444" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Utara — SDG 8</title></rect>
+<rect x="508" y="444" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Utara — SDG 9</title></rect>
+<rect x="540" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 10</title></rect>
+<rect x="572" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 11</title></rect>
+<rect x="604" y="444" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Utara — SDG 12</title></rect>
+<rect x="636" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 13</title></rect>
+<rect x="668" y="444" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Utara — SDG 14</title></rect>
+<rect x="700" y="444" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Utara — SDG 15</title></rect>
+<rect x="732" y="444" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Utara — SDG 16</title></rect>
+<text x="240" y="472" class="lab end">Sulawesi Tengah</text>
+<rect x="252" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 1</title></rect>
+<rect x="284" y="461" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tengah — SDG 2</title></rect>
+<rect x="316" y="461" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Tengah — SDG 3</title></rect>
+<rect x="348" y="461" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tengah — SDG 4</title></rect>
+<rect x="380" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 5</title></rect>
+<rect x="412" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 6</title></rect>
+<rect x="444" y="461" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tengah — SDG 7</title></rect>
+<rect x="476" y="461" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tengah — SDG 8</title></rect>
+<rect x="508" y="461" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tengah — SDG 9</title></rect>
+<rect x="540" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 10</title></rect>
+<rect x="572" y="461" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tengah — SDG 11</title></rect>
+<rect x="604" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 12</title></rect>
+<rect x="636" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 13</title></rect>
+<rect x="668" y="461" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tengah — SDG 14</title></rect>
+<rect x="700" y="461" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tengah — SDG 15</title></rect>
+<rect x="732" y="461" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tengah — SDG 16</title></rect>
+<text x="240" y="489" class="lab end">Sulawesi Selatan</text>
+<rect x="252" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 1</title></rect>
+<rect x="284" y="478" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Selatan — SDG 2</title></rect>
+<rect x="316" y="478" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Selatan — SDG 3</title></rect>
+<rect x="348" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 4</title></rect>
+<rect x="380" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 5</title></rect>
+<rect x="412" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 6</title></rect>
+<rect x="444" y="478" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Selatan — SDG 7</title></rect>
+<rect x="476" y="478" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Selatan — SDG 8</title></rect>
+<rect x="508" y="478" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Selatan — SDG 9</title></rect>
+<rect x="540" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 10</title></rect>
+<rect x="572" y="478" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Selatan — SDG 11</title></rect>
+<rect x="604" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 12</title></rect>
+<rect x="636" y="478" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Selatan — SDG 13</title></rect>
+<rect x="668" y="478" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Selatan — SDG 14</title></rect>
+<rect x="700" y="478" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Selatan — SDG 15</title></rect>
+<rect x="732" y="478" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Selatan — SDG 16</title></rect>
+<text x="240" y="506" class="lab end">Sulawesi Tenggara</text>
+<rect x="252" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 1</title></rect>
+<rect x="284" y="495" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tenggara — SDG 2</title></rect>
+<rect x="316" y="495" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Tenggara — SDG 3</title></rect>
+<rect x="348" y="495" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tenggara — SDG 4</title></rect>
+<rect x="380" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 5</title></rect>
+<rect x="412" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 6</title></rect>
+<rect x="444" y="495" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Tenggara — SDG 7</title></rect>
+<rect x="476" y="495" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Tenggara — SDG 8</title></rect>
+<rect x="508" y="495" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Tenggara — SDG 9</title></rect>
+<rect x="540" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 10</title></rect>
+<rect x="572" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 11</title></rect>
+<rect x="604" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 12</title></rect>
+<rect x="636" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 13</title></rect>
+<rect x="668" y="495" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Tenggara — SDG 14</title></rect>
+<rect x="700" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 15</title></rect>
+<rect x="732" y="495" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Tenggara — SDG 16</title></rect>
+<text x="240" y="523" class="lab end">Gorontalo</text>
+<rect x="252" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 1</title></rect>
+<rect x="284" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 2</title></rect>
+<rect x="316" y="512" width="28" height="13" rx="2" class="cell both"><title>Gorontalo — SDG 3</title></rect>
+<rect x="348" y="512" width="28" height="13" rx="2" class="cell sup"><title>Gorontalo — SDG 4</title></rect>
+<rect x="380" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 5</title></rect>
+<rect x="412" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 6</title></rect>
+<rect x="444" y="512" width="28" height="13" rx="2" class="cell sup"><title>Gorontalo — SDG 7</title></rect>
+<rect x="476" y="512" width="28" height="13" rx="2" class="cell both"><title>Gorontalo — SDG 8</title></rect>
+<rect x="508" y="512" width="28" height="13" rx="2" class="cell dem"><title>Gorontalo — SDG 9</title></rect>
+<rect x="540" y="512" width="28" height="13" rx="2" class="cell dem"><title>Gorontalo — SDG 10</title></rect>
+<rect x="572" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 11</title></rect>
+<rect x="604" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 12</title></rect>
+<rect x="636" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 13</title></rect>
+<rect x="668" y="512" width="28" height="13" rx="2" class="cell dem"><title>Gorontalo — SDG 14</title></rect>
+<rect x="700" y="512" width="28" height="13" rx="2" class="cell sup"><title>Gorontalo — SDG 15</title></rect>
+<rect x="732" y="512" width="28" height="13" rx="2" class="cell none"><title>Gorontalo — SDG 16</title></rect>
+<text x="240" y="540" class="lab end">Sulawesi Barat</text>
+<rect x="252" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 1</title></rect>
+<rect x="284" y="529" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Barat — SDG 2</title></rect>
+<rect x="316" y="529" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Barat — SDG 3</title></rect>
+<rect x="348" y="529" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Barat — SDG 4</title></rect>
+<rect x="380" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 5</title></rect>
+<rect x="412" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 6</title></rect>
+<rect x="444" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 7</title></rect>
+<rect x="476" y="529" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Barat — SDG 8</title></rect>
+<rect x="508" y="529" width="28" height="13" rx="2" class="cell dem"><title>Sulawesi Barat — SDG 9</title></rect>
+<rect x="540" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 10</title></rect>
+<rect x="572" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 11</title></rect>
+<rect x="604" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 12</title></rect>
+<rect x="636" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 13</title></rect>
+<rect x="668" y="529" width="28" height="13" rx="2" class="cell both"><title>Sulawesi Barat — SDG 14</title></rect>
+<rect x="700" y="529" width="28" height="13" rx="2" class="cell sup"><title>Sulawesi Barat — SDG 15</title></rect>
+<rect x="732" y="529" width="28" height="13" rx="2" class="cell none"><title>Sulawesi Barat — SDG 16</title></rect>
+<text x="240" y="557" class="lab end">Maluku</text>
+<rect x="252" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 1</title></rect>
+<rect x="284" y="546" width="28" height="13" rx="2" class="cell both"><title>Maluku — SDG 2</title></rect>
+<rect x="316" y="546" width="28" height="13" rx="2" class="cell both"><title>Maluku — SDG 3</title></rect>
+<rect x="348" y="546" width="28" height="13" rx="2" class="cell dem"><title>Maluku — SDG 4</title></rect>
+<rect x="380" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 5</title></rect>
+<rect x="412" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 6</title></rect>
+<rect x="444" y="546" width="28" height="13" rx="2" class="cell dem"><title>Maluku — SDG 7</title></rect>
+<rect x="476" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 8</title></rect>
+<rect x="508" y="546" width="28" height="13" rx="2" class="cell dem"><title>Maluku — SDG 9</title></rect>
+<rect x="540" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 10</title></rect>
+<rect x="572" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 11</title></rect>
+<rect x="604" y="546" width="28" height="13" rx="2" class="cell sup"><title>Maluku — SDG 12</title></rect>
+<rect x="636" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 13</title></rect>
+<rect x="668" y="546" width="28" height="13" rx="2" class="cell sup"><title>Maluku — SDG 14</title></rect>
+<rect x="700" y="546" width="28" height="13" rx="2" class="cell sup"><title>Maluku — SDG 15</title></rect>
+<rect x="732" y="546" width="28" height="13" rx="2" class="cell none"><title>Maluku — SDG 16</title></rect>
+<text x="240" y="574" class="lab end">Maluku Utara</text>
+<rect x="252" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 1</title></rect>
+<rect x="284" y="563" width="28" height="13" rx="2" class="cell dem"><title>Maluku Utara — SDG 2</title></rect>
+<rect x="316" y="563" width="28" height="13" rx="2" class="cell dem"><title>Maluku Utara — SDG 3</title></rect>
+<rect x="348" y="563" width="28" height="13" rx="2" class="cell dem"><title>Maluku Utara — SDG 4</title></rect>
+<rect x="380" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 5</title></rect>
+<rect x="412" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 6</title></rect>
+<rect x="444" y="563" width="28" height="13" rx="2" class="cell sup"><title>Maluku Utara — SDG 7</title></rect>
+<rect x="476" y="563" width="28" height="13" rx="2" class="cell sup"><title>Maluku Utara — SDG 8</title></rect>
+<rect x="508" y="563" width="28" height="13" rx="2" class="cell dem"><title>Maluku Utara — SDG 9</title></rect>
+<rect x="540" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 10</title></rect>
+<rect x="572" y="563" width="28" height="13" rx="2" class="cell sup"><title>Maluku Utara — SDG 11</title></rect>
+<rect x="604" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 12</title></rect>
+<rect x="636" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 13</title></rect>
+<rect x="668" y="563" width="28" height="13" rx="2" class="cell both"><title>Maluku Utara — SDG 14</title></rect>
+<rect x="700" y="563" width="28" height="13" rx="2" class="cell sup"><title>Maluku Utara — SDG 15</title></rect>
+<rect x="732" y="563" width="28" height="13" rx="2" class="cell none"><title>Maluku Utara — SDG 16</title></rect>
+<text x="240" y="591" class="lab end">Papua Barat</text>
+<rect x="252" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 1</title></rect>
+<rect x="284" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 2</title></rect>
+<rect x="316" y="580" width="28" height="13" rx="2" class="cell both"><title>Papua Barat — SDG 3</title></rect>
+<rect x="348" y="580" width="28" height="13" rx="2" class="cell sup"><title>Papua Barat — SDG 4</title></rect>
+<rect x="380" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 5</title></rect>
+<rect x="412" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 6</title></rect>
+<rect x="444" y="580" width="28" height="13" rx="2" class="cell sup"><title>Papua Barat — SDG 7</title></rect>
+<rect x="476" y="580" width="28" height="13" rx="2" class="cell sup"><title>Papua Barat — SDG 8</title></rect>
+<rect x="508" y="580" width="28" height="13" rx="2" class="cell both"><title>Papua Barat — SDG 9</title></rect>
+<rect x="540" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 10</title></rect>
+<rect x="572" y="580" width="28" height="13" rx="2" class="cell dem"><title>Papua Barat — SDG 11</title></rect>
+<rect x="604" y="580" width="28" height="13" rx="2" class="cell sup"><title>Papua Barat — SDG 12</title></rect>
+<rect x="636" y="580" width="28" height="13" rx="2" class="cell dem"><title>Papua Barat — SDG 13</title></rect>
+<rect x="668" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 14</title></rect>
+<rect x="700" y="580" width="28" height="13" rx="2" class="cell none"><title>Papua Barat — SDG 15</title></rect>
+<rect x="732" y="580" width="28" height="13" rx="2" class="cell dem"><title>Papua Barat — SDG 16</title></rect>
+<text x="240" y="608" class="lab end">Papua</text>
+<rect x="252" y="597" width="28" height="13" rx="2" class="cell dem"><title>Papua — SDG 1</title></rect>
+<rect x="284" y="597" width="28" height="13" rx="2" class="cell sup"><title>Papua — SDG 2</title></rect>
+<rect x="316" y="597" width="28" height="13" rx="2" class="cell sup"><title>Papua — SDG 3</title></rect>
+<rect x="348" y="597" width="28" height="13" rx="2" class="cell sup"><title>Papua — SDG 4</title></rect>
+<rect x="380" y="597" width="28" height="13" rx="2" class="cell dem"><title>Papua — SDG 5</title></rect>
+<rect x="412" y="597" width="28" height="13" rx="2" class="cell dem"><title>Papua — SDG 6</title></rect>
+<rect x="444" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 7</title></rect>
+<rect x="476" y="597" width="28" height="13" rx="2" class="cell sup"><title>Papua — SDG 8</title></rect>
+<rect x="508" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 9</title></rect>
+<rect x="540" y="597" width="28" height="13" rx="2" class="cell dem"><title>Papua — SDG 10</title></rect>
+<rect x="572" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 11</title></rect>
+<rect x="604" y="597" width="28" height="13" rx="2" class="cell sup"><title>Papua — SDG 12</title></rect>
+<rect x="636" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 13</title></rect>
+<rect x="668" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 14</title></rect>
+<rect x="700" y="597" width="28" height="13" rx="2" class="cell none"><title>Papua — SDG 15</title></rect>
+<rect x="732" y="597" width="28" height="13" rx="2" class="cell dem"><title>Papua — SDG 16</title></rect>
 </svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Matching goals and counts as published in Table 4-22. Riau, Bangka Belitung, West Sulawesi and Southeast Sulawesi align on three goals; seven provinces align on none.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Built from Table 4-22, provinces in the report's order. Column 9 is almost solid orange &mdash; industry and infrastructure is a gap nearly everywhere and a strength almost nowhere; columns 3 and 7 run the other way.</div></details>
 </section></div></div></section>
 
 <footer class="deck-foot">
