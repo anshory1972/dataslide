@@ -1,0 +1,1606 @@
+<title>SDGs Alignment of Indonesia's Research Strength</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments, and what its two data figures show.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SDGs Center Universitas Padjadjaran">
+<meta property="og:title" content="SDGs Alignment of Indonesia&rsquo;s Research Strength">
+<meta property="og:description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments. Arief Anshory Yusuf, Universitas Padjadjaran.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/sdgs-alignment.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SDGs Alignment of Indonesia&rsquo;s Research Strength">
+<meta name="twitter:description" content="How the SDG Center study measured the supply of university research strength and the demand of provincial governments.">
+<style>
+/* ==== ineq ==== */
+.viz-root.scope-ineq {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --blue-light:     #86b6ef;   /* ordinal step 250 */
+    --blue-dark:      #1c5cab;   /* ordinal step 550 */
+    --diverge-pos:    #2a78d6;
+    --diverge-neg:    #e34948;
+    --diverge-mid:    #f0efec;
+    --c1: #2a78d6; /* blue     */
+    --c2: #008300; /* green    */
+    --c3: #e87ba4; /* magenta  */
+    --c4: #eda100; /* yellow   */
+    --c5: #1baf7a; /* aqua     */
+    --c6: #eb6834; /* orange   */
+    --c7: #4a3aa7; /* violet   */
+    --c8: #e34948; /* red      */
+    --c9: #5c4b3a; /* neutral, 9th series */
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-ineq {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --blue-light:     #3987e5;
+      --blue-dark:      #184f95;
+      --diverge-pos:    #3987e5;
+      --diverge-neg:    #e66767;
+      --diverge-mid:    #383835;
+      --c1: #3987e5;
+      --c2: #008300;
+      --c3: #d55181;
+      --c4: #c98500;
+      --c5: #199e70;
+      --c6: #d95926;
+      --c7: #9085e9;
+      --c8: #e66767;
+      --c9: #c9b8a0;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-ineq {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --blue-light:     #3987e5;
+    --blue-dark:      #184f95;
+    --diverge-pos:    #3987e5;
+    --diverge-neg:    #e66767;
+    --diverge-mid:    #383835;
+    --c1: #3987e5;
+    --c2: #008300;
+    --c3: #d55181;
+    --c4: #c98500;
+    --c5: #199e70;
+    --c6: #d95926;
+    --c7: #9085e9;
+    --c8: #e66767;
+    --c9: #c9b8a0;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-ineq { min-height: 100vh; }
+
+.scope-ineq .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+.scope-ineq header.page-head {
+    margin-bottom: 48px;
+  }
+
+.scope-ineq .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+.scope-ineq h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+.scope-ineq .lede {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+.scope-ineq .lede strong { color: var(--text-primary); }
+
+.scope-ineq section.panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 32px 28px;
+    margin-bottom: 32px;
+  }
+
+.scope-ineq .panel-head { margin-bottom: 22px; }
+
+.scope-ineq .panel-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+.scope-ineq h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 21px;
+    line-height: 1.3;
+    margin: 0 0 6px;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+.scope-ineq .panel-sub {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+.scope-ineq .divchart { margin-top: 28px; }
+
+.scope-ineq .divchart .row {
+    display: grid;
+    grid-template-columns: 130px 1fr 64px;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+    position: relative;
+  }
+
+.scope-ineq .divchart .row + .row { margin-top: 10px; }
+
+.scope-ineq .divchart .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: right;
+    line-height: 1.3;
+  }
+
+.scope-ineq .divchart .track {
+    position: relative;
+    height: 26px;
+    background: var(--grid);
+    border-radius: 3px;
+    overflow: visible;
+  }
+
+.scope-ineq .divchart .zero-line {
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: 50%;
+    width: 1px;
+    background: var(--baseline);
+  }
+
+.scope-ineq .divchart .bar {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 3px;
+  }
+
+.scope-ineq .divchart .bar.pos { background: var(--diverge-pos); left: 50%; }
+
+.scope-ineq .divchart .bar.neg { background: var(--diverge-neg); right: 50%; }
+
+.scope-ineq .divchart .value {
+    font-variant-numeric: tabular-nums;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+.scope-ineq .divchart .value.pos { color: var(--diverge-pos); }
+
+.scope-ineq .divchart .value.neg { color: var(--diverge-neg); }
+
+.scope-ineq .divchart .scale-labels {
+    display: grid;
+    grid-template-columns: 130px 1fr 64px;
+    margin-top: 6px;
+    gap: 12px;
+  }
+
+.scope-ineq .divchart .scale-labels span {
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+.scope-ineq .divchart .scale-labels .lo { text-align: left; }
+
+.scope-ineq .divchart .scale-labels .hi { text-align: right; grid-column: 2; }
+
+.scope-ineq .triptych {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+.scope-ineq .quad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+@media (max-width: 640px) {
+  .scope-ineq .quad { grid-template-columns: repeat(2, 1fr); }
+}
+
+.scope-ineq .metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.scope-ineq .metric .mlabel {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.35;
+    min-height: 32px;
+  }
+
+.scope-ineq .barpair {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 120px;
+  }
+
+.scope-ineq .barpair .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+  }
+
+.scope-ineq .barpair .bar-shape {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+  }
+
+.scope-ineq .barpair .bar-col.early .bar-shape { background: var(--blue-light); }
+
+.scope-ineq .barpair .bar-col.late .bar-shape { background: var(--blue-dark); }
+
+.scope-ineq .barpair .bval {
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+.scope-ineq .barpair .byr {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+.scope-ineq .legend-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 18px;
+  }
+
+.scope-ineq .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+.scope-ineq .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+.scope-ineq .source-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 20px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--grid);
+    line-height: 1.6;
+  }
+
+.scope-ineq .source-note code {
+    font-size: 11px;
+    background: var(--grid);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+.scope-ineq footer.foot {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+.scope-ineq footer.foot a { color: var(--text-secondary); }
+
+@media (max-width: 560px) {
+  .scope-ineq .triptych { grid-template-columns: 1fr; }
+  .scope-ineq .divchart .row, .scope-ineq .divchart .scale-labels { grid-template-columns: 100px 1fr 56px; }
+}
+
+.scope-ineq .linechart-wrap {
+        margin-top: 24px;
+        overflow-x: auto;
+      }
+
+.scope-ineq .linechart-wrap svg {
+        width: 100%;
+        height: auto;
+        min-width: 560px;
+        display: block;
+      }
+
+.scope-ineq .rankchart { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+
+.scope-ineq .rank-row {
+        display: grid;
+        grid-template-columns: 168px 1fr 56px;
+        align-items: center;
+        gap: 12px;
+      }
+
+.scope-ineq .rank-label { font-size: 13px; color: var(--text-secondary); text-align: right; line-height: 1.3; }
+
+.scope-ineq .rank-label strong { color: var(--text-primary); font-weight: 600; }
+
+.scope-ineq .rank-track { height: 18px; background: var(--grid); border-radius: 3px; overflow: hidden; }
+
+.scope-ineq .rank-bar { height: 100%; background: var(--c1); border-radius: 3px 0 0 3px; }
+
+.scope-ineq .rank-value { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+
+@media (max-width: 560px) {
+  .scope-ineq .rank-row { grid-template-columns: 108px 1fr 48px; }
+}
+
+.scope-ineq .elephant-wrap { margin-top: 24px; overflow-x: auto; }
+
+.scope-ineq .elephant-wrap svg { width: 100%; height: auto; min-width: 480px; display: block; }
+
+/* ==== growth ==== */
+.viz-root.scope-growth {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --regline:        #e34948;
+    --status-critical: #d03b3b;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-growth {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --regline:        #e66767;
+      --status-critical: #d03b3b;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-growth {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --regline:        #e66767;
+    --status-critical: #d03b3b;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-growth { min-height: 100vh; }
+
+.scope-growth .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-growth header.page-head { margin-bottom: 40px; max-width: 72ch; }
+
+.scope-growth .eyebrow {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 10px; font-weight: 600;
+  }
+
+.scope-growth h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 30px; line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-growth .lede { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
+
+.scope-growth .lede strong { color: var(--text-primary); }
+
+.scope-growth code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-growth h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; font-weight: 600; margin: 48px 0 4px;
+  }
+
+.scope-growth p.section-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
+
+.scope-growth .grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+@media (max-width: 900px) {
+  .scope-growth .grid3 { grid-template-columns: 1fr; }
+}
+
+.scope-growth .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+  }
+
+.scope-growth .panel h3 {
+    font-size: 14.5px; font-weight: 600; margin: 0 0 2px;
+  }
+
+.scope-growth .panel .stat-line {
+    font-size: 12px; color: var(--text-secondary); margin: 0 0 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+.scope-growth .panel svg { width: 100%; height: auto; display: block; }
+
+.scope-growth .axis-label {
+    font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif;
+  }
+
+.scope-growth .legend-row {
+    display: flex; gap: 22px; align-items: center;
+    margin: 4px 0 0; font-size: 12.5px; color: var(--text-secondary);
+  }
+
+.scope-growth .legend-item { display: flex; align-items: center; gap: 7px; }
+
+.scope-growth .swatch { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+.scope-growth footer.foot {
+    font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 44px;
+    padding-top: 18px; border-top: 1px solid var(--grid); max-width: 72ch;
+  }
+
+/* ==== district ==== */
+.viz-root.scope-district {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --regline:        #e34948;
+    --status-critical: #d03b3b;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-district {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --regline:        #e66767;
+      --status-critical: #d03b3b;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-district {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --regline:        #e66767;
+    --status-critical: #d03b3b;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-district { min-height: 100vh; }
+
+.scope-district .wrap { max-width: 980px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-district header.page-head { margin-bottom: 40px; max-width: 74ch; }
+
+.scope-district .eyebrow {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 10px; font-weight: 600;
+  }
+
+.scope-district h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 30px; line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-district .lede { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
+
+.scope-district .lede strong { color: var(--text-primary); }
+
+.scope-district code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-district h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; font-weight: 600; margin: 48px 0 4px;
+  }
+
+.scope-district p.section-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
+
+.scope-district .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+@media (max-width: 760px) {
+  .scope-district .grid2 { grid-template-columns: 1fr; }
+}
+
+.scope-district .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 20px 16px;
+  }
+
+.scope-district .panel h3 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+
+.scope-district .panel .stat-line {
+    font-size: 12.5px; color: var(--text-secondary); margin: 0 0 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+.scope-district .panel svg { width: 100%; height: auto; display: block; }
+
+.scope-district .axis-label { font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif; }
+
+.scope-district .legend-row {
+    display: flex; gap: 22px; align-items: center;
+    margin: 4px 0 0; font-size: 12.5px; color: var(--text-secondary);
+  }
+
+.scope-district .legend-item { display: flex; align-items: center; gap: 7px; }
+
+.scope-district .swatch { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+.scope-district footer.foot {
+    font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 44px;
+    padding-top: 18px; border-top: 1px solid var(--grid); max-width: 74ch;
+  }
+
+/* ==== slide2 ==== */
+.viz-root.scope-slide2 {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --c1: #2a78d6; --c2: #008300; --c3: #e87ba4; --c4: #eda100; --c5: #1baf7a;
+    --c6: #eb6834; --c7: #4a3aa7; --c8: #e34948; --c9: #5c4b3a;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-slide2 {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --c1: #3987e5; --c2: #008300; --c3: #d55181; --c4: #c98500; --c5: #199e70;
+      --c6: #d95926; --c7: #9085e9; --c8: #e66767; --c9: #c9b8a0;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-slide2 {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --c1: #3987e5; --c2: #008300; --c3: #d55181; --c4: #c98500; --c5: #199e70;
+    --c6: #d95926; --c7: #9085e9; --c8: #e66767; --c9: #c9b8a0;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0; background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-slide2 { min-height: 100vh; }
+
+.scope-slide2 .wrap { max-width: 820px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-slide2 header.page-head { margin-bottom: 40px; max-width: 70ch; }
+
+.scope-slide2 .eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+
+.scope-slide2 h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 28px; line-height: 1.2; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-slide2 .lede { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 8px; }
+
+.scope-slide2 code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-slide2 section.panel {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 6px; padding: 26px 26px 20px; margin-bottom: 28px;
+  }
+
+.scope-slide2 .panel-eyebrow { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 8px; }
+
+.scope-slide2 h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; margin: 0 0 6px; font-weight: 600; text-wrap: balance;
+  }
+
+.scope-slide2 .panel-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; line-height: 1.5; }
+
+.scope-slide2 svg { width: 100%; height: auto; display: block; margin-top: 16px; }
+
+.scope-slide2 .axis-label { font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif; }
+
+.scope-slide2 .source-note {
+    font-size: 12px; color: var(--muted); margin: 16px 0 0; padding-top: 12px;
+    border-top: 1px solid var(--grid); line-height: 1.6;
+  }
+
+.scope-slide2 footer.foot { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 16px; }
+
+/* ============================================================
+   Beyond Growth — full-bleed presentation deck.
+   Designed to be browsed in F11 fullscreen during a talk, so
+   nothing sits in a narrow centred column.
+   ============================================================ */
+:root {
+  color-scheme: light dark;
+  --shell-ink:     #14161c;
+  --shell-paper:   #f4f2ed;
+  --shell-surface: #fffdf9;
+  --shell-rule:    #dcd8ce;
+  --shell-muted:   #6d6a63;
+  --shell-accent:  #b4451f;
+  --shell-slate:   #1c4e73;
+  --shell-slate-tint: rgba(28,78,115,0.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --shell-ink:     #f2f0ea;
+    --shell-paper:   #0f1013;
+    --shell-surface: #17191e;
+    --shell-rule:    #2b2e35;
+    --shell-muted:   #9a978f;
+    --shell-accent:  #e0703f;
+    --shell-slate:   #6fa8cd;
+    --shell-slate-tint: rgba(111,168,205,0.13);
+  }
+}
+/* The artifact viewer's manual light/dark toggle stamps data-theme on
+   <html>, independent of the OS's prefers-color-scheme -- these two
+   blocks make that toggle win in both directions, the same pattern
+   every chart-scoped token set below already uses. Without this, the
+   shell chrome (headings inherit body's color from --shell-ink) stays
+   stuck in whichever mode prefers-color-scheme reports, even when the
+   viewer is manually switched to the other one. */
+:root[data-theme="dark"] {
+  --shell-ink:     #f2f0ea;
+  --shell-paper:   #0f1013;
+  --shell-surface: #17191e;
+  --shell-rule:    #2b2e35;
+  --shell-muted:   #9a978f;
+  --shell-accent:  #e0703f;
+  --shell-slate:   #6fa8cd;
+  --shell-slate-tint: rgba(111,168,205,0.13);
+}
+:root[data-theme="light"] {
+  --shell-ink:     #14161c;
+  --shell-paper:   #f4f2ed;
+  --shell-surface: #fffdf9;
+  --shell-rule:    #dcd8ce;
+  --shell-muted:   #6d6a63;
+  --shell-accent:  #b4451f;
+  --shell-slate:   #1c4e73;
+  --shell-slate-tint: rgba(28,78,115,0.07);
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
+
+.deck-head {
+  padding: clamp(44px, 7vh, 92px) clamp(18px, 3.5vw, 64px) clamp(26px, 4vh, 44px);
+  border-bottom: 1px solid var(--shell-rule);
+}
+/* Title block and header illustration side by side. The text keeps its
+   own measure; the image takes a fixed slice and drops below on narrow
+   screens rather than squeezing the lede into a column. */
+.deck-head-inner {
+  display: flex; align-items: center;
+  gap: clamp(24px, 4vw, 68px); flex-wrap: wrap;
+}
+.deck-head-text { flex: 1 1 520px; min-width: 0; }
+.deck-hero {
+  flex: 0 1 clamp(286px, 29.7vw, 473px);
+  margin: 0; line-height: 0;
+}
+.deck-hero img {
+  width: 100%; height: auto; display: block;
+  border-radius: 6px;
+}
+@media (max-width: 860px) { .deck-hero { flex-basis: 100%; max-width: 473px; } }
+.deck-eyebrow {
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.deck-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--shell-rule); max-width: 300px; }
+.deck-h1 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(30px, 4.3vw, 62px); line-height: 1.05; letter-spacing: -0.022em;
+  margin: 0 0 20px; font-weight: 600; text-wrap: balance; max-width: 24ch;
+}
+.deck-lede {
+  font-size: clamp(15px, 1.1vw, 18.5px); line-height: 1.62;
+  color: var(--shell-muted); max-width: 76ch; margin: 0;
+}
+.deck-lede strong { color: var(--shell-ink); font-weight: 600; }
+.deck-byline {
+  margin: 0 0 clamp(20px, 3vh, 32px);
+  font-size: clamp(17px, 1.35vw, 22px); color: var(--shell-ink); font-weight: 500;
+}
+/* Bio as a collapsed note rather than an outbound link, so the deck
+   stays self-contained and the header stays quiet by default. */
+.deck-bio { margin: -4px 0 clamp(20px, 3vh, 32px); }
+.deck-bio > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11.5px, 0.85vw, 13px); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--shell-accent); user-select: none; padding: 3px 0;
+}
+.deck-bio > summary::-webkit-details-marker { display: none; }
+.deck-bio > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.deck-bio[open] > summary::before { transform: rotate(90deg); }
+.deck-bio > summary:focus-visible { outline: 2px solid var(--shell-accent); outline-offset: 3px; border-radius: 3px; }
+.deck-bio > p {
+  margin: 9px 0 0; font-size: clamp(13px, 0.98vw, 15.5px);
+  line-height: 1.62; color: var(--shell-muted); max-width: 72ch;
+}
+.deck-byline a { /* legacy fallback if any other link appears in the byline */
+  color: var(--shell-slate); text-decoration: none; font-weight: 600;
+  border-bottom: 1px solid transparent; transition: border-color .15s;
+}
+.deck-byline a:hover, .deck-byline a:focus-visible { border-color: var(--shell-slate); }
+
+/* ---- the arrangement grid ---- */
+.row-pair, .row-single {
+  padding: clamp(18px, 2.2vh, 32px) clamp(18px, 3.5vw, 64px);
+}
+
+/* A pair whose two panels share one claim: state it once, above both,
+   and let each panel's own h2 say only what that panel contributes. */
+.row-group { padding: clamp(18px, 2.2vh, 32px) clamp(18px, 3.5vw, 64px); }
+.row-group > .row-pair-inner { padding: 0; margin-top: clamp(14px, 1.6vh, 22px); }
+.row-head { max-width: none; }
+.row-kicker {
+  font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 8px;
+}
+.row-title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(21px, 2.1vw, 31px); line-height: 1.22; letter-spacing: -0.015em;
+  font-weight: 600; margin: 0; color: var(--shell-ink); text-wrap: balance;
+  max-width: min(100%, 1000px);
+}
+
+/* Section divider. Seven of these carry a student audience through a long
+   deck -- without them the argument reads as one undifferentiated wall. */
+.row-divider {
+  padding: clamp(30px, 5vh, 60px) clamp(18px, 3.5vw, 64px) clamp(24px, 3.6vh, 44px);
+  border-top: 1px solid var(--shell-rule);
+  background: var(--shell-surface);
+}
+.divider-inner { max-width: min(100%, 1000px); }
+.divider-num {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 0.62em; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--shell-accent); margin-right: 0.62em;
+  vertical-align: 0.1em;
+}
+.divider-title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(24px, 2.6vw, 40px); line-height: 1.18; letter-spacing: -0.015em;
+  font-weight: 600; margin: 0 0 10px; color: var(--shell-ink); text-wrap: balance;
+}
+.divider-blurb {
+  font-size: clamp(14px, 1.12vw, 18px); line-height: 1.55; margin: 0;
+  color: var(--shell-muted); max-width: 62ch;
+}
+
+/* The populism panel's three explanation cards live inside a collapsed
+   <details>, so the panel reads as a chart-less prompt until opened. */
+.viz-root details.src.explain { border-top: 1px solid var(--border); }
+.viz-root details.src.explain > summary { color: var(--text-secondary); }
+.viz-root details.src.explain[open] > summary { margin-bottom: 2px; }
+
+/* Recommendation: an inline highlight inside a title, not a separate
+   block. Blue is the deck's one signal for "what should be done". */
+.rec {
+  color: var(--shell-slate);
+  background: var(--shell-slate-tint);
+  padding: 0.5px 7px 2px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.row-pair {
+  display: grid; gap: clamp(16px, 1.8vw, 30px);
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+/* 2:1 split for a chart with a narrow side card (e.g. an author profile). */
+.row-pair.row-2-1 { grid-template-columns: 2fr 1fr; }
+@media (max-width: 1100px) { .row-pair { grid-template-columns: 1fr; } }
+.row-pair > .viz-root, .row-single > .viz-root { min-width: 0; }
+
+/* ============================================================
+   Print / PDF export: one section per landscape page. The screen
+   layout is scroll-driven (built to browse, not paginate), so print
+   needs its own rules -- side-by-side pairs forced regardless of the
+   1100px screen breakpoint, one row per page, source notes opened
+   since there's no way to click a <details> on paper.
+   ============================================================ */
+@media print {
+  @page { size: 1400px 900px; margin: 0; }
+  html, body { background: var(--shell-paper) !important; }
+  .deck-head, .row-pair, .row-group, .row-single {
+    break-inside: avoid; page-break-inside: avoid;
+    break-after: page; page-break-after: always;
+  }
+  .deck-head:last-child, .row-pair:last-child, .row-group:last-child, .row-single:last-child {
+    break-after: auto; page-break-after: auto;
+  }
+  .row-pair { grid-template-columns: 1fr 1fr !important; }
+  .row-pair.row-2-1 { grid-template-columns: 2fr 1fr !important; }
+  .viz-root details.src { display: block !important; }
+  .viz-root details.src > summary { display: none !important; }
+  .viz-root details.src .src-body { font-size: 10.5px !important; }
+  a[href]::after { content: none !important; }
+}
+
+.deck-foot {
+  padding: clamp(26px, 4vh, 44px) clamp(18px, 3.5vw, 64px) clamp(52px, 8vh, 88px);
+  font-size: 13px; color: var(--shell-muted); line-height: 1.75;
+  border-top: 1px solid var(--shell-rule); background: var(--shell-surface);
+}
+
+/* ============================================================
+   Full-bleed overrides: each source page shipped a centred
+   760-1080px column, which left dead space at the sides.
+   ============================================================ */
+.viz-root { min-height: 0 !important; background: transparent !important; }
+.viz-root .wrap {
+  max-width: none !important; width: 100%;
+  margin: 0 !important; padding: 0 !important;
+}
+.viz-root header.page-head { display: none !important; }
+.viz-root h2.section-head { margin-top: clamp(20px, 3vh, 34px); }
+
+.viz-root section.panel, .viz-root .panel {
+  border-radius: 12px;
+  display: flex; flex-direction: column;
+  padding: clamp(18px, 1.7vw, 30px) clamp(18px, 1.8vw, 32px) clamp(14px, 1.4vw, 24px);
+}
+
+/* Equal heights are wanted ONLY inside a pair. A blanket height:100%
+   also stretched lone panels — the panel then absorbed ~740px of free
+   space into auto margins, which is what left the labor-market chart
+   marooned in a mostly-empty box. Stretch the chain explicitly here,
+   and leave single rows at their natural height. */
+.row-pair { align-items: stretch; }
+.row-pair > .viz-root { display: flex; }
+.row-pair > .viz-root > .wrap { display: flex; flex-direction: column; flex: 1 1 auto; }
+.row-pair > .viz-root > .wrap > section.panel { flex: 1 1 auto; }
+.row-single > .viz-root > .wrap > section.panel { height: auto; }
+
+/* When a pair equalises heights, give the leftover room to the chart's
+   own margins so it sits centred instead of leaving one dead block
+   above the note. Only inside pairs — lone panels have no surplus. */
+.row-pair section.panel > svg,
+.row-pair section.panel > .divchart,
+.row-pair section.panel > .triptych,
+.row-pair section.panel > .quad,
+.row-pair section.panel > .rankchart,
+.row-pair section.panel > .linechart-wrap,
+.row-pair section.panel > .elephant-wrap {
+  margin-block: auto;
+}
+
+/* slide2 shipped legend markup but never defined the legend CSS, so its
+   swatches rendered as bare stacked text. :where() keeps specificity at
+   zero so any chapter that *does* define its own legend still wins. */
+.viz-root :where(.legend-row) {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(10px, 1.1vw, 22px); margin-top: 10px;
+  color: var(--text-secondary);
+}
+.viz-root :where(.legend-item) { display: flex; align-items: center; gap: 7px; }
+.viz-root :where(.swatch) {
+  width: 11px; height: 11px; border-radius: 3px;
+  display: inline-block; flex: none;
+}
+
+/* ---- collapsible source notes (collapsed by default) ---- */
+.viz-root details.src {
+  margin-top: auto; padding-top: clamp(10px, 1vw, 16px);
+  border-top: 1px solid var(--grid);
+}
+.viz-root details.src > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11px, 0.82vw, 13px); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted); user-select: none;
+  padding: 3px 0;
+}
+.viz-root details.src > summary::-webkit-details-marker { display: none; }
+.viz-root details.src > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.viz-root details.src[open] > summary::before { transform: rotate(90deg); }
+.viz-root details.src > summary:hover { color: var(--text-primary); }
+.viz-root details.src > summary:focus-visible { outline: 2px solid var(--point, currentColor); outline-offset: 3px; border-radius: 3px; }
+.viz-root details.src .src-body {
+  margin-top: clamp(8px, 0.8vw, 12px);
+  font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; color: var(--muted);
+}
+.viz-root details.src .src-body code { font-size: 0.92em; }
+.viz-root h2 { font-size: clamp(18px, 1.45vw, 26px); letter-spacing: -0.012em; }
+.viz-root h3 { font-size: clamp(14.5px, 1.1vw, 18px); }
+.viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(12.5px, 0.95vw, 15.5px); }
+.viz-root .source-note, .viz-root footer.foot { font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; }
+.viz-root .stat-line { font-size: clamp(11.5px, 0.88vw, 14.5px); }
+.viz-root .legend-row, .viz-root .legend-item { font-size: clamp(12px, 0.9vw, 15px); }
+.viz-root svg { width: 100%; height: auto; }
+.viz-root .linechart-wrap svg, .viz-root .elephant-wrap svg { min-width: 0; }
+
+/* ============================================================
+   Value-label overflow fixes.
+   The source charts used fixed px grid columns for their label
+   and value tracks (e.g. 130px / 1fr / 64px). Once type scales
+   up for projection, "-9.27 pp" and "31.1%" no longer fit their
+   track and collided with the bars. Give the value column
+   intrinsic width and stop it wrapping.
+   ============================================================ */
+.viz-root .divchart .row,
+.viz-root .divchart .scale-labels {
+  grid-template-columns: minmax(96px, 22%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
+}
+.viz-root .divchart .value { white-space: nowrap; text-align: right; }
+.viz-root .divchart .label { overflow-wrap: anywhere; }
+
+.viz-root .rankchart .rank-row {
+  grid-template-columns: minmax(110px, 24%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
+}
+.viz-root .rank-value { white-space: nowrap; text-align: right; }
+.viz-root .rank-label { overflow-wrap: anywhere; }
+
+/* before/after bar groups: let them reflow instead of overflowing
+   when the panel is only half the viewport wide */
+.viz-root .triptych, .viz-root .quad {
+  grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 13vw, 190px), 1fr)) !important;
+  gap: clamp(10px, 1vw, 20px) !important;
+  row-gap: clamp(28px, 2.4vw, 40px) !important;
+}
+.viz-root .metric { display: flex !important; flex-direction: column !important; align-items: center !important; }
+/* THE overflow bug: .barpair shipped with a hard `height: 120px` and
+   `align-items: flex-end`, but a full-height 100px bar plus its value
+   label (~19px) and year label (~18px) needs ~137px. The surplus
+   overflowed *upward* out of the box and landed on top of the metric
+   label above. Let the row size to its own content; flex-end still
+   keeps every bar sitting on a common baseline. */
+.viz-root .barpair {
+  height: auto !important;
+  min-height: clamp(120px, 11vh, 150px);
+  gap: clamp(6px, 0.6vw, 10px);
+  margin-top: auto;
+}
+.viz-root .barpair .bar-col { width: clamp(28px, 2.6vw, 44px); }
+.viz-root .barpair .bval { font-size: clamp(11.5px, 0.85vw, 14px); white-space: nowrap; }
+.viz-root .barpair .byr { font-size: clamp(9.5px, 0.72vw, 11.5px); white-space: nowrap; }
+/* label sits in its own reserved block, bottom-aligned so 1-, 2- and
+   3-line labels all leave the same gap above the bars */
+.viz-root .metric .mlabel {
+  font-size: clamp(11.5px, 0.85vw, 14px);
+  line-height: 1.32;
+  min-height: 2.7em !important;
+  display: flex; align-items: flex-end; justify-content: center;
+  margin-bottom: clamp(8px, 0.8vw, 14px) !important;
+}
+
+@media print {
+  .row-pair { grid-template-columns: 1fr 1fr; }
+  .row-single, .row-pair { break-inside: avoid; }
+}
+
+
+/* ---------- FT palette: light ---------- */
+:root {
+  --shell-ink:     #33302e;   /* FT Black          */
+  --shell-paper:   #fff1e5;   /* FT Pink           */
+  --shell-surface: #fff9f2;   /* panel tint on pink */
+  --shell-rule:    #e6d9ce;
+  --shell-muted:   #66605c;
+  --shell-accent:  #990f3d;   /* Claret            */
+  --shell-slate:   #0f5499;   /* Oxford blue       */
+  --shell-slate-tint: rgba(15,84,153,0.09);
+}
+.viz-root.viz-root, .viz-root.viz-root .wrap {
+  --page:           #fff1e5;
+  --surface-1:      #fff9f2;
+  --text-primary:   #33302e;
+  --text-secondary: #66605c;
+  --muted:          #8b8480;
+  --grid:           #e6d9ce;
+  --baseline:       #cdbdb0;
+  --border:         rgba(51,48,46,0.13);
+
+  --c1: #0f5499;   /* Oxford blue  -- primary series      */
+  --c2: #00994d;   /* Jade         -- positive            */
+  --c3: #c05c7e;   /* Mauve                               */
+  --c4: #b86b25;   /* Mandarin dark                       */
+  --c5: #0d7680;   /* Teal                                */
+  --c6: #ff8833;   /* Mandarin                            */
+  --c7: #593380;   /* Velvet                              */
+  --c8: #cc0000;   /* Crimson      -- alarm / negative    */
+  --c9: #262a33;   /* FT Slate -- assertive, not recessive */
+
+  --point:           #0f5499;
+  --regline:         #cc0000;
+  --status-critical: #990f3d;
+  --blue-light:      #7fa8d0;
+  --blue-dark:       #0f5499;
+  --diverge-pos:     #0f5499;
+  --diverge-neg:     #cc0000;
+  --diverge-mid:     #e6d9ce;
+}
+
+/* ---------- FT palette: dark ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --shell-ink:     #f2ece6;
+    --shell-paper:   #14110f;
+    --shell-surface: #1c1815;
+    --shell-rule:    #332d28;
+    --shell-muted:   #a49a92;
+    --shell-accent:  #e05c7e;
+    --shell-slate:   #6aa9e0;
+    --shell-slate-tint: rgba(106,169,224,0.15);
+  }
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root,
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root .wrap {
+    --page:#14110f; --surface-1:#1c1815;
+    --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+    --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+    --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+    --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+    --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+    --blue-light:#3d6d99; --blue-dark:#4a9be0;
+    --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+  }
+}
+:root[data-theme="dark"] {
+  --shell-ink:#f2ece6; --shell-paper:#14110f; --shell-surface:#1c1815;
+  --shell-rule:#332d28; --shell-muted:#a49a92; --shell-accent:#e05c7e;
+  --shell-slate:#6aa9e0; --shell-slate-tint:rgba(106,169,224,0.15);
+}
+:root[data-theme="dark"] .viz-root.viz-root,
+:root[data-theme="dark"] .viz-root.viz-root .wrap {
+  --page:#14110f; --surface-1:#1c1815;
+  --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+  --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+  --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+  --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+  --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+  --blue-light:#3d6d99; --blue-dark:#4a9be0;
+  --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+}
+:root[data-theme="light"] {
+  --shell-ink:#33302e; --shell-paper:#fff1e5; --shell-surface:#fff9f2;
+  --shell-rule:#e6d9ce; --shell-muted:#66605c; --shell-accent:#990f3d;
+  --shell-slate:#0f5499; --shell-slate-tint:rgba(15,84,153,0.09);
+}
+:root[data-theme="light"] .viz-root.viz-root,
+:root[data-theme="light"] .viz-root.viz-root .wrap {
+  --page:#fff1e5; --surface-1:#fff9f2;
+  --text-primary:#33302e; --text-secondary:#66605c; --muted:#8b8480;
+  --grid:#e6d9ce; --baseline:#cdbdb0; --border:rgba(51,48,46,0.13);
+  --c1:#0f5499; --c2:#00994d; --c3:#c05c7e; --c4:#b86b25; --c5:#0d7680;
+  --c6:#ff8833; --c7:#593380; --c8:#cc0000; --c9:#7d7975;
+  --point:#0f5499; --regline:#cc0000; --status-critical:#990f3d;
+  --blue-light:#7fa8d0; --blue-dark:#0f5499;
+  --diverge-pos:#0f5499; --diverge-neg:#cc0000; --diverge-mid:#e6d9ce;
+}
+
+</style>
+<style>.scope-biblio .ref-group { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-size: 15px; font-weight: 600; margin: 22px 0 10px; color: var(--text-primary); }.scope-biblio .ref-group:first-of-type { margin-top: 18px; }.scope-biblio .ref { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 9px; padding-left: 1.6em; text-indent: -1.6em; }.scope-biblio .ref-author { color: var(--text-primary); font-weight: 600; }.scope-biblio .ref .as-cited { color: var(--muted); font-style: italic; }.scope-biblio .ref-note { font-size: 12.5px; color: var(--muted); margin: 0 0 8px; }.scope-biblio .ref-data { padding-left: 0; text-indent: 0; }</style>
+<style>
+.ds-chart { display:block; width:100%; height:auto; margin-top:6px; }
+.ds-chart .g { stroke: var(--grid); stroke-width:1; }
+.ds-chart .b1 { fill: var(--c1); }
+.ds-chart .b1.hi { fill: var(--c6); }
+.ds-chart .track { fill: var(--grid); }
+.ds-chart .ln { fill:none; stroke: var(--c1); stroke-width:2.5; stroke-linejoin:round; }
+.ds-chart .pt { fill: var(--c1); }
+.ds-chart text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+.ds-chart .lab { font-size:12.5px; fill: var(--text-primary); }
+.ds-chart .ax  { font-size:11px; fill: var(--muted); }
+.ds-chart .val { font-size:11.5px; fill: var(--text-secondary);
+                 font-variant-numeric: tabular-nums; }
+.ds-chart .end { text-anchor:end; } .ds-chart .mid { text-anchor:middle; }
+.ds-steps { list-style:none; margin:14px 0 0; padding:0; counter-reset:s; }
+.ds-steps li { counter-increment:s; display:flex; gap:12px; align-items:baseline;
+  padding:9px 0; border-top:1px solid var(--border); }
+.ds-steps li:first-child { border-top:none; }
+.ds-steps li::before { content:counter(s); flex:none; width:1.6em;
+  font-family:Georgia,serif; font-weight:600; color:var(--c6);
+  font-size:clamp(13px,1vw,16px); }
+.ds-steps .st { flex:none; width:min(34%,190px); font-weight:600;
+  font-size:clamp(12.5px,0.95vw,14.5px); color:var(--text-primary); }
+.ds-steps .sd { flex:1 1 auto; font-size:clamp(12px,0.9vw,14px);
+  line-height:1.55; color:var(--text-secondary); }
+@media (max-width:640px){ .ds-steps li{flex-wrap:wrap} .ds-steps .st{width:100%} }
+/* no hero image on this deck: let the title block use the full measure */
+.deck-head-text { flex: 1 1 100%; max-width: 78ch; }
+.deck-lede { max-width: 74ch; }
+@media print {
+  /* one row per slide: centre the content so short panels sit balanced */
+  .row-single, .row-group { display:flex; flex-direction:column;
+    justify-content:center; min-height:838px; box-sizing:border-box; }
+  .row-divider { display:flex; flex-direction:column; justify-content:center;
+    min-height:838px; box-sizing:border-box; }
+}
+</style>
+
+<header class="deck-head">
+  <div class="deck-head-inner">
+    <div class="deck-head-text">
+      <p class="deck-eyebrow">SDGs Center Business Model &middot; Final Report, 2025</p>
+      <h1 class="deck-h1">SDGs Alignment of Indonesia&rsquo;s Research Strength</h1>
+      <p class="deck-byline">Arief Anshory Yusuf</p>
+      <p class="deck-lede">Indonesia has built <strong>62 SDG Centers</strong> in a decade. Whether
+      they are pointed at the right problems depends on two things the study had to measure
+      separately: what universities are strong at, and what provinces actually need. This section
+      sets out how each side was measured, before turning to what the numbers show.</p>
+    </div>
+  </div>
+</header>
+
+<section class="row-single" aria-label="Contents"><div class="viz-root scope-roadmap scope-slide2"><div class="wrap"><section class="panel"><div class="panel-head"><h2>Contents</h2></div><div style="margin-top:14px; display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); column-gap:clamp(28px,4vw,64px); row-gap:0;"><div style="display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--border); break-inside:avoid;"><span style="flex:none; width:2.2em; font-family:Georgia,serif; font-weight:600; font-size:clamp(15px,1.25vw,21px); color:var(--c6);">I</span><span style="flex:1 1 auto; min-width:0;"><span style="display:block; font-family:Georgia,serif; font-weight:600; font-size:clamp(14px,1.15vw,19px); color:var(--text-primary); line-height:1.3;">How the study was done</span><span style="display:block; font-size:clamp(11.5px,0.88vw,14.5px); color:var(--text-secondary); line-height:1.45; margin-top:3px;">Four strands of evidence, two bibliometric sources, and two different definitions of demand</span></span></div><div style="display:flex; gap:14px; align-items:baseline; padding:11px 0; border-bottom:1px solid var(--border); break-inside:avoid;"><span style="flex:none; width:2.2em; font-family:Georgia,serif; font-weight:600; font-size:clamp(15px,1.25vw,21px); color:var(--c6);">II</span><span style="flex:1 1 auto; min-width:0;"><span style="display:block; font-family:Georgia,serif; font-weight:600; font-size:clamp(14px,1.15vw,19px); color:var(--text-primary); line-height:1.3;">What the numbers show</span><span style="display:block; font-size:clamp(11.5px,0.88vw,14.5px); color:var(--text-secondary); line-height:1.45; margin-top:3px;">The growth of the SDG Center network, and the priorities provinces state for themselves</span></span></div></div></section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">I</span>How the study was done</h2><p class="divider-blurb">Supply and demand are measured from entirely different sources &mdash; bibliometric databases on one side, planning documents and official indicators on the other. The gap analysis only makes sense once both are expressed as a ranking over the same 16 goals.</p></div></section>
+
+<section class="row-group" aria-label="Evidence base"><div class="row-head"><p class="row-kicker">The evidence base</p><h2 class="row-title">A mixed-methods study, with the quantitative work resting on four data sources</h2></div><div class="row-pair row-pair-inner"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">The evidence base</p>
+<h2>Four strands</h2>
+<ol class="ds-steps">
+<li><span class="st">Desk study</span><span class="sd">RPJMD content analysis for all 34 provinces, bibliometrics from SciVal and Scopus, and a literature review on multidisciplinary research centres.</span></li>
+<li><span class="st">Surveys</span><span class="sd">Provincial Bappeda on SDG implementation and needs; SDG Centers on their institutional arrangements.</span></li>
+<li><span class="st">FGDs</span><span class="sd">Local governments, universities and operating SDG Centers, plus the ministry, to align programmes with the university resource map.</span></li>
+<li><span class="st">Quantitative</span><span class="sd">The Bappenas SDG Dashboard, used to align provincial progress with university research strengths.</span></li>
+</ol>
+</section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Survey coverage</p>
+<h2>27 of 34 provinces responded</h2>
+<p class="panel-sub">Fieldwork ran 25 February to 14 March 2025. Coverage is strong everywhere except the east.</p>
+<svg class="ds-chart" viewBox="0 0 760 256" role="img" aria-label="Share of provinces responding to the Bappeda survey by island group">
+<line x1="190.0" y1="18" x2="190.0" y2="230" class="g"/>
+<text x="190.0" y="248" class="ax mid">0%</text>
+<line x1="308.5" y1="18" x2="308.5" y2="230" class="g"/>
+<text x="308.5" y="248" class="ax mid">25%</text>
+<line x1="427.0" y1="18" x2="427.0" y2="230" class="g"/>
+<text x="427.0" y="248" class="ax mid">50%</text>
+<line x1="545.5" y1="18" x2="545.5" y2="230" class="g"/>
+<text x="545.5" y="248" class="ax mid">75%</text>
+<line x1="664.0" y1="18" x2="664.0" y2="230" class="g"/>
+<text x="664.0" y="248" class="ax mid">100%</text>
+<text x="178" y="42" class="lab end">Bali & Nusa Tenggara</text>
+<rect x="190" y="30" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="30" width="474.0" height="15" rx="2" class="b1"/>
+<text x="674.0" y="42" class="val">3 of 3</text>
+<text x="178" y="76" class="lab end">Sumatera</text>
+<rect x="190" y="64" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="64" width="426.6" height="15" rx="2" class="b1"/>
+<text x="674.0" y="76" class="val">9 of 10</text>
+<text x="178" y="110" class="lab end">Jawa</text>
+<rect x="190" y="98" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="98" width="395.0" height="15" rx="2" class="b1"/>
+<text x="674.0" y="110" class="val">5 of 6</text>
+<text x="178" y="144" class="lab end">Sulawesi</text>
+<rect x="190" y="132" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="132" width="395.0" height="15" rx="2" class="b1"/>
+<text x="674.0" y="144" class="val">5 of 6</text>
+<text x="178" y="178" class="lab end">Kalimantan</text>
+<rect x="190" y="166" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="166" width="379.2" height="15" rx="2" class="b1"/>
+<text x="674.0" y="178" class="val">4 of 5</text>
+<text x="178" y="212" class="lab end">Maluku & Papua</text>
+<rect x="190" y="200" width="474.0" height="15" rx="2" class="track"/>
+<rect x="190" y="200" width="118.5" height="15" rx="2" class="b1"/>
+<text x="674.0" y="212" class="val">1 of 4</text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report Table 4-18. Maluku and Papua are represented by a single province out of four, so eastern Indonesia is thinly covered in the survey strand.</div></details>
+</section></div></div></div></section>
+
+<section class="row-single" aria-label="Measuring supply"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Supply</p>
+<h2>Two bibliometric layers, merged</h2>
+<p class="panel-sub">Research strength is measured at the university, then attributed to the province the university sits in.</p>
+<ol class="ds-steps">
+<li><span class="st">SciVal &mdash; quality</span><span class="sd">181 Indonesian institutions listed; 21 excluded as non-higher-education, leaving <strong>160 universities</strong>. Metric: citation count per SDG.</span></li>
+<li><span class="st">Scopus &mdash; quantity</span><span class="sd">578 Indonesian organisations, of which <strong>457 are universities</strong>. Metric: number of documents contributing to each SDG.</span></li>
+<li><span class="st">Concordance</span><span class="sd">455 Scopus institution names matched semi-manually against the 160 SciVal names, because naming varies across Indonesian and English forms and abbreviation styles.</span></li>
+</ol>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report &sect;2 and Table 2-1. SciVal covers 160 of the 457 universities Scopus lists, and coverage is uneven across provinces &mdash; from 31 universities in East Java to none in seven provinces.</div></details>
+</section></div></div></section>
+
+<section class="row-group" aria-label="Measuring demand"><div class="row-head"><p class="row-kicker">Two definitions</p><h2 class="row-title">Demand is measured twice, and the two measures do not have to agree</h2></div><div class="row-pair row-pair-inner"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Demand, first definition</p>
+<h2>What provinces say they want</h2>
+<p class="panel-sub">Content analysis of the medium-term development plan (RPJMD) of all 34 provinces.</p>
+<ol class="ds-steps">
+<li><span class="st">Extract</span><span class="sd">Vision, mission, goals and priority programmes from each province's RPJMD.</span></li>
+<li><span class="st">Map to SDGs</span><span class="sd">Manual review by the research team, then ChatGPT as a comparative tool, then verification by senior researchers.</span></li>
+<li><span class="st">Rank</span><span class="sd">Goals ordered by prominence; the highest priority is rank 1.</span></li>
+</ol>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Most documents pre-date the 2024 regional elections, since new RPJMDs were still being drafted. The report argues continuity is reasonable because every RPJMD must follow the longer-horizon RPJPD and the national RPJMN.</div></details>
+</section></div></div><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Demand, second definition</p>
+<h2>Where provinces are actually falling short</h2>
+<p class="panel-sub">An achievement index built from the National SDGs Secretariat's indicator set.</p>
+<ol class="ds-steps">
+<li><span class="st">Normalise</span><span class="sd">Each of 285 indicator-dimensions rescaled 0&ndash;1 against official thresholds, or empirical bounds (&plusmn;2 SD) where no standard exists, with direction set by whether higher or lower is better.</span></li>
+<li><span class="st">Aggregate</span><span class="sd">Principal component analysis within each goal, producing a <strong>0&ndash;100 achievement index</strong> per goal per province.</span></li>
+<li><span class="st">Rank</span><span class="sd">Goals 1&ndash;16 ordered by index; the <em>lowest</em> score is rank 1, the goal most in need of support.</span></li>
+</ol>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">This is the demand measure used in the report's gap analysis. The two definitions can disagree: a province may rank a goal low in its plan while performing badly on it.</div></details>
+</section></div></div></div></section>
+
+<section class="row-single" aria-label="Indicator base"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">What the achievement index rests on</p>
+<h2>The indicator base is very uneven across goals</h2>
+<p class="panel-sub">Number of indicator-dimensions available per SDG in the provincial dataset. Goal 4 has 117; Goals 12 and 14 have one each.</p>
+<svg class="ds-chart" viewBox="0 0 760 430" role="img" aria-label="Number of indicator-dimensions behind each SDG goal">
+<line x1="44.0" y1="18" x2="44.0" y2="400" class="g"/>
+<text x="44.0" y="418" class="ax mid">0</text>
+<line x1="209.5" y1="18" x2="209.5" y2="400" class="g"/>
+<text x="209.5" y="418" class="ax mid">30</text>
+<line x1="375.0" y1="18" x2="375.0" y2="400" class="g"/>
+<text x="375.0" y="418" class="ax mid">60</text>
+<line x1="540.5" y1="18" x2="540.5" y2="400" class="g"/>
+<text x="540.5" y="418" class="ax mid">90</text>
+<line x1="706.0" y1="18" x2="706.0" y2="400" class="g"/>
+<text x="706.0" y="418" class="ax mid">120</text>
+<text x="35" y="39" class="lab end">1</text>
+<rect x="44" y="29" width="66.2" height="11" rx="2" class="b1"/>
+<text x="118.2" y="39" class="val">12</text>
+<text x="35" y="61" class="lab end">2</text>
+<rect x="44" y="51" width="60.7" height="11" rx="2" class="b1"/>
+<text x="112.7" y="61" class="val">11</text>
+<text x="35" y="83" class="lab end">3</text>
+<rect x="44" y="73" width="292.4" height="11" rx="2" class="b1"/>
+<text x="344.4" y="83" class="val">53</text>
+<text x="35" y="105" class="lab end">4</text>
+<rect x="44" y="95" width="645.5" height="11" rx="2" class="b1"/>
+<text x="697.5" y="105" class="val">117</text>
+<text x="35" y="127" class="lab end">5</text>
+<rect x="44" y="117" width="77.2" height="11" rx="2" class="b1"/>
+<text x="129.2" y="127" class="val">14</text>
+<text x="35" y="149" class="lab end">6</text>
+<rect x="44" y="139" width="33.1" height="11" rx="2" class="b1"/>
+<text x="85.1" y="149" class="val">6</text>
+<text x="35" y="171" class="lab end">7</text>
+<rect x="44" y="161" width="16.5" height="11" rx="2" class="b1"/>
+<text x="68.5" y="171" class="val">3</text>
+<text x="35" y="193" class="lab end">8</text>
+<rect x="44" y="183" width="60.7" height="11" rx="2" class="b1"/>
+<text x="112.7" y="193" class="val">11</text>
+<text x="35" y="215" class="lab end">9</text>
+<rect x="44" y="205" width="110.3" height="11" rx="2" class="b1"/>
+<text x="162.3" y="215" class="val">20</text>
+<text x="35" y="237" class="lab end">10</text>
+<rect x="44" y="227" width="44.1" height="11" rx="2" class="b1"/>
+<text x="96.1" y="237" class="val">8</text>
+<text x="35" y="259" class="lab end">11</text>
+<rect x="44" y="249" width="55.2" height="11" rx="2" class="b1"/>
+<text x="107.2" y="259" class="val">10</text>
+<text x="35" y="281" class="lab end">12</text>
+<rect x="44" y="271" width="5.5" height="11" rx="2" class="b1"/>
+<text x="57.5" y="281" class="val">1</text>
+<text x="35" y="303" class="lab end">13</text>
+<rect x="44" y="293" width="11.0" height="11" rx="2" class="b1"/>
+<text x="63.0" y="303" class="val">2</text>
+<text x="35" y="325" class="lab end">14</text>
+<rect x="44" y="315" width="5.5" height="11" rx="2" class="b1"/>
+<text x="57.5" y="325" class="val">1</text>
+<text x="35" y="347" class="lab end">15</text>
+<rect x="44" y="337" width="16.5" height="11" rx="2" class="b1"/>
+<text x="68.5" y="347" class="val">3</text>
+<text x="35" y="369" class="lab end">16</text>
+<rect x="44" y="359" width="55.2" height="11" rx="2" class="b1"/>
+<text x="107.2" y="369" class="val">10</text>
+<text x="35" y="391" class="lab end">17</text>
+<rect x="44" y="381" width="16.5" height="11" rx="2" class="b1"/>
+<text x="68.5" y="391" class="val">3</text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report Table 2-2, 285 indicator-dimensions in total. A goal measured by a single indicator carries the same weight in the ranking as one measured by 117, which is worth keeping in mind when reading the demand side.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Gap analysis"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Putting the two sides together</p>
+<h2>From supply and demand to a gap</h2>
+<p class="panel-sub">Two tests, both run province by province and for Indonesia as a whole.</p>
+<ol class="ds-steps">
+<li><span class="st">Spearman rank correlation</span><span class="sd">Correlates the ranking of SDGs by university output against the ranking of SDGs by achievement. Because rank 1 means &lsquo;most published&rsquo; on one side and &lsquo;worst performing&rsquo; on the other, a <strong>positive</strong> coefficient means research is concentrated where the province is weakest.</span></li>
+<li><span class="st">Top-5 matching</span><span class="sd">Counts how many goals appear in both a province's five strongest SDGs by publication and its five weakest by achievement.</span></li>
+</ol>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Report &sect;4, Tables 4-21, 4-22 and 4-23.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">II</span>What the numbers show</h2><p class="divider-blurb">Two figures from the report: how fast the SDG Center network was built, and what provincial governments say they are trying to achieve.</p></div></section>
+
+<section class="row-single" aria-label="Growth of SDG Centers"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Report Figure 3-2</p>
+<h2>SDG Centers went from 2 to 62 in a decade</h2>
+<p class="panel-sub">Cumulative number of SDG Centers established in Indonesia, 2015&ndash;2025.</p>
+<svg class="ds-chart" viewBox="0 0 760 340" role="img" aria-label="Cumulative number of SDG Centers in Indonesia, 2015 to 2025">
+<line x1="48" y1="300.0" x2="726" y2="300.0" class="g"/>
+<text x="39" y="304.0" class="ax end">0</text>
+<line x1="48" y1="222.9" x2="726" y2="222.9" class="g"/>
+<text x="39" y="226.9" class="ax end">20</text>
+<line x1="48" y1="145.7" x2="726" y2="145.7" class="g"/>
+<text x="39" y="149.7" class="ax end">40</text>
+<line x1="48" y1="68.6" x2="726" y2="68.6" class="g"/>
+<text x="39" y="72.6" class="ax end">60</text>
+<polyline points="48.0,292.3 115.8,288.4 183.6,288.4 251.4,273.0 319.2,246.0 387.0,215.1 454.8,184.3 522.6,153.4 590.4,118.7 658.2,76.3 726.0,60.9" class="ln"/>
+<circle cx="48.0" cy="292.3" r="4.5" class="pt"/>
+<text x="48.0" y="280.3" class="val mid">2</text>
+<text x="48.0" y="319.0" class="ax mid">2015</text>
+<circle cx="115.8" cy="288.4" r="4.5" class="pt"/>
+<text x="115.8" y="276.4" class="val mid">3</text>
+<circle cx="183.6" cy="288.4" r="4.5" class="pt"/>
+<text x="183.6" y="276.4" class="val mid">3</text>
+<text x="183.6" y="319.0" class="ax mid">2017</text>
+<circle cx="251.4" cy="273.0" r="4.5" class="pt"/>
+<text x="251.4" y="261.0" class="val mid">7</text>
+<circle cx="319.2" cy="246.0" r="4.5" class="pt"/>
+<text x="319.2" y="234.0" class="val mid">14</text>
+<text x="319.2" y="319.0" class="ax mid">2019</text>
+<circle cx="387.0" cy="215.1" r="4.5" class="pt"/>
+<text x="387.0" y="203.1" class="val mid">22</text>
+<circle cx="454.8" cy="184.3" r="4.5" class="pt"/>
+<text x="454.8" y="172.3" class="val mid">30</text>
+<text x="454.8" y="319.0" class="ax mid">2021</text>
+<circle cx="522.6" cy="153.4" r="4.5" class="pt"/>
+<text x="522.6" y="141.4" class="val mid">38</text>
+<circle cx="590.4" cy="118.7" r="4.5" class="pt"/>
+<text x="590.4" y="106.7" class="val mid">47</text>
+<text x="590.4" y="319.0" class="ax mid">2023</text>
+<circle cx="658.2" cy="76.3" r="4.5" class="pt"/>
+<text x="658.2" y="64.3" class="val mid">58</text>
+<text x="658.2" y="319.0" class="ax mid">2024</text>
+<circle cx="726.0" cy="60.9" r="4.5" class="pt"/>
+<text x="726.0" y="48.9" class="val mid">62</text>
+<text x="726.0" y="319.0" class="ax mid">2025</text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Redrawn from the report's Figure 3-2. The network is recent: 3 centers as late as 2017, 22 by 2020, 62 by 2025.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Stated provincial priorities"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Report Figure 4-1</p>
+<h2>What provinces say they prioritise</h2>
+<p class="panel-sub">Mean priority rank across responding provinces. A <em>lower</em> value means a higher priority; the five highest-priority goals are highlighted.</p>
+<svg class="ds-chart" viewBox="0 0 760 481" role="img" aria-label="Average SDG priority ranking across provincial governments">
+<line x1="258.0" y1="18" x2="258.0" y2="451" class="g"/>
+<text x="258.0" y="469" class="ax mid">0</text>
+<line x1="368.0" y1="18" x2="368.0" y2="451" class="g"/>
+<text x="368.0" y="469" class="ax mid">4</text>
+<line x1="478.0" y1="18" x2="478.0" y2="451" class="g"/>
+<text x="478.0" y="469" class="ax mid">8</text>
+<line x1="588.0" y1="18" x2="588.0" y2="451" class="g"/>
+<text x="588.0" y="469" class="ax mid">12</text>
+<line x1="698.0" y1="18" x2="698.0" y2="451" class="g"/>
+<text x="698.0" y="469" class="ax mid">16</text>
+<text x="247" y="40" class="lab end">1. No poverty</text>
+<rect x="258" y="29" width="56.9" height="12" rx="2" class="b1 hi"/>
+<text x="322.9" y="40" class="val">2.07</text>
+<text x="247" y="65" class="lab end">3. Good health &amp; well-being</text>
+<rect x="258" y="54" width="93.8" height="12" rx="2" class="b1 hi"/>
+<text x="359.8" y="65" class="val">3.41</text>
+<text x="247" y="90" class="lab end">4. Quality education</text>
+<rect x="258" y="79" width="111.1" height="12" rx="2" class="b1 hi"/>
+<text x="377.1" y="90" class="val">4.04</text>
+<text x="247" y="115" class="lab end">2. Zero hunger</text>
+<rect x="258" y="104" width="113.0" height="12" rx="2" class="b1 hi"/>
+<text x="379.0" y="115" class="val">4.11</text>
+<text x="247" y="140" class="lab end">8. Decent work &amp; growth</text>
+<rect x="258" y="129" width="127.3" height="12" rx="2" class="b1 hi"/>
+<text x="393.3" y="140" class="val">4.63</text>
+<text x="247" y="165" class="lab end">6. Clean water &amp; sanitation</text>
+<rect x="258" y="154" width="206.8" height="12" rx="2" class="b1"/>
+<text x="472.8" y="165" class="val">7.52</text>
+<text x="247" y="190" class="lab end">9. Industry, innovation &amp; infrastructure</text>
+<rect x="258" y="179" width="220.0" height="12" rx="2" class="b1"/>
+<text x="486.0" y="190" class="val">8.00</text>
+<text x="247" y="215" class="lab end">10. Reduced inequalities</text>
+<rect x="258" y="204" width="243.4" height="12" rx="2" class="b1"/>
+<text x="509.4" y="215" class="val">8.85</text>
+<text x="247" y="240" class="lab end">7. Affordable &amp; clean energy</text>
+<rect x="258" y="229" width="259.6" height="12" rx="2" class="b1"/>
+<text x="525.6" y="240" class="val">9.44</text>
+<text x="247" y="265" class="lab end">5. Gender equality</text>
+<rect x="258" y="254" width="261.8" height="12" rx="2" class="b1"/>
+<text x="527.8" y="265" class="val">9.52</text>
+<text x="247" y="290" class="lab end">11. Sustainable cities</text>
+<rect x="258" y="279" width="293.4" height="12" rx="2" class="b1"/>
+<text x="559.4" y="290" class="val">10.67</text>
+<text x="247" y="315" class="lab end">12. Responsible consumption</text>
+<rect x="258" y="304" width="309.6" height="12" rx="2" class="b1"/>
+<text x="575.6" y="315" class="val">11.26</text>
+<text x="247" y="340" class="lab end">13. Climate action</text>
+<rect x="258" y="329" width="344.3" height="12" rx="2" class="b1"/>
+<text x="610.3" y="340" class="val">12.52</text>
+<text x="247" y="365" class="lab end">16. Peace, justice &amp; institutions</text>
+<rect x="258" y="354" width="383.9" height="12" rx="2" class="b1"/>
+<text x="649.9" y="365" class="val">13.96</text>
+<text x="247" y="390" class="lab end">15. Life on land</text>
+<rect x="258" y="379" width="388.0" height="12" rx="2" class="b1"/>
+<text x="654.0" y="390" class="val">14.11</text>
+<text x="247" y="415" class="lab end">14. Life below water</text>
+<rect x="258" y="404" width="389.1" height="12" rx="2" class="b1"/>
+<text x="655.1" y="415" class="val">14.15</text>
+<text x="247" y="440" class="lab end">17. Partnerships for the goals</text>
+<rect x="258" y="429" width="405.4" height="12" rx="2" class="b1"/>
+<text x="671.4" y="440" class="val">14.74</text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Redrawn from the report's Figure 4-1, using the underlying values stored in the chart. Poverty, health, education, hunger and jobs lead; partnerships, marine and terrestrial ecosystems and institutions come last.</div></details>
+</section></div></div></section>
+
+<footer class="deck-foot">
+  <strong>Source.</strong> All content is drawn from the <em>SDG Center Business Model &mdash;
+  Final Report</em> (2025), prepared for the Asian Development Bank. Method described in &sect;2
+  (Research Methodology) and &sect;4 (Findings and Analysis); figures redrawn from the report's
+  Figure 3-2 and Figure 4-1, with Table 2-2 and Table 4-18 shown as charts. Where a figure is
+  redrawn rather than reproduced, the underlying values are the report's own.
+</footer>
