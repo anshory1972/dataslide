@@ -1326,6 +1326,13 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .mcard.warn p:last-child { margin-bottom:0; }
 .mcard .tag { margin-top:auto; padding-top:9px; font-size:10px; letter-spacing:.07em;
   text-transform:uppercase; font-weight:700; color:var(--muted); }
+@media screen and (max-width:1000px) { .mgrid.c3 { grid-template-columns:repeat(2,1fr); } }
+@media screen and (max-width:700px) {
+  .mgrid.c3, .mgrid.c2 { grid-template-columns:1fr; }
+  .mcard { min-height:0; }
+  .two { flex-direction:column; gap:18px; }
+  .two .half, .two .side { flex:1 1 auto; max-width:100%; width:100%; }
+}
 /* dashboard-section charts */
 .ds-chart .thresh { stroke: var(--c6); stroke-width:1.5; stroke-dasharray:4 4; }
 .ds-chart .val.gap { fill: var(--c6); font-weight:650; }
