@@ -1344,6 +1344,9 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .ctable td.s { width:20%; color:var(--muted); font-size:10.6px; }
 .ctable tr.sep td { border-bottom:2px solid var(--baseline); padding:3px 0; }
 .ctable tr.idn td { background:rgba(235,104,52,.045); }
+.footline { font-size:13.5px; line-height:1.6; color:var(--text-secondary);
+  margin:16px 0 0; padding-top:13px; border-top:1px solid var(--grid); max-width:96ch; }
+.footline b { font-weight:700; }
 .deck-lede { max-width:74ch; }
 @media screen and (max-width:1000px) {
   .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:repeat(2,1fr); } }
@@ -1415,57 +1418,48 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <p class="panel-eyebrow">Figure 1</p>
 <h2>How much of the target group is missed</h2>
 <p class="panel-sub">Susenas March 2025. Exclusion error is the share of the target group that receives nothing. Inclusion error is the share of recipients who fall outside the target group.</p>
-<div class="split wide"><div class="a">
-  <div class="legend"><span><i style="background:#eb6834"></i>Exclusion error</span>
-  <span><i style="background:#2a78d6"></i>Inclusion error</span></div>
-  <svg class="ds-chart" viewBox="0 0 1180 376" role="img" aria-label="Exclusion and inclusion error by programme, March 2025">
-<line x1="132.0" y1="32" x2="132.0" y2="344" class="g"/>
-<text x="132.0" y="362" class="ax mid">0%</text>
-<line x1="364.0" y1="32" x2="364.0" y2="344" class="g"/>
-<text x="364.0" y="362" class="ax mid">25%</text>
-<line x1="596.0" y1="32" x2="596.0" y2="344" class="g"/>
-<text x="596.0" y="362" class="ax mid">50%</text>
-<line x1="828.0" y1="32" x2="828.0" y2="344" class="g"/>
-<text x="828.0" y="362" class="ax mid">75%</text>
-<line x1="1060.0" y1="32" x2="1060.0" y2="344" class="g"/>
-<text x="1060.0" y="362" class="ax mid">100%</text>
-<text x="116" y="76" class="lab end">PKH</text>
-<rect x="132" y="52" width="710.8" height="20" rx="4" style="fill:#eb6834"/>
-<text x="852.8" y="67" class="val" style="fill:#eb6834;font-weight:650">76.6%</text>
-<rect x="132" y="78" width="426.9" height="20" rx="4" style="fill:#2a78d6"/>
-<text x="568.9" y="93" class="val" style="fill:#2a78d6;font-weight:650">46.0%</text>
-<text x="116" y="150" class="lab end">BPNT</text>
-<rect x="132" y="126" width="690.4" height="20" rx="4" style="fill:#eb6834"/>
-<text x="832.4" y="141" class="val" style="fill:#eb6834;font-weight:650">74.4%</text>
-<rect x="132" y="152" width="335.0" height="20" rx="4" style="fill:#2a78d6"/>
-<text x="477.0" y="167" class="val" style="fill:#2a78d6;font-weight:650">36.1%</text>
-<text x="116" y="224" class="lab end">PBI</text>
-<rect x="132" y="200" width="395.3" height="20" rx="4" style="fill:#eb6834"/>
-<text x="537.3" y="215" class="val" style="fill:#eb6834;font-weight:650">42.6%</text>
-<rect x="132" y="226" width="379.6" height="20" rx="4" style="fill:#2a78d6"/>
-<text x="521.6" y="241" class="val" style="fill:#2a78d6;font-weight:650">40.9%</text>
-<text x="116" y="298" class="lab end">PIP</text>
-<rect x="132" y="274" width="761.9" height="20" rx="4" style="fill:#eb6834"/>
-<text x="903.9" y="289" class="val" style="fill:#eb6834;font-weight:650">82.1%</text>
-<rect x="132" y="300" width="410.2" height="20" rx="4" style="fill:#2a78d6"/>
-<text x="552.2" y="315" class="val" style="fill:#2a78d6;font-weight:650">44.2%</text>
-</svg></div>
-  <div class="b"><div class="keyp">
-  <h5>How the target group is defined</h5>
-  <p><b>PKH</b> deciles 1&ndash;4, and the household must meet the programme conditions
-  (a child under 5, a school-age member, or an elderly member).</p>
-  <p><b>BPNT</b> deciles 1&ndash;5. <b>PBI</b> deciles 1&ndash;5, counted per person.
-  <b>PIP</b> deciles 1&ndash;4, school age 6&ndash;27, counted per person.</p>
-  <p>Welfare is real expenditure per person, adjusted for price differences between
-  provinces and between urban and rural areas.</p>
-  </div>
-  <div class="keyp" style="margin-top:12px">
-  <h5>The cut-off matters</h5>
-  <p>Move the PKH line to deciles 1&ndash;3 and inclusion error becomes
-  <b>57.7%</b>. Move it to 1&ndash;5 and it becomes
-  <b>35.7%</b>. Nothing about the programme changed.</p>
-  </div></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own calculation from Susenas March 2025 microdata, following the definitions used by the DEN Indonesia Social Protection Targeting Monitor. PKH and BPNT are measured per household; PBI and PIP per person.</div></details>
+<div class="legend"><span><i style="background:#eb6834"></i>Exclusion error &mdash;
+  the target group that receives nothing</span>
+  <span><i style="background:#2a78d6"></i>Inclusion error &mdash; recipients outside the
+  target group</span></div>
+  <svg class="ds-chart" viewBox="0 0 1180 542" role="img" aria-label="Exclusion and inclusion error by programme, March 2025">
+<line x1="150.0" y1="36" x2="150.0" y2="504" class="g"/>
+<text x="150.0" y="530" class="ax mid" style="font-size:13px">0%</text>
+<line x1="378.0" y1="36" x2="378.0" y2="504" class="g"/>
+<text x="378.0" y="530" class="ax mid" style="font-size:13px">25%</text>
+<line x1="606.0" y1="36" x2="606.0" y2="504" class="g"/>
+<text x="606.0" y="530" class="ax mid" style="font-size:13px">50%</text>
+<line x1="834.0" y1="36" x2="834.0" y2="504" class="g"/>
+<text x="834.0" y="530" class="ax mid" style="font-size:13px">75%</text>
+<line x1="1062.0" y1="36" x2="1062.0" y2="504" class="g"/>
+<text x="1062.0" y="530" class="ax mid" style="font-size:13px">100%</text>
+<text x="130" y="100" class="end" style="font-family:Georgia,serif;font-size:22px;font-weight:600;fill:var(--text-primary)">PKH</text>
+<rect x="150" y="62" width="698.6" height="32" rx="5" style="fill:#eb6834"/>
+<text x="860.6" y="86" style="font-size:19px;font-weight:700;fill:#eb6834;font-variant-numeric:tabular-nums">76.6%</text>
+<rect x="150" y="102" width="419.5" height="32" rx="5" style="fill:#2a78d6"/>
+<text x="581.5" y="126" style="font-size:19px;font-weight:700;fill:#2a78d6;font-variant-numeric:tabular-nums">46.0%</text>
+<text x="130" y="212" class="end" style="font-family:Georgia,serif;font-size:22px;font-weight:600;fill:var(--text-primary)">BPNT</text>
+<rect x="150" y="174" width="678.5" height="32" rx="5" style="fill:#eb6834"/>
+<text x="840.5" y="198" style="font-size:19px;font-weight:700;fill:#eb6834;font-variant-numeric:tabular-nums">74.4%</text>
+<rect x="150" y="214" width="329.2" height="32" rx="5" style="fill:#2a78d6"/>
+<text x="491.2" y="238" style="font-size:19px;font-weight:700;fill:#2a78d6;font-variant-numeric:tabular-nums">36.1%</text>
+<text x="130" y="324" class="end" style="font-family:Georgia,serif;font-size:22px;font-weight:600;fill:var(--text-primary)">PBI</text>
+<rect x="150" y="286" width="388.5" height="32" rx="5" style="fill:#eb6834"/>
+<text x="550.5" y="310" style="font-size:19px;font-weight:700;fill:#eb6834;font-variant-numeric:tabular-nums">42.6%</text>
+<rect x="150" y="326" width="373.0" height="32" rx="5" style="fill:#2a78d6"/>
+<text x="535.0" y="350" style="font-size:19px;font-weight:700;fill:#2a78d6;font-variant-numeric:tabular-nums">40.9%</text>
+<text x="130" y="436" class="end" style="font-family:Georgia,serif;font-size:22px;font-weight:600;fill:var(--text-primary)">PIP</text>
+<rect x="150" y="398" width="748.8" height="32" rx="5" style="fill:#eb6834"/>
+<text x="910.8" y="422" style="font-size:19px;font-weight:700;fill:#eb6834;font-variant-numeric:tabular-nums">82.1%</text>
+<rect x="150" y="438" width="403.1" height="32" rx="5" style="fill:#2a78d6"/>
+<text x="565.1" y="462" style="font-size:19px;font-weight:700;fill:#2a78d6;font-variant-numeric:tabular-nums">44.2%</text>
+</svg>
+  <p class="footline">Move the PKH cut-off to deciles 1&ndash;3 and inclusion error becomes
+  <b style="color:#2a78d6">57.7%</b>; move it to
+  1&ndash;5 and it becomes
+  <b style="color:#2a78d6">35.7%</b>. Nothing about
+  the programme changed &mdash; only where the line is drawn.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own calculation from Susenas March 2025 microdata, following the definitions used by the DEN Indonesia Social Protection Targeting Monitor. Target groups: PKH deciles 1&ndash;4 and the household must meet the programme conditions (a child under 5, a school-age member, or an elderly member); BPNT deciles 1&ndash;5; PBI deciles 1&ndash;5; PIP deciles 1&ndash;4 and school age 6&ndash;27. PKH and BPNT are measured per household, PBI and PIP per person. Welfare is real expenditure per person, adjusted for price differences between provinces and between urban and rural areas.</div></details>
 </section></div></div></section>
 
 <section class="row-single" aria-label="Three years"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
