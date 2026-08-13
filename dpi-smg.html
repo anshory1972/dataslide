@@ -1347,13 +1347,43 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .footline { font-size:13.5px; line-height:1.6; color:var(--text-secondary);
   margin:16px 0 0; padding-top:13px; border-top:1px solid var(--grid); max-width:96ch; }
 .footline b { font-weight:700; }
+.grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px 26px; margin-top:10px; }
+.grid2 > div { min-width:0; }
+.trio { display:flex; gap:18px; margin-top:10px; }
+.trio > div { flex:1 1 0; min-width:0; }
+.toc { width:100%; border-collapse:collapse; margin-top:12px; font-size:12.5px; }
+.toc th { text-align:left; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 10px 8px 0; border-bottom:1px solid var(--border); }
+.toc td { padding:10px 10px 10px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); line-height:1.45; vertical-align:top; }
+.toc td:first-child { font-weight:650; color:var(--text-primary); width:170px; }
+.toc td.a, .toc td.b { text-align:center; width:74px; font-size:19px; font-weight:700;
+  letter-spacing:-2px; }
+.toc td.a { color:#eb6834; } .toc td.b { color:#2a78d6; }
+.toc td.s0 { color:var(--baseline); font-size:14px; letter-spacing:0; }
+.toc td.up { color:var(--muted); }
+.toc td:last-child { width:31%; }
+.pmt { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; }
+.pmt th { text-align:right; font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 10px 9px 0; line-height:1.35;
+  border-bottom:1px solid var(--border); }
+.pmt th:nth-child(2) { text-align:left; }
+.pmt td { padding:11px 10px 11px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); }
+.pmt td:first-child { font-weight:650; color:var(--text-primary); white-space:nowrap; }
+.pmt td.sp { width:34%; }
+.pmt td.v, .pmt td.n { text-align:right; font-variant-numeric:tabular-nums; }
+.pmt td.v { font-weight:700; color:var(--text-primary); }
+.pmt tr.win td { background:rgba(0,131,0,.07); font-weight:650; color:var(--text-primary); }
+.pmt tr.win td.v { color:#006b00; }
 .deck-lede { max-width:74ch; }
 @media screen and (max-width:1000px) {
   .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:repeat(2,1fr); } }
 @media screen and (max-width:700px) {
   .mgrid.c2, .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:1fr; }
   .mcard { min-height:0; }
-  .split, .artrow { flex-direction:column; }
+  .split, .artrow, .trio { flex-direction:column; }
+  .grid2 { grid-template-columns:1fr; }
   .split .a, .split .b { flex:1 1 auto; width:100%; max-width:100%; }
 }
 @media print {
@@ -1466,44 +1496,91 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <p class="panel-eyebrow">Figure 2</p>
 <h2>Three years: two programmes improving, one not</h2>
 <p class="panel-sub">Exclusion error, March 2023 to March 2025, on the same definitions. PBI and PIP reach more of their target group each year. PKH does not.</p>
-<svg class="ds-chart" viewBox="0 0 1180 420" role="img" aria-label="Exclusion error by programme, March 2023 to March 2025">
-<line x1="96" y1="338.7" x2="990" y2="338.7" class="g"/>
-<text x="84" y="342.7" class="ax end">40%</text>
-<line x1="96" y1="280.1" x2="990" y2="280.1" class="g"/>
-<text x="84" y="284.1" class="ax end">50%</text>
-<line x1="96" y1="221.5" x2="990" y2="221.5" class="g"/>
-<text x="84" y="225.5" class="ax end">60%</text>
-<line x1="96" y1="162.9" x2="990" y2="162.9" class="g"/>
-<text x="84" y="166.9" class="ax end">70%</text>
-<line x1="96" y1="104.3" x2="990" y2="104.3" class="g"/>
-<text x="84" y="108.3" class="ax end">80%</text>
-<line x1="96" y1="45.7" x2="990" y2="45.7" class="g"/>
-<text x="84" y="49.7" class="ax end">90%</text>
-<text x="96.0" y="392" class="ax mid">March 2023</text>
-<text x="543.0" y="392" class="ax mid">March 2024</text>
-<text x="990.0" y="392" class="ax mid">March 2025</text>
-<text x="0" y="22" class="ph">Exclusion error — eligible households not reached</text>
-<polyline points="96.0,134.8 543.0,134.8 990.0,124.2" style="fill:none;stroke:#eb6834;stroke-width:2.6"/>
-<circle cx="96.0" cy="134.8" r="5" style="fill:#eb6834"/>
-<circle cx="543.0" cy="134.8" r="5" style="fill:#eb6834"/>
-<circle cx="990.0" cy="124.2" r="5" style="fill:#eb6834"/>
-<text x="1004.0" y="129.2" class="nm" style="fill:#eb6834;font-weight:650">PKH 76.6%</text>
-<polyline points="96.0,128.3 543.0,150.0 990.0,137.1" style="fill:none;stroke:#eda100;stroke-width:2.6"/>
-<circle cx="96.0" cy="128.3" r="5" style="fill:#eda100"/>
-<circle cx="543.0" cy="150.0" r="5" style="fill:#eda100"/>
-<circle cx="990.0" cy="137.1" r="5" style="fill:#eda100"/>
-<text x="1004.0" y="142.1" class="nm" style="fill:#eda100;font-weight:650">BPNT 74.4%</text>
-<polyline points="96.0,284.8 543.0,307.1 990.0,323.5" style="fill:none;stroke:#2a78d6;stroke-width:2.6"/>
-<circle cx="96.0" cy="284.8" r="5" style="fill:#2a78d6"/>
-<circle cx="543.0" cy="307.1" r="5" style="fill:#2a78d6"/>
-<circle cx="990.0" cy="323.5" r="5" style="fill:#2a78d6"/>
-<text x="1004.0" y="328.5" class="nm" style="fill:#2a78d6;font-weight:650">PBI 42.6%</text>
-<polyline points="96.0,59.2 543.0,71.5 990.0,92.0" style="fill:none;stroke:#4a3aa7;stroke-width:2.6"/>
-<circle cx="96.0" cy="59.2" r="5" style="fill:#4a3aa7"/>
-<circle cx="543.0" cy="71.5" r="5" style="fill:#4a3aa7"/>
-<circle cx="990.0" cy="92.0" r="5" style="fill:#4a3aa7"/>
-<text x="1004.0" y="97.0" class="nm" style="fill:#4a3aa7;font-weight:650">PIP 82.1%</text>
-</svg>
+<div class="grid2"><div><svg class="ds-chart" viewBox="0 0 560 252" role="img" aria-label="Exclusion error for PKH, March 2023 to March 2025">
+<text x="46" y="24" style="font-family:Georgia,serif;font-size:19px;font-weight:600;fill:var(--text-primary)">PKH</text>
+<text x="476" y="24" style="font-size:12.5px;font-weight:700;fill:#eb6834">1.8 points higher</text>
+<line x1="54" y1="210.0" x2="470" y2="210.0" class="g"/>
+<text x="45" y="214.0" class="ax end" style="font-size:11px">0</text>
+<line x1="54" y1="169.0" x2="470" y2="169.0" class="g"/>
+<text x="45" y="173.0" class="ax end" style="font-size:11px">25</text>
+<line x1="54" y1="128.0" x2="470" y2="128.0" class="g"/>
+<text x="45" y="132.0" class="ax end" style="font-size:11px">50</text>
+<line x1="54" y1="87.0" x2="470" y2="87.0" class="g"/>
+<text x="45" y="91.0" class="ax end" style="font-size:11px">75</text>
+<line x1="54" y1="46.0" x2="470" y2="46.0" class="g"/>
+<text x="45" y="50.0" class="ax end" style="font-size:11px">100</text>
+<rect x="81.7" y="87.3" width="83.2" height="122.7" rx="4" style="fill:#eb6834"/>
+<text x="123.3" y="79.3" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">74.8%</text>
+<text x="123.3" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2023</text>
+<rect x="220.4" y="87.3" width="83.2" height="122.7" rx="4" style="fill:#eb6834"/>
+<text x="262.0" y="79.3" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">74.8%</text>
+<text x="262.0" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2024</text>
+<rect x="359.1" y="84.4" width="83.2" height="125.6" rx="4" style="fill:#eb6834"/>
+<text x="400.7" y="76.4" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">76.6%</text>
+<text x="400.7" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2025</text></svg></div><div><svg class="ds-chart" viewBox="0 0 560 252" role="img" aria-label="Exclusion error for BPNT, March 2023 to March 2025">
+<text x="46" y="24" style="font-family:Georgia,serif;font-size:19px;font-weight:600;fill:var(--text-primary)">BPNT</text>
+<text x="476" y="24" style="font-size:12.5px;font-weight:700;fill:#008300">1.5 points lower</text>
+<line x1="54" y1="210.0" x2="470" y2="210.0" class="g"/>
+<text x="45" y="214.0" class="ax end" style="font-size:11px">0</text>
+<line x1="54" y1="169.0" x2="470" y2="169.0" class="g"/>
+<text x="45" y="173.0" class="ax end" style="font-size:11px">25</text>
+<line x1="54" y1="128.0" x2="470" y2="128.0" class="g"/>
+<text x="45" y="132.0" class="ax end" style="font-size:11px">50</text>
+<line x1="54" y1="87.0" x2="470" y2="87.0" class="g"/>
+<text x="45" y="91.0" class="ax end" style="font-size:11px">75</text>
+<line x1="54" y1="46.0" x2="470" y2="46.0" class="g"/>
+<text x="45" y="50.0" class="ax end" style="font-size:11px">100</text>
+<rect x="81.7" y="85.5" width="83.2" height="124.5" rx="4" style="fill:#eb6834"/>
+<text x="123.3" y="77.5" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">75.9%</text>
+<text x="123.3" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2023</text>
+<rect x="220.4" y="91.6" width="83.2" height="118.4" rx="4" style="fill:#eb6834"/>
+<text x="262.0" y="83.6" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">72.2%</text>
+<text x="262.0" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2024</text>
+<rect x="359.1" y="88.0" width="83.2" height="122.0" rx="4" style="fill:#eb6834"/>
+<text x="400.7" y="80.0" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">74.4%</text>
+<text x="400.7" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2025</text></svg></div><div><svg class="ds-chart" viewBox="0 0 560 252" role="img" aria-label="Exclusion error for PBI, March 2023 to March 2025">
+<text x="46" y="24" style="font-family:Georgia,serif;font-size:19px;font-weight:600;fill:var(--text-primary)">PBI</text>
+<text x="476" y="24" style="font-size:12.5px;font-weight:700;fill:#008300">6.6 points lower</text>
+<line x1="54" y1="210.0" x2="470" y2="210.0" class="g"/>
+<text x="45" y="214.0" class="ax end" style="font-size:11px">0</text>
+<line x1="54" y1="169.0" x2="470" y2="169.0" class="g"/>
+<text x="45" y="173.0" class="ax end" style="font-size:11px">25</text>
+<line x1="54" y1="128.0" x2="470" y2="128.0" class="g"/>
+<text x="45" y="132.0" class="ax end" style="font-size:11px">50</text>
+<line x1="54" y1="87.0" x2="470" y2="87.0" class="g"/>
+<text x="45" y="91.0" class="ax end" style="font-size:11px">75</text>
+<line x1="54" y1="46.0" x2="470" y2="46.0" class="g"/>
+<text x="45" y="50.0" class="ax end" style="font-size:11px">100</text>
+<rect x="81.7" y="129.3" width="83.2" height="80.7" rx="4" style="fill:#eb6834"/>
+<text x="123.3" y="121.3" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">49.2%</text>
+<text x="123.3" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2023</text>
+<rect x="220.4" y="135.5" width="83.2" height="74.5" rx="4" style="fill:#eb6834"/>
+<text x="262.0" y="127.5" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">45.4%</text>
+<text x="262.0" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2024</text>
+<rect x="359.1" y="140.1" width="83.2" height="69.9" rx="4" style="fill:#eb6834"/>
+<text x="400.7" y="132.1" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">42.6%</text>
+<text x="400.7" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2025</text></svg></div><div><svg class="ds-chart" viewBox="0 0 560 252" role="img" aria-label="Exclusion error for PIP, March 2023 to March 2025">
+<text x="46" y="24" style="font-family:Georgia,serif;font-size:19px;font-weight:600;fill:var(--text-primary)">PIP</text>
+<text x="476" y="24" style="font-size:12.5px;font-weight:700;fill:#008300">5.6 points lower</text>
+<line x1="54" y1="210.0" x2="470" y2="210.0" class="g"/>
+<text x="45" y="214.0" class="ax end" style="font-size:11px">0</text>
+<line x1="54" y1="169.0" x2="470" y2="169.0" class="g"/>
+<text x="45" y="173.0" class="ax end" style="font-size:11px">25</text>
+<line x1="54" y1="128.0" x2="470" y2="128.0" class="g"/>
+<text x="45" y="132.0" class="ax end" style="font-size:11px">50</text>
+<line x1="54" y1="87.0" x2="470" y2="87.0" class="g"/>
+<text x="45" y="91.0" class="ax end" style="font-size:11px">75</text>
+<line x1="54" y1="46.0" x2="470" y2="46.0" class="g"/>
+<text x="45" y="50.0" class="ax end" style="font-size:11px">100</text>
+<rect x="81.7" y="66.2" width="83.2" height="143.8" rx="4" style="fill:#eb6834"/>
+<text x="123.3" y="58.2" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">87.7%</text>
+<text x="123.3" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2023</text>
+<rect x="220.4" y="69.6" width="83.2" height="140.4" rx="4" style="fill:#eb6834"/>
+<text x="262.0" y="61.6" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">85.6%</text>
+<text x="262.0" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2024</text>
+<rect x="359.1" y="75.4" width="83.2" height="134.6" rx="4" style="fill:#eb6834"/>
+<text x="400.7" y="67.4" class="mid" style="font-size:15px;font-weight:700;fill:#eb6834">82.1%</text>
+<text x="400.7" y="230.0" class="mid" style="font-size:12px;fill:var(--text-secondary)">2025</text></svg></div></div>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Susenas March 2023, 2024 and 2025. DTSEN became the legal basis for targeting in February 2025, and these surveys ask about benefits received before that. This is the starting point DTSEN inherits, not a measure of DTSEN.</div></details>
 </section></div></div></section>
 
@@ -1546,52 +1623,53 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
 <section class="row-single" aria-label="The budget floor"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Figure 4</p>
-<h2>How much of the gap is simply too few places</h2>
-<p class="panel-sub">If a programme funds fewer places than there are qualifying households, some of them must be missed however well the targeting works. That floor can be calculated exactly, and it is different for every programme.</p>
-<svg class="ds-chart" viewBox="0 0 1180 486" role="img" aria-label="Exclusion error split into the floor set by available places and the remainder">
-<line x1="150.0" y1="42" x2="150.0" y2="446" class="g"/>
-<text x="150.0" y="474" class="ax mid" style="font-size:13px">0%</text>
-<line x1="375.0" y1="42" x2="375.0" y2="446" class="g"/>
-<text x="375.0" y="474" class="ax mid" style="font-size:13px">25%</text>
-<line x1="600.0" y1="42" x2="600.0" y2="446" class="g"/>
-<text x="600.0" y="474" class="ax mid" style="font-size:13px">50%</text>
-<line x1="825.0" y1="42" x2="825.0" y2="446" class="g"/>
-<text x="825.0" y="474" class="ax mid" style="font-size:13px">75%</text>
-<line x1="1050.0" y1="42" x2="1050.0" y2="446" class="g"/>
-<text x="1050.0" y="474" class="ax mid" style="font-size:13px">100%</text>
-<text x="130" y="102" class="end" style="font-family:Georgia,serif;font-size:21px;font-weight:600;fill:var(--text-primary)">PKH</text>
-<rect x="150" y="70" width="509.3" height="34" rx="5" style="fill:#8c8a82"/>
-<rect x="659.3" y="70" width="180.1" height="34" rx="5" style="fill:#eb6834"/>
-<text x="404.7" y="93" class="mid" style="font-size:16px;font-weight:700;fill:#fff">57</text>
-<text x="851.4" y="93" style="font-size:18px;font-weight:700;fill:var(--text-primary);font-variant-numeric:tabular-nums">76.6%</text>
-<text x="150" y="124" class="ax" style="font-size:12.5px">23.9m qualify &middot; 10.4m places &mdash; 74% of the gap is simply too few places</text>
-<text x="130" y="198" class="end" style="font-family:Georgia,serif;font-size:21px;font-weight:600;fill:var(--text-primary)">BPNT</text>
-<rect x="150" y="166" width="539.4" height="34" rx="5" style="fill:#8c8a82"/>
-<rect x="689.4" y="166" width="130.2" height="34" rx="5" style="fill:#eb6834"/>
-<text x="419.7" y="189" class="mid" style="font-size:16px;font-weight:700;fill:#fff">60</text>
-<text x="831.6" y="189" style="font-size:18px;font-weight:700;fill:var(--text-primary);font-variant-numeric:tabular-nums">74.4%</text>
-<text x="150" y="220" class="ax" style="font-size:12.5px">33.3m qualify &middot; 13.3m places &mdash; 81% of the gap is simply too few places</text>
-<text x="130" y="294" class="end" style="font-family:Georgia,serif;font-size:21px;font-weight:600;fill:var(--text-primary)">PBI</text>
-<rect x="150" y="262" width="25.9" height="34" rx="5" style="fill:#8c8a82"/>
-<rect x="175.9" y="262" width="357.5" height="34" rx="5" style="fill:#eb6834"/>
-<text x="545.4" y="285" style="font-size:18px;font-weight:700;fill:var(--text-primary);font-variant-numeric:tabular-nums">42.6%</text>
-<text x="150" y="316" class="ax" style="font-size:12.5px">140.8m qualify &middot; 136.7m places &mdash; 7% of the gap is simply too few places</text>
-<text x="130" y="390" class="end" style="font-family:Georgia,serif;font-size:21px;font-weight:600;fill:var(--text-primary)">PIP</text>
-<rect x="150" y="358" width="611.6" height="34" rx="5" style="fill:#8c8a82"/>
-<rect x="761.6" y="358" width="127.3" height="34" rx="5" style="fill:#eb6834"/>
-<text x="455.8" y="381" class="mid" style="font-size:16px;font-weight:700;fill:#fff">68</text>
-<text x="900.9" y="381" style="font-size:18px;font-weight:700;fill:var(--text-primary);font-variant-numeric:tabular-nums">82.1%</text>
-<text x="150" y="412" class="ax" style="font-size:12.5px">41.0m qualify &middot; 13.1m places &mdash; 83% of the gap is simply too few places</text></svg>
-  <div class="legend" style="margin-top:14px">
-  <span><i style="background:#8c8a82"></i>Not enough places &mdash; unavoidable given the
-  number funded</span>
-  <span><i style="background:#eb6834"></i>Places that went to households outside the target
-  group</span></div>
-  <p class="footline">For PKH, BPNT and PIP most of the gap is the number of places, and no
-  data system can change that. <b>PBI is the exception</b> &mdash; it funds almost as many
-  places as there are people who qualify, so nearly all of its 42.6% is places going to the
-  wrong people. That is the part better data can fix.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own calculation from Susenas March 2025. The floor is (qualifying &minus; recipients) &divide; qualifying: with fewer places than qualifying households, that share cannot be reached even under perfect targeting. The remainder is observed exclusion error above that floor. Recipient counts are those observed in the survey, not budget allocations. Bansos recipients are also capped by quota rather than by decile (Permensos 3/2025 Pasal 17).</div></details>
+<h2>There are not enough places for everyone who qualifies</h2>
+<p class="panel-sub">Before asking how well a programme chooses, ask how many places it has. If a programme funds fewer places than there are qualifying families, the rest must be missed no matter how good the targeting is.</p>
+<svg class="ds-chart" viewBox="0 0 1180 458" role="img" aria-label="Places funded for every hundred who qualify, by programme">
+<line x1="132.0" y1="34" x2="132.0" y2="414" class="g"/>
+<text x="132.0" y="444" class="ax mid" style="font-size:13px">0</text>
+<line x1="319.0" y1="34" x2="319.0" y2="414" class="g"/>
+<text x="319.0" y="444" class="ax mid" style="font-size:13px">25</text>
+<line x1="506.0" y1="34" x2="506.0" y2="414" class="g"/>
+<text x="506.0" y="444" class="ax mid" style="font-size:13px">50</text>
+<line x1="693.0" y1="34" x2="693.0" y2="414" class="g"/>
+<text x="693.0" y="444" class="ax mid" style="font-size:13px">75</text>
+<line x1="880.0" y1="34" x2="880.0" y2="414" class="g"/>
+<text x="880.0" y="444" class="ax mid" style="font-size:13px">100</text>
+<text x="114" y="88" class="end" style="font-family:Georgia,serif;font-size:20px;font-weight:600;fill:var(--text-primary)">PKH</text>
+<rect x="132" y="62" width="748.0" height="30" rx="5" style="fill:#eb6834;opacity:.16"/>
+<rect x="132" y="62" width="324.7" height="30" rx="5" style="fill:#4a7c59"/>
+<text x="146" y="83" style="font-size:16px;font-weight:700;fill:#fff">43 places</text>
+<text x="866.0" y="83" class="end" style="font-size:15px;font-weight:700;fill:#eb6834">57 with none</text>
+<text x="900.0" y="73" style="font-size:12px;fill:var(--text-secondary)">23.9m families qualify</text>
+<text x="900.0" y="90" style="font-size:12px;fill:var(--text-secondary)">10.4m actually receive it</text>
+<text x="114" y="178" class="end" style="font-family:Georgia,serif;font-size:20px;font-weight:600;fill:var(--text-primary)">BPNT</text>
+<rect x="132" y="152" width="748.0" height="30" rx="5" style="fill:#eb6834;opacity:.16"/>
+<rect x="132" y="152" width="299.7" height="30" rx="5" style="fill:#4a7c59"/>
+<text x="146" y="173" style="font-size:16px;font-weight:700;fill:#fff">40 places</text>
+<text x="866.0" y="173" class="end" style="font-size:15px;font-weight:700;fill:#eb6834">60 with none</text>
+<text x="900.0" y="163" style="font-size:12px;fill:var(--text-secondary)">33.3m families qualify</text>
+<text x="900.0" y="180" style="font-size:12px;fill:var(--text-secondary)">13.3m actually receive it</text>
+<text x="114" y="268" class="end" style="font-family:Georgia,serif;font-size:20px;font-weight:600;fill:var(--text-primary)">PBI</text>
+<rect x="132" y="242" width="748.0" height="30" rx="5" style="fill:#eb6834;opacity:.16"/>
+<rect x="132" y="242" width="726.5" height="30" rx="5" style="fill:#4a7c59"/>
+<text x="146" y="263" style="font-size:16px;font-weight:700;fill:#fff">97 places</text>
+<text x="900.0" y="253" style="font-size:12px;fill:var(--text-secondary)">140.8m people qualify</text>
+<text x="900.0" y="270" style="font-size:12px;fill:var(--text-secondary)">136.7m actually receive it</text>
+<text x="114" y="358" class="end" style="font-family:Georgia,serif;font-size:20px;font-weight:600;fill:var(--text-primary)">PIP</text>
+<rect x="132" y="332" width="748.0" height="30" rx="5" style="fill:#eb6834;opacity:.16"/>
+<rect x="132" y="332" width="239.7" height="30" rx="5" style="fill:#4a7c59"/>
+<text x="146" y="353" style="font-size:16px;font-weight:700;fill:#fff">32 places</text>
+<text x="866.0" y="353" class="end" style="font-size:15px;font-weight:700;fill:#eb6834">68 with none</text>
+<text x="900.0" y="343" style="font-size:12px;fill:var(--text-secondary)">41.0m people qualify</text>
+<text x="900.0" y="360" style="font-size:12px;fill:var(--text-secondary)">13.1m actually receive it</text>
+<text x="132" y="24" style="font-size:12.5px;font-weight:650;fill:var(--text-primary)">Places funded for every 100 who qualify</text></svg>
+  <p class="footline">PKH funds 43 places for every 100 families that qualify, so at least
+  57 of those 100 get nothing whatever the data says. BPNT funds 40, PIP funds 32.
+  <b>PBI is different</b>: it funds 97 places for every 100 people who qualify, so almost
+  none of its 42.6% exclusion error can be blamed on the budget &mdash; nearly all of it is
+  places going to people outside the target group. That part is what better data fixes.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own calculation from Susenas March 2025. Places are recipients observed in the survey, not budget allocations. PKH and BPNT are counted in households, PBI and PIP in individuals, so the four are not on a common population. Bansos recipients are also capped by quota rather than by decile (Permensos 3/2025 Pasal 17).</div></details>
 </section></div></div></section>
 
 <section class="row-single" aria-label="The monitor"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
@@ -1737,9 +1815,11 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   </div></div></div>
   <p class="footline">These are the two levers, and they are the two halves of Figure 4.
   <b>Exclusion error falls when there are more places.</b> <b>Inclusion error falls when the
-  rule for allocating them improves.</b> Georgia is the warning in the other direction: its
-  exclusion error rose from 54% to 64% partly because prices were updated while the model's
-  coefficients were not.</p>
+  rule for allocating them improves.</b> Georgia is the warning in the other direction. Its formula
+  was calibrated at 2013 prices and never re-indexed, so as inflation raised the amounts
+  households reported, families were scored as better off without being better off. They
+  drifted above the eligibility line and exclusion error rose from 54% to 64% &mdash; nobody
+  changed the policy.</p>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Chile: Larra&ntilde;aga &amp; Contreras (2010), PNUD Chile DT 2010-1, Cuadro 2 &mdash; inclusion error measured administratively as entrants outside the poorest ventile. The authors state that Chile Solidario's exclusion error cannot be determined from available records. Turkey: World Bank (2013), <em>Toward Universal Coverage</em>, Table 3, citing Aran &amp; Hentschel (2012), <em>Protection in Good and Bad Times? The Turkish Green Card Health Program</em>, World Bank Policy Research Working Paper 6178, which reports the rise from 2.5 to 9.5 million holders. Georgia: World Bank (2020).</div></details>
 </section></div></div></section>
 
@@ -1832,15 +1912,35 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
 <section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">IV</span>What can digitalisation change?</h2><p class="divider-blurb">Registration, verification and payment can be improved now. What the formula can know cannot.</p></div></section>
 
-<section class="row-single" aria-label="Four requirements"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<section class="row-single" aria-label="A short test"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Figure 11</p>
-<h2>Self-registration on its own does not work</h2>
-<p class="panel-sub">No country has succeeded with self-service registration alone. Every system where opening registration improved targeting added four things alongside it.</p>
+<h2>Eight questions predict better than thirty-nine</h2>
+<p class="panel-sub">The same Susenas data, five ways of building the score. The short model is not a compromise made for the sake of speed. It fits better in sample and predicts better out of sample &mdash; and it beats a machine-learning model using all 39 variables.</p>
+<table class="pmt"><thead><tr><th></th><th>Specification</th><th>Questions</th>
+  <th>Adj. R&sup2;</th><th>Poorest decile<br>identified</th><th>Richest decile<br>identified</th>
+  <th>Error at<br>bottom 20%</th><th>Error at<br>bottom 40%</th></tr></thead><tbody>
+  <tr><td>Model 1</td><td class="sp">Baseline, no fixed effects</td><td class="v">39</td><td class="n">0.511</td><td class="n">38.2%</td><td class="n">58.6%</td><td class="n">48.6%</td><td class="n">30.9%</td></tr>
+  <tr><td>Model 3</td><td class="sp">Baseline + district effects</td><td class="v">39</td><td class="n">0.575</td><td class="n">40.9%</td><td class="n">60.5%</td><td class="n">45.8%</td><td class="n">28.8%</td></tr>
+  <tr><td>XGBoost</td><td class="sp">Machine learning, district level</td><td class="v">39</td><td class="n">&mdash;</td><td class="n">42.7%</td><td class="n">60.6%</td><td class="n">46.0%</td><td class="n">29.7%</td></tr>
+  <tr class="win"><td>Model 4</td><td class="sp">Parsimonious, no fixed effects</td><td class="v">8</td><td class="n">0.594</td><td class="n">50.8%</td><td class="n">63.2%</td><td class="n">41.8%</td><td class="n">27.8%</td></tr>
+  <tr class="win"><td>Model 5</td><td class="sp">Parsimonious + district effects</td><td class="v">8</td><td class="n">0.661</td><td class="n">52.1%</td><td class="n">65.6%</td><td class="n">39.7%</td><td class="n">26.0%</td></tr></tbody></table>
+  <p class="footline">This is what makes self-registration possible. A family can answer
+  <b>eight</b> questions at a counter or on a phone, and answer them again when circumstances
+  change. It cannot sit through a thirty-nine question interview, and neither can an agent
+  doing several households a day. The short test is what a digital front door can actually
+  carry &mdash; and here it is also the more accurate one.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Dewan Ekonomi Nasional, notes on the World Bank proxy means test, Tables 5.3 and 5.5. Adjusted R&sup2; is in-sample fit on Susenas 2022&ndash;2024; the remaining columns are out-of-sample prediction on 2025 test data. Column labels follow the source. A district fixed effect is not a question asked of the household &mdash; it is the district the household already lives in.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Four requirements"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 12</p>
+<h2>What makes open registration work</h2>
+<p class="panel-sub">Letting families come forward reaches poorer households than enrolling them automatically. In every country where it improved targeting, four things were put in place alongside it.</p>
 <div class="mgrid c4">
-<div class="mcard" style="border-color:#2a78d644;border-left-color:#2a78d6;background:#2a78d60d"><div class="n" style="color:#1f5da8">1</div><h4>Staff to help people apply</h4><p>19 of 20 on-demand social registries receive applications at staffed local offices. In Surabaya, <b>84%</b> of registrations came through an agent and only 16% were self-registered.</p><span class="tag">Indonesia: yes</span></div>
-<div class="mcard" style="border-color:#4a3aa744;border-left-color:#4a3aa7;background:#4a3aa70d"><div class="n" style="color:#4a3aa7">2</div><h4>Going out to find people</h4><p>Brazil ran open registration for five years and reached 22 million families, and still found <b>over one million</b> more extremely poor families in a single year once it went looking for them.</p><span class="tag">Indonesia: pilots only</span></div>
-<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d"><div class="n" style="color:#006b00">3</div><h4>Appeals that get answered</h4><p>An appeal channel corrects the households the formula missed &mdash; but only if the appeals are actually decided.</p><span class="tag">Indonesia: partly</span></div>
-<div class="mcard" style="border-color:#eda10044;border-left-color:#eda100;background:#eda1000d"><div class="n" style="color:#96690a">4</div><h4>Checking records before accepting them</h4><p>Administrative data checked at the moment of application, before the record enters the register.</p><span class="tag">Indonesia: no</span></div>
+<div class="mcard" style="border-color:#2a78d644;border-left-color:#2a78d6;background:#2a78d60d"><div class="n" style="color:#1f5da8">1</div><h4>Staff to help people apply</h4><p>19 of 20 on-demand social registries receive applications at staffed local offices. In Surabaya, <b>84%</b> of registrations came through an agent and only 16% were self-registered.</p><span class="tag">In place</span></div>
+<div class="mcard" style="border-color:#4a3aa744;border-left-color:#4a3aa7;background:#4a3aa70d"><div class="n" style="color:#4a3aa7">2</div><h4>Going out to find people</h4><p>Brazil ran open registration for five years and reached 22 million families, and still found <b>over one million</b> more extremely poor families in a single year once it went looking for them.</p><span class="tag">In pilots</span></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d"><div class="n" style="color:#006b00">3</div><h4>Appeals that get answered</h4><p>An appeal channel corrects the households the formula missed &mdash; but only if the appeals are actually decided.</p><span class="tag">Partly in place</span></div>
+<div class="mcard" style="border-color:#eda10044;border-left-color:#eda100;background:#eda1000d"><div class="n" style="color:#96690a">4</div><h4>Checking records before accepting them</h4><p>Administrative data checked at the moment of application, before the record enters the register.</p><span class="tag">Not yet at intake</span></div>
 </div>
   <div class="keyp" style="margin-top:14px">
   <p><b>Opening registration does help.</b> A randomised trial in 400 Indonesian villages
@@ -1852,30 +1952,51 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Staffed offices: Leite, George Karippacheril, Sun, Jones &amp; Lindert (2017), World Bank, p. 41. Surabaya: Pemkot Surabaya, reported 31 July 2026 &mdash; a single city, self-reported. Brazil <em>Busca Ativa</em>: Leite et al. (2017), p. 11 &mdash; programme reporting, no counterfactual evaluation exists. Trial: Alatas, Banerjee, Hanna, Olken, Purnamasari &amp; Wai-Poi (2016), <em>Journal of Political Economy</em> 124(2).</div></details>
 </section></div></div></section>
 
-<section class="row-single" aria-label="The audit"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Figure 12</p>
-<h2>Indonesia's own audit found both ends open</h2>
-<p class="panel-sub">The state audit board examined the register that preceded DTSEN. Records were being accepted without checking, and appeals were being closed without a decision.</p>
-<div class="split"><div class="a">
-  <div class="stat"><b style="color:#2a78d6">224,635</b>
-  <span>new applications recorded automatically <b>without verification</b> &mdash; 15,970 of
-  them without the required photographs. BPK: this creates inclusion error.</span></div>
-  <div class="stat" style="margin-top:22px"><b style="color:#eb6834">7,267</b>
-  <span>appeals closed automatically without being decided &mdash; produces exclusion error.
-  Of these, <b>735 in Jawa Tengah</b>, 2,085 in Jawa Barat, 758 in Sumatera Utara.</span></div>
-  </div>
-  <div class="a"><div class="keyp">
-  <h5>Turkey's answer is simple</h5>
-  <p>In Turkey's integrated system, when an application contains missing or inconsistent
-  information, an alert appears and <b>the application is frozen until the information is
-  validated</b>. The applicant cannot proceed and the record cannot enter the register.</p>
-  <p>Administrative records behind it are refreshed at least every 45 days, and supply about
-  40% of the information used to score a household. The remaining 60% still comes from a
-  home visit each year.</p>
-  <p>This is one transferable design feature, not a whole system: <b>check the record before
-  you accept it, not after.</b></p>
-  </div></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">BPK RI, <em>Ikhtisar Hasil Pemeriksaan Semester II Tahun 2024</em>, Bab I, pp. 35&ndash;37 &mdash; performance audit of DTKS management, FY2023 to first half 2024. Turkey: Leite et al. (2017), Box 16, pp. 64&ndash;65; Grosh, Leite, Wai-Poi &amp; Tesliuc (2022), p. 173.</div></details>
+<section class="row-single" aria-label="Theory of change"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 13</p>
+<h2>How digitalisation changes targeting accuracy</h2>
+<p class="panel-sub">Each part of the digital infrastructure acts on a different step, and moves a different error. The last column is the one that matters for planning: where each one stops.</p>
+<table class="toc">
+  <thead><tr><th>What it does</th><th>What it changes</th>
+  <th style="color:#eb6834">Exclusion</th><th style="color:#2a78d6">Inclusion</th>
+  <th>Where it stops</th></tr></thead><tbody>
+  <tr><td>Digital identity</td>
+    <td>One verified identity per person. Duplicates, deceased and ghost records removed.</td>
+    <td class="a s1">&darr;</td><td class="b s2">&darr;&darr;</td>
+    <td>Cannot see anyone who has never registered.</td></tr>
+  <tr><td>Data exchange at the moment of application</td>
+    <td>Land, vehicles, formal employment and electricity use checked <em>before</em> the
+    record is accepted, not after.</td>
+    <td class="a s0">&mdash;</td><td class="b s3">&darr;&darr;&darr;</td>
+    <td>Screens out the clearly non-poor. It does not measure income, so it cannot rank the
+    informal majority.</td></tr>
+  <tr><td>Open registration</td>
+    <td>A family that was missed can apply at any time instead of waiting for the next
+    survey round.</td>
+    <td class="a s3">&darr;&darr;&darr;</td><td class="b up">&uarr;</td>
+    <td>Only about 60% of the poorest come forward on their own. Outreach and assistance
+    close the rest.</td></tr>
+  <tr><td>Grievance that is decided</td>
+    <td>Wrong decisions corrected in both directions, and the pattern of appeals shows where
+    the formula is failing.</td>
+    <td class="a s2">&darr;&darr;</td><td class="b s2">&darr;&darr;</td>
+    <td>An upheld appeal needs a funded place to move into.</td></tr>
+  <tr><td>Continuous re-ranking</td>
+    <td>The register keeps up as circumstances change, instead of ageing between survey
+    rounds.</td>
+    <td class="a s2">&darr;&darr;</td><td class="b s2">&darr;&darr;</td>
+    <td>Still a ranking of proxies, and still only as fresh as the last rebuild.</td></tr>
+  <tr><td>Digital payment</td>
+    <td>Money reaches the account. New recipients are onboarded without a months-long wait
+    for an account to be opened.</td>
+    <td class="a s2">&darr;&darr;</td><td class="b s0">&mdash;</td>
+    <td>Fixes delivery, not selection. It cannot correct a wrong list.</td></tr>
+  </tbody></table>
+  <p class="footline">Two things none of this touches. It does not create <b>places</b>
+  &mdash; Figure 4 &mdash; and it does not make income <b>observable</b>, so the error in
+  the formula itself stays until more of the economy is formal. Everything digitalisation
+  does well sits between those two limits.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Mechanisms as set out in the Komite Percepatan Transformasi Digital design for Perlinsos Digital. Directions of effect follow the evidence in Figures 6 and 11 and the sources cited there; the arrows indicate direction and rough strength, not estimated magnitudes.</div></details>
 </section></div></div></section>
 
 <section class="row-single" aria-label="Conclusion"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
