@@ -1687,10 +1687,28 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
 <section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">III</span>Why is it imperfect?</h2><p class="divider-blurb">Two reasons. One is a limit on what any formula can know. The other is everything that happens after the formula.</p></div></section>
 
-<section class="row-single" aria-label="The ladder"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<section class="row-single" aria-label="The three methods"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Figure 7</p>
-<h2>What a country can verify sets what it can do</h2>
-<p class="panel-sub">Targeting methods form a ladder. Which rung a country can stand on is set by how much household income the government can verify from administrative records &mdash; not by the quality of its statisticians.</p>
+<h2>Three ways to decide who is poor</h2>
+<p class="panel-sub">There are three recognised methods. They differ in one thing: how much of a household's income the government can see in its own records.</p>
+<div class="mgrid c3">
+<div class="mcard" style="border-color:#2a78d644;border-left-color:#2a78d6;background:#2a78d60d"><div class="n" style="color:#1f5da8">1</div><h4>Means test &mdash; MT</h4><p><b>Measure income directly.</b> Add up income from every source, and test assets, using records the state already holds &mdash; tax, payroll, pensions, social security. Nothing is estimated.<br><br><b>Needs:</b> most income visible in records, near-universal formal employment.<br><br><b>Used in:</b> most OECD countries. Chile.</p><span class="tag">Verification</span></div>
+<div class="mcard" style="border-color:#4a3aa744;border-left-color:#4a3aa7;background:#4a3aa70d"><div class="n" style="color:#4a3aa7">2</div><h4>Proxy means test &mdash; PMT</h4><p><b>Estimate income from proxies.</b> Collect observable characteristics &mdash; housing, assets, household composition, education &mdash; and convert them into a score using weights estimated from a survey.<br><br><b>Needs:</b> a household survey and an enumeration round.<br><br><b>Used in:</b> Indonesia, Philippines, Pakistan, Albania, Malawi, Burkina Faso.</p><span class="tag">Estimation</span></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d"><div class="n" style="color:#006b00">3</div><h4>Hybrid means test &mdash; HMT</h4><p><b>Both at once.</b> Take the income that can be verified from records, estimate only the part that cannot &mdash; typically informal earnings &mdash; and add them together into one score.<br><br><b>Needs:</b> linked administrative data and a unique ID, plus formal income large enough to be worth verifying.<br><br><b>Used in:</b> Turkey. Common in Eastern Europe.</p><span class="tag">Both</span></div>
+</div>
+  <div class="keyp" style="margin-top:14px">
+  <p>The World Bank does not rank these as better or worse. It presents them as a menu, and
+  says which one fits which situation: a hybrid test <b>&ldquo;is recommended when formal
+  income represents a large share of a household&rsquo;s income&rdquo;</b>, and it
+  <b>&ldquo;depends on the availability and quality of administrative data&rdquo;</b>.
+  That is the criterion that decides what a country can use.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">World Bank <em>Sourcebook on the Foundations of Social Protection Delivery Systems</em> (Lindert, George Karippacheril, Rodr&iacute;guez Caillava &amp; Nishikawa Ch&aacute;vez, eds., 2020), Chapter 4, Table 4.2 and pp. 101&ndash;103. Quotations are from the Sourcebook's definition of hybrid means testing.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Where Indonesia sits"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 8</p>
+<h2>Indonesia can verify less than a fifth of income</h2>
+<p class="panel-sub">That is what fixes the method, not the quality of the statistics. Indonesia uses a proxy means test because most income is not visible in any government record.</p>
 <div class="split wide"><div class="a"><svg class="ds-chart" viewBox="0 0 1180 434" role="img" aria-label="Four rungs of targeting method">
 <rect x="178" y="30" width="812" height="80" rx="7" style="fill:rgba(0,0,0,.025);stroke:var(--border);stroke-width:1.4"/>
 <text x="196" y="57" style="font-family:Georgia,serif;font-size:16px;font-weight:600;fill:var(--text-primary)">Verified means test</text>
@@ -1721,19 +1739,19 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   the observable proxies. The other half is not.</p>
   </div>
   <div class="keyp" style="margin-top:12px">
-  <h5>Why Indonesia cannot copy Chile</h5>
-  <p>Chile can rank households on recorded income. Recorded income is never higher than true
+  <h5>Why Chile is not the next step</h5>
+  <p>Chile ranks households on recorded income. Recorded income is never higher than true
   income, so that filter can place a household too low but never too high &mdash; it cannot
-  wrongly exclude the poor. It changes the question from <em>who is poor?</em> to <em>who is
-  clearly not poor?</em></p>
-  <p>That requires most income to be visible in records. In Indonesia, formal employment is
-  under 20% of the workforce. Turkey, not Chile, is the next step.</p>
+  wrongly exclude a poor household. It changes the question from <em>who is poor?</em> to
+  <em>who is clearly not poor?</em></p>
+  <p>That only works when most income is in records. In Indonesia formal employment is under
+  20% of the workforce. <b>Turkey is the reachable next step; Chile is the destination.</b></p>
   </div></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Ladder built from the World Bank <em>Sourcebook on the Foundations of Social Protection Delivery Systems</em> (Lindert, George Karippacheril, Rodr&iacute;guez Caillava &amp; Nishikawa Ch&aacute;vez, eds., 2020), Chapter 4, Table 4.2, pp. 101&ndash;102. The categories are the Sourcebook's; presenting them as a progression is this author's reading of its selection criteria, not a World Bank maturity model. R&sup2; from Alatas, Banerjee, Hanna, Olken, Purnamasari &amp; Wai-Poi (2016), <em>Journal of Political Economy</em> 124(2), footnote 11.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">R&sup2; from Alatas, Banerjee, Hanna, Olken, Purnamasari &amp; Wai-Poi (2016), <em>Journal of Political Economy</em> 124(2), footnote 11, describing the PKH proxy-means formulas estimated on Susenas 2010 and Podes 2008. Ordering the three methods as a progression is this author's reading of the Sourcebook's selection criteria, not a World Bank maturity model.</div></details>
 </section></div></div></section>
 
 <section class="row-single" aria-label="Five sources of error"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Figure 8</p>
+<p class="panel-eyebrow">Figure 9</p>
 <h2>Five sources of error. Only two are the formula.</h2>
 <p class="panel-sub">Errors arise at two separate stages, and each stage produces both kinds of error. In the outcome data they look identical.</p>
 <div class="artrow" style="align-items:flex-start">
@@ -1755,7 +1773,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">IV</span>What can digitalisation change?</h2><p class="divider-blurb">Registration, verification and payment can be improved now. What the formula can know cannot.</p></div></section>
 
 <section class="row-single" aria-label="Four requirements"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Figure 9</p>
+<p class="panel-eyebrow">Figure 10</p>
 <h2>Self-registration on its own does not work</h2>
 <p class="panel-sub">No country has succeeded with self-service registration alone. Every system where opening registration improved targeting added four things alongside it.</p>
 <div class="mgrid c4">
@@ -1775,7 +1793,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 </section></div></div></section>
 
 <section class="row-single" aria-label="The audit"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Figure 10</p>
+<p class="panel-eyebrow">Figure 11</p>
 <h2>Indonesia's own audit found both ends open</h2>
 <p class="panel-sub">The state audit board examined the register that preceded DTSEN. Records were being accepted without checking, and appeals were being closed without a decision.</p>
 <div class="split"><div class="a">
