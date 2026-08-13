@@ -1386,6 +1386,49 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   .grid2 { grid-template-columns:1fr; }
   .split .a, .split .b { flex:1 1 auto; width:100%; max-width:100%; }
 }
+/* presenting in a browser: one slide per screen, nothing taller than the viewport */
+@media screen and (min-width:1000px) {
+  html { scroll-snap-type: y proximity; }
+  .deck-head, .row-single, .row-divider {
+    min-height:100vh; box-sizing:border-box;
+    display:flex; flex-direction:column; justify-content:center;
+    scroll-snap-align:center; }
+  .row-single > .viz-root { width:100%; }
+  .viz-root section.panel { max-width:1460px; margin-inline:auto; }
+  .ds-chart { max-height:54vh; }
+  .artrow img { max-height:32vh; }
+  .artrow figure:first-child img { max-height:22vh; }
+  .viz-root .panel img { max-height:56vh; width:auto; margin-inline:auto; }
+  /* scale type with screen height so dense slides still fit a laptop */
+  .viz-root section.panel { padding:clamp(14px,2.2vh,26px) clamp(16px,1.6vw,26px)
+    clamp(10px,1.6vh,20px); }
+  .scope-slide2 h2 { font-size:clamp(17px,2.35vh,24px); }
+  .scope-slide2 .panel-sub { font-size:clamp(11px,1.45vh,14.5px); }
+  .keyp { padding:clamp(9px,1.4vh,15px) clamp(11px,1vw,17px); }
+  .keyp h5 { font-size:clamp(11.5px,1.6vh,15px); }
+  .keyp p { font-size:clamp(9.5px,1.32vh,13px); margin-bottom:clamp(5px,0.8vh,10px); }
+  .footline { font-size:clamp(10px,1.45vh,14px); margin-top:clamp(8px,1.4vh,17px);
+    padding-top:clamp(7px,1.1vh,14px); }
+  .mcard { min-height:0; padding:clamp(9px,1.4vh,16px) clamp(11px,1vw,18px); }
+  .mcard h4 { font-size:clamp(12px,1.7vh,16px); margin-bottom:clamp(4px,0.7vh,8px); }
+  .mcard p { font-size:clamp(9.5px,1.3vh,13px); }
+  .mcard .n { font-size:clamp(12px,1.6vh,17px); margin-bottom:clamp(4px,0.8vh,9px); }
+  .stat { margin-bottom:clamp(7px,1.3vh,15px); }
+  .stat > b { font-size:clamp(22px,4vh,38px); }
+  .stat span { font-size:clamp(10px,1.35vh,13px); }
+  .legend { font-size:clamp(10px,1.35vh,13px); }
+  .pmt, .toc, .verdict { font-size:clamp(9.5px,1.32vh,13px); }
+  .pmt td, .toc td, .verdict td { padding-top:clamp(5px,0.95vh,11px);
+    padding-bottom:clamp(5px,0.95vh,11px); }
+  .ctable { font-size:clamp(8px,1.02vh,11.4px); }
+  .ctable td { padding-top:clamp(3px,0.6vh,7px); padding-bottom:clamp(3px,0.6vh,7px); }
+  .ds-chart { max-height:46vh; }
+  .grid2 .ds-chart { max-height:25vh; }
+  .artrow img { max-height:27vh; }
+  .artrow figure:first-child img { max-height:19vh; }
+  .viz-root .panel img { max-height:50vh; }
+  .viz-root details.src { font-size:clamp(9px,1.15vh,12px); }
+}
 @media print {
   .row-single { display:flex; flex-direction:column; justify-content:center;
     min-height:838px; box-sizing:border-box; }
@@ -1814,12 +1857,10 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   choosing who filled them.</p>
   </div></div></div>
   <p class="footline">These are the two levers, and they are the two halves of Figure 4.
-  <b>Exclusion error falls when there are more places.</b> <b>Inclusion error falls when the
-  rule for allocating them improves.</b> Georgia is the warning in the other direction. Its formula
-  was calibrated at 2013 prices and never re-indexed, so as inflation raised the amounts
-  households reported, families were scored as better off without being better off. They
-  drifted above the eligibility line and exclusion error rose from 54% to 64% &mdash; nobody
-  changed the policy.</p>
+  <b>Exclusion error falls when there are more places; inclusion error falls when the rule for
+  allocating them improves.</b> Georgia is the warning in the other direction: its formula was
+  fixed at 2013 prices and never re-indexed, so inflation pushed families above the line
+  without making them better off, and exclusion error rose from 54% to 64%.</p>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Chile: Larra&ntilde;aga &amp; Contreras (2010), PNUD Chile DT 2010-1, Cuadro 2 &mdash; inclusion error measured administratively as entrants outside the poorest ventile. The authors state that Chile Solidario's exclusion error cannot be determined from available records. Turkey: World Bank (2013), <em>Toward Universal Coverage</em>, Table 3, citing Aran &amp; Hentschel (2012), <em>Protection in Good and Bad Times? The Turkish Green Card Health Program</em>, World Bank Policy Research Working Paper 6178, which reports the rise from 2.5 to 9.5 million holders. Georgia: World Bank (2020).</div></details>
 </section></div></div></section>
 
