@@ -1330,6 +1330,20 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .verdict td.v { font-weight:700; width:170px; }
 .verdict td.v.yes { color:#008300; } .verdict td.v.part { color:#96690a; }
 .verdict td.v.cap { color:#2a78d6; } .verdict td.v.no { color:#eb6834; }
+.ctable { width:100%; border-collapse:collapse; margin-top:12px; font-size:11.4px; }
+.ctable th { text-align:left; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 9px 7px 0; border-bottom:1px solid var(--border); }
+.ctable td { padding:7px 9px 7px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); line-height:1.42; vertical-align:top; }
+.ctable td:first-child { font-weight:650; color:var(--text-primary); white-space:nowrap; }
+.ctable td.y { white-space:nowrap; color:var(--muted); }
+.ctable td.n { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
+  text-align:right; padding-right:14px; }
+.ctable td.n.ee { color:#eb6834; } .ctable td.n.ie { color:#2a78d6; }
+.ctable td.d { width:33%; }
+.ctable td.s { width:20%; color:var(--muted); font-size:10.6px; }
+.ctable tr.sep td { border-bottom:2px solid var(--baseline); padding:3px 0; }
+.ctable tr.idn td { background:rgba(235,104,52,.045); }
 .deck-lede { max-width:74ch; }
 @media screen and (max-width:1000px) {
   .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:repeat(2,1fr); } }
@@ -1835,6 +1849,32 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   </tbody></table>
   <p class="panel-sub" style="margin-top:16px">The digital public infrastructure described
   earlier today is necessary. This is a map of what it will and will not fix.</p>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">&nbsp;</span>Appendix</h2><p class="divider-blurb">Reference table, for questions.</p></div></section>
+
+<section class="row-single" aria-label="Country table"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Appendix</p>
+<h2>Every figure with the population it is measured against</h2>
+<p class="panel-sub">Exclusion and inclusion error can only be compared when you know what each was measured against. These were not measured the same way. The sixth column says how each one differs.</p>
+<table class="ctable"><thead><tr><th>Country</th><th>Programme</th><th>Year</th><th>Exclusion</th><th>Inclusion</th><th>Measured against</th><th>Source</th></tr></thead><tbody><tr><td>Turkey</td><td>ESSN (refugee cash transfer)</td><td class="y">2019</td><td class="n ee">34%</td><td class="n ie">24%</td><td class="d">Applicants only &mdash; 1.6m of about 3.2m refugees, surveyed before any payment was made. Not comparable with the rest of the table.</td><td class="s">Cuevas, Inan, Twose &amp; &Ccedil;elik (2019), World Bank and WFP</td></tr>
+<tr><td>Turkey</td><td>Green Card</td><td class="y">2003</td><td class="n ee">88%</td><td class="n ie">45%</td><td class="d">Poorest decile.</td><td class="s">World Bank (2013), Table 3</td></tr>
+<tr><td>Turkey</td><td>Green Card</td><td class="y">2008</td><td class="n ee">38%</td><td class="n ie">29%</td><td class="d">Poorest decile. Same programme, five years later.</td><td class="s">World Bank (2013), Table 3</td></tr>
+<tr><td>Georgia</td><td>TSA</td><td class="y">2013</td><td class="n ee">54%</td><td class="n ie">&mdash;</td><td class="d">Bottom quintile of consumption, measured after transfers are removed.</td><td class="s">World Bank (2020)</td></tr>
+<tr><td>Georgia</td><td>TSA</td><td class="y">2018</td><td class="n ee">64%</td><td class="n ie">&mdash;</td><td class="d">As above. About a third of the increase came from prices being updated while the coefficients were not.</td><td class="s">World Bank (2020)</td></tr>
+<tr><td>Egypt</td><td>Takaful</td><td class="y">2017</td><td class="n ee">~85%</td><td class="n ie">33%</td><td class="d">Exclusion is derived from reported coverage, not stated by IFPRI. Inclusion is measured among beneficiaries, and the population is households with children.</td><td class="s">Breisinger et al. (2018), IFPRI</td></tr>
+<tr><td>Tunisia</td><td>PNAFN</td><td class="y">2015</td><td class="n ee">83%</td><td class="n ie">60%</td><td class="d">Exclusion against the poorest <b>decile</b>; inclusion against the poorest <b>quintile</b>. The two are not on the same base.</td><td class="s">World Bank (2022)</td></tr>
+<tr><td>Tunisia</td><td>PNAFN and AMG2</td><td class="y">2015</td><td class="n ee">52%</td><td class="n ie">57%</td><td class="d">Both against the poorest quintile.</td><td class="s">World Bank (2022)</td></tr>
+<tr><td>Morocco</td><td>RAMED</td><td class="y">2019&ndash;20</td><td class="n ee">~50%</td><td class="n ie">70%</td><td class="d">Exclusion covers RAMED and Tayssir together, against the poorest quintile. Inclusion is the share of beneficiaries outside that quintile.</td><td class="s">World Bank (2021)</td></tr>
+<tr><td>Jordan</td><td>NAF</td><td class="y">2010</td><td class="n ee">69%</td><td class="n ie">&mdash;</td><td class="d">Bottom decile. A second World Bank source reports 83.5% against the poorest quintile &mdash; a different denominator, not a contradiction.</td><td class="s">World Bank (2012); Silva, Levin &amp; Morgandi (2012)</td></tr>
+<tr><td>Chile</td><td>Solidario</td><td class="y">2002</td><td class="n ee">&mdash;</td><td class="n ie">38.6%</td><td class="d">Entrants outside the poorest ventile.</td><td class="s">Larra&ntilde;aga &amp; Contreras (2010)</td></tr>
+<tr><td>Chile</td><td>Solidario</td><td class="y">2008</td><td class="n ee">&mdash;</td><td class="n ie">1.0%</td><td class="d">As above, after local cut-offs were replaced by a single national cut-off. The formula itself did not change.</td><td class="s">Larra&ntilde;aga &amp; Contreras (2010)</td></tr>
+<tr class="sep"><td colspan="7"></td></tr>
+<tr class="idn"><td>Indonesia</td><td>PKH</td><td class="y">2025</td><td class="n ee">76.6%</td><td class="n ie">46.0%</td><td class="d">Deciles 1&ndash;4 with programme conditions, households.</td><td class="s">Susenas March 2025, own calculation</td></tr>
+<tr class="idn"><td>Indonesia</td><td>BPNT</td><td class="y">2025</td><td class="n ee">74.4%</td><td class="n ie">36.1%</td><td class="d">Deciles 1&ndash;5, households.</td><td class="s">Susenas March 2025, own calculation</td></tr>
+<tr class="idn"><td>Indonesia</td><td>PBI</td><td class="y">2025</td><td class="n ee">42.6%</td><td class="n ie">40.9%</td><td class="d">Deciles 1&ndash;5, individuals.</td><td class="s">Susenas March 2025, own calculation</td></tr>
+<tr class="idn"><td>Indonesia</td><td>PIP</td><td class="y">2025</td><td class="n ee">82.1%</td><td class="n ie">44.2%</td><td class="d">Deciles 1&ndash;4, school age 6&ndash;27, individuals.</td><td class="s">Susenas March 2025, own calculation</td></tr></tbody></table>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Three published figures are left out because their own sources are wrong: a Yemen exclusion figure whose denominator is applicants rather than the poor; a Tunisia leakage figure whose sign is inverted in the English text but correct in the French; and a Morocco figure whose main text reads as coverage while its own footnote and results indicator confirm it is beneficiary incidence.</div></details>
 </section></div></div></section>
 
 <footer class="deck-foot">
