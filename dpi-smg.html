@@ -1670,51 +1670,77 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <section class="row-single" aria-label="What changed the numbers"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Figure 6</p>
 <h2>What actually changed the numbers elsewhere</h2>
-<p class="panel-sub">In each case where measured error fell sharply, what changed was a rule, a threshold or a process. In none of them was it a better statistical model.</p>
-<svg class="ds-chart" viewBox="0 0 1180 330" role="img" aria-label="Three cases where a rule change moved measured error">
-<text x="196.7" y="24" class="ph mid">Chile</text>
-<text x="196.7" y="42" class="ax mid">Inclusion error</text>
-<line x1="90.0" y1="169.8" x2="303.3333333333333" y2="248.3" style="stroke:#2a78d6;stroke-width:2.8"/>
-<circle cx="90.0" cy="169.8" r="6" style="fill:#2a78d6"/>
-<text x="90.0" y="155.8" class="mid" style="font-size:16px;font-weight:700;fill:#2a78d6">48.6%</text>
-<text x="90.0" y="270" class="ax mid">2002</text>
-<circle cx="303.3" cy="248.3" r="6" style="fill:#2a78d6"/>
-<text x="303.3" y="234.3" class="mid" style="font-size:16px;font-weight:700;fill:#2a78d6">1%</text>
-<text x="303.3" y="270" class="ax mid">2008</text>
-<text x="196.7" y="296" class="ax mid">One national cut-off replaced</text>
-<text x="196.7" y="312" class="ax mid">local ones. No change to the</text>
-<text x="196.7" y="328" class="ax mid">formula.</text>
-<text x="590.0" y="24" class="ph mid">Turkey</text>
-<text x="590.0" y="42" class="ax mid">Exclusion error</text>
-<line x1="483.3333333333333" y1="104.8" x2="696.6666666666666" y2="187.3" style="stroke:#eb6834;stroke-width:2.8"/>
-<circle cx="483.3" cy="104.8" r="6" style="fill:#eb6834"/>
-<text x="483.3" y="90.8" class="mid" style="font-size:16px;font-weight:700;fill:#eb6834">88%</text>
-<text x="483.3" y="270" class="ax mid">2003</text>
-<circle cx="696.7" cy="187.3" r="6" style="fill:#eb6834"/>
-<text x="696.7" y="173.3" class="mid" style="font-size:16px;font-weight:700;fill:#eb6834">38%</text>
-<text x="696.7" y="270" class="ax mid">2008</text>
-<text x="590.0" y="296" class="ax mid">Green Card reform.</text>
-<line x1="393.3333333333333" y1="14" x2="393.3333333333333" y2="314" class="g"/>
-<text x="983.3" y="24" class="ph mid">Georgia</text>
-<text x="983.3" y="42" class="ax mid">Exclusion error</text>
-<line x1="876.6666666666666" y1="160.9" x2="1090.0" y2="144.4" style="stroke:#eb6834;stroke-width:2.8"/>
-<circle cx="876.7" cy="160.9" r="6" style="fill:#eb6834"/>
-<text x="876.7" y="146.9" class="mid" style="font-size:16px;font-weight:700;fill:#eb6834">54%</text>
-<text x="876.7" y="270" class="ax mid">2013</text>
-<circle cx="1090.0" cy="144.4" r="6" style="fill:#eb6834"/>
-<text x="1090.0" y="130.4" class="mid" style="font-size:16px;font-weight:700;fill:#eb6834">64%</text>
-<text x="1090.0" y="270" class="ax mid">2018</text>
-<text x="983.3" y="296" class="ax mid">A third of the rise: prices</text>
-<text x="983.3" y="312" class="ax mid">updated, coefficients not.</text>
-<line x1="786.6666666666666" y1="14" x2="786.6666666666666" y2="314" class="g"/>
-</svg>
-  <div class="keyp" style="margin-top:14px">
-  <p><b>Egypt is the clearest case.</b> Only half of the poorest fifth of households ever
-  applied for Takaful. Researchers calculated that the formula on its own would have admitted
-  46% non-poor recipients; the figure actually observed was 33%. The programme was more
-  accurate than its formula, because the people who did not need it largely did not apply.
-  The exclusion problem was in <b>who came forward</b>, not in the scoring.</p></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Chile: Larra&ntilde;aga &amp; Contreras (2010), PNUD, Cuadro 2 &mdash; inclusion error measured against the poorest ventile. Turkey: World Bank (2013), Table 3. Georgia: World Bank (2020) &mdash; about one third of the increase is attributed to monetary variables entering the formula at current prices while the coefficients were estimated at 2013 prices. Egypt: Breisinger et al. (2018), IFPRI.</div></details>
+<p class="panel-sub">Two countries cut their targeting error sharply. Neither did it by improving the statistical model. One changed a rule; the other funded more places.</p>
+<svg class="ds-chart" viewBox="0 0 1180 330" role="img" aria-label="Chile inclusion error by cohort and Turkey exclusion error with programme size">
+<text x="78" y="26" class="ph" style="font-size:15px">Chile &mdash; Solidario</text>
+<text x="78" y="46" class="ax">Inclusion error, by year of entry</text>
+<line x1="78" y1="264.0" x2="530.0" y2="264.0" class="g"/>
+<text x="68" y="268.0" class="ax end">0%</text>
+<line x1="78" y1="190.5" x2="530.0" y2="190.5" class="g"/>
+<text x="68" y="194.5" class="ax end">20%</text>
+<line x1="78" y1="117.1" x2="530.0" y2="117.1" class="g"/>
+<text x="68" y="121.1" class="ax end">40%</text>
+<line x1="360.5" y1="56" x2="360.5" y2="264" style="stroke:#2a78d6;stroke-width:1.6;stroke-dasharray:5 4"/>
+<text x="368.5" y="70" class="ax" style="fill:#2a78d6;font-weight:700">one national cut-off</text>
+<polyline points="78.0,122.2 191.0,87.7 304.0,85.5 417.0,242.0 530.0,260.3" style="fill:none;stroke:#2a78d6;stroke-width:2.8"/>
+<circle cx="78.0" cy="122.2" r="5.5" style="fill:#2a78d6"/>
+<text x="78.0" y="109.2" class="mid" style="font-size:13px;font-weight:700;fill:#2a78d6">38.6%</text>
+<text x="78.0" y="286.0" class="ax mid">2002</text>
+<circle cx="191.0" cy="87.7" r="5.5" style="fill:#2a78d6"/>
+<text x="191.0" y="74.7" class="mid" style="font-size:13px;font-weight:700;fill:#2a78d6">48%</text>
+<text x="191.0" y="286.0" class="ax mid">2004</text>
+<circle cx="304.0" cy="85.5" r="5.5" style="fill:#2a78d6"/>
+<text x="304.0" y="72.5" class="mid" style="font-size:13px;font-weight:700;fill:#2a78d6">48.6%</text>
+<text x="304.0" y="286.0" class="ax mid">2006</text>
+<circle cx="417.0" cy="242.0" r="5.5" style="fill:#2a78d6"/>
+<text x="417.0" y="229.0" class="mid" style="font-size:13px;font-weight:700;fill:#2a78d6">6%</text>
+<text x="417.0" y="286.0" class="ax mid">2007</text>
+<circle cx="530.0" cy="260.3" r="5.5" style="fill:#2a78d6"/>
+<text x="530.0" y="247.3" class="mid" style="font-size:13px;font-weight:700;fill:#2a78d6">1%</text>
+<text x="530.0" y="286.0" class="ax mid">2008</text>
+<line x1="590.0" y1="14" x2="590.0" y2="306" class="g"/>
+<text x="686.0" y="26" class="ph" style="font-size:15px">Turkey &mdash; Green Card</text>
+<text x="686.0" y="46" class="ax">Exclusion error, poorest decile</text>
+<line x1="686.0" y1="264.0" x2="1040" y2="264.0" class="g"/>
+<text x="676.0" y="268.0" class="ax end">0%</text>
+<line x1="686.0" y1="163.0" x2="1040" y2="163.0" class="g"/>
+<text x="676.0" y="167.0" class="ax end">50%</text>
+<line x1="686.0" y1="62.0" x2="1040" y2="62.0" class="g"/>
+<text x="676.0" y="66.0" class="ax end">100%</text>
+<polyline points="686.0,86.2 1040.0,187.2" style="fill:none;stroke:#eb6834;stroke-width:2.8"/>
+<circle cx="686.0" cy="86.2" r="5.5" style="fill:#eb6834"/>
+<text x="702.0" y="92.2" style="font-size:17px;text-anchor:start;font-weight:700;fill:#eb6834">88%</text>
+<text x="686.0" y="286.0" class="ax mid">2003</text>
+<text x="686.0" y="306.0" class="mid" style="font-size:14px;font-weight:700;fill:var(--text-primary)">2.5m</text>
+<circle cx="1040.0" cy="187.2" r="5.5" style="fill:#eb6834"/>
+<text x="1024.0" y="193.2" style="font-size:17px;text-anchor:end;font-weight:700;fill:#eb6834">38%</text>
+<text x="1040.0" y="286.0" class="ax mid">2008</text>
+<text x="1040.0" y="306.0" class="mid" style="font-size:14px;font-weight:700;fill:var(--text-primary)">9.5m</text>
+<text x="863.0" y="324.0" class="ax mid">people holding a Green Card</text></svg>
+  <div class="split" style="margin-top:14px">
+  <div class="a"><div class="keyp" style="border-color:#2a78d655;background:#2a78d60a">
+  <h5 style="color:#2a78d6">Chile: a rule, not a formula</h5>
+  <p>Until 2006 each commune had its own cut-off, estimated from a sample of about 200
+  households. A family could qualify in one commune and be refused across the boundary with
+  the same circumstances.</p>
+  <p>From 2007 a <b>single national cut-off</b> replaced them. Entrants coming from the
+  poorest ventile went from 51% to 99%, and inclusion error fell from 48.6% to 1.0%.
+  <b>The scoring formula did not change.</b></p>
+  </div></div>
+  <div class="a"><div class="keyp" style="border-color:#eb683455;background:#eb68340a">
+  <h5 style="color:#eb6834">Turkey: more places, not better sorting</h5>
+  <p>Between 2003 and 2008 the Green Card grew from <b>2.5 million to 9.5 million</b>
+  holders. Exclusion error among the poorest tenth fell from 88% to 38%.</p>
+  <p>The expansion was progressive, so the extra places went disproportionately to poor
+  households. The gain came from there being far more places, not from a better method of
+  choosing who filled them.</p>
+  </div></div></div>
+  <p class="footline">These are the two levers, and they are the two halves of Figure 4.
+  <b>Exclusion error falls when there are more places.</b> <b>Inclusion error falls when the
+  rule for allocating them improves.</b> Georgia is the warning in the other direction: its
+  exclusion error rose from 54% to 64% partly because prices were updated while the model's
+  coefficients were not.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Chile: Larra&ntilde;aga &amp; Contreras (2010), PNUD Chile DT 2010-1, Cuadro 2 &mdash; inclusion error measured administratively as entrants outside the poorest ventile. The authors state that Chile Solidario's exclusion error cannot be determined from available records. Turkey: World Bank (2013), <em>Toward Universal Coverage</em>, Table 3, citing Aran &amp; Hentschel (2012), <em>Protection in Good and Bad Times? The Turkish Green Card Health Program</em>, World Bank Policy Research Working Paper 6178, which reports the rise from 2.5 to 9.5 million holders. Georgia: World Bank (2020).</div></details>
 </section></div></div></section>
 
 <section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">III</span>Why is it imperfect?</h2><p class="divider-blurb">Two reasons. One is a limit on what any formula can know. The other is everything that happens after the formula.</p></div></section>
