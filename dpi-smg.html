@@ -1363,19 +1363,25 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .toc td.s0 { color:var(--baseline); font-size:14px; letter-spacing:0; }
 .toc td.up { color:var(--muted); }
 .toc td:last-child { width:31%; }
-.pmt { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; }
-.pmt th { text-align:right; font-size:10px; letter-spacing:.05em; text-transform:uppercase;
-  color:var(--muted); font-weight:700; padding:0 10px 9px 0; line-height:1.35;
+.pmt { width:100%; border-collapse:collapse; margin-top:16px; font-size:15.5px; }
+.pmt th { text-align:right; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 12px 11px 0; line-height:1.35;
   border-bottom:1px solid var(--border); }
 .pmt th:nth-child(2) { text-align:left; }
-.pmt td { padding:11px 10px 11px 0; border-bottom:1px solid var(--grid);
+.pmt td { padding:15px 12px 15px 0; border-bottom:1px solid var(--grid);
   color:var(--text-secondary); }
 .pmt td:first-child { font-weight:650; color:var(--text-primary); white-space:nowrap; }
-.pmt td.sp { width:34%; }
+.pmt td.sp { width:23%; }
 .pmt td.v, .pmt td.n { text-align:right; font-variant-numeric:tabular-nums; }
 .pmt td.v { font-weight:700; color:var(--text-primary); }
 .pmt tr.win td { background:rgba(0,131,0,.07); font-weight:650; color:var(--text-primary); }
 .pmt tr.win td.v { color:#006b00; }
+.refs h5 { font-family:Georgia,serif; font-size:14.5px; margin:0 0 10px;
+  color:var(--text-primary); font-weight:600; padding-bottom:7px;
+  border-bottom:1px solid var(--border); }
+.refs p { font-size:11.6px; line-height:1.5; color:var(--text-secondary);
+  margin:0 0 8px; padding-left:15px; text-indent:-15px; }
+.refs b { color:var(--text-primary); font-weight:650; }
 .deck-lede { max-width:74ch; }
 @media screen and (max-width:1000px) {
   .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:repeat(2,1fr); } }
@@ -1417,9 +1423,14 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
   .stat > b { font-size:clamp(22px,4vh,38px); }
   .stat span { font-size:clamp(11.5px,1.35vh,13px); }
   .legend { font-size:clamp(11.5px,1.35vh,13px); }
-  .pmt, .toc, .verdict { font-size:clamp(11.5px,1.32vh,13px); }
-  .pmt td, .toc td, .verdict td { padding-top:clamp(5px,0.95vh,11px);
+  .toc, .verdict { font-size:clamp(11.5px,1.32vh,13px); }
+  .refs p { font-size:clamp(10px,1.15vh,11.6px); margin-bottom:clamp(4px,0.75vh,8px); }
+  .refs h5 { font-size:clamp(12px,1.5vh,14.5px); }
+  .pmt { font-size:clamp(13px,1.95vh,17px); }
+  .pmt th { font-size:clamp(10px,1.3vh,12px); }
+  .toc td, .verdict td { padding-top:clamp(5px,0.95vh,11px);
     padding-bottom:clamp(5px,0.95vh,11px); }
+  .pmt td { padding-top:clamp(8px,1.55vh,17px); padding-bottom:clamp(8px,1.55vh,17px); }
   .ctable { font-size:clamp(10px,1.02vh,11.4px); }
   .ctable td { padding-top:clamp(3px,0.6vh,7px); padding-bottom:clamp(3px,0.6vh,7px); }
   .ds-chart { max-height:46vh; }
@@ -2087,6 +2098,54 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <tr class="idn"><td>Indonesia</td><td>PBI</td><td class="y">2025</td><td class="n ee">42.6%</td><td class="n ie">40.9%</td><td class="d">Deciles 1&ndash;5, individuals.</td><td class="s">Susenas March 2025, own calculation</td></tr>
 <tr class="idn"><td>Indonesia</td><td>PIP</td><td class="y">2025</td><td class="n ee">82.1%</td><td class="n ie">44.2%</td><td class="d">Deciles 1&ndash;4, school age 6&ndash;27, individuals.</td><td class="s">Susenas March 2025, own calculation</td></tr></tbody></table>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Three published figures are left out because their own sources are wrong: a Yemen exclusion figure whose denominator is applicants rather than the poor; a Tunisia leakage figure whose sign is inverted in the English text but correct in the French; and a Morocco figure whose main text reads as coverage while its own footnote and results indicator confirm it is beneficiary incidence.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="References"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">References</p>
+<h2>Sources</h2>
+<p class="panel-sub">Every figure in this deck is traceable to one of these. Where a source is contested or its definition differs from the others, that is stated in the note under the figure itself.</p>
+<div class="split refs"><div class="a">
+  <h5>Indonesian data and documents</h5>
+  <p><b>BPS.</b> Survei Sosial Ekonomi Nasional (Susenas), March 2023, March 2024 and March
+  2025. Household and individual microdata. All Indonesian exclusion and inclusion error
+  figures are the author's own calculation from these files.</p>
+  <p><b>Dewan Ekonomi Nasional.</b> <em>Indonesia Social Protection Targeting Monitor.</em>
+  Definitions of target group, welfare decile and error measures follow this dashboard.</p>
+  <p><b>Dewan Ekonomi Nasional.</b> <em>Notes on the World Bank Proxy Means Test</em>,
+  Tables 5.3 and 5.5.</p>
+  <p><b>Yusuf, Arief Anshory (2026).</b> <em>Salah Sasaran: Memahami Kesalahan Pensasaran dan
+  Penyaluran Bantuan Sosial di Indonesia.</em> Mei 2026. Framework and illustrations.</p>
+  <p><b>Komite Percepatan Transformasi Digital.</b> Design of Perlinsos Digital.</p>
+  <p><b>Peraturan Menteri Sosial No. 3 Tahun 2025</b>, Pasal 17, on the quota governing the
+  number of bansos recipients.</p>
+  </div><div class="a">
+  <h5>Studies and international sources</h5>
+  <p><b>Alatas, V., A. Banerjee, R. Hanna, B. Olken, R. Purnamasari &amp; M. Wai-Poi (2016).</b>
+  &ldquo;Self-Targeting: Evidence from a Field Experiment in Indonesia.&rdquo;
+  <em>Journal of Political Economy</em> 124(2): 371&ndash;427.</p>
+  <p><b>Aran, M. &amp; J. Hentschel (2012).</b> <em>Protection in Good and Bad Times? The
+  Turkish Green Card Health Program.</em> World Bank Policy Research Working Paper 6178.</p>
+  <p><b>Breisinger, C. et al. (2018).</b> <em>Impact Evaluation Study for Egypt's Takaful and
+  Karama Cash Transfer Program.</em> IFPRI, MENA RP Working Paper 14.</p>
+  <p><b>Cuevas, F., O. Inan, A. Twose &amp; C. &Ccedil;elik (2019).</b> <em>Vulnerability and
+  Protection of Refugees in Turkey.</em> World Bank and World Food Programme.</p>
+  <p><b>Grosh, M., P. Leite, M. Wai-Poi &amp; E. Tesliuc, eds. (2022).</b> <em>Revisiting
+  Targeting in Social Assistance.</em> World Bank.</p>
+  <p><b>Larra&ntilde;aga, O. &amp; D. Contreras (2010).</b> <em>Chile Solidario y Combate a la
+  Pobreza.</em> PNUD Chile, Documento de Trabajo 2010-1.</p>
+  <p><b>Leite, P., T. George Karippacheril, C. Sun, T. Jones &amp; K. Lindert (2017).</b>
+  <em>Social Registries for Social Assistance and Beyond.</em> World Bank, Social Protection
+  and Labor Discussion Paper 1704.</p>
+  <p><b>Lindert, K., T. George Karippacheril, I. Rodr&iacute;guez Caillava &amp; K. Nishikawa
+  Ch&aacute;vez, eds. (2020).</b> <em>Sourcebook on the Foundations of Social Protection
+  Delivery Systems.</em> World Bank.</p>
+  <p><b>Silva, J., V. Levin &amp; M. Morgandi (2012).</b> <em>Inclusion and Resilience: The Way
+  Forward for Social Safety Nets in the Middle East and North Africa.</em> World Bank.</p>
+  <p><b>World Bank</b> (2012) Jordan, Project Appraisal Document P143193; (2013) <em>Toward
+  Universal Coverage: Turkey's Green Card Program for the Poor</em>; (2020) <em>Review of the
+  Targeting System in Georgia</em>; (2021) Morocco, Restructuring Paper P155198; (2022)
+  <em>Identification of Poor and Vulnerable Households in Tunisia</em>.</p>
+  </div></div>
 </section></div></div></section>
 
 <footer class="deck-foot">
