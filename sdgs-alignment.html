@@ -1367,6 +1367,35 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .keyrow i { width:12px; height:12px; border-radius:3px; display:inline-block;
             margin-right:6px; vertical-align:-1px; }
 .deck-lede { max-width: 74ch; }
+/* presenting in a browser: one slide per screen, nothing taller than the viewport */
+@media screen and (min-width:1000px) {
+  html { scroll-snap-type: y proximity; }
+  .deck-head, .row-single, .row-divider {
+    min-height:100vh; box-sizing:border-box;
+    display:flex; flex-direction:column; justify-content:center;
+    scroll-snap-align:center; }
+  .row-single > .viz-root { width:100%; }
+  .viz-root section.panel { max-width:1460px; margin-inline:auto;
+    padding:clamp(14px,2.2vh,26px) clamp(16px,1.6vw,26px) clamp(10px,1.6vh,20px); }
+  .scope-slide2 h2 { font-size:clamp(19px,2.35vh,24px); }
+  .scope-slide2 .panel-sub { font-size:clamp(12.5px,1.45vh,14.5px); }
+  .ds-chart { max-height:52vh; }
+  .ds-chart.matrix { max-height:60vh; }
+  .viz-root .panel img { max-height:52vh; width:auto; max-width:100%; margin-inline:auto; }
+  .mcard { min-height:0; padding:clamp(9px,1.4vh,16px) clamp(11px,1vw,18px); }
+  .mcard h4 { font-size:clamp(13.5px,1.7vh,16px); margin-bottom:clamp(4px,0.7vh,8px); }
+  .mcard p { font-size:clamp(11.5px,1.3vh,13px); }
+  .mcard .n { font-size:clamp(13px,1.6vh,17px); margin-bottom:clamp(4px,0.8vh,9px); }
+  .ds-steps li { padding:clamp(5px,0.95vh,10px) 0; }
+  .ds-steps .sd, .ds-steps .st { font-size:clamp(11.5px,1.35vh,15px); }
+  .ds-key, .keyrow { font-size:clamp(11.5px,1.35vh,14px); margin:clamp(5px,0.9vh,11px) 0 2px; }
+  .stat { margin-bottom:clamp(7px,1.3vh,16px); }
+  .stat b { font-size:clamp(22px,4vh,34px); }
+  .stat span { font-size:clamp(11.5px,1.35vh,12.5px); }
+  .verdict { font-size:clamp(11.5px,1.35vh,13px); }
+  .verdict td { padding-top:clamp(6px,1.1vh,11px); padding-bottom:clamp(6px,1.1vh,11px); }
+  .viz-root details.src { font-size:clamp(10.5px,1.15vh,12px); }
+}
 @media print {
   .row-single { display:flex; flex-direction:column; justify-content:center;
     min-height:838px; box-sizing:border-box; }
