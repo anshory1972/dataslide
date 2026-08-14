@@ -1371,6 +1371,15 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .divider-text { flex:0 1 880px; min-width:0; }
 .divider-inner.split:not(.wide) .divider-blurb { max-width:52ch; }
 .divider-art { flex:0 0 auto; margin:0; width:330px; }
+/* phone and narrow tablet: the divider stacks, image under the text */
+@media screen and (max-width:999px) {
+  .divider-split { display:block; }
+  .divider-text { max-width:none; }
+  .divider-art { width:100%; max-width:340px; margin:18px 0 0; }
+  .divider-art img { max-width:100%; max-height:none; width:100%; height:auto; }
+  .dash-url span { font-size:clamp(14px,4.4vw,22px); padding:6px 11px;
+    max-width:100%; box-sizing:border-box; overflow-wrap:anywhere; }
+}
 .divider-art img { width:100%; height:auto; display:block; border-radius:5px;
   box-shadow:0 2px 16px rgba(0,0,0,.10); }
 .dash-url { margin:14px 0 0; }

@@ -1457,6 +1457,17 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
     width:clamp(230px,26vw,400px); max-width:36%; max-height:56vh;
     height:auto; object-fit:contain; }
 }
+/* phone and narrow tablet: the divider stacks, image under the text.
+   `section` is needed to outrank section.row-divider.divider-art in the house style. */
+@media screen and (max-width:999px) {
+  /* wide tables scroll inside themselves rather than widening the page */
+  table.pmt, table.toc, table.verdict, table.ctable {
+    display:block; width:max-content; max-width:100%; overflow-x:auto; }
+  section.row-divider.divider-art { display:block; }
+  section.row-divider.divider-art .divider-inner { width:auto; }
+  section.row-divider.divider-art .divider-img { width:100%; max-width:340px;
+    max-height:none; height:auto; margin:18px 0 0; }
+}
 @media print {
   .row-single { display:flex; flex-direction:column; justify-content:center;
     min-height:838px; box-sizing:border-box; }
