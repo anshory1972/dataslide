@@ -1520,7 +1520,7 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
     <div class="deck-head-text">
       <p class="deck-eyebrow">IndoTERM technical deck &middot; August 2026</p>
       <h1 class="deck-h1">Simulating the BSK Import Gateways: Method and Pitfalls</h1>
-      <p class="deck-byline">Arief Anshory Yusuf &middot; Universitas Padjadjaran</p>
+      <p class="deck-byline">Arief Anshory Yusuf &middot; UNPAD &amp; DKEM-BI</p>
       <p class="deck-lede">The government wants imports of selected goods to enter through
       <strong>Bitung, Sorong and Kupang</strong>. Making that policy simulable in a regional
       CGE model is the hard part: the obvious shock is the wrong one, the data says the
@@ -1594,13 +1594,13 @@ national GDP 0.0000, CPI &minus;0.0001.</div></details>
 <p class="gwp">The landing dimension is not a modelling curiosity; it is where this
 policy lives, and the base data show it is both real and heavily concentrated:</p>
 <div class="mgrid c3">
-  <div class="mcard" style="border-color:var(--c1)"><div class="n">74%</div>
+  <div class="mcard" style="border-color:var(--c1);background:color-mix(in srgb, var(--c1) 6%, transparent)"><div class="n" style="color:var(--c1)">74%</div>
     <p>of electronics imports <b>land in Jakarta</b>; another 19% in Kepulauan Riau.
     The gateway dimension is real and concentrated.</p></div>
-  <div class="mcard" style="border-color:var(--c1)"><div class="n">78%</div>
+  <div class="mcard" style="border-color:var(--c5);background:color-mix(in srgb, var(--c5) 6%, transparent)"><div class="n" style="color:var(--c5)">78%</div>
     <p>of electronics imports are <b>used in a different province</b> from the one where
     they land. Goods pass through gateways; they do not stay.</p></div>
-  <div class="mcard" style="border-color:var(--c6)"><div class="n">&minus;1.4%</div>
+  <div class="mcard" style="border-color:var(--c8);background:color-mix(in srgb, var(--c8) 6%, transparent)"><div class="n" style="color:var(--c8)">&minus;1.4%</div>
     <p>port-province GDP under the <b>wrong (use-side) shock</b> &mdash; the "beneficiaries"
     become the largest losers as subsidised imports crush local production.</p></div>
 </div>
@@ -1666,6 +1666,111 @@ writes the seeded file in place; then mkdata.bat and doagg rebuild the database.
 regsupmod.tab and reg1.tab both renormalise, so shares stay valid either way.</div></details>
 </section></div></div></section>
 
+
+<section class="row-single" aria-label="The data pipeline"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">The pipeline</p>
+<h2>How the database is built &mdash; and where we intercept</h2>
+<p class="panel-sub">mkdata.bat is not one program but a chain: raw tables become the
+national ORANI-G database and the regional supplement, the regional build turns shares
+into a full interregional database, and doagg aggregates it for the model. The zero-landing
+fix is one extra step, inserted where the port shares are born &mdash; everything
+downstream then rebuilds routes, margins and balances automatically.</p>
+<svg class="ds-chart" viewBox="0 0 1520 560" role="img" aria-label="Flowchart of the TERM database build: national build produces national.har and regsupp.har; the intercept step regsupmod.tab floors the MSHR port shares so each gateway lands at least Rp 1 billion, fixing the zero import landings; the regional build turns the seeded shares into the 185 by 34 master database; aggregation produces the 23 by 7 model database, certified by chkmod.">
+<defs><marker id="gwarr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5b5b56"/></marker></defs>
+<text x="30" y="34" font-family="Georgia,serif" font-size="20" font-weight="600" fill="var(--text-primary)"><tspan fill="#b4451f">1</tspan>  National build &#183; mkdata.bat</text>
+<rect x="30" y="60" width="290" height="54" rx="4" fill="#d9ead3" stroke="#38761d" stroke-width="1.6"/>
+<text x="175.0" y="83" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">input\ raw tables</text>
+<text x="175.0" y="102" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">IRIO &#183; exim &#183; supplements</text>
+<rect x="30" y="148" width="290" height="36" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="175.0" y="172" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">convsup3 + exim + step2</text>
+<rect x="30" y="218" width="290" height="36" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="175.0" y="242" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">mkorng.tab</text>
+<rect x="30" y="288" width="290" height="36" rx="4" fill="#dae3f3" stroke="#2f5597" stroke-width="1.6"/>
+<text x="175.0" y="312" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">national.har</text>
+<rect x="30" y="358" width="290" height="36" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="175.0" y="382" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">mkregsupp.tab</text>
+<rect x="30" y="428" width="290" height="40" rx="4" fill="#dae3f3" stroke="#2f5597" stroke-width="1.6"/>
+<text x="175.0" y="444" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">regsupp.har</text>
+<text x="175.0" y="463" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(MSHR port shares)</text>
+<path d="M175 114 L175 148" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M175 184 L175 218" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M175 254 L175 288" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M175 324 L175 358" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M175 394 L175 428" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<text x="420" y="34" font-family="Georgia,serif" font-size="20" font-weight="600" fill="var(--text-primary)"><tspan fill="#b4451f">2</tspan>  The intercept &#183; rnregsupmod.bat</text>
+<rect x="400" y="52" width="330" height="428" rx="8" fill="none" stroke="#cc0000" stroke-width="2.4" stroke-dasharray="9 6"/>
+<rect x="420" y="78" width="290" height="40" rx="4" fill="#d9ead3" stroke="#38761d" stroke-width="1.6"/>
+<text x="565.0" y="94" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">sec23_dkem.agg</text>
+<text x="565.0" y="113" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(product mapping)</text>
+<rect x="420" y="200" width="290" height="56" rx="4" fill="#ffe94a" stroke="#cc0000" stroke-width="2.4"/>
+<text x="565.0" y="214" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="700">regsupmod.tab</text>
+<text x="565.0" y="234" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="700">floor MSHR so each port</text>
+<text x="565.0" y="252" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="700">lands &#8805; Rp 1 bn</text>
+<rect x="420" y="356" width="290" height="40" rx="4" fill="#dae3f3" stroke="#2f5597" stroke-width="1.6"/>
+<text x="565.0" y="372" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">regsupp.har  (seeded,</text>
+<text x="565.0" y="391" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">rows renormalised)</text>
+<text x="565" y="470" text-anchor="middle" font-family="system-ui" font-size="15" font-weight="700" fill="#cc0000">fixes the zero import landings</text>
+<path d="M565 118 L565 200" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M565 256 L565 356" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M320 448 L370.0 448 L370.0 384 L420 384" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M320 306 L372 306" fill="none" stroke="#5b5b56" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#gwarr)"/>
+<path d="M372 306 L372 228" fill="none" stroke="#5b5b56" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#gwarr)"/>
+<path d="M372 228 L420 228" fill="none" stroke="#5b5b56" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#gwarr)"/>
+<text x="800" y="34" font-family="Georgia,serif" font-size="20" font-weight="600" fill="var(--text-primary)"><tspan fill="#b4451f">3</tspan>  Regional build &#183; mkdata.bat</text>
+<rect x="800" y="78" width="290" height="40" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="945.0" y="94" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">init &#8594; reg0 &#8594; reg1 &#8594; reg2</text>
+<text x="945.0" y="113" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(reg1 reads MSHR)</text>
+<rect x="800" y="188" width="290" height="40" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="945.0" y="204" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">trdras &#183; trdras2</text>
+<text x="945.0" y="223" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(RAS trade balancing)</text>
+<rect x="800" y="288" width="290" height="36" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="945.0" y="312" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">pstras &#8594; premod.tab</text>
+<rect x="800" y="368" width="290" height="40" rx="4" fill="#dae3f3" stroke="#2f5597" stroke-width="1.6"/>
+<text x="945.0" y="384" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">premod.har</text>
+<text x="945.0" y="403" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(185 com &#215; 34 prov)</text>
+<path d="M945 118 L945 188" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M945 228 L945 288" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M945 324 L945 368" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M710 376 L755.0 376 L755.0 98 L800 98" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<text x="1180" y="34" font-family="Georgia,serif" font-size="20" font-weight="600" fill="var(--text-primary)"><tspan fill="#b4451f">4</tspan>  Aggregation &#183; doagg</text>
+<rect x="1180" y="78" width="310" height="40" rx="4" fill="#d9ead3" stroke="#38761d" stroke-width="1.6"/>
+<text x="1335.0" y="94" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">sec23_dkem.agg + reg7.agg</text>
+<text x="1335.0" y="113" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(23 sectors &#215; 7 regions)</text>
+<rect x="1180" y="188" width="310" height="40" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="1335.0" y="204" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">preagg &#8594; aggsupp.har</text>
+<text x="1335.0" y="223" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">&#8594; agghar.exe</text>
+<rect x="1180" y="288" width="310" height="40" rx="4" fill="#dae3f3" stroke="#2f5597" stroke-width="1.6"/>
+<text x="1335.0" y="304" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">aggmod.har + AGGSETS.HAR</text>
+<text x="1335.0" y="323" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">(the model database)</text>
+<rect x="1180" y="368" width="310" height="40" rx="4" fill="#ffe94a" stroke="#7f6000" stroke-width="1.6"/>
+<text x="1335.0" y="384" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">chkmod (CHKMDA/B)</text>
+<text x="1335.0" y="403" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="15.5" fill="#17202a" font-weight="600">every identity certified</text>
+<path d="M1335 118 L1335 188" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M1335 228 L1335 288" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M1335 324 L1335 368" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<path d="M1090 388 L1135.0 388 L1135.0 208 L1180 208" fill="none" stroke="#5b5b56" stroke-width="1.8" marker-end="url(#gwarr)"/>
+<rect x="30" y="520" width="26" height="18" rx="3" fill="#d9ead3" stroke="#38761d" stroke-width="2"/>
+<text x="66" y="534" font-family="system-ui" font-size="15.5" fill="var(--text-secondary)">input you prepare</text>
+<rect x="270" y="520" width="26" height="18" rx="3" fill="#ffe94a" stroke="#7f6000" stroke-width="2"/>
+<text x="306" y="534" font-family="system-ui" font-size="15.5" fill="var(--text-secondary)">program (TABLO/exe)</text>
+<rect x="530" y="520" width="26" height="18" rx="3" fill="#dae3f3" stroke="#2f5597" stroke-width="2"/>
+<text x="566" y="534" font-family="system-ui" font-size="15.5" fill="var(--text-secondary)">data file produced</text>
+<rect x="790" y="520" width="26" height="18" rx="3" fill="none" stroke="#cc0000" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="826" y="534" font-family="system-ui" font-size="15.5" fill="var(--text-secondary)">the modification step</text>
+<text x="1180" y="534" font-family="system-ui" font-size="15.5" fill="var(--muted)">solid arrows: main chain &#183; dashed: side inputs</text>
+</svg>
+<details class="src"><summary>Reading the chart</summary><div class="src-body">Stage 1
+(folder tpmh0198) builds national.har from the input tables and derives regsupp.har,
+whose MSHR header holds each product's import shares by port of entry &mdash; the zeros
+live here. Stage 2 is the one added step: rnregsupmod.bat backs up regsupp.har and runs
+regsupmod.tab, which floors MSHR using national import values from national.har and the
+product mapping from the aggregation file, then renormalises. Stage 3 (folder tpmh0197)
+consumes the seeded shares: reg1 reads MSHR, the gravity and RAS steps construct the
+interregional trade and margin matrices, premod assembles the 185&times;34 master
+database. Stage 4 aggregates to 23&times;7 and chkmod certifies every accounting
+identity. Because the seed enters upstream, no identity is ever edited by hand.</div></details>
+</section></div></div></section>
+
 <section class="row-divider"><div class="divider-inner"><h2 class="divider-title"><span class="divider-num">III</span>Extending the model</h2><p class="divider-blurb">To force landings onto a chosen path, the landings variable must be swappable against an instrument. In the standard TAB it is not.</p></div></section>
 
 <section class="row-single" aria-label="TAB modification"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
@@ -1684,12 +1789,12 @@ xtrad(c,s,r,d) - atrad(c,s,r,d) <b>- fxtrad_d(c,s,r)</b>
   = xuse(c,s,d) + srctwist(c,s,r,d) - avesrctwist(c,s,d)
   - SIGMADOMDOM(c)*[pdelivrd(c,s,r,d)+atrad(c,s,r,d)<b>+fxtrad_d(c,s,r)</b>-puse(c,s,d)];</pre>
 <div class="mgrid c2" style="margin-top:16px">
-  <div class="keyp"><h5>The price term is not optional</h5>
+  <div class="keyp" style="border-left:4px solid var(--c8);background:color-mix(in srgb, var(--c8) 5%, transparent)"><h5>The price term is not optional</h5>
     <p>A first version added the shifter to the quantity equation only. It solved &mdash;
     then failed the use-equals-deliveries check (<b>RATB</b>) on the first data update:
     quantities rationed with no price signal drift away from purchases. Entering exactly
     like <code>atrad</code> keeps the accounts closed.</p></div>
-  <div class="keyp"><h5>And fixes the interpretation</h5>
+  <div class="keyp" style="border-left:4px solid var(--c4);background:color-mix(in srgb, var(--c4) 5%, transparent)"><h5>And fixes the interpretation</h5>
     <p>The shifter is an <b>iceberg cost</b>: it burns real resources. GDP losses under
     this instrument are an upper bound; a rent-generating instrument (a route tax) would
     show smaller losses.</p></div>
@@ -1713,19 +1818,19 @@ solution converged, and each rerun starts from the same audited database. A year
 RunDynam sequence has none of these safety nets &mdash; and this experiment strains the
 solver even in its safest form:</p>
 <div class="mgrid c2">
-  <div class="keyp"><h5>Statics already run at the edge</h5>
+  <div class="keyp" style="border-left:4px solid var(--c1);background:color-mix(in srgb, var(--c1) 5%, transparent)"><h5>Statics already run at the edge</h5>
     <p>One-period solves need Gragg's method with <b>five subintervals</b> and still sit
     at accuracy 6 of 10. Rp 1 billion cells absorbing reallocations worth hundreds of
     billions produce enormous percentage changes &mdash; the worst case for a linearised
     solver.</p></div>
-  <div class="keyp"><h5>Dynamics compounds it</h5>
+  <div class="keyp" style="border-left:4px solid var(--c6);background:color-mix(in srgb, var(--c6) 5%, transparent)"><h5>Dynamics compounds it</h5>
     <p>Extreme changes recur period after period on an updating database; errors
     accumulate across years; one assertion failure (<code>MAKE&gt;=0</code>,
     <code>RATA/RATB</code>) aborts a baserun or policy run midway.</p></div>
-  <div class="keyp"><h5>The closure is nonstandard</h5>
+  <div class="keyp" style="border-left:4px solid var(--c4);background:color-mix(in srgb, var(--c4) 5%, transparent)"><h5>The closure is nonstandard</h5>
     <p>The fxtrad_d/xtrad_d and tuser_ud/natximp swaps must be carried into every
     period's closure file. Mistakes are silent until a run dies hours in.</p></div>
-  <div class="keyp"><h5>If dynamics is pursued anyway</h5>
+  <div class="keyp" style="border-left:4px solid var(--c2);background:color-mix(in srgb, var(--c2) 5%, transparent)"><h5>If dynamics is pursued anyway</h5>
     <p><b>Aggregating the commodities is a must</b> &mdash; fewer, larger cells shrink
     the multipliers. Also: seed larger initial flows, split the shock across periods,
     and verify the accounting checks after every period.</p></div>
@@ -1797,20 +1902,20 @@ Joint-run residual at &minus;15%: 1.48e&minus;05. Scripts: maxcut.sh, maxcut2.sh
 <p class="panel-eyebrow">Implications</p>
 <h2>What this method settles</h2>
 <div class="mgrid c2">
-  <div class="keyp"><h5>Specification first</h5>
+  <div class="keyp" style="border-left:4px solid var(--c1);background:color-mix(in srgb, var(--c1) 5%, transparent)"><h5>Specification first</h5>
     <p>The gateway policy lives on the <b>landing dimension</b> of the trade matrix.
     A use-side shock produces a different, harsher and wrong experiment. The distinction
     is invisible in national models &mdash; it is the reason to use a TERM-class model
     at all.</p></div>
-  <div class="keyp"><h5>The data is the binding constraint</h5>
+  <div class="keyp" style="border-left:4px solid var(--c6);background:color-mix(in srgb, var(--c6) 5%, transparent)"><h5>The data is the binding constraint</h5>
     <p>Zero base landings mean the policy cannot be simulated without a <b>seeding
     assumption</b>, and every result inherits it. Rp 1 billion per port is deliberately
     minimal; the feasibility ceilings are its direct consequence.</p></div>
-  <div class="keyp"><h5>Seed upstream</h5>
+  <div class="keyp" style="border-left:4px solid var(--c5);background:color-mix(in srgb, var(--c5) 5%, transparent)"><h5>Seed upstream</h5>
     <p>Editing the port-share matrix and letting the pipeline rebuild routes, margins
     and balances is safer than editing trade matrices by hand &mdash; the machinery
     enforces what the modeller would otherwise have to remember.</p></div>
-  <div class="keyp"><h5>Assertion failures are findings</h5>
+  <div class="keyp" style="border-left:4px solid var(--c7);background:color-mix(in srgb, var(--c7) 5%, transparent)"><h5>Assertion failures are findings</h5>
     <p><code>MAKE&lt;0</code> and RATA/RATB failures mark exactly where scenarios stop
     being economically possible. The model refusing an impossible question is
     information, not error.</p></div>
