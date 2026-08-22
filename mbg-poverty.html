@@ -263,6 +263,67 @@
     beyond |t| &gt; 1.96 (expect 5%), Kolmogorov&ndash;Smirnov against N(0,1) <b>p = 0.583</b> &mdash; cannot
     reject. Orange triangles are the nine carriers, all far beyond the noise.</figcaption>
   </figure>
+  <h3>How to read that chart</h3>
+  <p>
+    It is worth going slowly here, because this one figure carries most of the weight of the whole method.
+  </p>
+  <p>
+    <strong>What was computed.</strong> For <em>every single food item</em> in the consumption module &mdash;
+    all 152 of them, from rice to cigarettes to salak &mdash; we ran the same regression: does the free
+    (unpurchased) value of this item rise with the number of MBG meals the household received? Each of those
+    152 regressions produces one <strong>t-statistic</strong>: how many standard errors the relationship sits
+    away from zero. That single number per item is what the horizontal axis shows.
+  </p>
+  <p>
+    <strong>The logic.</strong> If an item has nothing to do with MBG, its true relationship with meals is
+    zero, so its t-statistic is pure noise. Statistical theory says such noise follows a standard normal
+    distribution: centred on 0, standard deviation 1, about 95% of values between &minus;1.96 and +1.96.
+    So we take the 143 items we did <em>not</em> classify as MBG and ask whether they look like noise.
+  </p>
+  <div class="tw">
+    <table>
+      <caption><b>What each element on the chart is.</b></caption>
+      <thead><tr><th>Element</th><th>What it represents</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Blue bars</strong></td><td>The 143 non-MBG items, binned by their t-statistic</td></tr>
+        <tr><td><strong>Grey curve</strong></td><td>What pure noise should look like &mdash; a standard normal, N(0,1)</td></tr>
+        <tr><td><strong>Dashed lines</strong></td><td>&plusmn;1.96, the 5% significance threshold</td></tr>
+        <tr><td><strong>Orange triangles</strong></td><td>The nine MBG carrier items, at their t-values</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <strong>What it shows.</strong> The blue histogram sits almost exactly on the grey curve: mean
+    &minus;0.055 where 0 is expected, standard deviation 1.084 where 1 is expected, 6.29% falling outside the
+    dashed lines where 5% is expected, and a formal test nowhere near rejecting (p = 0.583).
+  </p>
+  <p>
+    That is what rules out the thing we were worried about. If <code>recdays</code> were secretly a proxy for
+    something else &mdash; wealth, sociability, a general "these households receive more of everything" effect
+    &mdash; then <em>many</em> items would show spurious relationships and the blue distribution would be too
+    wide or shifted off-centre. It is neither.
+  </p>
+  <p>
+    And the nine orange triangles sit at t = 3.0 to 19.3, completely outside where noise lives. That is the
+    second half of the argument: the items we call MBG are not marginally significant items that might be
+    flukes &mdash; they are so far beyond the noise range that chance cannot produce them.
+  </p>
+  <div class="card">
+    <span class="lab">Two things that trip people up</span>
+    <p>
+      <strong>Some blue bars do cross the dashed lines, and that is correct.</strong> Five percent of pure
+      noise is <em>supposed</em> to exceed &plusmn;1.96 &mdash; that is what a 5% threshold means. Seeing
+      6.29% out there confirms the theory rather than contradicting it. It is also exactly why the carrier
+      selection needs false-discovery-rate control rather than a raw 5% cut.
+    </p>
+    <p>
+      <strong>The triangles' height means nothing.</strong> They sit on an arbitrary rug below the axis;
+      only their left-right position &mdash; their t-value &mdash; carries information. And the rightmost
+      one, nasi campur at t = 19.3, is plotted beyond the labelled part of the axis, so it looks like it is
+      floating at the edge. It is simply very far to the right.
+    </p>
+  </div>
+
   <div class="tw">
     <table>
       <caption><b>The rest of the battery.</b> Each family is chosen so the programme cannot affect it.</caption>
