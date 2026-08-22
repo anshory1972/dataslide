@@ -1,0 +1,2148 @@
+<title>Predicting Welfare: What a Proxy Means Test Teaches About Regression</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A teaching case in applied microeconometrics. One real targeting model, 1.02 million households, and what it shows about prediction versus inference, functional form, fixed effects and out-of-sample evaluation.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Lecture notes">
+<meta property="og:title" content="Predicting Welfare: What a Proxy Means Test Teaches About Regression">
+<meta property="og:description" content="A teaching case in applied microeconometrics. One real targeting model, 1.02 million households, and what it shows about prediction versus inference, functional form, fixed effects and out-of-sample evaluation. Arief Anshory Yusuf.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/micro-pmt.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Predicting Welfare: What a Proxy Means Test Teaches About Regression">
+<meta name="twitter:description" content="A teaching case in applied microeconometrics. One real targeting model, 1.02 million households, and what it shows about prediction versus inference, functional form, fixed effects and out-of-sample evaluation.">
+<style>
+/* ==== ineq ==== */
+.viz-root.scope-ineq {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --blue-light:     #86b6ef;   /* ordinal step 250 */
+    --blue-dark:      #1c5cab;   /* ordinal step 550 */
+    --diverge-pos:    #2a78d6;
+    --diverge-neg:    #e34948;
+    --diverge-mid:    #f0efec;
+    --c1: #2a78d6; /* blue     */
+    --c2: #008300; /* green    */
+    --c3: #e87ba4; /* magenta  */
+    --c4: #eda100; /* yellow   */
+    --c5: #1baf7a; /* aqua     */
+    --c6: #eb6834; /* orange   */
+    --c7: #4a3aa7; /* violet   */
+    --c8: #e34948; /* red      */
+    --c9: #5c4b3a; /* neutral, 9th series */
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-ineq {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --blue-light:     #3987e5;
+      --blue-dark:      #184f95;
+      --diverge-pos:    #3987e5;
+      --diverge-neg:    #e66767;
+      --diverge-mid:    #383835;
+      --c1: #3987e5;
+      --c2: #008300;
+      --c3: #d55181;
+      --c4: #c98500;
+      --c5: #199e70;
+      --c6: #d95926;
+      --c7: #9085e9;
+      --c8: #e66767;
+      --c9: #c9b8a0;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-ineq {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --blue-light:     #3987e5;
+    --blue-dark:      #184f95;
+    --diverge-pos:    #3987e5;
+    --diverge-neg:    #e66767;
+    --diverge-mid:    #383835;
+    --c1: #3987e5;
+    --c2: #008300;
+    --c3: #d55181;
+    --c4: #c98500;
+    --c5: #199e70;
+    --c6: #d95926;
+    --c7: #9085e9;
+    --c8: #e66767;
+    --c9: #c9b8a0;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-ineq { min-height: 100vh; }
+
+.scope-ineq .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+
+.scope-ineq header.page-head {
+    margin-bottom: 48px;
+  }
+
+.scope-ineq .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+
+.scope-ineq h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 32px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+.scope-ineq .lede {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+.scope-ineq .lede strong { color: var(--text-primary); }
+
+.scope-ineq section.panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 32px 28px;
+    margin-bottom: 32px;
+  }
+
+.scope-ineq .panel-head { margin-bottom: 22px; }
+
+.scope-ineq .panel-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+.scope-ineq h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 21px;
+    line-height: 1.3;
+    margin: 0 0 6px;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+.scope-ineq .panel-sub {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+.scope-ineq .divchart { margin-top: 28px; }
+
+.scope-ineq .divchart .row {
+    display: grid;
+    grid-template-columns: 130px 1fr 64px;
+    align-items: center;
+    gap: 12px;
+    height: 40px;
+    position: relative;
+  }
+
+.scope-ineq .divchart .row + .row { margin-top: 10px; }
+
+.scope-ineq .divchart .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: right;
+    line-height: 1.3;
+  }
+
+.scope-ineq .divchart .track {
+    position: relative;
+    height: 26px;
+    background: var(--grid);
+    border-radius: 3px;
+    overflow: visible;
+  }
+
+.scope-ineq .divchart .zero-line {
+    position: absolute;
+    top: -6px;
+    bottom: -6px;
+    left: 50%;
+    width: 1px;
+    background: var(--baseline);
+  }
+
+.scope-ineq .divchart .bar {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: 3px;
+  }
+
+.scope-ineq .divchart .bar.pos { background: var(--diverge-pos); left: 50%; }
+
+.scope-ineq .divchart .bar.neg { background: var(--diverge-neg); right: 50%; }
+
+.scope-ineq .divchart .value {
+    font-variant-numeric: tabular-nums;
+    font-size: 13.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+.scope-ineq .divchart .value.pos { color: var(--diverge-pos); }
+
+.scope-ineq .divchart .value.neg { color: var(--diverge-neg); }
+
+.scope-ineq .divchart .scale-labels {
+    display: grid;
+    grid-template-columns: 130px 1fr 64px;
+    margin-top: 6px;
+    gap: 12px;
+  }
+
+.scope-ineq .divchart .scale-labels span {
+    font-size: 10.5px;
+    color: var(--muted);
+  }
+
+.scope-ineq .divchart .scale-labels .lo { text-align: left; }
+
+.scope-ineq .divchart .scale-labels .hi { text-align: right; grid-column: 2; }
+
+.scope-ineq .triptych {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+.scope-ineq .quad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 28px;
+  }
+
+@media (max-width: 640px) {
+  .scope-ineq .quad { grid-template-columns: repeat(2, 1fr); }
+}
+
+.scope-ineq .metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.scope-ineq .metric .mlabel {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 14px;
+    line-height: 1.35;
+    min-height: 32px;
+  }
+
+.scope-ineq .barpair {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 120px;
+  }
+
+.scope-ineq .barpair .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+  }
+
+.scope-ineq .barpair .bar-shape {
+    width: 100%;
+    border-radius: 3px 3px 0 0;
+  }
+
+.scope-ineq .barpair .bar-col.early .bar-shape { background: var(--blue-light); }
+
+.scope-ineq .barpair .bar-col.late .bar-shape { background: var(--blue-dark); }
+
+.scope-ineq .barpair .bval {
+    font-variant-numeric: tabular-nums;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+  }
+
+.scope-ineq .barpair .byr {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+.scope-ineq .legend-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 18px;
+  }
+
+.scope-ineq .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+.scope-ineq .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+.scope-ineq .source-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 20px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--grid);
+    line-height: 1.6;
+  }
+
+.scope-ineq .source-note code {
+    font-size: 11px;
+    background: var(--grid);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+.scope-ineq footer.foot {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+.scope-ineq footer.foot a { color: var(--text-secondary); }
+
+@media (max-width: 560px) {
+  .scope-ineq .triptych { grid-template-columns: 1fr; }
+  .scope-ineq .divchart .row, .scope-ineq .divchart .scale-labels { grid-template-columns: 100px 1fr 56px; }
+}
+
+.scope-ineq .linechart-wrap {
+        margin-top: 24px;
+        overflow-x: auto;
+      }
+
+.scope-ineq .linechart-wrap svg {
+        width: 100%;
+        height: auto;
+        min-width: 560px;
+        display: block;
+      }
+
+.scope-ineq .rankchart { margin-top: 26px; display: flex; flex-direction: column; gap: 12px; }
+
+.scope-ineq .rank-row {
+        display: grid;
+        grid-template-columns: 168px 1fr 56px;
+        align-items: center;
+        gap: 12px;
+      }
+
+.scope-ineq .rank-label { font-size: 13px; color: var(--text-secondary); text-align: right; line-height: 1.3; }
+
+.scope-ineq .rank-label strong { color: var(--text-primary); font-weight: 600; }
+
+.scope-ineq .rank-track { height: 18px; background: var(--grid); border-radius: 3px; overflow: hidden; }
+
+.scope-ineq .rank-bar { height: 100%; background: var(--c1); border-radius: 3px 0 0 3px; }
+
+.scope-ineq .rank-value { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 600; color: var(--text-primary); }
+
+@media (max-width: 560px) {
+  .scope-ineq .rank-row { grid-template-columns: 108px 1fr 48px; }
+}
+
+.scope-ineq .elephant-wrap { margin-top: 24px; overflow-x: auto; }
+
+.scope-ineq .elephant-wrap svg { width: 100%; height: auto; min-width: 480px; display: block; }
+
+/* ==== growth ==== */
+.viz-root.scope-growth {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --regline:        #e34948;
+    --status-critical: #d03b3b;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-growth {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --regline:        #e66767;
+      --status-critical: #d03b3b;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-growth {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --regline:        #e66767;
+    --status-critical: #d03b3b;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-growth { min-height: 100vh; }
+
+.scope-growth .wrap { max-width: 1080px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-growth header.page-head { margin-bottom: 40px; max-width: 72ch; }
+
+.scope-growth .eyebrow {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 10px; font-weight: 600;
+  }
+
+.scope-growth h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 30px; line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-growth .lede { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
+
+.scope-growth .lede strong { color: var(--text-primary); }
+
+.scope-growth code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-growth h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; font-weight: 600; margin: 48px 0 4px;
+  }
+
+.scope-growth p.section-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
+
+.scope-growth .grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+@media (max-width: 900px) {
+  .scope-growth .grid3 { grid-template-columns: 1fr; }
+}
+
+.scope-growth .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 18px 14px;
+  }
+
+.scope-growth .panel h3 {
+    font-size: 14.5px; font-weight: 600; margin: 0 0 2px;
+  }
+
+.scope-growth .panel .stat-line {
+    font-size: 12px; color: var(--text-secondary); margin: 0 0 10px;
+    font-variant-numeric: tabular-nums;
+  }
+
+.scope-growth .panel svg { width: 100%; height: auto; display: block; }
+
+.scope-growth .axis-label {
+    font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif;
+  }
+
+.scope-growth .legend-row {
+    display: flex; gap: 22px; align-items: center;
+    margin: 4px 0 0; font-size: 12.5px; color: var(--text-secondary);
+  }
+
+.scope-growth .legend-item { display: flex; align-items: center; gap: 7px; }
+
+.scope-growth .swatch { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+.scope-growth footer.foot {
+    font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 44px;
+    padding-top: 18px; border-top: 1px solid var(--grid); max-width: 72ch;
+  }
+
+/* ==== district ==== */
+.viz-root.scope-district {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --regline:        #e34948;
+    --status-critical: #d03b3b;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-district {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --regline:        #e66767;
+      --status-critical: #d03b3b;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-district {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --regline:        #e66767;
+    --status-critical: #d03b3b;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-district { min-height: 100vh; }
+
+.scope-district .wrap { max-width: 980px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-district header.page-head { margin-bottom: 40px; max-width: 74ch; }
+
+.scope-district .eyebrow {
+    font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 0 0 10px; font-weight: 600;
+  }
+
+.scope-district h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 30px; line-height: 1.18; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-district .lede { font-size: 15.5px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 10px; }
+
+.scope-district .lede strong { color: var(--text-primary); }
+
+.scope-district code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-district h2.section-head {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; font-weight: 600; margin: 48px 0 4px;
+  }
+
+.scope-district p.section-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
+
+.scope-district .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+@media (max-width: 760px) {
+  .scope-district .grid2 { grid-template-columns: 1fr; }
+}
+
+.scope-district .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 20px 16px;
+  }
+
+.scope-district .panel h3 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+
+.scope-district .panel .stat-line {
+    font-size: 12.5px; color: var(--text-secondary); margin: 0 0 8px;
+    font-variant-numeric: tabular-nums;
+  }
+
+.scope-district .panel svg { width: 100%; height: auto; display: block; }
+
+.scope-district .axis-label { font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif; }
+
+.scope-district .legend-row {
+    display: flex; gap: 22px; align-items: center;
+    margin: 4px 0 0; font-size: 12.5px; color: var(--text-secondary);
+  }
+
+.scope-district .legend-item { display: flex; align-items: center; gap: 7px; }
+
+.scope-district .swatch { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+.scope-district footer.foot {
+    font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 44px;
+    padding-top: 18px; border-top: 1px solid var(--grid); max-width: 74ch;
+  }
+
+/* ==== slide2 ==== */
+.viz-root.scope-slide2 {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page:           #f7f6f2;
+    --text-primary:   #191817;
+    --text-secondary: #52514e;
+    --muted:          #8c8a82;
+    --grid:           #e4e2da;
+    --baseline:       #c7c5ba;
+    --border:         rgba(11,11,11,0.10);
+    --point:          #2a78d6;
+    --c1: #2a78d6; --c2: #008300; --c3: #e87ba4; --c4: #eda100; --c5: #1baf7a;
+    --c6: #eb6834; --c7: #4a3aa7; --c8: #e34948; --c9: #5c4b3a;
+  }
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root.scope-slide2 {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page:           #121211;
+      --text-primary:   #f5f4f0;
+      --text-secondary: #c3c2b7;
+      --muted:          #8c8a82;
+      --grid:           #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --point:          #3987e5;
+      --c1: #3987e5; --c2: #008300; --c3: #d55181; --c4: #c98500; --c5: #199e70;
+      --c6: #d95926; --c7: #9085e9; --c8: #e66767; --c9: #c9b8a0;
+    }
+}
+
+:root[data-theme="dark"] .viz-root.scope-slide2 {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --page:           #121211;
+    --text-primary:   #f5f4f0;
+    --text-secondary: #c3c2b7;
+    --muted:          #8c8a82;
+    --grid:           #2c2c2a;
+    --baseline:       #383835;
+    --border:         rgba(255,255,255,0.10);
+    --point:          #3987e5;
+    --c1: #3987e5; --c2: #008300; --c3: #d55181; --c4: #c98500; --c5: #199e70;
+    --c6: #d95926; --c7: #9085e9; --c8: #e66767; --c9: #c9b8a0;
+  }
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0; background: var(--page);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--text-primary);
+  }
+
+.viz-root.scope-slide2 { min-height: 100vh; }
+
+.scope-slide2 .wrap { max-width: 820px; margin: 0 auto; padding: 56px 24px 80px; }
+
+.scope-slide2 header.page-head { margin-bottom: 40px; max-width: 70ch; }
+
+.scope-slide2 .eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 600; }
+
+.scope-slide2 h1 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 28px; line-height: 1.2; letter-spacing: -0.01em;
+    margin: 0 0 14px; text-wrap: balance; font-weight: 600;
+  }
+
+.scope-slide2 .lede { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 8px; }
+
+.scope-slide2 code { font-size: 12.5px; background: var(--grid); padding: 1px 5px; border-radius: 3px; }
+
+.scope-slide2 section.panel {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 6px; padding: 26px 26px 20px; margin-bottom: 28px;
+  }
+
+.scope-slide2 .panel-eyebrow { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 8px; }
+
+.scope-slide2 h2 {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    font-size: 20px; margin: 0 0 6px; font-weight: 600; text-wrap: balance;
+  }
+
+.scope-slide2 .panel-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 4px; line-height: 1.5; }
+
+.scope-slide2 svg { width: 100%; height: auto; display: block; margin-top: 16px; }
+
+.scope-slide2 .axis-label { font-size: 10.5px; fill: var(--muted); font-family: system-ui, sans-serif; }
+
+.scope-slide2 .source-note {
+    font-size: 12px; color: var(--muted); margin: 16px 0 0; padding-top: 12px;
+    border-top: 1px solid var(--grid); line-height: 1.6;
+  }
+
+.scope-slide2 footer.foot { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-top: 16px; }
+
+/* ============================================================
+   Beyond Growth — full-bleed presentation deck.
+   Designed to be browsed in F11 fullscreen during a talk, so
+   nothing sits in a narrow centred column.
+   ============================================================ */
+:root {
+  color-scheme: light dark;
+  --shell-ink:     #14161c;
+  --shell-paper:   #f4f2ed;
+  --shell-surface: #fffdf9;
+  --shell-rule:    #dcd8ce;
+  --shell-muted:   #6d6a63;
+  --shell-accent:  #b4451f;
+  --shell-slate:   #1c4e73;
+  --shell-slate-tint: rgba(28,78,115,0.07);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --shell-ink:     #f2f0ea;
+    --shell-paper:   #0f1013;
+    --shell-surface: #17191e;
+    --shell-rule:    #2b2e35;
+    --shell-muted:   #9a978f;
+    --shell-accent:  #e0703f;
+    --shell-slate:   #6fa8cd;
+    --shell-slate-tint: rgba(111,168,205,0.13);
+  }
+}
+/* The artifact viewer's manual light/dark toggle stamps data-theme on
+   <html>, independent of the OS's prefers-color-scheme -- these two
+   blocks make that toggle win in both directions, the same pattern
+   every chart-scoped token set below already uses. Without this, the
+   shell chrome (headings inherit body's color from --shell-ink) stays
+   stuck in whichever mode prefers-color-scheme reports, even when the
+   viewer is manually switched to the other one. */
+:root[data-theme="dark"] {
+  --shell-ink:     #f2f0ea;
+  --shell-paper:   #0f1013;
+  --shell-surface: #17191e;
+  --shell-rule:    #2b2e35;
+  --shell-muted:   #9a978f;
+  --shell-accent:  #e0703f;
+  --shell-slate:   #6fa8cd;
+  --shell-slate-tint: rgba(111,168,205,0.13);
+}
+:root[data-theme="light"] {
+  --shell-ink:     #14161c;
+  --shell-paper:   #f4f2ed;
+  --shell-surface: #fffdf9;
+  --shell-rule:    #dcd8ce;
+  --shell-muted:   #6d6a63;
+  --shell-accent:  #b4451f;
+  --shell-slate:   #1c4e73;
+  --shell-slate-tint: rgba(28,78,115,0.07);
+}
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
+
+.deck-head {
+  padding: clamp(44px, 7vh, 92px) clamp(18px, 3.5vw, 64px) clamp(26px, 4vh, 44px);
+  border-bottom: 1px solid var(--shell-rule);
+}
+/* Title block and header illustration side by side. The text keeps its
+   own measure; the image takes a fixed slice and drops below on narrow
+   screens rather than squeezing the lede into a column. */
+.deck-head-inner {
+  display: flex; align-items: center;
+  gap: clamp(24px, 4vw, 68px); flex-wrap: wrap;
+}
+.deck-head-text { flex: 1 1 520px; min-width: 0; }
+.deck-hero {
+  flex: 0 1 clamp(286px, 29.7vw, 473px);
+  margin: 0; line-height: 0;
+}
+.deck-hero img {
+  width: 100%; height: auto; display: block;
+  border-radius: 6px;
+}
+@media (max-width: 860px) { .deck-hero { flex-basis: 100%; max-width: 473px; } }
+.deck-eyebrow {
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.deck-eyebrow::after { content: ""; flex: 1; height: 1px; background: var(--shell-rule); max-width: 300px; }
+.deck-h1 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(30px, 4.3vw, 62px); line-height: 1.05; letter-spacing: -0.022em;
+  margin: 0 0 20px; font-weight: 600; text-wrap: balance; max-width: 24ch;
+}
+.deck-lede {
+  font-size: clamp(15px, 1.1vw, 18.5px); line-height: 1.62;
+  color: var(--shell-muted); max-width: 76ch; margin: 0;
+}
+.deck-lede strong { color: var(--shell-ink); font-weight: 600; }
+.deck-byline {
+  margin: 0 0 clamp(20px, 3vh, 32px);
+  font-size: clamp(17px, 1.35vw, 22px); color: var(--shell-ink); font-weight: 500;
+}
+/* Bio as a collapsed note rather than an outbound link, so the deck
+   stays self-contained and the header stays quiet by default. */
+.deck-bio { margin: -4px 0 clamp(20px, 3vh, 32px); }
+.deck-bio > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11.5px, 0.85vw, 13px); font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--shell-accent); user-select: none; padding: 3px 0;
+}
+.deck-bio > summary::-webkit-details-marker { display: none; }
+.deck-bio > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.deck-bio[open] > summary::before { transform: rotate(90deg); }
+.deck-bio > summary:focus-visible { outline: 2px solid var(--shell-accent); outline-offset: 3px; border-radius: 3px; }
+.deck-bio > p {
+  margin: 9px 0 0; font-size: clamp(13px, 0.98vw, 15.5px);
+  line-height: 1.62; color: var(--shell-muted); max-width: 72ch;
+}
+.deck-byline a { /* legacy fallback if any other link appears in the byline */
+  color: var(--shell-slate); text-decoration: none; font-weight: 600;
+  border-bottom: 1px solid transparent; transition: border-color .15s;
+}
+.deck-byline a:hover, .deck-byline a:focus-visible { border-color: var(--shell-slate); }
+
+/* ---- the arrangement grid ---- */
+.row-pair, .row-single {
+  padding: clamp(18px, 2.2vh, 32px) clamp(18px, 3.5vw, 64px);
+}
+
+/* A pair whose two panels share one claim: state it once, above both,
+   and let each panel's own h2 say only what that panel contributes. */
+.row-group { padding: clamp(18px, 2.2vh, 32px) clamp(18px, 3.5vw, 64px); }
+.row-group > .row-pair-inner { padding: 0; margin-top: clamp(14px, 1.6vh, 22px); }
+.row-head { max-width: none; }
+.row-kicker {
+  font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--shell-accent); font-weight: 700; margin: 0 0 8px;
+}
+.row-title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(21px, 2.1vw, 31px); line-height: 1.22; letter-spacing: -0.015em;
+  font-weight: 600; margin: 0; color: var(--shell-ink); text-wrap: balance;
+  max-width: min(100%, 1000px);
+}
+
+/* Section divider. Seven of these carry a student audience through a long
+   deck -- without them the argument reads as one undifferentiated wall. */
+.row-divider {
+  padding: clamp(30px, 5vh, 60px) clamp(18px, 3.5vw, 64px) clamp(24px, 3.6vh, 44px);
+  border-top: 1px solid var(--shell-rule);
+  background: var(--shell-surface);
+}
+.divider-inner { max-width: min(100%, 1000px); }
+.divider-num {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 0.62em; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--shell-accent); margin-right: 0.62em;
+  vertical-align: 0.1em;
+}
+.divider-title {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(24px, 2.6vw, 40px); line-height: 1.18; letter-spacing: -0.015em;
+  font-weight: 600; margin: 0 0 10px; color: var(--shell-ink); text-wrap: balance;
+}
+.divider-blurb {
+  font-size: clamp(14px, 1.12vw, 18px); line-height: 1.55; margin: 0;
+  color: var(--shell-muted); max-width: 62ch;
+}
+
+/* The populism panel's three explanation cards live inside a collapsed
+   <details>, so the panel reads as a chart-less prompt until opened. */
+.viz-root details.src.explain { border-top: 1px solid var(--border); }
+.viz-root details.src.explain > summary { color: var(--text-secondary); }
+.viz-root details.src.explain[open] > summary { margin-bottom: 2px; }
+
+/* Recommendation: an inline highlight inside a title, not a separate
+   block. Blue is the deck's one signal for "what should be done". */
+.rec {
+  color: var(--shell-slate);
+  background: var(--shell-slate-tint);
+  padding: 0.5px 7px 2px;
+  border-radius: 3px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.row-pair {
+  display: grid; gap: clamp(16px, 1.8vw, 30px);
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+/* 2:1 split for a chart with a narrow side card (e.g. an author profile). */
+.row-pair.row-2-1 { grid-template-columns: 2fr 1fr; }
+@media (max-width: 1100px) { .row-pair { grid-template-columns: 1fr; } }
+.row-pair > .viz-root, .row-single > .viz-root { min-width: 0; }
+
+/* ============================================================
+   Print / PDF export: one section per landscape page. The screen
+   layout is scroll-driven (built to browse, not paginate), so print
+   needs its own rules -- side-by-side pairs forced regardless of the
+   1100px screen breakpoint, one row per page, source notes opened
+   since there's no way to click a <details> on paper.
+   ============================================================ */
+@media print {
+  @page { size: 1400px 900px; margin: 0; }
+  html, body { background: var(--shell-paper) !important; }
+  .deck-head, .row-pair, .row-group, .row-single {
+    break-inside: avoid; page-break-inside: avoid;
+    break-after: page; page-break-after: always;
+  }
+  .deck-head:last-child, .row-pair:last-child, .row-group:last-child, .row-single:last-child {
+    break-after: auto; page-break-after: auto;
+  }
+  .row-pair { grid-template-columns: 1fr 1fr !important; }
+  .row-pair.row-2-1 { grid-template-columns: 2fr 1fr !important; }
+  .viz-root details.src { display: block !important; }
+  .viz-root details.src > summary { display: none !important; }
+  .viz-root details.src .src-body { font-size: 10.5px !important; }
+  a[href]::after { content: none !important; }
+}
+
+.deck-foot {
+  padding: clamp(26px, 4vh, 44px) clamp(18px, 3.5vw, 64px) clamp(52px, 8vh, 88px);
+  font-size: 13px; color: var(--shell-muted); line-height: 1.75;
+  border-top: 1px solid var(--shell-rule); background: var(--shell-surface);
+}
+
+/* ============================================================
+   Full-bleed overrides: each source page shipped a centred
+   760-1080px column, which left dead space at the sides.
+   ============================================================ */
+.viz-root { min-height: 0 !important; background: transparent !important; }
+.viz-root .wrap {
+  max-width: none !important; width: 100%;
+  margin: 0 !important; padding: 0 !important;
+}
+.viz-root header.page-head { display: none !important; }
+.viz-root h2.section-head { margin-top: clamp(20px, 3vh, 34px); }
+
+.viz-root section.panel, .viz-root .panel {
+  border-radius: 12px;
+  display: flex; flex-direction: column;
+  padding: clamp(18px, 1.7vw, 30px) clamp(18px, 1.8vw, 32px) clamp(14px, 1.4vw, 24px);
+}
+
+/* Equal heights are wanted ONLY inside a pair. A blanket height:100%
+   also stretched lone panels — the panel then absorbed ~740px of free
+   space into auto margins, which is what left the labor-market chart
+   marooned in a mostly-empty box. Stretch the chain explicitly here,
+   and leave single rows at their natural height. */
+.row-pair { align-items: stretch; }
+.row-pair > .viz-root { display: flex; }
+.row-pair > .viz-root > .wrap { display: flex; flex-direction: column; flex: 1 1 auto; }
+.row-pair > .viz-root > .wrap > section.panel { flex: 1 1 auto; }
+.row-single > .viz-root > .wrap > section.panel { height: auto; }
+
+/* When a pair equalises heights, give the leftover room to the chart's
+   own margins so it sits centred instead of leaving one dead block
+   above the note. Only inside pairs — lone panels have no surplus. */
+.row-pair section.panel > svg,
+.row-pair section.panel > .divchart,
+.row-pair section.panel > .triptych,
+.row-pair section.panel > .quad,
+.row-pair section.panel > .rankchart,
+.row-pair section.panel > .linechart-wrap,
+.row-pair section.panel > .elephant-wrap {
+  margin-block: auto;
+}
+
+/* slide2 shipped legend markup but never defined the legend CSS, so its
+   swatches rendered as bare stacked text. :where() keeps specificity at
+   zero so any chapter that *does* define its own legend still wins. */
+.viz-root :where(.legend-row) {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(10px, 1.1vw, 22px); margin-top: 10px;
+  color: var(--text-secondary);
+}
+.viz-root :where(.legend-item) { display: flex; align-items: center; gap: 7px; }
+.viz-root :where(.swatch) {
+  width: 11px; height: 11px; border-radius: 3px;
+  display: inline-block; flex: none;
+}
+
+/* ---- collapsible source notes (collapsed by default) ---- */
+.viz-root details.src {
+  margin-top: auto; padding-top: clamp(10px, 1vw, 16px);
+  border-top: 1px solid var(--grid);
+}
+.viz-root details.src > summary {
+  cursor: pointer; list-style: none;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: clamp(11px, 0.82vw, 13px); font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted); user-select: none;
+  padding: 3px 0;
+}
+.viz-root details.src > summary::-webkit-details-marker { display: none; }
+.viz-root details.src > summary::before {
+  content: ""; width: 0; height: 0;
+  border-left: 5px solid currentColor;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+  transition: transform .18s ease; flex: none;
+}
+.viz-root details.src[open] > summary::before { transform: rotate(90deg); }
+.viz-root details.src > summary:hover { color: var(--text-primary); }
+.viz-root details.src > summary:focus-visible { outline: 2px solid var(--point, currentColor); outline-offset: 3px; border-radius: 3px; }
+.viz-root details.src .src-body {
+  margin-top: clamp(8px, 0.8vw, 12px);
+  font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; color: var(--muted);
+}
+.viz-root details.src .src-body code { font-size: 0.92em; }
+.viz-root h2 { font-size: clamp(18px, 1.45vw, 26px); letter-spacing: -0.012em; }
+.viz-root h3 { font-size: clamp(14.5px, 1.1vw, 18px); }
+.viz-root .panel-sub, .viz-root .section-sub { font-size: clamp(12.5px, 0.95vw, 15.5px); }
+.viz-root .source-note, .viz-root footer.foot { font-size: clamp(11.5px, 0.85vw, 14px); line-height: 1.7; }
+.viz-root .stat-line { font-size: clamp(11.5px, 0.88vw, 14.5px); }
+.viz-root .legend-row, .viz-root .legend-item { font-size: clamp(12px, 0.9vw, 15px); }
+.viz-root svg { width: 100%; height: auto; }
+.viz-root .linechart-wrap svg, .viz-root .elephant-wrap svg { min-width: 0; }
+
+/* ============================================================
+   Value-label overflow fixes.
+   The source charts used fixed px grid columns for their label
+   and value tracks (e.g. 130px / 1fr / 64px). Once type scales
+   up for projection, "-9.27 pp" and "31.1%" no longer fit their
+   track and collided with the bars. Give the value column
+   intrinsic width and stop it wrapping.
+   ============================================================ */
+.viz-root .divchart .row,
+.viz-root .divchart .scale-labels {
+  grid-template-columns: minmax(96px, 22%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
+}
+.viz-root .divchart .value { white-space: nowrap; text-align: right; }
+.viz-root .divchart .label { overflow-wrap: anywhere; }
+
+.viz-root .rankchart .rank-row {
+  grid-template-columns: minmax(110px, 24%) minmax(0, 1fr) max-content !important;
+  gap: clamp(8px, 0.8vw, 14px) !important;
+}
+.viz-root .rank-value { white-space: nowrap; text-align: right; }
+.viz-root .rank-label { overflow-wrap: anywhere; }
+
+/* before/after bar groups: let them reflow instead of overflowing
+   when the panel is only half the viewport wide */
+.viz-root .triptych, .viz-root .quad {
+  grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 13vw, 190px), 1fr)) !important;
+  gap: clamp(10px, 1vw, 20px) !important;
+  row-gap: clamp(28px, 2.4vw, 40px) !important;
+}
+.viz-root .metric { display: flex !important; flex-direction: column !important; align-items: center !important; }
+/* THE overflow bug: .barpair shipped with a hard `height: 120px` and
+   `align-items: flex-end`, but a full-height 100px bar plus its value
+   label (~19px) and year label (~18px) needs ~137px. The surplus
+   overflowed *upward* out of the box and landed on top of the metric
+   label above. Let the row size to its own content; flex-end still
+   keeps every bar sitting on a common baseline. */
+.viz-root .barpair {
+  height: auto !important;
+  min-height: clamp(120px, 11vh, 150px);
+  gap: clamp(6px, 0.6vw, 10px);
+  margin-top: auto;
+}
+.viz-root .barpair .bar-col { width: clamp(28px, 2.6vw, 44px); }
+.viz-root .barpair .bval { font-size: clamp(11.5px, 0.85vw, 14px); white-space: nowrap; }
+.viz-root .barpair .byr { font-size: clamp(9.5px, 0.72vw, 11.5px); white-space: nowrap; }
+/* label sits in its own reserved block, bottom-aligned so 1-, 2- and
+   3-line labels all leave the same gap above the bars */
+.viz-root .metric .mlabel {
+  font-size: clamp(11.5px, 0.85vw, 14px);
+  line-height: 1.32;
+  min-height: 2.7em !important;
+  display: flex; align-items: flex-end; justify-content: center;
+  margin-bottom: clamp(8px, 0.8vw, 14px) !important;
+}
+
+@media print {
+  .row-pair { grid-template-columns: 1fr 1fr; }
+  .row-single, .row-pair { break-inside: avoid; }
+}
+
+
+/* ---------- FT palette: light ---------- */
+:root {
+  --shell-ink:     #33302e;   /* FT Black          */
+  --shell-paper:   #fff1e5;   /* FT Pink           */
+  --shell-surface: #fff9f2;   /* panel tint on pink */
+  --shell-rule:    #e6d9ce;
+  --shell-muted:   #66605c;
+  --shell-accent:  #990f3d;   /* Claret            */
+  --shell-slate:   #0f5499;   /* Oxford blue       */
+  --shell-slate-tint: rgba(15,84,153,0.09);
+}
+.viz-root.viz-root, .viz-root.viz-root .wrap {
+  --page:           #fff1e5;
+  --surface-1:      #fff9f2;
+  --text-primary:   #33302e;
+  --text-secondary: #66605c;
+  --muted:          #8b8480;
+  --grid:           #e6d9ce;
+  --baseline:       #cdbdb0;
+  --border:         rgba(51,48,46,0.13);
+
+  --c1: #0f5499;   /* Oxford blue  -- primary series      */
+  --c2: #00994d;   /* Jade         -- positive            */
+  --c3: #c05c7e;   /* Mauve                               */
+  --c4: #b86b25;   /* Mandarin dark                       */
+  --c5: #0d7680;   /* Teal                                */
+  --c6: #ff8833;   /* Mandarin                            */
+  --c7: #593380;   /* Velvet                              */
+  --c8: #cc0000;   /* Crimson      -- alarm / negative    */
+  --c9: #262a33;   /* FT Slate -- assertive, not recessive */
+
+  --point:           #0f5499;
+  --regline:         #cc0000;
+  --status-critical: #990f3d;
+  --blue-light:      #7fa8d0;
+  --blue-dark:       #0f5499;
+  --diverge-pos:     #0f5499;
+  --diverge-neg:     #cc0000;
+  --diverge-mid:     #e6d9ce;
+}
+
+/* ---------- FT palette: dark ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    --shell-ink:     #f2ece6;
+    --shell-paper:   #14110f;
+    --shell-surface: #1c1815;
+    --shell-rule:    #332d28;
+    --shell-muted:   #a49a92;
+    --shell-accent:  #e05c7e;
+    --shell-slate:   #6aa9e0;
+    --shell-slate-tint: rgba(106,169,224,0.15);
+  }
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root,
+  :root:where(:not([data-theme="light"])) .viz-root.viz-root .wrap {
+    --page:#14110f; --surface-1:#1c1815;
+    --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+    --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+    --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+    --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+    --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+    --blue-light:#3d6d99; --blue-dark:#4a9be0;
+    --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+  }
+}
+:root[data-theme="dark"] {
+  --shell-ink:#f2ece6; --shell-paper:#14110f; --shell-surface:#1c1815;
+  --shell-rule:#332d28; --shell-muted:#a49a92; --shell-accent:#e05c7e;
+  --shell-slate:#6aa9e0; --shell-slate-tint:rgba(106,169,224,0.15);
+}
+:root[data-theme="dark"] .viz-root.viz-root,
+:root[data-theme="dark"] .viz-root.viz-root .wrap {
+  --page:#14110f; --surface-1:#1c1815;
+  --text-primary:#f2ece6; --text-secondary:#c4bab2; --muted:#948a82;
+  --grid:#332d28; --baseline:#4a423b; --border:rgba(242,236,230,0.13);
+  --c1:#4a9be0; --c2:#3fbf7f; --c3:#d98cae; --c4:#d99a4e; --c5:#4aa8b0;
+  --c6:#ffa563; --c7:#9b7fd4; --c8:#ff5c5c; --c9:#c9c3bb;
+  --point:#4a9be0; --regline:#ff5c5c; --status-critical:#e05c7e;
+  --blue-light:#3d6d99; --blue-dark:#4a9be0;
+  --diverge-pos:#4a9be0; --diverge-neg:#ff5c5c; --diverge-mid:#332d28;
+}
+:root[data-theme="light"] {
+  --shell-ink:#33302e; --shell-paper:#fff1e5; --shell-surface:#fff9f2;
+  --shell-rule:#e6d9ce; --shell-muted:#66605c; --shell-accent:#990f3d;
+  --shell-slate:#0f5499; --shell-slate-tint:rgba(15,84,153,0.09);
+}
+:root[data-theme="light"] .viz-root.viz-root,
+:root[data-theme="light"] .viz-root.viz-root .wrap {
+  --page:#fff1e5; --surface-1:#fff9f2;
+  --text-primary:#33302e; --text-secondary:#66605c; --muted:#8b8480;
+  --grid:#e6d9ce; --baseline:#cdbdb0; --border:rgba(51,48,46,0.13);
+  --c1:#0f5499; --c2:#00994d; --c3:#c05c7e; --c4:#b86b25; --c5:#0d7680;
+  --c6:#ff8833; --c7:#593380; --c8:#cc0000; --c9:#7d7975;
+  --point:#0f5499; --regline:#cc0000; --status-critical:#990f3d;
+  --blue-light:#7fa8d0; --blue-dark:#0f5499;
+  --diverge-pos:#0f5499; --diverge-neg:#cc0000; --diverge-mid:#e6d9ce;
+}
+
+</style>
+<style>.scope-biblio .ref-group { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-size: 15px; font-weight: 600; margin: 22px 0 10px; color: var(--text-primary); }.scope-biblio .ref-group:first-of-type { margin-top: 18px; }.scope-biblio .ref { font-size: 13px; line-height: 1.6; color: var(--text-secondary); margin: 0 0 9px; padding-left: 1.6em; text-indent: -1.6em; }.scope-biblio .ref-author { color: var(--text-primary); font-weight: 600; }.scope-biblio .ref .as-cited { color: var(--muted); font-style: italic; }.scope-biblio .ref-note { font-size: 12.5px; color: var(--muted); margin: 0 0 8px; }.scope-biblio .ref-data { padding-left: 0; text-indent: 0; }
+/* divider slides that carry art: text left, image right */
+section.row-divider.divider-art { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; text-align: left; gap: clamp(24px, 4vw, 64px); }
+.row-divider.divider-art .divider-inner { flex: 1 1 52%; min-width: 0; }
+.row-divider.divider-art .divider-img {
+  flex: 0 1 42%; max-width: 42%; height: auto; display: block;
+  border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,.10);
+}
+@media (max-width: 820px) {
+  .row-divider.divider-art { display: block; }
+  .row-divider.divider-art .divider-img { max-width: 100%; margin-top: 22px; }
+}
+</style>
+<style>
+.ds-chart { display:block; width:100%; height:auto; margin-top:6px; }
+.ds-chart text { font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+.ds-chart .g { stroke: var(--grid); stroke-width:1; }
+.ds-chart .lab { font-size:15px; font-weight:650; fill: var(--text-primary); }
+.ds-chart .val { font-size:13px; font-variant-numeric:tabular-nums; }
+.ds-chart .ax { font-size:11.5px; fill: var(--muted); }
+.ds-chart .nm { font-size:13px; }
+.ds-chart .ph { font-size:12.5px; font-weight:650; fill: var(--text-primary); }
+.ds-chart .end { text-anchor:end; } .ds-chart .mid { text-anchor:middle; }
+.mgrid { display:grid; gap:14px; margin-top:16px; }
+.mgrid.c3 { grid-template-columns:repeat(3,1fr); }
+.mgrid.c2 { grid-template-columns:repeat(2,1fr); }
+.mgrid.c4 { grid-template-columns:repeat(4,1fr); }
+.mgrid.c5 { grid-template-columns:repeat(5,1fr); }
+.mgrid.c4 .mcard, .mgrid.c5 .mcard { min-height:0; padding:13px 14px 12px; }
+.mgrid.c5 .mcard h4 { font-size:14px; }
+.mgrid.c4 .mcard p, .mgrid.c5 .mcard p { font-size:12.2px; }
+.mcard { border:1px solid; border-left-width:4px; border-radius:8px;
+  padding:15px 17px 14px; display:flex; flex-direction:column; min-height:140px; }
+.mcard .n { font-family:Georgia,serif; font-size:16px; font-weight:600;
+  line-height:1; margin-bottom:8px; }
+.mcard h4 { font-family:Georgia,serif; font-size:15.5px; font-weight:600;
+  color:var(--text-primary); margin:0 0 7px; }
+.mcard p { font-size:12.8px; line-height:1.55; color:var(--text-secondary); margin:0; }
+.mcard b { color:var(--text-primary); font-weight:650; }
+.mcard .tag { margin-top:auto; padding-top:9px; font-size:10px; letter-spacing:.07em;
+  text-transform:uppercase; font-weight:700; color:var(--muted); }
+.mcard.warn .n { letter-spacing:.07em; text-transform:uppercase;
+  font-family:system-ui,sans-serif; font-size:10.5px; font-weight:700; }
+.mcard.warn p { margin-bottom:6px; } .mcard.warn p:last-child { margin-bottom:0; }
+/* two-column split used by several slides */
+.split { display:flex; gap:26px; align-items:flex-start; margin-top:10px; }
+.split .a { flex:1 1 0; min-width:0; }
+.split .b { flex:0 0 340px; }
+.split.wide .b { flex:0 0 420px; }
+.keyp { border:1px solid var(--border); border-radius:8px; padding:14px 16px;
+  background:rgba(0,0,0,.015); }
+.keyp h5 { font-family:Georgia,serif; font-size:14px; margin:0 0 8px;
+  color:var(--text-primary); font-weight:600; }
+.keyp p { font-size:12.4px; line-height:1.55; color:var(--text-secondary); margin:0 0 9px; }
+.keyp p:last-child { margin-bottom:0; }
+.keyp b { color:var(--text-primary); }
+.legend { display:flex; gap:22px; flex-wrap:wrap; margin:8px 0 2px;
+  font-size:12.5px; color:var(--text-secondary); }
+.legend i { width:13px; height:13px; border-radius:3px; display:inline-block;
+  margin-right:7px; vertical-align:-2px; }
+.stat { margin:0 0 14px; }
+.stat > b { display:block; font-family:Georgia,serif; font-size:38px; line-height:1.05;
+  font-variant-numeric:tabular-nums; }
+.stat span { font-size:12.5px; color:var(--text-secondary); line-height:1.5; }
+.stat span b { font-weight:650; color:var(--text-primary); }
+.artrow { display:flex; gap:20px; align-items:center; margin-top:6px; }
+.artrow figure { margin:0; }
+.artrow img { max-height:400px; width:auto; margin:0 auto; }
+.artrow figure:first-child img { max-height:230px; }
+.artcap { font-size:12.5px; color:var(--text-secondary); text-align:center;
+  margin-top:6px; line-height:1.45; }
+.artcap b { color:var(--text-primary); }
+.verdict { width:100%; border-collapse:collapse; margin-top:12px; font-size:13px; }
+.verdict th { text-align:left; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 12px 8px 0; border-bottom:1px solid var(--border); }
+.verdict td { padding:11px 12px 11px 0; border-bottom:1px solid var(--border);
+  color:var(--text-secondary); line-height:1.5; vertical-align:top; }
+.verdict td:first-child { font-weight:650; color:var(--text-primary); width:210px; }
+.verdict td.v { font-weight:700; width:170px; }
+.verdict td.v.yes { color:#008300; } .verdict td.v.part { color:#96690a; }
+.verdict td.v.cap { color:#2a78d6; } .verdict td.v.no { color:#eb6834; }
+.ctable { width:100%; border-collapse:collapse; margin-top:12px; font-size:11.4px; }
+.ctable th { text-align:left; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 9px 7px 0; border-bottom:1px solid var(--border); }
+.ctable td { padding:7px 9px 7px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); line-height:1.42; vertical-align:top; }
+.ctable td:first-child { font-weight:650; color:var(--text-primary); white-space:nowrap; }
+.ctable td.y { white-space:nowrap; color:var(--muted); }
+.ctable td.n { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap;
+  text-align:right; padding-right:14px; }
+.ctable td.n.ee { color:#eb6834; } .ctable td.n.ie { color:#2a78d6; }
+.ctable td.d { width:33%; }
+.ctable td.s { width:20%; color:var(--muted); font-size:10.6px; }
+.ctable tr.sep td { border-bottom:2px solid var(--baseline); padding:3px 0; }
+.ctable tr.idn td { background:rgba(235,104,52,.045); }
+.footline { font-size:13.5px; line-height:1.6; color:var(--text-secondary);
+  margin:16px 0 0; padding-top:13px; border-top:1px solid var(--grid); max-width:96ch; }
+.footline b { font-weight:700; }
+.grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px 26px; margin-top:10px; }
+.grid2 > div { min-width:0; }
+.trio { display:flex; gap:18px; margin-top:10px; }
+.trio > div { flex:1 1 0; min-width:0; }
+.toc { width:100%; border-collapse:collapse; margin-top:12px; font-size:12.5px; }
+.toc th { text-align:left; font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 10px 8px 0; border-bottom:1px solid var(--border); }
+.toc td { padding:10px 10px 10px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); line-height:1.45; vertical-align:top; }
+.toc td:first-child { font-weight:650; color:var(--text-primary); width:170px; }
+.toc td.a, .toc td.b { text-align:center; width:74px; font-size:19px; font-weight:700;
+  letter-spacing:-2px; }
+.toc td.a { color:#eb6834; } .toc td.b { color:#2a78d6; }
+.toc td.s0 { color:var(--baseline); font-size:14px; letter-spacing:0; }
+.toc td.up { color:var(--muted); }
+.toc td:last-child { width:31%; }
+.pmt { width:100%; border-collapse:collapse; margin-top:16px; font-size:15.5px; }
+.pmt th { text-align:right; font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--muted); font-weight:700; padding:0 12px 11px 0; line-height:1.35;
+  border-bottom:1px solid var(--border); }
+.pmt th:nth-child(2) { text-align:left; }
+.pmt td { padding:15px 12px 15px 0; border-bottom:1px solid var(--grid);
+  color:var(--text-secondary); }
+.pmt td:first-child { font-weight:650; color:var(--text-primary); white-space:nowrap; }
+.pmt td.sp { width:23%; }
+.pmt td.v, .pmt td.n { text-align:right; font-variant-numeric:tabular-nums; }
+.pmt td.v { font-weight:700; color:var(--text-primary); }
+.pmt tr.win td { background:rgba(0,131,0,.07); font-weight:650; color:var(--text-primary); }
+.pmt tr.win td.v { color:#006b00; }
+.refs h5 { font-family:Georgia,serif; font-size:14.5px; margin:0 0 10px;
+  color:var(--text-primary); font-weight:600; padding-bottom:7px;
+  border-bottom:1px solid var(--border); }
+.refs p { font-size:11.6px; line-height:1.5; color:var(--text-secondary);
+  margin:0 0 8px; padding-left:15px; text-indent:-15px; }
+.refs b { color:var(--text-primary); font-weight:650; }
+.deck-lede { max-width:74ch; }
+@media screen and (max-width:1000px) {
+  .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:repeat(2,1fr); } }
+@media screen and (max-width:700px) {
+  .mgrid.c2, .mgrid.c3, .mgrid.c4, .mgrid.c5 { grid-template-columns:1fr; }
+  .mcard { min-height:0; }
+  .split, .artrow, .trio { flex-direction:column; }
+  .grid2 { grid-template-columns:1fr; }
+  .split .a, .split .b { flex:1 1 auto; width:100%; max-width:100%; }
+}
+/* presenting in a browser: one slide per screen, nothing taller than the viewport */
+@media screen and (min-width:1000px) {
+  html { scroll-snap-type: y proximity; }
+  .deck-head, .row-single, .row-divider {
+    min-height:100vh; box-sizing:border-box;
+    display:flex; flex-direction:column; justify-content:center;
+    scroll-snap-align:center; }
+  .row-single > .viz-root { width:100%; }
+  .viz-root section.panel { max-width:1460px; margin-inline:auto; }
+  .ds-chart { max-height:54vh; }
+  .artrow img { max-height:32vh; }
+  .artrow figure:first-child img { max-height:22vh; }
+  .viz-root .panel img { max-height:56vh; width:auto; margin-inline:auto; }
+  /* scale type with screen height so dense slides still fit a laptop */
+  .viz-root section.panel { padding:clamp(14px,2.2vh,26px) clamp(16px,1.6vw,26px)
+    clamp(10px,1.6vh,20px); }
+  .scope-slide2 h2 { font-size:clamp(19px,2.35vh,24px); }
+  .scope-slide2 .panel-sub { font-size:clamp(12.5px,1.45vh,14.5px); }
+  .keyp { padding:clamp(9px,1.4vh,15px) clamp(11px,1vw,17px); }
+  .keyp h5 { font-size:clamp(13px,1.6vh,15px); }
+  .keyp p { font-size:clamp(11.5px,1.32vh,13px); margin-bottom:clamp(5px,0.8vh,10px); }
+  .footline { font-size:clamp(12px,1.45vh,14px); margin-top:clamp(8px,1.4vh,17px);
+    padding-top:clamp(7px,1.1vh,14px); }
+  .mcard { min-height:0; padding:clamp(9px,1.4vh,16px) clamp(11px,1vw,18px); }
+  .mcard h4 { font-size:clamp(13.5px,1.7vh,16px); margin-bottom:clamp(4px,0.7vh,8px); }
+  .mcard p { font-size:clamp(11.5px,1.3vh,13px); }
+  .mcard .n { font-size:clamp(13px,1.6vh,17px); margin-bottom:clamp(4px,0.8vh,9px); }
+  .stat { margin-bottom:clamp(7px,1.3vh,15px); }
+  .stat > b { font-size:clamp(22px,4vh,38px); }
+  .stat span { font-size:clamp(11.5px,1.35vh,13px); }
+  .legend { font-size:clamp(11.5px,1.35vh,13px); }
+  .toc, .verdict { font-size:clamp(11.5px,1.32vh,13px); }
+  .refs p { font-size:clamp(10px,1.15vh,11.6px); margin-bottom:clamp(4px,0.75vh,8px); }
+  .refs h5 { font-size:clamp(12px,1.5vh,14.5px); }
+  .pmt { font-size:clamp(13px,1.95vh,17px); }
+  .pmt th { font-size:clamp(10px,1.3vh,12px); }
+  .toc td, .verdict td { padding-top:clamp(5px,0.95vh,11px);
+    padding-bottom:clamp(5px,0.95vh,11px); }
+  .pmt td { padding-top:clamp(8px,1.55vh,17px); padding-bottom:clamp(8px,1.55vh,17px); }
+  .ctable { font-size:clamp(10px,1.02vh,11.4px); }
+  .ctable td { padding-top:clamp(3px,0.6vh,7px); padding-bottom:clamp(3px,0.6vh,7px); }
+  .ds-chart { max-height:46vh; }
+  .grid2 .ds-chart { max-height:25vh; }
+  .artrow img { max-height:27vh; }
+  .artrow figure:first-child img { max-height:19vh; }
+  .viz-root .panel img { max-height:50vh; width:auto; max-width:100%; }
+  .viz-root details.src { font-size:clamp(10.5px,1.15vh,12px); }
+  /* square divider art: narrower share, and never taller than the screen */
+  .row-divider.divider-art { flex-direction:row; }
+  .row-divider.divider-art .divider-img { flex:0 0 auto;
+    width:clamp(230px,26vw,400px); max-width:36%; max-height:56vh;
+    height:auto; object-fit:contain; }
+}
+/* phone and narrow tablet: the divider stacks, image under the text.
+   `section` is needed to outrank section.row-divider.divider-art in the house style. */
+@media screen and (max-width:999px) {
+  /* wide tables scroll inside themselves rather than widening the page */
+  table.pmt, table.toc, table.verdict, table.ctable {
+    display:block; width:max-content; max-width:100%; overflow-x:auto; }
+  section.row-divider.divider-art { display:block; }
+  section.row-divider.divider-art .divider-inner { width:auto; }
+  section.row-divider.divider-art .divider-img { width:100%; max-width:340px;
+    max-height:none; height:auto; margin:18px 0 0; }
+}
+@media print {
+  .row-single { display:flex; flex-direction:column; justify-content:center;
+    min-height:838px; box-sizing:border-box; }
+  .row-divider { display:flex; flex-direction:column; justify-content:center;
+    min-height:838px; box-sizing:border-box; border-top:none;
+    break-inside:avoid; page-break-inside:avoid;
+    break-after:page; page-break-after:always; }
+  .row-divider.divider-art { flex-direction:row; }
+  .row-divider.divider-art .divider-img { flex:0 0 auto; width:400px;
+    max-width:34%; max-height:430px; height:auto; object-fit:contain; }
+  .divider-title { font-size:44px; }
+  .divider-blurb { font-size:18px; max-width:64ch; }
+}
+</style>
+<style>
+/* additive only — equation display and a warning row state for this lecture */
+.viz-root .eqbox { margin: 14px 0 4px; padding: 16px 18px; border-radius: 8px;
+  background: var(--grid); border: 1px solid var(--border); }
+.viz-root .eq { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: clamp(14px, 1.05vw, 17px); line-height: 1.85; margin: 4px 0;
+  color: var(--text-primary); text-align: center; }
+.viz-root .eqline { font-size: clamp(12px, 0.9vw, 14px); margin: 0 0 6px;
+  color: var(--text-secondary); }
+.viz-root .eqnote { font-size: clamp(11.5px, 0.85vw, 13.5px); margin: 8px 0 0;
+  color: var(--muted); line-height: 1.6; }
+.viz-root table.ctable tr.warn > td { background: rgba(230,103,103,0.09); }
+.viz-root table.ctable tr.warn > td:first-child { box-shadow: inset 3px 0 0 #e66767; }
+.viz-root .mcard h4 { margin: 2px 0 8px; font-size: clamp(13.5px, 1vw, 16px);
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; }
+.viz-root .neg { color: #e66767; font-weight: 600; }
+.viz-root .pos { color: #199e70; font-weight: 600; }
+</style>
+
+<header class="deck-head">
+  <div class="deck-head-inner">
+    <div class="deck-head-text">
+      <p class="deck-eyebrow">Applied Microeconometrics &middot; Lecture</p>
+      <h1 class="deck-h1">Predicting Welfare: What a Proxy Means Test Teaches About Regression</h1>
+      <p class="deck-byline">Arief Anshory Yusuf</p>
+      <p class="deck-lede">A proxy means test is an ordinary linear regression asked to do an
+      unusual job. It is never used to explain anything &mdash; only to guess a number the
+      analyst cannot observe, for a household the analyst has never met. That single change
+      of purpose reorganises every methodological choice: which variables belong, what
+      functional form to use, what fixed effects are for, and above all what counts as
+      evidence that the model works. This lecture follows one real model &mdash; estimated on
+      1.02 million Indonesian households and tested on 343,460 more &mdash; and uses it to
+      make those choices concrete.</p>
+    </div>
+  </div>
+</header>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">I</span>The question decides the method</h2>
+<p class="divider-blurb">Almost everything that feels strange about a targeting model
+follows from one fact: we are predicting, not explaining. Get that straight and the rest
+of the course falls into place.</p>
+</div></section>
+
+<section class="row-single" aria-label="Two questions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 1</p>
+<h2>Two questions, two econometrics</h2>
+<p class="panel-sub">The same regression command answers both. The standards of evidence are
+almost opposites.</p>
+<div class="mgrid c2">
+<div class="mcard" style="border-color:#4a3aa744;border-left-color:#4a3aa7;background:#4a3aa70d">
+<div class="n" style="color:#4a3aa7">1</div><h4>Causal &mdash; <em>why</em></h4>
+<p><b>Goal:</b> an unbiased &beta; on one variable of interest.<br><br>
+<b>Threats:</b> omitted variables, simultaneity, selection.<br><br>
+<b>You worry about:</b> identification, exogeneity, the exclusion restriction.<br><br>
+<b>A control is good</b> if it closes a back-door path. Adding a bad control is a
+disaster even if R&sup2; rises.</p><span class="tag">Inference</span></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d">
+<div class="n" style="color:#006b00">2</div><h4>Predictive &mdash; <em>how much</em></h4>
+<p><b>Goal:</b> a small <em>ŷ</em> error on data you have never seen.<br><br>
+<b>Threats:</b> overfitting, distribution shift, leakage.<br><br>
+<b>You worry about:</b> out-of-sample loss, variance, stability over time.<br><br>
+<b>A variable is good</b> if it lowers test error. Whether it <em>causes</em> welfare is
+irrelevant &mdash; and asking is a category error.</p><span class="tag">Prediction</span></div>
+</div>
+<div class="keyp" style="margin-top:14px">
+<p>A proxy means test lives entirely in column 2. Nobody claims a motorcycle
+<em>causes</em> consumption. The claim is only that households owning one tend to spend more,
+and that this regularity is stable enough to act on. Students trained only on causal
+inference routinely mis-read PMT coefficients as effects. <b>They are not effects. They are
+weights.</b></p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">The
+distinction follows Shmueli (2010), <em>To Explain or to Predict?</em>, and Kleinberg,
+Ludwig, Mullainathan &amp; Obermeyer (2015) on &ldquo;prediction policy problems&rdquo;.
+Targeting is their canonical example: the policy payoff depends on <em>ŷ</em> alone, with no
+causal parameter anywhere in the decision.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="What a PMT is"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 2</p>
+<h2>What a proxy means test actually is</h2>
+<p class="panel-sub">One regression, estimated on a survey where welfare <em>is</em> observed,
+then applied to households where it is not.</p>
+<div class="eqbox">
+<p class="eqline"><b>Step 1 &mdash; estimate</b>, on a survey with full consumption data:</p>
+<p class="eq">ln <i>y</i><sub>i</sub> &nbsp;=&nbsp; <b>x</b><sub>i</sub>&prime;<b>&beta;</b>
+&nbsp;+&nbsp; &alpha;<sub>d(i)</sub> &nbsp;+&nbsp; &epsilon;<sub>i</sub></p>
+<p class="eqnote"><i>y</i> = real per-capita expenditure &nbsp;&middot;&nbsp;
+<b>x</b> = cheap observable proxies &nbsp;&middot;&nbsp;
+&alpha;<sub>d</sub> = district effect</p>
+<p class="eqline" style="margin-top:14px"><b>Step 2 &mdash; predict</b>, for a household with
+no consumption data:</p>
+<p class="eq">ln <i>ŷ</i><sub>j</sub> &nbsp;=&nbsp; <b>x</b><sub>j</sub>&prime;<b>b</b>
+&nbsp;+&nbsp; <i>a</i><sub>d(j)</sub></p>
+<p class="eqnote"><b>b</b> and <i>a</i><sub>d</sub> are the estimates of <b>&beta;</b> and
+&alpha;<sub>d</sub> from Step 1. Note what is missing: no &epsilon;. The residual is exactly
+the part of welfare the proxies cannot see, and it does not vanish &mdash; we simply have no
+estimate of it for household <i>j</i>.</p>
+</div>
+<p class="footline">That omitted &epsilon; is the whole problem of targeting. Its standard
+deviation in this model is <b>0.365 in logs</b> &mdash; roughly &plusmn;44% / &minus;31% in
+rupiah. Every error rate later in this lecture is a consequence of that one number.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Notation
+follows the standard PMT set-up in Grosh, Leite, Wai-Poi &amp; Tesliuc (2022),
+<em>Revisiting Targeting in Social Assistance</em>, World Bank. Root MSE from the
+national parsimonious model with district fixed effects, Susenas 2022&ndash;2024,
+N = 1,024,865.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">II</span>Specification</h2>
+<p class="divider-blurb">Functional form, zeros, and fixed effects &mdash; three choices that
+look technical, each with a consequence you can measure.</p>
+</div></section>
+
+<section class="row-single" aria-label="The estimating equation"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 3</p>
+<h2>The estimating equation, in full</h2>
+<p class="panel-sub">Eight underlying variables become fifteen regression terms. The gap
+between those two numbers is where the functional-form decisions live.</p>
+<div class="eqbox">
+<p class="eq" style="font-size:15px;line-height:2.05">
+ln <i>y</i> = &beta;<sub>0</sub>
++ &beta;<sub>1</sub> ln <i>n</i> + &beta;<sub>2</sub> (ln <i>n</i>)&sup2;
++ &beta;<sub>3</sub> ln <i>e</i> + &beta;<sub>4</sub> (ln <i>e</i>)&sup2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ &beta;<sub>5</sub> ln <i>t</i> + &beta;<sub>6</sub> (ln <i>t</i>)&sup2;
++ &beta;<sub>7</sub> ln <i>a</i> + &beta;<sub>8</sub> (ln <i>a</i>)&sup2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ &gamma;<sub>2</sub> <i>D</i><sub>900</sub> + &gamma;<sub>3</sub> <i>D</i><sub>&ge;1300</sub>
++ &delta;<sub>2</sub> (ln <i>e</i> &times; <i>D</i><sub>900</sub>)
++ &delta;<sub>3</sub> (ln <i>e</i> &times; <i>D</i><sub>&ge;1300</sub>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ &theta;<sub>1</sub> car + &theta;<sub>2</sub> computer + &theta;<sub>3</sub> land
++ &lambda; urban + &alpha;<sub>d</sub> + &epsilon;</p>
+</div>
+<table class="ctable"><thead><tr><th>Symbol</th><th>Variable</th><th>Unit as collected</th><th>Terms</th></tr></thead><tbody>
+<tr><td><i>n</i></td><td>Household size</td><td class="d">persons</td><td class="n">2</td></tr>
+<tr><td><i>e</i></td><td>Electricity per capita</td><td class="d">kWh / person / month</td><td class="n">2 + 2 interactions</td></tr>
+<tr><td><i>t</i></td><td>Telecom per capita</td><td class="d">Rp / person / month</td><td class="n">2</td></tr>
+<tr><td><i>a</i></td><td>Floor area</td><td class="d">m&sup2;</td><td class="n">2</td></tr>
+<tr><td><i>D</i></td><td>Electricity capacity</td><td class="d">450 / 900 / &ge;1300 VA</td><td class="n">2 dummies</td></tr>
+<tr><td>&theta;</td><td>Car, computer, land</td><td class="d">yes / no</td><td class="n">3</td></tr>
+<tr class="win"><td>&alpha;<sub>d</sub></td><td>District</td><td class="d">not asked &mdash; it is where they live</td><td class="n">513 dummies</td></tr>
+</tbody></table>
+<p class="footline">Only <b>one</b> of the eight is denominated in money. Seven are physical
+quantities, counts, or binary states &mdash; so the model has exactly one point of exposure
+to inflation. That is a design property worth noticing, not an accident.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Specification
+as estimated in the World Bank pipeline, do file 3. Dependent variable is log real per-capita
+expenditure, deflated spatially and temporally to Jakarta 2022 prices using the poverty line
+of the province &times; urban/rural cell.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Why logs"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 4</p>
+<h2>Why logs, and why squares</h2>
+<p class="panel-sub">Three reasons, none of them decoration.</p>
+<div class="mgrid c3">
+<div class="mcard"><div class="n">1</div><h4>Skew</h4>
+<p>Telecom spending has a median of Rp 35,667 and a maximum of Rp 10.3 million &mdash; roughly
+<b>290&times;</b> the median. Electricity: median 33 kWh, max 3,704. In levels, a handful of
+households would dominate the fit. Logs pull the tail in.</p></div>
+<div class="mcard"><div class="n">2</div><h4>Elasticity</h4>
+<p>With both sides in logs the coefficient is an elasticity &mdash; a percentage response to a
+percentage change. That is the natural scale for consumption, and it makes coefficients
+comparable across variables measured in kWh, m&sup2; and rupiah.</p></div>
+<div class="mcard"><div class="n">3</div><h4>Curvature</h4>
+<p>The squared terms let the relationship bend. For telecom the linear term is
+<b>&minus;0.147</b> and the quadratic <b>+0.021</b> &mdash; a U-shape whose rising arm is where
+almost every household sits. The marginal effect at the median is
+<b>+0.30</b>, not &minus;0.147.</p></div>
+</div>
+<div class="keyp" style="margin-top:14px">
+<p><b>The teaching point students miss.</b> With a quadratic in the model you cannot read the
+coefficient as the effect. &part;ln <i>y</i> / &part;ln <i>t</i> = &beta;<sub>5</sub> +
+2&beta;<sub>6</sub> ln <i>t</i>, which depends on where you evaluate it. A negative
+&beta;<sub>5</sub> alongside a positive &beta;<sub>6</sub> is not a sign error &mdash; it is a
+curve, and the sign of the slope changes at ln <i>t</i> = &minus;&beta;<sub>5</sub>/2&beta;<sub>6</sub>.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Distributional
+figures from Susenas March 2025, household-weighted (<code>wert</code>), n = 343,460.
+Coefficients from the national parsimonious model with district fixed effects, trained on
+2022&ndash;2024.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="The zero problem"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 5</p>
+<h2>The zero problem, and the price of the usual fix</h2>
+<p class="panel-sub">ln(0) is undefined. In this data that is not a corner case: it is
+6.5% of households for telecom and 21&ndash;25% for its components.</p>
+<div class="eqbox">
+<p class="eq">ln(<i>x</i> + 0.1) &nbsp;&nbsp;&nbsp;for electricity, telecom, floor area<br>
+ln(<i>n</i>) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for household size &mdash;
+<b>no offset</b>, because <i>n</i> &ge; 1 always</p>
+</div>
+<p class="panel-sub" style="margin-top:12px">The offset keeps zero-spending households in the
+sample instead of dropping them. But it is not free, and the cost is worth stating plainly to
+students:</p>
+<div class="mgrid c2">
+<div class="mcard" style="border-color:#e6676744;border-left-color:#e66767;background:#e667670d">
+<h4>What it costs</h4>
+<p>The constant is arbitrary. Choosing 0.1 rather than 1 or 0.01 changes where the zeros land
+on the log scale &mdash; ln(0.1) = &minus;2.30 versus ln(1) = 0. Since the specification is
+quadratic, that relocation is <em>squared</em>, so the fit near zero is sensitive to a number
+nobody estimated.</p></div>
+<div class="mcard" style="border-color:#19 9e7044;border-left-color:#199e70;background:#199e700d">
+<h4>The alternatives</h4>
+<p>A zero dummy plus log of the positive part; inverse hyperbolic sine; or a two-part model.
+Each is defensible. This pipeline chose the offset for simplicity &mdash; a reasonable call,
+but one that should be <em>declared</em> rather than buried, because it is a researcher degree
+of freedom.</p></div>
+</div>
+<p class="footline">A practical corollary for anyone re-implementing the model: the offset must
+be reproduced exactly, including the asymmetry that household size does <em>not</em> get one.
+Applying <code>ln(n + 0.1)</code> by mistake changes every prediction.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Zero shares
+from Susenas March 2025, household-weighted: 24.6% of households report zero phone credit,
+21.6% zero internet package, but only 6.5% zero for the combined telecom variable &mdash; the
+two components substitute for one another. On alternatives to the log offset see Bellemare
+&amp; Wichman (2020) on the inverse hyperbolic sine, and Chen &amp; Roth (2024) on
+log-like transformations with zeros.</div></details>
+</section></div></div></section>
+
+
+<section class="row-single" aria-label="Fixed effects"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 6</p>
+<h2>What 513 dummies absorb</h2>
+<p class="panel-sub">The district effect is not a question asked of the household. It is the
+district the household already lives in &mdash; free information, and it buys a lot.</p>
+<table class="ctable"><thead><tr><th>Specification</th><th>Adj. R&sup2;</th><th>Root MSE</th><th>What changed</th></tr></thead><tbody>
+<tr><td class="sp">Parsimonious, no fixed effects</td><td class="n">0.594</td><td class="n">0.3995</td><td class="d">Eight household variables only.</td></tr>
+<tr class="win"><td class="sp">Parsimonious + district fixed effects</td><td class="n">0.661</td><td class="n">0.3650</td><td class="d">Adds 513 district dummies and an urban indicator. <b>+6.7 points of R&sup2; for zero extra questions.</b></td></tr>
+</tbody></table>
+<p class="panel-sub" style="margin-top:14px">What is the &alpha;<sub>d</sub> actually soaking
+up? Everything that is common to a district and correlated with welfare but absent from the
+eight predictors: local price levels the deflator missed, labour-market conditions, remoteness,
+public-service quality, agro-ecology. In a causal paper you would agonise over whether these
+belong. Here the question does not arise &mdash; if it lowers test error, it belongs.</p>
+<div class="keyp">
+<p><b>But there is a catch that only appears out of sample,</b> and it is the subject of
+Figure 15. A fixed effect estimated on 2022&ndash;2024 is applied to 2025 as a constant. If the
+district's position shifted in the meantime, the correction is confidently wrong &mdash; and it
+is wrong for every household in that district at once.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Both models
+estimated by OLS on pooled Susenas 2022&ndash;2024, N = 1,024,865. The base district is
+Kab. Simeulue (code 1101); all other district effects are measured relative to it.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="LSDV and within"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 7</p>
+<h2>LSDV and the within estimator are the same &mdash; except for the R&sup2;</h2>
+<p class="panel-sub">A verification exercise worth running once in front of students, because
+the one thing that differs is the number they are most likely to quote.</p>
+<table class="ctable"><thead><tr><th>Quantity</th><th><code>reg y x i.district</code> (LSDV)</th><th><code>xtreg y x, fe</code> (within)</th><th></th></tr></thead><tbody>
+<tr><td>&beta; on ln hhsize</td><td class="n">&minus;0.4831789302</td><td class="n">&minus;0.4831789302</td><td class="d">identical to 3e&minus;11</td></tr>
+<tr><td>Standard error</td><td class="n">0.0024398606</td><td class="n">0.0024398606</td><td class="d">identical</td></tr>
+<tr><td>Residual d.f.</td><td class="n">1,024,335</td><td class="n">1,024,335</td><td class="d">identical</td></tr>
+<tr><td>Root MSE</td><td class="n">0.36496725</td><td class="n">0.36496725</td><td class="d">identical</td></tr>
+<tr><td>Constant</td><td class="n">13.5422</td><td class="n">13.7607</td><td class="d">base district vs. mean &mdash; normalisation</td></tr>
+<tr class="warn"><td><b>R&sup2;</b></td><td class="n"><b>0.6616</b></td><td class="n"><b>0.6086</b> within<br>0.5925 overall</td><td class="d"><b>Not the same number.</b></td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>Why this matters in practice.</b> The baseline comparison model has R&sup2; = 0.594
+without fixed effects. Report the LSDV figure and fixed effects look like they add 6.7 points.
+Report <code>xtreg</code>'s within-R&sup2; of 0.609 and they look like they add 1.5. Same
+estimates, opposite story &mdash; decided entirely by which R&sup2; the software printed.
+<b>Within-R&sup2; deliberately excludes the variance the dummies explain.</b> When comparing
+against a no-FE baseline, LSDV is the comparable one.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Verified
+empirically on the training data rather than asserted: both commands run on the same
+1,024,865 observations, coefficients compared at 17 significant digits. Differences of order
+1e&minus;11 are floating point.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">III</span>Choosing among models</h2>
+<p class="divider-blurb">Thirty-nine variables or eight? The answer is not what most students
+&mdash; or most practitioners &mdash; expect.</p>
+</div></section>
+
+<section class="row-single" aria-label="Two variable sets"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 8</p>
+<h2>Two candidate variable sets</h2>
+<p class="panel-sub">Both are defensible <em>a priori</em>. They differ in kind, not just in
+count &mdash; and that turns out to be the whole story.</p>
+<div class="mgrid c2">
+<div class="mcard"><div class="n">39</div><h4>The conventional set</h4>
+<p>Demographics by age band and sex; education counts; employment status by sector; housing
+material for floor, wall, roof; water source; lighting; cooking fuel; toilet type; septic type;
+fourteen asset dummies; marital status.<br><br>
+<b>Almost every variable is categorical or a count.</b> Nothing measures a quantity consumed.</p>
+<span class="tag">Baseline</span></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d">
+<div class="n" style="color:#006b00">8</div><h4>The parsimonious set</h4>
+<p>Household size &middot; electricity kWh per capita &middot; telecom spending per capita
+&middot; floor area &middot; electricity meter capacity &middot; car &middot; computer
+&middot; land.<br><br>
+<b>Two of the eight are continuous consumption quantities</b> &mdash; near-measures of the
+thing being predicted, not proxies for it.</p><span class="tag">Parsimonious</span></div>
+</div>
+<p class="footline">The instinct in applied work is that more information cannot hurt: with
+enough observations, irrelevant regressors merely get small coefficients. That instinct is
+right about <em>bias</em> and wrong about <em>variance</em> &mdash; and out of sample, variance
+is what you pay for.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Baseline set
+as specified in do file 2 (<code>$predictors</code>, 39 fields). Parsimonious set is
+<code>$predictors_7</code>, 8 underlying variables entering as 15 regression terms.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="In-sample fit"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 9</p>
+<h2>In-sample fit: eight beats thirty-nine</h2>
+<p class="panel-sub">This is not an overfitting story. The short model wins <em>before</em> we
+ever leave the training data &mdash; which means the extra 31 variables were not merely
+redundant.</p>
+<table class="ctable"><thead><tr><th>Model</th><th>Variables</th><th>Fixed effects</th><th>Adj. R&sup2;</th><th>Root MSE</th></tr></thead><tbody>
+<tr><td class="sp">Baseline</td><td class="n">39</td><td class="d">no</td><td class="n">0.511</td><td class="n">0.4387</td></tr>
+<tr><td class="sp">Baseline + district FE</td><td class="n">39</td><td class="d">yes</td><td class="n">0.575</td><td class="n">0.4090</td></tr>
+<tr class="win"><td class="sp">Parsimonious</td><td class="n">8</td><td class="d">no</td><td class="n">0.594</td><td class="n">0.3995</td></tr>
+<tr class="win"><td class="sp">Parsimonious + district FE</td><td class="n">8</td><td class="d">yes</td><td class="n">0.661</td><td class="n">0.3650</td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>Read the second and third rows together.</b> Eight variables with <em>no</em> geography
+(0.594) beat thirty-nine variables <em>plus 513 district dummies</em> (0.575). The advantage
+is not parsimony as such &mdash; it is <em>which</em> variables. Electricity consumption and
+telecom spending are continuous quantities that move with living standards; thirty-nine
+categorical indicators of housing material and demographic composition are not.</p></div>
+<p class="footline">Bivariate R&sup2; against log per-capita expenditure: telecom
+<b>0.458</b>, electricity <b>0.251</b>, household size <b>0.169</b>. A single well-chosen
+continuous variable explains more than the entire categorical apparatus contributes over
+the parsimonious core.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">All four
+models estimated by OLS on pooled Susenas 2022&ndash;2024, N = 1,024,865. Bivariate R&sup2;
+computed on the 2025 test cross-section, restricted to households with positive values of the
+predictor &mdash; the restriction matters and is stated because unrestricted figures are
+substantially lower.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Out of sample design"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 10</p>
+<h2>The out-of-sample design</h2>
+<p class="panel-sub">Held-out data is not a formality here. Targeting models are always applied
+to a year they were not estimated on, so the test must imitate that.</p>
+<div class="eqbox">
+<p class="eqline"><b>Train</b> &nbsp;Susenas March 2022, 2023, 2024 &nbsp;&mdash;&nbsp;
+1,024,865 households</p>
+<p class="eqline"><b>Test</b> &nbsp;&nbsp;Susenas March 2025 &nbsp;&mdash;&nbsp;
+343,460 households, never seen in estimation</p>
+<p class="eqnote" style="margin-top:10px">Deciles for the test year are assigned from the 2025
+cross-section alone, so the evaluation reflects <em>actual 2025 welfare ranks</em>, not ranks
+blended with training years.</p>
+</div>
+<p class="panel-sub" style="margin-top:14px">Three properties of this design deserve comment,
+because each is a decision students should be able to defend:</p>
+<div class="mgrid c3">
+<div class="mcard"><h4>Temporal, not random</h4>
+<p>A random 80/20 split would leak: households from the same year, same enumeration area,
+share shocks. Splitting by <em>year</em> tests what the model is actually asked to do &mdash;
+extrapolate forward.</p></div>
+<div class="mcard"><h4>Ranks re-computed</h4>
+<p>Predicted deciles come from ranking <em>predicted</em> welfare in the test year. This is
+what an implementing agency would do, and it avoids importing training-period thresholds
+into a different price environment.</p></div>
+<div class="mcard"><h4>Weighted throughout</h4>
+<p>Errors are population-weighted. An unweighted rate would over-represent small sampled
+households and understate error among the populous poor.</p></div>
+</div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Pipeline do
+files 2&ndash;4. Predicted deciles assigned by weighted percentile ranking
+(<code>xtile ... [fw=int(weind)], nq(10)</code>) on the 2025 predictions.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">IV</span>Evaluating a prediction</h2>
+<p class="divider-blurb">R&sup2; is the wrong scoreboard for a targeting model. What replaces
+it depends on a policy choice the econometrician does not get to make alone.</p>
+</div></section>
+
+<section class="row-single" aria-label="R2 wrong question"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 11</p>
+<h2>R&sup2; answers the wrong question</h2>
+<p class="panel-sub">A model can fit well on average and still put the wrong households in the
+programme. Those are different objectives, and only one of them pays benefits.</p>
+<div class="mgrid c2">
+<div class="mcard"><h4>What R&sup2; measures</h4>
+<p>Squared error over the <em>whole</em> distribution. It rewards getting the rich
+approximately right just as much as getting the near-threshold poor exactly right.</p></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d">
+<h4>What targeting needs</h4>
+<p>Correct classification <em>at a cut-off</em>. A household at the 19th percentile predicted
+at the 21st is a policy failure; a billionaire predicted as a millionaire is not.</p></div>
+</div>
+<div class="keyp" style="margin-top:14px">
+<p><b>Put the two scales side by side.</b> Root MSE is 0.365 in logs. Decile boundaries in this
+distribution are only <b>0.10 to 0.16 log points apart</b>. The prediction error therefore spans
+roughly <b>three deciles</b>. A model can have a perfectly respectable R&sup2; of 0.66 and still
+be unable to distinguish decile 3 from decile 6 for an individual household. Both statements
+are true simultaneously, and only the second one matters at the counter.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Root MSE from
+the national parsimonious + FE model. Decile boundary spacing computed from the realised
+distribution of predicted log expenditure on the 2025 test data, 343,460 households.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="IE and EE"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 12</p>
+<h2>Inclusion and exclusion error</h2>
+<p class="panel-sub">Two rates, two denominators. Confusing them is the single most common
+error in reading targeting evaluations.</p>
+<div class="eqbox">
+<p class="eqline"><b>Inclusion error</b> &mdash; denominator is <em>those selected</em></p>
+<p class="eq">IE = 1 &minus; P( truly poor | selected by the PMT )</p>
+<p class="eqline" style="margin-top:12px"><b>Exclusion error</b> &mdash; denominator is
+<em>those who qualify</em></p>
+<p class="eq">EE = 1 &minus; P( selected by the PMT | truly poor )</p>
+</div>
+<p class="panel-sub" style="margin-top:14px">When the programme selects exactly the same
+population share as the true criterion &mdash; the bottom 20% by prediction against the bottom
+20% by actual welfare &mdash; the two rates are <b>equal by construction</b>. That is an
+arithmetic identity, not a finding, and it is why this pipeline reports IE20 = EE20 = 39.7%.</p>
+<div class="keyp">
+<p><b>A third framing that reconciles them.</b> The same model can be described as: 39.7%
+inclusion error <em>among those selected</em>, or 15.9% of the <em>whole population</em> placed
+on the wrong side of the bottom-20% line. Same model, same data, different denominators. When
+a policy note says &ldquo;misclassification&rdquo; without saying of what, it has not said
+anything.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Definitions
+follow do file 4. Both rates computed with individual sampling weights
+(<code>weind</code>) on the 2025 test data.</div></details>
+</section></div></div></section>
+
+
+<section class="row-single" aria-label="Misclassification"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 13</p>
+<h2>How wrong is it? Depends how finely you slice</h2>
+<p class="panel-sub">The same six models, scored on how often the predicted group is not the
+actual group. Out-of-sample 2025, population-weighted.</p>
+<table class="ctable"><thead><tr><th>Model</th><th>Vars</th><th>Wrong decile<br>(of 10)</th><th>Wrong quintile<br>(of 5)</th><th>Wrong half<br>(of 2)</th></tr></thead><tbody>
+<tr><td class="sp">BPS machine-learning model (XGBoost)</td><td class="v">39</td><td class="n">74.9%</td><td class="n">57.0%</td><td class="n">23.8%</td></tr>
+<tr><td class="sp">Baseline OLS, no fixed effects</td><td class="v">39</td><td class="n">76.1%</td><td class="n">58.4%</td><td class="n">24.7%</td></tr>
+<tr><td class="sp">Baseline OLS + district effects</td><td class="v">39</td><td class="n">74.8%</td><td class="n">56.4%</td><td class="n">23.0%</td></tr>
+<tr class="win"><td class="sp">Parsimonious, no fixed effects</td><td class="v">8</td><td class="n">73.1%</td><td class="n">54.8%</td><td class="n">22.3%</td></tr>
+<tr class="win"><td class="sp">Parsimonious + district effects</td><td class="v">8</td><td class="n">71.5%</td><td class="n">52.3%</td><td class="n">20.2%</td></tr>
+<tr class="win"><td class="sp">Parsimonious, province-specific</td><td class="v">8</td><td class="n">70.8%</td><td class="n">51.6%</td><td class="n">19.9%</td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>Two lessons in one table.</b> First, roughly <b>seven households in ten land in the wrong
+decile</b> under every specification &mdash; a number worth stating out loud before anyone
+claims a PMT &ldquo;identifies the poor&rdquo;. Second, and more useful:
+<b>coarsening the target roughly halves the error each time</b> (71% &rarr; 52% &rarr; 20%),
+while the <em>ranking of models barely moves</em>. Model choice shifts each column by 4&ndash;5
+points. Choosing deciles instead of halves shifts it by fifty.</p></div>
+<p class="footline">For a policy designer that inverts the usual priority. How finely you slice
+eligibility matters far more than which estimator you fit &mdash; and unlike the estimator, the
+number of groups is entirely your choice.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own
+calculation on Susenas 2025, 343,460 households, weighted by <code>weind</code>. Quintiles are
+deciles collapsed pairwise and halves are deciles 0&ndash;4 versus 5&ndash;9, applied
+identically to actual and predicted, so rankings are preserved. XGBoost figures computed from
+its own household-level predictions on the same definitions
+(<code>preds_s2_m1_13Dec2025201859.csv</code>, 342,813 households). The two baseline OLS rows
+are re-estimated on the current 514-district data because the archived estimates were fit on an
+earlier 515-district build whose fixed-effect indices no longer align.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="OLS vs ML"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 14</p>
+<h2>Does machine learning help? Here, no &mdash; and the reason is instructive</h2>
+<p class="panel-sub">Gradient-boosted trees on 39 features, against ordinary least squares on 8.</p>
+<table class="ctable"><thead><tr><th>Model</th><th>Estimator</th><th>Vars</th><th>Poorest decile<br>identified</th><th>Error at<br>bottom 20%</th></tr></thead><tbody>
+<tr><td class="sp">Baseline OLS + district effects</td><td class="d">OLS</td><td class="v">39</td><td class="n">40.9%</td><td class="n">45.8%</td></tr>
+<tr><td class="sp">BPS machine-learning model</td><td class="d">XGBoost</td><td class="v">39</td><td class="n">42.7%</td><td class="n">46.0%</td></tr>
+<tr class="win"><td class="sp">Parsimonious + district effects</td><td class="d">OLS</td><td class="v">8</td><td class="n">52.1%</td><td class="n">39.7%</td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>Compare the first two rows before the third.</b> XGBoost and OLS on the <em>same</em> 39
+variables perform almost identically &mdash; 74.9% versus 74.8% wrong-decile in Figure 13. The
+flexible learner extracted essentially nothing that the linear model missed. Then compare row
+three: eight variables, plain OLS, and the poorest-decile hit rate jumps <b>nine points</b>.</p>
+<p style="margin-top:8px"><b>So the gap is not the algorithm. It is the information.</b> The
+39-variable set contains no electricity consumption and no telecom spending. No amount of
+functional flexibility recovers a variable that was never collected.</p></div>
+<p class="footline">The general lesson for applied work: when a flexible learner fails to beat
+OLS, that is evidence about the <em>features</em>, not the estimator. Reach for better
+measurement before reaching for a better model class.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">XGBoost
+predictions supplied pre-computed; feature list per <em>PMT XGBoost Variable List</em>. The
+feature set includes smartphone ownership and internet access as connectivity proxies, but not
+metered electricity or telecom expenditure. Its geographic codes enter as raw features rather
+than dummies.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">V</span>Heterogeneity</h2>
+<p class="divider-blurb">One national model, thirty-eight provincial ones, or five hundred and
+fourteen district ones? The bias&ndash;variance trade-off, with real numbers attached.</p>
+</div></section>
+
+<section class="row-single" aria-label="One model or many"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 15</p>
+<h2>One model or many? The bias&ndash;variance trade-off, made concrete</h2>
+<p class="panel-sub">Letting coefficients vary by region reduces bias and raises variance. The
+optimum is interior &mdash; and here you can see exactly where it sits.</p>
+<table class="ctable"><thead><tr><th>Level</th><th>Models fitted</th><th>Obs per model</th><th>Error at bottom 20%</th><th>Papua: off by &ge;2 deciles</th></tr></thead><tbody>
+<tr><td class="sp">National</td><td class="n">1</td><td class="n">1,024,865</td><td class="n">39.7%</td><td class="n">42.8%</td></tr>
+<tr class="win"><td class="sp">Provincial</td><td class="n">38</td><td class="n">~27,000</td><td class="n">38.3%</td><td class="n">36.8%</td></tr>
+<tr><td class="sp">District</td><td class="n">514</td><td class="n">~2,000</td><td class="n">38.3%</td><td class="n">38.4%</td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>The textbook shape, observed.</b> Moving from one model to thirty-eight helps: provincial
+slopes capture real regional differences in how electricity and telecom map to welfare.
+Moving from thirty-eight to five hundred and fourteen does <em>not</em> help &mdash; and in the
+region that needs it most, it actively hurts. With only ~2,000 observations per district,
+sampling noise in the estimated coefficients outweighs the extra flexibility.</p>
+<p style="margin-top:8px"><b>Province is the interior optimum</b>, and it was not obvious in
+advance. The in-sample fit keeps improving as you disaggregate &mdash; district R&sup2; reaches
+0.821 in Kota Surabaya &mdash; while out-of-sample accuracy stops improving. That divergence
+between in-sample and out-of-sample is precisely the phenomenon the trade-off names.</p></div>
+<p class="footline">Provincial in-sample Adj. R&sup2; ranges from <b>0.570</b> in Bangka
+Belitung to <b>0.792</b> in DKI Jakarta; district-level from <b>0.379</b> to <b>0.821</b>. The
+widening spread as you disaggregate is variance appearing, not information.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Do file 3
+estimates all three levels on identical specifications and training data. When the parsimonious
+model is run within a single district, all district dummies become collinear and are dropped, so
+the district model is 15 terms plus a constant.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="When FE mislead"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 16</p>
+<h2>When fixed effects mislead: a diagnostic worth teaching</h2>
+<p class="panel-sub">In the Papua highlands the national model fails badly &mdash; and the
+pattern of failure identifies the cause.</p>
+<table class="ctable"><thead><tr><th>District</th><th>Fixed effect</th><th>True mean decile</th><th>Predicted, with FE</th><th>Predicted, no FE</th></tr></thead><tbody>
+<tr><td class="sp">Kab. Lanny Jaya</td><td class="n">+1.011</td><td class="n">4.61</td><td class="n">7.09 <span class="neg">(+2.48)</span></td><td class="n">1.99 <span class="neg">(&minus;2.62)</span></td></tr>
+<tr><td class="sp">Kab. Yalimo</td><td class="n">+0.829</td><td class="n">3.12</td><td class="n">6.13 <span class="neg">(+3.01)</span></td><td class="n">1.83 <span class="neg">(&minus;1.29)</span></td></tr>
+<tr><td class="sp">Kab. Nduga</td><td class="n">+0.817</td><td class="n">2.41</td><td class="n">4.65 <span class="neg">(+2.24)</span></td><td class="n">0.66 <span class="neg">(&minus;1.75)</span></td></tr>
+<tr><td class="sp">Kab. Tolikara</td><td class="n">+0.359</td><td class="n">0.95</td><td class="n">1.33 <span class="pos">(+0.38)</span></td><td class="n">0.85 <span class="pos">(&minus;0.11)</span></td></tr>
+</tbody></table>
+<div class="keyp" style="margin-top:14px">
+<p><b>The diagnostic.</b> Across Papua, the correlation between a district's fixed effect and
+its prediction error is <b>+0.766 with the fixed effects</b> and <b>&minus;0.826 without them</b>.
+That near-mirror image is informative: the effects capture something real &mdash; drop them and
+the same districts are under-predicted by as much &mdash; but they <b>overshoot</b>. The truth
+sits between the two columns.</p>
+<p style="margin-top:8px"><b>And the obvious remedy is the wrong one.</b> Shrinkage
+(<code>xtreg, re</code>) is the standard fix for noisy group effects, and here it does almost
+nothing: with ~2,000 households per district the implied shrinkage factor is <b>0.997</b>. The
+effects are <em>precisely estimated</em>. What fails is that they do not <em>persist</em> from
+2022&ndash;24 into 2025 &mdash; temporal instability, not sampling noise. Different diagnosis,
+different cure.</p></div>
+<p class="footline">In Yalimo, 35.9% of the population truly belongs in the national bottom
+20%; the fixed-effects model places <b>0.4%</b> there. Aggregate statistics conceal this
+completely &mdash; Papua-wide the model looks fine, because over- and under-prediction across
+districts cancel.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Own
+calculation on the 2025 test data. Shrinkage factor from <code>xtreg, re</code>:
+&sigma;<sub>u</sub> = 0.145, &sigma;<sub>e</sub> = 0.365, mean 1,994 households per district,
+giving &lambda; = &sigma;<sub>u</sub>&sup2;/(&sigma;<sub>u</sub>&sup2; +
+&sigma;<sub>e</sub>&sup2;/n) &asymp; 0.997. Regressing the random-effects predictions on the
+fixed-effects estimates gives a slope of 0.9963 with R&sup2; = 1.000.</div></details>
+</section></div></div></section>
+
+<section class="row-divider"><div class="divider-inner">
+<h2 class="divider-title"><span class="divider-num">VI</span>What the model cannot see</h2>
+<p class="divider-blurb">Every error rate quoted so far assumes the dependent variable is
+correct. It is not, and that changes how the numbers should be read.</p>
+</div></section>
+
+<section class="row-single" aria-label="Measurement error"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Figure 17</p>
+<h2>Measurement error &mdash; in the outcome, not the regressors</h2>
+<p class="panel-sub">Undergraduate courses teach attenuation from mismeasured <em>x</em>. The
+binding problem in welfare work is mismeasured <em>y</em>.</p>
+<p class="panel-sub">Consumption is not observed; it is <em>reported</em>. And how you ask
+changes the answer. In a randomised experiment run inside Susenas itself, the same households
+were assigned either a 23-question consumption module or a 320-question one:</p>
+<div class="eqbox">
+<p class="eq" style="font-size:15px">23 questions instead of 320 &nbsp;&rarr;&nbsp;
+consumption measured <b>12&ndash;20% lower</b></p>
+<p class="eqnote" style="margin-top:8px">And the gap is not constant: a 1% rise in consumption
+raises the underestimate by about <b>0.4 percentage points</b>. Richer households under-report
+proportionally more. Maximum understatement reaches ~23% for non-food, ~35% for food.</p>
+</div>
+<div class="keyp" style="margin-top:14px">
+<p><b>Why this matters for everything above.</b> If <i>y</i> is measured with error that is
+<em>correlated with y itself</em>, then the &ldquo;true&rdquo; deciles against which we scored
+every model are themselves partly an artefact of the instrument. The reported error rates are
+a compound of model error and measurement error, and this pipeline cannot separate them.</p>
+<p style="margin-top:8px">Classical measurement error in <i>y</i> alone would inflate the
+residual variance and leave &beta; unbiased. This is not classical: it is systematic and
+distribution-dependent, which is the harder case.</p></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Pradhan, M.
+(2001), <em>Welfare Analysis with a Proxy Consumption Measure: Evidence from a Repeated
+Experiment in Indonesia</em>, Cornell CFNPP Working Paper 126 &mdash; a randomised assignment
+of long and short consumption questionnaires within Susenas. Corroborating experimental
+evidence in Beegle, De Weerdt, Friedman &amp; Gibson (2012), <em>Journal of Development
+Economics</em> 98(1), which finds recall modules measure lower consumption than a personal
+diary benchmark across eight methods in Tanzania.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Takeaways"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">In closing</p>
+<h2>Seven things this case teaches</h2>
+<p class="panel-sub">Each is a general point in applied microeconometrics; each has a number
+from this one model attached to it.</p>
+<div class="mgrid c2">
+<div class="mcard"><div class="n">1</div><h4>Know which question you are asking</h4>
+<p>Prediction and causal inference share a command and almost nothing else. Coefficients here
+are weights, not effects.</p></div>
+<div class="mcard"><div class="n">2</div><h4>More variables is not more information</h4>
+<p>Eight beat thirty-nine <em>in sample</em>. Two continuous consumption quantities outperform
+thirty-nine categorical indicators.</p></div>
+<div class="mcard"><div class="n">3</div><h4>Functional form is a decision, not a default</h4>
+<p>Logs, squares and a <code>+0.1</code> offset each change predictions. Declare them; a
+replicator who guesses differently gets different answers.</p></div>
+<div class="mcard"><div class="n">4</div><h4>Know which R&sup2; you are quoting</h4>
+<p>LSDV 0.661 versus within 0.609 &mdash; identical estimates, and the choice reverses the
+apparent contribution of fixed effects.</p></div>
+<div class="mcard"><div class="n">5</div><h4>Score on the decision, not the fit</h4>
+<p>Root MSE 0.365 against decile widths of 0.10&ndash;0.16: a respectable R&sup2; coexists with
+seven-in-ten wrong deciles.</p></div>
+<div class="mcard"><div class="n">6</div><h4>Aggregates hide district failures</h4>
+<p>Papua looks acceptable in total while Yalimo is excluded wholesale. Always disaggregate the
+error, not just the estimate.</p></div>
+<div class="mcard"><div class="n">7</div><h4>The outcome is measured, too</h4>
+<p>A shorter consumption module moves measured welfare 12&ndash;20%. Some of the
+&ldquo;model error&rdquo; above is really instrument error.</p></div>
+<div class="mcard" style="border-color:#00830044;border-left-color:#008300;background:#0083000d">
+<div class="n" style="color:#006b00">&rarr;</div><h4>And one design implication</h4>
+<p>The two strongest predictors &mdash; metered electricity and telecom spending &mdash; are
+<em>administratively verifiable</em>. That makes an eight-question model a route to hybrid
+means testing, not merely a shorter survey.</p></div>
+</div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">All figures
+in this lecture are computed from the World Bank parsimonious PMT pipeline on Susenas March
+2022&ndash;2025, or from the technical note documenting it. Out-of-sample results use the 2025
+round exclusively.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="References"><div class="viz-root scope-biblio"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">&nbsp;</p>
+<h2>References</h2>
+<div class="refs">
+<p><b>Beegle, K., J. De Weerdt, J. Friedman &amp; J. Gibson (2012).</b> Methods of household
+consumption measurement through surveys: experimental results from Tanzania. <em>Journal of
+Development Economics</em> 98(1), 3&ndash;18.</p>
+<p><b>Bellemare, M. &amp; C. Wichman (2020).</b> Elasticities and the inverse hyperbolic sine
+transformation. <em>Oxford Bulletin of Economics and Statistics</em> 82(1), 50&ndash;61.</p>
+<p><b>Grosh, M., P. Leite, M. Wai-Poi &amp; E. Tesliuc, eds. (2022).</b> <em>Revisiting
+Targeting in Social Assistance: A New Look at Old Dilemmas.</em> World Bank.</p>
+<p><b>Kleinberg, J., J. Ludwig, S. Mullainathan &amp; Z. Obermeyer (2015).</b> Prediction policy
+problems. <em>American Economic Review</em> 105(5), 491&ndash;495.</p>
+<p><b>Lindert, K., T. George Karippacheril, I. Rodr&iacute;guez Caillava &amp; K. Nishikawa
+Ch&aacute;vez, eds. (2020).</b> <em>Sourcebook on the Foundations of Social Protection Delivery
+Systems.</em> World Bank.</p>
+<p><b>Pradhan, M. (2001).</b> <em>Welfare Analysis with a Proxy Consumption Measure: Evidence
+from a Repeated Experiment in Indonesia.</em> Cornell Food and Nutrition Policy Program,
+Working Paper 126.</p>
+<p><b>Shmueli, G. (2010).</b> To explain or to predict? <em>Statistical Science</em> 25(3),
+289&ndash;310.</p>
+<p class="ref-note">Data: Badan Pusat Statistik, Survei Sosial Ekonomi Nasional (Susenas),
+March rounds 2022&ndash;2025. Pipeline: Dewan Ekonomi Nasional technical notes on the World
+Bank parsimonious PMT models, version 1.0, June 2026.</p>
+</div>
+</section></div></div></section>
+
+<footer class="deck-foot">
+  <strong>Lecture materials.</strong> Figures computed from Susenas March 2022&ndash;2025.
+  Estimation in Stata; out-of-sample evaluation on the 2025 round. Prepared as a teaching case
+  for applied microeconometrics &mdash; the empirical results are drawn from the DEN technical
+  notes on the World Bank parsimonious PMT models.
+</footer>
