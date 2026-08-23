@@ -1,15 +1,15 @@
 country,iso3,period,year_from,year_to,productivity_growth_pct,within_sector_pp,structural_change_pp,agriculture_emp_share_start_pct,agriculture_emp_share_end_pct
-Indonesia,IDN,spell,1990,1996,5.067,2.125,2.942,54.67,43.11
-Indonesia,IDN,recent,2012,2018,2.815,2.474,0.342,35.86,30.46
 Thailand,THA,spell,1990,1996,6.3,3.156,3.145,57.97,44.24
-Thailand,THA,recent,2012,2018,3.29,2.682,0.609,34.39,32.2
+Thailand,THA,recent,2000,2018,2.887,1.856,1.031,44.53,32.2
+Indonesia,IDN,spell,1990,1996,5.067,2.125,2.942,54.67,43.11
+Indonesia,IDN,recent,2000,2018,3.081,1.897,1.183,44.43,30.46
 Viet Nam,VNM,spell,1990,2000,5.856,3.203,2.653,76.67,68.01
-Viet Nam,VNM,recent,2012,2018,4.978,4.108,0.87,47.37,37.72
+Viet Nam,VNM,recent,2000,2018,3.185,1.584,1.602,68.01,37.72
 Republic of Korea,KOR,spell,1990,1997,5.249,3.969,1.28,18.58,11.18
-Republic of Korea,KOR,recent,2012,2018,1.736,1.454,0.282,6.13,5.0
+Republic of Korea,KOR,recent,2000,2018,2.578,2.225,0.353,11.01,5.0
 Malaysia,MYS,spell,1990,1997,5.208,4.644,0.564,24.46,15.3
-Malaysia,MYS,recent,2012,2018,2.219,2.158,0.061,13.19,10.63
+Malaysia,MYS,recent,2000,2018,1.881,1.799,0.082,16.31,10.63
 China,CHN,spell,1990,2000,7.991,6.843,1.149,60.1,50.0
-China,CHN,recent,2012,2018,6.071,4.61,1.461,33.6,26.11
+China,CHN,recent,2000,2018,8.193,6.187,2.006,50.0,26.11
 India,IND,spell,1990,2000,3.508,2.925,0.583,64.78,59.37
-India,IND,recent,2012,2018,6.017,5.119,0.898,46.41,38.9
+India,IND,recent,2000,2018,5.396,4.22,1.176,59.37,38.9
