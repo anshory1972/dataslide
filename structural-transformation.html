@@ -1263,6 +1263,7 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .ds-chart .p4note { font-size:12.5px; font-weight:700; fill: var(--muted); }
 .ds-chart .p4line { fill:none; stroke-width:3.2; }
 .ds-chart .p4mark { stroke: var(--baseline); stroke-width:1.5; stroke-dasharray:5 4; }
+.ds-chart .p4rule { stroke: var(--baseline); stroke-width:1.5; }
 
 .ds-chart { display:block; width:100%; height:auto; margin-top:10px; }
 .ds-chart text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
@@ -2028,148 +2029,152 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 
 <section class="row-single" aria-label="Globalisation and populism"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <h2>The retreat from globalisation, and the politics that followed</h2>
-<svg class="ds-chart" viewBox="0 0 1560 800" role="img" aria-label="Four panels: world trade as a share of GDP, new trade restrictions per year, far-right vote share since 1900, and far-right seat share by country.">
-<text x="122" y="56" class="p4t">Slowbalisation</text>
-<text x="122" y="76" class="p4s">World trade, per cent of GDP, 1970 to 2024</text>
-<line x1="168" y1="364.0" x2="808" y2="364.0" class="g"/>
-<text x="156" y="369.0" class="p4ax end">20</text>
-<line x1="168" y1="244.9" x2="808" y2="244.9" class="g"/>
-<text x="156" y="249.9" class="p4ax end">40</text>
-<line x1="168" y1="125.8" x2="808" y2="125.8" class="g"/>
-<text x="156" y="130.8" class="p4ax end">60</text>
-<text x="168.0" y="390" class="p4ax mid">1970</text>
-<text x="405.0" y="390" class="p4ax mid">1990</text>
-<text x="618.4" y="390" class="p4ax mid">2008</text>
-<text x="808.0" y="390" class="p4ax mid">2024</text>
-<line x1="618.4" y1="90" x2="618.4" y2="364" class="p4mark"/>
-<text x="626.4" y="110" class="p4note">2008</text>
-<polyline points="168.0,329.8 179.9,329.5 191.7,328.4 203.6,310.4 215.4,282.2 227.3,292.9 239.1,288.2 251.0,286.0 262.8,283.7 274.7,270.7 286.5,253.0 298.4,250.4 310.2,262.4 322.1,267.4 333.9,259.7 345.8,262.4 357.6,277.1 369.5,269.5 381.3,258.8 393.2,256.5 405.0,256.2 416.9,258.2 428.7,241.0 440.6,243.9 452.4,238.8 464.3,228.6 476.1,228.1 488.0,217.3 499.9,213.4 511.7,210.6 523.6,184.6 535.4,191.2 547.3,191.3 559.1,181.4 571.0,160.4 582.8,148.3 594.7,135.5 606.5,133.3 618.4,123.9 630.2,174.1 642.1,148.5 653.9,129.9 665.8,129.9 677.6,133.9 689.5,137.5 701.3,151.9 713.2,162.8 725.0,152.8 736.9,143.7 748.7,150.8 760.6,174.2 772.4,146.6 784.3,113.0 796.1,137.3 808.0,145.3" class="p4line" style="stroke:#2a78d6"/>
-<circle cx="168.0" cy="329.8" r="5" style="fill:#2a78d6"/>
-<circle cx="808.0" cy="145.3" r="5" style="fill:#2a78d6"/>
-<text x="178.0" y="347.8" class="p4val" style="fill:#2a78d6">26%</text>
-<text x="800.0" y="167.3" class="p4val end" style="fill:#2a78d6">57%</text>
-<text x="882" y="56" class="p4t">Rising trade protection</text>
-<text x="882" y="76" class="p4s">New trade restrictions imposed worldwide each year, by type</text>
-<line x1="928" y1="364.0" x2="1568" y2="364.0" class="g"/>
-<text x="916" y="369.0" class="p4ax end">0</text>
-<line x1="928" y1="248.6" x2="1568" y2="248.6" class="g"/>
-<text x="916" y="253.6" class="p4ax end">1,000</text>
-<line x1="928" y1="133.2" x2="1568" y2="133.2" class="g"/>
-<text x="916" y="138.2" class="p4ax end">2,000</text>
-<rect x="935.3" y="358.5" width="31.1" height="5.5" style="fill:#2a78d6"/>
-<rect x="935.3" y="358.0" width="31.1" height="0.6" style="fill:#eb6834"/>
-<rect x="935.3" y="357.1" width="31.1" height="0.9" style="fill:#8c8a82"/>
-<text x="950.9" y="390" class="p4ax mid">2009</text>
-<text x="950.9" y="347.1" class="p4val mid" style="fill:#2a78d6">60</text>
-<rect x="981.0" y="357.1" width="31.1" height="6.9" style="fill:#2a78d6"/>
-<rect x="981.0" y="356.5" width="31.1" height="0.6" style="fill:#eb6834"/>
-<rect x="981.0" y="355.3" width="31.1" height="1.2" style="fill:#8c8a82"/>
-<rect x="1026.7" y="355.0" width="31.1" height="9.0" style="fill:#2a78d6"/>
-<rect x="1026.7" y="354.1" width="31.1" height="0.9" style="fill:#eb6834"/>
-<rect x="1026.7" y="352.5" width="31.1" height="1.6" style="fill:#8c8a82"/>
-<rect x="1072.5" y="352.5" width="31.1" height="11.5" style="fill:#2a78d6"/>
-<rect x="1072.5" y="351.1" width="31.1" height="1.4" style="fill:#eb6834"/>
-<rect x="1072.5" y="349.0" width="31.1" height="2.1" style="fill:#8c8a82"/>
-<rect x="1118.2" y="350.1" width="31.1" height="13.9" style="fill:#2a78d6"/>
-<rect x="1118.2" y="347.8" width="31.1" height="2.3" style="fill:#eb6834"/>
-<rect x="1118.2" y="345.5" width="31.1" height="2.3" style="fill:#8c8a82"/>
-<rect x="1163.9" y="340.9" width="31.1" height="23.1" style="fill:#2a78d6"/>
-<rect x="1163.9" y="335.1" width="31.1" height="5.8" style="fill:#eb6834"/>
-<rect x="1163.9" y="331.7" width="31.1" height="3.5" style="fill:#8c8a82"/>
-<rect x="1209.6" y="335.1" width="31.1" height="28.9" style="fill:#2a78d6"/>
-<rect x="1209.6" y="327.6" width="31.1" height="7.5" style="fill:#eb6834"/>
-<rect x="1209.6" y="323.6" width="31.1" height="4.0" style="fill:#8c8a82"/>
-<rect x="1255.3" y="329.4" width="31.1" height="34.6" style="fill:#2a78d6"/>
-<rect x="1255.3" y="319.0" width="31.1" height="10.4" style="fill:#eb6834"/>
-<rect x="1255.3" y="314.4" width="31.1" height="4.6" style="fill:#8c8a82"/>
-<rect x="1301.0" y="322.4" width="31.1" height="41.6" style="fill:#2a78d6"/>
-<rect x="1301.0" y="309.2" width="31.1" height="13.3" style="fill:#eb6834"/>
-<rect x="1301.0" y="304.0" width="31.1" height="5.2" style="fill:#8c8a82"/>
-<rect x="1346.7" y="314.4" width="31.1" height="49.6" style="fill:#2a78d6"/>
-<rect x="1346.7" y="294.7" width="31.1" height="19.6" style="fill:#eb6834"/>
-<rect x="1346.7" y="289.0" width="31.1" height="5.8" style="fill:#8c8a82"/>
-<rect x="1392.5" y="292.4" width="31.1" height="71.6" style="fill:#2a78d6"/>
-<rect x="1392.5" y="257.8" width="31.1" height="34.6" style="fill:#eb6834"/>
-<rect x="1392.5" y="250.9" width="31.1" height="6.9" style="fill:#8c8a82"/>
-<rect x="1438.2" y="265.9" width="31.1" height="98.1" style="fill:#2a78d6"/>
-<rect x="1438.2" y="214.0" width="31.1" height="51.9" style="fill:#eb6834"/>
-<rect x="1438.2" y="204.7" width="31.1" height="9.2" style="fill:#8c8a82"/>
-<rect x="1483.9" y="231.3" width="31.1" height="132.7" style="fill:#2a78d6"/>
-<rect x="1483.9" y="156.2" width="31.1" height="75.0" style="fill:#eb6834"/>
-<rect x="1483.9" y="144.7" width="31.1" height="11.5" style="fill:#8c8a82"/>
-<rect x="1529.6" y="219.7" width="31.1" height="144.3" style="fill:#2a78d6"/>
-<rect x="1529.6" y="128.5" width="31.1" height="91.2" style="fill:#eb6834"/>
-<rect x="1529.6" y="115.9" width="31.1" height="12.7" style="fill:#8c8a82"/>
-<text x="1545.1" y="390" class="p4ax mid">2022</text>
-<text x="1545.1" y="105.9" class="p4val mid" style="fill:#2a78d6">2,150</text>
-<rect x="928" y="80" width="11" height="11" style="fill:#2a78d6"/>
-<text x="945" y="90" class="p4leg">goods</text>
-<rect x="1056" y="80" width="11" height="11" style="fill:#eb6834"/>
-<text x="1073" y="90" class="p4leg">services</text>
-<rect x="1184" y="80" width="11" height="11" style="fill:#8c8a82"/>
-<text x="1201" y="90" class="p4leg">investment</text>
-<text x="122" y="416" class="p4t">The political response</text>
-<text x="122" y="436" class="p4s">Far-right vote share in national elections, per cent, 1900 to 2020</text>
-<line x1="168" y1="724.0" x2="808" y2="724.0" class="g"/>
-<text x="156" y="729.0" class="p4ax end">0</text>
-<line x1="168" y1="640.2" x2="808" y2="640.2" class="g"/>
-<text x="156" y="645.2" class="p4ax end">5</text>
-<line x1="168" y1="556.5" x2="808" y2="556.5" class="g"/>
-<text x="156" y="561.5" class="p4ax end">10</text>
-<line x1="168" y1="472.8" x2="808" y2="472.8" class="g"/>
-<text x="156" y="477.8" class="p4ax end">15</text>
-<text x="168.0" y="750" class="p4ax mid">1900</text>
-<text x="381.3" y="750" class="p4ax mid">1940</text>
-<text x="594.7" y="750" class="p4ax mid">1980</text>
-<text x="808.0" y="750" class="p4ax mid">2020</text>
-<polyline points="168.0,724.0 194.7,724.0 221.3,724.0 248.0,707.2 274.7,713.3 301.3,698.9 328.0,712.8 354.7,697.0 381.3,698.7 408.0,707.2 434.7,701.6 461.3,692.8 488.0,698.4 514.7,705.9 541.3,684.5 568.0,691.0 594.7,696.0 621.3,678.6 648.0,624.2 674.7,594.2 701.3,604.1 728.0,575.1 754.7,555.3 781.3,485.8 808.0,506.6" class="p4line" style="stroke:#b3232c"/>
-<circle cx="594.7" cy="696.0" r="5" style="fill:#b3232c"/>
-<text x="584.7" y="686.0" class="p4val end" style="fill:#b3232c">1.7% in 1980</text>
-<circle cx="808.0" cy="506.6" r="5" style="fill:#b3232c"/>
-<text x="800.0" y="494.6" class="p4val end" style="fill:#b3232c">13.0% in 2020</text>
-<text x="882" y="416" class="p4t">Outcomes, not just attitudes</text>
-<text x="882" y="436" class="p4s">Seat share of the largest far-right party, most recent lower-house election</text>
-<line x1="1118.0" y1="452" x2="1118.0" y2="724" class="g"/>
-<text x="1118.0" y="750" class="p4ax mid">0%</text>
-<line x1="1233.9" y1="452" x2="1233.9" y2="724" class="g"/>
-<text x="1233.9" y="750" class="p4ax mid">10%</text>
-<line x1="1349.8" y1="452" x2="1349.8" y2="724" class="g"/>
-<text x="1349.8" y="750" class="p4ax mid">20%</text>
-<line x1="1465.6" y1="452" x2="1465.6" y2="724" class="g"/>
-<text x="1465.6" y="750" class="p4ax mid">30%</text>
-<text x="1104" y="472.2" class="p4row end">Austria</text>
-<rect x="1118.0" y="460.4" width="360.4" height="15.6" rx="2" style="fill:#b3232c" opacity="1.00"/>
-<text x="1487.4" y="472.2" class="p4val" style="fill:#b3232c">31.1</text>
-<text x="1104" y="496.5" class="p4row end">Italy</text>
-<rect x="1118.0" y="484.7" width="341.9" height="15.6" rx="2" style="fill:#b3232c" opacity="0.97"/>
-<text x="1468.9" y="496.5" class="p4val" style="fill:#b3232c">29.5</text>
-<text x="1104" y="520.9" class="p4row end">Portugal</text>
-<rect x="1118.0" y="509.1" width="302.5" height="15.6" rx="2" style="fill:#b3232c" opacity="0.91"/>
-<text x="1429.5" y="520.9" class="p4val" style="fill:#b3232c">26.1</text>
-<text x="1104" y="545.3" class="p4row end">Netherlands</text>
-<rect x="1118.0" y="533.5" width="286.2" height="15.6" rx="2" style="fill:#b3232c" opacity="0.89"/>
-<text x="1413.2" y="545.3" class="p4val" style="fill:#b3232c">24.7</text>
-<text x="1104" y="569.6" class="p4row end">Germany</text>
-<rect x="1118.0" y="557.8" width="279.3" height="15.6" rx="2" style="fill:#b3232c" opacity="0.88"/>
-<text x="1406.3" y="569.6" class="p4val" style="fill:#b3232c">24.1</text>
-<text x="1104" y="594.0" class="p4row end">Finland</text>
-<rect x="1118.0" y="582.2" width="266.5" height="15.6" rx="2" style="fill:#b3232c" opacity="0.86"/>
-<text x="1393.5" y="594.0" class="p4val" style="fill:#b3232c">23.0</text>
-<text x="1104" y="618.4" class="p4row end">France</text>
-<rect x="1118.0" y="606.6" width="251.5" height="15.6" rx="2" style="fill:#b3232c" opacity="0.83"/>
-<text x="1378.5" y="618.4" class="p4val" style="fill:#b3232c">21.7</text>
-<text x="1104" y="642.7" class="p4row end">Sweden</text>
-<rect x="1118.0" y="630.9" width="242.2" height="15.6" rx="2" style="fill:#b3232c" opacity="0.82"/>
-<text x="1369.2" y="642.7" class="p4val" style="fill:#b3232c">20.9</text>
-<text x="1104" y="667.1" class="p4row end">Belgium</text>
-<rect x="1118.0" y="655.3" width="154.1" height="15.6" rx="2" style="fill:#b3232c" opacity="0.69"/>
-<text x="1281.1" y="667.1" class="p4val" style="fill:#b3232c">13.3</text>
-<text x="1104" y="691.5" class="p4row end">Spain</text>
-<rect x="1118.0" y="679.7" width="108.9" height="15.6" rx="2" style="fill:#b3232c" opacity="0.62"/>
-<text x="1235.9" y="691.5" class="p4val" style="fill:#b3232c">9.4</text>
-<text x="1104" y="715.8" class="p4row end">Poland</text>
-<rect x="1118.0" y="704.0" width="45.2" height="15.6" rx="2" style="fill:#b3232c" opacity="0.52"/>
-<text x="1172.2" y="715.8" class="p4val" style="fill:#b3232c">3.9</text>
+<svg class="ds-chart" viewBox="0 0 1560 820" role="img" aria-label="Four panels: world trade as a share of GDP, new trade restrictions per year, far-right vote share since 1900, and far-right seat share by country.">
+<line x1="52" y1="30" x2="757" y2="30" class="p4rule"/>
+<text x="52" y="54" class="p4t">Slowbalisation</text>
+<text x="52" y="74" class="p4s">World trade, per cent of GDP, 1970 to 2024</text>
+<line x1="104" y1="378.0" x2="757" y2="378.0" class="g"/>
+<text x="92" y="383.0" class="p4ax end">20</text>
+<line x1="104" y1="250.9" x2="757" y2="250.9" class="g"/>
+<text x="92" y="255.9" class="p4ax end">40</text>
+<line x1="104" y1="123.8" x2="757" y2="123.8" class="g"/>
+<text x="92" y="128.8" class="p4ax end">60</text>
+<text x="104.0" y="404" class="p4ax mid">1970</text>
+<text x="345.9" y="404" class="p4ax mid">1990</text>
+<text x="563.5" y="404" class="p4ax mid">2008</text>
+<text x="757.0" y="404" class="p4ax mid">2024</text>
+<line x1="563.5" y1="86" x2="563.5" y2="378" class="p4mark"/>
+<text x="571.5" y="106" class="p4note">2008</text>
+<polyline points="104.0,341.5 116.1,341.2 128.2,340.0 140.3,320.8 152.4,290.7 164.5,302.1 176.6,297.1 188.6,294.8 200.7,292.3 212.8,278.5 224.9,259.6 237.0,256.8 249.1,269.6 261.2,274.9 273.3,266.7 285.4,269.6 297.5,285.3 309.6,277.2 321.7,265.8 333.8,263.3 345.9,263.0 357.9,265.1 370.0,246.8 382.1,249.8 394.2,244.4 406.3,233.5 418.4,233.0 430.5,221.5 442.6,217.3 454.7,214.3 466.8,186.6 478.9,193.6 491.0,193.7 503.1,183.1 515.1,160.7 527.2,147.8 539.3,134.2 551.4,131.8 563.5,121.7 575.6,175.3 587.7,148.0 599.8,128.2 611.9,128.2 624.0,132.5 636.1,136.3 648.2,151.6 660.3,163.2 672.4,152.6 684.4,142.9 696.5,150.5 708.6,175.4 720.7,146.0 732.8,110.1 744.9,136.0 757.0,144.6" class="p4line" style="stroke:#2a78d6"/>
+<circle cx="104.0" cy="341.5" r="5" style="fill:#2a78d6"/>
+<circle cx="757.0" cy="144.6" r="5" style="fill:#2a78d6"/>
+<text x="114.0" y="359.5" class="p4val" style="fill:#2a78d6">26%</text>
+<text x="749.0" y="166.6" class="p4val end" style="fill:#2a78d6">57%</text>
+<line x1="815" y1="30" x2="1520" y2="30" class="p4rule"/>
+<text x="815" y="54" class="p4t">Rising trade protection</text>
+<text x="815" y="74" class="p4s">New trade restrictions imposed worldwide each year, by type</text>
+<line x1="867" y1="378.0" x2="1520" y2="378.0" class="g"/>
+<text x="855" y="383.0" class="p4ax end">0</text>
+<line x1="867" y1="254.8" x2="1520" y2="254.8" class="g"/>
+<text x="855" y="259.8" class="p4ax end">1,000</text>
+<line x1="867" y1="131.7" x2="1520" y2="131.7" class="g"/>
+<text x="855" y="136.7" class="p4ax end">2,000</text>
+<rect x="874.5" y="372.1" width="31.7" height="5.9" style="fill:#2a78d6"/>
+<rect x="874.5" y="371.6" width="31.7" height="0.6" style="fill:#eb6834"/>
+<rect x="874.5" y="370.6" width="31.7" height="1.0" style="fill:#8c8a82"/>
+<text x="890.3" y="404" class="p4ax mid">2009</text>
+<text x="890.3" y="360.6" class="p4val mid" style="fill:#2a78d6">60</text>
+<rect x="921.1" y="370.6" width="31.7" height="7.4" style="fill:#2a78d6"/>
+<rect x="921.1" y="370.0" width="31.7" height="0.6" style="fill:#eb6834"/>
+<rect x="921.1" y="368.8" width="31.7" height="1.2" style="fill:#8c8a82"/>
+<rect x="967.7" y="368.4" width="31.7" height="9.6" style="fill:#2a78d6"/>
+<rect x="967.7" y="367.4" width="31.7" height="1.0" style="fill:#eb6834"/>
+<rect x="967.7" y="365.7" width="31.7" height="1.7" style="fill:#8c8a82"/>
+<rect x="1014.4" y="365.7" width="31.7" height="12.3" style="fill:#2a78d6"/>
+<rect x="1014.4" y="364.2" width="31.7" height="1.5" style="fill:#eb6834"/>
+<rect x="1014.4" y="362.0" width="31.7" height="2.2" style="fill:#8c8a82"/>
+<rect x="1061.0" y="363.2" width="31.7" height="14.8" style="fill:#2a78d6"/>
+<rect x="1061.0" y="360.8" width="31.7" height="2.5" style="fill:#eb6834"/>
+<rect x="1061.0" y="358.3" width="31.7" height="2.5" style="fill:#8c8a82"/>
+<rect x="1107.7" y="353.4" width="31.7" height="24.6" style="fill:#2a78d6"/>
+<rect x="1107.7" y="347.2" width="31.7" height="6.2" style="fill:#eb6834"/>
+<rect x="1107.7" y="343.5" width="31.7" height="3.7" style="fill:#8c8a82"/>
+<rect x="1154.3" y="347.2" width="31.7" height="30.8" style="fill:#2a78d6"/>
+<rect x="1154.3" y="339.2" width="31.7" height="8.0" style="fill:#eb6834"/>
+<rect x="1154.3" y="334.9" width="31.7" height="4.3" style="fill:#8c8a82"/>
+<rect x="1201.0" y="341.0" width="31.7" height="37.0" style="fill:#2a78d6"/>
+<rect x="1201.0" y="330.0" width="31.7" height="11.1" style="fill:#eb6834"/>
+<rect x="1201.0" y="325.0" width="31.7" height="4.9" style="fill:#8c8a82"/>
+<rect x="1247.6" y="333.7" width="31.7" height="44.3" style="fill:#2a78d6"/>
+<rect x="1247.6" y="319.5" width="31.7" height="14.2" style="fill:#eb6834"/>
+<rect x="1247.6" y="314.0" width="31.7" height="5.5" style="fill:#8c8a82"/>
+<rect x="1294.2" y="325.0" width="31.7" height="53.0" style="fill:#2a78d6"/>
+<rect x="1294.2" y="304.1" width="31.7" height="20.9" style="fill:#eb6834"/>
+<rect x="1294.2" y="297.9" width="31.7" height="6.2" style="fill:#8c8a82"/>
+<rect x="1340.9" y="301.6" width="31.7" height="76.4" style="fill:#2a78d6"/>
+<rect x="1340.9" y="264.7" width="31.7" height="37.0" style="fill:#eb6834"/>
+<rect x="1340.9" y="257.3" width="31.7" height="7.4" style="fill:#8c8a82"/>
+<rect x="1387.5" y="273.3" width="31.7" height="104.7" style="fill:#2a78d6"/>
+<rect x="1387.5" y="217.9" width="31.7" height="55.4" style="fill:#eb6834"/>
+<rect x="1387.5" y="208.0" width="31.7" height="9.9" style="fill:#8c8a82"/>
+<rect x="1434.2" y="236.4" width="31.7" height="141.6" style="fill:#2a78d6"/>
+<rect x="1434.2" y="156.3" width="31.7" height="80.1" style="fill:#eb6834"/>
+<rect x="1434.2" y="144.0" width="31.7" height="12.3" style="fill:#8c8a82"/>
+<rect x="1480.8" y="224.0" width="31.7" height="154.0" style="fill:#2a78d6"/>
+<rect x="1480.8" y="126.7" width="31.7" height="97.3" style="fill:#eb6834"/>
+<rect x="1480.8" y="113.2" width="31.7" height="13.5" style="fill:#8c8a82"/>
+<text x="1496.7" y="404" class="p4ax mid">2022</text>
+<text x="1496.7" y="103.2" class="p4val mid" style="fill:#2a78d6">2,150</text>
+<rect x="1220" y="40" width="11" height="11" style="fill:#2a78d6"/>
+<text x="1236" y="50" class="p4leg">goods</text>
+<rect x="1324" y="40" width="11" height="11" style="fill:#eb6834"/>
+<text x="1340" y="50" class="p4leg">services</text>
+<rect x="1428" y="40" width="11" height="11" style="fill:#8c8a82"/>
+<text x="1444" y="50" class="p4leg">investment</text>
+<line x1="52" y1="420" x2="757" y2="420" class="p4rule"/>
+<text x="52" y="444" class="p4t">The political response</text>
+<text x="52" y="464" class="p4s">Far-right vote share in national elections, per cent, 1900 to 2020</text>
+<line x1="104" y1="768.0" x2="757" y2="768.0" class="g"/>
+<text x="92" y="773.0" class="p4ax end">0</text>
+<line x1="104" y1="678.6" x2="757" y2="678.6" class="g"/>
+<text x="92" y="683.6" class="p4ax end">5</text>
+<line x1="104" y1="589.2" x2="757" y2="589.2" class="g"/>
+<text x="92" y="594.2" class="p4ax end">10</text>
+<line x1="104" y1="499.9" x2="757" y2="499.9" class="g"/>
+<text x="92" y="504.9" class="p4ax end">15</text>
+<text x="104.0" y="794" class="p4ax mid">1900</text>
+<text x="321.7" y="794" class="p4ax mid">1940</text>
+<text x="539.3" y="794" class="p4ax mid">1980</text>
+<text x="757.0" y="794" class="p4ax mid">2020</text>
+<polyline points="104.0,768.0 131.2,768.0 158.4,768.0 185.6,750.1 212.8,756.6 240.0,741.2 267.2,756.0 294.5,739.2 321.7,741.0 348.9,750.1 376.1,744.0 403.3,734.8 430.5,740.7 457.7,748.7 484.9,725.8 512.1,732.8 539.3,738.1 566.5,719.6 593.8,661.5 621.0,629.5 648.2,640.0 675.4,609.1 702.6,588.0 729.8,513.8 757.0,536.0" class="p4line" style="stroke:#b3232c"/>
+<circle cx="539.3" cy="738.1" r="5" style="fill:#b3232c"/>
+<text x="529.3" y="728.1" class="p4val end" style="fill:#b3232c">1.7% in 1980</text>
+<circle cx="757.0" cy="536.0" r="5" style="fill:#b3232c"/>
+<text x="749.0" y="524.0" class="p4val end" style="fill:#b3232c">13.0% in 2020</text>
+<line x1="815" y1="420" x2="1520" y2="420" class="p4rule"/>
+<text x="815" y="444" class="p4t">Outcomes, not just attitudes</text>
+<text x="815" y="464" class="p4s">Seat share of the largest far-right party, most recent lower-house election</text>
+<line x1="985.0" y1="478" x2="985.0" y2="768" class="g"/>
+<text x="985.0" y="794" class="p4ax mid">0%</text>
+<line x1="1125.3" y1="478" x2="1125.3" y2="768" class="g"/>
+<text x="1125.3" y="794" class="p4ax mid">10%</text>
+<line x1="1265.6" y1="478" x2="1265.6" y2="768" class="g"/>
+<text x="1265.6" y="794" class="p4ax mid">20%</text>
+<line x1="1405.9" y1="478" x2="1405.9" y2="768" class="g"/>
+<text x="1405.9" y="794" class="p4ax mid">30%</text>
+<text x="972" y="499.0" class="p4row end">Austria</text>
+<rect x="985.0" y="486.7" width="436.3" height="16.6" rx="2" style="fill:#b3232c" opacity="1.00"/>
+<text x="1430.3" y="499.0" class="p4val" style="fill:#b3232c">31.1</text>
+<text x="972" y="525.0" class="p4row end">Italy</text>
+<rect x="985.0" y="512.7" width="413.9" height="16.6" rx="2" style="fill:#b3232c" opacity="0.97"/>
+<text x="1407.9" y="525.0" class="p4val" style="fill:#b3232c">29.5</text>
+<text x="972" y="551.0" class="p4row end">Portugal</text>
+<rect x="985.0" y="538.7" width="366.2" height="16.6" rx="2" style="fill:#b3232c" opacity="0.91"/>
+<text x="1360.2" y="551.0" class="p4val" style="fill:#b3232c">26.1</text>
+<text x="972" y="577.0" class="p4row end">Netherlands</text>
+<rect x="985.0" y="564.7" width="346.5" height="16.6" rx="2" style="fill:#b3232c" opacity="0.89"/>
+<text x="1340.5" y="577.0" class="p4val" style="fill:#b3232c">24.7</text>
+<text x="972" y="603.0" class="p4row end">Germany</text>
+<rect x="985.0" y="590.7" width="338.1" height="16.6" rx="2" style="fill:#b3232c" opacity="0.88"/>
+<text x="1332.1" y="603.0" class="p4val" style="fill:#b3232c">24.1</text>
+<text x="972" y="629.0" class="p4row end">Finland</text>
+<rect x="985.0" y="616.7" width="322.7" height="16.6" rx="2" style="fill:#b3232c" opacity="0.86"/>
+<text x="1316.7" y="629.0" class="p4val" style="fill:#b3232c">23.0</text>
+<text x="972" y="655.0" class="p4row end">France</text>
+<rect x="985.0" y="642.7" width="304.5" height="16.6" rx="2" style="fill:#b3232c" opacity="0.83"/>
+<text x="1298.5" y="655.0" class="p4val" style="fill:#b3232c">21.7</text>
+<text x="972" y="681.0" class="p4row end">Sweden</text>
+<rect x="985.0" y="668.7" width="293.2" height="16.6" rx="2" style="fill:#b3232c" opacity="0.82"/>
+<text x="1287.2" y="681.0" class="p4val" style="fill:#b3232c">20.9</text>
+<text x="972" y="707.0" class="p4row end">Belgium</text>
+<rect x="985.0" y="694.7" width="186.6" height="16.6" rx="2" style="fill:#b3232c" opacity="0.69"/>
+<text x="1180.6" y="707.0" class="p4val" style="fill:#b3232c">13.3</text>
+<text x="972" y="733.0" class="p4row end">Spain</text>
+<rect x="985.0" y="720.7" width="131.9" height="16.6" rx="2" style="fill:#b3232c" opacity="0.62"/>
+<text x="1125.9" y="733.0" class="p4val" style="fill:#b3232c">9.4</text>
+<text x="972" y="759.0" class="p4row end">Poland</text>
+<rect x="985.0" y="746.7" width="54.7" height="16.6" rx="2" style="fill:#b3232c" opacity="0.52"/>
+<text x="1048.7" y="759.0" class="p4val" style="fill:#b3232c">3.9</text>
 </svg>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body"><b>Trade</b>: World Bank, trade as a share of world GDP, 1970&ndash;2024. <b>Trade restrictions</b>: Global Trade Alert, count of new discriminatory interventions imposed worldwide each year, split into goods, services and investment, 2009&ndash;2022. <b>Far-right vote share</b>: ParlGov national-parliament election results, share of the vote won by parties classified as far right, five-yearly from 1900 to 2020. <b>Seat share</b>: most recent lower-house election per country as of writing &mdash; Austria 2024, Italy 2022, Portugal 2025, Netherlands 2023, Germany 2025, Finland 2023, France 2024, Sweden 2022, Belgium 2024, Spain 2023, Poland 2023; national election results via IPU Parline. A country&rsquo;s largest far-right party is not always in government even where it holds a large seat share. All four panels are taken from <i>The Growth We Want</i>.</div></details>
 </section></div></div></section>
