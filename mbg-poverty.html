@@ -99,7 +99,13 @@
   .stat .v{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--blue)}
   .stat .k{font-size:.78rem;color:var(--ink3);line-height:1.35;margin-top:.15rem}
 
-  footer{border-top:1px solid var(--rule);padding-top:1.2rem;font-size:.82rem;color:var(--ink3);
+  pre{margin:0;background:var(--card);border:1px solid var(--rule2);border-radius:4px;
+      padding:.8rem .95rem;overflow-x:auto;font-family:ui-monospace,Consolas,"Cascadia Mono",monospace;
+      font-size:.75rem;line-height:1.45;white-space:pre}
+  .cmd{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--blue);
+       font-weight:600;margin-top:.9rem}
+  tr.carrier{background:var(--orangeSoft)}
+  section#s13 h3{margin-top:1.4rem;padding-top:.9rem;border-top:1px solid var(--rule2)}  footer{border-top:1px solid var(--rule);padding-top:1.2rem;font-size:.82rem;color:var(--ink3);
          display:flex;flex-direction:column;gap:.3rem}
 </style>
 
@@ -132,6 +138,7 @@
     <li><a href="#s10"><span class="n">10</span> Inequality and cost-effectiveness</a></li>
     <li><a href="#s11"><span class="n">11</span> Confident vs uncertain</a></li>
     <li><a href="#s12"><span class="n">12</span> Where everything lives</a></li>
+    <li><a href="#s13"><span class="n">13</span> Appendix: the regression output</a></li>
   </ol>
 </nav>
 
@@ -638,9 +645,8 @@
   </div>
   <p>
     The method write-up aimed at a paper is the separate note, <code>output\mbg_methodology.html</code>.
-    This document is the plain-language companion to it. The complete Stata output for every estimation
-    &mdash; with the 152-item scan as an appendix table &mdash; is at
-    <a href="mbg-regressions.html">mbg-regressions.html</a>, produced by <code>do\24_mbg_regout.do</code>.
+    This document is the plain-language companion to it. The complete Stata output for every estimation is in
+    <a href="#s13">the appendix below</a>, produced by <code>do\24_mbg_regout.do</code>.
   </p>
   <h3>If picking this up again</h3>
   <ul>
@@ -651,6 +657,945 @@
     <li>Not yet done: the paper outline, Romano&ndash;Wolf robustness (<code>rwolf</code> not installed),
     and a bootstrap interval for the Gini change.</li>
   </ul>
+</section>
+
+
+<!-- 13 -->
+<section id="s13">
+  <h2><span class="n">13</span> Appendix: the regression output</h2>
+  <div class="tldr"><b>In one line:</b> every estimation in the analysis, exactly as Stata reported it &mdash; and the 152-item scan condensed to one row per regression.</div>
+  <p>Unless noted, each model is estimated on <strong>recipient households only</strong> (n = 9,537), weighted by the household weight <code>WERT</code>, with robust standard errors. <code>recdays</code> is the number of MBG meals the household received in the reference week; <code>M301</code> is household size.</p>
+  <h3>A1. Valuation: national per-meal value</h3>
+  <div class="cmd">regress V recdays M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =     274.07
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0961
+                                                Root MSE          =      69948
+
+------------------------------------------------------------------------------
+             |               Robust
+           V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   7491.032   344.4941    21.75   0.000      6815.75    8166.314
+        M301 |   1753.246   855.8747     2.05   0.041     75.54959    3430.943
+       _cons |   19576.76    3716.93     5.27   0.000     12290.78    26862.73
+------------------------------------------------------------------------------</pre>
+  <h3>A2. Valuation: regional slopes (S2), with joint test and margins</h3>
+  <div class="cmd">regress V c.recdays##i.reg M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(12, 9524)       =      65.67
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.1083
+                                                Root MSE          =      69512
+
+-------------------------------------------------------------------------------
+              |               Robust
+            V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+      recdays |   5892.687   632.6699     9.31   0.000     4652.519    7132.855
+              |
+          reg |
+        Jawa  |  -16863.49   6175.645    -2.73   0.006    -28969.07   -4757.911
+  Bali-Nusra  |  -26429.59   8761.336    -3.02   0.003    -43603.67   -9255.502
+  Kalimantan  |   2017.325    9730.63     0.21   0.836    -17056.78    21091.43
+    Sulawesi  |  -6577.799   7766.143    -0.85   0.397    -21801.09    8645.497
+Maluku-Papua  |  -17236.51   13650.93    -1.26   0.207    -43995.25    9522.227
+              |
+reg#c.recdays |
+        Jawa  |   1594.431   779.9563     2.04   0.041     65.55016    3123.311
+  Bali-Nusra  |   3641.982   1339.592     2.72   0.007     1016.096    6267.867
+  Kalimantan  |   3840.279    1304.39     2.94   0.003     1283.396    6397.162
+    Sulawesi  |   892.8212    1045.68     0.85   0.393    -1156.934    2942.577
+Maluku-Papua  |   4089.433   2122.223     1.93   0.054    -70.57589    8249.441
+              |
+         M301 |   1459.344   840.2709     1.74   0.082    -187.7661    3106.454
+        _cons |   34011.41   5933.827     5.73   0.000     22379.85    45642.98
+-------------------------------------------------------------------------------</pre>
+  <div class="cmd">testparm c.recdays#i.reg</div>
+  <pre> ( 1)  2.reg#c.recdays = 0
+ ( 2)  3.reg#c.recdays = 0
+ ( 3)  4.reg#c.recdays = 0
+ ( 4)  5.reg#c.recdays = 0
+ ( 5)  6.reg#c.recdays = 0
+
+       F(  5,  9524) =    3.10
+            Prob &gt; F =    0.0085</pre>
+  <div class="cmd">margins reg, dydx(recdays)</div>
+  <pre>Average marginal effects                                 Number of obs = 9,537
+Model VCE: Robust
+
+Expression: Linear prediction, predict()
+dy/dx wrt:  recdays
+
+-------------------------------------------------------------------------------
+              |            Delta-method
+              |      dy/dx   std. err.      t    P&gt;|t|     [95% conf. interval]
+--------------+----------------------------------------------------------------
+recdays       |
+          reg |
+    Sumatera  |   5892.687   632.6699     9.31   0.000     4652.519    7132.855
+        Jawa  |   7487.118    492.847    15.19   0.000     6521.032    8453.203
+  Bali-Nusra  |   9534.669   1181.729     8.07   0.000     7218.227    11851.11
+  Kalimantan  |   9732.966   1156.357     8.42   0.000      7466.26    11999.67
+    Sulawesi  |   6785.508   863.9845     7.85   0.000     5091.914    8479.102
+Maluku-Papua  |   9982.119   2030.116     4.92   0.000      6002.66    13961.58
+-------------------------------------------------------------------------------</pre>
+  <h3>A3. Rejected: interaction with the food-price index (eq 4a)</h3>
+  <div class="cmd">regress V c.recdays##c.pidx M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(4, 9532)        =     147.38
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0991
+                                                Root MSE          =      69842
+
+----------------------------------------------------------------------------------
+                 |               Robust
+               V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-----------------+----------------------------------------------------------------
+         recdays |   4503.023    2369.86     1.90   0.057    -142.4075    9148.453
+            pidx |      11438   16029.52     0.71   0.476    -19983.27    42859.27
+                 |
+c.recdays#c.pidx |   2879.338   2389.692     1.20   0.228    -1804.967    7563.644
+                 |
+            M301 |   1618.784   852.3218     1.90   0.058    -51.94775    3289.516
+           _cons |   9825.236    15667.7     0.63   0.531     -20886.8    40537.27
+----------------------------------------------------------------------------------</pre>
+  <h3>A4. Robustness: the transfer under richer controls</h3>
+  <div class="cmd">regress V recdays M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =     274.07
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0961
+                                                Root MSE          =      69948
+
+------------------------------------------------------------------------------
+             |               Robust
+           V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   7491.032   344.4941    21.75   0.000      6815.75    8166.314
+        M301 |   1753.246   855.8747     2.05   0.041     75.54959    3430.943
+       _cons |   19576.76    3716.93     5.27   0.000     12290.78    26862.73
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress V recdays M301 sh_child [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(3, 9533)        =     182.70
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0962
+                                                Root MSE          =      69951
+
+------------------------------------------------------------------------------
+             |               Robust
+           V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   7471.967   343.3478    21.76   0.000     6798.932    8145.002
+        M301 |   1737.628   868.7615     2.00   0.046     34.67074    3440.586
+    sh_child |   1547.325   5067.252     0.31   0.760    -8385.567    11480.22
+       _cons |   19271.64   3727.331     5.17   0.000     11965.28    26578.01
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress V recdays M301 sh_child sh_school [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(4, 9532)        =     139.48
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0962
+                                                Root MSE          =      69954
+
+------------------------------------------------------------------------------
+             |               Robust
+           V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   7410.093   385.0995    19.24   0.000     6655.216     8164.97
+        M301 |   1794.855   893.4971     2.01   0.045     43.41036    3546.299
+    sh_child |   1286.052   5210.108     0.25   0.805    -8926.868    11498.97
+   sh_school |   3423.581   7611.404     0.45   0.653    -11496.39    18343.55
+       _cons |   18305.17   4200.974     4.36   0.000     10070.37    26539.98
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress V recdays M301 sh_child sh_school i.M101 i.M105 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(42, 9494)       =      22.25
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.1222
+                                                Root MSE          =      69076
+
+--------------------------------------------------------------------------------------------
+                           |               Robust
+                         V | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+---------------------------+----------------------------------------------------------------
+                   recdays |   7383.869   384.0757    19.23   0.000     6630.999     8136.74
+                      M301 |   1219.939   858.9294     1.42   0.156    -463.7462    2903.624
+                  sh_child |   2938.856   4994.656     0.59   0.556    -6851.739    12729.45
+                 sh_school |  -302.8348    7335.71    -0.04   0.967     -14682.4    14076.73
+                           |
+                      M101 |
+           SUMATERA UTARA  |   22817.05   5051.637     4.52   0.000     12914.76    32719.34
+           SUMATERA BARAT  |   5563.854   6013.861     0.93   0.355    -6224.599    17352.31
+                     RIAU  |   31520.74   32210.33     0.98   0.328     -31618.4    94659.89
+                    JAMBI  |   23637.72   8155.256     2.90   0.004     7651.671    39623.76
+         SUMATERA SELATAN  |  -2059.608   4080.673    -0.50   0.614     -10058.6    5939.384
+                 BENGKULU  |   25907.52   7202.313     3.60   0.000     11789.44    40025.59
+                  LAMPUNG  |   20086.78   4187.763     4.80   0.000     11877.87    28295.69
+KEPULAUAN BANGKA BELITUNG  |   35455.98   15113.76     2.35   0.019     5829.776    65082.18
+           KEPULAUAN RIAU  |   7689.056   8744.158     0.88   0.379    -9451.364    24829.48
+              DKI JAKARTA  |   2283.319   6355.137     0.36   0.719    -10174.11    14740.75
+               JAWA BARAT  |   4278.817   3808.481     1.12   0.261    -3186.621    11744.25
+              JAWA TENGAH  |    5821.95   3925.169     1.48   0.138    -1872.221    13516.12
+            DI YOGYAKARTA  |   13416.12   5212.527     2.57   0.010     3198.451    23633.79
+               JAWA TIMUR  |   9933.775   4706.428     2.11   0.035     708.1696    19159.38
+                   BANTEN  |  -3359.205   6593.751    -0.51   0.610    -16284.37    9565.958
+                     BALI  |  -5894.018    5013.94    -1.18   0.240    -15722.41    3934.376
+      NUSA TENGGARA BARAT  |  -534.6331   4253.871    -0.13   0.900     -8873.13    7803.864
+      NUSA TENGGARA TIMUR  |   42663.05   7006.885     6.09   0.000     28928.06    56398.04
+         KALIMANTAN BARAT  |   34832.99   6265.486     5.56   0.000     22551.29    47114.68
+        KALIMANTAN TENGAH  |   11425.17    5634.63     2.03   0.043      380.091    22470.25
+       KALIMANTAN SELATAN  |   27773.27   5206.092     5.33   0.000     17568.22    37978.32
+         KALIMANTAN TIMUR  |   80955.46   17757.89     4.56   0.000     46146.18    115764.7
+         KALIMANTAN UTARA  |   66739.65   15003.04     4.45   0.000     37330.48    96148.82
+           SULAWESI UTARA  |   28948.29   6692.158     4.33   0.000     15830.23    42066.35
+          SULAWESI TENGAH  |   13164.21   7539.036     1.75   0.081    -1613.911    27942.34
+         SULAWESI SELATAN  |    8210.65   5537.783     1.48   0.138     -2644.59    19065.89
+        SULAWESI TENGGARA  |   13529.93   6177.774     2.19   0.029     1420.176    25639.69
+                GORONTALO  |   9724.705   13365.27     0.73   0.467    -16474.08    35923.49
+           SULAWESI BARAT  |   11742.15   6168.435     1.90   0.057    -349.2993     23833.6
+                   MALUKU  |   46560.79   9016.192     5.16   0.000     28887.12    64234.45
+             MALUKU UTARA  |   9956.696   10694.01     0.93   0.352    -11005.86    30919.25
+              PAPUA BARAT  |  -2765.144   8968.538    -0.31   0.758     -20345.4    14815.11
+         PAPUA BARAT DAYA  |  -8370.588   12618.03    -0.66   0.507    -33104.63    16363.45
+                    PAPUA  |   29822.29    8339.57     3.58   0.000     13474.95    46169.64
+            PAPUA SELATAN  |    71706.4   34637.98     2.07   0.038     3808.548    139604.3
+             PAPUA TENGAH  |   15246.97    7016.82     2.17   0.030     1492.503    29001.44
+         PAPUA PEGUNUNGAN  |     -11711   24811.37    -0.47   0.637    -60346.59     36924.6
+                           |
+                      M105 |
+                Perdesaan  |  -4824.008   2355.354    -2.05   0.041    -9441.005    -207.011
+                     _cons |   13902.62   5645.701     2.46   0.014     2835.833     24969.4
+--------------------------------------------------------------------------------------------</pre>
+  <h3>A5. Robustness: total expenditure under the same controls</h3>
+  <div class="cmd">regress EXPEND recdays M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      46.72
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0205
+                                                Root MSE          =     4.7e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+      EXPEND | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   79113.28    26008.5     3.04   0.002     28131.08    130095.5
+        M301 |   439893.2   54387.01     8.09   0.000     333283.1    546503.3
+       _cons |    4042962   251112.9    16.10   0.000      3550728     4535197
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress EXPEND recdays M301 sh_child [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(3, 9533)        =      33.65
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0226
+                                                Root MSE          =     4.7e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+      EXPEND | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |    94684.9   26269.77     3.60   0.000     43190.56    146179.2
+        M301 |   452649.4   54871.91     8.25   0.000     345088.8      560210
+    sh_child |   -1263805   366301.6    -3.45   0.001     -1981834   -545776.3
+       _cons |    4292169   259427.9    16.54   0.000      3783635     4800703
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress EXPEND recdays M301 sh_child sh_school [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(4, 9532)        =      33.09
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0280
+                                                Root MSE          =     4.7e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+      EXPEND | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   42581.61    28286.8     1.51   0.132    -12866.54    98029.77
+        M301 |   500839.1   55597.11     9.01   0.000     391856.9    609821.2
+    sh_child |   -1483819   370375.7    -4.01   0.000     -2209834   -757803.8
+   sh_school |    2882945     569022     5.07   0.000      1767541     3998349
+       _cons |    3478317   289272.4    12.02   0.000      2911281     4045353
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress EXPEND recdays M301 sh_child sh_school i.M101 i.M105 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(42, 9494)       =      16.49
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0744
+                                                Root MSE          =     4.6e+06
+
+--------------------------------------------------------------------------------------------
+                           |               Robust
+                    EXPEND | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+---------------------------+----------------------------------------------------------------
+                   recdays |   31878.46    27917.7     1.14   0.254    -22846.21    86603.12
+                      M301 |   444950.2   55536.59     8.01   0.000     336086.6    553813.8
+                  sh_child |   -1576456   367527.5    -4.29   0.000     -2296889   -856023.8
+                 sh_school |    2469846   557148.2     4.43   0.000      1377716     3561976
+                           |
+                      M101 |
+           SUMATERA UTARA  |    -105881   265792.9    -0.40   0.690      -626892      415130
+           SUMATERA BARAT  |    1063995   369225.7     2.88   0.004     340233.8     1787756
+                     RIAU  |     964662   367978.2     2.62   0.009       243346     1685978
+                    JAMBI  |    1629976   686654.9     2.37   0.018     283985.5     2975966
+         SUMATERA SELATAN  |  -392011.5     321493    -1.22   0.223     -1022207    238183.5
+                 BENGKULU  |    1439132   786502.4     1.83   0.067    -102581.2     2980845
+                  LAMPUNG  |    -409254   259952.2    -1.57   0.115    -918815.8    100307.8
+KEPULAUAN BANGKA BELITUNG  |    1966745   558886.2     3.52   0.000     871208.3     3062281
+           KEPULAUAN RIAU  |    3082579   823049.9     3.75   0.000      1469225     4695933
+              DKI JAKARTA  |    1340693   586452.7     2.29   0.022     191119.7     2490265
+               JAWA BARAT  |  -473358.7   221210.1    -2.14   0.032    -906977.8    -39739.6
+              JAWA TENGAH  |  -484198.1   240227.9    -2.02   0.044    -955096.1   -13300.06
+            DI YOGYAKARTA  |   306165.1   442962.5     0.69   0.489    -562136.1     1174466
+               JAWA TIMUR  |  -232114.7   263832.6    -0.88   0.379      -749283    285053.5
+                   BANTEN  |  -228901.4     321082    -0.71   0.476    -858290.9      400488
+                     BALI  |   574065.1   523808.5     1.10   0.273    -452711.6     1600842
+      NUSA TENGGARA BARAT  |   -1218169   274949.5    -4.43   0.000     -1757129     -679209
+      NUSA TENGGARA TIMUR  |  -471963.7   285742.3    -1.65   0.099     -1032080    88152.39
+         KALIMANTAN BARAT  |    1091950   365797.5     2.99   0.003     374908.5     1808991
+        KALIMANTAN TENGAH  |  -67871.36   473997.2    -0.14   0.886    -997007.2    861264.5
+       KALIMANTAN SELATAN  |    1281102     389126     3.29   0.001     518331.9     2043872
+         KALIMANTAN TIMUR  |    2083541   492899.8     4.23   0.000      1117352     3049730
+         KALIMANTAN UTARA  |   689639.7   342087.1     2.02   0.044      19075.8     1360204
+           SULAWESI UTARA  |    1207049   827022.5     1.46   0.144    -414091.8     2828190
+          SULAWESI TENGAH  |   117819.7   398592.3     0.30   0.768    -663506.4    899145.9
+         SULAWESI SELATAN  |  -496549.8   401777.4    -1.24   0.217     -1284119    291019.9
+        SULAWESI TENGGARA  |   243522.4   403521.6     0.60   0.546    -547466.3     1034511
+                GORONTALO  |    2805909    1900361     1.48   0.140    -919205.8     6531023
+           SULAWESI BARAT  |  -585805.1   349890.2    -1.67   0.094     -1271665    100054.6
+                   MALUKU  |   709422.1   468415.8     1.51   0.130    -208773.1     1627617
+             MALUKU UTARA  |     667550   478450.4     1.40   0.163    -270315.1     1605415
+              PAPUA BARAT  |    1589070   441892.6     3.60   0.000     722866.4     2455274
+         PAPUA BARAT DAYA  |    1062428   525047.8     2.02   0.043     33222.48     2091634
+                    PAPUA  |    3213719   644095.1     4.99   0.000      1951155     4476283
+            PAPUA SELATAN  |    3619408    1244569     2.91   0.004      1179786     6059030
+             PAPUA TENGAH  |    2817440   495441.2     5.69   0.000      1846270     3788611
+         PAPUA PEGUNUNGAN  |    5930910    2592383     2.29   0.022     849284.8    1.10e+07
+                           |
+                      M105 |
+                Perdesaan  |   -1332642   116666.2   -11.42   0.000     -1561332    -1103951
+                     _cons |    4428389   359414.2    12.32   0.000      3723860     5132917
+--------------------------------------------------------------------------------------------</pre>
+  <h3>A6. Placebo battery A: in-kind outcomes (expect flat)</h3>
+  <div class="cmd">Battery A1 , in-kind outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       0.74
+                                                Prob &gt; F          =     0.4750
+                                                R-squared         =     0.0003
+                                                Root MSE          =      27036
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -132.3911   117.6535    -1.13   0.261    -363.0171    98.23487
+        M301 |   305.5686   303.6389     1.01   0.314    -289.6282    900.7655
+       _cons |   2675.822   1152.974     2.32   0.020     415.7478    4935.896
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                        29,064
+        from master                         0  
+        from using                     29,064  
+
+    Matched                            47,864  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A1 , purchased outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      21.63
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0135
+                                                Root MSE          =      98595
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -1368.179   511.2055    -2.68   0.007     -2370.25    -366.107
+        M301 |   9529.829   1448.999     6.58   0.000     6689.483    12370.18
+       _cons |   47517.79   5902.137     8.05   0.000     35948.34    59087.23
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         6,730
+        from master                         0  
+        from using                      6,730  
+
+    Matched                            70,198  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A2 , in-kind outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       4.05
+                                                Prob &gt; F          =     0.0175
+                                                R-squared         =     0.0038
+                                                Root MSE          =     3061.5
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   -32.4103   11.71227    -2.77   0.006    -55.36884   -9.451765
+        M301 |   153.6779   81.78914     1.88   0.060     -6.64618    314.0021
+       _cons |  -184.8672   331.3156    -0.56   0.577    -834.3162    464.5819
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         6,730
+        from master                         0  
+        from using                      6,730  
+
+    Matched                            70,198  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A2 , purchased outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      15.11
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0107
+                                                Root MSE          =      14310
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |    -105.73   74.90468    -1.41   0.158    -252.5591    41.09915
+        M301 |   1213.662   225.6026     5.38   0.000     771.4327    1655.891
+       _cons |    8450.83   869.2242     9.72   0.000     6746.965    10154.69
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         1,423
+        from master                         0  
+        from using                      1,423  
+
+    Matched                            75,505  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A3 , in-kind outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       1.65
+                                                Prob &gt; F          =     0.1925
+                                                R-squared         =     0.0007
+                                                Root MSE          =     1423.7
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -2.729329   5.218419    -0.52   0.601    -12.95854    7.499883
+        M301 |   30.27006   16.70177     1.81   0.070    -2.468972    63.00909
+       _cons |   184.0954   74.94815     2.46   0.014     37.18103    331.0097
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         1,423
+        from master                         0  
+        from using                      1,423  
+
+    Matched                            75,505  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A3 , purchased outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      26.94
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0130
+                                                Root MSE          =      10363
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   133.0521    64.0885     2.08   0.038     7.424969    258.6792
+        M301 |   780.8912    129.083     6.05   0.000     527.8611    1033.921
+       _cons |   10371.45   564.3046    18.38   0.000     9265.297    11477.61
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                        15,549
+        from master                         0  
+        from using                     15,549  
+
+    Matched                            61,379  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A4 , in-kind outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       5.51
+                                                Prob &gt; F          =     0.0041
+                                                R-squared         =     0.0026
+                                                Root MSE          =      11874
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   61.67601   56.37901     1.09   0.274    -48.83884    172.1909
+        M301 |   401.8104   146.8322     2.74   0.006     113.9881    689.6328
+       _cons |   4737.988   665.6951     7.12   0.000     3433.084    6042.893
+------------------------------------------------------------------------------
+(Susenas Sep 2025 KP blok IV.1 - makanan/minuman/rokok seminggu (VSEN25.KP))
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                        15,549
+        from master                         0  
+        from using                     15,549  
+
+    Matched                            61,379  
+    -----------------------------------------</pre>
+  <div class="cmd">Battery A4 , purchased outcome</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       0.96
+                                                Prob &gt; F          =     0.3832
+                                                R-squared         =     0.0004
+                                                Root MSE          =      26685
+
+------------------------------------------------------------------------------
+             |               Robust
+           y | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   162.6154   143.6123     1.13   0.258    -118.8953    444.1261
+        M301 |   105.1593   322.6211     0.33   0.744    -527.2468    737.5654
+       _cons |   13711.93   1387.414     9.88   0.000      10992.3    16431.55
+------------------------------------------------------------------------------</pre>
+  <h3>A7. Placebo battery B3: purchased non-food (expect slopes)</h3>
+  <div class="cmd">B3 pulsa , purchased</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       7.02
+                                                Prob &gt; F          =     0.0009
+                                                R-squared         =     0.0034
+                                                Root MSE          =      87108
+
+------------------------------------------------------------------------------
+             |               Robust
+          y1 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   859.0067   538.8547     1.59   0.111    -197.2632    1915.276
+        M301 |    2844.33   1174.845     2.42   0.015     541.3833    5147.276
+       _cons |   36181.41   4782.493     7.57   0.000     26806.71    45556.12
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">B3 toiletries , purchased</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      13.97
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0072
+                                                Root MSE          =      60197
+
+------------------------------------------------------------------------------
+             |               Robust
+          y2 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   979.6429   409.0741     2.39   0.017     177.7706    1781.515
+        M301 |   2646.346   717.1851     3.69   0.000      1240.51    4052.181
+       _cons |   47125.01   3346.403    14.08   0.000     40565.35    53684.67
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">B3 clothing , purchased</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      19.34
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0084
+                                                Root MSE          =     2.0e+05
+
+------------------------------------------------------------------------------
+             |               Robust
+          y3 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   3938.195   1058.854     3.72   0.000     1862.616    6013.774
+        M301 |   8782.657   2284.898     3.84   0.000     4303.771    13261.54
+       _cons |   110143.5   10606.04    10.38   0.000     89353.39    130933.6
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">B3 durables , purchased</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       1.08
+                                                Prob &gt; F          =     0.3395
+                                                R-squared         =     0.0003
+                                                Root MSE          =     3.0e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+          y4 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -13514.71   11126.95    -1.21   0.225    -35325.89    8296.474
+        M301 |  -15481.56   22931.67    -0.68   0.500    -60432.51    29469.38
+       _cons |   645099.3   134094.8     4.81   0.000     382244.9    907953.7
+------------------------------------------------------------------------------</pre>
+  <h3>A8. Placebo battery C: pre-determined characteristics</h3>
+  <div class="cmd">C (valid placebo): own_home</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       3.69
+                                                Prob &gt; F          =     0.0250
+                                                R-squared         =     0.0015
+                                                Root MSE          =     .38219
+
+------------------------------------------------------------------------------
+             |               Robust
+    own_home | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   -.001314   .0021619    -0.61   0.543    -.0055517    .0029238
+        M301 |   .0123239   .0045564     2.70   0.007     .0033924    .0212554
+       _cons |   .7731896   .0210757    36.69   0.000     .7318768    .8145024
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">C (valid placebo): has_permit</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       0.17
+                                                Prob &gt; F          =     0.8448
+                                                R-squared         =     0.0001
+                                                Root MSE          =     .44993
+
+------------------------------------------------------------------------------
+             |               Robust
+  has_permit | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -.0001533   .0022676    -0.07   0.946    -.0045983    .0042917
+        M301 |   .0031618   .0056278     0.56   0.574    -.0078698    .0141935
+       _cons |    .268187   .0244293    10.98   0.000     .2203004    .3160737
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">C (valid placebo): pln</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =       0.35
+                                                Prob &gt; F          =     0.7045
+                                                R-squared         =     0.0000
+                                                Root MSE          =     .03726
+
+------------------------------------------------------------------------------
+             |               Robust
+         pln | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -.0000475    .000112    -0.42   0.671    -.0002671     .000172
+        M301 |   .0001381   .0001655     0.83   0.404    -.0001864    .0004626
+       _cons |   .9982533   .0008453  1180.93   0.000     .9965964    .9999103
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">C (valid placebo): hi_educ</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      28.22
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0099
+                                                Root MSE          =     .11545
+
+------------------------------------------------------------------------------
+             |               Robust
+     hi_educ | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   .0005132   .0002966     1.73   0.084    -.0000683    .0010947
+        M301 |    .008524   .0012943     6.59   0.000     .0059868    .0110612
+       _cons |   .9442458   .0070834   133.30   0.000     .9303608    .9581308
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress sh_child recdays M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =     168.94
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0587
+                                                Root MSE          =     .16912
+
+------------------------------------------------------------------------------
+             |               Robust
+    sh_child | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   .0123212   .0008113    15.19   0.000     .0107309    .0139115
+        M301 |   .0100935   .0020269     4.98   0.000     .0061203    .0140667
+       _cons |   .1971876   .0092792    21.25   0.000     .1789984    .2153768
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress sh_elderly recdays M301 [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      48.27
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0219
+                                                Root MSE          =     .11663
+
+------------------------------------------------------------------------------
+             |               Robust
+  sh_elderly | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |  -.0040665   .0005317    -7.65   0.000    -.0051087   -.0030243
+        M301 |   .0134611   .0015427     8.73   0.000      .010437    .0164852
+       _cons |   .0173286   .0067967     2.55   0.011     .0040055    .0306517
+------------------------------------------------------------------------------</pre>
+  <div class="cmd">regress recdays own_home has_permit pln hi_educ [pw=WERT]</div>
+  <pre>Linear regression                               Number of obs     =      9,537
+                                                F(4, 9532)        =      12.74
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0020
+                                                Root MSE          =     2.9296
+
+------------------------------------------------------------------------------
+             |               Robust
+     recdays | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    own_home |   .0368906   .1257399     0.29   0.769    -.2095865    .2833676
+  has_permit |   .0018165   .0931927     0.02   0.984    -.1808611     .184494
+         pln |  -.2224663    .633827    -0.35   0.726    -1.464902     1.01997
+     hi_educ |    1.12519   .1586579     7.09   0.000     .8141868    1.436193
+       _cons |    4.90359   .6635064     7.39   0.000     3.602976    6.204204
+------------------------------------------------------------------------------</pre>
+  <h3>A9. Counterfactual inference: design-based SEs</h3>
+  <div class="cmd">rho = 0.0 : national change in P0 and P1</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961         Number of obs   =      76,928
+Number of PSUs   = 7,701         Population size = 283,064,895
+                                 Design df       =       6,740
+
+--------------------------------------------------------------
+             |             Linearized
+             |       Mean   std. err.     [95% conf. interval]
+-------------+------------------------------------------------
+      d_poor |   .3261645   .0445267       .238878    .4134509
+       d_gap |    .079938   .0066621      .0668781    .0929978
+--------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <div class="cmd">rho = 0.0 : change in P0 by urban/rural</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961          Number of obs   =      76,928
+Number of PSUs   = 7,701          Population size = 283,064,895
+                                  Design df       =       6,740
+
+---------------------------------------------------------------
+              |             Linearized
+              |       Mean   std. err.     [95% conf. interval]
+--------------+------------------------------------------------
+c.d_poor@M105 |
+   Perkotaan  |   .3811989   .0660348      .2517498     .510648
+   Perdesaan  |   .2440804   .0510264      .1440526    .3441082
+---------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <div class="cmd">rho = 0.25 : national change in P0 and P1</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961         Number of obs   =      76,928
+Number of PSUs   = 7,701         Population size = 283,064,895
+                                 Design df       =       6,740
+
+--------------------------------------------------------------
+             |             Linearized
+             |       Mean   std. err.     [95% conf. interval]
+-------------+------------------------------------------------
+      d_poor |   .2428679    .038244      .1678975    .3178383
+       d_gap |   .0573596   .0048922      .0477693      .06695
+--------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <div class="cmd">rho = 0.25 : change in P0 by urban/rural</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961          Number of obs   =      76,928
+Number of PSUs   = 7,701          Population size = 283,064,895
+                                  Design df       =       6,740
+
+---------------------------------------------------------------
+              |             Linearized
+              |       Mean   std. err.     [95% conf. interval]
+--------------+------------------------------------------------
+c.d_poor@M105 |
+   Perkotaan  |    .272727   .0549772      .1649543    .3804998
+   Perdesaan  |   .1983328   .0485324      .1031941    .2934716
+---------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <div class="cmd">rho = 0.50 : national change in P0 and P1</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961         Number of obs   =      76,928
+Number of PSUs   = 7,701         Population size = 283,064,895
+                                 Design df       =       6,740
+
+--------------------------------------------------------------
+             |             Linearized
+             |       Mean   std. err.     [95% conf. interval]
+-------------+------------------------------------------------
+      d_poor |   .1579472   .0330892      .0930819    .2228124
+       d_gap |   .0365053   .0031889       .030254    .0427566
+--------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <div class="cmd">rho = 0.50 : change in P0 by urban/rural</div>
+  <pre>Survey: Mean estimation
+
+Number of strata =   961          Number of obs   =      76,928
+Number of PSUs   = 7,701          Population size = 283,064,895
+                                  Design df       =       6,740
+
+---------------------------------------------------------------
+              |             Linearized
+              |       Mean   std. err.     [95% conf. interval]
+--------------+------------------------------------------------
+c.d_poor@M105 |
+   Perkotaan  |   .1821573   .0487369      .0866177     .277697
+   Perdesaan  |   .1218377   .0388833       .045614    .1980613
+---------------------------------------------------------------
+Note: Strata with single sampling unit centered at overall
+      mean.</pre>
+  <h3>A10. The 152-item scan, one row per regression</h3>
+  <p>Printing 152 full outputs would be unreadable, so each is condensed to a row. Model in every row: in-kind value of that item on <code>recdays</code> and household size. The nine carriers are highlighted; the other 143 form the placebo distribution in section 5.</p>
+  <div class="tw"><table>
+    <caption><b>All 152 item regressions.</b> Sorted with carriers first, then by t-statistic.</caption>
+    <thead><tr><th class="n">KODE</th><th>Item</th><th class="n">Coef.</th><th class="n">Std. err.</th><th class="n">t</th><th class="n">P&gt;|t|</th><th class="n">N</th><th>Class</th></tr></thead><tbody>
+    <tr class="carrier"><td class="n">196</td><td>Nasi campur/rames</td><td class="n">6,309.24</td><td class="n">326.52</td><td class="n">19.32</td><td class="n">0.0000</td><td class="n">8,449</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">79</td><td>Susu cair pabrik</td><td class="n">532.22</td><td class="n">49.35</td><td class="n">10.78</td><td class="n">0.0000</td><td class="n">3,764</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">140</td><td>Semangka</td><td class="n">117.21</td><td class="n">16.72</td><td class="n">7.01</td><td class="n">0.0000</td><td class="n">2,382</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">130</td><td>Jeruk, jeruk bali</td><td class="n">144.89</td><td class="n">27.97</td><td class="n">5.18</td><td class="n">0.0000</td><td class="n">2,947</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">150</td><td>Melon</td><td class="n">41.91</td><td class="n">8.95</td><td class="n">4.68</td><td class="n">0.0000</td><td class="n">764</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">207</td><td>Ayam/daging matang (ayam goreng, rendang, dsb)</td><td class="n">242.40</td><td class="n">67.00</td><td class="n">3.62</td><td class="n">0.0003</td><td class="n">1,649</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">215</td><td>Sari buah kemasan</td><td class="n">41.39</td><td class="n">12.18</td><td class="n">3.40</td><td class="n">0.0007</td><td class="n">390</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">152</td><td>Kelengkeng</td><td class="n">41.02</td><td class="n">12.68</td><td class="n">3.23</td><td class="n">0.0012</td><td class="n">880</td><td><span class="hi">carrier</span></td></tr>
+    <tr class="carrier"><td class="n">136</td><td>Salak</td><td class="n">20.76</td><td class="n">6.85</td><td class="n">3.03</td><td class="n">0.0024</td><td class="n">711</td><td><span class="hi">carrier</span></td></tr>
+    <tr><td class="n">80</td><td>Susu kental manis</td><td class="n">13.11</td><td class="n">6.01</td><td class="n">2.18</td><td class="n">0.0290</td><td class="n">59</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">110</td><td>Cabe rawit</td><td class="n">20.76</td><td class="n">10.70</td><td class="n">1.94</td><td class="n">0.0525</td><td class="n">667</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">46</td><td>Kerang, siput, bekicot, remis</td><td class="n">10.91</td><td class="n">5.69</td><td class="n">1.92</td><td class="n">0.0550</td><td class="n">36</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">104</td><td>Jengkol</td><td class="n">7.95</td><td class="n">4.22</td><td class="n">1.89</td><td class="n">0.0594</td><td class="n">122</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">147</td><td>Anggur</td><td class="n">26.21</td><td class="n">14.04</td><td class="n">1.87</td><td class="n">0.0621</td><td class="n">786</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">190</td><td>Kue kering, biskuit, semprong</td><td class="n">34.65</td><td class="n">19.90</td><td class="n">1.74</td><td class="n">0.0816</td><td class="n">641</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">144</td><td>Nanas</td><td class="n">7.98</td><td class="n">4.64</td><td class="n">1.72</td><td class="n">0.0854</td><td class="n">113</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">208</td><td>Daging olahan matang (sosis. nugget, daging asap, dsb)</td><td class="n">26.72</td><td class="n">15.61</td><td class="n">1.71</td><td class="n">0.0869</td><td class="n">392</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">22</td><td>Selar</td><td class="n">22.68</td><td class="n">13.36</td><td class="n">1.70</td><td class="n">0.0897</td><td class="n">64</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">153</td><td>Buah-buahan lainnya</td><td class="n">13.80</td><td class="n">8.39</td><td class="n">1.64</td><td class="n">0.1001</td><td class="n">214</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">18</td><td>Tongkol</td><td class="n">15.40</td><td class="n">9.93</td><td class="n">1.55</td><td class="n">0.1208</td><td class="n">101</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">93</td><td>Tomat sayur, tomat ceri</td><td class="n">4.21</td><td class="n">2.91</td><td class="n">1.44</td><td class="n">0.1486</td><td class="n">180</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">41</td><td>Ikan segar/basah lainnya</td><td class="n">30.17</td><td class="n">20.94</td><td class="n">1.44</td><td class="n">0.1497</td><td class="n">218</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">183</td><td>Mie instan</td><td class="n">15.28</td><td class="n">11.50</td><td class="n">1.33</td><td class="n">0.1841</td><td class="n">278</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">103</td><td>Pepaya muda</td><td class="n">10.58</td><td class="n">8.19</td><td class="n">1.29</td><td class="n">0.1963</td><td class="n">683</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">29</td><td>Nila</td><td class="n">25.51</td><td class="n">20.05</td><td class="n">1.27</td><td class="n">0.2032</td><td class="n">160</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">57</td><td>Ikan diawetkan lainnya</td><td class="n">4.76</td><td class="n">4.01</td><td class="n">1.19</td><td class="n">0.2355</td><td class="n">49</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">102</td><td>Nangka muda</td><td class="n">7.65</td><td class="n">6.57</td><td class="n">1.16</td><td class="n">0.2449</td><td class="n">317</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">126</td><td>Tempe</td><td class="n">7.26</td><td class="n">6.25</td><td class="n">1.16</td><td class="n">0.2453</td><td class="n">91</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">94</td><td>Wortel</td><td class="n">2.87</td><td class="n">2.52</td><td class="n">1.14</td><td class="n">0.2536</td><td class="n">79</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">76</td><td>Telur ayam kampung</td><td class="n">11.70</td><td class="n">10.26</td><td class="n">1.14</td><td class="n">0.2542</td><td class="n">234</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">132</td><td>Apel</td><td class="n">9.53</td><td class="n">9.65</td><td class="n">0.99</td><td class="n">0.3238</td><td class="n">283</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">87</td><td>Kangkung</td><td class="n">5.28</td><td class="n">5.46</td><td class="n">0.97</td><td class="n">0.3342</td><td class="n">512</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">119</td><td>Jamur (jamur tiram, enoki, kancing, dll)</td><td class="n">3.70</td><td class="n">3.87</td><td class="n">0.96</td><td class="n">0.3390</td><td class="n">64</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">78</td><td>Telur lainnya (telur puyuh, telur asin mentah maupun matang, tekur penyu, telur angsa, dsb)</td><td class="n">4.56</td><td class="n">4.86</td><td class="n">0.94</td><td class="n">0.3490</td><td class="n">69</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">198</td><td>Nasi putih</td><td class="n">74.58</td><td class="n">84.98</td><td class="n">0.88</td><td class="n">0.3801</td><td class="n">1,377</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">115</td><td>Daun pakis</td><td class="n">2.56</td><td class="n">3.00</td><td class="n">0.85</td><td class="n">0.3934</td><td class="n">195</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">98</td><td>Tauge</td><td class="n">1.55</td><td class="n">1.85</td><td class="n">0.84</td><td class="n">0.4024</td><td class="n">35</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">201</td><td>Sayur matang (ditumis, disantan, dsb)</td><td class="n">68.60</td><td class="n">83.77</td><td class="n">0.82</td><td class="n">0.4129</td><td class="n">1,580</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">122</td><td>Kacang tanah tanpa kulit</td><td class="n">6.30</td><td class="n">7.71</td><td class="n">0.82</td><td class="n">0.4138</td><td class="n">39</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">124</td><td>Kacang lainnya</td><td class="n">3.76</td><td class="n">4.62</td><td class="n">0.81</td><td class="n">0.4161</td><td class="n">35</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">188</td><td>Roti tawar</td><td class="n">3.56</td><td class="n">4.62</td><td class="n">0.77</td><td class="n">0.4409</td><td class="n">134</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">108</td><td>Cabe merah</td><td class="n">9.49</td><td class="n">12.56</td><td class="n">0.76</td><td class="n">0.4497</td><td class="n">167</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">86</td><td>Bayam</td><td class="n">3.86</td><td class="n">5.43</td><td class="n">0.71</td><td class="n">0.4766</td><td class="n">461</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">216</td><td>Minuman jadi (kopi, kopi susu, teh, susu coklat, dll.)</td><td class="n">38.64</td><td class="n">54.77</td><td class="n">0.71</td><td class="n">0.4805</td><td class="n">2,857</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">62</td><td>Daging sapi</td><td class="n">17.93</td><td class="n">25.94</td><td class="n">0.69</td><td class="n">0.4895</td><td class="n">92</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">19</td><td>Tuna</td><td class="n">4.90</td><td class="n">7.11</td><td class="n">0.69</td><td class="n">0.4913</td><td class="n">30</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">106</td><td>Bawang putih</td><td class="n">1.06</td><td class="n">1.60</td><td class="n">0.66</td><td class="n">0.5067</td><td class="n">38</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">9</td><td>Ketela pohon/singkong</td><td class="n">9.93</td><td class="n">15.79</td><td class="n">0.63</td><td class="n">0.5292</td><td class="n">1,496</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">148</td><td>Buah naga</td><td class="n">4.00</td><td class="n">6.46</td><td class="n">0.62</td><td class="n">0.5360</td><td class="n">144</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">137</td><td>Pisang ambon</td><td class="n">13.39</td><td class="n">22.72</td><td class="n">0.59</td><td class="n">0.5558</td><td class="n">1,050</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">125</td><td>Tahu</td><td class="n">2.89</td><td class="n">5.12</td><td class="n">0.56</td><td class="n">0.5734</td><td class="n">82</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">225</td><td>Rokok dan tembakau lainnya</td><td class="n">4.60</td><td class="n">8.28</td><td class="n">0.56</td><td class="n">0.5784</td><td class="n">107</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">24</td><td>Teri basah</td><td class="n">3.07</td><td class="n">5.65</td><td class="n">0.54</td><td class="n">0.5864</td><td class="n">50</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">12</td><td>Talas/keladi</td><td class="n">3.46</td><td class="n">6.41</td><td class="n">0.54</td><td class="n">0.5894</td><td class="n">203</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">20</td><td>Cakalang, dencis</td><td class="n">7.31</td><td class="n">14.22</td><td class="n">0.51</td><td class="n">0.6073</td><td class="n">79</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">36</td><td>Ikan Layang</td><td class="n">3.85</td><td class="n">7.63</td><td class="n">0.50</td><td class="n">0.6137</td><td class="n">37</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">13</td><td>Kentang</td><td class="n">2.78</td><td class="n">5.73</td><td class="n">0.49</td><td class="n">0.6269</td><td class="n">77</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">142</td><td>Alpokat</td><td class="n">4.69</td><td class="n">9.86</td><td class="n">0.48</td><td class="n">0.6341</td><td class="n">171</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">146</td><td>Pir</td><td class="n">4.85</td><td class="n">10.68</td><td class="n">0.45</td><td class="n">0.6502</td><td class="n">184</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">96</td><td>Daun ketela pohon/daun singkong</td><td class="n">6.48</td><td class="n">15.02</td><td class="n">0.43</td><td class="n">0.6661</td><td class="n">1,631</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">51</td><td>Teri diawetkan</td><td class="n">1.65</td><td class="n">3.93</td><td class="n">0.42</td><td class="n">0.6742</td><td class="n">41</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">27</td><td>Mujair</td><td class="n">10.39</td><td class="n">25.13</td><td class="n">0.41</td><td class="n">0.6793</td><td class="n">170</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">219</td><td>Minuman keras lainnya</td><td class="n">2.41</td><td class="n">5.97</td><td class="n">0.40</td><td class="n">0.6864</td><td class="n">51</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">75</td><td>Telur ayam ras</td><td class="n">6.57</td><td class="n">16.87</td><td class="n">0.39</td><td class="n">0.6967</td><td class="n">240</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">97</td><td>Terong</td><td class="n">2.73</td><td class="n">7.19</td><td class="n">0.38</td><td class="n">0.7042</td><td class="n">474</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">11</td><td>Sagu (bukan dari ketela phn)</td><td class="n">2.02</td><td class="n">5.66</td><td class="n">0.36</td><td class="n">0.7208</td><td class="n">56</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">83</td><td>Susu murni</td><td class="n">0.86</td><td class="n">2.44</td><td class="n">0.35</td><td class="n">0.7258</td><td class="n">28</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">66</td><td>Daging ayam ras</td><td class="n">9.66</td><td class="n">29.47</td><td class="n">0.33</td><td class="n">0.7432</td><td class="n">172</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">112</td><td>Daun kelor</td><td class="n">4.16</td><td class="n">12.75</td><td class="n">0.33</td><td class="n">0.7442</td><td class="n">929</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">138</td><td>Pisang lainnya</td><td class="n">8.62</td><td class="n">29.69</td><td class="n">0.29</td><td class="n">0.7717</td><td class="n">2,498</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">39</td><td>Ikan Wader/Seluang</td><td class="n">1.13</td><td class="n">4.20</td><td class="n">0.27</td><td class="n">0.7886</td><td class="n">36</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">193</td><td>Makanan gorengan</td><td class="n">2.53</td><td class="n">9.61</td><td class="n">0.26</td><td class="n">0.7926</td><td class="n">280</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">192</td><td>Makanan gorengan (tahu, tempe, bakwan, pisang)</td><td class="n">7.39</td><td class="n">28.92</td><td class="n">0.26</td><td class="n">0.7982</td><td class="n">1,918</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">92</td><td>Kacang panjang</td><td class="n">0.85</td><td class="n">3.40</td><td class="n">0.25</td><td class="n">0.8030</td><td class="n">237</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">26</td><td>Gabus</td><td class="n">3.28</td><td class="n">14.23</td><td class="n">0.23</td><td class="n">0.8178</td><td class="n">111</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">4</td><td>Jagung basah degan kulit</td><td class="n">0.80</td><td class="n">6.95</td><td class="n">0.11</td><td class="n">0.9089</td><td class="n">115</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">197</td><td>Nasi goreng</td><td class="n">5.76</td><td class="n">50.48</td><td class="n">0.11</td><td class="n">0.9092</td><td class="n">407</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">199</td><td>Lontong/ketupat sayur</td><td class="n">2.40</td><td class="n">21.36</td><td class="n">0.11</td><td class="n">0.9107</td><td class="n">246</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">17</td><td>Ekor kuning</td><td class="n">0.20</td><td class="n">4.67</td><td class="n">0.04</td><td class="n">0.9660</td><td class="n">36</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">3</td><td>Beras ketan</td><td class="n">0.27</td><td class="n">6.38</td><td class="n">0.04</td><td class="n">0.9662</td><td class="n">50</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">172</td><td>Jahe</td><td class="n">0.07</td><td class="n">1.77</td><td class="n">0.04</td><td class="n">0.9701</td><td class="n">374</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">173</td><td>Kunyit</td><td class="n">0.04</td><td class="n">1.68</td><td class="n">0.03</td><td class="n">0.9794</td><td class="n">575</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">139</td><td>Pepaya</td><td class="n">0.41</td><td class="n">17.73</td><td class="n">0.02</td><td class="n">0.9816</td><td class="n">1,485</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">169</td><td>Kemiri</td><td class="n">-0.02</td><td class="n">0.57</td><td class="n">-0.03</td><td class="n">0.9762</td><td class="n">39</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">65</td><td>Daging babi</td><td class="n">-1.81</td><td class="n">26.26</td><td class="n">-0.07</td><td class="n">0.9450</td><td class="n">116</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">90</td><td>Sawi hijau</td><td class="n">-0.18</td><td class="n">2.56</td><td class="n">-0.07</td><td class="n">0.9431</td><td class="n">120</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">210</td><td>Siomay, batagor</td><td class="n">-0.63</td><td class="n">7.94</td><td class="n">-0.08</td><td class="n">0.9363</td><td class="n">149</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">141</td><td>Tomat buah</td><td class="n">-0.14</td><td class="n">1.43</td><td class="n">-0.10</td><td class="n">0.9221</td><td class="n">45</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">174</td><td>Asam</td><td class="n">-0.17</td><td class="n">1.65</td><td class="n">-0.10</td><td class="n">0.9192</td><td class="n">197</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">222</td><td>Rokok kretek tanpa filter</td><td class="n">-3.20</td><td class="n">31.51</td><td class="n">-0.10</td><td class="n">0.9190</td><td class="n">192</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">184</td><td>Kerupuk</td><td class="n">-0.68</td><td class="n">6.33</td><td class="n">-0.11</td><td class="n">0.9147</td><td class="n">70</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">32</td><td>Baronang</td><td class="n">-0.75</td><td class="n">5.13</td><td class="n">-0.15</td><td class="n">0.8844</td><td class="n">27</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">206</td><td>Ikan matang</td><td class="n">-9.88</td><td class="n">60.98</td><td class="n">-0.16</td><td class="n">0.8713</td><td class="n">842</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">23</td><td>Kembung, lema/tatare, banyar/banyara</td><td class="n">-1.91</td><td class="n">11.73</td><td class="n">-0.16</td><td class="n">0.8706</td><td class="n">98</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">89</td><td>Sawi putih (petsai)</td><td class="n">-0.42</td><td class="n">2.28</td><td class="n">-0.18</td><td class="n">0.8543</td><td class="n">70</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">203</td><td>Mie bakso, mie rebus, mie goreng</td><td class="n">-7.95</td><td class="n">36.99</td><td class="n">-0.22</td><td class="n">0.8297</td><td class="n">748</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">200</td><td>Soto, gule, sop, rawon, cincang</td><td class="n">-7.44</td><td class="n">31.55</td><td class="n">-0.24</td><td class="n">0.8135</td><td class="n">669</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">217</td><td>Es krim</td><td class="n">-1.34</td><td class="n">5.09</td><td class="n">-0.26</td><td class="n">0.7930</td><td class="n">131</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">111</td><td>Daun pepaya</td><td class="n">-1.55</td><td class="n">5.26</td><td class="n">-0.29</td><td class="n">0.7682</td><td class="n">405</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">145</td><td>Nangka</td><td class="n">-3.30</td><td class="n">10.91</td><td class="n">-0.30</td><td class="n">0.7621</td><td class="n">101</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">194</td><td>Bubur kacang hijau</td><td class="n">-5.88</td><td class="n">18.55</td><td class="n">-0.32</td><td class="n">0.7513</td><td class="n">307</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">91</td><td>Buncis</td><td class="n">-0.55</td><td class="n">1.67</td><td class="n">-0.33</td><td class="n">0.7417</td><td class="n">65</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">117</td><td>Oyong/gambas</td><td class="n">-0.42</td><td class="n">1.24</td><td class="n">-0.34</td><td class="n">0.7374</td><td class="n">48</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">205</td><td>Makanan ringan anak-anak, krupuk/kripik</td><td class="n">-7.37</td><td class="n">18.49</td><td class="n">-0.40</td><td class="n">0.6902</td><td class="n">497</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">118</td><td>Rebung</td><td class="n">-1.15</td><td class="n">2.50</td><td class="n">-0.46</td><td class="n">0.6463</td><td class="n">107</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">211</td><td>Makanan jadi lainnya</td><td class="n">-29.25</td><td class="n">53.91</td><td class="n">-0.54</td><td class="n">0.5874</td><td class="n">779</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">189</td><td>Roti manis, roti lainnya</td><td class="n">-13.29</td><td class="n">24.22</td><td class="n">-0.55</td><td class="n">0.5832</td><td class="n">1,118</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">10</td><td>Ketela rambat/ubi jalar</td><td class="n">-6.88</td><td class="n">12.30</td><td class="n">-0.56</td><td class="n">0.5757</td><td class="n">446</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">195</td><td>Gado-gado, ketoprak, pecel</td><td class="n">-25.66</td><td class="n">44.56</td><td class="n">-0.58</td><td class="n">0.5647</td><td class="n">452</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">77</td><td>Telur itik/telur itik manila</td><td class="n">-10.14</td><td class="n">16.12</td><td class="n">-0.63</td><td class="n">0.5294</td><td class="n">63</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">88</td><td>Kol/kubis</td><td class="n">-1.03</td><td class="n">1.53</td><td class="n">-0.67</td><td class="n">0.5019</td><td class="n">83</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">28</td><td>Mas</td><td class="n">-13.31</td><td class="n">18.48</td><td class="n">-0.72</td><td class="n">0.4714</td><td class="n">70</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">204</td><td>Mie instan</td><td class="n">-5.97</td><td class="n">8.12</td><td class="n">-0.73</td><td class="n">0.4624</td><td class="n">126</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">213</td><td>Air kemasan galon</td><td class="n">-3.52</td><td class="n">4.78</td><td class="n">-0.74</td><td class="n">0.4612</td><td class="n">195</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">209</td><td>Bubur ayam</td><td class="n">-8.33</td><td class="n">10.58</td><td class="n">-0.79</td><td class="n">0.4313</td><td class="n">117</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">212</td><td>Air kemasan</td><td class="n">-18.22</td><td class="n">22.51</td><td class="n">-0.81</td><td class="n">0.4183</td><td class="n">1,050</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">109</td><td>Cabe hijau</td><td class="n">-0.95</td><td class="n">1.12</td><td class="n">-0.85</td><td class="n">0.3936</td><td class="n">59</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">114</td><td>Daun bawang</td><td class="n">-1.36</td><td class="n">1.54</td><td class="n">-0.89</td><td class="n">0.3756</td><td class="n">118</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">33</td><td>Patin</td><td class="n">-5.02</td><td class="n">5.32</td><td class="n">-0.94</td><td class="n">0.3457</td><td class="n">27</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">157</td><td>Kelapa</td><td class="n">-10.62</td><td class="n">11.23</td><td class="n">-0.95</td><td class="n">0.3443</td><td class="n">666</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">156</td><td>Minyak goreng  (kelapa sawit, bunga matahari)</td><td class="n">-3.88</td><td class="n">3.94</td><td class="n">-0.98</td><td class="n">0.3256</td><td class="n">41</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">221</td><td>Rokok kretek filter</td><td class="n">-114.54</td><td class="n">112.96</td><td class="n">-1.01</td><td class="n">0.3106</td><td class="n">501</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">131</td><td>Mangga</td><td class="n">-13.17</td><td class="n">12.80</td><td class="n">-1.03</td><td class="n">0.3038</td><td class="n">389</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">95</td><td>Mentimun</td><td class="n">-4.03</td><td class="n">3.92</td><td class="n">-1.03</td><td class="n">0.3034</td><td class="n">194</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">218</td><td>Es lainnya</td><td class="n">-9.76</td><td class="n">9.02</td><td class="n">-1.08</td><td class="n">0.2792</td><td class="n">256</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">30</td><td>Lele</td><td class="n">-17.63</td><td class="n">15.55</td><td class="n">-1.13</td><td class="n">0.2569</td><td class="n">129</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">202</td><td>Sate, tongseng</td><td class="n">-18.86</td><td class="n">16.43</td><td class="n">-1.15</td><td class="n">0.2509</td><td class="n">188</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">160</td><td>Gula pasir</td><td class="n">-4.57</td><td class="n">3.89</td><td class="n">-1.18</td><td class="n">0.2394</td><td class="n">42</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">67</td><td>Daging ayam kampung</td><td class="n">-65.07</td><td class="n">54.58</td><td class="n">-1.19</td><td class="n">0.2332</td><td class="n">252</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">143</td><td>Jambu Biji</td><td class="n">-3.38</td><td class="n">2.69</td><td class="n">-1.25</td><td class="n">0.2100</td><td class="n">162</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">181</td><td>Bumbu dapur lainnya (kencur, pala, kapulaga, dsb)</td><td class="n">-3.18</td><td class="n">2.52</td><td class="n">-1.26</td><td class="n">0.2081</td><td class="n">461</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">44</td><td>Cumi-cumi, sotong, gurita</td><td class="n">-10.62</td><td class="n">8.42</td><td class="n">-1.26</td><td class="n">0.2075</td><td class="n">57</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">99</td><td>Labu, labu siam, labu parang</td><td class="n">-6.72</td><td class="n">5.11</td><td class="n">-1.31</td><td class="n">0.1886</td><td class="n">291</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">149</td><td>Jambu air</td><td class="n">-6.62</td><td class="n">4.80</td><td class="n">-1.38</td><td class="n">0.1677</td><td class="n">186</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">43</td><td>Udang, lobster</td><td class="n">-19.74</td><td class="n">13.82</td><td class="n">-1.43</td><td class="n">0.1531</td><td class="n">102</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">2</td><td>Beras (beras lokal, kualitas unggul, impor)</td><td class="n">-184.78</td><td class="n">123.55</td><td class="n">-1.50</td><td class="n">0.1348</td><td class="n">456</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">84</td><td>Hasil lain dari susu (keju, yogurt, dsb)</td><td class="n">-7.51</td><td class="n">4.79</td><td class="n">-1.57</td><td class="n">0.1170</td><td class="n">31</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">105</td><td>Bawang merah</td><td class="n">-4.38</td><td class="n">2.79</td><td class="n">-1.57</td><td class="n">0.1163</td><td class="n">104</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">161</td><td>Gula merah, gula air (pohon aren, kelapa, lontar)</td><td class="n">-3.90</td><td class="n">2.32</td><td class="n">-1.68</td><td class="n">0.0934</td><td class="n">45</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">116</td><td>Daun kemangi</td><td class="n">-4.01</td><td class="n">2.29</td><td class="n">-1.75</td><td class="n">0.0805</td><td class="n">382</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">165</td><td>Kopi instan (sachet)</td><td class="n">-5.81</td><td class="n">3.27</td><td class="n">-1.78</td><td class="n">0.0757</td><td class="n">37</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">81</td><td>Susu bubuk</td><td class="n">-32.54</td><td class="n">18.25</td><td class="n">-1.78</td><td class="n">0.0746</td><td class="n">31</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">73</td><td>Lainnya (hati, jeroan, iga, kaki, buntut, kepala, dsb)</td><td class="n">-6.80</td><td class="n">3.79</td><td class="n">-1.79</td><td class="n">0.0729</td><td class="n">26</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">113</td><td>Daun katuk</td><td class="n">-4.23</td><td class="n">2.30</td><td class="n">-1.83</td><td class="n">0.0667</td><td class="n">215</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">224</td><td>Tembakau</td><td class="n">-11.59</td><td class="n">5.88</td><td class="n">-1.97</td><td class="n">0.0489</td><td class="n">45</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">25</td><td>Bandeng</td><td class="n">-11.15</td><td class="n">5.54</td><td class="n">-2.01</td><td class="n">0.0440</td><td class="n">42</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">214</td><td>Air teh kemasan</td><td class="n">-10.77</td><td class="n">5.15</td><td class="n">-2.09</td><td class="n">0.0365</td><td class="n">173</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">120</td><td>Sayur-sayuran lainnya</td><td class="n">-16.06</td><td class="n">7.63</td><td class="n">-2.11</td><td class="n">0.0353</td><td class="n">522</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">191</td><td>Kue basah (kue lapis, bika ambon, lemper, dsb)</td><td class="n">-98.81</td><td class="n">42.84</td><td class="n">-2.31</td><td class="n">0.0211</td><td class="n">2,145</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">5</td><td>Jagung pipilan/beras jagung/jagung titi</td><td class="n">-11.82</td><td class="n">5.04</td><td class="n">-2.34</td><td class="n">0.0191</td><td class="n">38</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">31</td><td>Kakap</td><td class="n">-24.60</td><td class="n">10.23</td><td class="n">-2.41</td><td class="n">0.0162</td><td class="n">58</td><td><span class="dim">placebo</span></td></tr>
+    <tr><td class="n">164</td><td>Kopi (bubuk, biji)</td><td class="n">-27.82</td><td class="n">9.53</td><td class="n">-2.92</td><td class="n">0.0035</td><td class="n">109</td><td><span class="dim">placebo</span></td></tr>
+  </tbody></table></div>
+  <p class="dim" style="font-size:.9rem">Produced by <code>do\24_mbg_regout.do</code>; also available as <code>output\mbg_placebo_scan_table.csv</code>.</p>
 </section>
 
 <footer>
