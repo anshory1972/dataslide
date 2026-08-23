@@ -3,15 +3,19 @@
 Two charts on one axis: the share of a sector in value added against GDP per
 capita in **constant 2015 US dollars**, log scale.
 
-1. **Agriculture** — 202 countries at their latest year, 38 Indonesian provinces
+1. **Growth comes from productivity** — labour productivity growth split into
+   within-sector gains and structural change, for seven Asian economies in their
+   growth spell and in 2012–2018.
+
+2. **Agriculture** — 202 countries at their latest year, 38 Indonesian provinces
    in 2024, and Indonesia's own path from 1960.
-2. **Manufacturing** — the path of each Indonesian province since 2010, of
+3. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-4. **The retreat from globalisation** — four panels: world trade as a share of
+5. **The challenge of global fragmentation** — four panels: world trade as a share of
    GDP, new trade restrictions per year, far-right vote share since 1900, and
    far-right seat share by country. Data from *The Growth We Want*.
 
-3. **Output per head and poverty** — Sulawesi Tengah, Maluku Utara and Indonesia
+4. **Output per head and poverty** — Sulawesi Tengah, Maluku Utara and Indonesia
    by year: GRDP per capita at constant 2012 prices on the left axis, poverty
    headcount on the right.
 
@@ -38,6 +42,8 @@ Build with `python deck.py`, which reads `csv/` and writes
 | `chart2_indonesia_manufacturing.csv` | 42 | Indonesia 1983–2024. |
 | `chart2_benchmarks_manufacturing.csv` | 780 | 18 countries and country groups; `shown_on_chart` marks the six drawn. |
 | `chart3_regions_income_welfare.csv` | 75 | Five regions by year (three are drawn; Jawa Barat and Banten are kept for reuse): GRDP per capita and adjusted expenditure per capita, both at constant 2012 prices, plus poverty and Gini. The chart draws GRDP per capita and poverty; the other two columns are kept for reuse. |
+| `chart5_growth_decomposition.csv` | 14 | Seven countries, two periods each: productivity growth split into within-sector and structural-change components. |
+| `chart5_structural_change_decomposition.csv` | 51 | The same decomposition, 1990–2018, for every country in the ETD. |
 | `chart4_globalisation_populism.csv` | 197 | Trade as % of GDP, trade restrictions by type, and vote share by party family. |
 | `chart4_farright_seats.csv` | 11 | Seat share of the largest far-right party, latest lower-house election. |
 | `conversion_anchor.csv` | 10 | The rupiah-to-dollar factor used, by year. |
@@ -72,12 +78,21 @@ manufacturing share 2.6 points above the national figure in 2010, widening to 4.
 points by 2024, because provincial accounts and national GDP differ in coverage
 and in the treatment of taxes on products.
 
+Slide 1 uses the GGDC / UNU-WIDER **Economic Transformation Database** (ETD,
+18 September 2023): value added at constant 2015 prices and employment for twelve
+sectors in 51 countries, 1990–2018, held in `rawdata/etd/`. The decomposition
+follows McMillan and Rodrik and reproduces `rawdata/etd/ggdc.do`; within and
+structural terms sum exactly to the change in economy-wide productivity, verified
+to a residual of 1.5e-11. Productivity is in national currency, so growth rates
+compare across countries but levels do not.
+
 ## Sources
 
 World Bank World Development Indicators: `NY.GDP.PCAP.KD`, `NY.GDP.PCAP.CN`,
 `NV.AGR.TOTL.ZS`, `NV.AGR.TOTL.KD`, `NY.GDP.MKTP.KD`, `NV.IND.MANF.ZS`.
 
-Slide 4 is taken from *The Growth We Want* (`E:\summerschool2026eplicate`),
+Slide 4 is taken from *The Growth We Want* (`E:\summerschool2026
+eplicate`),
 which draws on the World Bank, Global Trade Alert, ParlGov and IPU Parline.
 
 BPS Web API: variable 2268 (PDRB by 17 industry categories, current prices, by
