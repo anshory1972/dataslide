@@ -7,6 +7,9 @@ capita in **constant 2015 US dollars**, log scale.
    in 2024, and Indonesia's own path from 1960.
 2. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
+3. **The two nickel provinces** — Sulawesi Tengah and Maluku Utara, with the
+   manufacturing share on the left axis and the poverty headcount and Gini index
+   on the right, all against the same income axis.
 
 Build with `python deck.py`, which reads `csv/` and writes
 `structural-transformation.html`. Published at
@@ -30,6 +33,7 @@ Build with `python deck.py`, which reads `csv/` and writes
 | `chart2_provinces_manufacturing.csv` | 511 | Every province in every year 2010–2024. |
 | `chart2_indonesia_manufacturing.csv` | 42 | Indonesia 1983–2024. |
 | `chart2_benchmarks_manufacturing.csv` | 780 | 18 countries and country groups; `shown_on_chart` marks the six drawn. |
+| `chart3_poverty_gini.csv` | 524 | Poverty headcount (P0) and Gini ratio by province, March of each year 2010–2024. |
 | `conversion_anchor.csv` | 10 | The rupiah-to-dollar factor used, by year. |
 
 ## Two things worth knowing before reusing the data
@@ -61,4 +65,7 @@ World Bank World Development Indicators: `NY.GDP.PCAP.KD`, `NY.GDP.PCAP.CN`,
 `NV.AGR.TOTL.ZS`, `NV.AGR.TOTL.KD`, `NY.GDP.MKTP.KD`, `NV.IND.MANF.ZS`.
 
 BPS Web API: variable 2268 (PDRB by 17 industry categories, current prices, by
-province) and variable 288 (GRDP per capita), annual.
+province), variable 288 (GRDP per capita), variable 192 (percentage of poor
+population, P0, by province) and variable 98 (Gini ratio by province). Poverty and
+Gini are the **March** round throughout; BPS also publishes September, and the two
+rounds are not comparable. The provincial March poverty series begins in 2012.
