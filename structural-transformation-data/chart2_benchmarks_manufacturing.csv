@@ -1,0 +1,781 @@
+code,entity,year,gdp_pc_usd_const2015,manufacturing_pct_gdp,shown_on_chart
+LMC,Lower-middle income,1965,617.0,23.324,yes
+LMC,Lower-middle income,1966,609.2,21.073,yes
+LMC,Lower-middle income,1967,602.9,20.263,yes
+LMC,Lower-middle income,1968,612.8,20.726,yes
+LMC,Lower-middle income,1969,643.5,21.255,yes
+LMC,Lower-middle income,1970,676.3,21.154,yes
+LMC,Lower-middle income,1971,690.5,22.63,yes
+LMC,Lower-middle income,1972,683.9,22.284,yes
+LMC,Lower-middle income,1973,696.5,22.564,yes
+LMC,Lower-middle income,1974,712.0,23.991,yes
+LMC,Lower-middle income,1975,717.1,22.363,yes
+LMC,Lower-middle income,1976,737.2,22.558,yes
+LMC,Lower-middle income,1977,760.4,22.694,yes
+LMC,Lower-middle income,1978,767.3,23.545,yes
+LMC,Lower-middle income,1979,754.3,24.126,yes
+LMC,Lower-middle income,1980,766.9,23.491,yes
+LMC,Lower-middle income,1981,757.3,19.74,yes
+LMC,Lower-middle income,1982,752.8,19.303,yes
+LMC,Lower-middle income,1983,743.9,19.313,yes
+LMC,Lower-middle income,1984,752.9,18.146,yes
+LMC,Lower-middle income,1985,769.3,18.546,yes
+LMC,Lower-middle income,1986,780.4,19.226,yes
+LMC,Lower-middle income,1987,789.3,18.847,yes
+LMC,Lower-middle income,1988,823.4,19.201,yes
+LMC,Lower-middle income,1989,822.8,19.258,yes
+LMC,Lower-middle income,1990,845.4,18.97,yes
+LMC,Lower-middle income,1991,847.4,18.197,yes
+LMC,Lower-middle income,1992,859.2,18.004,yes
+LMC,Lower-middle income,1993,855.3,18.169,yes
+LMC,Lower-middle income,1994,865.1,19.259,yes
+LMC,Lower-middle income,1995,888.1,19.78,yes
+LMC,Lower-middle income,1996,921.8,19.575,yes
+LMC,Lower-middle income,1997,937.4,18.959,yes
+LMC,Lower-middle income,1998,960.7,18.301,yes
+LMC,Lower-middle income,1999,988.6,17.207,yes
+LMC,Lower-middle income,2000,1007.4,16.675,yes
+LMC,Lower-middle income,2001,1030.5,16.36,yes
+LMC,Lower-middle income,2002,1049.9,16.702,yes
+LMC,Lower-middle income,2003,1086.0,16.913,yes
+LMC,Lower-middle income,2004,1145.8,16.741,yes
+LMC,Lower-middle income,2005,1202.6,16.545,yes
+LMC,Lower-middle income,2006,1266.0,16.91,yes
+LMC,Lower-middle income,2007,1330.2,16.618,yes
+LMC,Lower-middle income,2008,1366.5,15.959,yes
+LMC,Lower-middle income,2009,1423.3,16.249,yes
+LMC,Lower-middle income,2010,1490.6,15.92,yes
+LMC,Lower-middle income,2011,1534.0,15.849,yes
+LMC,Lower-middle income,2012,1584.7,15.484,yes
+LMC,Lower-middle income,2013,1645.2,15.854,yes
+LMC,Lower-middle income,2014,1713.0,16.157,yes
+LMC,Lower-middle income,2015,1780.7,16.962,yes
+LMC,Lower-middle income,2016,1842.2,17.242,yes
+LMC,Lower-middle income,2017,1902.9,16.96,yes
+LMC,Lower-middle income,2018,1968.6,17.265,yes
+LMC,Lower-middle income,2019,2008.2,16.414,yes
+LMC,Lower-middle income,2020,1897.7,16.91,yes
+LMC,Lower-middle income,2021,2001.0,17.221,yes
+LMC,Lower-middle income,2022,2100.1,16.83,yes
+LMC,Lower-middle income,2023,2182.5,16.846,yes
+LMC,Lower-middle income,2024,2270.1,16.676,yes
+EAP,"East Asia & Pacific, developing",2004,2835.3,30.407,yes
+EAP,"East Asia & Pacific, developing",2005,3095.2,30.317,yes
+EAP,"East Asia & Pacific, developing",2006,3410.7,30.598,yes
+EAP,"East Asia & Pacific, developing",2007,3805.2,30.496,yes
+EAP,"East Asia & Pacific, developing",2008,4102.1,30.314,yes
+EAP,"East Asia & Pacific, developing",2009,4397.7,29.738,yes
+EAP,"East Asia & Pacific, developing",2010,4797.1,29.266,yes
+EAP,"East Asia & Pacific, developing",2011,5168.4,29.633,yes
+EAP,"East Asia & Pacific, developing",2012,5511.8,29.235,yes
+EAP,"East Asia & Pacific, developing",2013,5864.6,28.571,yes
+EAP,"East Asia & Pacific, developing",2014,6225.6,28.413,yes
+EAP,"East Asia & Pacific, developing",2015,6589.8,27.277,yes
+EAP,"East Asia & Pacific, developing",2016,6966.4,26.487,yes
+EAP,"East Asia & Pacific, developing",2017,7374.8,26.565,yes
+EAP,"East Asia & Pacific, developing",2018,7806.6,26.382,yes
+EAP,"East Asia & Pacific, developing",2019,8220.6,25.405,yes
+EAP,"East Asia & Pacific, developing",2020,8293.5,24.895,yes
+EAP,"East Asia & Pacific, developing",2021,8905.7,25.875,yes
+EAP,"East Asia & Pacific, developing",2022,9200.1,25.214,yes
+EAP,"East Asia & Pacific, developing",2023,9666.1,24.303,yes
+EAP,"East Asia & Pacific, developing",2024,10127.9,24.137,yes
+LCN,Latin America & Caribbean,1965,3734.9,51.21,no
+LCN,Latin America & Caribbean,1966,3811.1,48.667,no
+LCN,Latin America & Caribbean,1967,3871.7,44.235,no
+LCN,Latin America & Caribbean,1968,4042.7,44.012,no
+LCN,Latin America & Caribbean,1969,4201.4,45.265,no
+LCN,Latin America & Caribbean,1970,4368.8,42.973,no
+LCN,Latin America & Caribbean,1971,4546.8,44.021,no
+LCN,Latin America & Caribbean,1972,4746.1,42.915,no
+LCN,Latin America & Caribbean,1973,5002.1,42.612,no
+LCN,Latin America & Caribbean,1974,5181.2,43.528,no
+LCN,Latin America & Caribbean,1975,5243.5,39.001,no
+LCN,Latin America & Caribbean,1976,5406.4,37.91,no
+LCN,Latin America & Caribbean,1977,5544.3,37.652,no
+LCN,Latin America & Caribbean,1978,5660.7,37.945,no
+LCN,Latin America & Caribbean,1979,5930.4,35.985,no
+LCN,Latin America & Caribbean,1980,6163.5,24.27,no
+LCN,Latin America & Caribbean,1981,6100.4,28.061,no
+LCN,Latin America & Caribbean,1982,5965.9,28.841,no
+LCN,Latin America & Caribbean,1983,5693.1,28.011,no
+LCN,Latin America & Caribbean,1984,5792.8,28.54,no
+LCN,Latin America & Caribbean,1985,5846.7,28.515,no
+LCN,Latin America & Caribbean,1986,5933.5,28.873,no
+LCN,Latin America & Caribbean,1987,6011.8,28.143,no
+LCN,Latin America & Caribbean,1988,5942.6,29.414,no
+LCN,Latin America & Caribbean,1989,5900.6,29.071,no
+LCN,Latin America & Caribbean,1990,5780.3,25.114,no
+LCN,Latin America & Caribbean,1991,5855.5,24.296,no
+LCN,Latin America & Caribbean,1992,5905.4,24.098,no
+LCN,Latin America & Caribbean,1993,6050.5,24.936,no
+LCN,Latin America & Caribbean,1994,6247.9,24.134,no
+LCN,Latin America & Caribbean,1995,6202.6,20.223,no
+LCN,Latin America & Caribbean,1996,6339.8,19.801,no
+LCN,Latin America & Caribbean,1997,6580.4,19.883,no
+LCN,Latin America & Caribbean,1998,6668.0,19.568,no
+LCN,Latin America & Caribbean,1999,6602.0,19.79,no
+LCN,Latin America & Caribbean,2000,6742.0,20.059,no
+LCN,Latin America & Caribbean,2001,6684.0,20.083,no
+LCN,Latin America & Caribbean,2002,6609.4,20.231,no
+LCN,Latin America & Caribbean,2003,6668.9,20.815,no
+LCN,Latin America & Caribbean,2004,6962.7,20.404,no
+LCN,Latin America & Caribbean,2005,7160.7,19.56,no
+LCN,Latin America & Caribbean,2006,7448.5,19.257,no
+LCN,Latin America & Caribbean,2007,7751.4,18.61,no
+LCN,Latin America & Caribbean,2008,7945.6,18.059,no
+LCN,Latin America & Caribbean,2009,7676.1,17.133,no
+LCN,Latin America & Caribbean,2010,8060.1,16.867,no
+LCN,Latin America & Caribbean,2011,8324.6,16.501,no
+LCN,Latin America & Caribbean,2012,8454.8,16.069,no
+LCN,Latin America & Caribbean,2013,8594.9,15.999,no
+LCN,Latin America & Caribbean,2014,8610.2,16.044,no
+LCN,Latin America & Caribbean,2015,8546.9,17.141,no
+LCN,Latin America & Caribbean,2016,8404.7,16.98,no
+LCN,Latin America & Caribbean,2017,8458.4,16.613,no
+LCN,Latin America & Caribbean,2018,8489.7,16.854,no
+LCN,Latin America & Caribbean,2019,8447.7,16.738,no
+LCN,Latin America & Caribbean,2020,7813.0,17.32,no
+LCN,Latin America & Caribbean,2021,8317.6,18.046,no
+LCN,Latin America & Caribbean,2022,8606.6,18.73,no
+LCN,Latin America & Caribbean,2023,8736.2,18.53,no
+LCN,Latin America & Caribbean,2024,8871.5,17.669,no
+SSF,Sub-Saharan Africa,1981,1442.4,17.915,no
+SSF,Sub-Saharan Africa,1982,1381.8,17.177,no
+SSF,Sub-Saharan Africa,1983,1307.4,16.979,no
+SSF,Sub-Saharan Africa,1984,1299.1,15.044,no
+SSF,Sub-Saharan Africa,1985,1287.3,14.48,no
+SSF,Sub-Saharan Africa,1986,1274.1,15.342,no
+SSF,Sub-Saharan Africa,1987,1274.1,15.675,no
+SSF,Sub-Saharan Africa,1988,1293.8,16.186,no
+SSF,Sub-Saharan Africa,1989,1286.9,15.929,no
+SSF,Sub-Saharan Africa,1990,1279.8,16.048,no
+SSF,Sub-Saharan Africa,1991,1250.5,15.841,no
+SSF,Sub-Saharan Africa,1992,1211.2,16.503,no
+SSF,Sub-Saharan Africa,1993,1166.2,16.233,no
+SSF,Sub-Saharan Africa,1994,1147.2,17.217,no
+SSF,Sub-Saharan Africa,1995,1154.4,17.454,no
+SSF,Sub-Saharan Africa,1996,1181.7,16.704,no
+SSF,Sub-Saharan Africa,1997,1197.9,16.748,no
+SSF,Sub-Saharan Africa,1998,1195.9,15.974,no
+SSF,Sub-Saharan Africa,1999,1189.8,14.398,no
+SSF,Sub-Saharan Africa,2000,1198.4,13.946,no
+SSF,Sub-Saharan Africa,2001,1216.0,13.889,no
+SSF,Sub-Saharan Africa,2002,1259.4,12.933,no
+SSF,Sub-Saharan Africa,2003,1276.4,13.287,no
+SSF,Sub-Saharan Africa,2004,1325.2,12.957,no
+SSF,Sub-Saharan Africa,2005,1367.0,12.275,no
+SSF,Sub-Saharan Africa,2006,1410.6,11.08,no
+SSF,Sub-Saharan Africa,2007,1456.9,10.828,no
+SSF,Sub-Saharan Africa,2008,1490.8,10.341,no
+SSF,Sub-Saharan Africa,2009,1495.8,10.64,no
+SSF,Sub-Saharan Africa,2010,1543.4,9.765,no
+SSF,Sub-Saharan Africa,2011,1566.1,9.829,no
+SSF,Sub-Saharan Africa,2012,1574.7,9.726,no
+SSF,Sub-Saharan Africa,2013,1613.0,10.058,no
+SSF,Sub-Saharan Africa,2014,1644.1,10.207,no
+SSF,Sub-Saharan Africa,2015,1647.3,10.244,no
+SSF,Sub-Saharan Africa,2016,1625.4,10.279,no
+SSF,Sub-Saharan Africa,2017,1622.9,10.346,no
+SSF,Sub-Saharan Africa,2018,1624.6,10.442,no
+SSF,Sub-Saharan Africa,2019,1623.2,10.074,no
+SSF,Sub-Saharan Africa,2020,1529.9,9.665,no
+SSF,Sub-Saharan Africa,2021,1545.1,10.018,no
+SSF,Sub-Saharan Africa,2022,1568.0,10.124,no
+SSF,Sub-Saharan Africa,2023,1571.4,10.209,no
+SSF,Sub-Saharan Africa,2024,1588.9,9.933,no
+MEA,Middle East & North Africa,1974,4004.3,8.368,no
+MEA,Middle East & North Africa,1975,3891.7,9.013,no
+MEA,Middle East & North Africa,1976,4297.4,8.904,no
+MEA,Middle East & North Africa,1977,4326.1,8.878,no
+MEA,Middle East & North Africa,1978,4185.6,8.831,no
+MEA,Middle East & North Africa,1979,4285.4,8.041,no
+MEA,Middle East & North Africa,1980,4212.5,8.012,no
+MEA,Middle East & North Africa,1981,4102.7,9.101,no
+MEA,Middle East & North Africa,1982,3924.4,9.785,no
+MEA,Middle East & North Africa,1983,3786.1,10.263,no
+MEA,Middle East & North Africa,1984,3670.6,11.178,no
+MEA,Middle East & North Africa,1985,3576.2,11.26,no
+MEA,Middle East & North Africa,1986,3412.8,11.946,no
+MEA,Middle East & North Africa,1987,3340.9,12.442,no
+MEA,Middle East & North Africa,1988,3315.3,13.34,no
+MEA,Middle East & North Africa,1989,3341.3,13.148,no
+MEA,Middle East & North Africa,1990,3508.2,11.572,no
+MEA,Middle East & North Africa,1991,3486.1,13.746,no
+MEA,Middle East & North Africa,1992,3599.3,13.35,no
+MEA,Middle East & North Africa,1993,3588.0,11.903,no
+MEA,Middle East & North Africa,1994,3604.0,12.74,no
+MEA,Middle East & North Africa,1995,3627.7,13.364,no
+MEA,Middle East & North Africa,1996,3720.3,13.758,no
+MEA,Middle East & North Africa,1997,3782.1,13.974,no
+MEA,Middle East & North Africa,1998,3846.6,14.329,no
+MEA,Middle East & North Africa,1999,3860.8,13.9,no
+MEA,Middle East & North Africa,2000,4011.8,13.571,no
+MEA,Middle East & North Africa,2001,3997.9,12.027,no
+MEA,Middle East & North Africa,2002,3990.9,11.826,no
+MEA,Middle East & North Africa,2003,4079.8,11.725,no
+MEA,Middle East & North Africa,2004,4300.9,11.582,no
+MEA,Middle East & North Africa,2005,4421.6,11.07,no
+MEA,Middle East & North Africa,2006,4574.7,10.871,no
+MEA,Middle East & North Africa,2007,4700.8,10.603,no
+MEA,Middle East & North Africa,2008,4792.1,10.347,no
+MEA,Middle East & North Africa,2009,4733.2,10.911,no
+MEA,Middle East & North Africa,2010,4856.6,10.753,no
+MEA,Middle East & North Africa,2011,4930.8,10.748,no
+MEA,Middle East & North Africa,2012,5027.9,11.051,no
+MEA,Middle East & North Africa,2013,5037.8,10.752,no
+MEA,Middle East & North Africa,2014,5091.1,11.052,no
+MEA,Middle East & North Africa,2015,5130.3,11.42,no
+MEA,Middle East & North Africa,2016,5264.3,11.39,no
+MEA,Middle East & North Africa,2017,5285.0,11.244,no
+MEA,Middle East & North Africa,2018,5326.9,11.128,no
+MEA,Middle East & North Africa,2019,5321.2,11.37,no
+MEA,Middle East & North Africa,2020,5039.0,12.223,no
+MEA,Middle East & North Africa,2021,5215.4,12.852,no
+MEA,Middle East & North Africa,2022,5447.0,12.975,no
+MEA,Middle East & North Africa,2023,5463.9,13.064,no
+MEA,Middle East & North Africa,2024,5485.4,12.91,no
+WLD,World,1997,7381.8,19.232,yes
+WLD,World,1998,7478.8,18.786,yes
+WLD,World,1999,7638.9,18.564,yes
+WLD,World,2000,7879.6,18.406,yes
+WLD,World,2001,7932.4,17.346,yes
+WLD,World,2002,8010.6,16.889,yes
+WLD,World,2003,8151.0,16.723,yes
+WLD,World,2004,8408.6,16.59,yes
+WLD,World,2005,8639.4,16.366,yes
+WLD,World,2006,8913.2,16.34,yes
+WLD,World,2007,9191.5,16.316,yes
+WLD,World,2008,9265.5,16.061,yes
+WLD,World,2009,9028.2,15.474,yes
+WLD,World,2010,9322.2,15.994,yes
+WLD,World,2011,9514.5,16.102,yes
+WLD,World,2012,9653.6,16.073,yes
+WLD,World,2013,9811.0,15.926,yes
+WLD,World,2014,10000.6,16.075,yes
+WLD,World,2015,10192.0,16.377,yes
+WLD,World,2016,10355.0,16.204,yes
+WLD,World,2017,10591.6,16.251,yes
+WLD,World,2018,10822.6,16.383,yes
+WLD,World,2019,10996.9,15.969,yes
+WLD,World,2020,10575.2,15.908,yes
+WLD,World,2021,11167.6,16.355,yes
+WLD,World,2022,11452.0,15.71,yes
+WLD,World,2023,11670.8,15.247,yes
+WLD,World,2024,11894.3,14.885,yes
+BRA,Brazil,1960,2603.5,0,no
+BRA,Brazil,1961,2743.4,0,no
+BRA,Brazil,1962,2838.5,0,no
+BRA,Brazil,1963,2772.6,0,no
+BRA,Brazil,1964,2785.1,0,no
+BRA,Brazil,1965,2772.7,0,no
+BRA,Brazil,1966,2878.7,0,no
+BRA,Brazil,1967,2921.4,0,no
+BRA,Brazil,1968,3126.5,0,no
+BRA,Brazil,1969,3338.8,0,no
+BRA,Brazil,1970,3596.0,0,no
+BRA,Brazil,1971,3907.0,0,no
+BRA,Brazil,1972,4268.4,0,no
+BRA,Brazil,1973,4748.3,0,no
+BRA,Brazil,1974,5013.8,0,no
+BRA,Brazil,1975,5148.9,0,no
+BRA,Brazil,1976,5543.4,0,no
+BRA,Brazil,1977,5679.8,0,no
+BRA,Brazil,1978,5821.5,0,no
+BRA,Brazil,1979,6069.1,46.131,no
+BRA,Brazil,1980,6472.9,21.986,no
+BRA,Brazil,1981,6055.1,34.352,no
+BRA,Brazil,1982,5967.8,33.894,no
+BRA,Brazil,1983,5665.0,32.682,no
+BRA,Brazil,1984,5841.7,33.991,no
+BRA,Brazil,1985,6167.5,32.385,no
+BRA,Brazil,1986,6494.3,30.698,no
+BRA,Brazil,1987,6591.6,29.892,no
+BRA,Brazil,1988,6463.0,29.977,no
+BRA,Brazil,1989,6545.4,29.261,no
+BRA,Brazil,1990,6149.9,22.828,no
+BRA,Brazil,1991,6107.6,21.839,no
+BRA,Brazil,1992,5974.0,23.309,no
+BRA,Brazil,1993,6167.5,26.05,no
+BRA,Brazil,1994,6427.2,23.721,no
+BRA,Brazil,1995,6596.3,14.542,no
+BRA,Brazil,1996,6640.7,13.067,no
+BRA,Brazil,1997,6764.9,13.019,no
+BRA,Brazil,1998,6687.5,12.155,no
+BRA,Brazil,1999,6621.6,12.309,no
+BRA,Brazil,2000,6817.8,13.135,no
+BRA,Brazil,2001,6823.0,13.09,no
+BRA,Brazil,2002,6944.6,12.357,no
+BRA,Brazil,2003,6941.4,14.451,no
+BRA,Brazil,2004,7258.8,15.1,no
+BRA,Brazil,2005,7409.6,14.738,no
+BRA,Brazil,2006,7622.0,14.109,no
+BRA,Brazil,2007,8003.3,14.154,no
+BRA,Brazil,2008,8330.8,13.955,no
+BRA,Brazil,2009,8246.1,13.059,no
+BRA,Brazil,2010,8792.6,12.722,no
+BRA,Brazil,2011,9068.0,11.784,no
+BRA,Brazil,2012,9167.5,10.676,no
+BRA,Brazil,2013,9366.7,10.48,no
+BRA,Brazil,2014,9338.3,10.337,no
+BRA,Brazil,2015,8936.2,10.521,no
+BRA,Brazil,2016,8577.8,10.786,no
+BRA,Brazil,2017,8628.3,10.721,no
+BRA,Brazil,2018,8722.3,10.528,no
+BRA,Brazil,2019,8771.4,10.333,no
+BRA,Brazil,2020,8435.0,10.693,no
+BRA,Brazil,2021,8799.2,11.904,no
+BRA,Brazil,2022,9032.1,13.074,no
+BRA,Brazil,2023,9288.0,13.253,no
+BRA,Brazil,2024,9566.7,12.111,no
+MEX,Mexico,1965,5021.3,18.651,no
+MEX,Mexico,1966,5153.8,18.779,no
+MEX,Mexico,1967,5278.1,19.158,no
+MEX,Mexico,1968,5589.1,19.687,no
+MEX,Mexico,1969,5596.4,20.026,no
+MEX,Mexico,1970,5774.8,22.04,no
+MEX,Mexico,1971,5809.4,22.024,no
+MEX,Mexico,1972,6099.2,21.785,no
+MEX,Mexico,1973,6385.2,21.713,no
+MEX,Mexico,1974,6559.3,21.754,no
+MEX,Mexico,1975,6740.6,21.098,no
+MEX,Mexico,1976,6845.4,20.806,no
+MEX,Mexico,1977,6888.6,21.497,no
+MEX,Mexico,1978,7309.6,21.31,no
+MEX,Mexico,1979,7814.5,21.147,no
+MEX,Mexico,1980,8290.3,18.344,no
+MEX,Mexico,1981,8875.1,17.907,no
+MEX,Mexico,1982,8676.6,16.959,no
+MEX,Mexico,1983,8098.5,17.456,no
+MEX,Mexico,1984,8207.9,18.514,no
+MEX,Mexico,1985,8194.2,19.145,no
+MEX,Mexico,1986,7713.6,20.277,no
+MEX,Mexico,1987,7716.5,20.92,no
+MEX,Mexico,1988,7657.7,22.102,no
+MEX,Mexico,1989,7783.8,20.226,no
+MEX,Mexico,1990,8036.9,19.136,no
+MEX,Mexico,1991,8197.0,18.909,no
+MEX,Mexico,1992,8330.3,18.539,no
+MEX,Mexico,1993,8411.8,20.542,no
+MEX,Mexico,1994,8623.5,19.707,no
+MEX,Mexico,1995,7970.6,21.169,no
+MEX,Mexico,1996,8320.7,22.213,no
+MEX,Mexico,1997,8770.8,22.363,no
+MEX,Mexico,1998,9161.9,22.225,no
+MEX,Mexico,1999,9265.0,21.259,no
+MEX,Mexico,2000,9582.0,21.045,no
+MEX,Mexico,2001,9398.4,20.026,no
+MEX,Mexico,2002,9242.3,19.231,no
+MEX,Mexico,2003,9222.0,18.828,no
+MEX,Mexico,2004,9421.3,18.846,no
+MEX,Mexico,2005,9491.5,18.077,no
+MEX,Mexico,2006,9813.8,18.999,no
+MEX,Mexico,2007,9877.7,18.262,no
+MEX,Mexico,2008,9826.3,18.175,no
+MEX,Mexico,2009,9074.1,17.433,no
+MEX,Mexico,2010,9389.1,17.838,no
+MEX,Mexico,2011,9575.9,17.72,no
+MEX,Mexico,2012,9782.5,18.8,no
+MEX,Mexico,2013,9738.7,18.103,no
+MEX,Mexico,2014,9862.5,18.229,no
+MEX,Mexico,2015,10021.2,19.823,no
+MEX,Mexico,2016,10100.5,19.869,no
+MEX,Mexico,2017,10193.8,20.162,no
+MEX,Mexico,2018,10296.9,20.189,no
+MEX,Mexico,2019,10159.4,19.888,no
+MEX,Mexico,2020,9234.6,20.184,no
+MEX,Mexico,2021,9728.1,20.836,no
+MEX,Mexico,2022,10013.2,21.486,no
+MEX,Mexico,2023,10234.7,20.465,no
+MEX,Mexico,2024,10284.0,20.131,no
+MYS,Malaysia,1960,1266.3,10.261,yes
+MYS,Malaysia,1961,1327.8,10.01,yes
+MYS,Malaysia,1962,1376.7,10.553,yes
+MYS,Malaysia,1963,1439.6,9.383,yes
+MYS,Malaysia,1964,1477.8,10.197,yes
+MYS,Malaysia,1965,1551.3,10.2,yes
+MYS,Malaysia,1966,1631.5,10.565,yes
+MYS,Malaysia,1967,1654.8,11.678,yes
+MYS,Malaysia,1968,1746.7,11.839,yes
+MYS,Malaysia,1969,1791.1,13.111,yes
+MYS,Malaysia,1970,1855.2,13.764,yes
+MYS,Malaysia,1971,1993.5,14.119,yes
+MYS,Malaysia,1972,2128.9,14.673,yes
+MYS,Malaysia,1973,2321.7,16.705,yes
+MYS,Malaysia,1974,2455.3,18.721,yes
+MYS,Malaysia,1975,2416.5,18.719,yes
+MYS,Malaysia,1976,2632.1,19.701,yes
+MYS,Malaysia,1977,2768.9,20.427,yes
+MYS,Malaysia,1978,2883.1,20.179,yes
+MYS,Malaysia,1979,3077.8,20.598,yes
+MYS,Malaysia,1980,3216.3,21.948,yes
+MYS,Malaysia,1981,3332.8,21.305,yes
+MYS,Malaysia,1982,3420.2,19.399,yes
+MYS,Malaysia,1983,3518.8,19.527,yes
+MYS,Malaysia,1984,3670.4,19.665,yes
+MYS,Malaysia,1985,3515.3,19.671,yes
+MYS,Malaysia,1986,3444.1,19.681,yes
+MYS,Malaysia,1987,3508.0,19.804,yes
+MYS,Malaysia,1988,3737.3,21.822,yes
+MYS,Malaysia,1989,3953.8,23.802,yes
+MYS,Malaysia,1990,4184.8,24.225,yes
+MYS,Malaysia,1991,4456.9,25.55,yes
+MYS,Malaysia,1992,4726.1,25.823,yes
+MYS,Malaysia,1993,5062.6,25.926,yes
+MYS,Malaysia,1994,5390.1,26.641,yes
+MYS,Malaysia,1995,5771.4,26.378,yes
+MYS,Malaysia,1996,6190.5,27.843,yes
+MYS,Malaysia,1997,6480.6,28.38,yes
+MYS,Malaysia,1998,5858.0,28.783,yes
+MYS,Malaysia,1999,6071.0,30.936,yes
+MYS,Malaysia,2000,6455.6,30.864,yes
+MYS,Malaysia,2001,6334.9,29.336,yes
+MYS,Malaysia,2002,6516.9,29.246,yes
+MYS,Malaysia,2003,6732.9,29.929,yes
+MYS,Malaysia,2004,7025.3,30.378,yes
+MYS,Malaysia,2005,7234.0,27.55,yes
+MYS,Malaysia,2006,7469.8,27.566,yes
+MYS,Malaysia,2007,7769.6,26.123,yes
+MYS,Malaysia,2008,7976.1,24.561,yes
+MYS,Malaysia,2009,7700.5,23.8,yes
+MYS,Malaysia,2010,8118.9,23.434,yes
+MYS,Malaysia,2011,8400.3,23.32,yes
+MYS,Malaysia,2012,8710.5,23.138,yes
+MYS,Malaysia,2013,8964.8,22.841,yes
+MYS,Malaysia,2014,9341.7,22.874,yes
+MYS,Malaysia,2015,9648.7,22.293,yes
+MYS,Malaysia,2016,9901.5,21.797,yes
+MYS,Malaysia,2017,10293.8,21.846,yes
+MYS,Malaysia,2018,10610.2,21.528,yes
+MYS,Malaysia,2019,10903.0,21.409,yes
+MYS,Malaysia,2020,10171.5,22.232,yes
+MYS,Malaysia,2021,10388.3,23.363,yes
+MYS,Malaysia,2022,11191.7,23.338,yes
+MYS,Malaysia,2023,11445.4,23.02,yes
+MYS,Malaysia,2024,11883.8,22.5,yes
+THA,Thailand,1960,592.5,12.537,yes
+THA,Thailand,1961,606.2,12.993,yes
+THA,Thailand,1962,633.0,14.044,yes
+THA,Thailand,1963,663.6,14.181,yes
+THA,Thailand,1964,688.0,13.861,yes
+THA,Thailand,1965,722.4,14.172,yes
+THA,Thailand,1966,779.3,13.647,yes
+THA,Thailand,1967,822.1,15.26,yes
+THA,Thailand,1968,863.6,15.257,yes
+THA,Thailand,1969,894.6,15.561,yes
+THA,Thailand,1970,969.5,15.943,yes
+THA,Thailand,1971,989.9,17.536,yes
+THA,Thailand,1972,1005.1,18.401,yes
+THA,Thailand,1973,1079.2,19.181,yes
+THA,Thailand,1974,1099.0,19.162,yes
+THA,Thailand,1975,1125.8,18.661,yes
+THA,Thailand,1976,1202.7,19.683,yes
+THA,Thailand,1977,1291.9,20.173,yes
+THA,Thailand,1978,1394.2,20.012,yes
+THA,Thailand,1979,1438.5,21.041,yes
+THA,Thailand,1980,1482.1,21.511,yes
+THA,Thailand,1981,1538.4,22.64,yes
+THA,Thailand,1982,1589.4,21.322,yes
+THA,Thailand,1983,1646.0,22.132,yes
+THA,Thailand,1984,1707.9,22.909,yes
+THA,Thailand,1985,1754.6,21.921,yes
+THA,Thailand,1986,1818.9,23.876,yes
+THA,Thailand,1987,1957.8,24.255,yes
+THA,Thailand,1988,2180.4,25.839,yes
+THA,Thailand,1989,2406.3,26.748,yes
+THA,Thailand,1990,2631.5,27.204,yes
+THA,Thailand,1991,2810.6,28.241,yes
+THA,Thailand,1992,2989.9,27.517,yes
+THA,Thailand,1993,3187.0,26.175,yes
+THA,Thailand,1994,3391.5,25.901,yes
+THA,Thailand,1995,3614.9,26.208,yes
+THA,Thailand,1996,3766.9,25.666,yes
+THA,Thailand,1997,3614.6,26.468,yes
+THA,Thailand,1998,3295.4,27.148,yes
+THA,Thailand,1999,3403.1,28.175,yes
+THA,Thailand,2000,3514.7,28.375,yes
+THA,Thailand,2001,3599.0,27.827,yes
+THA,Thailand,2002,3783.8,28.515,yes
+THA,Thailand,2003,4018.2,29.581,yes
+THA,Thailand,2004,4232.8,29.419,yes
+THA,Thailand,2005,4372.3,29.615,yes
+THA,Thailand,2006,4551.5,30.168,yes
+THA,Thailand,2007,4760.7,30.587,yes
+THA,Thailand,2008,4805.8,30.555,yes
+THA,Thailand,2009,4737.5,29.462,yes
+THA,Thailand,2010,5059.4,30.93,yes
+THA,Thailand,2011,5070.2,28.996,yes
+THA,Thailand,2012,5403.9,27.973,yes
+THA,Thailand,2013,5516.6,27.589,yes
+THA,Thailand,2014,5541.5,27.574,yes
+THA,Thailand,2015,5688.9,27.374,yes
+THA,Thailand,2016,5857.8,27.144,yes
+THA,Thailand,2017,6076.7,27.015,yes
+THA,Thailand,2018,6314.2,26.713,yes
+THA,Thailand,2019,6434.5,25.622,yes
+THA,Thailand,2020,6032.4,25.565,yes
+THA,Thailand,2021,6119.1,27.159,yes
+THA,Thailand,2022,6279.8,27.03,yes
+THA,Thailand,2023,6424.0,24.985,yes
+THA,Thailand,2024,6616.6,24.239,yes
+PHL,Philippines,2000,1793.3,25.28,no
+PHL,Philippines,2001,1807.7,25.312,no
+PHL,Philippines,2002,1837.3,25.135,no
+PHL,Philippines,2003,1892.8,24.837,no
+PHL,Philippines,2004,1978.3,24.012,no
+PHL,Philippines,2005,2037.9,24.27,no
+PHL,Philippines,2006,2110.4,23.829,no
+PHL,Philippines,2007,2209.3,23.151,no
+PHL,Philippines,2008,2264.9,23.269,no
+PHL,Philippines,2009,2256.7,21.739,no
+PHL,Philippines,2010,2373.1,21.919,no
+PHL,Philippines,2011,2416.8,21.704,no
+PHL,Philippines,2012,2533.7,21.329,no
+PHL,Philippines,2013,2654.4,20.434,no
+PHL,Philippines,2014,2776.9,20.575,no
+PHL,Philippines,2015,2909.9,19.928,no
+PHL,Philippines,2016,3076.3,19.59,no
+PHL,Philippines,2017,3247.5,19.5,no
+PHL,Philippines,2018,3410.9,19.098,no
+PHL,Philippines,2019,3575.9,18.516,no
+PHL,Philippines,2020,3198.7,17.658,no
+PHL,Philippines,2021,3351.0,17.64,no
+PHL,Philippines,2022,3577.7,17.229,no
+PHL,Philippines,2023,3744.7,16.23,no
+PHL,Philippines,2024,3926.1,15.672,no
+CHN,China,2004,3127.9,31.51,yes
+CHN,China,2005,3465.7,31.656,yes
+CHN,China,2006,3883.3,31.995,yes
+CHN,China,2007,4409.7,31.901,yes
+CHN,China,2008,4811.3,31.617,yes
+CHN,China,2009,5237.8,31.061,yes
+CHN,China,2010,5764.7,31.075,yes
+CHN,China,2011,6275.7,31.562,yes
+CHN,China,2012,6723.1,31.014,yes
+CHN,China,2013,7197.9,30.128,yes
+CHN,China,2014,7686.4,29.83,yes
+CHN,China,2015,8175.3,28.389,yes
+CHN,China,2016,8679.2,27.524,yes
+CHN,China,2017,9221.4,27.6,yes
+CHN,China,2018,9798.6,27.343,yes
+CHN,China,2019,10356.3,26.259,yes
+CHN,China,2020,10573.4,25.581,yes
+CHN,China,2021,11469.3,26.622,yes
+CHN,China,2022,11830.3,25.981,yes
+CHN,China,2023,12484.0,25.014,yes
+CHN,China,2024,13119.1,24.842,yes
+VNM,Vietnam,2005,1610.0,18.823,no
+VNM,Vietnam,2006,1699.7,19.381,no
+VNM,Vietnam,2007,1788.9,19.38,no
+VNM,Vietnam,2008,1856.0,18.58,no
+VNM,Vietnam,2009,1927.1,18.301,no
+VNM,Vietnam,2010,2027.6,17.131,no
+VNM,Vietnam,2011,2132.9,18.694,no
+VNM,Vietnam,2012,2224.1,20.274,no
+VNM,Vietnam,2013,2320.1,20.687,no
+VNM,Vietnam,2014,2439.3,20.371,no
+VNM,Vietnam,2015,2577.6,20.96,no
+VNM,Vietnam,2016,2715.6,21.488,no
+VNM,Vietnam,2017,2868.1,22.627,no
+VNM,Vietnam,2018,3048.3,23.367,no
+VNM,Vietnam,2019,3241.1,23.787,no
+VNM,Vietnam,2020,3303.2,23.947,no
+VNM,Vietnam,2021,3358.2,24.459,no
+VNM,Vietnam,2022,3617.7,24.656,no
+VNM,Vietnam,2023,3772.4,24.113,no
+VNM,Vietnam,2024,4012.5,24.333,no
+KOR,"Korea, Rep.",1960,1037.7,11.404,no
+KOR,"Korea, Rep.",1961,1077.1,11.951,no
+KOR,"Korea, Rep.",1962,1087.8,11.701,no
+KOR,"Korea, Rep.",1963,1153.2,12.821,no
+KOR,"Korea, Rep.",1964,1229.4,14.217,no
+KOR,"Korea, Rep.",1965,1286.2,17.053,no
+KOR,"Korea, Rep.",1966,1404.8,16.643,no
+KOR,"Korea, Rep.",1967,1498.0,16.757,no
+KOR,"Korea, Rep.",1968,1657.2,17.115,no
+KOR,"Korea, Rep.",1969,1856.5,17.024,no
+KOR,"Korea, Rep.",1970,2001.0,17.289,no
+KOR,"Korea, Rep.",1971,2171.0,16.555,no
+KOR,"Korea, Rep.",1972,2286.9,18.582,no
+KOR,"Korea, Rep.",1973,2583.3,21.296,no
+KOR,"Korea, Rep.",1974,2784.5,20.649,no
+KOR,"Korea, Rep.",1975,2955.2,19.965,no
+KOR,"Korea, Rep.",1976,3294.1,21.286,no
+KOR,"Korea, Rep.",1977,3644.6,20.933,no
+KOR,"Korea, Rep.",1978,3987.0,21.03,no
+KOR,"Korea, Rep.",1979,4270.1,21.536,no
+KOR,"Korea, Rep.",1980,4140.0,21.897,no
+KOR,"Korea, Rep.",1981,4377.6,21.768,no
+KOR,"Korea, Rep.",1982,4675.5,21.812,no
+KOR,"Korea, Rep.",1983,5227.5,22.968,no
+KOR,"Korea, Rep.",1984,5712.6,24.606,no
+KOR,"Korea, Rep.",1985,6105.7,24.325,no
+KOR,"Korea, Rep.",1986,6740.7,25.546,no
+KOR,"Korea, Rep.",1987,7535.1,26.801,no
+KOR,"Korea, Rep.",1988,8367.0,27.721,no
+KOR,"Korea, Rep.",1989,8878.3,26.747,no
+KOR,"Korea, Rep.",1990,9672.6,25.239,no
+KOR,"Korea, Rep.",1991,10618.8,25.498,no
+KOR,"Korea, Rep.",1992,11176.6,24.788,no
+KOR,"Korea, Rep.",1993,11837.5,25.019,no
+KOR,"Korea, Rep.",1994,12817.2,25.735,no
+KOR,"Korea, Rep.",1995,13924.3,26.311,no
+KOR,"Korea, Rep.",1996,14894.3,25.221,no
+KOR,"Korea, Rep.",1997,15682.3,25.134,no
+KOR,"Korea, Rep.",1998,14800.5,25.772,no
+KOR,"Korea, Rep.",1999,16402.9,25.791,no
+KOR,"Korea, Rep.",2000,17763.1,26.591,no
+KOR,"Korea, Rep.",2001,18460.4,25.138,no
+KOR,"Korea, Rep.",2002,19775.4,24.777,no
+KOR,"Korea, Rep.",2003,20278.0,24.432,no
+KOR,"Korea, Rep.",2004,21244.8,26.414,no
+KOR,"Korea, Rep.",2005,22123.8,26.092,no
+KOR,"Korea, Rep.",2006,23162.2,25.722,no
+KOR,"Korea, Rep.",2007,24391.8,25.924,no
+KOR,"Korea, Rep.",2008,24934.5,26.079,no
+KOR,"Korea, Rep.",2009,25009.9,26.304,no
+KOR,"Korea, Rep.",2010,26623.0,28.099,no
+KOR,"Korea, Rep.",2011,27393.5,29.001,no
+KOR,"Korea, Rep.",2012,27944.1,28.741,no
+KOR,"Korea, Rep.",2013,28732.7,28.865,no
+KOR,"Korea, Rep.",2014,29470.7,28.276,no
+KOR,"Korea, Rep.",2015,30171.8,27.822,no
+KOR,"Korea, Rep.",2016,31005.4,27.513,no
+KOR,"Korea, Rep.",2017,31979.9,28.032,no
+KOR,"Korea, Rep.",2018,32852.9,27.767,no
+KOR,"Korea, Rep.",2019,33496.3,26.37,no
+KOR,"Korea, Rep.",2020,33215.9,25.7,no
+KOR,"Korea, Rep.",2021,34792.9,26.248,no
+KOR,"Korea, Rep.",2022,35809.0,26.498,no
+KOR,"Korea, Rep.",2023,36347.7,25.455,no
+KOR,"Korea, Rep.",2024,37048.4,26.618,no
+IND,India,1960,312.8,14.75,no
+IND,India,1961,316.7,15.354,no
+IND,India,1962,318.4,15.863,no
+IND,India,1963,329.6,15.752,no
+IND,India,1964,346.0,14.851,no
+IND,India,1965,329.4,15.011,no
+IND,India,1966,322.2,14.504,no
+IND,India,1967,340.1,13.232,no
+IND,India,1968,344.1,13.523,no
+IND,India,1969,359.0,14.146,no
+IND,India,1970,369.2,14.457,no
+IND,India,1971,367.0,14.982,no
+IND,India,1972,357.1,15.103,no
+IND,India,1973,360.6,15.015,no
+IND,India,1974,356.6,16.346,no
+IND,India,1975,380.2,15.838,no
+IND,India,1976,377.5,16.266,no
+IND,India,1977,395.4,16.081,no
+IND,India,1978,408.5,17.096,no
+IND,India,1979,378.2,17.852,no
+IND,India,1980,394.2,16.752,no
+IND,India,1981,408.2,16.77,no
+IND,India,1982,412.6,16.37,no
+IND,India,1983,432.4,16.664,no
+IND,India,1984,438.5,16.708,no
+IND,India,1985,451.0,16.418,no
+IND,India,1986,461.7,16.222,no
+IND,India,1987,469.2,16.21,no
+IND,India,1988,502.9,16.102,no
+IND,India,1989,521.1,16.903,no
+IND,India,1990,537.9,16.598,no
+IND,India,1991,531.9,15.676,no
+IND,India,1992,549.2,15.801,no
+IND,India,1993,563.4,15.916,no
+IND,India,1994,588.7,16.764,no
+IND,India,1995,620.7,17.866,no
+IND,India,1996,654.4,17.596,no
+IND,India,1997,667.6,16.519,no
+IND,India,1998,695.3,15.719,no
+IND,India,1999,742.5,15.181,no
+IND,India,2000,756.7,15.927,no
+IND,India,2001,778.5,15.307,no
+IND,India,2002,793.6,15.559,no
+IND,India,2003,841.3,15.587,no
+IND,India,2004,892.6,15.827,no
+IND,India,2005,947.7,15.973,no
+IND,India,2006,1008.2,17.304,no
+IND,India,2007,1069.2,16.865,no
+IND,India,2008,1086.5,17.099,no
+IND,India,2009,1155.1,17.144,no
+IND,India,2010,1235.2,17.03,no
+IND,India,2011,1281.6,16.139,no
+IND,India,2012,1333.1,15.817,no
+IND,India,2013,1399.5,15.253,no
+IND,India,2014,1484.3,15.066,no
+IND,India,2015,1584.0,15.584,no
+IND,India,2016,1694.5,15.162,no
+IND,India,2017,1788.7,15.018,no
+IND,India,2018,1883.4,14.882,no
+IND,India,2019,1936.0,13.456,no
+IND,India,2020,1806.5,14.12,no
+IND,India,2021,1965.3,14.377,no
+IND,India,2022,2098.2,13.333,no
+IND,India,2023,2229.7,13.313,no
+IND,India,2024,2366.8,13.139,no
+TUR,Turkiye,1960,2449.5,12.775,no
+TUR,Turkiye,1961,2410.6,13.213,no
+TUR,Turkiye,1962,2477.2,13.076,no
+TUR,Turkiye,1963,2630.5,12.876,no
+TUR,Turkiye,1964,2702.3,13.32,no
+TUR,Turkiye,1965,2709.7,14.67,no
+TUR,Turkiye,1966,2937.9,14.736,no
+TUR,Turkiye,1967,2998.1,14.986,no
+TUR,Turkiye,1968,3121.4,15.746,no
+TUR,Turkiye,1969,3170.2,16.096,no
+TUR,Turkiye,1970,3196.7,16.081,no
+TUR,Turkiye,1971,3295.5,16.619,no
+TUR,Turkiye,1972,3456.2,17.364,no
+TUR,Turkiye,1973,3487.4,17.555,no
+TUR,Turkiye,1974,3601.8,16.599,no
+TUR,Turkiye,1975,3780.9,16.568,no
+TUR,Turkiye,1976,4092.1,17.638,no
+TUR,Turkiye,1977,4145.1,17.287,no
+TUR,Turkiye,1978,4123.3,17.062,no
+TUR,Turkiye,1979,4017.9,19.161,no
+TUR,Turkiye,1980,3842.0,17.086,no
+TUR,Turkiye,1981,3949.3,19.439,no
+TUR,Turkiye,1982,4003.5,20.0,no
+TUR,Turkiye,1983,4104.9,19.104,no
+TUR,Turkiye,1984,4280.9,18.057,no
+TUR,Turkiye,1985,4364.5,18.255,no
+TUR,Turkiye,1986,4572.1,22.201,no
+TUR,Turkiye,1987,4904.8,21.839,no
+TUR,Turkiye,1988,4919.4,22.956,no
+TUR,Turkiye,1989,4837.9,23.122,no
+TUR,Turkiye,1990,5188.2,21.958,no
+TUR,Turkiye,1991,5134.4,22.172,no
+TUR,Turkiye,1992,5301.8,21.637,no
+TUR,Turkiye,1993,5609.9,20.809,no
+TUR,Turkiye,1994,5255.8,22.063,no
+TUR,Turkiye,1995,5577.8,25.681,no
+TUR,Turkiye,1996,5887.7,24.407,no
+TUR,Turkiye,1997,6230.2,24.413,no
+TUR,Turkiye,1998,6261.3,22.259,no
+TUR,Turkiye,1999,5989.6,19.996,no
+TUR,Turkiye,2000,6326.3,18.715,no
+TUR,Turkiye,2001,5906.9,17.733,no
+TUR,Turkiye,2002,6211.7,16.969,no
+TUR,Turkiye,2003,6496.1,17.161,no
+TUR,Turkiye,2004,7061.6,17.005,no
+TUR,Turkiye,2005,7623.1,16.965,no
+TUR,Turkiye,2006,8078.5,17.128,no
+TUR,Turkiye,2007,8477.5,16.872,no
+TUR,Turkiye,2008,8447.9,16.336,no
+TUR,Turkiye,2009,7925.3,15.213,no
+TUR,Turkiye,2010,8472.6,15.116,no
+TUR,Turkiye,2011,9265.9,16.53,no
+TUR,Turkiye,2012,9588.3,15.94,no
+TUR,Turkiye,2013,10269.4,16.401,no
+TUR,Turkiye,2014,10598.0,16.906,no
+TUR,Turkiye,2015,11064.6,16.769,no
+TUR,Turkiye,2016,11279.6,16.838,no
+TUR,Turkiye,2017,12005.6,17.574,no
+TUR,Turkiye,2018,12255.0,18.91,no
+TUR,Turkiye,2019,12238.3,18.26,no
+TUR,Turkiye,2020,12338.6,19.035,no
+TUR,Turkiye,2021,13670.9,22.124,no
+TUR,Turkiye,2022,14273.6,21.802,no
+TUR,Turkiye,2023,14932.9,19.469,no
+TUR,Turkiye,2024,15395.0,16.842,no
