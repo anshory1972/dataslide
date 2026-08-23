@@ -7,9 +7,9 @@ capita in **constant 2015 US dollars**, log scale.
    in 2024, and Indonesia's own path from 1960.
 2. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-3. **Output against welfare** — Sulawesi Tengah, Maluku Utara and Indonesia by
-   year: GRDP per capita and adjusted expenditure per capita on the left axis,
-   both at constant 2012 prices, with poverty and the Gini index on the right.
+3. **Output per head and poverty** — Sulawesi Tengah, Maluku Utara, Jawa Barat,
+   Banten and Indonesia by year: GRDP per capita at constant 2012 prices on the
+   left axis, poverty headcount on the right.
 
 Build with `python deck.py`, which reads `csv/` and writes
 `structural-transformation.html`. Published at
@@ -33,7 +33,7 @@ Build with `python deck.py`, which reads `csv/` and writes
 | `chart2_provinces_manufacturing.csv` | 511 | Every province in every year 2010–2024. |
 | `chart2_indonesia_manufacturing.csv` | 42 | Indonesia 1983–2024. |
 | `chart2_benchmarks_manufacturing.csv` | 780 | 18 countries and country groups; `shown_on_chart` marks the six drawn. |
-| `chart3_regions_income_welfare.csv` | 45 | Three regions by year: GRDP per capita and adjusted expenditure per capita, both at constant 2012 prices, plus poverty and Gini. |
+| `chart3_regions_income_welfare.csv` | 75 | Five regions by year: GRDP per capita and adjusted expenditure per capita, both at constant 2012 prices, plus poverty and Gini. The chart draws GRDP per capita and poverty; the other two columns are kept for reuse. |
 | `conversion_anchor.csv` | 10 | The rupiah-to-dollar factor used, by year. |
 
 ## Two things worth knowing before reusing the data
