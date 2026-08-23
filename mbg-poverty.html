@@ -1147,6 +1147,140 @@ KEPULAUAN BANGKA BELITUNG  |    1966745   558886.2     3.52   0.000     871208.3
     meals. And crucially, <strong>the valuation itself barely moved</strong>, which is the robustness we
     needed.</p>
   </div>
+  <h3>The cleaner way to run it: own spending, net of the transfer</h3>
+  <p>
+    There is a sharper formulation of the same test. Crowd-out is about the household's <em>own</em>
+    spending, so subtract the observed in-kind carrier value from expenditure first and regress that.
+    Then "no crowd-out" predicts a coefficient of exactly <strong>zero</strong> &mdash; a clean null
+    instead of a moving target.
+  </p>
+  <div class="tw">
+    <table>
+      <caption><b>Own spending (EXPEND minus observed carrier value) per additional weekly meal.</b> Same sample and weights as above; &rho; = &minus;b / 31,645.</caption>
+      <thead><tr><th>Controls</th><th class="n">b</th><th class="n">t</th><th class="n">implied &rho;</th></tr></thead>
+      <tbody>
+        <tr><td>Household size only</td><td class="n bad">+47,009</td><td class="n">1.83</td><td class="n">&minus;1.49</td></tr>
+        <tr><td>+ child share</td><td class="n bad">+62,662</td><td class="n">2.42</td><td class="n">&minus;1.98</td></tr>
+        <tr><td>+ school-age share</td><td class="n">+10,824</td><td class="n">0.39</td><td class="n">&minus;0.34</td></tr>
+        <tr><td>+ province and urban/rural FE</td><td class="n hi">+233</td><td class="n">0.01</td><td class="n hi">&minus;0.007</td></tr>
+        <tr class="top"><td colspan="4" class="dim">Richest specification: own spending changes by Rp 233 per meal &mdash; 0.7% of the transfer, t = 0.01. The flypaper result stated directly. 95% CI [&minus;53,614, +54,081], i.e. &rho; anywhere in [&minus;1.7, +1.7] &mdash; the null is honest but uninformative, which is why &rho; stays a reported assumption.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="reg"><summary>Show the Stata output: own spending net of the transfer, all four control sets</summary>
+    <div class="cmd">regress NET recdays M301 [pw=WERT]</div>
+    <pre>Linear regression                               Number of obs     =      9,537
+                                                F(2, 9534)        =      41.31
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0174
+                                                Root MSE          =     4.6e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+         NET | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   47008.86   25657.27     1.83   0.067    -3284.843    97302.56
+        M301 |   432379.3   53227.03     8.12   0.000       328043    536715.6
+       _cons |    3959062   245859.7    16.10   0.000      3477125     4440999
+------------------------------------------------------------------------------</pre>
+    <div class="cmd">regress NET recdays M301 sh_child [pw=WERT]</div>
+    <pre>Linear regression                               Number of obs     =      9,537
+                                                F(3, 9533)        =      30.16
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0195
+                                                Root MSE          =     4.6e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+         NET | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   62662.18   25902.04     2.42   0.016     11888.66    113435.7
+        M301 |   445202.4   53712.54     8.29   0.000     339914.4    550490.4
+    sh_child |   -1270437     362255    -3.51   0.000     -1980534   -560339.8
+       _cons |    4209576   254443.7    16.54   0.000      3710812     4708340
+------------------------------------------------------------------------------</pre>
+    <div class="cmd">regress NET recdays M301 sh_child sh_school [pw=WERT]</div>
+    <pre>Linear regression                               Number of obs     =      9,537
+                                                F(4, 9532)        =      30.48
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0250
+                                                Root MSE          =     4.6e+06
+
+------------------------------------------------------------------------------
+             |               Robust
+         NET | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     recdays |   10824.07   27867.31     0.39   0.698    -43801.79    65449.93
+        M301 |   493146.8   54364.19     9.07   0.000     386581.4    599712.2
+    sh_child |   -1489331   366346.8    -4.07   0.000     -2207448     -771213
+   sh_school |    2868272   561820.3     5.11   0.000      1766985     3969560
+       _cons |    3399866   283134.1    12.01   0.000      2844863     3954869
+------------------------------------------------------------------------------</pre>
+    <div class="cmd">regress NET recdays M301 sh_child sh_school i.M101 i.M105 [pw=WERT]</div>
+    <pre>Linear regression                               Number of obs     =      9,537
+                                                F(42, 9494)       =      15.54
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0711
+                                                Root MSE          =     4.5e+06
+
+--------------------------------------------------------------------------------------------
+                           |               Robust
+                       NET | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+---------------------------+----------------------------------------------------------------
+                   recdays |   233.3012   27470.15     0.01   0.993    -53614.06    54080.66
+                      M301 |   439721.9   54378.53     8.09   0.000     333128.4    546315.5
+                  sh_child |   -1589051     363548    -4.37   0.000     -2301683   -876419.6
+                 sh_school |    2471144   550559.7     4.49   0.000      1391929     3550359
+                           |
+                      M101 |
+           SUMATERA UTARA  |  -203668.3   262261.6    -0.78   0.437    -717757.2    310420.5
+           SUMATERA BARAT  |    1040150   368031.1     2.83   0.005     318730.4     1761570
+                     RIAU  |   829573.1   349330.5     2.37   0.018     144810.6     1514336
+                    JAMBI  |    1528671   678267.3     2.25   0.024     199122.4     2858220
+         SUMATERA SELATAN  |  -383184.7   319160.5    -1.20   0.230     -1008807    242438.1
+                 BENGKULU  |    1328099   776222.1     1.71   0.087    -193461.9     2849661
+                  LAMPUNG  |  -495340.2   257258.8    -1.93   0.054    -999622.5    8942.098
+KEPULAUAN BANGKA BELITUNG  |    1814791   540036.2     3.36   0.001     756204.1     2873377
+           KEPULAUAN RIAU  |    3049626   804608.4     3.79   0.000      1472422     4626831
+              DKI JAKARTA  |    1330907   581286.8     2.29   0.022     191460.4     2470353
+               JAWA BARAT  |  -491696.5   217471.6    -2.26   0.024    -917987.3   -65405.64
+              JAWA TENGAH  |  -509149.3   236920.2    -2.15   0.032    -973563.6   -44734.96
+            DI YOGYAKARTA  |   248667.5   438458.3     0.57   0.571    -610804.6     1108140
+               JAWA TIMUR  |    -274688     259907    -1.06   0.291    -784161.3    234785.2
+                   BANTEN  |  -214504.8   313103.3    -0.69   0.493    -828254.3    399244.6
+                     BALI  |   599325.2   516159.5     1.16   0.246    -412457.8     1611108
+      NUSA TENGGARA BARAT  |   -1215878   268735.2    -4.52   0.000     -1742656   -689099.2
+      NUSA TENGGARA TIMUR  |  -654805.4   276147.4    -2.37   0.018     -1196113   -113497.5
+         KALIMANTAN BARAT  |   942665.7     362737     2.60   0.009     231623.6     1653708
+        KALIMANTAN TENGAH  |  -116836.4   475200.3    -0.25   0.806     -1048331    814657.8
+       KALIMANTAN SELATAN  |    1162074   388544.2     2.99   0.003     400444.1     1923703
+         KALIMANTAN TIMUR  |    1736589   468575.8     3.71   0.000     818080.3     2655098
+         KALIMANTAN UTARA  |   403612.6   342923.2     1.18   0.239    -268590.3     1075815
+           SULAWESI UTARA  |    1082985   822012.8     1.32   0.188    -528335.9     2694306
+          SULAWESI TENGAH  |   61401.68   388452.3     0.16   0.874    -700047.9    822851.3
+         SULAWESI SELATAN  |  -531738.3   399852.7    -1.33   0.184     -1315535    252058.6
+        SULAWESI TENGGARA  |     185537   391198.5     0.47   0.635    -581295.8    952369.8
+                GORONTALO  |    2764231    1880316     1.47   0.142    -921590.5     6450053
+           SULAWESI BARAT  |  -636128.6   344950.7    -1.84   0.065     -1312306     40048.6
+                   MALUKU  |   509875.9   470747.8     1.08   0.279    -412890.5     1432642
+             MALUKU UTARA  |   624878.5   468344.9     1.33   0.182    -293177.7     1542935
+              PAPUA BARAT  |    1600921   436592.4     3.67   0.000     745106.5     2456736
+         PAPUA BARAT DAYA  |    1098302   513187.6     2.14   0.032     92344.86     2104260
+                    PAPUA  |    3085909   640922.2     4.81   0.000      1829564     4342254
+            PAPUA SELATAN  |    3312095    1288039     2.57   0.010     787263.1     5836927
+             PAPUA TENGAH  |    2752096   497365.1     5.53   0.000      1777154     3727038
+         PAPUA PEGUNUNGAN  |    5981100    2625720     2.28   0.023     834126.8    1.11e+07
+                           |
+                      M105 |
+                Perdesaan  |   -1311967   115211.2   -11.39   0.000     -1537806    -1086129
+                     _cons |    4368806   352094.7    12.41   0.000      3678625     5058987
+--------------------------------------------------------------------------------------------</pre>
+  </details>
+  <p class="dim" style="font-size:.92rem">
+    The two formulations are algebraically linked (b<sub>net</sub> = b<sub>gross</sub> &minus; &beta;), so
+    they carry the same information &mdash; but the net version makes both the sparse-specification absurdity
+    ("own spending rises Rp 47,000 per free meal") and the final null visible at a glance.
+  </p>
   <div class="card warn">
     <span class="lab">But we still cannot report &rho;</span>
     <p>That coefficient's 95% interval runs from &minus;22,840 to 86,597, which maps to &rho; anywhere from
