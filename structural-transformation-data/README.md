@@ -7,9 +7,9 @@ capita in **constant 2015 US dollars**, log scale.
    in 2024, and Indonesia's own path from 1960.
 2. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-3. **The two nickel provinces** — Sulawesi Tengah and Maluku Utara, with the
-   manufacturing share on the left axis and the poverty headcount and Gini index
-   on the right, all against the same income axis.
+3. **Output against welfare** — Sulawesi Tengah, Maluku Utara and Indonesia by
+   year: GRDP per capita and adjusted expenditure per capita on the left axis,
+   both at constant 2012 prices, with poverty and the Gini index on the right.
 
 Build with `python deck.py`, which reads `csv/` and writes
 `structural-transformation.html`. Published at
@@ -33,7 +33,7 @@ Build with `python deck.py`, which reads `csv/` and writes
 | `chart2_provinces_manufacturing.csv` | 511 | Every province in every year 2010–2024. |
 | `chart2_indonesia_manufacturing.csv` | 42 | Indonesia 1983–2024. |
 | `chart2_benchmarks_manufacturing.csv` | 780 | 18 countries and country groups; `shown_on_chart` marks the six drawn. |
-| `chart3_poverty_gini.csv` | 524 | Poverty headcount (P0) and Gini ratio by province, March of each year 2010–2024. |
+| `chart3_regions_income_welfare.csv` | 45 | Three regions by year: GRDP per capita and adjusted expenditure per capita, both at constant 2012 prices, plus poverty and Gini. |
 | `conversion_anchor.csv` | 10 | The rupiah-to-dollar factor used, by year. |
 
 ## Two things worth knowing before reusing the data
@@ -53,6 +53,13 @@ differs from the current-price measure by 0.8 percentage points on average over
 the 42 years in which both exist. The `basis` column says which is which, and the
 chart draws the earlier segment dashed.
 
+**The two per-capita series are put on one price base.** BPS publishes GRDP per
+capita at constant 2010 prices and adjusted expenditure at constant 2012 prices.
+The GRDP series is multiplied by Indonesia's implicit 2012 GDP deflator, 1.1211,
+computed from the national current- and constant-price series. The national
+deflator is used for provinces too, because the expenditure measure is itself
+adjusted to a single national basis.
+
 Two further limits: the provincial series cannot start before 2010, the first
 year of the 2010-base regional accounts; and summing provincial PDRB gives a
 manufacturing share 2.6 points above the national figure in 2010, widening to 4.3
@@ -65,7 +72,8 @@ World Bank World Development Indicators: `NY.GDP.PCAP.KD`, `NY.GDP.PCAP.CN`,
 `NV.AGR.TOTL.ZS`, `NV.AGR.TOTL.KD`, `NY.GDP.MKTP.KD`, `NV.IND.MANF.ZS`.
 
 BPS Web API: variable 2268 (PDRB by 17 industry categories, current prices, by
-province), variable 288 (GRDP per capita), variable 192 (percentage of poor
-population, P0, by province) and variable 98 (Gini ratio by province). Poverty and
+province), variable 288 (GRDP per capita), variable 416 (adjusted expenditure per
+capita, the consumption component of the new-method HDI), variable 192 (percentage
+of poor population, P0) and variable 98 (Gini ratio). Poverty and
 Gini are the **March** round throughout; BPS also publishes September, and the two
 rounds are not comparable. The provincial March poverty series begins in 2012.

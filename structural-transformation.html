@@ -1277,9 +1277,10 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 .ds-chart .grpdot { fill: var(--c5); }
 .ds-chart .grpdot.bench { r:3.4; opacity:.8; }
 .ds-chart .grplab { font-size:14px; font-weight:700; fill: var(--c5); }
-.ds-chart .nline { fill:none; stroke-width:3; }
-.ds-chart .nline.n-dash { stroke-width:2.4; stroke-dasharray:8 5; }
-.ds-chart .nline.n-dot  { stroke-width:2.6; stroke-dasharray:1 5; stroke-linecap:round; }
+.ds-chart .sline { fill:none; stroke-width:3; }
+.ds-chart .sline.s-long { stroke-width:2.6; stroke-dasharray:14 5; }
+.ds-chart .sline.s-dash { stroke-width:2.2; stroke-dasharray:6 4; }
+.ds-chart .sline.s-dot  { stroke-width:2.4; stroke-dasharray:1 5; stroke-linecap:round; }
 .ds-chart .nlab { font-size:13px; font-weight:700; paint-order: stroke fill;
   stroke: var(--surface-1); stroke-width:4px; stroke-linejoin:round; }
 .ds-chart .nyr { font-size:12.5px; font-weight:700; font-variant-numeric:tabular-nums;
@@ -1323,7 +1324,6 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 </style>
 
 <section class="row-single" aria-label="Agriculture"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Structural transformation</p>
 <h2>Agriculture&rsquo;s share of value added and income per head</h2>
 <svg class="ds-chart" viewBox="0 0 1520 712" role="img" aria-label="Agriculture share against income per head for 202 countries, 38 Indonesian provinces and Indonesia since 1960.">
 <text x="34" y="30" class="ps"><tspan class="kc">202 countries, latest year</tspan> &middot; <tspan class="kp">38 Indonesian provinces, 2024</tspan> &middot; <tspan class="ki">Indonesia 1960 to 2024</tspan></text>
@@ -1650,7 +1650,6 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 </section></div></div></section>
 
 <section class="row-single" aria-label="Manufacturing"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Structural transformation</p>
 <h2>Manufacturing&rsquo;s share of value added and income per head</h2>
 <svg class="ds-chart" viewBox="0 0 1520 740" role="img" aria-label="Manufacturing share against income per head: the path of each Indonesian province since 2010, of Indonesia since 1983, and of two developing-country groups.">
 <text x="34" y="30" class="ps"><tspan class="kp">38 Indonesian provinces, 2010 to 2024</tspan> &mdash; <tspan class="kr">nickel processing</tspan>, <tspan class="kf">established industry now shrinking</tspan> &middot; <tspan class="ki">Indonesia 1983 to 2024</tspan> &middot; <tspan style="fill:#5c4b3a;font-weight:650">World</tspan>, <tspan style="fill:#1baf7a;font-weight:650">lower-middle income</tspan>, <tspan style="fill:#008300;font-weight:650">East Asia &amp; Pacific</tspan>, <tspan style="fill:#96690a;font-weight:650">China</tspan>, <tspan style="fill:#4a3aa7;font-weight:650">Malaysia</tspan>, <tspan style="fill:#0f8ea8;font-weight:650">Thailand</tspan></text>
@@ -1951,69 +1950,85 @@ body { margin: 0; background: var(--shell-paper); color: var(--shell-ink); }
 <details class="src"><summary>Source &amp; method</summary><div class="src-body"><b>Provinces</b>: BPS, PDRB by 17 industry categories at current prices and GRDP per capita, every year from <b>2010</b> &mdash; the first year of the 2010-base regional accounts, with no earlier provincial breakdown. Each year&rsquo;s income per head is converted with that year&rsquo;s own anchor, the ratio of Indonesia&rsquo;s GDP per head in constant 2015 US dollars to its GDP per head in current rupiah. The four provinces created in 2022&ndash;2023 appear as single points in 2024. <b>Indonesia and the country groups</b>: World Bank, manufacturing value added as a share of GDP (<code>NV.IND.MANF.ZS</code>) against GDP per capita in constant 2015 US dollars. Lower-middle income runs 1965&ndash;2024 and peaks at 24.1% in 1979; East Asia and Pacific developing runs 2004&ndash;2024 and peaks at 30.6% in 2006; the world as a whole falls from 19.2% in 1997 to 14.9%. The three peer economies peak and fall too: China 32.0% in 2006 to 24.8%, Malaysia 30.9% in 1999 to 22.5%, Thailand 30.9% in 2010 to 24.2%. Marked points on each line are its first year, its peak and 2024. Summing provincial PDRB gives a manufacturing share 2.6 points above the national figure in 2010, widening to 4.3 points by 2024, because provincial accounts and national GDP differ in coverage and in the treatment of taxes on products.</div></details>
 </section></div></div></section>
 
-<section class="row-single" aria-label="Nickel provinces"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
-<p class="panel-eyebrow">Structural transformation</p>
-<h2>The two nickel provinces: output, poverty and inequality</h2>
-<svg class="ds-chart" viewBox="0 0 1520 740" role="img" aria-label="For Sulawesi Tengah and Maluku Utara, manufacturing share, poverty headcount and the Gini index against income per head.">
-<text x="34" y="30" class="ps"><tspan style="fill:#eb6834;font-weight:650">Sulawesi Tengah</tspan> and <tspan style="fill:#0f8ea8;font-weight:650">Maluku Utara</tspan>, 2012 to 2024 &middot; manufacturing solid, poverty dashed, Gini dotted</text>
-<line x1="168" y1="628.0" x2="1220" y2="628.0" class="g"/>
-<text x="152" y="634.0" class="ax end">0</text>
-<text x="1236" y="634.0" class="ax">0</text>
-<line x1="168" y1="504.9" x2="1220" y2="504.9" class="g"/>
-<text x="152" y="510.9" class="ax end">10</text>
-<text x="1236" y="510.9" class="ax">10</text>
-<line x1="168" y1="381.8" x2="1220" y2="381.8" class="g"/>
-<text x="152" y="387.8" class="ax end">20</text>
-<text x="1236" y="387.8" class="ax">20</text>
-<line x1="168" y1="258.7" x2="1220" y2="258.7" class="g"/>
-<text x="152" y="264.7" class="ax end">30</text>
-<text x="1236" y="264.7" class="ax">30</text>
-<line x1="168" y1="135.6" x2="1220" y2="135.6" class="g"/>
-<text x="152" y="141.6" class="ax end">40</text>
-<text x="1236" y="141.6" class="ax">40</text>
-<line x1="291.7" y1="58" x2="291.7" y2="628" class="g"/>
-<text x="291.7" y="662" class="ax mid">1k</text>
-<line x1="451.3" y1="58" x2="451.3" y2="628" class="g"/>
-<text x="451.3" y="662" class="ax mid">2k</text>
-<line x1="676.1" y1="58" x2="676.1" y2="628" class="g"/>
-<text x="676.1" y="662" class="ax mid">3k</text>
-<line x1="835.6" y1="58" x2="835.6" y2="628" class="g"/>
-<text x="835.6" y="662" class="ax mid">4k</text>
-<line x1="1060.5" y1="58" x2="1060.5" y2="628" class="g"/>
-<text x="1060.5" y="662" class="ax mid">6k</text>
-<line x1="1220.0" y1="58" x2="1220.0" y2="628" class="g"/>
-<text x="1220.0" y="662" class="ax mid">8k</text>
-<text x="694" y="696" class="axtitle mid">GDP per capita, constant 2015 US dollars, log scale</text>
-<text transform="translate(92,351) rotate(-90)" class="axtitle mid">Manufacturing, per cent of value added</text>
-<text transform="translate(1284,351) rotate(90)" class="axtitle mid">Poverty headcount and Gini index, per cent</text>
-<polyline points="415.3,546.6 454.3,551.2 500.3,556.0 540.0,558.2 569.5,555.7 636.4,508.3 675.2,481.8 704.4,476.0 798.1,370.8 842.1,352.0 890.0,288.1 975.6,212.1 1067.5,131.6 1091.6,131.2 1126.1,121.0" class="nline n-solid" style="stroke:#eb6834"/>
-<circle cx="415.3" cy="546.6" r="4" style="fill:#eb6834" opacity=".55"/>
-<circle cx="1126.1" cy="121.0" r="5" style="fill:#eb6834"/>
-<polyline points="500.3,438.4 540.0,447.4 569.5,456.5 636.4,447.5 675.2,450.1 704.4,453.9 798.1,455.5 842.1,462.0 890.0,468.9 975.6,468.0 1067.5,476.2 1091.6,475.2 1126.1,483.1" class="nline n-dash" style="stroke:#eb6834"/>
-<circle cx="500.3" cy="438.4" r="4" style="fill:#eb6834" opacity=".55"/>
-<circle cx="1126.1" cy="483.1" r="5" style="fill:#eb6834"/>
-<polyline points="415.3,177.4 454.3,165.1 500.3,135.6 540.0,126.9 569.5,170.0 636.4,167.6 675.2,182.3 704.4,191.0 798.1,202.0 842.1,225.4 890.0,226.7 975.6,239.0 1067.5,248.8 1091.6,253.7 1126.1,257.4" class="nline n-dot" style="stroke:#eb6834"/>
-<circle cx="415.3" cy="177.4" r="4" style="fill:#eb6834" opacity=".55"/>
-<circle cx="1126.1" cy="257.4" r="5" style="fill:#eb6834"/>
-<text x="404.3" y="563.6" class="nyr end" style="fill:#eb6834">2010</text>
-<text x="1137.1" y="112.0" class="nyr" style="fill:#eb6834">2024</text>
-<polyline points="244.1,558.1 264.1,562.3 300.4,564.9 318.7,565.5 341.1,563.7 364.9,565.3 390.4,561.7 412.7,548.8 449.1,536.7 486.0,540.9 504.3,487.0 582.7,376.1 690.9,269.7 781.3,226.3 835.6,204.3" class="nline n-solid" style="stroke:#0f8ea8"/>
-<circle cx="244.1" cy="558.1" r="4" style="fill:#0f8ea8" opacity=".55"/>
-<circle cx="835.6" cy="204.3" r="5" style="fill:#0f8ea8"/>
-<polyline points="300.4,523.7 318.7,535.7 341.1,538.1 364.9,543.8 390.4,550.1 412.7,549.8 449.1,546.3 486.0,544.7 504.3,544.5 582.7,543.2 690.9,551.3 781.3,548.5 835.6,550.2" class="nline n-dash" style="stroke:#0f8ea8"/>
-<circle cx="300.4" cy="523.7" r="4" style="fill:#0f8ea8" opacity=".55"/>
-<circle cx="835.6" cy="550.2" r="5" style="fill:#0f8ea8"/>
-<polyline points="244.1,214.3 264.1,216.8 300.4,211.9 318.7,236.5 341.1,227.9 364.9,283.3 390.4,275.9 412.7,237.7 449.1,224.2 486.0,243.9 504.3,248.8 582.7,258.7 690.9,284.5 781.3,258.7 835.6,239.0" class="nline n-dot" style="stroke:#0f8ea8"/>
-<circle cx="244.1" cy="214.3" r="4" style="fill:#0f8ea8" opacity=".55"/>
-<circle cx="835.6" cy="239.0" r="5" style="fill:#0f8ea8"/>
-<text x="233.1" y="575.1" class="nyr end" style="fill:#0f8ea8">2010</text>
-<text x="846.6" y="195.3" class="nyr" style="fill:#0f8ea8">2024</text>
-<text x="1115.1" y="125.0" style="fill:#eb6834" class="nlab end">Sulawesi Tengah &mdash; manufacturing</text>
-<text x="1137.1" y="487.1" style="fill:#eb6834" class="nlab">Sulawesi Tengah &mdash; poverty</text>
-<text x="1115.1" y="261.4" style="fill:#eb6834" class="nlab end">Sulawesi Tengah &mdash; Gini</text>
-<text x="846.6" y="208.3" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; manufacturing</text>
-<text x="846.6" y="554.2" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; poverty</text>
-<text x="824.6" y="243.0" style="fill:#0f8ea8" class="nlab end">Maluku Utara &mdash; Gini</text>
+<section class="row-single" aria-label="Regions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<h2>Output, household consumption, poverty and inequality</h2>
+<svg class="ds-chart" viewBox="0 0 1520 740" role="img" aria-label="For Sulawesi Tengah, Maluku Utara and Indonesia: GRDP per capita and adjusted expenditure per capita on the left axis, poverty and the Gini index on the right.">
+<text x="34" y="30" class="ps"><tspan style="fill:#eb6834;font-weight:650">Sulawesi Tengah</tspan>, <tspan style="fill:#0f8ea8;font-weight:650">Maluku Utara</tspan>, <tspan style="fill:#4a3aa7;font-weight:650">Indonesia</tspan> &middot; GRDP per capita solid, adjusted expenditure long-dashed, poverty short-dashed, Gini dotted</text>
+<line x1="176" y1="628.0" x2="1190" y2="628.0" class="g"/>
+<text x="160" y="634.0" class="ax end">0</text>
+<line x1="176" y1="489.5" x2="1190" y2="489.5" class="g"/>
+<text x="160" y="495.5" class="ax end">20</text>
+<line x1="176" y1="351.0" x2="1190" y2="351.0" class="g"/>
+<text x="160" y="357.0" class="ax end">40</text>
+<line x1="176" y1="212.5" x2="1190" y2="212.5" class="g"/>
+<text x="160" y="218.5" class="ax end">60</text>
+<line x1="176" y1="74.0" x2="1190" y2="74.0" class="g"/>
+<text x="160" y="80.0" class="ax end">80</text>
+<text x="1206" y="634.0" class="ax">0</text>
+<line x1="1190" y1="628.0" x2="1198" y2="628.0" class="g"/>
+<text x="1206" y="510.9" class="ax">10</text>
+<line x1="1190" y1="504.9" x2="1198" y2="504.9" class="g"/>
+<text x="1206" y="387.8" class="ax">20</text>
+<line x1="1190" y1="381.8" x2="1198" y2="381.8" class="g"/>
+<text x="1206" y="264.7" class="ax">30</text>
+<line x1="1190" y1="258.7" x2="1198" y2="258.7" class="g"/>
+<text x="1206" y="141.6" class="ax">40</text>
+<line x1="1190" y1="135.6" x2="1198" y2="135.6" class="g"/>
+<line x1="176.0" y1="58" x2="176.0" y2="628" class="g"/>
+<text x="176.0" y="662" class="ax mid">2010</text>
+<line x1="320.9" y1="58" x2="320.9" y2="628" class="g"/>
+<text x="320.9" y="662" class="ax mid">2012</text>
+<line x1="465.7" y1="58" x2="465.7" y2="628" class="g"/>
+<text x="465.7" y="662" class="ax mid">2014</text>
+<line x1="610.6" y1="58" x2="610.6" y2="628" class="g"/>
+<text x="610.6" y="662" class="ax mid">2016</text>
+<line x1="755.4" y1="58" x2="755.4" y2="628" class="g"/>
+<text x="755.4" y="662" class="ax mid">2018</text>
+<line x1="900.3" y1="58" x2="900.3" y2="628" class="g"/>
+<text x="900.3" y="662" class="ax mid">2020</text>
+<line x1="1045.1" y1="58" x2="1045.1" y2="628" class="g"/>
+<text x="1045.1" y="662" class="ax mid">2022</text>
+<line x1="1190.0" y1="58" x2="1190.0" y2="628" class="g"/>
+<text x="1190.0" y="662" class="ax mid">2024</text>
+<text x="683" y="696" class="axtitle mid">Year</text>
+<text transform="translate(88,351) rotate(-90)" class="axtitle mid">Per capita, million rupiah a year, constant 2012 prices</text>
+<text transform="translate(1494,351) rotate(90)" class="axtitle mid">Poverty headcount and Gini index, per cent</text>
+<polyline points="176.0,476.1 248.4,464.1 320.9,451.6 393.3,437.9 465.7,431.4 538.1,404.6 610.6,386.1 683.0,372.9 755.4,324.8 827.9,301.5 900.3,278.2 972.7,242.2 1045.1,188.7 1117.6,142.1 1190.0,100.0" class="sline s-solid" style="stroke:#eb6834"/>
+<circle cx="1190.0" cy="100.0" r="5" style="fill:#eb6834"/>
+<polyline points="176.0,572.7 248.4,572.1 320.9,570.6 393.3,569.1 465.7,568.4 538.1,567.3 610.6,565.4 683.0,563.5 755.4,562.3 827.9,561.5 900.3,563.4 972.7,563.1 1045.1,560.9 1117.6,557.7 1190.0,555.0" class="sline s-long" style="stroke:#eb6834"/>
+<circle cx="1190.0" cy="555.0" r="5" style="fill:#eb6834"/>
+<polyline points="320.9,438.4 393.3,447.4 465.7,456.5 538.1,447.5 610.6,450.1 683.0,453.9 755.4,455.5 827.9,462.0 900.3,468.9 972.7,468.0 1045.1,476.2 1117.6,475.2 1190.0,483.1" class="sline s-dash" style="stroke:#eb6834"/>
+<circle cx="1190.0" cy="483.1" r="5" style="fill:#eb6834"/>
+<polyline points="176.0,177.4 248.4,165.1 320.9,135.6 393.3,126.9 465.7,170.0 538.1,167.6 610.6,182.3 683.0,191.0 755.4,202.0 827.9,225.4 900.3,226.7 972.7,239.0 1045.1,248.8 1117.6,253.7 1190.0,257.4" class="sline s-dot" style="stroke:#eb6834"/>
+<circle cx="1190.0" cy="257.4" r="5" style="fill:#eb6834"/>
+<polyline points="176.0,516.5 248.4,511.6 320.9,506.2 393.3,501.2 465.7,497.0 538.1,491.9 610.6,486.9 683.0,479.0 755.4,470.3 827.9,460.9 900.3,457.9 972.7,432.4 1045.1,391.0 1117.6,343.9 1190.0,308.8" class="sline s-solid" style="stroke:#0f8ea8"/>
+<circle cx="1190.0" cy="308.8" r="5" style="fill:#0f8ea8"/>
+<polyline points="176.0,580.8 248.4,580.0 320.9,579.1 393.3,578.1 465.7,577.9 538.1,576.6 610.6,575.8 683.0,574.0 755.4,572.7 827.9,570.5 900.3,572.4 972.7,571.6 1045.1,569.8 1117.6,566.8 1190.0,563.5" class="sline s-long" style="stroke:#0f8ea8"/>
+<circle cx="1190.0" cy="563.5" r="5" style="fill:#0f8ea8"/>
+<polyline points="320.9,523.7 393.3,535.7 465.7,538.1 538.1,543.8 610.6,550.1 683.0,549.8 755.4,546.3 827.9,544.7 900.3,544.5 972.7,543.2 1045.1,551.3 1117.6,548.5 1190.0,550.2" class="sline s-dash" style="stroke:#0f8ea8"/>
+<circle cx="1190.0" cy="550.2" r="5" style="fill:#0f8ea8"/>
+<polyline points="176.0,214.3 248.4,216.8 320.9,211.9 393.3,236.5 465.7,227.9 538.1,283.3 610.6,275.9 683.0,237.7 755.4,224.2 827.9,243.9 900.3,248.8 972.7,258.7 1045.1,284.5 1117.6,258.7 1190.0,239.0" class="sline s-dot" style="stroke:#0f8ea8"/>
+<circle cx="1190.0" cy="239.0" r="5" style="fill:#0f8ea8"/>
+<polyline points="176.0,404.6 248.4,394.2 320.9,383.3 393.3,372.8 465.7,363.0 538.1,355.0 610.6,344.9 683.0,334.1 755.4,322.6 827.9,309.5 900.3,319.9 972.7,311.4 1045.1,298.3 1117.6,285.3 1190.0,271.8" class="sline s-solid" style="stroke:#4a3aa7"/>
+<circle cx="1190.0" cy="271.8" r="5" style="fill:#4a3aa7"/>
+<polyline points="176.0,562.6 248.4,561.2 320.9,560.0 393.3,559.7 465.7,559.4 538.1,557.7 610.6,555.8 683.0,554.2 755.4,551.4 827.9,549.8 900.3,551.7 972.7,550.7 1045.1,548.5 1117.6,545.6 1190.0,542.5" class="sline s-long" style="stroke:#4a3aa7"/>
+<circle cx="1190.0" cy="542.5" r="5" style="fill:#4a3aa7"/>
+<polyline points="320.9,480.8 393.3,488.0 465.7,489.5 538.1,489.9 610.6,494.3 683.0,497.0 755.4,507.1 827.9,512.2 900.3,507.6 972.7,503.2 1045.1,510.6 1117.6,512.8 1190.0,516.8" class="sline s-dash" style="stroke:#4a3aa7"/>
+<circle cx="1190.0" cy="516.8" r="5" style="fill:#4a3aa7"/>
+<polyline points="176.0,162.6 248.4,123.2 320.9,123.2 393.3,119.6 465.7,128.2 538.1,125.7 610.6,139.2 683.0,144.2 755.4,149.1 827.9,157.7 900.3,158.9 972.7,155.3 1045.1,155.3 1117.6,150.3 1190.0,161.4" class="sline s-dot" style="stroke:#4a3aa7"/>
+<circle cx="1190.0" cy="161.4" r="5" style="fill:#4a3aa7"/>
+<text x="1201.0" y="104.0" style="fill:#eb6834" class="nlab">Sulawesi Tengah &mdash; GRDP per capita</text>
+<text x="1179.0" y="559.0" style="fill:#eb6834" class="nlab end">Sulawesi Tengah &mdash; adjusted expenditure</text>
+<text x="1201.0" y="487.1" style="fill:#eb6834" class="nlab">Sulawesi Tengah &mdash; poverty</text>
+<text x="1179.0" y="261.4" style="fill:#eb6834" class="nlab end">Sulawesi Tengah &mdash; Gini</text>
+<text x="1201.0" y="312.8" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; GRDP per capita</text>
+<text x="1201.0" y="567.5" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; adjusted expenditure</text>
+<text x="1201.0" y="540.2" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; poverty</text>
+<text x="1201.0" y="229.0" style="fill:#0f8ea8" class="nlab">Maluku Utara &mdash; Gini</text>
+<text x="1201.0" y="289.8" style="fill:#4a3aa7" class="nlab">Indonesia &mdash; GRDP per capita</text>
+<text x="1179.0" y="532.5" style="fill:#4a3aa7" class="nlab end">Indonesia &mdash; adjusted expenditure</text>
+<text x="1179.0" y="506.8" style="fill:#4a3aa7" class="nlab end">Indonesia &mdash; poverty</text>
+<text x="1201.0" y="165.4" style="fill:#4a3aa7" class="nlab">Indonesia &mdash; Gini</text>
 </svg>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body"><b>Manufacturing and income per head</b>: as in the previous chart. <b>Poverty</b>: BPS, percentage of population below the poverty line (P0) by province, urban and rural combined, <b>March</b> of each year; the provincial March series begins in 2012. <b>Gini</b>: BPS, Gini ratio by province, urban and rural combined, March of each year, multiplied by 100 so it reads as a percentage on the same axis. March is used throughout because BPS also publishes a September round and the two are not comparable.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body"><b>GRDP per capita</b>: BPS variable 288, at constant 2010 prices, rebased to <b>constant 2012 prices</b> by multiplying by Indonesia&rsquo;s implicit GDP deflator for 2012 (1.1211, computed from the national current-price and constant-price series), so that it sits on the same price base as the expenditure series. The national deflator is applied to the provinces as well, since the expenditure measure is itself adjusted to a single national basis. <b>Adjusted expenditure per capita</b>: BPS variable 416, the consumption component of the new-method Human Development Index, already published at constant 2012 prices and adjusted for purchasing-power differences between regions. <b>Poverty</b>: BPS variable 192, percentage below the poverty line (P0), urban and rural combined, <b>March</b>; the provincial March series begins in 2012. <b>Gini</b>: BPS variable 98, urban and rural combined, March, multiplied by 100 to read as a percentage. March is used throughout because BPS also publishes a September round and the two are not comparable.</div></details>
 </section></div></div></section>
