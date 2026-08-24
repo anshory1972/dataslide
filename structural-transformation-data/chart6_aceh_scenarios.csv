@@ -1,0 +1,14 @@
+code,scenario,group,growth_pct_2022_2040,gain_pp
+A1,"Rice, productivity +1%/yr",A,4.02,0.03
+A2,"Non-rice food crops, +1%/yr",A,3.99,0.01
+A3,"Palm oil, +1%/yr",A,4.03,0.05
+A4,"Coffee, +1%/yr",A,4.01,0.02
+A5,"All farm products, +1%/yr",A,4.25,0.26
+A6,"Agro-processing capacity, +10%/yr",A,4.1,0.11
+A7,A5 + A6 together,A,4.55,0.56
+B,Gas: upstream capacity doubled,B,4.09,0.11
+C1,Service labour productivity +3%/yr,C,4.14,0.15
+C2,C1 + demand shifts to services,C,4.52,0.54
+A7+B,A7 + the gas find,X,4.65,0.67
+A7+C2,A7 + skills and services,X,5.09,1.1
+A7+B+C2,All three strategies,X,5.19,1.2
