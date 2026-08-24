@@ -11,14 +11,21 @@ capita in **constant 2015 US dollars**, log scale.
    in 2024, and Indonesia's own path from 1960.
 3. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-5. **Aceh: what raises growth** — the growth gain from each of the thirteen
+5. **The grand strategy** — an illustrated divider.
+
+6. **Where transmigration sits** — the four strategies, with Strategic Shift and,
+   inside it, Strategic Agricultural Transformation, where transmigration areas fall.
+
+7. **The four pillars of SAT**.
+
+8. **Aceh: what raises growth** — the growth gain from each of the thirteen
    scenarios simulated with IndoTERM Aceh.
 
-6. **Kepulauan Riau: diversifying takes more than investment** — the gain from
+9. **Kepulauan Riau: diversifying takes more than investment** — the gain from
    directing the same investment at each sector, against the electronics
    benchmark, and the extra demand each alternative needs to match it.
 
-7. **The challenge of global fragmentation** — four panels: world trade as a share of
+10. **The challenge of global fragmentation** — four panels: world trade as a share of
    GDP, new trade restrictions per year, far-right vote share since 1900, and
    far-right seat share by country. Data from *The Growth We Want*.
 
@@ -49,6 +56,9 @@ Build with `python deck.py`, which reads `csv/` and writes
 | `chart2_indonesia_manufacturing.csv` | 42 | Indonesia 1983–2024. |
 | `chart2_benchmarks_manufacturing.csv` | 780 | 18 countries and country groups; `shown_on_chart` marks the six drawn. |
 | `chart3_regions_income_welfare.csv` | 75 | Five regions by year (three are drawn; Jawa Barat and Banten are kept for reuse): GRDP per capita and adjusted expenditure per capita, both at constant 2012 prices, plus poverty and Gini. The chart draws GRDP per capita and poverty; the other two columns are kept for reuse. |
+| `chart9_four_strategies.csv` | 4 | The four strategies, which is highlighted, and its artwork file. |
+| `chart9_strategic_shift.csv` | 3 | The three components of Strategic Shift. |
+| `chart10_sat_pillars.csv` | 4 | The four pillars of Strategic Agricultural Transformation. |
 | `chart6_aceh_scenarios.csv` | 13 | Aceh scenarios: growth reached and gain over baseline. |
 | `chart7_kepri_pathways.csv` | 5 | Kepri sectors: gain from investment alone, and the extra demand needed to reach +0.5pp. |
 | `chart5_growth_decomposition.csv` | 14 | Seven countries, two periods each: productivity growth split into within-sector and structural-change components. |
@@ -94,6 +104,16 @@ follows McMillan and Rodrik and reproduces `rawdata/etd/ggdc.do`; within and
 structural terms sum exactly to the change in economy-wide productivity, verified
 to a residual of 1.5e-11. Productivity is in national currency, so growth rates
 compare across countries but levels do not.
+
+Slides 5 to 7 draw on the author's own decks in `refs/` — the divider image is
+Midjourney in the deck's risograph style, the four-strategy artwork is lifted from
+`iesp-seminar-aay.pptx` slide 6, and the SAT content from its slides 8 and 9.
+
+The page is **locked to light mode**: the house style flips its whole palette
+under `prefers-color-scheme: dark` and `[data-theme="dark"]`, so `deck.py` pins
+the effective light values — the FT palette at the end of `_house_style.css`, not
+the earlier `scope-slide2` one it supersedes. Verified identical under a dark
+system setting and under an explicit dark theme attribute.
 
 ## Sources
 
