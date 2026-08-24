@@ -1,30 +1,35 @@
-# Structural transformation charts
+# Where will regional growth come from?
 
-Two charts on one axis: the share of a sector in value added against GDP per
-capita in **constant 2015 US dollars**, log scale.
+Slide deck for the Transmigration Executive Dialogue, Panel II, 24 August 2026.
+Slide order:
 
-1. **Growth comes from productivity** — labour productivity growth split into
+1. **Cover** — title, event line, byline.
+2. **Growth comes from productivity** — labour productivity growth split into
    within-sector gains and structural change, for seven Asian economies in their
    growth spell and in 2012–2018.
-
-2. **Agriculture** — 202 countries at their latest year, 38 Indonesian provinces
+3. **Agriculture** — 202 countries at their latest year, 38 Indonesian provinces
    in 2024, and Indonesia's own path from 1960.
-3. **Manufacturing** — the path of each Indonesian province since 2010, of
+4. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-5. **Aceh: what raises growth** — the growth gain from each of the thirteen
-   scenarios simulated with IndoTERM Aceh.
-
-6. **Kepulauan Riau: diversifying takes more than investment** — the gain from
-   directing the same investment at each sector, against the electronics
-   benchmark, and the extra demand each alternative needs to match it.
-
-7. **The challenge of global fragmentation** — four panels: world trade as a share of
-   GDP, new trade restrictions per year, far-right vote share since 1900, and
-   far-right seat share by country. Data from *The Growth We Want*.
-
-4. **Output per head and poverty** — Sulawesi Tengah, Maluku Utara and Indonesia
+5. **Output per head and poverty** — Sulawesi Tengah, Maluku Utara and Indonesia
    by year: GRDP per capita at constant 2012 prices on the left axis, poverty
    headcount on the right.
+6. **The challenge of global fragmentation** — four panels: world trade as a share of
+   GDP, new trade restrictions per year, far-right vote share since 1900, and
+   far-right seat share by country. Data from *The Growth We Want*.
+7. **Aceh: what raises growth** — the growth gain from each of the thirteen
+   scenarios simulated with IndoTERM Aceh.
+8. **Kepulauan Riau: diversifying takes more than investment** — the gain from
+   directing the same investment at each sector, against the electronics
+   benchmark, and the extra demand each alternative needs to match it.
+9. **The grand strategy** — illustrated divider: defend the domestic economy,
+   counter-attack with new partnerships.
+10. **Where transmigration sits** — the four strategies, drilling into Strategic
+    Shift and then Strategic Agricultural Transformation.
+11. **The four pillars of SAT**.
+
+Charts 2–4 plot the share of a sector in value added against GDP per capita in
+**constant 2015 US dollars**, log scale.
 
 Build with `python deck.py`, which reads `csv/` and writes
 `structural-transformation.html`. Published at
