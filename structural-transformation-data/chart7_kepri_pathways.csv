@@ -1,6 +1,6 @@
-code,sector,kind,gain_investment_only_pp,code_to_reach_benchmark,extra_demand_needed
-A MANU,Electronics manufacturing,benchmark,0.5,,
-B1 BANK,Financial services,alt,0.43,B2 BANK-DOM,domestic demand +19.5%
-C1 DIGI,Digital and ICT,alt,0.38,C2 DIGI-EXP,exports +40.5%
-D2 FISHFOOD,"Fisheries, upstream and downstream",alt,0.32,D3 FISHFOOD-EXP,exports +36%
-D1 FISH,"Fisheries, downstream only",alt,0.18,,
+code,sector,kind,gain_investment_only_pp,code_to_reach_benchmark,demand_needed,second_route
+A MANU,Electronics manufacturing,benchmark,0.5,,,
+B1 BANK,Financial services,alt,0.43,B2 BANK-DOM,domestic demand +19.5%,B3 BANK-EXP: exports +71%
+C1 DIGI,Digital and ICT,alt,0.41,C2 DIGI-EXP,exports +40.5%,
+D2 FISHFOOD,"Fisheries, upstream and processing",alt,0.32,D3 FISHFOOD-EXP,exports +36%,
+D1 FISH,"Fisheries, upstream only",input,0.18,,,
