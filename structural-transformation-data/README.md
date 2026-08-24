@@ -11,21 +11,14 @@ capita in **constant 2015 US dollars**, log scale.
    in 2024, and Indonesia's own path from 1960.
 3. **Manufacturing** — the path of each Indonesian province since 2010, of
    Indonesia since 1983, and of six international benchmarks.
-5. **The grand strategy** — an illustrated divider.
-
-6. **Where transmigration sits** — the four strategies, with Strategic Shift and,
-   inside it, Strategic Agricultural Transformation, where transmigration areas fall.
-
-7. **The four pillars of SAT**.
-
-8. **Aceh: what raises growth** — the growth gain from each of the thirteen
+5. **Aceh: what raises growth** — the growth gain from each of the thirteen
    scenarios simulated with IndoTERM Aceh.
 
-9. **Kepulauan Riau: diversifying takes more than investment** — the gain from
+6. **Kepulauan Riau: diversifying takes more than investment** — the gain from
    directing the same investment at each sector, against the electronics
    benchmark, and the extra demand each alternative needs to match it.
 
-10. **The challenge of global fragmentation** — four panels: world trade as a share of
+7. **The challenge of global fragmentation** — four panels: world trade as a share of
    GDP, new trade restrictions per year, far-right vote share since 1900, and
    far-right seat share by country. Data from *The Growth We Want*.
 
@@ -105,7 +98,14 @@ structural terms sum exactly to the change in economy-wide productivity, verifie
 to a residual of 1.5e-11. Productivity is in national currency, so growth rates
 compare across countries but levels do not.
 
-Slides 5 to 7 draw on the author's own decks in `refs/` — the divider image is
+8. **The grand strategy** — an illustrated divider.
+
+9. **Where transmigration sits** — the four strategies, with Strategic Shift and,
+   inside it, Strategic Agricultural Transformation, where transmigration areas fall.
+
+10. **The four pillars of SAT**.
+
+Slides 8 to 10 draw on the author's own decks in `refs/` — the divider image is
 Midjourney in the deck's risograph style, the four-strategy artwork is lifted from
 `iesp-seminar-aay.pptx` slide 6, and the SAT content from its slides 8 and 9.
 
