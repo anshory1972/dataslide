@@ -51,6 +51,8 @@
      display:flex;gap:.7rem;align-items:baseline;text-wrap:balance}
   h2 .n{font-size:.78rem;font-weight:800;color:var(--blue);font-variant-numeric:tabular-nums;letter-spacing:.04em}
   h3{margin:.5rem 0 0;font-size:1rem;font-weight:700}
+  h4{margin:.6rem 0 -.35rem;font-size:.9rem;font-weight:700;color:var(--ink2);
+     letter-spacing:.01em}
   p{margin:0;max-width:42rem}
   ul,ol.b{margin:0;padding-left:1.2rem;max-width:42rem;display:flex;flex-direction:column;gap:.4rem}
   li::marker{color:var(--ink3)}
@@ -768,26 +770,116 @@
     The fruits that appear are the ones you can cut and put on a tray. The other fourteen fruits show
     nothing. This makes sense, and it tells us the method is finding a real menu and not random foods.
   </p>
+  <h3>Rp 7,491 against the programme's Rp 10,000</h3>
   <p>
-    <strong>Rp 7,491 is lower than the programme budget of about Rp 10,000 per meal.</strong> The two
-    numbers are close, but we cannot use this as proof that our answer is right. Several things pull them
-    apart, and they do not all pull the same way:
+    The programme budgets about <strong>Rp 10,000</strong> for one portion. Our answer is
+    <strong>Rp 7,491</strong>, which is three quarters of it. It is tempting to read that as proof
+    that the method works. It is not proof, and this section explains why, because the reason turns
+    out to matter for how the poverty result should be read.
   </p>
-  <ul>
-    <li>Packing, transport and kitchen costs are in the Rp 10,000 but never reach the household as food.
-    This pulls the household value <em>down</em>.</li>
-    <li>Children do not always finish the food. This also pulls it <em>down</em>.</li>
-    <li>The mother may not remember or may not report food her child ate at school. And the days question
-    has recall error. Both pull <em>our estimate</em> down, even if the true value is higher.</li>
-    <li>The programme buys in bulk, but the survey values food at shop prices. This pulls the household
-    value <em>up</em>.</li>
-  </ul>
-  <div class="card warn">
-    <span class="lab">What this means</span>
-    <p>Rp 7,491 is best read as a <strong>lowest likely value</strong> of the food that households received.
-    So our poverty result later is careful rather than large. What makes us trust the Rp 7,491 is the
-    checking in section 5, not the fact that it is close to Rp 10,000.</p>
+
+  <h4>The two numbers measure different things</h4>
+  <p>
+    <strong>Rp 10,000 is what the state spends.</strong> It covers ingredients, cooking, packing,
+    delivery to the school, and the cost of running the programme.
+  </p>
+  <p>
+    <strong>Rp 7,491 is what the survey records as food in the household.</strong> Susenas asks the
+    household to put a rupiah value on food it received without paying. So one number is a cost and
+    the other is a value. There is no rule that says they should be equal.
+  </p>
+
+  <div class="card">
+    <span class="lab">How Susenas values food that was not bought</span>
+    <p>BPS tells its enumerators exactly what to do. The manual says that when food comes from own
+    production or as a gift, <em>"perkirakan nilainya dengan harga setempat pada saat barang
+    dikonsumsi"</em> &mdash; estimate its value at the local price at the time it was eaten. For
+    cooked food it repeats the instruction: <em>"Bila makanan/minuman jadi yang dikonsumsi berasal
+    dari pemberian, perkirakanlah nilainya sesuai dengan harga setempat."</em></p>
+    <p>That second sentence is the one that covers MBG. An MBG meal is cooked food received as a
+    gift, so both the amount and the value go in the gift column, priced at what such a meal costs
+    locally.</p>
+    <p><b>We also tested whether enumerators follow the rule.</b> The survey records the
+    <em>quantity</em> of gift food as well as its value, so for a household that both bought and
+    received the same item we can compare the two prices. Across <strong>67,865</strong> such cases
+    the median ratio is <strong>1.000</strong>. Food received is valued at the same price the
+    household paid for it. The rule is written down, and it is being applied.</p>
   </div>
+
+  <h4>The mistake we made first</h4>
+  <p>
+    Our first explanation of the gap was that cooking, packing and transport sit inside the
+    Rp 10,000 but never arrive as food, so the household value must be lower. <strong>That reasoning
+    is wrong.</strong>
+  </p>
+  <p>
+    When you buy a plate of rice at a warung, the price already includes the cooking, the fuel, the
+    packing and the rent. A market price for cooked food is not the price of raw ingredients. Since
+    Susenas values the MBG meal at the local price of such a meal, the kitchen is already inside our
+    Rp 7,491. There is nothing there to subtract.
+  </p>
+  <p>
+    Very little survives as a real gap between the two numbers. Delivery to the school and the cost
+    of running the programme have no match in a warung price, so those push the cost above the value.
+    But a warung also charges a profit, and the programme does not, which pushes the other way. The
+    two are small and they work against each other.
+  </p>
+
+  <h4>So what is left to explain the gap?</h4>
+  <p>Three things, and only one of them is a fault in our number.</p>
+  <div class="tw">
+    <table>
+      <caption><b>Why the recorded value is below the programme cost.</b></caption>
+      <thead><tr><th>Reason</th><th>What it does</th><th>Is our estimate wrong?</th></tr></thead>
+      <tbody>
+        <tr><td>The portion is for a child</td><td>A child's tray is smaller than an adult's plate</td><td class="ok">No</td></tr>
+        <tr><td>Children do not finish the food</td><td>Food not eaten never becomes household consumption</td><td class="ok">No &mdash; leaving it out is correct</td></tr>
+        <tr><td>The mother does not know or does not report what her child ate at school</td><td>Food eaten but never written down</td><td class="bad">Yes, and it only pushes the number down</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>Which makes Rp 7,491 a floor, not a ceiling</h4>
+  <p>
+    This is where the corrected reasoning changes the conclusion. A market price for cooked food is
+    a cost <em>plus</em> a profit. So a full-size MBG portion, fully recorded, valued at local prices,
+    could reasonably come out <em>above</em> Rp 10,000. We measure Rp 7,491.
+  </p>
+  <p>
+    The item-level numbers say the same thing more sharply. A bought portion of nasi campur has a
+    median value of <strong>Rp 11,400</strong>. The whole recorded MBG tray &mdash; rice, meat or
+    egg, milk and fruit &mdash; comes to <strong>Rp 7,491</strong>, which is
+    <strong>0.66</strong> of one bought plate of rice. The rice part alone is
+    <strong>0.55</strong> of it.
+  </p>
+  <div class="card good">
+    <span class="lab">What follows</span>
+    <p>A tray holding rice, protein, milk and fruit is recorded at two thirds of a single bought
+    plate of rice. Smaller child portions explain some of that. The rest is food the survey does not
+    capture.</p>
+    <p>So <strong>Rp 7,491 is a lowest likely value</strong>, and every poverty number built on it is
+    careful rather than large. If the survey captured the whole meal, the poverty effect we report in
+    <a href="#s9">section 9</a> would be larger, not smaller.</p>
+  </div>
+
+  <div class="card warn">
+    <span class="lab">One thing this comparison cannot do</span>
+    <p>Rp 7,491 comes out of a regression, not out of an assumption. Nothing in the calculation looks
+    at the Rp 10,000. So the comparison is a fair outside check, and it does tell us something: if the
+    method had returned Rp 800, or Rp 60,000, we would know it was broken. It returned neither.</p>
+    <p>But it cannot do more than that. Our answer has a 95 per cent range of Rp 6,816 to Rp 8,166.
+    Rp 10,000 sits well outside it, so in a strict statistical sense the two numbers <em>are</em>
+    different, and that tells us nothing at all &mdash; they were never supposed to be the same.
+    <strong>What makes us trust Rp 7,491 is the testing in <a href="#s5">section 5</a>, not its
+    distance from the programme budget.</strong></p>
+  </div>
+  <p class="dim" style="font-size:.9rem">
+    The valuation rule is quoted from BPS, <i>Pedoman Pencacahan Susenas, Modul Konsumsi</i>, kept in
+    <code>reference\BPS_Pedoman_Susenas_2005_konsumsi.pdf</code>. BPS does not publish the current
+    edition; the 2025 questionnaire uses the same columns, and the test above shows the rule is still
+    being applied. The test itself is <code>do\28_unitvalue_check.do</code>, saved as
+    <code>output\mbg_unitvalue_check.csv</code>.
+  </p>
   <div class="tw">
     <table>
       <caption><b>Does the rule for choosing the nine foods matter?</b> Almost not at all.</caption>
