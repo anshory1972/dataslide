@@ -5,15 +5,15 @@
 <title>Health and Labour Supply Module for IndoTERM: Implementation Guide</title>
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Implementation guide for the health and labour-supply module in IndoTERM. Forty-three numbered tasks in six stages, each with its procedure, verification criterion and known failure modes, covering database construction, model implementation and simulation.">
+<meta name="description" content="Implementation guide for the health and labour-supply module in IndoTERM. Three pieces of new work in six stages, with a procedure, a verification condition and a completion gate for each; two difficult parts are marked.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="SDGs Center UNPAD">
 <meta property="og:title" content="Health and Labour Supply Module for IndoTERM: Implementation Guide">
-<meta property="og:description" content="Forty-three numbered tasks in six stages, from household survey data to a solved dynamic simulation. Each task states its procedure, its verification criterion and its known failure modes.">
+<meta property="og:description" content="Three pieces of new work in six stages, from household survey data to a solved dynamic simulation. Each task states its procedure, its verification condition and its known failure modes.">
 <meta property="og:url" content="https://anshory1972.github.io/dataslide/health-labour-module.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Health and Labour Supply Module for IndoTERM: Implementation Guide">
-<meta name="twitter:description" content="Forty-three numbered tasks in six stages, from household survey data to a solved dynamic simulation.">
+<meta name="twitter:description" content="Three pieces of new work in six stages, from household survey data to a solved dynamic simulation.">
 <style>
 :root{
   color-scheme: light;
@@ -323,6 +323,53 @@ dl.defs dd{margin:0;color:var(--secondary)}
 footer.foot{padding:32px 0 60px;font-size:13px;color:var(--muted);line-height:1.75}
 footer.foot p{max-width:74ch}
 
+
+/* ---------- how to use ---------- */
+.howto{
+  margin:6px 0 0;padding:14px 18px;border:1px solid var(--rule);border-radius:4px;
+  background:var(--surface);font-size:14.5px;max-width:74ch;
+}
+.howto-t{
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--slate);display:block;margin-bottom:7px;
+}
+.howto ul{margin:0;padding-left:18px;color:var(--secondary)}
+.howto li{margin-bottom:4px}
+.howto strong{color:var(--ink);font-weight:600}
+
+/* ---------- completion gate ---------- */
+.gate{
+  border:1px solid var(--rule);border-left:3px solid var(--good);background:var(--surface);
+  border-radius:0 4px 4px 0;padding:14px 18px;margin:22px 0 6px;
+}
+.gate-t{
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--good);display:block;margin-bottom:7px;
+}
+.gate ul{margin:0;padding-left:18px;font-size:14px;color:var(--secondary);max-width:74ch}
+.gate li{margin-bottom:4px}
+
+
+/* ---------- task kind tags ---------- */
+.kind{
+  display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;padding:1px 7px;border-radius:2px;
+  margin-left:8px;vertical-align:1px;border:1px solid transparent;
+}
+.kind-build{color:#fff;background:var(--accent)}
+.kind-run{color:#fff;background:var(--slate)}
+.kind-prepare{color:var(--secondary);background:var(--surface-2);border-color:var(--rule)}
+.kind-check{color:var(--good);background:#eef5f0;border-color:#cfe0d5}
+.kind-hard{color:var(--accent);background:transparent;border-color:var(--accent)}
+td .kind,p .kind{margin-left:0;margin-right:4px}
+/* ---------- dependency figure ---------- */
+figure.depfig{margin:14px 0 0}
+figure.depfig svg{width:100%;height:auto;display:block;max-width:820px}
+figure.depfig figcaption{font-size:12px;color:var(--secondary);margin:8px 0 0;line-height:1.5;max-width:74ch}
+figure.depfig figcaption b{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:700;letter-spacing:.03em;margin-right:7px;
+}
+
 /* ---------- narrow screens ---------- */
 @media screen and (max-width:999px){
   body{font-size:15.5px}
@@ -356,7 +403,6 @@ footer.foot p{max-width:74ch}
 </style>
 </head>
 <body>
-
 <div class="topbar">
   <div class="topbar-inner">
     <span class="topbar-label">Tasks completed</span>
@@ -371,16 +417,29 @@ footer.foot p{max-width:74ch}
     <p class="doctype">Implementation guide</p>
     <h1>Health and labour supply module for IndoTERM</h1>
     <p class="subtitle">Construction, implementation and simulation procedure</p>
-    <p class="abstract">This guide specifies the procedure for introducing health status into
-      the IndoTERM computable general equilibrium model of Indonesia, and for simulating the
-      effect of energy transition policies on health, labour supply and output. The procedure
-      comprises <strong>forty-three tasks in six stages</strong>. Each task states its
-      procedure, the criterion by which its completion is verified, and, where applicable, its
-      known failure modes.</p>
-    <p class="abstract">The guide is written for direct execution. It assumes familiarity with
-      general equilibrium modelling and with Indonesian household survey data. It does not
-      assume prior knowledge of the labour-supply module specification, which is set out in
-      section 5.</p>
+    <p class="abstract">This guide sets out how to introduce health status into the IndoTERM model
+      of Indonesia and simulate the effect of energy transition policies on health, labour supply
+      and output. The new work is <strong>three pieces</strong>: a labour database built from the
+      household surveys, a re-aggregated economic database, and about forty equations added to the
+      model. Two parts are difficult: calibrating the transition matrix (task B.8) and writing the
+      module code (tasks D.3 to D.7). Everything else is a short preparation step, a machine run,
+      or a check.</p>
+    <p class="abstract">The procedure is written as six stages. Each task states what to do, the
+      condition that shows it is complete, and its known failure modes. The tasks are numerous
+      because the checks are listed separately; each check takes minutes and prevents an error
+      that would cost days. Every stage ends with a completion gate.</p>
+
+    <div class="howto">
+      <span class="howto-t">How to use this guide</span>
+      <ul>
+        <li><strong>To execute:</strong> read section 4, then start at Stage A (section 6). Read
+          section 5 before Stage B.</li>
+        <li><strong>To understand the module first:</strong> read section 5 in full, including the
+          three interactive figures.</li>
+        <li><strong>To check a single task:</strong> every task names its inputs by task number, so
+          it can be read on its own.</li>
+      </ul>
+    </div>
 
     <dl class="docmeta">
       <dt>Project</dt><dd>Financing a Just Green Transition, Wellcome reference 325496/Z/25/Z</dd>
@@ -397,7 +456,7 @@ footer.foot p{max-width:74ch}
         <li><a href="#s1"><span class="n">1</span><span>Purpose and scope</span></a></li>
         <li><a href="#s2"><span class="n">2</span><span>Prerequisites</span></a></li>
         <li><a href="#s3"><span class="n">3</span><span>Conventions and notation</span></a></li>
-        <li><a href="#s4"><span class="n">4</span><span>System overview</span></a></li>
+        <li><a href="#s4"><span class="n">4</span><span>System overview and sequencing</span></a></li>
         <li><a href="#s5"><span class="n">5</span><span>Theoretical basis of the module</span></a></li>
         <li class="sub"><a href="#s51"><span class="n">5.1</span><span>Allocation of labour offers</span></a></li>
         <li class="sub"><a href="#s52"><span class="n">5.2</span><span>Wage adjustment</span></a></li>
@@ -421,23 +480,19 @@ footer.foot p{max-width:74ch}
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">1</span>Purpose and scope</h2>
     </div>
-    <p class="sec-lede">The host model records the quantity of each fuel consumed by each
-      industry, household group and region. It does not represent the effect of combustion on
-      health, nor the effect of health on labour supply. The module specified in this guide
-      supplies that representation.</p>
+    <p class="sec-lede">The host model records how much of each fuel each industry, household
+      group and region burns. It does not represent the effect of combustion on health, nor the
+      effect of health on labour supply. The module supplies that representation.</p>
     <p>The module classifies the working-age population by health status and labour-market
-      status, and transfers the population between these classes from one year to the next. A
-      policy that alters the incidence of illness therefore alters the composition of labour
-      supply, and through labour supply it alters output, wages and employment by region.</p>
-    <p><strong>Within scope.</strong> Construction of the module database from household
-      survey and epidemiological sources; modification of the economic database; implementation
-      of the module equations in the model code; execution and analysis of the baseline and
-      policy simulations.</p>
-    <p><strong>Outside scope.</strong> Estimation of the relation between emissions released in
-      one province and ambient concentrations in another, and estimation of the relation
-      between ambient concentration and disease incidence. These are inputs to the module.
-      Their interface with the module is specified in task D.7; their estimation is not treated
-      here.</p>
+      status, and moves the population between these classes from one year to the next. A
+      policy that changes the incidence of illness therefore changes labour supply, and through
+      labour supply it changes output, wages and employment by region.</p>
+    <p><strong>Within scope.</strong> The module database; the changes to the economic database;
+      the module equations; the baseline and policy simulations and their analysis.</p>
+    <p><strong>Outside scope.</strong> The relation between emissions in one province and ambient
+      concentration in another, and the relation between concentration and disease incidence.
+      These are inputs to the module. Task D.7 specifies their interface; their estimation is not
+      treated here.</p>
   </div>
 </section>
 
@@ -446,24 +501,23 @@ footer.foot p{max-width:74ch}
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">2</span>Prerequisites</h2>
-      <p class="sec-lede">The following must be available before task A.1 is attempted.</p>
+      <p class="sec-lede">All items in Table 1 must be available before task A.1.</p>
     </div>
-
     <figure class="tbl">
       <figcaption><b>Table 1</b>Software and data required before commencement.</figcaption>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Item</th><th>Specification</th><th>Required by</th></tr></thead>
           <tbody>
-            <tr><td>Host model</td><td>GMMI energy extension of IndoTERM: model source, database, closure files, shock files and simulation set-up</td><td>All stages</td></tr>
-            <tr><td>Solution software</td><td>GEMPACK, and RunDynam for the recursive solution</td><td>Stages A, D, E</td></tr>
+            <tr><td>Host model</td><td>GMMI energy extension of IndoTERM: model source, database, closure files, shock files, simulation set-up</td><td>All stages</td></tr>
+            <tr><td>Solution software</td><td>GEMPACK, and RunDynam for the year-by-year solution</td><td>Stages A, D, E</td></tr>
             <tr><td>Database pipeline</td><td>The national and regional construction programs with their input files</td><td>Stage C</td></tr>
             <tr><td>Household survey, health and labour</td><td>Susenas March core, person level, 2018&ndash;2025</td><td>Stage B</td></tr>
-            <tr><td>Household survey, activity days lost</td><td>Susenas March core, person level, 2013&ndash;2017</td><td>Task B.9</td></tr>
+            <tr><td>Household survey, days lost</td><td>Susenas March core, person level, 2013&ndash;2017</td><td>Task B.9</td></tr>
             <tr><td>Labour force survey</td><td>Sakernas: occupation, earnings, job tenure, separations</td><td>Tasks B.5, B.6, B.9</td></tr>
             <tr><td>Epidemiological estimates</td><td>Global Burden of Disease: incidence, prevalence and mortality by cause, age and sex, Indonesia</td><td>Tasks B.7, B.8</td></tr>
             <tr><td>Demographic estimates</td><td>BPS population projections and life tables by province</td><td>Tasks B.4, B.7</td></tr>
-            <tr><td>Statistical software</td><td>Stata or Python, with memory sufficient for files of approximately 1.1 million records</td><td>Stage B</td></tr>
+            <tr><td>Statistical software</td><td>Stata or Python, with memory for files of about 1.1 million records</td><td>Stage B</td></tr>
           </tbody>
         </table>
       </div>
@@ -479,23 +533,27 @@ footer.foot p{max-width:74ch}
     </div>
 
     <h3><span class="n">3.1</span>Structure of a task</h3>
-    <p>Tasks are identified by stage letter and number, for example <strong>B.8</strong>, and
-      are executed in the order given within a stage. Each task contains one or more of the
-      following elements.</p>
-    <p class="line"><span class="lbl proc">Procedure</span>The action to be performed.</p>
-    <p class="line"><span class="lbl ver">Verification</span>The condition that must hold for
-      the task to be regarded as complete. Where verification fails, the task is not complete
-      and subsequent tasks are not to be commenced.</p>
-    <p class="line"><span class="lbl cau">Caution</span>A known failure mode, with its symptom
-      and its remedy.</p>
-    <p>Supplementary explanation is placed in a collapsible note and may be omitted on a first
-      reading. The checkbox accompanying each task records its completion. The record is held
-      in the browser and is not transmitted.</p>
+    <p>Tasks are numbered by stage letter and sequence, for example <strong>B.8</strong>, and are
+      executed in that order. Each task has up to three elements, always in this order.</p>
+    <p class="line"><span class="lbl proc">Procedure</span>What to do.</p>
+    <p class="line"><span class="lbl ver">Verification</span>The condition that shows the task is
+      complete. If it fails, the task is not complete and the next task does not start.</p>
+    <p class="line"><span class="lbl cau">Caution</span>A known failure mode: its symptom and its
+      remedy.</p>
+    <p>Each task also carries a <strong>kind</strong> tag: <span class="kind kind-build">Build</span>
+      produces something new; <span class="kind kind-run">Run</span> is machine time;
+      <span class="kind kind-prepare">Prepare</span> is a decision, a request or a small
+      derivation; <span class="kind kind-check">Check</span> is a test that takes minutes. Table 4
+      counts them. The two difficult tasks are marked
+      <span class="kind kind-hard">Difficult</span>.</p>
+    <p>Background that is not needed for execution is placed in a collapsible note. The checkbox
+      beside each task records completion; the record stays in the browser. Each stage closes with
+      a <strong>completion gate</strong> listing the conditions that must all hold before the next
+      stage begins.</p>
 
     <h3><span class="n">3.2</span>Notation</h3>
     <figure class="tbl">
-      <figcaption><b>Table 2</b>Symbols used in this guide, following the published
-        specification of the module.</figcaption>
+      <figcaption><b>Table 2</b>Symbols used in this guide, following the published specification.</figcaption>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Symbol</th><th>Object</th><th>Dimensions</th></tr></thead>
@@ -505,12 +563,12 @@ footer.foot p{max-width:74ch}
             <tr><td><code>ACT_L</code></td><td>Population by activity in the preceding year</td><td>as above</td></tr>
             <tr><td><code>OFFER</code></td><td>Intended flows from category to activity</td><td>category &times; activity</td></tr>
             <tr><td><code>H</code></td><td>Realised flows from category to activity</td><td>category &times; activity</td></tr>
-            <tr><td><code>T</code></td><td>Transition matrix of movement between age and health states</td><td>activity &times; sex &times; region &times; (age, health) &times; (age, health)</td></tr>
+            <tr><td><code>T</code></td><td>Transition matrix between age and health states</td><td>activity &times; sex &times; region &times; (age, health) &times; (age, health)</td></tr>
             <tr><td><code>VAC</code></td><td>Vacancies</td><td>occupation &times; region</td></tr>
             <tr><td><code>ATW</code></td><td>Real after-tax wage</td><td>occupation &times; region</td></tr>
-            <tr><td>&alpha;</td><td>Rate of wage adjustment to the gap between labour demand and labour supply</td><td>scalar, 0.5 to 0.6</td></tr>
+            <tr><td>&alpha;</td><td>Rate of wage adjustment to the gap between labour demand and supply</td><td>scalar, 0.5 to 0.6</td></tr>
             <tr><td>&sigma;</td><td>Elasticity of substitution between destinations in the offer function</td><td>scalar, 2</td></tr>
-            <tr><td><code>e(h)</code></td><td>Effective labour supplied per employed person in health status <em>h</em></td><td>health</td></tr>
+            <tr><td><code>e(h)</code></td><td>Effective labour per employed person in health status <em>h</em></td><td>health</td></tr>
           </tbody>
         </table>
       </div>
@@ -522,64 +580,125 @@ footer.foot p{max-width:74ch}
 <section class="sec" id="s4">
   <div class="shell">
     <div class="sec-head">
-      <h2 class="sec-t"><span class="n">4</span>System overview</h2>
-      <p class="sec-lede">Transmission from policy to economic outcome comprises five links.
-        The host model provides the first and the fifth. The module provides the fourth. The
-        second and third constitute new work, of which only the second is unassigned.</p>
+      <h2 class="sec-t"><span class="n">4</span>System overview and sequencing</h2>
+      <p class="sec-lede">Five links carry a policy to an economic outcome. The host model
+        provides links 1 and 5. The module provides link 4. Links 2 and 3 are new work, and only
+        link 2 has no owner.</p>
     </div>
 
     <figure class="tbl">
-      <figcaption><b>Table 3</b>Transmission chain from fuel combustion to economic outcome,
-        with the source and status of each link.</figcaption>
+      <figcaption><b>Table 3</b>Transmission chain from fuel combustion to economic outcome.</figcaption>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Link</th><th>Output</th><th>Source</th><th>Status</th></tr></thead>
           <tbody>
-            <tr><td>1. Fuel combustion</td><td>Quantity of each fuel consumed by industry, household group and region</td><td>The <code>QGAS</code> matrix of the host model</td><td>Available</td></tr>
-            <tr><td>2. Ambient concentration</td><td>Concentration of particulate matter, sulphur dioxide and nitrogen oxides by region</td><td>Emission factors applied to the combustion matrix, followed by a source&ndash;receptor allocation</td><td>Factors are straightforward. The source&ndash;receptor step is unassigned.</td></tr>
-            <tr><td>3. Health response</td><td>Change in incidence and mortality by age, sex and region</td><td>Exposure&ndash;response functions from the Global Burden of Disease study</td><td>Assigned within the project</td></tr>
-            <tr><td>4. Labour supply</td><td>Labour offered to each occupation by health status, age, sex and region</td><td><strong>The module specified in this guide</strong></td><td>To be constructed</td></tr>
+            <tr><td>1. Fuel combustion</td><td>Fuel burned by industry, household group and region</td><td>The <code>QGAS</code> matrix of the host model</td><td>Available</td></tr>
+            <tr><td>2. Ambient concentration</td><td>Particulate matter, sulphur dioxide and nitrogen oxides by region</td><td>Emission factors on the combustion matrix, then a source&ndash;receptor allocation</td><td>Factors: straightforward. Source&ndash;receptor: <strong>no owner</strong></td></tr>
+            <tr><td>3. Health response</td><td>Change in incidence and mortality by age, sex and region</td><td>Exposure&ndash;response functions, Global Burden of Disease</td><td>Owner assigned</td></tr>
+            <tr><td>4. Labour supply</td><td>Labour offered to each occupation by health status, age, sex and region</td><td><strong>The module</strong></td><td>To build</td></tr>
             <tr><td>5. Economic outcome</td><td>Output, employment, wages and prices by region</td><td>IndoTERM</td><td>Available</td></tr>
           </tbody>
         </table>
       </div>
     </figure>
 
-    <h3><span class="n">4.1</span>Stage structure</h3>
+    <h3><span class="n">4.1</span>The six stages</h3>
     <div class="stageindex">
       <a class="stagecard" href="#s6"><span class="s-n">STAGE A</span>
         <div class="s-t">Verification of the host model</div>
-        <div class="s-d">Reproduction of the documented results prior to any modification.</div>
-        <div class="s-c">5 tasks</div></a>
+        <div class="s-d">Reproduce the documented results before changing anything.</div>
+        <div class="s-c">5 tasks &middot; days &middot; no build work</div></a>
       <a class="stagecard" href="#s7"><span class="s-n">STAGE B</span>
         <div class="s-t">Construction of the labour database</div>
-        <div class="s-d">Derivation of the module arrays from survey and epidemiological sources.</div>
-        <div class="s-c">11 tasks</div></a>
+        <div class="s-d">Derive the module arrays from survey and epidemiological data.</div>
+        <div class="s-c">11 tasks &middot; months &middot; build: B.3, B.5, B.6, B.8</div></a>
       <a class="stagecard" href="#s8"><span class="s-n">STAGE C</span>
         <div class="s-t">Modification of the economic database</div>
-        <div class="s-d">Disaggregation of the ore, metal, health and transport sectors and of the extraction regions.</div>
-        <div class="s-c">6 tasks</div></a>
+        <div class="s-d">Separate the ores, metals, health sectors and extraction regions.</div>
+        <div class="s-c">6 tasks &middot; weeks &middot; build: C.1, C.2, C.5</div></a>
       <a class="stagecard" href="#s9"><span class="s-n">STAGE D</span>
         <div class="s-t">Implementation in the model code</div>
-        <div class="s-d">Addition of the module equations and connection to the labour market.</div>
-        <div class="s-c">9 tasks</div></a>
+        <div class="s-d">Add the module equations and connect them to the labour market.</div>
+        <div class="s-c">9 tasks &middot; weeks &middot; build: D.3 to D.8</div></a>
       <a class="stagecard" href="#s10"><span class="s-n">STAGE E</span>
         <div class="s-t">Execution of the simulations</div>
-        <div class="s-d">Baseline, three policy simulations, control simulations and sensitivity analysis.</div>
-        <div class="s-c">8 tasks</div></a>
+        <div class="s-d">Baseline, three policy runs, control runs, sensitivity.</div>
+        <div class="s-c">8 tasks &middot; weeks &middot; machine runs</div></a>
       <a class="stagecard" href="#s11"><span class="s-n">STAGE F</span>
         <div class="s-t">Analysis and reporting</div>
-        <div class="s-d">Decomposition of the results and publication of the assumption register.</div>
-        <div class="s-c">4 tasks</div></a>
+        <div class="s-d">Decompose the results and publish the assumptions.</div>
+        <div class="s-c">4 tasks &middot; weeks &middot; no build work</div></a>
     </div>
 
-    <div class="callout req">
-      <span class="callout-t">Sequencing requirement</span>
-      <p>Stage B is independent of the model work and should commence in the first month of the
-        project, staffed by one research assistant experienced in the Indonesian household
-        surveys. Stages C and D may proceed concurrently. No task in Stage E is to be commenced
-        until Stages A, B, C and D are complete.</p>
-    </div>
+    <h3><span class="n">4.2</span>Dependencies between stages</h3>
+    <figure class="depfig">
+      <svg viewBox="-60 0 880 250" role="img" aria-label="Dependency chart of the six stages: A first; B, C and D in parallel with B the longest; E after all of them; F last">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="#6d6a63"/>
+          </marker>
+        </defs>
+        <!-- axis -->
+        <line x1="120" y1="222" x2="800" y2="222" stroke="#c7c5ba" stroke-width="1"/>
+        <text x="120" y="240" class="axistext">project start</text>
+        <text x="800" y="240" class="axistext" text-anchor="end">simulations delivered</text>
+        <!-- row labels + bars -->
+        <g font-family="system-ui,sans-serif" font-size="12.5" fill="#191817">
+          <text x="110" y="34" text-anchor="end">A &nbsp;Verify host model</text>
+          <rect x="120" y="22" width="60" height="18" rx="3" fill="#1c4e73"/>
+
+          <text x="110" y="68" text-anchor="end">B &nbsp;Labour database</text>
+          <rect x="120" y="56" width="400" height="18" rx="3" fill="#b4451f"/>
+          <text x="200" y="51" font-size="11" fill="#6d6a63">longest path; starts month 1</text>
+
+          <text x="110" y="102" text-anchor="end">C &nbsp;Economic database</text>
+          <rect x="186" y="90" width="150" height="18" rx="3" fill="#1c4e73"/>
+
+          <text x="110" y="136" text-anchor="end">D &nbsp;Model code</text>
+          <rect x="186" y="124" width="230" height="18" rx="3" fill="#1c4e73"/>
+
+          <text x="110" y="170" text-anchor="end">E &nbsp;Simulations</text>
+          <rect x="540" y="158" width="170" height="18" rx="3" fill="#1c4e73"/>
+
+          <text x="110" y="204" text-anchor="end">F &nbsp;Reporting</text>
+          <rect x="716" y="192" width="84" height="18" rx="3" fill="#1c4e73"/>
+        </g>
+        <!-- dependency lines -->
+        <path d="M180 31 L186 31 L186 99" fill="none" stroke="#6d6a63" stroke-width="1.2" marker-end="url(#arr)"/>
+        <path d="M186 99 L186 133" fill="none" stroke="#6d6a63" stroke-width="1.2" marker-end="url(#arr)"/>
+        <line x1="530" y1="14" x2="530" y2="215" stroke="#b4451f" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="530" y="10" font-size="11" fill="#b4451f" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700">gate: A, B, C, D complete</text>
+        <path d="M520 65 L530 65" fill="none" stroke="#6d6a63" stroke-width="1.2"/>
+        <path d="M336 99 L530 99" fill="none" stroke="#6d6a63" stroke-width="1.2" stroke-dasharray="2 3"/>
+        <path d="M416 133 L530 133" fill="none" stroke="#6d6a63" stroke-width="1.2" stroke-dasharray="2 3"/>
+        <path d="M530 167 L540 167" fill="none" stroke="#6d6a63" stroke-width="1.2" marker-end="url(#arr)"/>
+        <path d="M710 167 L716 167 L716 201" fill="none" stroke="#6d6a63" stroke-width="1.2" marker-end="url(#arr)"/>
+      </svg>
+      <figcaption><b>Figure 0</b>Order of the stages. Bar lengths are indicative. Stage B does
+        not depend on the model work and starts in month one with one research assistant. Stages
+        C and D run in parallel after A. Stage E cannot start until A, B, C and D have all passed
+        their completion gates.</figcaption>
+    </figure>
+
+    <h3><span class="n">4.3</span>Size of the work</h3>
+    <p>Thirteen of the forty-three tasks build something. Two of those are difficult: the
+      calibration in B.8 and the code in D.3 to D.7. The other thirty tasks are machine runs,
+      checks and preparation. Each is short. Each is listed separately because skipping it has
+      cost days in earlier projects on this pipeline. Every task carries a tag of its kind.</p>
+    <figure class="tbl">
+      <figcaption><b>Table 4</b>The forty-three tasks by kind.</figcaption>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Kind</th><th>Count</th><th>Typical effort each</th><th>Tasks</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kind kind-build">Build</span></td><td class="num">13</td><td>Days to weeks. Two are difficult.</td><td>B.3, B.5, B.6, <strong>B.8</strong>; C.1, C.2, C.5; <strong>D.3 to D.7</strong>, D.8</td></tr>
+            <tr><td><span class="kind kind-run">Run</span></td><td class="num">8</td><td>Machine time, hours to days; little attention</td><td>A.4; C.3; E.3 to E.8</td></tr>
+            <tr><td><span class="kind kind-prepare">Prepare</span></td><td class="num">15</td><td>Minutes to a day: a decision, a request, a small derivation, a document</td><td>A.1; B.1, B.2, B.4, B.7, B.9, B.10, B.11; D.1, D.2; E.1; F.1 to F.4</td></tr>
+            <tr><td><span class="kind kind-check">Check</span></td><td class="num">7</td><td>Minutes</td><td>A.2, A.3, A.5; C.4, C.6; D.9; E.2</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </figure>
   </div>
 </section>
 
@@ -588,41 +707,36 @@ footer.foot p{max-width:74ch}
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">5</span>Theoretical basis of the module</h2>
-      <p class="sec-lede">Stage B constructs numerical arrays. Their construction is
-        intelligible only once the specification they serve is understood. This section states
-        that specification and provides three interactive figures in which the governing
-        parameter may be varied and the response observed. The values in these figures are
-        illustrative and are not estimates for Indonesia.</p>
+      <p class="sec-lede">Stage B builds numerical arrays. They make sense only once the
+        specification they serve is understood. This section states the specification and gives
+        three interactive figures in which the governing parameter can be varied and the response
+        observed. The values in the figures are illustrative, not estimates for Indonesia.</p>
     </div>
 
     <p>At the start of each year every person of working age occupies a
-      <strong>category</strong>, defined by region, age, sex, health status and the activity
-      undertaken in the preceding year. During the year each category makes
-      <strong>offers</strong>: to remain in the same occupation, to move to another occupation,
-      to be unemployed, or to withdraw from the labour force. Industry labour demand determines
-      the number of positions available. Persons who held a position in the preceding year
-      retain it in the first instance; the residual positions constitute
-      <strong>vacancies</strong> and are allocated among the remaining offers. At the close of
-      the year the <strong>transition matrix</strong> advances the population by one year of
-      age, transfers a proportion between health states, and removes those who die. The result
-      is the category distribution of the following year.</p>
-    <p>Health enters the specification at a single point, namely the transition matrix. All
-      remaining effects follow from that entry.</p>
+      <strong>category</strong>: region, age, sex, health status, and the activity of the preceding
+      year. During the year each category makes <strong>offers</strong>: to stay in the same
+      occupation, to move to another, to be unemployed, or to leave the labour force. Industry
+      labour demand sets the number of positions. Persons who held a position keep it first; the
+      remaining positions are <strong>vacancies</strong> and are shared among the other offers.
+      At the close of the year the <strong>transition matrix</strong> advances the population one
+      year in age, moves a proportion between health states, and removes those who die. The result
+      is next year's categories.</p>
+    <p>Health enters at a single point: the transition matrix. Everything else follows from that
+      entry.</p>
 
     <h3 id="s51"><span class="n">5.1</span>Allocation of labour offers</h3>
-    <p>Each category allocates its members between destinations according to a constant
-      elasticity of substitution share function. The share directed to a destination rises with
-      the real after-tax wage available there and with a preference weight. Poor health reduces
-      the preference weight attaching to every working destination simultaneously, so that the
-      share withdrawing from the labour force rises.</p>
+    <p>Each category divides its members between destinations by a constant elasticity of
+      substitution share function. The share going to a destination rises with the real after-tax
+      wage there and with a preference weight. Poor health lowers the preference weight on every
+      working destination at once, so the share leaving the labour force rises.</p>
 
     <div class="ifig">
       <span class="ifig-tag">Interactive figure</span>
       <h4><span class="n">Figure 1</span>Allocation of offers under the CES share function</h4>
-      <p class="ifig-sub">Adjust the controls to observe the response of the offer
-        distribution. The initial distribution reproduces the assumptions of the published
-        specification: 88 per cent retain the same occupation, 7 per cent move occupation, and
-        3 per cent enter unemployment.</p>
+      <p class="ifig-sub">The starting distribution reproduces the published assumptions: 88 per
+        cent stay, 7 per cent move occupation, 3 per cent enter unemployment. Adjust the controls
+        and observe the response.</p>
       <div class="ifig-grid">
         <div class="ifig-fig">
           <svg id="ces-svg" viewBox="0 0 440 210" role="img" aria-label="Bar chart of the distribution of offers across four destinations"></svg>
@@ -643,26 +757,22 @@ footer.foot p{max-width:74ch}
           <div class="readout" id="ces-read"></div>
         </div>
       </div>
-      <p class="caption"><b>Interpretation.</b> An increase in the relative wage of the
-        alternative occupation redirects offers towards it, in proportion to the elasticity. A
-        reduction in the capacity to work reduces the weight on all three working destinations
-        simultaneously and raises the share withdrawing from the labour force. This gradient
-        determines the magnitude of the policy result. It is estimated directly from the
-        household survey in task B.5.</p>
+      <p class="caption"><b>The point.</b> The health control moves all three working
+        destinations together and raises the share leaving the labour force. That gradient sets
+        the size of the policy result, and the household survey measures it directly (task B.5).</p>
     </div>
 
     <h3 id="s52"><span class="n">5.2</span>Wage adjustment</h3>
-    <p>The real wage does not clear the labour market within the year. It adjusts each year by
-      a fraction &alpha; of the proportional gap between labour demand and labour supply, each
-      measured relative to its baseline value. Until the adjustment is complete, an increase in
-      labour supply is observed as unemployment rather than as employment.</p>
+    <p>The real wage does not clear the labour market within the year. Each year it moves by a
+      fraction &alpha; of the gap between labour demand and labour supply, both relative to
+      baseline. Until the adjustment is complete, extra labour supply appears as unemployment,
+      not as employment.</p>
 
     <div class="ifig">
       <span class="ifig-tag">Interactive figure</span>
-      <h4><span class="n">Figure 2</span>Response to a permanent one per cent increase in labour supply</h4>
-      <p class="ifig-sub">Labour supply rises permanently by one per cent in year one. The
-        series show the deviation of employment and of the real wage from baseline in each
-        subsequent year.</p>
+      <h4><span class="n">Figure 2</span>Response to a permanent one per cent rise in labour supply</h4>
+      <p class="ifig-sub">Labour supply rises by one per cent in year one and stays there. The
+        series show how far employment and the real wage are from baseline in each later year.</p>
       <div class="ifig-grid">
         <div class="ifig-fig">
           <svg id="wage-svg" viewBox="0 0 440 244" role="img" aria-label="Line chart of the deviation of employment and the real wage from baseline over ten years"></svg>
@@ -683,29 +793,26 @@ footer.foot p{max-width:74ch}
           <div class="readout" id="wage-read"></div>
         </div>
       </div>
-      <p class="caption"><b>Interpretation.</b> Deviation from baseline, per cent. The terminal
-        values are determined by the elasticity of labour demand and are independent of
-        &alpha;, which determines only the rate of convergence. The duration of the adjustment,
-        rather than its terminal value, is the quantity of interest in an assessment of
-        transition costs. Values of &alpha; between 0.5 and 0.6 are adopted in the published
-        applications; both are examined in task E.8.</p>
+      <p class="caption"><b>The point.</b> &alpha; sets only how fast the economy gets to the
+        end point, not where the end point is. The years of unemployment before the gain appears
+        are the transition cost. Published applications use &alpha; of 0.5 to 0.6; both are tested
+        in task E.8.</p>
     </div>
 
     <h3 id="s53"><span class="n">5.3</span>Identification of transition rates without longitudinal data</h3>
-    <p>The transition matrix requires two rates: the annual probability that a person in good
-      health becomes ill, and the annual probability that an ill person recovers. No Indonesian
-      survey observes the same individual in consecutive years, so neither rate is directly
-      observed. The <em>proportion of the population that is ill at each age</em> is, however,
-      the accumulated consequence of both rates operating over the life course. A sequence of
-      annual cross-sections of that proportion therefore identifies the two rates jointly.</p>
+    <p>The transition matrix needs two rates: the annual probability that a healthy person becomes
+      ill, and the annual probability that an ill person recovers. No Indonesian survey follows
+      the same person across years, so neither rate is observed. But the proportion of the
+      population that is ill at each age is the accumulated result of both rates over a lifetime.
+      Annual cross-sections of that proportion therefore identify both rates together.</p>
 
     <div class="ifig">
       <span class="ifig-tag">Interactive figure</span>
       <h4><span class="n">Figure 3</span>Recovery of the two rates from the age profile</h4>
-      <p class="ifig-sub">The plotted points constitute a target age profile generated from a
-        known pair of rates. Adjust the two controls until the simulated profile coincides with
-        the target. Convergence demonstrates that both rates are identified from the age
-        profile alone. This is the calibration performed in task B.8.</p>
+      <p class="ifig-sub">The points are a target profile generated from a known pair of rates.
+        Adjust the two controls until the line passes through the points. Reaching them shows
+        that both rates are identified from the age profile alone. This is task B.8 in
+        miniature.</p>
       <div class="ifig-grid">
         <div class="ifig-fig">
           <svg id="prev-svg" viewBox="0 0 440 244" role="img" aria-label="Line chart of the proportion of the population with a functional difficulty by age, simulated against target"></svg>
@@ -726,12 +833,10 @@ footer.foot p{max-width:74ch}
           <div class="readout" id="prev-read"></div>
         </div>
       </div>
-      <p class="caption"><b>Interpretation.</b> Proportion of the population with a functional
-        difficulty, per cent, by single year of age. At young ages a high incidence combined
-        with a high recovery rate produces almost the same profile as a low incidence combined
-        with a low recovery rate. The two rates are separated by the curvature of the profile
-        at older ages. The full age range is therefore required, and the level is subsequently
-        scaled to an external total as specified in task B.8.</p>
+      <p class="caption"><b>The point.</b> At young ages a high incidence with high recovery
+        looks almost the same as a low incidence with low recovery. The curvature at older ages
+        separates them. Use the full age range, then scale the level to an external total (task
+        B.8).</p>
     </div>
   </div>
 </section>
@@ -741,35 +846,33 @@ footer.foot p{max-width:74ch}
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">6</span>Stage A. Verification of the host model</h2>
-      <p class="sec-lede">No modification is made at this stage. The purpose is to establish
-        that the host model reproduces its documented results on the target machine. In the
-        absence of that establishment, a discrepancy observed subsequently cannot be attributed
-        either to the module or to the installation.</p>
+      <p class="sec-lede">Nothing is modified in this stage. Its purpose is to show that the host
+        model gives its documented results on the target machine. Without this, a later
+        discrepancy cannot be attributed to the module or to the installation.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> the host model directory</span>
         <span class="chip"><b>Output</b> reproduced baseline and policy simulations</span>
-        <span class="chip"><b>Duration</b> several days</span>
+        <span class="chip"><b>Duration</b> days</span>
       </div>
     </div>
 
     <div class="task" data-task="A1">
       <input class="task-check" type="checkbox" aria-label="Mark task A.1 complete">
       <div>
-        <p class="task-id">TASK A.1</p>
+        <p class="task-id">TASK A.1 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Create a working copy of the model directory</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Copy the entire host model
-            directory to a local working directory. Work is not to be conducted within a shared
-            or synchronised directory. A simulation writes a large number of intermediate
-            files, and synchronisation clients corrupt files that are open for writing.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The copy contains the model
-            source file, the aggregated database and its set file, the closure files, and the
-            baseline and policy shock files.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Copy the whole host model
+            directory to a local working directory. Do not work in a shared or synchronised
+            folder; a simulation writes many intermediate files and synchronisation clients corrupt
+            files that are open for writing.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The copy is complete.</strong>
+            It contains the model source, the aggregated database and its set file, the closure
+            files, and the baseline and policy shock files.</p>
           <details class="note"><summary>Rationale</summary><div class="note-body">
-            <p>The directory as supplied contains absolute paths belonging to the machine on
-              which it was constructed. These paths are modified during installation. Were they
-              modified in the shared copy, the original would be rendered unusable for its
-              owner and the only unmodified reference would be lost.</p>
+            <p>The supplied directory holds absolute paths from the machine that built it. Those
+              paths are changed during installation. If they are changed in the shared copy, the
+              original becomes unusable for its owner and the only clean reference is lost.</p>
           </div></details>
         </div>
       </div>
@@ -778,21 +881,19 @@ footer.foot p{max-width:74ch}
     <div class="task" data-task="A2">
       <input class="task-check" type="checkbox" aria-label="Mark task A.2 complete">
       <div>
-        <p class="task-id">TASK A.2</p>
+        <p class="task-id">TASK A.2 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Verify software versions</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Record the version of the
-            solution software and of the dynamic simulation manager installed on the target
-            machine, together with the versions under which the supplied directory was
-            produced.</p>
-          <p class="line"><span class="lbl cau">Caution</span>A simulation set-up file written
-            by a later version of the simulation manager cannot be opened by an earlier version.
-            Where the versions differ, the archive is to be expanded outside the application and
-            the local installation directed at the expanded directory. Forcing the file is not
-            an acceptable remedy.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The model source, the
-            database and the simulation set-up open without error, and the set-up reports the
-            solution period 2023 to 2050.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Record the versions of GEMPACK
+            and RunDynam on the target machine, and the versions that produced the supplied
+            directory.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>All files open.</strong>
+            The model source, the database and the simulation set-up open without error, and the
+            set-up shows the solution period 2023 to 2050.</p>
+          <p class="line"><span class="lbl cau">Caution</span>A set-up file written by a newer
+            RunDynam does not open in an older one. If the versions differ, expand the archive
+            outside the program and point the local RunDynam at the expanded folder. Do not force
+            the file.</p>
         </div>
       </div>
     </div>
@@ -800,21 +901,19 @@ footer.foot p{max-width:74ch}
     <div class="task" data-task="A3">
       <input class="task-check" type="checkbox" aria-label="Mark task A.3 complete">
       <div>
-        <p class="task-id">TASK A.3</p>
+        <p class="task-id">TASK A.3 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Compile the unmodified model</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Execute the compilation
-            procedure supplied with the directory, notwithstanding that a compiled executable is
-            also supplied. Compilation establishes that the source and the executable
-            correspond.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Run the compilation procedure
+            supplied with the directory, even though a compiled executable is also supplied.
+            Compilation shows that source and executable agree.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">:: within the model directory</span>
 compile.bat
 
 <span class="cmt">:: the executable and the source should both be present</span>
 dir termener.exe termener.tab</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>The compiler reports no
-            errors. Retain the compilation log. It constitutes the reference against which the
-            log produced in task D.9 is compared.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>No compiler errors.</strong>
+            Keep the compilation log; task D.9 compares against it.</p>
         </div>
       </div>
     </div>
@@ -822,25 +921,32 @@ dir termener.exe termener.tab</pre></div>
     <div class="task" data-task="A4">
       <input class="task-check" type="checkbox" aria-label="Mark task A.4 complete">
       <div>
-        <p class="task-id">TASK A.4</p>
+        <p class="task-id">TASK A.4 <span class="kind kind-run">Run</span></p>
         <p class="task-t">Reproduce the reference and carbon price simulations</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Execute the two documented
-            simulations, namely the reference case and the carbon price case, and compare the
-            results with the archived results workbook.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Carbon dioxide emissions on
-            the reference path are approximately 645 million tonnes in 2025 and approximately
-            1,680 million tonnes in 2045. On the carbon price path they are approximately 459
-            million tonnes in 2025, declining to approximately 295 million tonnes by 2045.</p>
-          <p class="line"><span class="lbl proc">Procedure</span>Record the reference and policy
-            values of gross domestic product in 2050 from the results workbook. These serve as
-            the denominator when the magnitude of the health effect is reported in Stage F. They
-            are to be obtained from the workbook and not from any secondary presentation.</p>
-          <p class="line"><span class="lbl cau">Caution</span>A discrepancy exceeding one per
-            cent on the emissions path indicates a difference in the closure, the shocks or the
-            database relative to the archived simulation. The discrepancy is to be resolved
-            before Stage B commences. Diagnosis at this point is substantially less costly than
-            diagnosis after the module has been installed.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Run the two documented
+            simulations, the reference case and the carbon price case. Compare the results with
+            the archived results workbook. Record the reference and policy values of gross domestic
+            product in 2050 from the workbook; Stage F uses them as the denominator for the health
+            effect.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The emissions
+            checkpoints in Table 5 are reproduced</strong> to within one per cent.</p>
+          <figure class="tbl">
+            <figcaption><b>Table 5</b>Carbon dioxide checkpoints from the archived results
+              workbook, million tonnes per year.</figcaption>
+            <div class="tablewrap">
+              <table>
+                <thead><tr><th>Year</th><th>Reference path</th><th>Carbon price path</th></tr></thead>
+                <tbody>
+                  <tr><td>2025</td><td class="num">about 645</td><td class="num">about 459</td></tr>
+                  <tr><td>2045</td><td class="num">about 1,680</td><td class="num">about 295</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </figure>
+          <p class="line"><span class="lbl cau">Caution</span>A larger discrepancy means the
+            closure, the shocks or the database differ from the archived run. Resolve it before
+            Stage B. Diagnosis now is far cheaper than diagnosis after the module is installed.</p>
         </div>
       </div>
     </div>
@@ -848,36 +954,43 @@ dir termener.exe termener.tab</pre></div>
     <div class="task" data-task="A5">
       <input class="task-check" type="checkbox" aria-label="Mark task A.5 complete">
       <div>
-        <p class="task-id">TASK A.5</p>
+        <p class="task-id">TASK A.5 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Document the closure and the baseline shocks</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Examine the common closure file
-            and the baseline shock file. For each statement, record in writing the variable it
-            fixes and the variable it releases.</p>
-          <p class="line">Four statements in the closure are material to the present work.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Open the common closure file and
+            the baseline shock file. For each statement, write one sentence stating what it fixes
+            and what it frees. Four statements matter for the present work.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! capital accumulates through investment rather than being fixed</span>
 <span class="kw">swap</span> xcap = faccum;
 <span class="cmt">! investment follows the rate of return rule</span>
 <span class="kw">swap</span> finv1 = finv4;
 <span class="cmt">! THIS STATEMENT IS REPLACED IN TASK E.1.</span>
-<span class="cmt">! It specifies national labour supply as a function of the real wage.</span>
-<span class="cmt">! Following installation of the module, labour supply is determined</span>
-<span class="cmt">! by the module, by occupation and by region.</span>
+<span class="cmt">! It makes national labour supply a function of the real wage.</span>
+<span class="cmt">! After the module is installed, the module determines labour supply,</span>
+<span class="cmt">! by occupation and by region.</span>
 <span class="kw">swap</span> flabsup_id = delfwage;</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>Execute the closure and shock
-            validation procedure without initiating a simulation. The procedure reads the model,
-            applies the closure, and reports whether the number of exogenous variables equals
-            the number of equations and whether every shocked variable is exogenous.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The closure and shock
+            check passes</strong> without starting a simulation. The check reads the model, applies
+            the closure, and confirms that exogenous variables equal equations and that every
+            shocked variable is exogenous.</p>
           <details class="note"><summary>Definition of a closure</summary><div class="note-body">
-            <p>The model contains more variables than equations. A closure is the set of
-              variables determined outside the model. A different closure applied to the same
-              model constitutes a different experiment. A <em>swap</em> exchanges the status of
-              two variables: the first becomes endogenous and the second exogenous. The swaps
-              listed above are the statements that convert a single-period model into a model
-              solved recursively year by year.</p>
+            <p>The model has more variables than equations. A closure is the set of variables
+              fixed from outside. The same model with a different closure is a different
+              experiment. A <em>swap</em> exchanges the status of two variables: the first becomes
+              endogenous, the second exogenous. The swaps above are what turn a one-period model
+              into a model solved year by year.</p>
           </div></details>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage A completion gate</span>
+      <ul>
+        <li>The model compiles from source with no errors (A.3).</li>
+        <li>Both archived simulations reproduce the Table 5 checkpoints within one per cent (A.4).</li>
+        <li>Every closure and shock statement has a written one-sentence description (A.5).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -887,61 +1000,57 @@ dir termener.exe termener.tab</pre></div>
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">7</span>Stage B. Construction of the labour database</h2>
-      <p class="sec-lede">This stage converts three data sources into the arrays defined in
-        Table 2. The method is that of the published South African application: the functional
-        form of each rate is assumed, and its level is scaled to an external total of
-        established reliability.</p>
+      <p class="sec-lede">This stage turns three data sources into the arrays of Table 2. The
+        method is the one used for South Africa: assume the shape of each rate, then scale its
+        level to an external total that can be trusted.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> Susenas, Sakernas, GBD, BPS</span>
-        <span class="chip"><b>Output</b> the module arrays in a single model data file</span>
-        <span class="chip"><b>Duration</b> several months, one research assistant</span>
+        <span class="chip"><b>Output</b> the module arrays in one model data file</span>
+        <span class="chip"><b>Duration</b> months, one research assistant</span>
       </div>
     </div>
 
     <div class="callout">
-      <span class="callout-t">Requirement applying to the whole stage</span>
-      <p>Every value that is not directly measured is to be entered in a register recording its
-        value, its basis, and the external total to which it was scaled. The register is a
-        deliverable of the project and is the condition under which the module can be assessed
-        by a reviewer. It is compiled in task B.10 and is to be maintained throughout the
-        stage.</p>
+      <span class="callout-t">Requirement for the whole stage</span>
+      <p>Every value that is not measured goes into a register with its value, its basis, and the
+        external total it was scaled to. The register is a project deliverable and is what allows
+        a reviewer to assess the module. Task B.10 compiles it; fill it in as the stage
+        proceeds.</p>
     </div>
 
     <div class="task" data-task="B1">
       <input class="task-check" type="checkbox" aria-label="Mark task B.1 complete">
       <div>
-        <p class="task-id">TASK B.1</p>
+        <p class="task-id">TASK B.1 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Define the module sets</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Determine the five set
-            definitions and record the justification for each. Subsequent revision of a set
-            definition requires the reconstruction of every array.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Fix the five set definitions in
+            Table 6 and record the reason for each. Changing a set later means rebuilding every
+            array.</p>
           <figure class="tbl">
-            <figcaption><b>Table 4</b>Set definitions and their justification.</figcaption>
+            <figcaption><b>Table 6</b>Set definitions and their justification.</figcaption>
             <div class="tablewrap">
               <table>
                 <thead><tr><th>Set</th><th>Definition</th><th>Justification</th></tr></thead>
                 <tbody>
-                  <tr><td>Region</td><td>Approximately 10, identical to the economic database</td><td>The coal, nickel and Java regions require separate identification. Stage C establishes them.</td></tr>
-                  <tr><td>Age</td><td>Five groups</td><td>As in both published applications. Sufficient for the participation gradient.</td></tr>
-                  <tr><td>Sex</td><td>Two</td><td>The gradient of participation with respect to health differs substantially by sex in Indonesia.</td></tr>
-                  <tr><td>Health status</td><td>Three: no difficulty, some difficulty, severe difficulty</td><td>Derived from the functional-difficulty block of the Susenas March core, present on every form since 2018.</td></tr>
-                  <tr><td>Activity</td><td>Approximately 15</td><td>The four occupations for which the model demands labour, each divided between formal and informal employment, together with short-term unemployment, long-term unemployment, new entrants, and persons outside the labour force.</td></tr>
+                  <tr><td>Region</td><td>About 10, identical to the economic database</td><td>The coal, nickel and Java regions must be separate. Stage C creates them.</td></tr>
+                  <tr><td>Age</td><td>Five groups</td><td>As in both published applications; enough for the participation gradient.</td></tr>
+                  <tr><td>Sex</td><td>Two</td><td>Participation by health differs sharply by sex in Indonesia.</td></tr>
+                  <tr><td>Health status</td><td>Three: no difficulty, some difficulty, severe difficulty</td><td>From the Susenas functional-difficulty block, on every March form since 2018.</td></tr>
+                  <tr><td>Activity</td><td>About 15</td><td>The four occupations the model demands, each split formal and informal, plus short-term unemployment, long-term unemployment, new entrants, and outside the labour force.</td></tr>
                 </tbody>
               </table>
             </div>
           </figure>
-          <p class="line"><span class="lbl cau">Caution</span>The activity set must contain
-            every occupation for which the economic model demands labour, and no others. Where
-            the model specifies four occupations, the module supplies those four. The occupation
-            set of the database is to be inspected before any survey processing is
-            undertaken.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The activity set
+            matches the model's occupation set exactly.</strong> Inspect the occupation set in the
+            database before any survey processing; the module must supply those occupations and no
+            others.</p>
           <details class="note"><summary>Treatment of informal employment</summary><div class="note-body">
-            <p>Approximately half of Indonesian employment is informal. The typical response of
-              an informal worker to illness is a reduction in hours worked rather than cessation
-              of employment. Were informal workers classified identically to formal workers, the
-              effect of health on half of the workforce would not be represented. This
-              constitutes the principal departure from the published specification.</p>
+            <p>About half of Indonesian employment is informal. An informal worker who falls ill
+              usually works fewer hours rather than stopping work. If informal and formal workers
+              are classified the same way, the health effect on half the workforce is invisible.
+              This is the main departure from the published specification.</p>
           </div></details>
         </div>
       </div>
@@ -950,36 +1059,29 @@ dir termener.exe termener.tab</pre></div>
     <div class="task" data-task="B2">
       <input class="task-check" type="checkbox" aria-label="Mark task B.2 complete">
       <div>
-        <p class="task-id">TASK B.2</p>
+        <p class="task-id">TASK B.2 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Specify the data request</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Issue three specific requests.
-            A request that does not specify the blocks and the level of aggregation will be met
-            with an unsuitable extract.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Issue three requests, each naming
+            the blocks and the level of aggregation.</p>
           <ul>
-            <li><strong>Susenas March core, 2018 to 2025, person level.</strong> Required
-              blocks: functional difficulty, health complaint, and labour. The variables are to
-              be harmonised across years, since names and block numbers are revised between
-              rounds.</li>
-            <li><strong>Susenas March core, 2013 to 2017.</strong> These are the final rounds
-              recording the number of days of activity lost to illness. They are required once,
-              for task B.9.</li>
-            <li><strong>Sakernas</strong>, for occupation, earnings, the commencement date of
-              current employment, and cessation of employment within the preceding year with the
-              stated reason.</li>
+            <li><strong>Susenas March core, 2018 to 2025, person level:</strong> the
+              functional-difficulty, health-complaint and labour blocks, harmonised across years.</li>
+            <li><strong>Susenas March core, 2013 to 2017:</strong> the last rounds that record days
+              of activity lost to illness. Needed once, for task B.9.</li>
+            <li><strong>Sakernas:</strong> occupation, earnings, start date of current job, and
+              cessation of work in the last year with reason.</li>
           </ul>
-          <p class="line"><span class="lbl ver">Verification</span>A March core file contains
-            approximately 1.1 million person records. A file containing a few hundred thousand
-            records is the September module, whose sample is approximately one quarter the
-            size.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Each March file holds
+            about 1.1 million person records.</strong> A file of a few hundred thousand is the
+            September module, whose sample is about a quarter of the size.</p>
           <div class="callout req">
-            <span class="callout-t">Revision of the questionnaire in 2018</span>
-            <p>Until 2017 the questionnaire recorded the number of days of activity lost to
-              illness. From 2018 that item was discontinued and a block of eight graded
-              functional-difficulty items was introduced, administered to all persons aged two
-              years and above. The health <em>status</em> variable is therefore available from
-              2018 onward, whereas the hours-lost parameter must be derived from the 2013 to
-              2017 rounds and carried forward.</p>
+            <span class="callout-t">The 2018 questionnaire change that shapes the design</span>
+            <p>Up to 2017 the form recorded days of activity lost to illness. From 2018 that item
+              was dropped and a block of eight graded functional-difficulty items was added, asked
+              of everyone aged two and above. So the health <em>status</em> variable exists from
+              2018 onward, and the hours-lost parameter comes from 2013 to 2017 and is carried
+              forward.</p>
           </div>
         </div>
       </div>
@@ -988,23 +1090,16 @@ dir termener.exe termener.tab</pre></div>
     <div class="task" data-task="B3">
       <input class="task-check" type="checkbox" aria-label="Mark task B.3 complete">
       <div>
-        <p class="task-id">TASK B.3</p>
+        <p class="task-id">TASK B.3 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Construct the activities table</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Produce a single weighted table
-            of the population classified by region, age, sex, health status and activity. This
-            table is the basis of the entire module database.</p>
-          <p class="line">Two coding decisions are required.</p>
-          <ul>
-            <li><strong>Health status.</strong> The block contains eight domains, each with a
-              graded response. Reduce these to three states by a stated rule and record the
-              rule. The conventional rule assigns the most severe response across the eight
-              domains.</li>
-            <li><strong>Activity.</strong> From the labour block: employed, with occupation and
-              formal or informal status; unemployed, short term or long term; outside the labour
-              force; new entrant.</li>
-          </ul>
-          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">* Outline only. Variable names are revised between rounds;</span>
+          <p class="line"><span class="lbl proc">Procedure</span>Produce one weighted table:
+            population by region, age, sex, health status and activity. Two coding rules are
+            needed and both must be written down. Health status: the most severe response across
+            the eight domains, reduced to three states. Activity: employed with occupation and
+            formal or informal status; unemployed, short or long term; outside the labour force;
+            new entrant.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">* Outline only. Variable names change between rounds;</span>
 <span class="cmt">* consult the codebook for the year being processed.</span>
 
 <span class="cmt">* 1. health status: most severe response across the eight domains</span>
@@ -1023,22 +1118,18 @@ replace act = 12 if not_in_labour_force==1
 
 <span class="cmt">* 3. weighted table</span>
 collapse (sum) people=weight, by(region age sex h act)</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>The table summed over health
-            status and activity reproduces the published population by province for that year.
-            Summed over health status alone it reproduces the published employment and
-            unemployment totals. A discrepancy indicates an error in the weight variable or in
-            the activity coding.</p>
-          <p class="line"><span class="lbl cau">Caution</span>Certain cells contain few
-            observations, in particular young persons with severe difficulty in a specified
-            occupation. These are to be identified at this point and pooled in task B.5, rather
-            than permitted to determine a rate.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The table reproduces
+            the published BPS totals.</strong> Summed over health and activity it gives the
+            population by province; summed over health alone it gives published employment and
+            unemployment. A mismatch means the weight variable or the activity coding is wrong.</p>
+          <p class="line"><span class="lbl cau">Caution</span>Some cells are nearly empty, for
+            example young persons with severe difficulty in one occupation. List them now and pool
+            them in task B.5, rather than let a handful of records set a rate.</p>
           <details class="note"><summary>Comparison with the South African application</summary><div class="note-body">
-            <p>In the South African application health status and labour-market status were not
-              jointly observed. National health prevalence was obtained from an external model
-              and distributed across occupations by assumed proportions. The Susenas records
-              both characteristics for the same individual, with region and age. The table
-              constructed here therefore replaces the least defensible step of the published
-              procedure.</p>
+            <p>South Africa had no joint observation of health and work status. National
+              prevalence came from an external model and was spread across occupations by assumed
+              shares. Susenas records both for the same person, with region and age. This one table
+              replaces the least defensible step of the published procedure.</p>
           </div></details>
         </div>
       </div>
@@ -1047,24 +1138,17 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B4">
       <input class="task-check" type="checkbox" aria-label="Mark task B.4 complete">
       <div>
-        <p class="task-id">TASK B.4</p>
+        <p class="task-id">TASK B.4 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Derive lagged activities, categories and new entrants</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Three operations, in the order
-            given.</p>
-          <ol>
-            <li>Lagged activities: divide the activities table by one plus the rate of growth of
-              the labour force.</li>
-            <li>Categories: premultiply lagged activities by the transition matrix. The
-              transition matrix is not available until task B.8; this operation is therefore
-              deferred and completed on return.</li>
-            <li>New entrants: obtain the number of persons aged 15 by province from the BPS
-              population projections. This is preferable to derivation as a residual.</li>
-          </ol>
-          <p class="line"><span class="lbl ver">Verification</span>Categories summed over all
-            categories, plus new entrants, equals activities summed over all activities. A
-            discrepancy indicates that the rows of the transition matrix do not sum correctly,
-            which is diagnosed in task B.8.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Three operations in order.
+            (1) Lagged activities: divide the activities table by one plus labour-force growth.
+            (2) Categories: premultiply lagged activities by the transition matrix; this waits for
+            task B.8 and is completed on return. (3) New entrants: the number of persons aged 15 by
+            province from the BPS projections, which is cleaner than a residual.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Categories plus new
+            entrants equal activities</strong> when each is summed over all its classes. A
+            mismatch means the transition matrix rows do not sum correctly (task B.8).</p>
         </div>
       </div>
     </div>
@@ -1072,35 +1156,32 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B5">
       <input class="task-check" type="checkbox" aria-label="Mark task B.5 complete">
       <div>
-        <p class="task-id">TASK B.5</p>
+        <p class="task-id">TASK B.5 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Construct the offer table and calibrate the health gradient</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The offer table records
-            intended flows, prior to the rationing of positions. It is constructed by rule
-            rather than by estimation. Four rules are sufficient.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>The offer table records what
+            people intend before positions are rationed. Build it by the four rules in Table 7.
+            The last rule is the one that determines the policy result: compute the employment
+            rate by health status, age, sex and region from the table in task B.3, and set the
+            offer strengths so that the module reproduces those rates. South Africa assumed this
+            gradient; here it is measured.</p>
           <figure class="tbl">
-            <figcaption><b>Table 5</b>Rules governing the construction of the offer table.</figcaption>
+            <figcaption><b>Table 7</b>Rules for constructing the offer table.</figcaption>
             <div class="tablewrap">
               <table>
-                <thead><tr><th>Flow</th><th>Rule</th><th>Source, or published assumption</th></tr></thead>
+                <thead><tr><th>Flow</th><th>Rule</th><th>Source, or published value</th></tr></thead>
                 <tbody>
-                  <tr><td>Retention of the same occupation</td><td>Residual after the remaining three</td><td>&mdash;</td></tr>
-                  <tr><td>Movement to another occupation</td><td>A fixed proportion of the category, distributed across occupations of comparable skill</td><td>Sakernas tenure data; otherwise 7 per cent</td></tr>
-                  <tr><td>Voluntary movement to unemployment</td><td>A fixed proportion</td><td>Sakernas separations data; otherwise 3 per cent</td></tr>
-                  <tr><td>Offers from the unemployed and from new entrants</td><td>Offer strength, declining with severity of health status</td><td><strong>Calibrated from Susenas</strong></td></tr>
+                  <tr><td>Stay in the same occupation</td><td>Residual after the other three</td><td>&mdash;</td></tr>
+                  <tr><td>Move to another occupation</td><td>A fixed share of the category, spread across occupations of similar skill</td><td>Sakernas tenure; otherwise 7 per cent</td></tr>
+                  <tr><td>Leave a job for unemployment by choice</td><td>A fixed share</td><td>Sakernas separations; otherwise 3 per cent</td></tr>
+                  <tr><td>Unemployed and new entrants offering to work</td><td>Offer strength, falling with severity of health status</td><td><strong>Calibrated from Susenas</strong></td></tr>
                 </tbody>
               </table>
             </div>
           </figure>
-          <p class="line"><span class="lbl proc">Procedure</span>The final row determines the
-            policy result. In the published application the offer strength by health status was
-            assumed. Here it is estimated: compute the employment rate by health status, age,
-            sex and region from the table constructed in task B.3, and set the offer strengths
-            such that the module reproduces those employment rates.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Each row of the offer table
-            sums to the size of the corresponding category. Offers represent intentions, and
-            their column totals will not correspond to observed employment. That correspondence
-            is established in task B.6.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Each row of the offer
+            table sums to its category size.</strong> Column totals will not match observed
+            employment, because offers are intentions; task B.6 establishes that match.</p>
         </div>
       </div>
     </div>
@@ -1108,28 +1189,19 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B6">
       <input class="task-check" type="checkbox" aria-label="Mark task B.6 complete">
       <div>
-        <p class="task-id">TASK B.6</p>
+        <p class="task-id">TASK B.6 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Derive realised flows by vacancy iteration</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Positions are limited, and the
-            majority of offers are therefore not accepted. The number of vacancies and the
-            number of persons retaining a position are mutually determined, and the system is
-            solved by iteration to convergence.</p>
-          <ol>
-            <li>Assume an initial proportion of employees separated involuntarily, taken as
-              three per cent unless the Sakernas data indicate otherwise.</li>
-            <li>Compute the number of persons retaining the position held in the preceding
-              year.</li>
-            <li>Compute vacancies as industry labour demand less the number of persons retaining
-              a position.</li>
-            <li>Allocate vacancies among the remaining offers in proportion to those offers.</li>
-            <li>Recompute retention given the movements now determined, and return to step 2.</li>
-          </ol>
-          <p class="line"><span class="lbl ver">Verification</span>Two conditions. The iteration
-            converges, and the column totals of the realised flow table reproduce the observed
-            employment, unemployment and non-participation totals established in task B.3.
-            Failure to converge indicates that the offer strengths determined in task B.5 are
-            inconsistent with the number of positions available.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Positions are limited, so most
+            offers are refused. Vacancies and retained positions determine each other, so iterate
+            to convergence: (1) assume three per cent of employees are dismissed, unless Sakernas
+            shows otherwise; (2) count persons who keep last year's position; (3) vacancies are
+            labour demand less those persons; (4) share vacancies among the other offers in
+            proportion to the offers; (5) recount retention given the moves, and return to (2).</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The loop converges and
+            the column totals reproduce the observed totals</strong> of employment, unemployment
+            and non-participation from task B.3. Non-convergence means the offer strengths of task
+            B.5 are inconsistent with the number of positions.</p>
         </div>
       </div>
     </div>
@@ -1137,19 +1209,16 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B7">
       <input class="task-check" type="checkbox" aria-label="Mark task B.7 complete">
       <div>
-        <p class="task-id">TASK B.7</p>
-        <p class="task-t">Construct the ageing and mortality component of the transition matrix</p>
+        <p class="task-id">TASK B.7 <span class="kind kind-prepare">Prepare</span></p>
+        <p class="task-t">Construct the ageing and mortality part of the transition matrix</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>This component is obtained by
-            reference rather than by calibration. With ten-year age groups, approximately ten
-            per cent of each group advances to the following group each year. Mortality rates
-            are taken from the BPS life tables by age, sex and province, and verified against
-            the Global Burden of Disease estimates.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Apply the ageing and
-            mortality component to the current population and compare the result with the BPS
-            population projection for the following year. The two should correspond closely. A
-            material discrepancy indicates that the age groups of the module and those of the
-            life table are not aligned.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>This part is looked up, not
+            calibrated. With ten-year age groups, about ten per cent of each group moves up each
+            year. Take mortality by age, sex and province from the BPS life tables and check it
+            against the Global Burden of Disease.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Applying this part to
+            the current population reproduces next year's BPS projection.</strong> A material gap
+            means the module's age groups and the life table's age groups are not aligned.</p>
         </div>
       </div>
     </div>
@@ -1157,52 +1226,32 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B8">
       <input class="task-check" type="checkbox" aria-label="Mark task B.8 complete">
       <div>
-        <p class="task-id">TASK B.8</p>
-        <p class="task-t">Calibrate the health component of the transition matrix</p>
+        <p class="task-id">TASK B.8 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
+        <p class="task-t">Calibrate the health part of the transition matrix</p>
         <div class="task-body">
-          <p class="line">This is the most demanding task in Stage B. Figure 3 presents the same
-            problem in reduced form and should be worked through before commencement.</p>
-          <p class="line"><span class="lbl proc">Procedure</span>Four steps.</p>
-          <ol>
-            <li><strong>Functional form of incidence.</strong> Obtain incidence by cause, age
-              and sex for Indonesia from the Global Burden of Disease study. Map the causes to
-              the three functional-difficulty states. Respiratory and cardiovascular disease are
-              of principal importance, being the causes responsive to ambient particulate
-              concentration.</li>
-            <li><strong>Recovery.</strong> No source measures the recovery rate directly. It is
-              treated as the parameter to be determined.</li>
-            <li><strong>Calibration.</strong> Select the recovery rate, and adjust incidence,
-              such that the proportion of the population with a functional difficulty at each
-              age implied by the module corresponds to the Susenas observation in each of the
-              eight years from 2018 to 2025.</li>
-            <li><strong>Scaling of the level.</strong> Multiply both rates by a common factor
-              such that the national number of cases by cause corresponds to the Global Burden
-              of Disease total. The calibration determines the functional form; this step
-              determines the level.</li>
-          </ol>
-          <p class="line"><span class="lbl proc">Procedure</span>The rates may differ by
-            activity. In the published application the progression rate was assumed to be lower
-            for skilled workers. The gradient may instead be estimated: compute the variation of
-            the proportion with a difficulty by labour-market status at each age, and impose it
-            as a scaling, holding the national total constant.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Four conditions, each
-            inexpensive to evaluate.</p>
-          <ul>
-            <li>Each row of the matrix sums to one less the mortality rate. This is an
-              arithmetic identity, not a matter of judgement.</li>
-            <li>The implied age profile corresponds to the Susenas observation in all eight
-              years, and not solely in the year used for the calibration.</li>
-            <li>The implied prevalence corresponds to the Global Burden of Disease prevalence,
-              which was not used in the calibration.</li>
-            <li>Advancing the module ten years without any shock leaves the distribution of
-              health states stable. Drift indicates that incidence and recovery are mutually
-              inconsistent.</li>
-          </ul>
-          <p class="line"><span class="lbl cau">Caution</span>A single calibrated pair of rates
-            is not to be reported as a measured quantity. The range of pairs reproducing the age
-            profile to comparable accuracy is to be recorded. That range constitutes the
-            sensitivity test specified in task E.8 and is the accurate statement of what the
-            data determine.</p>
+          <p class="line">The most demanding task in Stage B. Figure 3 is the same problem in
+            miniature; work through it first.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Four steps. (1) <strong>Shape of
+            incidence:</strong> take incidence by cause, age and sex for Indonesia from the Global
+            Burden of Disease and map the causes to the three difficulty states; respiratory and
+            cardiovascular disease matter most because air pollution changes them. (2)
+            <strong>Recovery</strong> is not measured anywhere; treat it as the parameter to find.
+            (3) <strong>Calibrate:</strong> choose recovery and adjust incidence so that the
+            proportion with a difficulty at each age matches Susenas in each year 2018 to 2025.
+            (4) <strong>Scale the level:</strong> multiply both rates by one factor so that
+            national cases by cause match the Global Burden of Disease total. Calibration fixes the
+            shape; this step fixes the level. Rates may differ by activity: take the gradient by
+            labour-market status from the survey and impose it as a scaling that holds the national
+            total fixed.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Four conditions
+            hold.</strong> Every row sums to one less the mortality rate. The implied age profile
+            matches Susenas in all eight years, not only the fitted one. The implied prevalence
+            matches the Global Burden of Disease prevalence, which was not used in the fit. Running
+            the module ten years with no shock leaves the health distribution stable.</p>
+          <p class="line"><span class="lbl cau">Caution</span>Do not report one calibrated pair
+            as if it were measured. Record the range of pairs that fit the age profile about
+            equally well. That range is the sensitivity test in task E.8 and the honest statement
+            of what the data determine.</p>
         </div>
       </div>
     </div>
@@ -1210,30 +1259,23 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B9">
       <input class="task-check" type="checkbox" aria-label="Mark task B.9 complete">
       <div>
-        <p class="task-id">TASK B.9</p>
+        <p class="task-id">TASK B.9 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Construct the wage and effective labour tables</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Two tables are required.</p>
-          <ul>
-            <li><strong>Wages.</strong> The Susenas does not record earnings. Relative wages
-              between occupations are obtained from Sakernas; the absolute level is obtained
-              from the wage bill recorded in the economic database. Relativities derive from the
-              survey, the level from the national accounts.</li>
-            <li><strong>Effective labour.</strong> One coefficient for each health status,
-              expressing labour supplied per employed person relative to a person in good
-              health. It is derived from the days of activity lost per episode of illness
-              recorded in the 2013 to 2017 rounds, together with the number of days of inpatient
-              care, which is recorded on every form.</li>
-          </ul>
-          <p class="line"><span class="lbl ver">Verification</span>Employment by occupation
-            multiplied by the wage reproduces the wage bill in the economic database, from which
-            the level was obtained.</p>
-          <details class="note"><summary>Function of the effective labour coefficient</summary><div class="note-body">
-            <p>In both published health applications, an improvement in health raised output
-              solely by increasing the number of persons in employment. Productivity was
-              unaffected. In an economy in which half of employment is informal, this omits the
-              principal mechanism, since an ill informal worker generally remains employed and
-              reduces hours. One coefficient per health status is sufficient to represent it.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Two small tables. <strong>Wages:</strong>
+            relativities between occupations from Sakernas, level from the wage bill in the
+            economic database; Susenas has no earnings item. <strong>Effective labour:</strong> one
+            coefficient per health status, labour per employed person relative to a healthy
+            person, from days of activity lost per illness in the 2013 to 2017 rounds plus
+            inpatient days, which every form records.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Employment by
+            occupation times the wage reproduces the wage bill</strong> in the economic
+            database.</p>
+          <details class="note"><summary>Why the effective labour coefficient is needed</summary><div class="note-body">
+            <p>In both published health applications, better health raised output only by putting
+              more people into work; productivity was unchanged. Where half of employment is
+              informal that omits the main mechanism, because an ill informal worker usually stays
+              employed and works fewer hours. One coefficient per health status captures it.</p>
           </div></details>
         </div>
       </div>
@@ -1242,37 +1284,34 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B10">
       <input class="task-check" type="checkbox" aria-label="Mark task B.10 complete">
       <div>
-        <p class="task-id">TASK B.10</p>
+        <p class="task-id">TASK B.10 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Compile the assumption register</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Compile a single table. Each
-            value in the database that is not directly measured constitutes one entry, recording
-            the object, the value adopted, the basis of that value, and the external total to
-            which it was scaled. The register of the published application contains eighteen
-            entries; the present register will contain fewer, several quantities assumed there
-            being measured by the Susenas.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>One table, one row per value that
+            is not measured: the object, the value used, its basis, and the external total it was
+            scaled to. The South African register has eighteen rows; this one will have fewer,
+            because Susenas measures several quantities that were assumed there. Table 8 gives
+            the rows known now.</p>
           <figure class="tbl">
-            <figcaption><b>Table 6</b>Structure of the assumption register, with the entries
-              known at the time of writing.</figcaption>
+            <figcaption><b>Table 8</b>Assumption register: structure and the entries known at the time of writing.</figcaption>
             <div class="tablewrap">
               <table>
                 <thead><tr><th>Object</th><th>Value</th><th>Basis</th><th>Scaled to</th></tr></thead>
                 <tbody>
-                  <tr><td>Proportion seeking a change of occupation</td><td>7 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
-                  <tr><td>Voluntary movement to unemployment</td><td>3 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
-                  <tr><td>Involuntary separation rate</td><td>3 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                  <tr><td>Share seeking a change of occupation</td><td>7 per cent, or Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                  <tr><td>Voluntary moves to unemployment</td><td>3 per cent, or Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                  <tr><td>Dismissal rate</td><td>3 per cent, or Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
                   <tr><td>Offer strength by health status</td><td>Calibrated</td><td>Susenas employment rates</td><td>Observed employment</td></tr>
                   <tr><td>Rate of age progression</td><td>10 per cent per year</td><td>Approximation for ten-year groups</td><td>BPS projection</td></tr>
-                  <tr><td>Incidence and recovery</td><td>Calibrated, with the admissible range</td><td>GBD functional form, Susenas age profile</td><td>GBD national totals</td></tr>
-                  <tr><td>Rate of wage adjustment &alpha;</td><td>0.6, examined at 0.5</td><td>Published value</td><td>&mdash;</td></tr>
+                  <tr><td>Incidence and recovery</td><td>Calibrated, with the admissible range</td><td>GBD shape, Susenas age profile</td><td>GBD national totals</td></tr>
+                  <tr><td>Wage adjustment &alpha;</td><td>0.6, tested at 0.5</td><td>Published value</td><td>&mdash;</td></tr>
                   <tr><td>Offer elasticity &sigma;</td><td>2</td><td>Published value</td><td>&mdash;</td></tr>
                 </tbody>
               </table>
             </div>
           </figure>
-          <p class="line"><span class="lbl ver">Verification</span>The register is complete when
-            an independent reader can trace every unmeasured value in the database to a stated
-            basis.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>An independent reader
+            can trace every unmeasured value to a stated basis.</strong></p>
         </div>
       </div>
     </div>
@@ -1280,23 +1319,32 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="B11">
       <input class="task-check" type="checkbox" aria-label="Mark task B.11 complete">
       <div>
-        <p class="task-id">TASK B.11</p>
+        <p class="task-id">TASK B.11 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Write the module arrays to a model data file</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The model reads binary data
-            files. Write each array to a separately identified header within a single data file:
-            activities, lagged activities, categories, offers, realised flows, the transition
-            matrix, and wages.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Open the file with the data
-            inspection utility supplied with the modelling software and confirm the dimensions
-            of each array against the set definitions recorded in task B.1. A transposed
-            dimension produces a model that compiles, solves, and is incorrect.</p>
-          <p class="line"><span class="lbl cau">Caution</span>The module is computationally
-            small: approximately eight regions, fifteen activities, five age groups, two sexes
-            and three health states yield approximately 3,600 category cells. Computational
-            capacity is not a constraint in this project at any point.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Write each array to its own
+            named header in one binary data file: activities, lagged activities, categories,
+            offers, realised flows, the transition matrix, wages.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Every array has the
+            dimensions recorded in task B.1</strong>, read off in the data viewer supplied with the
+            modelling software. A transposed dimension gives a model that compiles, solves, and is
+            wrong.</p>
+          <p class="line"><span class="lbl cau">Caution</span>The module is small: about eight
+            regions, fifteen activities, five ages, two sexes and three health states give about
+            3,600 category cells. Computing capacity is never the constraint in this project.</p>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage B completion gate</span>
+      <ul>
+        <li>The activities table reproduces the published population, employment and unemployment totals (B.3).</li>
+        <li>The realised flow table reproduces the observed activity totals after the vacancy loop converges (B.6).</li>
+        <li>Every transition matrix row sums to one less the mortality rate, and the implied age profile matches Susenas in all eight years (B.8).</li>
+        <li>The assumption register is complete and every unmeasured value has a basis (B.10).</li>
+        <li>The data file opens and every array has the dimensions of B.1 (B.11).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1306,53 +1354,52 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">8</span>Stage C. Modification of the economic database</h2>
-      <p class="sec-lede">The existing database was aggregated for the analysis of electricity
-        generation. It aggregates away the ore sectors, the metal sectors, the health sectors
-        and the extraction provinces, all of which are required here. Two mapping files are
-        revised and the database pipeline is re-executed.</p>
+      <p class="sec-lede">The existing database was aggregated for an electricity study. It merges
+        the ore sectors, the metal sectors, the health sectors and the extraction provinces, all
+        of which this study needs separately. Two mapping files change and the pipeline is run
+        again.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> two mapping files</span>
-        <span class="chip"><b>Output</b> a reconstructed and verified database</span>
-        <span class="chip"><b>Duration</b> several weeks</span>
+        <span class="chip"><b>Output</b> a rebuilt and verified database</span>
+        <span class="chip"><b>Duration</b> weeks</span>
       </div>
     </div>
 
     <div class="callout req">
       <span class="callout-t">Governing principle</span>
-      <p>The model database is not to be edited directly under any circumstance. The input files
-        are edited and the pipeline is re-executed. The pipeline reconstructs trade flows,
-        transport margins and balances, and the verification program then confirms every
-        accounting identity. Direct editing transfers responsibility for every identity to the
-        modeller, with no mechanism by which a violation would be detected.</p>
+      <p>Never edit the model database directly. Edit the input files and run the pipeline. The
+        pipeline rebuilds trade flows, transport margins and balances, and the verification
+        program then confirms every accounting identity. A direct edit makes every identity the
+        modeller's responsibility with nothing to detect a violation.</p>
     </div>
 
     <div class="task" data-task="C1">
       <input class="task-check" type="checkbox" aria-label="Mark task C.1 complete">
       <div>
-        <p class="task-id">TASK C.1</p>
+        <p class="task-id">TASK C.1 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Define the revised sector mapping</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The master database contains
-            185 sectors. The mapping file assigns each to an aggregated sector. Five revisions
-            are required.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>The master database has 185
+            sectors; the mapping file assigns each to an aggregate. Make the five changes in
+            Table 9.</p>
           <figure class="tbl">
-            <figcaption><b>Table 7</b>Revisions to the sector mapping, with their purpose.</figcaption>
+            <figcaption><b>Table 9</b>Changes to the sector mapping and their purpose.</figcaption>
             <div class="tablewrap">
               <table>
-                <thead><tr><th>Group</th><th>Present treatment</th><th>Required treatment</th><th>Purpose</th></tr></thead>
+                <thead><tr><th>Group</th><th>Now</th><th>Required</th><th>Purpose</th></tr></thead>
                 <tbody>
-                  <tr><td>Ores</td><td>All seven ore sectors aggregated into other mining</td><td>Nickel, copper, gold and bauxite separately identified</td><td>The mining policy is defined over these ores</td></tr>
-                  <tr><td>Metals</td><td>Iron and steel aggregated with non-ferrous metals</td><td>Both separately identified</td><td>Smelting generates its own captive coal-fired power</td></tr>
-                  <tr><td>Health</td><td>Private health within other services; public health within government</td><td>Both separately identified</td><td>Demand for health services must respond to the incidence of illness</td></tr>
-                  <tr><td>Transport</td><td>A single transport sector</td><td>Land and sea transport separately identified</td><td>These carry the change in fuel use as trade margins</td></tr>
-                  <tr><td>Energy</td><td>Coal, crude oil, gas, refining and seven generation technologies</td><td>Unchanged</td><td>Already adequate for the present analysis</td></tr>
+                  <tr><td>Ores</td><td>All seven ore sectors in other mining</td><td>Nickel, copper, gold and bauxite separate</td><td>The mining policy is defined over these ores</td></tr>
+                  <tr><td>Metals</td><td>Iron and steel merged with non-ferrous metals</td><td>Both separate</td><td>Smelting runs its own captive coal power</td></tr>
+                  <tr><td>Health</td><td>Private health in other services; public health in government</td><td>Both separate</td><td>Health service demand must respond to illness</td></tr>
+                  <tr><td>Transport</td><td>One transport sector</td><td>Land and sea separate</td><td>They carry the fuel-use change as margins</td></tr>
+                  <tr><td>Energy</td><td>Coal, crude, gas, refining, seven generation technologies</td><td>Unchanged</td><td>Already adequate</td></tr>
                 </tbody>
               </table>
             </div>
           </figure>
-          <p class="line"><span class="lbl ver">Verification</span>The mapping assigns each of
-            the 185 sectors to exactly one aggregated sector. A sector assigned to none, or to
-            more than one, is the most frequent error and terminates the pipeline.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Every one of the 185
+            sectors maps to exactly one aggregate.</strong> A sector mapped to none or to two is
+            the most common error and stops the pipeline.</p>
         </div>
       </div>
     </div>
@@ -1360,27 +1407,18 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="C2">
       <input class="task-check" type="checkbox" aria-label="Mark task C.2 complete">
       <div>
-        <p class="task-id">TASK C.2</p>
+        <p class="task-id">TASK C.2 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Define the revised regional mapping</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The master database contains 34
-            provinces. The present model aggregates them into six regions, combining provinces
-            that require separate identification in this analysis. Define approximately ten
-            regions as follows.</p>
-          <ul>
-            <li>Java divided into two regions: the western provinces adjacent to Jakarta, and
-              the central and eastern provinces. Exposure to ambient pollution differs between
-              them.</li>
-            <li>East and South Kalimantan as a single separate region, being the location of
-              coal extraction.</li>
-            <li>Central and Southeast Sulawesi as a single separate region, being the location
-              of nickel extraction.</li>
-            <li>Papua separately identified. Sumatra, the remainder of Kalimantan, the remainder
-              of Sulawesi, and the eastern islands as previously defined.</li>
-          </ul>
-          <p class="line"><span class="lbl ver">Verification</span>The region set of the module
-            defined in task B.1 and the region set defined here are identical in membership and
-            in order. They are to be compared element by element.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>The master database has 34
+            provinces; the present model merges them into six regions. Define about ten: Java in
+            two (the western provinces around Jakarta; the central and eastern provinces), because
+            their exposure differs; East and South Kalimantan as one region, for coal; Central and
+            Southeast Sulawesi as one region, for nickel; Papua separate; Sumatra, the rest of
+            Kalimantan, the rest of Sulawesi and the eastern islands as before.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The region set here and
+            the module's region set from task B.1 are identical</strong> in membership and order,
+            compared element by element.</p>
         </div>
       </div>
     </div>
@@ -1388,29 +1426,27 @@ collapse (sum) people=weight, by(region age sex h act)</pre></div>
     <div class="task" data-task="C3">
       <input class="task-check" type="checkbox" aria-label="Mark task C.3 complete">
       <div>
-        <p class="task-id">TASK C.3</p>
-        <p class="task-t">Execute the database pipeline</p>
+        <p class="task-id">TASK C.3 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Run the database pipeline</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The pipeline comprises four
-            stages. The mapping files are read by the fourth. Where the base year is unchanged,
-            only the third and fourth stages require execution.</p>
-          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">:: Stage 1  national construction, required only if the base year changes</span>
+          <p class="line"><span class="lbl proc">Procedure</span>The pipeline has four stages and
+            the mapping files feed the fourth. If the base year is unchanged, only stages 3 and 4
+            need to run.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">:: Stage 1  national build, only if the base year changes</span>
 cd natdata
 mkdata.bat
 
-<span class="cmt">:: Stage 3  regional construction: 185 sectors by 34 provinces</span>
+<span class="cmt">:: Stage 3  regional build: 185 sectors by 34 provinces</span>
 cd ..\regdata
 mkdata.bat
 
-<span class="cmt">:: Stage 4  aggregation using the two revised mapping files</span>
+<span class="cmt">:: Stage 4  aggregation with the two revised mapping files</span>
 doagg.bat</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>The pipeline writes a log for
-            each program in the chain. The final log reports the number of sectors and regions
-            in the result, which must correspond to the definitions of tasks C.1 and C.2.</p>
-          <p class="line"><span class="lbl cau">Caution</span>The regional construction stage
-            requires several hours. It is to be initiated when the machine will not be required
-            for other work, and must not be interrupted. A partially written database is
-            indistinguishable from a complete one on inspection.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The final log reports
+            the sector and region counts of tasks C.1 and C.2.</strong></p>
+          <p class="line"><span class="lbl cau">Caution</span>The regional build takes hours.
+            Start it when the machine is free and do not interrupt it; a half-written database
+            looks complete.</p>
         </div>
       </div>
     </div>
@@ -1418,22 +1454,20 @@ doagg.bat</pre></div>
     <div class="task" data-task="C4">
       <input class="task-check" type="checkbox" aria-label="Mark task C.4 complete">
       <div>
-        <p class="task-id">TASK C.4</p>
-        <p class="task-t">Execute the database consistency checks</p>
+        <p class="task-id">TASK C.4 <span class="kind kind-check">Check</span></p>
+        <p class="task-t">Run the database consistency checks</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Execute the verification
-            program supplied with the pipeline. It evaluates every accounting identity in the
-            database: that supply equals deliveries, that transport margins attach to existing
-            trade flows, and that every balance closes.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Zero failures. No tolerance
-            is applied. A failure at this point constitutes an error in the database which is
-            transmitted to every simulation subsequently executed.</p>
-          <details class="note"><summary>Diagnostic value of the consistency checks</summary><div class="note-body">
-            <p>In an earlier application of this pipeline, the verification program detected a
-              modification that had been introduced into the quantity equation but not into the
-              corresponding price equation. The simulation had solved without reporting an
-              error. The verification program was the only mechanism that identified the
-              divergence of the accounts.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Run the verification program
+            supplied with the pipeline. It tests every accounting identity: supply equals
+            deliveries, margins sit on real trade flows, every balance closes.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Zero failures.</strong>
+            No tolerance. A failure here is an error in the database and every later simulation
+            inherits it.</p>
+          <details class="note"><summary>What this check has caught before</summary><div class="note-body">
+            <p>In an earlier use of this pipeline the check found a change that had been put into
+              the quantity equation but not the price equation. The simulation had solved without
+              complaint. The check was the only thing that noticed the accounts had drifted
+              apart.</p>
           </div></details>
         </div>
       </div>
@@ -1442,22 +1476,20 @@ doagg.bat</pre></div>
     <div class="task" data-task="C5">
       <input class="task-check" type="checkbox" aria-label="Mark task C.5 complete">
       <div>
-        <p class="task-id">TASK C.5</p>
-        <p class="task-t">Introduce emission factors for health-relevant pollutants</p>
+        <p class="task-id">TASK C.5 <span class="kind kind-build">Build</span></p>
+        <p class="task-t">Introduce emission factors for the health-relevant pollutants</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The model records carbon
-            dioxide emissions by fuel, user and region. Particulate matter, sulphur dioxide and
-            nitrogen oxides arise from the same combustion. Introduce a table of emission
-            factors of identical dimension and form the product.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Apply the factors to
-            base-year fuel consumption and compare the national totals with a published
-            Indonesian emissions inventory. Correspondence to within an order of magnitude is
-            the applicable criterion, these factors being approximate by nature.</p>
-          <p class="line"><span class="lbl cau">Caution</span>This procedure yields emissions by
-            region of origin, which is not equivalent to exposure by region of residence. The
-            relation between the two is the source&ndash;receptor allocation identified in Table
-            3 as unassigned. The equivalence of emissions and exposure is not to be adopted by
-            default; the allocation of that task is to be resolved by the project team.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>The model records carbon dioxide
+            by fuel, user and region. Particulates, sulphur dioxide and nitrogen oxides come from
+            the same combustion. Add a table of emission factors with the same shape and
+            multiply.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>National totals from
+            the factors and base-year fuel use are within an order of magnitude of a published
+            Indonesian inventory.</strong> The factors are approximate by nature.</p>
+          <p class="line"><span class="lbl cau">Caution</span>This gives emissions by region of
+            origin, not exposure by region of residence. The link between them is the
+            source&ndash;receptor allocation, which Table 3 shows has no owner. Do not assume by
+            default that emissions equal exposure; the project team must assign this task.</p>
         </div>
       </div>
     </div>
@@ -1465,19 +1497,27 @@ doagg.bat</pre></div>
     <div class="task" data-task="C6">
       <input class="task-check" type="checkbox" aria-label="Mark task C.6 complete">
       <div>
-        <p class="task-id">TASK C.6</p>
+        <p class="task-id">TASK C.6 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Verify the labour accounts in the revised database</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Inspect the reconstructed
-            database and confirm that the wage bill by industry, occupation and region is
-            present, and that the occupation set retains the four occupations supplied by the
-            module.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The wage bill aggregated over
-            all dimensions equals the corresponding total in the previous database. The
-            revisions of tasks C.1 and C.2 disaggregate existing groups and therefore leave all
-            totals unchanged.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Confirm that the rebuilt database
+            holds the wage bill by industry, occupation and region, and that the occupation set
+            still has the four occupations the module supplies.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The total wage bill
+            equals the total in the previous database.</strong> Tasks C.1 and C.2 split groups
+            apart and change no totals.</p>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage C completion gate</span>
+      <ul>
+        <li>Both mapping files assign every sector and every province to exactly one aggregate (C.1, C.2).</li>
+        <li>The region set equals the module's region set element by element (C.2).</li>
+        <li>The consistency checks report zero failures (C.4).</li>
+        <li>The emission-factor table exists and the wage bill total is unchanged (C.5, C.6).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1487,31 +1527,30 @@ doagg.bat</pre></div>
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">9</span>Stage D. Implementation in the model code</h2>
-      <p class="sec-lede">The module comprises approximately forty equations, which are added
-        to the existing model source. Only the supply side of the labour market is modified.
-        Industry demand for labour by occupation is unaffected.</p>
+      <p class="sec-lede">The module is about forty equations added to the model source. Only the
+        supply side of the labour market changes. Industry demand for labour by occupation is
+        untouched.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> the module data file from task B.11</span>
         <span class="chip"><b>Output</b> a model that compiles and reproduces the baseline</span>
-        <span class="chip"><b>Duration</b> several weeks, including review</span>
+        <span class="chip"><b>Duration</b> weeks, including review</span>
       </div>
     </div>
 
     <div class="task" data-task="D1">
       <input class="task-check" type="checkbox" aria-label="Mark task D.1 complete">
       <div>
-        <p class="task-id">TASK D.1</p>
+        <p class="task-id">TASK D.1 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Preserve the unmodified model source</p>
         <div class="task-body">
           <p class="line"><span class="lbl proc">Procedure</span>Copy the model source to a
-            reference file and leave that file unmodified for the duration of the project. Every
-            subsequent question concerning what has been altered is answered by comparison of
-            the two files.</p>
+            reference file and never change it. Every later question about what was altered is
+            answered by comparing the two files.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre>copy termener.tab termener0.tab
-<span class="cmt">:: and prior to each compilation:</span>
+<span class="cmt">:: and before each compilation:</span>
 fc termener0.tab termener.tab &gt; changes.txt</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>The comparison at this point
-            reports no differences.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The comparison reports
+            no differences</strong> at this point.</p>
         </div>
       </div>
     </div>
@@ -1519,28 +1558,27 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D2">
       <input class="task-check" type="checkbox" aria-label="Mark task D.2 complete">
       <div>
-        <p class="task-id">TASK D.2</p>
+        <p class="task-id">TASK D.2 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Declare the module sets and read the module data</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Declare the five sets defined
-            in task B.1 and read each array from the data file written in task B.11.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Declare the five sets of task
+            B.1 and read each array from the file written in task B.11. Use the model's existing
+            region and occupation sets rather than declaring new ones; two definitions can drift
+            apart.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! ---- module sets ----</span>
 <span class="kw">Set</span> AGE  read elements from file MODDAT header "AGES";
 <span class="kw">Set</span> SEX  read elements from file MODDAT header "SEXS";
 <span class="kw">Set</span> HLT  read elements from file MODDAT header "HLTH";
 <span class="kw">Set</span> ACTV read elements from file MODDAT header "ACTV";
-<span class="cmt">! Regions and occupations are already defined in the model.</span>
-<span class="cmt">! Use the existing sets. Declaring new ones permits the two</span>
-<span class="cmt">! definitions to diverge.</span>
+<span class="cmt">! regions (DST) and occupations (OCC): use the model's existing sets</span>
 
 <span class="cmt">! ---- module data ----</span>
 <span class="kw">Coefficient</span> (<span class="kw">all</span>,o,ACTV)(<span class="kw">all</span>,a,AGE)(<span class="kw">all</span>,g,SEX)(<span class="kw">all</span>,d,DST)(<span class="kw">all</span>,h,HLT)
   CAT(o,a,g,d,h) <span class="cmt"># population by category at the start of the year #</span>;
 <span class="kw">Read</span> CAT <span class="kw">from file</span> MODDAT <span class="kw">header</span> <span class="str">"CATG"</span>;</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>The model compiles with the
-            data read but not yet referenced by any equation. A compilation error at this point
-            indicates a discrepancy between set dimensions, which is more readily diagnosed here
-            than after the equations have been introduced.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The model compiles with
+            the data read but not yet used.</strong> An error here is a set-size mismatch, and is
+            far easier to find now than after the equations exist.</p>
         </div>
       </div>
     </div>
@@ -1548,27 +1586,24 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D3">
       <input class="task-check" type="checkbox" aria-label="Mark task D.3 complete">
       <div>
-        <p class="task-id">TASK D.3</p>
+        <p class="task-id">TASK D.3 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
         <p class="task-t">Implement the category transition equation</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The first of the three
-            governing equations. Categories in the current year equal activities in the
-            preceding year premultiplied by the transition matrix. The activity classification
-            is retained; age and health status are advanced, and a proportion of the population
-            is removed by mortality.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>The first governing equation:
+            this year's categories equal last year's activities premultiplied by the transition
+            matrix. The activity label is kept; age and health advance; some die.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! Current categories = preceding activities advanced by the transition matrix.</span>
-<span class="cmt">! d_transit is the change in a transition rate. It is the sole</span>
-<span class="cmt">! point at which a health policy enters the module.</span>
+<span class="cmt">! d_transit is the change in a transition rate. It is the ONLY point</span>
+<span class="cmt">! at which a health policy enters the module.</span>
 <span class="kw">Equation</span> E_cat
   (<span class="kw">all</span>,o,ACTV)(<span class="kw">all</span>,a,AGE)(<span class="kw">all</span>,g,SEX)(<span class="kw">all</span>,d,DST)(<span class="kw">all</span>,h,HLT)
   CAT(o,a,g,d,h) * cat(o,a,g,d,h)
     = <span class="kw">sum</span>{aa,AGE, <span class="kw">sum</span>{hh,HLT,
         ACTL(o,aa,g,d,hh) * TRAN(o,aa,g,d,hh,a,h)
           * [actl(o,aa,g,d,hh) + d_transit(o,aa,g,d,hh,a,h)] }};</pre></div>
-          <p class="line"><span class="lbl ver">Verification</span>Solve the model with no shock
-            applied. Every result must equal zero. A non-zero result indicates that the rows of
-            the transition matrix do not sum to one less the mortality rate, which is corrected
-            in task B.8.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>A run with no shock
+            returns zero everywhere.</strong> Anything else means the matrix rows do not sum to one
+            less the mortality rate; return to task B.8.</p>
         </div>
       </div>
     </div>
@@ -1576,29 +1611,25 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D4">
       <input class="task-check" type="checkbox" aria-label="Mark task D.4 complete">
       <div>
-        <p class="task-id">TASK D.4</p>
+        <p class="task-id">TASK D.4 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
         <p class="task-t">Implement the offer equations</p>
         <div class="task-body">
           <p class="line"><span class="lbl proc">Procedure</span>The second governing equation,
-            presented in reduced form as Figure 1. Each category allocates its members between
-            destinations according to the wage available and a preference weight.</p>
-          <p class="line">Two restrictions apply. Persons outside the labour force offer only to
-            remain outside it, subject to the return flow specified below. Offers are restricted
-            to occupations of comparable skill, so that a labourer does not offer to a
-            managerial occupation.</p>
+            Figure 1 as code. Each category divides its members among destinations by wage and
+            preference weight. Two restrictions: persons outside the labour force offer only to stay
+            there, except for the return flow below; offers go only to occupations of similar
+            skill.</p>
           <div class="callout">
             <span class="callout-t">Departure from the published specification</span>
-            <p>In the South African module no return flow from outside the labour force is
-              permitted. In Indonesia the majority of persons outside the labour force are women
-              engaged in domestic work and students, for whom re-entry is common. A return flow
-              is therefore permitted, with a low offer weight. That weight is to be recorded in
-              the register compiled in task B.10.</p>
+            <p>South Africa allowed no return from outside the labour force. In Indonesia most
+              non-participants are women in domestic work and students, and they do return. Allow
+              a return flow with a low offer weight and record the weight in the register (task
+              B.10).</p>
           </div>
-          <p class="line"><span class="lbl ver">Verification</span>Apply a one per cent increase
-            to the wage in a single occupation, with no other shock. Offers to that occupation
-            increase, offers to the remaining destinations decrease, and the total across
-            destinations is unchanged. That total is the size of the category, which this
-            equation cannot alter.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>A one per cent wage
+            rise in one occupation raises offers to it, lowers offers elsewhere, and leaves the
+            total unchanged.</strong> The total is the category size, which this equation cannot
+            change.</p>
         </div>
       </div>
     </div>
@@ -1606,18 +1637,17 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D5">
       <input class="task-check" type="checkbox" aria-label="Mark task D.5 complete">
       <div>
-        <p class="task-id">TASK D.5</p>
+        <p class="task-id">TASK D.5 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
         <p class="task-t">Implement vacancy determination and rationing</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Vacancies equal industry labour
-            demand less the number of persons retaining the position held in the preceding year.
-            Flows of persons not previously holding the position are allocated in proportion to
-            the offers directed to that occupation. Unsuccessful applicants enter unemployment;
-            unsuccessful applicants already unemployed enter long-term unemployment.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Flows into each occupation,
-            summed, equal industry labour demand for that occupation. This equation block
-            connects the module to the remainder of the model, and an inequality here produces a
-            model that solves while the accounts diverge.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Vacancies equal labour demand
+            less persons who keep their position. Newcomers to an occupation are allocated in
+            proportion to the offers made to it. Those refused enter unemployment; those refused
+            while already unemployed enter long-term unemployment.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Flows into each
+            occupation sum to industry labour demand for it.</strong> This block joins the module
+            to the rest of the model; an inequality here gives a model that solves while the
+            accounts drift.</p>
         </div>
       </div>
     </div>
@@ -1625,29 +1655,26 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D6">
       <input class="task-check" type="checkbox" aria-label="Mark task D.6 complete">
       <div>
-        <p class="task-id">TASK D.6</p>
+        <p class="task-id">TASK D.6 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
         <p class="task-t">Connect the module to the regional labour market</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Two substitutions, and no
-            others.</p>
-          <ol>
-            <li>The regional labour market equation presently determines labour supply from a
-              wage elasticity. Its supply side is replaced by the sum of accepted offers
-              obtained from the module.</li>
-            <li>The national wage adjustment rule is replaced by the rule presented as Figure 2,
-              specified by occupation and by region rather than nationally.</li>
-          </ol>
+          <p class="line"><span class="lbl proc">Procedure</span>Two substitutions and no others.
+            (1) The regional labour market equation now sets supply from a wage elasticity; replace
+            its supply side with the sum of accepted offers from the module. (2) Replace the
+            national wage rule with the rule of Figure 2, by occupation and region.</p>
           <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! Present specification, labour market section:</span>
 <span class="kw">Equation</span> E_flab_i (<span class="kw">all</span>,o,OCC)(<span class="kw">all</span>,d,DST)
   realwage_i(o,d) = [1/1.1]*xlab_i(o,d) + flabsupA(o,d) + labslack(o);
 
-<span class="cmt">! Revised specification: employment in an occupation and region is</span>
-<span class="cmt">! determined by the accepted offers obtained from the module.</span>
-<span class="cmt">! Retain the shift variable flabsupA so that the closure remains available.</span></pre></div>
-          <p class="line"><span class="lbl cau">Caution</span>Industry labour demand,
-            international trade and household demand are not to be modified. Where the
-            comparison introduced in task D.1 reports differences outside the labour supply
-            section and the new equation blocks, those differences are to be reversed.</p>
+<span class="cmt">! Revised: employment in an occupation and region is whatever the</span>
+<span class="cmt">! module's accepted offers deliver. Keep the shifter flabsupA so the</span>
+<span class="cmt">! closure remains usable.</span></pre></div>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The file comparison
+            from task D.1 shows changes only in the labour supply section and the new
+            blocks.</strong></p>
+          <p class="line"><span class="lbl cau">Caution</span>Do not touch industry labour
+            demand, trade or household demand. Reverse any difference the comparison shows
+            elsewhere.</p>
         </div>
       </div>
     </div>
@@ -1655,35 +1682,25 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D7">
       <input class="task-check" type="checkbox" aria-label="Mark task D.7 complete">
       <div>
-        <p class="task-id">TASK D.7</p>
+        <p class="task-id">TASK D.7 <span class="kind kind-build">Build</span> <span class="kind kind-hard">Difficult</span></p>
         <p class="task-t">Implement the baseline and policy health interfaces</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>The module requires two
-            distinct interfaces for the receipt of health information.</p>
-          <ul>
-            <li><strong>Baseline interface.</strong> The model is required to follow a
-              trajectory of illness determined externally. Introduce a shift variable on the
-              incidence rate, render it endogenous, and shock the number of new cases to the
-              required trajectory. Offset the shift within the rate of remaining in good health,
-              so that the rows of the matrix continue to sum correctly.</li>
-            <li><strong>Policy interface.</strong> The model is required to receive a deviation
-              from that trajectory, obtained from the pollution calculation. The same shift
-              variable is rendered exogenous and is shocked directly with the change in
-              incidence by age, sex and region.</li>
-          </ul>
-          <p class="line"><span class="lbl ver">Verification</span>Apply a deviation of zero in
-            a policy simulation. Every result must equal zero and the simulation must reproduce
-            the baseline exactly. A non-zero result indicates an error in the offsetting of the
-            rate of remaining in good health.</p>
-          <details class="note"><summary>Function of the interface in the overall design</summary><div class="note-body">
-            <p>Every element upstream of the module, comprising fuel consumption, emissions,
-              ambient concentrations and the exposure&ndash;response functions, resolves to a
-              single quantity: the change in incidence by age, sex and region. The module
-              receives that quantity and requires no further information. Its operation is
-              identical whether the change in health status originates in ambient air pollution,
-              in mining activity, or in the allocation of revenue to health services. This
-              property permits three dissimilar transmission channels to share a single
-              mechanism.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Two interfaces, and they differ.
+            <strong>Baseline:</strong> the model must follow an externally set path of illness. Add
+            a shift variable on the incidence rate, make it endogenous, and shock new cases to the
+            path; offset the shift in the stay-healthy rate so rows still sum correctly.
+            <strong>Policy:</strong> the model must receive a deviation from that path, from the
+            pollution calculation. Make the same shift variable exogenous and shock it with the
+            change in incidence by age, sex and region.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>A policy run with a
+            zero deviation reproduces the baseline exactly.</strong> Anything else is an error in
+            the stay-healthy offset.</p>
+          <details class="note"><summary>Why this interface is the whole design</summary><div class="note-body">
+            <p>Everything upstream of the module, from fuel to emissions to concentrations to
+              exposure&ndash;response, reduces to one quantity: the change in incidence by age, sex
+              and region. The module takes that and asks nothing more. It works the same whether
+              the health change comes from air pollution, mining, or revenue spent on clinics. That
+              is what lets three different channels share one mechanism.</p>
           </div></details>
         </div>
       </div>
@@ -1692,25 +1709,21 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D8">
       <input class="task-check" type="checkbox" aria-label="Mark task D.8 complete">
       <div>
-        <p class="task-id">TASK D.8</p>
+        <p class="task-id">TASK D.8 <span class="kind kind-build">Build</span></p>
         <p class="task-t">Implement the effective labour and health service extensions</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Two extensions, neither present
-            in the published applications.</p>
-          <ul>
-            <li><strong>Effective labour.</strong> Multiply each employed person by the
-              effective labour coefficient for that health status obtained in task B.9, so that
-              an improvement in health raises labour supplied per person as well as the number
-              of persons employed.</li>
-            <li><strong>Health service demand.</strong> Specify demand for the private and
-              public health sectors as a function of the number of persons in poor health, at a
-              stated cost per case, so that illness avoided is also expenditure avoided.</li>
-          </ul>
-          <p class="line"><span class="lbl cau">Caution</span>A shift variable is to be
-            introduced into the price equation and the quantity equation together. A shift
-            variable introduced into the quantity equation alone produces a model that solves
-            and subsequently fails the database consistency check, quantities having adjusted
-            without a corresponding price signal and having diverged from expenditure.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Two additions absent from the
+            published versions. <strong>Effective labour:</strong> multiply each employed person by
+            the coefficient for their health status from task B.9, so better health raises labour
+            per person as well as persons employed. <strong>Health service demand:</strong> make
+            demand for the private and public health sectors move with the number in poor health,
+            at a cost per case, so illness avoided is also spending avoided.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The database
+            consistency check still passes</strong> after a one-year solve.</p>
+          <p class="line"><span class="lbl cau">Caution</span>A shift variable must enter the
+            price and quantity equations together. In the quantity equation alone it solves and
+            then fails the consistency check, because quantities move without a price signal and
+            drift from expenditure.</p>
         </div>
       </div>
     </div>
@@ -1718,19 +1731,27 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="D9">
       <input class="task-check" type="checkbox" aria-label="Mark task D.9 complete">
       <div>
-        <p class="task-id">TASK D.9</p>
+        <p class="task-id">TASK D.9 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Compile, compare and submit for review</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Compile until no errors are
-            reported. Execute the file comparison introduced in task D.1 and examine every
-            difference. Submit the module equations for review by a specialist in this class of
-            model. The project provides for such a review.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Three conditions before Stage
-            D is regarded as complete: the model compiles without error; the comparison reports
-            only intended modifications; and a simulation with no shock applied returns zero for
-            every result.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Compile until no errors remain.
+            Run the file comparison and read every difference. Send the module equations to a
+            reviewer who knows this model family; the project funds that review.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Three conditions:</strong>
+            the model compiles; the comparison shows only intended changes; a run with no shock
+            returns zero everywhere.</p>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage D completion gate</span>
+      <ul>
+        <li>The model compiles with no errors and the comparison against the reference source shows only intended changes (D.9).</li>
+        <li>A run with no shock returns zero for every variable (D.3, D.9).</li>
+        <li>A policy run with a zero health deviation reproduces the baseline exactly (D.7).</li>
+        <li>The reviewer's comments have been received and addressed (D.9).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1741,28 +1762,26 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">10</span>Stage E. Execution of the simulations</h2>
       <p class="sec-lede">Every reported result is the difference between two solutions of the
-        same model, one without the policy and one with it. The baseline is therefore not a
-        preliminary exercise; it constitutes one half of every reported quantity.</p>
+        same model, without and with the policy. The baseline is therefore half of every number
+        published.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> the completed model and database</span>
-        <span class="chip"><b>Output</b> one baseline, four policy simulations, sensitivity analysis</span>
-        <span class="chip"><b>Duration</b> several weeks of machine time</span>
+        <span class="chip"><b>Output</b> one baseline, four policy runs, sensitivity analysis</span>
+        <span class="chip"><b>Duration</b> weeks of machine time</span>
       </div>
     </div>
 
     <div class="task" data-task="E1">
       <input class="task-check" type="checkbox" aria-label="Mark task E.1 complete">
       <div>
-        <p class="task-id">TASK E.1</p>
+        <p class="task-id">TASK E.1 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Revise the closure for module-determined labour supply</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Remove the swap statement
-            recorded in task A.5, by which national labour supply was determined by the real
-            wage. That determination is now performed by the module, by occupation and by
-            region. The remainder of the closure is unchanged.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The number of exogenous
-            variables equals the number of equations. The validation procedure evaluates this
-            condition in seconds.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Remove the swap recorded in task
+            A.5 that made national labour supply follow the real wage. The module now does that,
+            by occupation and region. Leave the rest of the closure unchanged.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Exogenous variables
+            equal equations.</strong> The check tool reports this in seconds.</p>
         </div>
       </div>
     </div>
@@ -1770,17 +1789,15 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E2">
       <input class="task-check" type="checkbox" aria-label="Mark task E.2 complete">
       <div>
-        <p class="task-id">TASK E.2</p>
+        <p class="task-id">TASK E.2 <span class="kind kind-check">Check</span></p>
         <p class="task-t">Validate all closures and shock files</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Execute the closure and shock
-            validation procedure against the baseline closure, against each policy closure, and
-            against each shock file. The procedure identifies any variable that is shocked
-            without being exogenous, and any discrepancy in the count of exogenous
-            variables.</p>
-          <p class="line"><span class="lbl ver">Verification</span>All files pass. A simulation
-            that terminates in its fourth year on a closure error consumes a full day of machine
-            time. This validation requires approximately one minute.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Run the closure and shock check
+            on the baseline closure, each policy closure and each shock file. It reports any
+            shocked variable that is not exogenous and any count that does not add up.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>All files pass.</strong>
+            A run that dies in year four on a closure error costs a day; this check costs a
+            minute.</p>
         </div>
       </div>
     </div>
@@ -1788,28 +1805,20 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E3">
       <input class="task-check" type="checkbox" aria-label="Mark task E.3 complete">
       <div>
-        <p class="task-id">TASK E.3</p>
-        <p class="task-t">Execute the baseline simulation</p>
+        <p class="task-id">TASK E.3 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Run the baseline simulation</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Solve the model year by year
-            from 2023 to 2050 under the existing baseline shocks, together with the imposed
-            trajectory of incidence specified in task D.7.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Four conditions, in the order
-            given.</p>
-          <ul>
-            <li>The macroeconomic aggregates follow the trajectories obtained in task A.4. The
-              introduction of the module must not alter the baseline economy.</li>
-            <li>The distribution of the population across health states follows the imposed
-              trajectory.</li>
-            <li>Employment by occupation and region grows at a plausible rate, with no
-              discontinuity in any year.</li>
-            <li>The database consistency checks pass in every year, not solely in the first.</li>
-          </ul>
-          <p class="line"><span class="lbl cau">Caution</span>Where the macroeconomic baseline
-            is altered by the introduction of the module, the module is exerting an influence in
-            the baseline that it should not exert. This is to be diagnosed before any policy
-            simulation is executed. A contaminated baseline renders every policy result
-            incorrect by an unknown and constant amount.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Solve year by year from 2023 to
+            2050 under the existing baseline shocks plus the imposed incidence path of task D.7.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Four conditions, in
+            order.</strong> The macro aggregates follow the paths of task A.4. The health-state
+            shares follow the imposed path. Employment by occupation and region grows smoothly
+            with no discontinuity. The consistency checks pass in every year, not only the
+            first.</p>
+          <p class="line"><span class="lbl cau">Caution</span>If the macro baseline moved when the
+            module was added, the module is acting in the baseline when it should not. Find the
+            cause before any policy run. A contaminated baseline biases every policy result by the
+            same unknown amount.</p>
         </div>
       </div>
     </div>
@@ -1817,21 +1826,17 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E4">
       <input class="task-check" type="checkbox" aria-label="Mark task E.4 complete">
       <div>
-        <p class="task-id">TASK E.4</p>
-        <p class="task-t">Execute policy simulation 1: removal of the fossil fuel subsidy</p>
+        <p class="task-id">TASK E.4 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Policy simulation 1: removal of the fossil fuel subsidy</p>
         <div class="task-body">
           <p class="line"><span class="lbl proc">Procedure</span>A fuel subsidy is a negative
-            commodity tax on fuel purchases. Its removal is a change in that tax, specified by
-            fuel and by user. This is the instrument already employed for the carbon price, and
-            no additional model structure is required.</p>
-          <p class="line">The health consequence is then applied: reduced combustion yields
-            reduced emissions, reduced emissions yield reduced ambient concentrations, reduced
-            concentrations yield reduced incidence, and the change in incidence is the shock
-            applied to the interface implemented in task D.7.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Execute the simulation twice,
-            once with the health interface shocked to zero and once with the health effect
-            applied. The difference between the two solutions is the health benefit, separated
-            from the direct effect of the increase in fuel prices.</p>
+            commodity tax on fuel. Removing it is a change in that tax by fuel and user, the same
+            instrument the carbon price already uses; no new model structure is needed. Then apply
+            the health consequence: less combustion, lower emissions, lower concentration, fewer
+            new cases, and the change in cases is the shock to the interface of task D.7.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Two runs exist, with
+            the health interface at zero and with the health effect applied.</strong> Their
+            difference is the health benefit, separated from the direct effect of dearer fuel.</p>
         </div>
       </div>
     </div>
@@ -1839,19 +1844,17 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E5">
       <input class="task-check" type="checkbox" aria-label="Mark task E.5 complete">
       <div>
-        <p class="task-id">TASK E.5</p>
-        <p class="task-t">Execute policy simulation 2: expansion of mining and smelting</p>
+        <p class="task-id">TASK E.5 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Policy simulation 2: expansion of mining and smelting</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Shock the output of the ore and
-            metal sectors separately identified in task C.1. The health consequence operates in
-            the opposite direction to simulation 1: increased particulate and water contamination
-            in the extraction regions yields increased incidence, concentrated in a small number
-            of regions.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The regional distribution is
-            the diagnostic. The loss of health should be confined to the extraction regions, and
-            the increase in employment should arise in the same regions. A health effect
-            distributed uniformly across the country indicates that the exposure calculation is
-            employing national averages where regional values are required.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Shock output of the ore and metal
+            sectors separated in task C.1. The health consequence runs the other way: more dust and
+            water contamination in the extraction regions, so more new cases, concentrated in a
+            few regions.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The health loss and the
+            employment gain both appear in the extraction regions and not elsewhere.</strong> A
+            health effect spread evenly across the country means the exposure step is using
+            national averages where regional values are required.</p>
         </div>
       </div>
     </div>
@@ -1859,22 +1862,19 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E6">
       <input class="task-check" type="checkbox" aria-label="Mark task E.6 complete">
       <div>
-        <p class="task-id">TASK E.6</p>
-        <p class="task-t">Execute policy simulation 3: allocation of revenue to health</p>
+        <p class="task-id">TASK E.6 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Policy simulation 3: allocation of revenue to health</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Both policies generate revenue,
-            comprising the subsidy forgone and the tax on mineral extraction. Allocate that
-            revenue to health expenditure by region, and convert it into a change in incidence
-            or recovery using the elasticity supplied by Work Package 2.2.</p>
-          <p class="line"><span class="lbl cau">Caution</span>The elasticity is to be requested
-            in the form required by the module, namely the effect on annual incidence or on
-            recovery per unit of health expenditure per capita, by region. An elasticity
-            expressed in any other form requires conversion, and the conversion is the point at
-            which errors are introduced.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The revenue expended in this
-            simulation equals the revenue accruing to the government accounts of the model. Both
-            are to be read from the results and compared. Double counting of the revenue is a
-            frequent error and is difficult for a reader to detect.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Both policies raise revenue, the
+            subsidy saved and the mineral tax. Direct it to health spending by region and convert
+            it to a change in incidence or recovery with the elasticity from Work Package 2.2.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The revenue spent
+            equals the revenue the model's government accounts gain</strong>, both read from the
+            results. Double counting the revenue is a common error and hard for a reader to see.</p>
+          <p class="line"><span class="lbl cau">Caution</span>Ask Work Package 2.2 for the
+            elasticity in the form the module uses: effect on annual incidence or recovery per
+            unit of health spending per person, by region. Any other form needs conversion, and
+            conversion is where errors enter.</p>
         </div>
       </div>
     </div>
@@ -1882,17 +1882,15 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E7">
       <input class="task-check" type="checkbox" aria-label="Mark task E.7 complete">
       <div>
-        <p class="task-id">TASK E.7</p>
-        <p class="task-t">Execute the control simulations without the health channel</p>
+        <p class="task-id">TASK E.7 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Control simulations without the health channel</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Execute each policy simulation
-            a second time with the health interface disabled. These simulations are required,
-            not optional. They constitute the sole means by which the contribution of the health
-            channel can be quantified, that contribution being the subject of the project.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The control simulation
-            reproduces the result that a conventional energy study would obtain. A substantial
-            divergence indicates that the module is influencing the result through an unintended
-            channel.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Run every policy again with the
+            health interface disabled. These runs are required. They are the only way to quantify
+            the health channel, which is the question the project exists to answer.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The control run
+            reproduces what a conventional energy study would find.</strong> A large divergence
+            means the module affects results through an unintended route.</p>
         </div>
       </div>
     </div>
@@ -1900,31 +1898,40 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="E8">
       <input class="task-check" type="checkbox" aria-label="Mark task E.8 complete">
       <div>
-        <p class="task-id">TASK E.8</p>
-        <p class="task-t">Execute the sensitivity analysis</p>
+        <p class="task-id">TASK E.8 <span class="kind kind-run">Run</span></p>
+        <p class="task-t">Sensitivity analysis</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Four tests, each corresponding
-            to a quantity that is assumed rather than measured.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Four tests, one for each quantity
+            that is assumed rather than measured (Table 10).</p>
           <figure class="tbl">
-            <figcaption><b>Table 8</b>Sensitivity tests and the quantity each examines.</figcaption>
+            <figcaption><b>Table 10</b>Sensitivity tests and the quantity each examines.</figcaption>
             <div class="tablewrap">
               <table>
                 <thead><tr><th>Test</th><th>Range</th><th>Quantity examined</th></tr></thead>
                 <tbody>
-                  <tr><td>Rate of wage adjustment</td><td>0.5 and 0.6</td><td>Duration of the transition</td></tr>
-                  <tr><td>Offer elasticity</td><td>1 to 3, centred on 2</td><td>Facility of movement between occupations</td></tr>
-                  <tr><td>Incidence and recovery pair</td><td>The admissible range established in task B.8</td><td>Dependence of the health result on an unobserved rate</td></tr>
+                  <tr><td>Wage adjustment rate</td><td>0.5 and 0.6</td><td>Length of the transition</td></tr>
+                  <tr><td>Offer elasticity</td><td>1 to 3, around 2</td><td>Ease of moving between occupations</td></tr>
+                  <tr><td>Incidence and recovery pair</td><td>The admissible range from task B.8</td><td>Dependence of the health result on an unobserved rate</td></tr>
                   <tr><td>Offer strength by health status</td><td>&plusmn; 25 per cent</td><td>Dependence of the result on the participation gradient</td></tr>
                 </tbody>
               </table>
             </div>
           </figure>
-          <p class="line"><span class="lbl ver">Verification</span>Every reported quantity is
-            accompanied by a range. A result preserved across all four tests constitutes a
-            finding. A result obtained only at a single set of assumed values constitutes a
-            description of those values.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Every reported number
+            carries a range.</strong> A result that survives all four tests is a finding; one that
+            holds at a single set of values is a description of those values.</p>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage E completion gate</span>
+      <ul>
+        <li>The baseline reproduces the Stage A macro paths and passes the consistency checks in every year (E.3).</li>
+        <li>Each of the three policies has a run with and a run without the health channel (E.4 to E.7).</li>
+        <li>The revenue spent in simulation 3 equals the revenue gained in the government accounts (E.6).</li>
+        <li>All four sensitivity tests have been run and their ranges recorded (E.8).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1934,30 +1941,29 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">11</span>Stage F. Analysis and reporting</h2>
-      <p class="sec-lede">A dynamic simulation generates every variable for every year and
-        every region. The greater part of that output does not constitute a result. These four
-        tasks reduce the output to a reportable form.</p>
+      <p class="sec-lede">A dynamic simulation gives every variable for every year and region.
+        Most of that is not a result. Four tasks reduce it to a reportable form.</p>
       <div class="specline">
         <span class="chip"><b>Input</b> the solved simulations</span>
         <span class="chip"><b>Output</b> tables, figures and the assumption register</span>
-        <span class="chip"><b>Duration</b> several weeks</span>
+        <span class="chip"><b>Duration</b> weeks</span>
       </div>
     </div>
 
     <div class="task" data-task="F1">
       <input class="task-check" type="checkbox" aria-label="Mark task F.1 complete">
       <div>
-        <p class="task-id">TASK F.1</p>
+        <p class="task-id">TASK F.1 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Extract deviations from baseline</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>For each policy simulation,
-            report the deviation from baseline by year, for output, employment by occupation and
-            region, wages, the population in each health state, and mortality.</p>
-          <p class="line"><span class="lbl cau">Caution</span>Where the baseline and the policy
-            are presented as two trajectories on a single figure, they are to be drawn as two
-            paths diverging from a common origin. A vertical discontinuity at the year of the
-            policy is not to be used, and the year of the policy is not to be given a separate
-            axis division.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>For each policy, report the
+            deviation from baseline by year for output, employment by occupation and region, wages,
+            population by health state, and deaths.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>Every reported series
+            is a deviation, not a level.</strong></p>
+          <p class="line"><span class="lbl cau">Caution</span>Where baseline and policy share one
+            chart, draw them as two paths from a common origin. No vertical jump at the policy
+            year, and no separate axis tick for it.</p>
         </div>
       </div>
     </div>
@@ -1965,16 +1971,15 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="F2">
       <input class="task-check" type="checkbox" aria-label="Mark task F.2 complete">
       <div>
-        <p class="task-id">TASK F.2</p>
+        <p class="task-id">TASK F.2 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Decompose the health and direct effects</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Using the control simulations
-            executed in task E.7, decompose each reported quantity into three components: the
-            direct effect of the energy or mining policy, the additional effect of the change in
-            health status, and the interaction of the two.</p>
-          <p class="line"><span class="lbl ver">Verification</span>The three components sum to
-            the total. A failure to sum indicates that a channel is active in a simulation in
-            which it was intended to be disabled.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>With the control runs of task
+            E.7, split each headline number into three parts: the direct effect of the energy or
+            mining policy, the added effect of the health change, and their interaction.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The three parts sum to
+            the total.</strong> If not, a channel is active in a run where it was meant to be
+            off.</p>
         </div>
       </div>
     </div>
@@ -1982,20 +1987,19 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="F3">
       <input class="task-check" type="checkbox" aria-label="Mark task F.3 complete">
       <div>
-        <p class="task-id">TASK F.3</p>
+        <p class="task-id">TASK F.3 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Publish the assumption register with the results</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Include the register compiled
-            in task B.10 in the published output. Each entry states the value adopted, its
-            basis, the external total to which it was scaled, and the sensitivity range
-            established in task E.8.</p>
-          <details class="note"><summary>Function of the register in the published output</summary><div class="note-body">
-            <p>The documentation of the South African application continues to be cited fifteen
-              years after publication. This is attributable not to any unusual property of the
-              model but to the presence of every assumed value in a table, each accompanied by a
-              statement of its origin. A reader who disputes a particular value can identify
-              precisely which result is affected. That property is what permits a module to be
-              used by parties other than its authors.</p>
+          <p class="line"><span class="lbl proc">Procedure</span>Put the register of task B.10 in
+            the published output: each value, its basis, the total it was scaled to, and its
+            sensitivity range from task E.8.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>The register appears in
+            the paper, not in a file on a machine.</strong></p>
+          <details class="note"><summary>Why the register is what makes the work usable</summary><div class="note-body">
+            <p>The South African documentation is still cited fifteen years on, not because the
+              model was unusual, but because every assumed value is in a table with a sentence on
+              its origin. A reader who disputes one value can see exactly which result it affects.
+              That is what lets others build on a module.</p>
           </div></details>
         </div>
       </div>
@@ -2004,20 +2008,28 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="task" data-task="F4">
       <input class="task-check" type="checkbox" aria-label="Mark task F.4 complete">
       <div>
-        <p class="task-id">TASK F.4</p>
+        <p class="task-id">TASK F.4 <span class="kind kind-prepare">Prepare</span></p>
         <p class="task-t">Assemble the reproduction package</p>
         <div class="task-body">
-          <p class="line"><span class="lbl proc">Procedure</span>Assemble a single directory
-            containing the model source and the reference source from which it was derived, the
-            two mapping files, the module data file, every closure and shock file, the command
-            files for each simulation, and an instruction file stating the order of
+          <p class="line"><span class="lbl proc">Procedure</span>One directory: the model source
+            and its unmodified reference, the two mapping files, the module data file, every closure
+            and shock file, the command file for each run, and a text file giving the order of
             execution.</p>
-          <p class="line"><span class="lbl ver">Verification</span>Provide the directory to a
-            colleague not involved in its construction and request the reproduction of one
-            reported quantity. Any question that colleague is obliged to ask identifies an
-            omission from the instruction file.</p>
+          <p class="line"><span class="lbl ver">Verification</span><strong>A colleague not
+            involved in the build reproduces one reported number from the package alone.</strong>
+            Any question they must ask is an omission from the text file.</p>
         </div>
       </div>
+    </div>
+
+    <div class="gate">
+      <span class="gate-t">Stage F completion gate</span>
+      <ul>
+        <li>Every published number is a deviation from baseline with a sensitivity range (F.1, E.8).</li>
+        <li>The direct, health and interaction parts sum to each total (F.2).</li>
+        <li>The assumption register is in the published output (F.3).</li>
+        <li>An independent colleague has reproduced one number from the package (F.4).</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -2027,28 +2039,29 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
   <div class="shell">
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">A</span>Appendix A. Glossary</h2>
-      <p class="sec-lede">Each term is defined at its first occurrence in the text. The
-        definitions are collected here for reference.</p>
+      <p class="sec-lede">Each term is defined where it first appears; the definitions are
+        collected here.</p>
     </div>
     <dl class="defs">
-      <dt>Activity</dt><dd>The labour-market state occupied during the year: an occupation, unemployment, or non-participation.</dd>
-      <dt>Baseline</dt><dd>A solution of the model in the absence of the policy. Every reported result is the difference between a policy solution and the baseline.</dd>
-      <dt>Calibration</dt><dd>The selection of an unobserved parameter such that the model reproduces an observed quantity.</dd>
-      <dt>Category</dt><dd>A group of persons defined by region, age, sex, health status and the activity undertaken in the preceding year.</dd>
-      <dt>Closure</dt><dd>The set of variables determined outside the model. The same model under a different closure constitutes a different experiment.</dd>
-      <dt>Effective labour</dt><dd>Labour supplied per employed person, expressed relative to a person in good health.</dd>
+      <dt>Activity</dt><dd>The labour-market state during the year: an occupation, unemployment, or non-participation.</dd>
+      <dt>Baseline</dt><dd>A solution of the model without the policy. Every result is the difference between a policy solution and the baseline.</dd>
+      <dt>Calibration</dt><dd>Choosing an unobserved parameter so that the model reproduces an observed quantity.</dd>
+      <dt>Category</dt><dd>A group defined by region, age, sex, health status and the activity of the preceding year.</dd>
+      <dt>Closure</dt><dd>The set of variables fixed from outside the model. The same model under a different closure is a different experiment.</dd>
+      <dt>Completion gate</dt><dd>The list of conditions at the end of a stage that must all hold before the next stage starts.</dd>
+      <dt>Effective labour</dt><dd>Labour supplied per employed person, relative to a person in good health.</dd>
       <dt>Elasticity</dt><dd>The proportional response of one quantity to a proportional change in another.</dd>
-      <dt>Emission factor</dt><dd>The quantity of a pollutant released per unit of fuel consumed.</dd>
-      <dt>Exposure&ndash;response function</dt><dd>The relation between the ambient concentration to which a population is exposed and its rate of disease.</dd>
-      <dt>Functional difficulty</dt><dd>The Susenas block of eight graded items covering sight, hearing, mobility, manual dexterity, cognition, behaviour, speech and self-care. It defines the health status variable used here.</dd>
-      <dt>Incidence</dt><dd>The annual probability that a person in good health enters a state of illness.</dd>
-      <dt>Incumbent</dt><dd>A person retaining the position held in the preceding year.</dd>
-      <dt>Recovery rate</dt><dd>The annual probability that a person in a state of illness returns to good health. Not observed in Indonesia and therefore calibrated.</dd>
-      <dt>Shift variable</dt><dd>A variable introduced into an equation so that a shock may be applied to it. It is to be introduced into the price and quantity equations together.</dd>
-      <dt>Source&ndash;receptor matrix</dt><dd>The allocation of a unit of emissions released in one province to the ambient concentration of each province.</dd>
-      <dt>Sticky wage</dt><dd>A wage that adjusts gradually, such that for a period the level of employment is determined by demand rather than by the wage.</dd>
-      <dt>Swap</dt><dd>The exchange of the exogenous or endogenous status of two variables within a closure.</dd>
-      <dt>Transition matrix</dt><dd>The matrix of probabilities that a person of given age and health status occupies each health status one year later, or has died.</dd>
+      <dt>Emission factor</dt><dd>Pollutant released per unit of fuel burned.</dd>
+      <dt>Exposure&ndash;response function</dt><dd>The relation between the concentration a population breathes and its rate of disease.</dd>
+      <dt>Functional difficulty</dt><dd>The Susenas block of eight graded items on sight, hearing, mobility, manual dexterity, cognition, behaviour, speech and self-care. It defines the health status used here.</dd>
+      <dt>Incidence</dt><dd>The annual probability that a healthy person becomes ill.</dd>
+      <dt>Incumbent</dt><dd>A person who keeps the position held in the preceding year.</dd>
+      <dt>Recovery rate</dt><dd>The annual probability that an ill person returns to good health. Not observed in Indonesia, so calibrated.</dd>
+      <dt>Shift variable</dt><dd>A variable added to an equation so that a shock can move it. It must enter the price and quantity equations together.</dd>
+      <dt>Source&ndash;receptor matrix</dt><dd>How much of a unit emitted in one province reaches the air of each province.</dd>
+      <dt>Sticky wage</dt><dd>A wage that adjusts gradually, so that for a period employment is set by demand rather than by the wage.</dd>
+      <dt>Swap</dt><dd>Exchanging the exogenous or endogenous status of two variables in a closure.</dd>
+      <dt>Transition matrix</dt><dd>The probabilities that a person of given age and health status is in each health status one year later, or has died.</dd>
       <dt>Vacancy</dt><dd>A position not filled by the person who held it in the preceding year.</dd>
     </dl>
   </div>
@@ -2060,21 +2073,20 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
     <div class="sec-head">
       <h2 class="sec-t"><span class="n">B</span>Appendix B. Sources</h2>
     </div>
-    <p>The specification of the module and the procedure for constructing its database are given
-      in Roos (2014), <em>Theoretical specification of a labour-supply module</em>, General Paper
-      G-241, and Roos (2013), <em>Labour-market database for South Africa with HIV/AIDS
-      detail</em>, General Paper G-235, both of the Centre of Policy Studies, Monash University.
-      Applied results are reported in Roos and Giesecke (2014) for South Africa and in Verikios,
-      Dixon, Rimmer and Harris (2013) for Australia.</p>
-    <p>The IndoTERM database and its construction pipeline are documented in Horridge, Roos,
-      Yusuf and Suryana (2021). The host model is the energy extension of that database prepared
-      for the GMMI study. Household data are the Susenas March core questionnaires and Sakernas
-      of Badan Pusat Statistik. Epidemiological rates are taken from the Global Burden of Disease
-      study of the Institute for Health Metrics and Evaluation.</p>
-    <p><strong>Note on the interactive figures.</strong> The values in Figures 1 to 3 are
-      illustrative. They demonstrate the behaviour of the specification and are not estimates for
-      Indonesia. The target profile in Figure 3 is generated from a known pair of rates so that
-      the calibration exercise has a determinate solution.</p>
+    <p>The module specification and its database recipe are Roos (2014), <em>Theoretical
+      specification of a labour-supply module</em>, General Paper G-241, and Roos (2013),
+      <em>Labour-market database for South Africa with HIV/AIDS detail</em>, General Paper G-235,
+      Centre of Policy Studies, Monash University. Applied results are in Roos and Giesecke (2014)
+      for South Africa and Verikios, Dixon, Rimmer and Harris (2013) for Australia.</p>
+    <p>The IndoTERM database and its pipeline are documented in Horridge, Roos, Yusuf and Suryana
+      (2021). The host model is the energy extension of that database built for the GMMI study.
+      Household data are the Susenas March core and Sakernas of Badan Pusat Statistik.
+      Epidemiological rates are from the Global Burden of Disease study, Institute for Health
+      Metrics and Evaluation.</p>
+    <p><strong>Interactive figures.</strong> Figures 1 to 3 use illustrative values that show the
+      behaviour of the specification; they are not estimates for Indonesia. The target profile in
+      Figure 3 is generated from a known pair of rates so that the exercise has a definite
+      answer.</p>
   </div>
 </section>
 
