@@ -562,17 +562,23 @@ figure.depfig figcaption b{
 
     <h3><span class="n">3.2</span>Notation</h3>
     <figure class="tbl">
-      <figcaption><b>Table 2</b>Symbols used in this guide, following the published specification.</figcaption>
+      <figcaption><b>Table 2</b>Symbols used in this guide, following the published specification.
+        The three population arrays share the same age, sex, region and health classes and differ
+        in their first index and their timing: <code>CAT</code> is indexed by last year's activity
+        and observed at the start of the year, before offers are made; <code>ACT</code> is indexed by
+        this year's activity and observed during the year, after rationing. The identity
+        <code>CAT</code>(<em>t</em>) = <code>ACT_L</code> &times; <code>T</code> plus new entrants links
+        them (task D.3).</figcaption>
       <div class="tablewrap">
         <table>
           <thead><tr><th>Symbol</th><th>Object</th><th>Dimensions</th></tr></thead>
           <tbody>
-            <tr><td><code>CAT</code></td><td>Population by category at the start of the year</td><td>activity &times; age &times; sex &times; region &times; health</td></tr>
-            <tr><td><code>ACT</code></td><td>Population by activity during the year</td><td>as above</td></tr>
-            <tr><td><code>ACT_L</code></td><td>Population by activity in the preceding year</td><td>as above</td></tr>
-            <tr><td><code>OFFER</code></td><td>Intended flows from category to activity</td><td>category &times; activity</td></tr>
-            <tr><td><code>H</code></td><td>Realised flows from category to activity</td><td>category &times; activity</td></tr>
-            <tr><td><code>T</code></td><td>Transition matrix between age and health states</td><td>activity &times; sex &times; region &times; (age, health) &times; (age, health)</td></tr>
+            <tr><td><code>CAT</code></td><td>Population by category at the start of year <em>t</em>. The category is the activity of year <em>t</em>&minus;1, plus a new-entrant category that is not an activity.</td><td>category &times; age &times; sex &times; region &times; health, where category = activity set &cup; {new entrant}</td></tr>
+            <tr><td><code>ACT</code></td><td>Population by activity during year <em>t</em></td><td>activity &times; age &times; sex &times; region &times; health</td></tr>
+            <tr><td><code>ACT_L</code></td><td>Population by activity during year <em>t</em>&minus;1; the same classes as <code>ACT</code>, one year earlier. In the base-year database it is <code>ACT</code> divided by one plus labour-force growth.</td><td>activity &times; age &times; sex &times; region &times; health</td></tr>
+            <tr><td><code>OFFER</code></td><td>Intended flows from each category to each destination activity</td><td>(category &times; age &times; sex &times; region &times; health) &times; destination activity</td></tr>
+            <tr><td><code>H</code></td><td>Realised flows, same shape as <code>OFFER</code></td><td>as <code>OFFER</code></td></tr>
+            <tr><td><code>T</code></td><td>Transition matrix from (age, health) in year <em>t</em>&minus;1 to (age, health) in year <em>t</em>; activity, sex and region are carried over unchanged</td><td>activity &times; sex &times; region &times; (age, health) &times; (age, health)</td></tr>
             <tr><td><code>VAC</code></td><td>Vacancies</td><td>occupation &times; region</td></tr>
             <tr><td><code>ATW</code></td><td>Real after-tax wage</td><td>occupation &times; region</td></tr>
             <tr><td>&alpha;</td><td>Rate of wage adjustment to the gap between labour demand and supply</td><td>scalar, 0.5 to 0.6</td></tr>
@@ -1701,6 +1707,9 @@ fc termener0.tab termener.tab &gt; changes.txt</pre></div>
 <span class="kw">Set</span> SEX  read elements from file MODDAT header "SEXS";
 <span class="kw">Set</span> HLT  read elements from file MODDAT header "HLTH";
 <span class="kw">Set</span> ACTV read elements from file MODDAT header "ACTV";
+<span class="cmt">! ACTV is the category set: every activity plus the new-entrant</span>
+<span class="cmt">! category. CAT is indexed by it; ACT and ACT_L use the activity</span>
+<span class="cmt">! elements only (Table 2).</span>
 <span class="cmt">! regions (DST) and occupations (OCC): use the model's existing sets</span>
 
 <span class="cmt">! ---- module data ----</span>
