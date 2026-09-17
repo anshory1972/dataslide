@@ -1,0 +1,1013 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MONASH-Health: A Study Guide to Verikios, Dixon, Rimmer and Harris (2013)</title>
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A study guide to one paper on the MONASH-Health model, focused on methodology and data: the labour-supply specification, the transition matrix estimated from HILDA, the CGE core, the experiment and the results, in twenty study steps with self-tests.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SDGs Center UNPAD">
+<meta property="og:title" content="MONASH-Health: A Study Guide">
+<meta property="og:description" content="Twenty study steps through the methodology and data of Verikios, Dixon, Rimmer and Harris (2013), with the paper's transition matrix reproduced as an interactive figure.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/monash-health-study.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MONASH-Health: A Study Guide">
+<meta name="twitter:description" content="Twenty study steps through the methodology and data of one MONASH-Health paper.">
+<style>
+:root{
+  color-scheme: light;
+  --ink:#14161c;
+  --paper:#f4f2ed;
+  --surface:#fffdf9;
+  --surface-2:#faf8f3;
+  --rule:#dcd8ce;
+  --muted:#6d6a63;
+  --secondary:#52514e;
+  --accent:#b4451f;
+  --slate:#1c4e73;
+  --slate-tint:rgba(28,78,115,0.07);
+  --accent-tint:rgba(180,69,31,0.08);
+  --good:#1f7a4d;
+  --grid:#e4e2da;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%}
+a{color:var(--slate)}
+a:hover{color:var(--accent)}
+
+.shell{max-width:1060px;margin:0 auto;padding-inline:20px}
+
+/* ---------- status bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;background:rgba(244,242,237,0.94);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{
+  max-width:1060px;margin:0 auto;padding:9px 20px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.topbar-label{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.bar{
+  flex:1 1 180px;min-width:120px;height:8px;border-radius:99px;
+  background:var(--rule);overflow:hidden;
+}
+.bar > i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s ease}
+.topbar-count{font-size:12.5px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.topbar-reset{
+  font-size:12px;border:1px solid var(--rule);background:var(--surface);
+  color:var(--muted);border-radius:4px;padding:4px 9px;cursor:pointer;font-family:inherit;
+}
+.topbar-reset:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- title block ---------- */
+header.head{
+  padding:clamp(40px,6vh,72px) 0 clamp(24px,4vh,38px);
+  border-bottom:2px solid var(--ink);
+}
+.doctype{
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin:0 0 15px;
+  display:flex;align-items:center;gap:13px;
+}
+.doctype::after{content:"";flex:1;height:1px;background:var(--rule);max-width:300px}
+h1{
+  font-family:var(--serif);font-size:clamp(27px,3.7vw,46px);line-height:1.1;
+  letter-spacing:-.018em;margin:0 0 10px;font-weight:600;max-width:24ch;text-wrap:balance;
+}
+.subtitle{
+  font-family:var(--serif);font-size:clamp(17px,1.7vw,24px);line-height:1.3;
+  color:var(--accent);font-weight:600;margin:0 0 22px;
+}
+.abstract{font-size:clamp(15px,1.05vw,17px);line-height:1.64;color:var(--secondary);max-width:74ch;margin:0 0 14px}
+.abstract strong{color:var(--ink);font-weight:600}
+
+/* ---------- document identification ---------- */
+.docmeta{
+  margin:26px 0 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(120px,170px) 1fr;
+  font-size:13.5px;
+}
+.docmeta dt{
+  font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;padding:9px 14px 9px 0;border-bottom:1px solid var(--grid);
+}
+.docmeta dd{margin:0;padding:9px 0;color:var(--secondary);border-bottom:1px solid var(--grid)}
+
+/* ---------- table of contents ---------- */
+nav.toc{
+  background:var(--surface);border:1px solid var(--rule);border-radius:6px;
+  padding:22px 26px;margin:30px 0 0;
+}
+nav.toc h2{
+  font-family:var(--serif);font-size:18px;margin:0 0 14px;font-weight:600;
+  padding-bottom:9px;border-bottom:1px solid var(--grid);
+}
+nav.toc ol{list-style:none;margin:0;padding:0;columns:2;column-gap:38px}
+nav.toc li{break-inside:avoid;margin-bottom:6px;font-size:14px;line-height:1.45}
+nav.toc li.sub{padding-left:22px;font-size:13px}
+nav.toc a{text-decoration:none;display:flex;gap:4px;align-items:baseline}
+nav.toc a:hover span:last-child{text-decoration:underline}
+nav.toc .n{
+  font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700;
+  flex:none;min-width:2.4em;
+}
+nav.toc li.sub .n{min-width:3em}
+
+/* ---------- sections ---------- */
+section.sec{padding:clamp(32px,5vh,52px) 0 8px;border-bottom:1px solid var(--rule)}
+.sec-head{margin-bottom:24px}
+h2.sec-t{
+  font-family:var(--serif);font-size:clamp(21px,2.4vw,30px);line-height:1.18;
+  margin:0 0 10px;font-weight:600;max-width:32ch;text-wrap:balance;
+}
+h2.sec-t .n{
+  font-family:var(--mono);font-size:.62em;color:var(--accent);
+  font-weight:700;margin-right:.7em;letter-spacing:-.01em;
+}
+h3{
+  font-family:var(--serif);font-size:clamp(17px,1.5vw,21px);line-height:1.28;
+  margin:32px 0 8px;font-weight:600;
+}
+h3 .n{font-family:var(--mono);font-size:.7em;color:var(--accent);font-weight:700;margin-right:.6em}
+p{margin:0 0 14px;max-width:74ch}
+.sec-lede{font-size:16px;color:var(--secondary);max-width:74ch}
+ul,ol{max-width:74ch}
+
+.specline{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{
+  font-size:12px;color:var(--secondary);background:var(--surface);
+  border:1px solid var(--rule);border-radius:4px;padding:4px 12px;
+}
+.chip b{
+  color:var(--muted);font-weight:700;font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;margin-right:5px;
+}
+
+/* ---------- task blocks ---------- */
+.task{
+  background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:20px 22px;margin:0 0 14px;
+  display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start;
+}
+.task.done{background:var(--surface-2);border-color:#cfd8cd}
+.task > div{min-width:0}
+.task-check{
+  width:26px;height:26px;margin:2px 0 0;flex:none;
+  appearance:none;-webkit-appearance:none;
+  border:1.5px solid var(--rule);border-radius:4px;background:var(--surface);
+  cursor:pointer;position:relative;
+}
+.task-check:hover{border-color:var(--accent)}
+.task-check:checked{background:var(--good);border-color:var(--good)}
+.task-check:checked::after{
+  content:"";position:absolute;left:8px;top:3px;width:7px;height:13px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(43deg);
+}
+.task-check:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.task-id{
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);
+  letter-spacing:.04em;margin:0 0 2px;
+}
+.task-t{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 9px;line-height:1.3}
+.task.done .task-t{color:var(--muted)}
+.task-body{font-size:15px;color:var(--secondary);min-width:0}
+.task-body > *{min-width:0}
+.task-body p{margin:0 0 10px;max-width:70ch}
+.task-body p:last-child{margin-bottom:0}
+.task-body ul,.task-body ol{margin:0 0 10px;padding-left:20px;max-width:70ch}
+.task-body li{margin-bottom:5px}
+.task-body strong{color:var(--ink);font-weight:600}
+
+.lbl{
+  display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:2px 7px;border-radius:2px;margin-right:8px;vertical-align:2px;
+}
+.lbl.proc{color:#fff;background:var(--slate)}
+.lbl.ver{color:#fff;background:var(--good)}
+.lbl.cau{color:#fff;background:var(--accent)}
+.line{margin:0 0 10px;max-width:70ch}
+.line:last-child{margin-bottom:0}
+
+/* ---------- code ---------- */
+.code{
+  position:relative;background:#1d1f26;color:#e8e6df;border-radius:4px;
+  margin:12px 0;overflow:hidden;
+}
+.code pre{
+  margin:0;padding:14px 16px;overflow-x:auto;max-width:100%;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;
+}
+.code .cmt{color:#9aa3b2}
+.code .kw{color:#f0b37a}
+.code .str{color:#9fd3a6}
+.copy{
+  position:absolute;top:7px;right:7px;font-size:11px;font-family:var(--sans);
+  background:rgba(255,255,255,.1);color:#e8e6df;border:1px solid rgba(255,255,255,.2);
+  border-radius:3px;padding:3px 9px;cursor:pointer;
+}
+.copy:hover{background:rgba(255,255,255,.2)}
+code{font-family:var(--mono);font-size:.88em;background:var(--grid);padding:1px 5px;border-radius:2px}
+.code code{background:none;padding:0}
+.caption{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.55;max-width:74ch}
+.caption b{color:var(--secondary);font-weight:700}
+
+/* ---------- notes ---------- */
+details.note{margin:10px 0 0;border-top:1px dashed var(--rule);padding-top:9px}
+details.note > summary{
+  cursor:pointer;font-size:13px;font-weight:600;color:var(--slate);
+  list-style:none;display:inline-flex;align-items:center;gap:6px;
+}
+details.note > summary::-webkit-details-marker{display:none}
+details.note > summary::before{content:"+";font-family:var(--mono);font-weight:700}
+details.note[open] > summary::before{content:"\2212"}
+details.note > summary:hover{color:var(--accent)}
+details.note .note-body{font-size:14px;color:var(--secondary);padding-top:9px}
+details.note .note-body p{max-width:70ch}
+
+/* ---------- tables ---------- */
+figure.tbl{margin:20px 0}
+figure.tbl figcaption{font-size:12px;color:var(--secondary);margin:0 0 7px;line-height:1.5;max-width:74ch}
+figure.tbl figcaption b{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);
+  font-weight:700;letter-spacing:.03em;margin-right:7px;
+}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--grid);vertical-align:top}
+thead th{
+  font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;background:var(--surface-2);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td code,th code{font-size:12px}
+
+/* ---------- callouts ---------- */
+.callout{
+  border-left:3px solid var(--accent);background:var(--accent-tint);
+  padding:14px 18px;border-radius:0 4px 4px 0;margin:18px 0;font-size:14.5px;
+}
+.callout .callout-t{
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--accent);display:block;margin-bottom:5px;
+}
+.callout p{margin:0;max-width:68ch;color:var(--secondary)}
+.callout.req{border-left-color:var(--slate);background:var(--slate-tint)}
+.callout.req .callout-t{color:var(--slate)}
+
+/* ---------- stage index ---------- */
+.stageindex{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:12px;margin:8px 0 6px;
+}
+.stagecard{
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+  padding:14px 16px;text-decoration:none;color:inherit;display:block;
+}
+.stagecard:hover{border-color:var(--accent);color:inherit}
+.stagecard .s-n{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.stagecard .s-t{font-family:var(--serif);font-size:15.5px;font-weight:600;margin:4px 0 5px;line-height:1.25}
+.stagecard .s-d{font-size:12.5px;color:var(--muted);line-height:1.5}
+.stagecard .s-c{font-size:11.5px;color:var(--secondary);margin-top:8px;font-weight:600}
+
+/* ---------- interactive figures ---------- */
+.ifig{
+  background:var(--surface);border:1px solid var(--rule);border-radius:5px;
+  padding:20px 22px;margin:20px 0;
+}
+.ifig-tag{
+  display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:var(--slate);background:var(--slate-tint);
+  border-radius:2px;padding:3px 8px;margin-bottom:9px;
+}
+.ifig h4{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 6px;line-height:1.3}
+.ifig h4 .n{font-family:var(--mono);font-size:.72em;color:var(--accent);font-weight:700;margin-right:.6em}
+.ifig .ifig-sub{font-size:14px;color:var(--secondary);margin:0 0 4px;max-width:68ch}
+.ifig-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,222px);gap:20px;align-items:start;margin-top:16px}
+.ifig-fig{min-width:0}
+.ifig-fig svg{width:100%;height:auto;display:block}
+.controls{display:flex;flex-direction:column;gap:14px}
+.ctl label{display:block;font-size:12.5px;font-weight:600;color:var(--secondary);margin-bottom:5px}
+.ctl label span{float:right;font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+.ctl input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+.readout{
+  font-size:12.5px;color:var(--secondary);border-top:1px solid var(--grid);
+  padding-top:11px;line-height:1.6;
+}
+.readout b{color:var(--ink);font-variant-numeric:tabular-nums}
+.verdict{font-weight:700;font-size:13px;margin-top:7px}
+.verdict.hit{color:var(--good)}
+.verdict.miss{color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 0;font-size:12.5px;color:var(--secondary)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.gridline{stroke:var(--grid);stroke-width:1}
+.axisline{stroke:#c7c5ba;stroke-width:1}
+.axistext{font-size:10.5px;fill:var(--muted);font-family:var(--sans)}
+.serieslabel{font-size:11.5px;font-weight:700;font-family:var(--sans)}
+
+/* ---------- definition list ---------- */
+dl.defs{margin:16px 0 0;display:grid;grid-template-columns:minmax(150px,230px) 1fr;gap:9px 20px;font-size:14.5px}
+dl.defs dt{font-weight:650;color:var(--ink)}
+dl.defs dd{margin:0;color:var(--secondary)}
+
+footer.foot{padding:32px 0 60px;font-size:13px;color:var(--muted);line-height:1.75}
+footer.foot p{max-width:74ch}
+
+
+/* ---------- how to use ---------- */
+.howto{
+  margin:6px 0 0;padding:14px 18px;border:1px solid var(--rule);border-radius:4px;
+  background:var(--surface);font-size:14.5px;max-width:74ch;
+}
+.howto-t{
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--slate);display:block;margin-bottom:7px;
+}
+.howto ul{margin:0;padding-left:18px;color:var(--secondary)}
+.howto li{margin-bottom:4px}
+.howto strong{color:var(--ink);font-weight:600}
+
+/* ---------- completion gate ---------- */
+.gate{
+  border:1px solid var(--rule);border-left:3px solid var(--good);background:var(--surface);
+  border-radius:0 4px 4px 0;padding:14px 18px;margin:22px 0 6px;
+}
+.gate-t{
+  font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--good);display:block;margin-bottom:7px;
+}
+.gate ul{margin:0;padding-left:18px;font-size:14px;color:var(--secondary);max-width:74ch}
+.gate li{margin-bottom:4px}
+
+
+/* ---------- task kind tags ---------- */
+.kind{
+  display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;padding:1px 7px;border-radius:2px;
+  margin-left:8px;vertical-align:1px;border:1px solid transparent;
+}
+.kind-build{color:#fff;background:var(--accent)}
+.kind-run{color:#fff;background:var(--slate)}
+.kind-prepare{color:var(--secondary);background:var(--surface-2);border-color:var(--rule)}
+.kind-check{color:var(--good);background:#eef5f0;border-color:#cfe0d5}
+.kind-hard{color:var(--accent);background:transparent;border-color:var(--accent)}
+td .kind,p .kind{margin-left:0;margin-right:4px}
+
+/* ---------- process charts ---------- */
+figure.pchart{margin:14px 0 6px}
+figure.pchart .chartwrap{overflow-x:auto;border:1px solid var(--rule);border-radius:4px;background:var(--surface);padding:6px}
+figure.pchart svg{display:block;width:100%;min-width:900px;height:auto}
+figure.pchart figcaption{font-size:12px;color:var(--secondary);margin:8px 0 0;line-height:1.5;max-width:74ch}
+figure.pchart figcaption b{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:700;letter-spacing:.03em;margin-right:7px;
+}
+
+/* ---------- equations (MathML; never set display:block on <math>) ---------- */
+.eq{
+  position:relative;overflow-x:auto;margin:10px 0 16px;padding:12px 16px 8px;
+  background:var(--surface);border:1px solid var(--rule);border-radius:4px;
+}
+.eq math{font-size:1.12em;font-family:"Cambria Math","STIX Two Math","Latin Modern Math",serif}
+.eq .eqn{
+  position:absolute;top:8px;right:12px;font-family:var(--mono);font-size:11px;
+  color:var(--accent);font-weight:700;letter-spacing:.03em;
+}
+.eq-gloss{font-size:13.5px;color:var(--secondary);margin:8px 0 0;max-width:74ch}
+.eq-sets{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.eq-gloss strong{color:var(--ink)}
+/* ---------- dependency figure ---------- */
+figure.depfig{margin:14px 0 0}
+figure.depfig svg{width:100%;height:auto;display:block;max-width:820px}
+figure.depfig figcaption{font-size:12px;color:var(--secondary);margin:8px 0 0;line-height:1.5;max-width:74ch}
+figure.depfig figcaption b{
+  font-family:var(--mono);font-size:11.5px;color:var(--accent);font-weight:700;letter-spacing:.03em;margin-right:7px;
+}
+
+
+/* ---------- study guide additions ---------- */
+.lbl.read{color:#fff;background:var(--slate)}
+.lbl.mech{color:#fff;background:#4a3aa7}
+.lbl.chk{color:#fff;background:var(--good)}
+.lbl.lim{color:#fff;background:var(--accent)}
+
+details.selftest{
+  margin:10px 0 0;border:1px solid var(--rule);border-left:3px solid var(--good);
+  border-radius:0 4px 4px 0;background:var(--surface-2);padding:10px 14px;
+}
+details.selftest > summary{
+  cursor:pointer;font-size:13.5px;font-weight:650;color:var(--ink);
+  list-style:none;display:flex;gap:8px;align-items:baseline;
+}
+details.selftest > summary::-webkit-details-marker{display:none}
+details.selftest > summary::before{
+  content:"CHECK";font-family:var(--sans);font-size:10px;letter-spacing:.1em;font-weight:700;
+  color:#fff;background:var(--good);padding:2px 7px;border-radius:2px;flex:none;
+}
+details.selftest[open] > summary{margin-bottom:8px}
+details.selftest .ans{font-size:14px;color:var(--secondary);max-width:70ch}
+details.selftest .ans p{margin:0 0 8px}
+details.selftest .ans p:last-child{margin-bottom:0}
+
+.matrix-tbl{width:100%;border-collapse:collapse;font-size:12.5px;min-width:0}
+.matrix-tbl th,.matrix-tbl td{padding:4px 6px;text-align:right;border:none;font-variant-numeric:tabular-nums}
+.matrix-tbl th{font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:none}
+.matrix-tbl td.rowlab,.matrix-tbl th.rowlab{text-align:left;font-weight:650;color:var(--ink);text-transform:none;font-size:12px}
+.matrix-tbl td.diag{background:var(--grid);font-weight:650}
+.matrix-tbl td.worse{color:var(--accent)}
+.matrix-tbl td.dec{font-weight:700;color:var(--accent);border-left:1px solid var(--rule)}
+.matrix-tbl tr.sel td{background:rgba(180,69,31,.09)}
+.mx-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:14px}
+.mx-wrap h5{font-size:12.5px;margin:0 0 6px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.06em}
+.agebtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.agebtn{
+  font-family:var(--sans);font-size:12.5px;padding:5px 11px;border-radius:4px;cursor:pointer;
+  border:1px solid var(--rule);background:var(--surface);color:var(--secondary);
+}
+.agebtn:hover{border-color:var(--accent);color:var(--accent)}
+.agebtn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:650}
+
+.keyfact{
+  border:1px solid var(--rule);border-left:3px solid var(--slate);background:var(--surface);
+  border-radius:0 4px 4px 0;padding:12px 16px;margin:16px 0;font-size:14.5px;
+}
+.keyfact b{color:var(--ink)}
+.keyfact p{margin:0;max-width:70ch;color:var(--secondary)}
+
+.partrule{
+  margin:34px 0 0;padding-top:8px;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;
+}
+@media screen and (max-width:640px){
+  .mx-wrap{grid-template-columns:1fr;gap:16px}
+}
+
+/* ---------- narrow screens ---------- */
+@media screen and (max-width:999px){
+  body{font-size:15.5px}
+  .ifig-grid{grid-template-columns:minmax(0,1fr)}
+  .controls{flex-direction:row;flex-wrap:wrap;gap:14px 20px}
+  .ctl{flex:1 1 160px}
+  nav.toc ol{columns:1}
+  dl.defs{grid-template-columns:minmax(0,1fr);gap:2px 0}
+  dl.defs dd{margin-bottom:11px}
+  .docmeta{grid-template-columns:minmax(0,1fr)}
+  .docmeta dt{padding-bottom:0;border-bottom:none}
+  .docmeta dd{padding-top:2px}
+}
+@media screen and (max-width:640px){
+  .shell{padding-inline:16px}
+  .topbar-inner{padding-inline:16px}
+  .task{padding:16px 15px;gap:6px 12px}
+  .task-check{width:24px;height:24px}
+  .task-check:checked::after{left:7px;top:3px;width:6px;height:12px}
+  .ifig,nav.toc{padding:16px 15px}
+  .stageindex{grid-template-columns:minmax(0,1fr)}
+  h3{margin-top:26px}
+}
+@media print{
+  .topbar,.copy,.controls{display:none}
+  body{background:#fff;font-size:10.5pt}
+  .task,.ifig,.tablewrap,figure.tbl{break-inside:avoid;border-color:#bbb}
+  section.sec{break-before:page}
+  details.note{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-label">Study steps completed</span>
+    <span class="bar"><i id="barfill"></i></span>
+    <span class="topbar-count"><span id="ndone">0</span> of 20</span>
+    <button class="topbar-reset" id="resetbtn" type="button">Reset</button>
+  </div>
+</div>
+
+<header class="head">
+  <div class="shell">
+    <p class="doctype">Study guide</p>
+    <h1>MONASH-Health: reading one paper closely</h1>
+    <p class="subtitle">Verikios, Dixon, Rimmer and Harris (2013): methodology and data</p>
+    <p class="abstract">This guide works through a single paper in <strong>20 study
+      steps</strong>. It covers how the model is built and where its numbers come from. It does not
+      summarise the paper; it takes the paper apart in the order in which its pieces depend on each other,
+      and asks a question at each step so that understanding can be checked before moving on.</p>
+    <p class="abstract">The paper matters here for two reasons. It is the method the Wellcome application
+      cites for embedding health in an economywide model. It is also the closest published relative of the
+      module being built in Work Package 2.3: the same labour-supply theory, a different country, and a
+      much better data situation for the one quantity that is hardest to measure.</p>
+
+    <div class="howto">
+      <span class="howto-t">How to use this guide</span>
+      <ul>
+        <li><strong>Open the paper beside it.</strong> Every step names the section and page to read first.
+          The guide explains; it does not replace.</li>
+        <li><strong>Answer the check before opening it.</strong> Each step ends with one question. The
+          answer is hidden until clicked.</li>
+        <li><strong>If time is short:</strong> steps 3 to 6 are the labour-supply specification and steps
+          11 and 12 are the data behind it. Those six steps carry the method.</li>
+      </ul>
+    </div>
+
+    <dl class="docmeta">
+      <dt>Paper</dt><dd>The Impact of Changes in Health Status: An Economywide Analysis for Australia</dd>
+      <dt>Authors</dt><dd>George Verikios, Peter B. Dixon, Maureen T. Rimmer (Centre of Policy Studies) and Anthony H. Harris (Centre for Health Economics), Monash University</dd>
+      <dt>Reference</dt><dd>General Paper G-231, February 2013. Published as &ldquo;Improving health in an advanced economy&rdquo;, <em>Economic Modelling</em> 46 (2015)</dd>
+      <dt>Model</dt><dd>MONASH-Health: dynamic, 48 industries, 8 occupations, annual to 2030</dd>
+      <dt>Guide prepared by</dt><dd>Arief Anshory Yusuf, SDGs Center, Universitas Padjadjaran</dd>
+      <dt>Date</dt><dd>September 2026</dd>
+    </dl>
+
+    <nav class="toc">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#overview"><span class="n">0</span><span>The paper in one table</span></a></li>
+        <li><a href="#p1"><span class="n">1</span><span>Orientation</span></a></li>
+        <li class="sub"><a href="#S1"><span class="n">1</span><span>What the paper asks, and why it is the right paper to study</span></a></li>
+        <li class="sub"><a href="#S2"><span class="n">2</span><span>The six ingredients of the labour-supply specification</span></a></li>
+        <li><a href="#p2"><span class="n">2</span><span>The labour-supply specification</span></a></li>
+        <li class="sub"><a href="#S3"><span class="n">3</span><span>Equation 1: how categories are produced from last year's activities</span></a></li>
+        <li class="sub"><a href="#S4"><span class="n">4</span><span>Equation 2: the transition matrix is split into an age part and a health part</span></a></li>
+        <li class="sub"><a href="#S5"><span class="n">5</span><span>Equation 3: how a category divides its labour among activities</span></a></li>
+        <li class="sub"><a href="#S6"><span class="n">6</span><span>Equation 4: sluggish wages, and who gets the jobs</span></a></li>
+        <li><a href="#p3"><span class="n">3</span><span>The economywide model</span></a></li>
+        <li class="sub"><a href="#S7"><span class="n">7</span><span>The health sector: eighteen treatments and six services</span></a></li>
+        <li class="sub"><a href="#S8"><span class="n">8</span><span>The production structure: three levels, and where the elasticities are</span></a></li>
+        <li class="sub"><a href="#S9"><span class="n">9</span><span>Consumer demand, and the awkward case of health treatments</span></a></li>
+        <li class="sub"><a href="#S10"><span class="n">10</span><span>Dynamics and how the model is solved</span></a></li>
+        <li><a href="#p4"><span class="n">4</span><span>The data</span></a></li>
+        <li class="sub"><a href="#S11"><span class="n">11</span><span>The transition data: five waves of HILDA</span></a></li>
+        <li class="sub"><a href="#S12"><span class="n">12</span><span>Reading Table 1: what the survey actually shows</span></a></li>
+        <li class="sub"><a href="#S13"><span class="n">13</span><span>The economic data: what the model is calibrated on</span></a></li>
+        <li><a href="#p5"><span class="n">5</span><span>The experiment</span></a></li>
+        <li class="sub"><a href="#S14"><span class="n">14</span><span>The experiment: what exactly was shocked</span></a></li>
+        <li class="sub"><a href="#S15"><span class="n">15</span><span>The first-round effect: who moves, and how many</span></a></li>
+        <li><a href="#p6"><span class="n">6</span><span>The results</span></a></li>
+        <li class="sub"><a href="#S16"><span class="n">16</span><span>The labour market in the first year</span></a></li>
+        <li class="sub"><a href="#S17"><span class="n">17</span><span>The macroeconomic path to 2030</span></a></li>
+        <li class="sub"><a href="#S18"><span class="n">18</span><span>The sectoral results, and why traded sectors gain most</span></a></li>
+        <li><a href="#p7"><span class="n">7</span><span>Judgement</span></a></li>
+        <li class="sub"><a href="#S19"><span class="n">19</span><span>What the authors say the model cannot do</span></a></li>
+        <li class="sub"><a href="#S20"><span class="n">20</span><span>How the paper compares with the Indonesian module</span></a></li>
+        <li><a href="#sA"><span class="n">A</span><span>Appendix A. Glossary</span></a></li>
+        <li><a href="#sB"><span class="n">B</span><span>Appendix B. Sources and further reading</span></a></li>
+      </ol>
+    </nav>
+  </div>
+</header>
+
+<section class="sec" id="overview">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">0</span>The paper in one table</h2>
+      <p class="sec-lede">Read this before starting. It is the map that the rest of the guide fills in.</p>
+    </div>
+    <figure class="tbl">
+      <figcaption><b>Table 1</b>The paper at a glance.</figcaption>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Element</th><th>What the paper does</th><th>Study step</th></tr></thead>
+          <tbody>
+            <tr><td>Question</td><td>What happens to the economy if the rate of health decline falls permanently for one age group?</td><td class="num">1</td></tr>
+            <tr><td>Population structure</td><td>5 age groups &times; 5 health statuses &times; 11 work statuses, at the start of each year</td><td class="num">2, 3</td></tr>
+            <tr><td>How health moves</td><td>A transition matrix, split into an age part and a health part</td><td class="num">4</td></tr>
+            <tr><td>How health reaches the economy</td><td>Participation: offers to work depend on age and health status</td><td class="num">5</td></tr>
+            <tr><td>Labour market</td><td>Sluggish wages, &alpha; = 0.5, with incumbents favoured in rationing</td><td class="num">6</td></tr>
+            <tr><td>Economic core</td><td>48 industries: 18 health treatments, 6 health services, 24 others</td><td class="num">7, 8, 9</td></tr>
+            <tr><td>Key data source</td><td>HILDA household panel, waves 2002 to 2006, for health transitions and employment fractions</td><td class="num">11, 12</td></tr>
+            <tr><td>Experiment</td><td>10 per cent of one age group in poor health decline one status less, permanently, from 2011</td><td class="num">14</td></tr>
+            <tr><td>Headline result</td><td>Older workers: labour supply +0.13%, GDP +0.10%. Younger workers: +0.01% and +0.008%</td><td class="num">17</td></tr>
+            <tr><td>Why the difference</td><td>Participation of older workers is far more sensitive to health status</td><td class="num">5, 15</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </figure>
+    <div class="keyfact">
+      <p><b>One sentence to carry through the whole guide.</b> Health enters this model at exactly one
+      point, the transition matrix, and leaves it at exactly one point, the decision to offer labour.
+      Everything between those two points is an ordinary computable general equilibrium model.</p>
+    </div>
+  </div>
+</section>
+<section class="sec" id="p1">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">1</span>Orientation</h2>
+      <p class="sec-lede">What the paper does and the six pieces of its labour-supply specification.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 1 to 2</span></div>
+    </div>
+<div class="task" id="S1" data-task="S1">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 1 complete">
+  <div>
+    <p class="task-id">STUDY STEP 1</p>
+    <p class="task-t">What the paper asks, and why it is the right paper to study</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Abstract and section 1, pages 1 to 3.</p><p>The paper builds a dynamic computable general equilibrium model of Australia in which the health status of the workforce determines labour supply. It then asks what happens to the economy if the rate of health decline falls permanently for one age group.</p><p>The answer is the paper's main contribution, and it is a comparison rather than a single number. A given health improvement given to older workers produces an effect about thirteen times larger than the same improvement given to younger workers. Employment rises by 0.13 per cent and real gross domestic product by 0.1 per cent for older workers; the corresponding figures for younger workers are 0.01 and 0.008 per cent.</p><p>This is the paper the Wellcome application cites for its method. It is also the closest published relative of the module being built in Work Package 2.3: same labour-supply theory, same treatment of health as a stock of people moving between states, a different country and a different data situation.</p><details class="selftest"><summary>Why is the comparison between age groups the result, rather than the size of either effect?</summary><div class="ans"><p>Both effects are small in absolute terms, and both depend on an illustrative shock whose size the authors chose rather than estimated. What does not depend on the size of the shock is the ratio between the two: it comes from the difference in how steeply participation falls with poor health at different ages, which is measured from survey data. The ratio is the finding; the levels are an illustration.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S2" data-task="S2">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 2 complete">
+  <div>
+    <p class="task-id">STUDY STEP 2</p>
+    <p class="task-t">The six ingredients of the labour-supply specification</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3, first page, page 5, and Figure 1 on the same page.</p><p>Before any equation, the authors list the six things their specification must contain. Holding these six in mind makes the rest of section 3 straightforward, because each subsection supplies one or two of them.</p><ol><li>Categories, defined by age, health status and work status, fixed at the <strong>start</strong> of each year.</li><li>Activities: what people actually do <strong>during</strong> the year.</li><li>Labour supply from each category to each activity.</li><li>Labour demand in the employment activities.</li><li>Wage adjustment reflecting demand and supply.</li><li>Who gets the jobs, and what happens to those who do not.</li></ol><p>Figure 1 puts the first three on a timeline: categories at the start of year <i>t</i> produce activities during year <i>t</i>, and a transition then produces the categories of year <i>t</i>+1. The model has five age groups, five health statuses, eight occupations and three non-employment states, which are short-run unemployed, long-run unemployed and new entrants.</p><details class="selftest"><summary>What is the difference between a category and an activity?</summary><div class="ans"><p>A category is a classification at a point in time, the start of the year, and it records what the person did in the <em>previous</em> year along with their age and health. An activity is what the person does <em>during</em> the year. The distinction matters because the module lets people offer labour from their category to any compatible activity, and the rationing of jobs then decides which offers are accepted.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p2">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">2</span>The labour-supply specification</h2>
+      <p class="sec-lede">Sections 3.1 to 3.3. Four equations. This is the part that is reused in Work Package 2.3.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 3 to 6</span></div>
+    </div>
+<div class="task" id="S3" data-task="S3">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 3 complete">
+  <div>
+    <p class="task-id">STUDY STEP 3</p>
+    <p class="task-t">Equation 1: how categories are produced from last year's activities</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3.1, pages 5 and 6.</p><div class="eq"><span class="eqn">Equation 1</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mrow><mi>CAT</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>c</mi><mo>)</mo></mrow><mo>=</mo><munder><mo>&#x2211;</mo><mrow><mrow><mi>b</mi><mo>&#x2208;</mo><mi>AGE</mi></mrow></mrow></munder><munder><mo>&#x2211;</mo><mrow><mrow><mi>i</mi><mo>&#x2208;</mo><mi>HEALTH</mi></mrow></mrow></munder><msub><mrow><mi>ACT</mi></mrow><mrow><mrow><mi>t</mi><mo>&#x2212;</mo><mn>1</mn></mrow></mrow></msub><mrow><mo>(</mo><mi>b</mi><mo>,</mo><mi>i</mi><mo>,</mo><mi>c</mi><mo>)</mo></mrow><mo>&#x22C5;</mo><mi>T</mi><mrow><mo>(</mo><mi>b</mi><mo>,</mo><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow></mrow></math><p class="eq-gloss"><strong>Categories from activities.</strong> The number of people in age group <i>a</i>, health status <i>h</i> and work status <i>c</i> at the start of year <i>t</i> is last year's activities summed over the age groups <i>b</i> and health statuses <i>i</i> they came from, weighted by the transition matrix.</p></div><p>Work status <i>c</i> is carried over unchanged: a person who was a manager last year enters this year in the manager category. Only age and health change in the transition. New entrants, those who were not in the labour force last year, are set exogenously from demographic data.</p><p class="line"><span class="lbl mech">Mechanism</span>This single equation is where a health policy enters the model. Nothing else in the specification needs to change: a policy is a change in the transition matrix <i>T</i>, and everything downstream follows.</p><details class="selftest"><summary>If the transition matrix is left alone, what makes the category distribution change from year to year?</summary><div class="ans"><p>Ageing and the composition of last year's activities. People move up the age groups, some die or leave permanently, and the mix of activities in the previous year differs from the year before that. The matrix itself is a set of rates, not a forecast, so an unchanged matrix still produces a changing population.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S4" data-task="S4">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 4 complete">
+  <div>
+    <p class="task-id">STUDY STEP 4</p>
+    <p class="task-t">Equation 2: the transition matrix is split into an age part and a health part</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3.1, page 6.</p><div class="eq"><span class="eqn">Equation 2</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>T</mi><mrow><mo>(</mo><mi>b</mi><mo>,</mo><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>)</mo></mrow><mo>=</mo><msub><mrow><mi>P</mi></mrow><mrow><mn>1</mn></mrow></msub><mrow><mo>(</mo><mi>a</mi><mo>|</mo><mi>b</mi><mo>,</mo><mi>i</mi><mo>)</mo></mrow><mo>&#x22C5;</mo><msub><mrow><mi>P</mi></mrow><mrow><mn>2</mn></mrow></msub><mrow><mo>(</mo><mi>h</mi><mo>|</mo><mi>b</mi><mo>,</mo><mi>i</mi><mo>,</mo><mi>c</mi><mo>)</mo></mrow></mrow></math><p class="eq-gloss"><strong>The decomposition.</strong> The probability of moving from (<i>b</i>, <i>i</i>, <i>c</i>) to (<i>a</i>, <i>h</i>) is the probability of the age move times the probability of the health move.</p></div><p>The two parts are obtained in completely different ways, and this is the most instructive design decision in the paper.</p><ul><li><strong>The age part, P<sub>1</sub>.</strong> Almost mechanical. With ten-year age groups, a first approximation puts 0.9 of each group in the same group next year and 0.1 in the next group up. The second approximation multiplies both by one minus <i>D</i>, the probability of death or permanent discouragement from seeking work.</li><li><strong>The health part, P<sub>2</sub>.</strong> Estimated from a household panel survey. This is the empirical core of the paper and the subject of study steps 11 and 12.</li></ul><p>The authors note in a footnote that this makes <i>T</i> a first-order Markov model: the probability of being in a state this year depends only on the state last year, not on any earlier history.</p><details class="selftest"><summary>Why does splitting T into two parts help?</summary><div class="ans"><p>The two components have different status. The age part is close to arithmetic and needs no data beyond a mortality and discouragement rate. The health part cannot be derived and must be measured. Separating them keeps the assumption confined to the part that is genuinely assumed, and lets the measured part carry the result.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S5" data-task="S5">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 5 complete">
+  <div>
+    <p class="task-id">STUDY STEP 5</p>
+    <p class="task-t">Equation 3: how a category divides its labour among activities</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3.2, pages 7 and 8.</p><div class="eq"><span class="eqn">Equation 3</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mrow><mi>LS</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>w</mi><mo>,</mo><mi>c</mi><mo>)</mo></mrow><mo>=</mo><msub><mrow><mi>CAT</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>w</mi><mo>)</mo></mrow><mo>&#x22C5;</mo><msub><mrow><mi>F</mi></mrow><mrow><mrow><mi>a</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>w</mi><mo>,</mo><mi>c</mi></mrow></mrow></msub><mrow><mo>(</mo><mfrac><mrow><msub><mrow><mi>W</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>c</mi><mo>)</mo></mrow></mrow><mrow><msub><mrow><mi>AW</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>a</mi><mo>,</mo><mi>h</mi><mo>,</mo><mi>w</mi><mo>)</mo></mrow></mrow></mfrac><mo>)</mo></mrow></mrow></math><p class="eq-gloss"><strong>Offers.</strong> Supply from a category to a labour force function is the size of the category, times a function <i>F</i>, times the wage in that activity relative to the average wage available to that category.</p></div><p>The function <i>F</i> carries four features of behaviour, and the authors state them explicitly:</p><ol><li>People who worked in an occupation last year supply strongly to the same occupation this year.</li><li>People supply only to occupations compatible with their skills.</li><li>Unemployed people supply relatively weakly, which is the discouraged worker effect.</li><li>Supply depends on the age and health of the category.</li></ol><p>Feature 4 is the one that carries the result of the whole paper, and it is not assumed. It is taken from the survey, and is shown as Figure 2 on page 9: employment fractions by age group and health status.</p><p class="line"><span class="lbl mech">Mechanism</span>Figure 2 shows two gradients at once. Within each age group, the employment fraction falls as health worsens, and the fall is much sharper at H4 and H5 than between H1 and H3. Across age groups, the whole profile drops for the oldest workers. The interaction of these two gradients is why the same health gain is worth more when given to older workers.</p><details class="selftest"><summary>The paper's headline result is a ratio of about thirteen to one. Which piece of evidence produces it?</summary><div class="ans"><p>Figure 2. It is the only place where the sensitivity of participation to health is allowed to differ by age. The shock in the two simulations is deliberately identical in form, so the difference in the answers can only come from the difference in the employment-fraction gradients.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S6" data-task="S6">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 6 complete">
+  <div>
+    <p class="task-id">STUDY STEP 6</p>
+    <p class="task-t">Equation 4: sluggish wages, and who gets the jobs</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3.3, pages 9 and 10, including Figure 3.</p><div class="eq"><span class="eqn">Equation 4</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mrow><mi>RW</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>o</mi><mo>)</mo></mrow><mo>=</mo><msub><mrow><mi>RW</mi></mrow><mrow><mrow><mi>t</mi><mo>&#x2212;</mo><mn>1</mn></mrow></mrow></msub><mrow><mo>(</mo><mi>o</mi><mo>)</mo></mrow><mo>+</mo><mi>&#x03B1;</mi><mrow><mo>[</mo><msub><mrow><mi>LD</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>o</mi><mo>)</mo></mrow><mo>&#x2212;</mo><msub><mrow><mi>LS</mi></mrow><mrow><mi>t</mi></mrow></msub><mrow><mo>(</mo><mi>o</mi><mo>)</mo></mrow><mo>]</mo></mrow></mrow></math><p class="eq-gloss"><strong>Wage adjustment.</strong> The real after-tax wage for occupation <i>o</i> this year is last year's wage plus &alpha; times the gap between labour demand and labour supply in that occupation.</p></div><p>The paper sets &alpha; = 0.5. With sluggish wages the labour market does not clear, and supply normally exceeds demand. A rationing rule is therefore needed, and the authors state it in one sentence: incumbents have a strong advantage, and the job openings beyond those filled by incumbents are shared among the rest in proportion to the strength of their supply.</p><p>Figure 3 draws the resulting loop. Labour supply and labour demand both feed the real wage; the real wage feeds the core model; the core model produces industry outputs, prices, household income and gross domestic product; and labour demand comes back out of the core model.</p><details class="selftest"><summary>Why does the model need a rationing rule at all?</summary><div class="ans"><p>Because the wage equation does not clear the market within the year. If wages adjusted fully, employment would equal supply and no rule would be needed. Under sluggish adjustment there are more people offering to work than there are positions, so the model must say explicitly who is employed. The choice made here, incumbents first, is what makes the transition gradual rather than immediate.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p3">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">3</span>The economywide model</h2>
+      <p class="sec-lede">Section 4. The health sector, the production nest, consumer demand, dynamics and solution.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 7 to 10</span></div>
+    </div>
+<div class="task" id="S7" data-task="S7">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 7 complete">
+  <div>
+    <p class="task-id">STUDY STEP 7</p>
+    <p class="task-t">The health sector: eighteen treatments and six services</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 4.1.1, page 11, and Table 2 on the same page.</p><p>The detailed health sector is what makes this model different from earlier CGE work on health, which either buried health inside a broad sector or used a single-sector model.</p><p>Two distinct sets are involved, and confusing them makes the rest of section 4 hard to follow.</p><ul><li><strong>Eighteen health treatments</strong>, classified by the International Classification of Diseases, tenth revision. Cardiovascular disease, diabetes mellitus, mental disorders, neoplasms and so on.</li><li><strong>Six health commodities and services</strong>: human pharmaceuticals, hospitals and nursing homes, medical services, dental services, optometry, ambulance services.</li></ul><p class="line"><span class="lbl mech">Mechanism</span>The treatment industries do not employ labour, capital or land directly. They buy health services as intermediate inputs, and it is the service industries that employ primary factors. So a treatment industry's demand for labour is indirect. Each treatment uses its own combination of services: respiratory disease and diabetes are pharmaceutical-intensive, injuries and neonatal care are hospital-intensive. The mix comes from the Australian Institute of Health and Welfare.</p><p>Households buy the treatments at prices that carry a 65 per cent subsidy financed by government revenue. The same subsidy applies to the small amount of health services sold directly to households.</p><details class="selftest"><summary>An improvement in health raises the number of healthy people. Does the model let treatment demand fall as a result?</summary><div class="ans"><p>No, and the authors identify this as a limitation in the conclusion. Household demand for treatments is exogenous and follows an external forecast. Because avoided illness does not reduce treatment spending, the model understates the economic gain from better health.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S8" data-task="S8">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 8 complete">
+  <div>
+    <p class="task-id">STUDY STEP 8</p>
+    <p class="task-t">The production structure: three levels, and where the elasticities are</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 4.2.1, pages 13 and 14.</p><p>Forty-eight industries in total: eighteen treatments, six services and twenty-four non-health sectors. Each firm minimises cost under constant returns to scale, in three nested levels.</p><div class="eq"><span class="eqn">Equation 8</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mrow><mi>q</mi></mrow><mrow><mrow><mi>k</mi><mi>i</mi></mrow></mrow><mrow><mi>I</mi></mrow></msubsup><mo>=</mo><msub><mrow><mi>q</mi></mrow><mrow><mi>i</mi></mrow></msub><mo>+</mo><msubsup><mrow><mi>a</mi></mrow><mrow><mrow><mi>k</mi><mi>i</mi></mrow></mrow><mrow><mi>I</mi></mrow></msubsup></mrow></math><p class="eq-gloss"><strong>Level 1, Leontief.</strong> Demand for each intermediate input moves with the industry's activity level, adjusted for input-specific technical change. Demand for the primary factor composite is specified the same way in equation 9. Fixing these as shares of output is what makes level 1 Leontief.</p></div><div class="eq"><span class="eqn">Equation 11</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mrow><mi>q</mi></mrow><mrow><mrow><mi>b</mi><mi>i</mi></mrow></mrow><mrow><mi>F</mi></mrow></msubsup><mo>=</mo><msubsup><mrow><mi>q</mi></mrow><mrow><mi>i</mi></mrow><mrow><mi>F</mi></mrow></msubsup><mo>&#x2212;</mo><mi>&#x03C4;</mi><mrow><mo>(</mo><msubsup><mrow><mi>p</mi></mrow><mrow><mrow><mi>b</mi><mi>i</mi></mrow></mrow><mrow><mi>F</mi></mrow></msubsup><mo>&#x2212;</mo><msubsup><mrow><mi>p</mi></mrow><mrow><mi>i</mi></mrow><mrow><mi>F</mi></mrow></msubsup><mo>)</mo></mrow></mrow></math><p class="eq-gloss"><strong>Level 2, substitution between primary factors.</strong> Land, labour and capital substitute with elasticity &tau; = 0.5. Equation 10, not shown, does the same for intermediate inputs between domestic and imported sources, with an elasticity of zero for every input except human pharmaceuticals, where it is 2.</p></div><div class="eq"><span class="eqn">Equation 12</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mrow><mi>q</mi></mrow><mrow><mrow><mi>n</mi><mi>i</mi></mrow></mrow><mrow><mi>L</mi></mrow></msubsup><mo>=</mo><msubsup><mrow><mi>q</mi></mrow><mrow><mrow><mi>b</mi><mi>i</mi></mrow></mrow><mrow><mi>F</mi></mrow></msubsup><mo>&#x2212;</mo><mi>&#x03C5;</mi><mrow><mo>(</mo><msubsup><mrow><mi>p</mi></mrow><mrow><mrow><mi>n</mi><mi>i</mi></mrow></mrow><mrow><mi>L</mi></mrow></msubsup><mo>&#x2212;</mo><msubsup><mrow><mi>p</mi></mrow><mrow><mrow><mi>b</mi><mi>i</mi></mrow></mrow><mrow><mi>F</mi></mrow></msubsup><mo>)</mo></mrow></mrow></math><p class="eq-gloss"><strong>Level 3, substitution between occupations.</strong> The eight labour types substitute with elasticity &upsilon; = 0.35. This is the level at which the labour-supply module connects to the rest of the model.</p></div><p>Unless stated otherwise, the parameter values come from the MONASH model of Australia.</p><details class="selftest"><summary>Why is the elasticity between domestic and imported sources zero for almost every intermediate input?</summary><div class="ans"><p>The paper does not argue the point; it takes the value from the parent model. The practical effect is that intermediate import shares are fixed, so the trade response in the results runs through final demand and through exports rather than through input sourcing. The single exception, human pharmaceuticals at 2, is the one intermediate input where import substitution is allowed to matter.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S9" data-task="S9">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 9 complete">
+  <div>
+    <p class="task-id">STUDY STEP 9</p>
+    <p class="task-t">Consumer demand, and the awkward case of health treatments</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 4.2.2, pages 15 and 16.</p><div class="eq"><span class="eqn">Equation 13</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msubsup><mrow><mi>q</mi></mrow><mrow><mi>i</mi></mrow><mrow><mi>H</mi></mrow></msubsup><mo>&#x2212;</mo><mi>w</mi><mo>=</mo><msub><mrow><mi>&#x03B5;</mi></mrow><mrow><mi>i</mi></mrow></msub><mrow><mo>(</mo><msup><mrow><mi>v</mi></mrow><mrow><mi>H</mi></mrow></msup><mo>&#x2212;</mo><mi>b</mi><mo>)</mo></mrow><mo>+</mo><munderover><mo>&#x2211;</mo><mrow><mi>g</mi><mo>=</mo><mn>1</mn></mrow><mrow><mn>48</mn></mrow></munderover><msub><mrow><mi>&#x03B7;</mi></mrow><mrow><mrow><mi>i</mi><mi>g</mi></mrow></mrow></msub><msubsup><mrow><mi>p</mi></mrow><mrow><mi>g</mi></mrow><mrow><mi>H</mi></mrow></msubsup><mo>+</mo><msubsup><mrow><mi>a</mi></mrow><mrow><mi>i</mi></mrow><mrow><mi>H</mi></mrow></msubsup><mo>&#x2212;</mo><msup><mrow><mi>a</mi></mrow><mrow><mi>H</mi></mrow></msup></mrow></math><p class="eq-gloss"><strong>Household demand.</strong> A Klein-Rubin system: demand for each of the 48 goods responds to total household expenditure, to prices, and to tastes. Expenditure elasticities run from 0 to 1.35 and own-price elasticities from &minus;0.84 to &minus;0.27.</p></div><p>For non-health goods and for health services, tastes are exogenous and demand responds to expenditure and prices in the usual way. Health treatments are handled in the opposite direction, and the reason is instructive.</p><p class="line"><span class="lbl mech">Mechanism</span>Some treatments would have zero demand at a zero price if nobody were ill, so an ordinary demand function is not a good description. The authors therefore make household tastes endogenous and set the <em>quantity</em> of treatments exogenously, following forecasts of future demand for individual treatments built from Australian Institute of Health and Welfare data. Suppliers then meet that demand through market clearing.</p><p class="line"><span class="lbl lim">Limitation</span>The authors are explicit that this is a compromise. In reality treatment demand is rationed, usually by queueing, which imposes time costs and the disutility of delay that the model does not represent. They state that further work is required, and argue the representation does not undermine the paper's use of the model for health status changes.</p><details class="selftest"><summary>What does it mean that the quantity of treatments is exogenous while its taste variable is endogenous?</summary><div class="ans"><p>It means the demand equation is being solved backwards. Instead of using tastes and prices to determine quantity, the model takes the quantity from a forecast and lets the taste term absorb whatever is required to make the equation hold. The equation is still satisfied, but it no longer carries behavioural content for those goods.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S10" data-task="S10">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 10 complete">
+  <div>
+    <p class="task-id">STUDY STEP 10</p>
+    <p class="task-t">Dynamics and how the model is solved</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Sections 4.3 and 4.4, pages 16 and 17.</p><p>Three dynamic mechanisms operate. Capital accumulates industry by industry, with investment responding to the expected rate of return. Liabilities accumulate for the public sector and the foreign account. Lagged adjustment covers the wage equation already seen, and the gradual elimination of differences in rates of return across industries.</p><p>The model is written as a system of equations in the levels, then totally differentiated so that it can be solved in percentage-change form. This is the method of Johansen; accuracy is maintained by multistep solution procedures in GEMPACK.</p><p class="line"><span class="lbl mech">Mechanism</span>Every simulation is run twice. The baseline is a plausible business-as-usual forecast in which exogenous variables follow expert projections. The policy run repeats it with the variables of interest changed. The result is the difference between the two. For this paper the only difference between the runs is the set of exogenous variables representing transitions across health statuses.</p><details class="selftest"><summary>If the baseline were changed, would the reported results change?</summary><div class="ans"><p>Yes, and this is a general property of this class of model rather than a fault of the paper. The reported numbers are deviations from a particular baseline. A baseline with a different age structure or a different starting distribution of health would give a different-sized response to the same shock, because the number of people in each category at the moment of the shock would differ.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p4">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">4</span>The data</h2>
+      <p class="sec-lede">Where every number comes from, and what the survey actually shows.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 11 to 13</span></div>
+    </div>
+<div class="task" id="S11" data-task="S11">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 11 complete">
+  <div>
+    <p class="task-id">STUDY STEP 11</p>
+    <p class="task-t">The transition data: five waves of HILDA</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 3.1, page 7, and Table 1 on page 8.</p><p>The health part of the transition matrix comes from the Household, Income and Labour Dynamics in Australia survey, a nationally representative household panel run annually since 2001. The authors used the first five available waves, covering 2002 to 2006.</p><p>The procedure has three steps, and it is short enough to state completely. Take the self-reported health status of individuals who appear in both year <i>t</i>&minus;1 and year <i>t</i>. Record the transition. Average over all available transitions.</p><div class="keyfact"><p><b>What makes this possible is the panel.</b> The same person is observed in two consecutive years, so the transition is measured directly. This is the single largest methodological difference between this paper and the Indonesian module in Work Package 2.3, where no such survey exists and the transition rates must be recovered from a sequence of cross-sections instead.</p></div><p>Table 1 is the result: a 5 by 5 matrix of health transitions for each of the five age groups, separately for working and non-working people. Study step 12 examines it.</p><details class="selftest"><summary>The classification in Table 1 has only two work statuses, working and non-working, but the model has eleven. Why?</summary><div class="ans"><p>Sample size. A transition matrix estimated separately for each of the eight occupations and three non-employment states would rest on very few observations per cell. The authors therefore let health transitions vary between working and non-working people only. They state the consequence in section 5.5: because transitions do not vary by occupation, the health improvement does not favour the supply of labour to any particular occupation.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S12" data-task="S12">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 12 complete">
+  <div>
+    <p class="task-id">STUDY STEP 12</p>
+    <p class="task-t">Reading Table 1: what the survey actually shows</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Table 1, page 8. Use the interactive figure below to move through it.</p><p>Two patterns run through the whole table, and both matter for the result.</p><ol><li><strong>Working people decline less.</strong> For every age group except the youngest, people who worked in year <i>t</i>&minus;1 are less likely to report worse health in year <i>t</i> than people who did not. Among 39 to 48 year olds in excellent health, 49 per cent of workers decline against 67 per cent of non-workers.</li><li><strong>The exception is the young.</strong> Non-working people aged 15 to 28 in excellent health are <em>less</em> likely to decline than their working counterparts, 44 per cent against 48. The authors suggest this group is dominated by students.</li></ol><p class="line"><span class="lbl lim">Limitation</span>The direction of causation is not established by these numbers. Working people may stay healthier because they work, or they may work because they are healthier. The model takes the transitions as given and does not resolve this.</p><details class="selftest"><summary>In the model, does the fact that working people decline less create a feedback loop?</summary><div class="ans"><p>Yes, and it is worth being clear about it. Better health raises participation through the employment fractions. Participation then lowers the rate of health decline, because the transition matrix for working people is more favourable. That feeds back into the health distribution the following year. The effect is built into the structure through the work-status index on P<sub>2</sub>.</p></div></details></div>
+  </div>
+</div>
+
+    <div class="ifig" id="t1fig">
+      <span class="ifig-tag">Interactive figure</span>
+      <h4><span class="n">Figure 1</span>Table 1 of the paper: health transitions by age and work status</h4>
+      <p class="ifig-sub">Every number is from Table 1 on page 8, estimated from HILDA waves 2002 to 2006.
+        Rows are health status in year <i>t</i>&minus;1, columns health status in year <i>t</i>. Cells to the
+        right of the shaded diagonal are health decline. Select an age group and compare the two panels.</p>
+      <div class="agebtns" id="agebtns" role="group" aria-label="Select age group"></div>
+      <div class="mx-wrap">
+        <div><h5>Worked in year t&minus;1</h5><div id="mx-work"></div></div>
+        <div><h5>Did not work in year t&minus;1</h5><div id="mx-nonwork"></div></div>
+      </div>
+      <div class="readout" id="t1read"></div>
+      <p class="caption"><b>What to look for.</b> Compare the shaded diagonal, the probability of staying in
+        the same health status, and the final column, the total probability of decline. For every age group
+        except the youngest, the decline probabilities are lower in the left panel: people who worked report
+        less health decline. The gap widens with age. H1 is excellent health and H5 is poor health.</p>
+    </div>
+
+<div class="task" id="S13" data-task="S13">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 13 complete">
+  <div>
+    <p class="task-id">STUDY STEP 13</p>
+    <p class="task-t">The economic data: what the model is calibrated on</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 4.1.2, page 12, and Table 3 on the same page.</p><p>Table 3 gives the sales structure in 2010 Australian dollars, split between sales to industries and sales to final demand. Three features are worth carrying forward.</p><div class="tablewrap"><table><thead><tr><th>Feature</th><th>Figure</th><th>Why it matters</th></tr></thead><tbody><tr><td>Health services sold to the treatment industries</td><td class="num">A$49 billion of A$53 billion</td><td>Almost all health-service output flows into the treatment industries, not to households directly</td></tr><tr><td>Primary factors used by health services</td><td class="num">A$40 billion of A$54 billion of inputs</td><td>Health services are dominated by primary factors, mostly labour</td></tr><tr><td>Household consumption of health treatments</td><td class="num">A$45 billion of A$47 billion</td><td>Treatments go almost entirely to household consumption, at the subsidised price</td></tr></tbody></table></div><p>Total sales to industries are A$2,166 billion and to final demand A$1,291 billion. The health block is therefore small relative to the whole economy but is represented in unusual detail.</p><details class="selftest"><summary>Health treatment industries show A$49 billion of inputs and A$47 billion of sales. What does that tell you about their structure?</summary><div class="ans"><p>That they are almost pure intermediaries. They buy health services, add very little else, and sell the result to households. They use no primary factors directly. The labour embodied in a treatment is the labour used by the service industries that supply it.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p5">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">5</span>The experiment</h2>
+      <p class="sec-lede">Section 5. What was shocked, and the first-round movement of people.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 14 to 15</span></div>
+    </div>
+<div class="task" id="S14" data-task="S14">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 14 complete">
+  <div>
+    <p class="task-id">STUDY STEP 14</p>
+    <p class="task-t">The experiment: what exactly was shocked</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 5, pages 17 and 18.</p><p>Two simulations, identical in form, differing only in which age group receives the improvement.</p><div class="tablewrap"><table><thead><tr><th></th><th>Simulation 1</th><th>Simulation 2</th></tr></thead><tbody><tr><td>Age group improved</td><td>A49-60, older workers</td><td>A29-38, younger workers</td></tr><tr><td>Who is affected</td><td colspan="2">10 per cent of people in that age group with health status H4 or H5</td></tr><tr><td>What changes</td><td colspan="2">Those people move one health status better than they were destined to</td></tr><tr><td>How it enters</td><td colspan="2">By shocking T(b,i,c,a,h) in equation 1</td></tr><tr><td>Timing</td><td colspan="2">Permanent, starting in 2011</td></tr></tbody></table></div><p class="line"><span class="lbl mech">Mechanism</span>The phrase to hold onto is <em>one status better than they were destined to</em>. The shock does not move people between health states directly. It alters where they were going to end up. Someone in H4 who would have become H5 becomes H4; someone who would have stayed H4 becomes H3, and so on up the scale. This is why the authors describe it as a reduction in the rate of health decline rather than as an improvement in health.</p><p>The authors are careful to say the 10 per cent figure is illustrative and corresponds to no particular programme. They then show it is not unreasonable: it is equivalent to improving the health of about 17 per cent of people with chronic hypertension, or 10 per cent of those with cardiovascular disease.</p><details class="selftest"><summary>Why shock the transition matrix rather than the number of people in each health state?</summary><div class="ans"><p>Because a one-off move between states would wash out. The population would return towards its old distribution as the unchanged transition rates reasserted themselves. Changing the rate of decline is permanent by construction, so the improvement persists and accumulates as successive cohorts pass through the improved transition.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S15" data-task="S15">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 15 complete">
+  <div>
+    <p class="task-id">STUDY STEP 15</p>
+    <p class="task-t">The first-round effect: who moves, and how many</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 5.1, pages 18 and 19, and Table 4 on page 19.</p><p>The shock moves about 19,300 older workers from the poor health statuses H4 and H5 into H1 to H3, and about 12,100 younger workers. The ratio of younger to older movers is only 0.62, and the reason is compositional: 19 per cent of older workers hold H4 or H5 against 11 per cent of younger workers, even though younger workers are the larger group, 20 per cent of the workforce against 16 per cent.</p><div class="keyfact"><p><b>The second compositional fact runs the other way.</b> Of the older workers who move, about 63 per cent are employed; of the younger movers, about 86 per cent. Older people in poor health are much less likely to be working in the first place, which is exactly why there is more room for their participation to rise.</p></div><details class="selftest"><summary>More younger movers are already employed. Does that make the younger simulation stronger or weaker?</summary><div class="ans"><p>Weaker. A person who is already employed contributes little additional labour supply when their health improves. The gain comes from people who were not working and now do. The older group has both more movers and a larger share of non-workers among them, so it produces the larger supply response twice over.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p6">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">6</span>The results</h2>
+      <p class="sec-lede">Sections 5.2 to 5.5. The labour market, the macroeconomy and the sectors.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 16 to 18</span></div>
+    </div>
+<div class="task" id="S16" data-task="S16">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 16 complete">
+  <div>
+    <p class="task-id">STUDY STEP 16</p>
+    <p class="task-t">The labour market in the first year</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Sections 5.2 and 5.3, pages 19 to 21, with Tables 5 and 6.</p><p>Table 5 separates the two sides of the first-round effect, and the separation is the clearest thing in the paper. Offers from workers who moved into the good health statuses rise by about 1 per cent in simulation 1 and 0.45 per cent in simulation 2. Offers from the depleted poor health statuses fall by about 4 per cent in both.</p><p>The net effect is small and is what remains after these two large opposing movements: labour supply from older workers rises by about 0.11 per cent, and from younger workers by about 0.01 per cent.</p><div class="tablewrap"><table><thead><tr><th>In 2011, per cent</th><th>Simulation 1, older</th><th>Simulation 2, younger</th></tr></thead><tbody><tr><td>Labour supply, all workers</td><td class="num">+0.016</td><td class="num">+0.002</td></tr><tr><td>Real wage rate</td><td class="num">&minus;0.006</td><td class="num">&minus;0.001</td></tr><tr><td>Labour demand</td><td class="num">+0.005</td><td class="num">+0.001</td></tr></tbody></table></div><p class="line"><span class="lbl mech">Mechanism</span>The causal chain in the first year is short. More supply at the initial wage creates an excess supply of labour. Wages fall, but under equation 4 they fall sluggishly and do not clear the market. The lower wage induces firms to expand labour demand. Employment therefore rises by much less than supply does in the first year.</p><details class="selftest"><summary>Labour supply rises by 0.016 per cent but demand by only 0.005. Where did the rest go?</summary><div class="ans"><p>It did not become employment in 2011. It is absorbed as excess supply, because the wage adjusts by only half the gap each year. Over the following years the wage continues to fall and the gap closes, which is why the long-run response in Figure 4 is larger than the first-year response.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S17" data-task="S17">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 17 complete">
+  <div>
+    <p class="task-id">STUDY STEP 17</p>
+    <p class="task-t">The macroeconomic path to 2030</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 5.4, pages 21 to 23, and Figure 4 on page 22.</p><div class="tablewrap"><table><thead><tr><th>By 2030, per cent deviation</th><th>Simulation 1, older</th><th>Simulation 2, younger</th></tr></thead><tbody><tr><td>Labour supply</td><td class="num">+0.13</td><td class="num">+0.01</td></tr><tr><td>Capital</td><td class="num">+0.08</td><td class="num">+0.006</td></tr><tr><td>Real gross domestic product</td><td class="num">+0.10</td><td class="num">+0.008</td></tr><tr><td>Real wage</td><td class="num">&minus;0.115</td><td class="num">small</td></tr><tr><td>Real exchange rate</td><td class="num">&minus;0.17</td><td class="num">&minus;0.014</td></tr></tbody></table></div><p class="line"><span class="lbl mech">Mechanism</span>The chain from labour supply to the exchange rate is worth following once, because it explains the sectoral results in the next step. More labour lowers the real wage. Lower wages lower domestic production costs and therefore domestic prices. The consumer price index is the numeraire and cannot fall, so the nominal exchange rate depreciates instead. Domestic goods become cheaper relative to imported goods, which is the real depreciation. Import prices rise in domestic currency, so the terms of trade fall.</p><p>Capital rises by less than labour, so the capital-labour ratio falls and, through the factor-price frontier, the return to capital rises relative to labour. Real gross domestic product therefore expands by less than labour usage does.</p><details class="selftest"><summary>Labour supply rises by 0.13 per cent but GDP by only 0.10 per cent. Why is GDP not proportional?</summary><div class="ans"><p>Because capital does not keep pace. Investment responds to rates of return and accumulates over time, so the capital stock rises by only 0.08 per cent. Output is produced by both factors, so it grows at a rate between the two. If capital adjusted fully, GDP would rise roughly in proportion to labour.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S18" data-task="S18">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 18 complete">
+  <div>
+    <p class="task-id">STUDY STEP 18</p>
+    <p class="task-t">The sectoral results, and why traded sectors gain most</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 5.5, pages 23 to 25, and Figure 5 on page 24.</p><p>By 2030 in simulation 1, secondary industries expand by 0.25 per cent, primary industries by 0.17 per cent and tertiary industries by only 0.08 per cent.</p><p class="line"><span class="lbl mech">Mechanism</span>Traded sectors face more elastic demand in world markets, so when domestic costs fall they gain more than sectors selling at home. Among the traded sectors, manufacturing gains more than agriculture and mining because it uses more labour, so a fall in the wage reduces its costs by more.</p><p>The effects on occupational demands are small and similar across occupations: the range in simulation 1 runs from 0.04 to 0.07 per cent. Intermediate production and transport workers gain most, because they are employed chiefly by the secondary industries; professionals and clerical workers gain least, because they are employed chiefly by services.</p><p class="line"><span class="lbl lim">Limitation</span>The authors explain why the occupational spread is narrow, and the explanation is an assumption, not a finding. Health transitions do not vary by occupation, and industries do not distinguish labour inputs by age or health status. Relative wages across occupations therefore move together, and demands cannot diverge much.</p><details class="selftest"><summary>If industries could distinguish workers by age and health, what would change?</summary><div class="ans"><p>Wage rates would differ by age and health status, which would create a direct link between the composition of labour supply and industry output. An industry employing many older or less healthy workers would see its costs change by more than others. The authors name this as the first of two areas for future development.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+<section class="sec" id="p7">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">7</span>Judgement</h2>
+      <p class="sec-lede">What the model cannot do, and how it compares with the Indonesian module.</p>
+      <div class="specline"><span class="chip"><b>Covers</b> steps 19 to 20</span></div>
+    </div>
+<div class="task" id="S19" data-task="S19">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 19 complete">
+  <div>
+    <p class="task-id">STUDY STEP 19</p>
+    <p class="task-t">What the authors say the model cannot do</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Section 6, pages 25 and 26.</p><p>Two limitations are stated by the authors themselves, and both are worth carrying into any use of this framework.</p><ol><li><strong>Industries do not distinguish labour by age or health status.</strong> Wages do not vary along those dimensions, so there is no direct mechanism from the composition of labour supply to industry output.</li><li><strong>Health treatments are exogenous to health status.</strong> Better health does not reduce treatment demand, so the model understates the economic gains from improved health.</li></ol><p>A third limitation is implied rather than stated. Health status is self-reported on a five-point scale. Nothing in the model connects a health status to a disease, so the shock cannot be traced back to a specific intervention. The authors acknowledge this indirectly when they describe their 10 per cent improvement as corresponding to no particular programme.</p><details class="selftest"><summary>Which of these limitations would most affect a study of air pollution and health?</summary><div class="ans"><p>The third. A pollution study needs a route from exposure to a specific disease and from that disease to a health state. A self-reported five-point scale with no disease detail cannot provide that route on its own; it has to be supplied from outside the model, which is exactly how the Indonesian module treats it.</p></div></details></div>
+  </div>
+</div>
+<div class="task" id="S20" data-task="S20">
+  <input class="task-check" type="checkbox" aria-label="Mark study step 20 complete">
+  <div>
+    <p class="task-id">STUDY STEP 20</p>
+    <p class="task-t">How the paper compares with the Indonesian module</p>
+    <div class="task-body"><p class="line"><span class="lbl read">Read</span>Nothing further in the paper. This step compares it with the module in Work Package 2.3.</p><div class="tablewrap"><table><thead><tr><th>Element</th><th>MONASH-Health, this paper</th><th>The Indonesian module</th></tr></thead><tbody><tr><td>Health states</td><td>Five self-reported statuses, H1 to H5</td><td>Three functional-difficulty states</td></tr><tr><td>Transition data</td><td>HILDA panel, five waves, transitions observed directly</td><td>No panel. Onset shape from Global Burden of Disease, recovery calibrated to a sequence of cross-sections</td></tr><tr><td>Participation gradient</td><td>Employment fractions from the same panel</td><td>Employment rates by health status from the household survey, observed jointly with work status</td></tr><tr><td>Region</td><td>None, a national model</td><td>About ten regions, because exposure differs by region</td></tr><tr><td>Informal work</td><td>Not represented</td><td>A separate work status, because half of employment is informal</td></tr><tr><td>Productivity channel</td><td>None; health acts only through participation</td><td>Effective labour per person by health status, so hours respond as well</td></tr><tr><td>Source of the health shock</td><td>An assumed improvement in transitions</td><td>A pollution calculation outside the model, entering the same way</td></tr></tbody></table></div><div class="keyfact"><p><b>The structural point.</b> Everything in the middle column is the same machinery as the right-hand column. The differences are in the data available and in three additions. Reading this paper closely is therefore the cheapest way to understand what the Indonesian module will do, and where it departs from an approach that has already been published and reviewed.</p></div><details class="selftest"><summary>The Indonesian module has worse transition data but better participation data. Why does that trade look favourable?</summary><div class="ans"><p>Because the participation gradient is what carries the result, as study step 5 showed, and it is measured directly in both cases. The transition rates set the size of the population flow; the participation gradient sets how much labour supply that flow produces. Having the weaker source for the first and a direct measurement for the second puts the uncertainty in the less decisive place.</p></div></details></div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="sec" id="sA">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">A</span>Appendix A. Glossary</h2>
+      <p class="sec-lede">Terms as this paper uses them. Where the paper's usage differs from the Indonesian
+        module, the difference is noted.</p>
+    </div>
+    <dl class="defs">
+      <dt>Activity</dt><dd>What a person does during the year: one of 8 occupations, short-run unemployment, long-run unemployment, or being a new entrant.</dd>
+      <dt>Category</dt><dd>A classification at the start of the year, by age group, health status and the work status held in the previous year.</dd>
+      <dt>Employment fraction</dt><dd>The share of a group classified by age and health status that is employed. Shown in Figure 2 of the paper. The single most important empirical input.</dd>
+      <dt>H1 to H5</dt><dd>Self-reported health status: excellent, very good, good, fair, poor.</dd>
+      <dt>Health decline</dt><dd>The probability of moving to a worse health status within one year. The final column of Table 1 of the paper.</dd>
+      <dt>Health treatment</dt><dd>One of 18 industries classified by disease. Buys health services; uses no primary factors directly.</dd>
+      <dt>Health service</dt><dd>One of 6 industries, such as hospitals or pharmaceuticals. Uses labour and capital and sells almost entirely to the treatment industries.</dd>
+      <dt>HILDA</dt><dd>Household, Income and Labour Dynamics in Australia: a nationally representative household panel survey, annual since 2001. Follows the same person over time, which is what makes transitions observable.</dd>
+      <dt>Incumbent</dt><dd>A person who held a job in the previous year. Favoured in the rationing of positions.</dd>
+      <dt>Klein-Rubin</dt><dd>The utility function behind the household demand system in equation 13. It implies a subsistence quantity for each good and expenditure elasticities that are constant.</dd>
+      <dt>Numeraire</dt><dd>The price held fixed so that all other prices are measured against it. Here it is the consumer price index, which is why a fall in domestic costs appears as a depreciation of the nominal exchange rate.</dd>
+      <dt>P<sub>1</sub>, P<sub>2</sub></dt><dd>The two parts of the transition matrix: the probability of the age move, and the probability of the health move.</dd>
+      <dt>Rationing</dt><dd>The rule deciding who is employed when labour supply exceeds labour demand. Needed because wages adjust sluggishly.</dd>
+      <dt>Terms of trade</dt><dd>The price of exports relative to the price of imports. Falls in both simulations because import prices rise in domestic currency.</dd>
+      <dt>Transition matrix</dt><dd>The probabilities of moving between age and health states within one year, written T in equation 1.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="sB">
+  <div class="shell">
+    <div class="sec-head">
+      <h2 class="sec-t"><span class="n">B</span>Appendix B. Sources and further reading</h2>
+    </div>
+    <p><strong>The paper studied here.</strong> Verikios, G., P. B. Dixon, M. T. Rimmer and A. H. Harris
+      (2013), <em>The Impact of Changes in Health Status: An Economywide Analysis for Australia</em>,
+      General Paper G-231, Centre of Policy Studies, Monash University. Published as &ldquo;Improving health
+      in an advanced economy: an economywide analysis for Australia&rdquo;, <em>Economic Modelling</em> 46
+      (2015). Every figure, table and page reference in this guide is to the G-231 version.</p>
+    <p><strong>The theory it builds on.</strong> The labour-market specification comes from Dixon and Rimmer
+      (2003) and was first applied to a specific disease by Roos (2012) for HIV in South Africa. The parent
+      economic model is the MONASH model of Australia, Dixon and Rimmer (2002), from which the parameter
+      values are taken unless otherwise stated.</p>
+    <p><strong>Data cited by the paper.</strong> Health transitions and employment fractions from the HILDA
+      survey, Summerfield and others (2011). Health treatment and service structures from the Australian
+      Institute of Health and Welfare (2004). Forecast demand for individual treatments from Begg and others
+      (2007). Prevalence and self-assessed health from the Australian Bureau of Statistics (2010),
+      2007-08 National Health Survey.</p>
+    <p><strong>Studies the paper compares itself with.</strong> Rutten and Reed (2009) for the United Kingdom,
+      the only other study the authors identify that makes labour supply an endogenous function of
+      population-wide health; they find a 10 per cent health improvement raises labour supply by 0.5 to 0.8
+      per cent. Cai (2010), using the same HILDA data, finds a move from poor or fair to good health raises
+      participation by 2 to 4 percentage points, against which the authors judge their own result
+      conservative.</p>
+    <p><strong>Where the next reading is.</strong> For the specification in full, Roos (2014), General Paper
+      G-241, states all forty-two equations of the same labour-supply module; they are reproduced in the
+      implementation guide for Work Package 2.3. For how the module is built without a panel survey, that
+      guide's Stage B is the direct counterpart to study steps 11 and 12 here.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- progress ---------- */
+  var KEY = "monash-health-study-v1";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".task-check"));
+  var fill = document.getElementById("barfill");
+  var ndone = document.getElementById("ndone");
+
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ return {}; } }
+  function save(s){ try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e){} }
+  function paint(){
+    var n = 0;
+    boxes.forEach(function(b){
+      var card = b.closest(".task");
+      if (b.checked){ n++; card.classList.add("done"); } else { card.classList.remove("done"); }
+    });
+    ndone.textContent = n;
+    fill.style.width = (boxes.length ? (100 * n / boxes.length) : 0) + "%";
+  }
+  var state = load();
+  boxes.forEach(function(b){
+    var id = b.closest(".task").getAttribute("data-task");
+    if (state[id]) b.checked = true;
+    b.addEventListener("change", function(){ state[id] = b.checked; save(state); paint(); });
+  });
+  paint();
+  document.getElementById("resetbtn").addEventListener("click", function(){
+    state = {}; save(state);
+    boxes.forEach(function(b){ b.checked = false; });
+    paint();
+  });
+
+  /* ---------- copy buttons ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".copy"), function(btn){
+    btn.addEventListener("click", function(){
+      var pre = btn.parentNode.querySelector("pre");
+      var done = function(){ btn.textContent = "Copied"; setTimeout(function(){ btn.textContent = "Copy"; }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(pre.textContent).then(done, function(){});
+      }
+    });
+  });
+
+  /* ---------- Figure 1: Table 1 of the paper ---------- */
+  var T1 = {"A15-28":{"work":{"H1":{"to":[0.52,0.38,0.08,0.01,0.0],"dec":0.48},"H2":{"to":[0.14,0.59,0.24,0.02,0.0],"dec":0.27},"H3":{"to":[0.03,0.32,0.54,0.1,0.01],"dec":0.11},"H4":{"to":[0.02,0.1,0.47,0.35,0.05],"dec":0.05},"H5":{"to":[0.0,0.08,0.29,0.43,0.2],"dec":null}},"nonwork":{"H1":{"to":[0.56,0.34,0.1,0.01,0.0],"dec":0.44},"H2":{"to":[0.17,0.54,0.25,0.04,0.0],"dec":0.29},"H3":{"to":[0.03,0.29,0.55,0.12,0.01],"dec":0.13},"H4":{"to":[0.0,0.11,0.41,0.4,0.07],"dec":0.07},"H5":{"to":[0.0,0.03,0.28,0.31,0.39],"dec":null}}},"A29-38":{"work":{"H1":{"to":[0.52,0.39,0.08,0.01,0.0],"dec":0.48},"H2":{"to":[0.11,0.63,0.24,0.02,0.0],"dec":0.27},"H3":{"to":[0.02,0.28,0.59,0.1,0.01],"dec":0.11},"H4":{"to":[0.01,0.1,0.39,0.46,0.05],"dec":0.05},"H5":{"to":[0.0,0.04,0.27,0.45,0.24],"dec":null}},"nonwork":{"H1":{"to":[0.46,0.42,0.11,0.01,0.0],"dec":0.54},"H2":{"to":[0.1,0.61,0.26,0.02,0.0],"dec":0.29},"H3":{"to":[0.02,0.23,0.57,0.17,0.02],"dec":0.18},"H4":{"to":[0.0,0.07,0.34,0.52,0.06],"dec":0.06},"H5":{"to":[0.02,0.02,0.07,0.28,0.62],"dec":null}}},"A39-48":{"work":{"H1":{"to":[0.51,0.4,0.08,0.01,0.0],"dec":0.49},"H2":{"to":[0.1,0.63,0.26,0.02,0.0],"dec":0.27},"H3":{"to":[0.01,0.23,0.64,0.11,0.01],"dec":0.11},"H4":{"to":[0.0,0.05,0.37,0.53,0.06],"dec":0.06},"H5":{"to":[0.02,0.04,0.24,0.33,0.38],"dec":null}},"nonwork":{"H1":{"to":[0.33,0.51,0.12,0.02,0.01],"dec":0.67},"H2":{"to":[0.06,0.62,0.28,0.03,0.01],"dec":0.31},"H3":{"to":[0.02,0.19,0.58,0.2,0.02],"dec":0.22},"H4":{"to":[0.0,0.02,0.26,0.56,0.16],"dec":0.16},"H5":{"to":[0.0,0.01,0.08,0.31,0.6],"dec":null}}},"A49-60":{"work":{"H1":{"to":[0.49,0.44,0.06,0.01,0.0],"dec":0.51},"H2":{"to":[0.09,0.63,0.26,0.02,0.0],"dec":0.29},"H3":{"to":[0.01,0.22,0.65,0.12,0.01],"dec":0.12},"H4":{"to":[0.0,0.06,0.35,0.52,0.07],"dec":0.07},"H5":{"to":[0.0,0.02,0.02,0.43,0.54],"dec":null}},"nonwork":{"H1":{"to":[0.48,0.44,0.07,0.02,0.0],"dec":0.52},"H2":{"to":[0.08,0.57,0.31,0.04,0.0],"dec":0.35},"H3":{"to":[0.01,0.17,0.63,0.18,0.01],"dec":0.19},"H4":{"to":[0.0,0.01,0.23,0.62,0.14],"dec":0.14},"H5":{"to":[0.0,0.01,0.02,0.34,0.64],"dec":null}}},"A61+":{"work":{"H1":{"to":[0.43,0.52,0.05,0.0,0.0],"dec":0.57},"H2":{"to":[0.07,0.64,0.26,0.02,0.0],"dec":0.29},"H3":{"to":[0.01,0.23,0.64,0.12,0.01],"dec":0.12},"H4":{"to":[0.0,0.01,0.31,0.61,0.07],"dec":0.07},"H5":{"to":[0.0,0.0,0.09,0.64,0.27],"dec":null}},"nonwork":{"H1":{"to":[0.43,0.47,0.09,0.02,0.0],"dec":0.57},"H2":{"to":[0.06,0.57,0.33,0.03,0.0],"dec":0.37},"H3":{"to":[0.01,0.14,0.64,0.19,0.01],"dec":0.2},"H4":{"to":[0.0,0.02,0.21,0.67,0.09],"dec":0.09},"H5":{"to":[0.0,0.0,0.05,0.39,0.55],"dec":null}}}};
+  var AGES = ["A15-28","A29-38","A39-48","A49-60","A61+"];
+  var HS = ["H1","H2","H3","H4","H5"];
+  var cur = "A49-60";
+
+  var btnbox = document.getElementById("agebtns");
+  AGES.forEach(function(ag){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "agebtn"; b.textContent = ag.replace("A", "ages ");
+    b.setAttribute("aria-pressed", ag === cur ? "true" : "false");
+    b.addEventListener("click", function(){
+      cur = ag;
+      Array.prototype.forEach.call(btnbox.children, function(x){ x.setAttribute("aria-pressed", "false"); });
+      b.setAttribute("aria-pressed", "true");
+      draw();
+    });
+    btnbox.appendChild(b);
+  });
+
+  function fmt(x){ return x.toFixed(2).replace(/^0\./, "."); }
+
+  function matrix(el, data){
+    var h = '<table class="matrix-tbl"><thead><tr><th class="rowlab">From \u2193 &nbsp;To \u2192</th>';
+    HS.forEach(function(s){ h += "<th>" + s + "</th>"; });
+    h += '<th class="dec">Decline</th></tr></thead><tbody>';
+    HS.forEach(function(from, i){
+      h += '<tr><td class="rowlab">' + from + "</td>";
+      data[from].to.forEach(function(v, j){
+        var cls = (i === j) ? "diag" : (j > i ? "worse" : "");
+        h += '<td class="' + cls + '">' + fmt(v) + "</td>";
+      });
+      var d = data[from].dec;
+      h += '<td class="dec">' + (d === null ? "\u2014" : fmt(d)) + "</td></tr>";
+    });
+    return el.innerHTML = h + "</tbody></table>";
+  }
+
+  function draw(){
+    var w = T1[cur].work, n = T1[cur].nonwork;
+    matrix(document.getElementById("mx-work"), w);
+    matrix(document.getElementById("mx-nonwork"), n);
+    var dw = 0, dn = 0, k = 0;
+    HS.forEach(function(s){
+      if (w[s].dec !== null){ dw += w[s].dec; dn += n[s].dec; k++; }
+    });
+    dw /= k; dn /= k;
+    var gap = dn - dw;
+    document.getElementById("t1read").innerHTML =
+      "Average probability of health decline, " + cur.replace("A", "ages ") + ": <b>" + dw.toFixed(2) +
+      "</b> for people who worked, <b>" + dn.toFixed(2) + "</b> for people who did not. " +
+      (gap > 0.005
+        ? "Working people decline less, by <b>" + gap.toFixed(2) + "</b>."
+        : (gap < -0.005
+            ? "Working people decline <b>more</b>, by " + Math.abs(gap).toFixed(2) +
+              ". This is the exception the paper notes for the youngest group."
+            : "The two are about the same."));
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
