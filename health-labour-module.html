@@ -1,0 +1,2031 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Building the Health and Labour Module in IndoTERM</title>
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A step-by-step build guide for the health and labour-supply module in IndoTERM: 43 numbered tasks from Susenas, Sakernas and GBD through the database pipeline and the model code to a solved RunDynam simulation.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SDGs Center UNPAD">
+<meta property="og:title" content="Building the Health and Labour Module in IndoTERM">
+<meta property="og:description" content="Forty-three numbered tasks, in order, from Susenas and GBD to a solved simulation. Every task says what to do, what to run, and how to know it worked.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/health-labour-module.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building the Health and Labour Module in IndoTERM">
+<meta name="twitter:description" content="Forty-three numbered tasks, in order, from Susenas and GBD to a solved simulation.">
+<style>
+:root{
+  color-scheme: light;
+  --ink:#14161c;
+  --paper:#f4f2ed;
+  --surface:#fffdf9;
+  --surface-2:#faf8f3;
+  --rule:#dcd8ce;
+  --muted:#6d6a63;
+  --secondary:#52514e;
+  --accent:#b4451f;
+  --slate:#1c4e73;
+  --slate-tint:rgba(28,78,115,0.07);
+  --accent-tint:rgba(180,69,31,0.08);
+  --good:#1f7a4d;
+  --grid:#e4e2da;
+  --c1:#2a78d6;
+  --c2:#eb6834;
+  --c3:#4a3aa7;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%}
+a{color:var(--slate)}
+a:hover{color:var(--accent)}
+
+/* ---------- shared shell ---------- */
+.shell{max-width:1060px;margin:0 auto;padding-inline:20px}
+.measure{max-width:74ch}
+
+/* ---------- progress bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:40;background:rgba(244,242,237,0.94);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{
+  max-width:1060px;margin:0 auto;padding:9px 20px;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.topbar-label{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.02em}
+.bar{
+  flex:1 1 180px;min-width:120px;height:8px;border-radius:99px;
+  background:var(--rule);overflow:hidden;
+}
+.bar > i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s ease}
+.topbar-count{font-size:12.5px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.topbar-reset{
+  font-size:12px;border:1px solid var(--rule);background:var(--surface);
+  color:var(--muted);border-radius:5px;padding:4px 9px;cursor:pointer;font-family:inherit;
+}
+.topbar-reset:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- header ---------- */
+header.head{
+  padding:clamp(40px,6vh,76px) 0 clamp(26px,4vh,42px);
+  border-bottom:1px solid var(--rule);
+}
+.eyebrow{
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);font-weight:700;margin:0 0 15px;
+  display:flex;align-items:center;gap:13px;
+}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule);max-width:280px}
+h1{
+  font-family:var(--serif);font-size:clamp(29px,4.1vw,52px);line-height:1.06;
+  letter-spacing:-.021em;margin:0 0 12px;font-weight:600;max-width:20ch;text-wrap:balance;
+}
+.sub{
+  font-size:clamp(16px,1.5vw,22px);line-height:1.36;color:var(--accent);
+  font-weight:500;margin:0 0 20px;max-width:44ch;text-wrap:balance;
+}
+.lede{font-size:clamp(15px,1.05vw,17.5px);line-height:1.64;color:var(--secondary);max-width:72ch;margin:0 0 14px}
+.lede strong{color:var(--ink);font-weight:600}
+.byline{font-size:13px;color:var(--muted);margin:22px 0 0;line-height:1.7}
+
+/* ---------- generic sections ---------- */
+section.stage{padding:clamp(34px,5vh,58px) 0 8px;border-bottom:1px solid var(--rule)}
+.stage-head{margin-bottom:26px}
+.stage-tag{
+  display:inline-block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+  font-weight:700;color:var(--surface);background:var(--ink);
+  padding:4px 11px;border-radius:4px;margin-bottom:13px;
+}
+h2{
+  font-family:var(--serif);font-size:clamp(23px,2.6vw,34px);line-height:1.16;
+  margin:0 0 10px;font-weight:600;max-width:24ch;text-wrap:balance;
+}
+h3{
+  font-family:var(--serif);font-size:clamp(18px,1.6vw,22px);line-height:1.25;
+  margin:34px 0 8px;font-weight:600;
+}
+p{margin:0 0 14px;max-width:74ch}
+.stage-lede{font-size:16.5px;color:var(--secondary);max-width:72ch}
+.stage-meta{
+  display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;
+}
+.chip{
+  font-size:12px;color:var(--secondary);background:var(--surface);
+  border:1px solid var(--rule);border-radius:99px;padding:4px 12px;
+}
+.chip b{color:var(--ink);font-weight:650}
+
+/* ---------- step cards ---------- */
+.step{
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;
+  padding:20px 22px;margin:0 0 14px;
+  display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:start;
+}
+.step.done{background:var(--surface-2);border-color:#cfd8cd}
+/* Grid children default to min-width:auto, so a wide code block would widen
+   the whole card and put the page into horizontal scroll. Both levels need it. */
+.step > div{min-width:0}
+.step-body{min-width:0}
+.step-body > *{min-width:0}
+.step-check{
+  width:26px;height:26px;margin:2px 0 0;flex:none;
+  appearance:none;-webkit-appearance:none;
+  border:1.5px solid var(--rule);border-radius:6px;background:var(--surface);
+  cursor:pointer;position:relative;
+}
+.step-check:hover{border-color:var(--accent)}
+.step-check:checked{background:var(--good);border-color:var(--good)}
+.step-check:checked::after{
+  content:"";position:absolute;left:8px;top:3px;width:7px;height:13px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(43deg);
+}
+.step-check:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.step-id{
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);
+  letter-spacing:.04em;margin:0 0 1px;
+}
+.step-title{font-family:var(--serif);font-size:18.5px;font-weight:600;margin:0 0 7px;line-height:1.3}
+.step.done .step-title{color:var(--muted)}
+.step-body{font-size:15px;color:var(--secondary)}
+.step-body p{margin:0 0 10px;max-width:70ch}
+.step-body p:last-child{margin-bottom:0}
+.step-body ul,.step-body ol{margin:0 0 10px;padding-left:20px;max-width:70ch}
+.step-body li{margin-bottom:5px}
+.step-body strong{color:var(--ink);font-weight:600}
+
+.label{
+  display:inline-block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;padding:2px 7px;border-radius:3px;margin-right:7px;vertical-align:2px;
+}
+.label.do{color:#fff;background:var(--slate)}
+.label.check{color:#fff;background:var(--good)}
+.label.warn{color:#fff;background:var(--accent)}
+.line{margin:0 0 10px;max-width:70ch}
+.line:last-child{margin-bottom:0}
+
+/* ---------- code ---------- */
+.code{
+  position:relative;background:#1d1f26;color:#e8e6df;border-radius:7px;
+  margin:12px 0;overflow:hidden;
+}
+.code pre{
+  margin:0;padding:14px 16px;overflow-x:auto;max-width:100%;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;
+}
+.code .cmt{color:#9aa3b2}
+.code .kw{color:#f0b37a}
+.code .str{color:#9fd3a6}
+.copy{
+  position:absolute;top:7px;right:7px;font-size:11px;font-family:var(--sans);
+  background:rgba(255,255,255,.1);color:#e8e6df;border:1px solid rgba(255,255,255,.2);
+  border-radius:4px;padding:3px 9px;cursor:pointer;
+}
+.copy:hover{background:rgba(255,255,255,.2)}
+code{font-family:var(--mono);font-size:.88em;background:var(--grid);padding:1px 5px;border-radius:3px}
+.code code{background:none;padding:0}
+
+/* ---------- details ---------- */
+details.why{
+  margin:10px 0 0;border-top:1px dashed var(--rule);padding-top:9px;
+}
+details.why > summary{
+  cursor:pointer;font-size:13px;font-weight:600;color:var(--slate);
+  list-style:none;display:inline-flex;align-items:center;gap:6px;
+}
+details.why > summary::-webkit-details-marker{display:none}
+details.why > summary::before{content:"+";font-family:var(--mono);font-weight:700}
+details.why[open] > summary::before{content:"\2212"}
+details.why > summary:hover{color:var(--accent)}
+details.why .why-body{font-size:14px;color:var(--secondary);padding-top:9px}
+details.why .why-body p{max-width:70ch}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;margin:16px 0;border:1px solid var(--rule);border-radius:7px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--grid);vertical-align:top}
+thead th{
+  font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;background:var(--surface-2);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+td code,th code{font-size:12px}
+
+/* ---------- callouts ---------- */
+.callout{
+  border-left:3px solid var(--accent);background:var(--accent-tint);
+  padding:14px 18px;border-radius:0 7px 7px 0;margin:18px 0;font-size:14.5px;
+}
+.callout .callout-t{font-weight:700;color:var(--ink);display:block;margin-bottom:4px}
+.callout p{margin:0;max-width:68ch;color:var(--secondary)}
+.callout.rule{border-left-color:var(--slate);background:var(--slate-tint)}
+
+/* ---------- map / diagram ---------- */
+.map{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:12px;margin:22px 0 6px;
+}
+.map-card{
+  background:var(--surface);border:1px solid var(--rule);border-radius:8px;
+  padding:15px 16px;text-decoration:none;color:inherit;display:block;
+}
+.map-card:hover{border-color:var(--accent);color:inherit}
+.map-card .m-tag{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.map-card .m-t{font-family:var(--serif);font-size:16px;font-weight:600;margin:4px 0 5px;line-height:1.25}
+.map-card .m-d{font-size:12.5px;color:var(--muted);line-height:1.5}
+.map-card .m-n{font-size:11.5px;color:var(--secondary);margin-top:8px;font-weight:600}
+
+/* ---------- interactive tool ---------- */
+.tool{
+  background:var(--surface);border:1px solid var(--rule);border-radius:9px;
+  padding:20px 22px;margin:22px 0;
+}
+.tool-tag{
+  display:inline-block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:700;color:var(--slate);background:var(--slate-tint);
+  border-radius:3px;padding:3px 8px;margin-bottom:9px;
+}
+.tool h4{font-family:var(--serif);font-size:19px;font-weight:600;margin:0 0 6px;line-height:1.3}
+.tool .tool-sub{font-size:14px;color:var(--secondary);margin:0 0 4px;max-width:68ch}
+.tool-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,220px);gap:20px;align-items:start;margin-top:16px}
+.tool-figure{min-width:0}
+.tool-figure svg{width:100%;height:auto;display:block}
+.controls{display:flex;flex-direction:column;gap:14px}
+.ctl label{display:block;font-size:12.5px;font-weight:600;color:var(--secondary);margin-bottom:5px}
+.ctl label span{float:right;font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:700}
+.ctl input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+.readout{
+  font-size:12.5px;color:var(--secondary);border-top:1px solid var(--grid);
+  padding-top:11px;line-height:1.6;
+}
+.readout b{color:var(--ink);font-variant-numeric:tabular-nums}
+.verdict{font-weight:700;font-size:13px;margin-top:7px}
+.verdict.hit{color:var(--good)}
+.verdict.miss{color:var(--accent)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 0;font-size:12.5px;color:var(--secondary)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart-note{font-size:12px;color:var(--muted);margin:9px 0 0;line-height:1.55}
+.gridline{stroke:var(--grid);stroke-width:1}
+.axisline{stroke:#c7c5ba;stroke-width:1}
+.axistext{font-size:10.5px;fill:var(--muted);font-family:var(--sans)}
+.serieslabel{font-size:11.5px;font-weight:700;font-family:var(--sans)}
+
+/* ---------- glossary ---------- */
+dl.gloss{margin:16px 0 0;display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:9px 20px;font-size:14.5px}
+dl.gloss dt{font-weight:650;color:var(--ink)}
+dl.gloss dd{margin:0;color:var(--secondary)}
+
+/* ---------- footer ---------- */
+footer.foot{padding:34px 0 60px;font-size:13px;color:var(--muted);line-height:1.75}
+footer.foot p{max-width:74ch}
+
+/* ---------- narrow screens ---------- */
+@media screen and (max-width:999px){
+  body{font-size:15.5px}
+  .tool-grid{grid-template-columns:minmax(0,1fr)}
+  .controls{flex-direction:row;flex-wrap:wrap;gap:14px 20px}
+  .ctl{flex:1 1 160px}
+  dl.gloss{grid-template-columns:minmax(0,1fr);gap:2px 0}
+  dl.gloss dd{margin-bottom:11px}
+}
+@media screen and (max-width:640px){
+  .shell{padding-inline:16px}
+  .topbar-inner{padding-inline:16px}
+  .step{padding:16px 15px;gap:6px 12px}
+  .step-check{width:24px;height:24px}
+  .step-check:checked::after{left:7px;top:3px;width:6px;height:12px}
+  .tool{padding:16px 15px}
+  .map{grid-template-columns:minmax(0,1fr)}
+  h3{margin-top:26px}
+}
+@media print{
+  .topbar,.copy,.controls{display:none}
+  body{background:#fff;font-size:11pt}
+  .step,.tool,.tablewrap{break-inside:avoid;border-color:#bbb}
+  section.stage{break-before:page}
+  details.why{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="topbar-label">Build progress</span>
+    <span class="bar"><i id="barfill"></i></span>
+    <span class="topbar-count"><span id="ndone">0</span> / 43 tasks</span>
+    <button class="topbar-reset" id="resetbtn" type="button">Clear</button>
+  </div>
+</div>
+
+<header class="head">
+  <div class="shell">
+    <p class="eyebrow">Wellcome 325496/Z/25/Z &middot; Work Package 2.3</p>
+    <h1>Building the health and labour module in IndoTERM</h1>
+    <p class="sub">Forty-three tasks, in order, from a household survey to a solved simulation.</p>
+    <p class="lede">This page is a build guide, not a summary. It sets out every task needed to make health
+      affect the economy inside the IndoTERM model of Indonesia. Each task says <strong>what to do</strong>,
+      <strong>what to run</strong>, and <strong>how you know it worked</strong>. Tick a task when it is
+      finished; the page remembers your progress in this browser.</p>
+    <p class="lede">The work is in six stages. Stage A gets the existing energy model running before anything
+      is changed. Stages B to D build the three new pieces: a labour database, a changed economic database,
+      and the model code. Stage E runs the simulations. Stage F reports them. Three teaching tools in the
+      middle of the page let you try the three ideas that are hardest to see from the equations alone.</p>
+    <p class="byline">Arief Anshory Yusuf &middot; SDGs Center, Universitas Padjadjaran &middot; September 2026<br>
+      Method sources: Roos (2013, 2014) for the module, Horridge and co-authors (2021) for the IndoTERM
+      database, and the GMMI energy model as the host.</p>
+  </div>
+</header>
+
+<!-- ================= MAP ================= -->
+<section class="stage" id="map">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Before you start</span>
+      <h2>What you are building</h2>
+      <p class="stage-lede">The model already knows how much fuel each industry burns in each region. It does
+        not know that burning fuel makes people ill, and that ill people work less. The module is the missing
+        link. It counts people by health state and work status, and it moves them from one year to the next.</p>
+    </div>
+
+    <p>The chain has five links. The economic model owns the first and the last. The module owns the fourth.
+      The two links in the middle are new work.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Link</th><th>What it produces</th><th>Where it comes from</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>1. Fuel burned</td><td>Coal, oil, gas and electricity used by each industry, household group and region</td><td>The <code>QGAS</code> matrix already in the model</td><td>Exists</td></tr>
+          <tr><td>2. Pollution in the air</td><td>PM2.5, sulphur dioxide and nitrogen oxides by region</td><td>Emission factors on the same matrix, then a source&ndash;receptor step</td><td>Factors are easy. The source&ndash;receptor step has no owner yet.</td></tr>
+          <tr><td>3. New cases of illness</td><td>Change in illness and deaths by age, sex and region</td><td>Exposure&ndash;response curves from the Global Burden of Disease study</td><td>Owner named in the team</td></tr>
+          <tr><td>4. Health state and labour supply</td><td>How many people of each health state offer to work, and in which occupation</td><td><strong>The module you build here</strong></td><td>To build</td></tr>
+          <tr><td>5. The economy</td><td>Output, wages, employment and prices by region</td><td>IndoTERM, already running</td><td>Exists</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The six stages</h3>
+    <div class="map">
+      <a class="map-card" href="#stage-a"><span class="m-tag">STAGE A</span>
+        <div class="m-t">Run what you already have</div>
+        <div class="m-d">Reproduce the existing energy simulation before changing one line.</div>
+        <div class="m-n">5 tasks</div></a>
+      <a class="map-card" href="#stage-b"><span class="m-tag">STAGE B</span>
+        <div class="m-t">Build the labour database</div>
+        <div class="m-d">Turn Susenas, Sakernas and GBD into the tables the module reads.</div>
+        <div class="m-n">11 tasks &middot; the long one</div></a>
+      <a class="map-card" href="#stage-c"><span class="m-tag">STAGE C</span>
+        <div class="m-t">Change the economic database</div>
+        <div class="m-d">Split out the ores, the metals, the health sectors and the mining regions.</div>
+        <div class="m-n">6 tasks</div></a>
+      <a class="map-card" href="#stage-d"><span class="m-tag">STAGE D</span>
+        <div class="m-t">Write the model code</div>
+        <div class="m-d">Add the module equations to the model file and connect them.</div>
+        <div class="m-n">9 tasks</div></a>
+      <a class="map-card" href="#stage-e"><span class="m-tag">STAGE E</span>
+        <div class="m-t">Run the simulations</div>
+        <div class="m-d">A baseline, three policy runs, one control run and the sensitivity tests.</div>
+        <div class="m-n">8 tasks</div></a>
+      <a class="map-card" href="#stage-f"><span class="m-tag">STAGE F</span>
+        <div class="m-t">Report the results</div>
+        <div class="m-d">Separate the health effect from the direct energy effect, and publish the assumptions.</div>
+        <div class="m-n">4 tasks</div></a>
+    </div>
+
+    <div class="callout rule">
+      <span class="callout-t">The order matters</span>
+      <p>Stage B does not depend on the model work. It can start in month one with one research assistant who
+        knows the household surveys. Stages C and D can run at the same time. Nothing in Stage E works until
+        A, B, C and D are all finished.</p>
+    </div>
+
+    <h3>What you need before task A1</h3>
+    <ul class="measure">
+      <li>The GMMI energy model folder, with the model file, the database and the simulation set-up.</li>
+      <li>GEMPACK, the software that solves the model, and RunDynam, which runs it year by year.</li>
+      <li>Susenas March core questionnaire data at person level, 2018 to 2025.</li>
+      <li>Sakernas, for occupation, wages and job changes.</li>
+      <li>Global Burden of Disease estimates for Indonesia: new cases, prevalence and deaths by cause, age and sex.</li>
+      <li>BPS population projections and life tables by province.</li>
+      <li>Stata or Python for the survey work. Either is fine. The survey files are large, so allow memory.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= STAGE A ================= -->
+<section class="stage" id="stage-a">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage A</span>
+      <h2>Run the model you already have</h2>
+      <p class="stage-lede">Do not change anything yet. The first job is to make the existing energy model run
+        on your machine and give the numbers it gave before. If you cannot reproduce the old result, you will
+        never know whether a later difference came from your module or from your set-up.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> the GMMI folder</span>
+        <span class="chip"><b>Output</b> a reproduced baseline and policy run</span>
+        <span class="chip"><b>Effort</b> days</span>
+      </div>
+    </div>
+
+    <div class="step" data-step="A1">
+      <input class="step-check" type="checkbox" aria-label="Mark task A1 done">
+      <div>
+        <p class="step-id">TASK A1</p>
+        <p class="step-title">Copy the model folder and work on the copy</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Copy the whole GMMI working tree to a folder of your
+            own. Never work in a shared or synchronised folder. A simulation writes hundreds of files, and a
+            sync client will corrupt a run.</p>
+          <p class="line"><span class="label check">Check</span>The copy contains the model file
+            <code>termener.tab</code>, the database <code>aggmod.har</code> and <code>AGGSETS.HAR</code>, the
+            closure files ending <code>.CLS</code>, and the shock files ending <code>.BSH</code> and
+            <code>.PSH</code>.</p>
+          <details class="why"><summary>Why a copy</summary><div class="why-body">
+            <p>The folder came from another machine and still carries that machine's paths inside the
+              simulation set-up. You will edit those paths. If you edit them in the shared copy, you break the
+              original for its owner and lose the only clean reference you have.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="A2">
+      <input class="step-check" type="checkbox" aria-label="Mark task A2 done">
+      <div>
+        <p class="step-id">TASK A2</p>
+        <p class="step-title">Check the software versions before opening anything</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Write down the version of GEMPACK and of RunDynam on
+            your machine, and the version that wrote the folder you were given.</p>
+          <p class="line"><span class="label warn">Watch out</span>A newer RunDynam writes a set-up file that an
+            older RunDynam cannot open. If the versions differ, do not try to force it. Unpack the archive
+            outside the program instead, then point your own RunDynam at the unpacked folder.</p>
+          <p class="line"><span class="label check">Check</span>The model file opens, the database opens, and the
+            simulation set-up lists the years 2023 to 2050.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="A3">
+      <input class="step-check" type="checkbox" aria-label="Mark task A3 done">
+      <div>
+        <p class="step-id">TASK A3</p>
+        <p class="step-title">Compile the model without changing it</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Run the folder's own compile step. The database-build
+            folders carry a <code>compile.bat</code>; the model folder ships a compiled program. Compile anyway,
+            so that you know the source and the program agree.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">:: from the model folder</span>
+compile.bat
+
+<span class="cmt">:: you should end with a program file next to the source</span>
+dir termener.exe termener.tab</pre></div>
+          <p class="line"><span class="label check">Check</span>The compiler reports no errors. Keep the
+            compiler log. When you add your own equations in Stage D, the first thing you will compare is this
+            log against the new one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="A4">
+      <input class="step-check" type="checkbox" aria-label="Mark task A4 done">
+      <div>
+        <p class="step-id">TASK A4</p>
+        <p class="step-title">Reproduce the baseline and the carbon price run</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Run the two simulations that already exist: the
+            reference case, and the carbon price case. Then open the results workbook that came with the model
+            and compare your numbers with the ones in it.</p>
+          <p class="line"><span class="label check">Check</span>Three numbers are enough to tell you the run is
+            right. Carbon dioxide emissions on the reference path: about 645 million tonnes in 2025 and about
+            1,680 million tonnes in 2045. On the carbon price path: about 459 million tonnes in 2025, falling
+            to about 295 million tonnes by 2045.</p>
+          <p class="line"><span class="label do">Do</span>Write down the reference and policy figures for gross
+            domestic product in 2050 from the workbook. You will use them later as the denominator when you
+            report the size of the health effect. Take them from the workbook, not from a slide.</p>
+          <p class="line"><span class="label warn">Watch out</span>If your emissions path differs by more than
+            a per cent, stop. Something in the closure, the shocks or the database differs from the archived
+            run. Find it now. It is far cheaper than finding it after the module is in.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="A5">
+      <input class="step-check" type="checkbox" aria-label="Mark task A5 done">
+      <div>
+        <p class="step-id">TASK A5</p>
+        <p class="step-title">Read the closure and the shocks, and write down what each line does</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Open the common closure file and the baseline shock
+            file. For each line, write one sentence in plain words saying what it fixes and what it frees. This
+            is the single most useful hour in Stage A.</p>
+          <p class="line">Four lines in the closure matter for your work:</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! capital grows by investment, instead of being fixed</span>
+<span class="kw">swap</span> xcap = faccum;
+<span class="cmt">! investment follows the rate of return rule</span>
+<span class="kw">swap</span> finv1 = finv4;
+<span class="cmt">! THIS IS THE LINE YOU WILL REPLACE IN STAGE E.</span>
+<span class="cmt">! It says: national labour supply follows the real wage.</span>
+<span class="cmt">! After the module is in, labour supply comes from the module instead.</span>
+<span class="kw">swap</span> flabsup_id = delfwage;</pre></div>
+          <p class="line"><span class="label check">Check</span>Run the closure and shock check without starting
+            a full simulation. The check reads the model, applies the closure, and reports whether the number of
+            exogenous variables matches the number of equations, and whether every shocked variable is in fact
+            exogenous. A closure that fails here will waste a whole overnight run.</p>
+          <details class="why"><summary>What a closure is, in one paragraph</summary><div class="why-body">
+            <p>The model has more variables than equations. A closure is the list of variables you hold fixed
+              from outside. Fixing a different set turns the same model into a different experiment. A
+              <em>swap</em> exchanges one fixed variable for another: it makes the first free and the second
+              fixed. The dynamic swaps above are what turns a one-period model into a model that walks forward
+              year by year.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONCEPTS ================= -->
+<section class="stage" id="concepts">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Understand first</span>
+      <h2>Three ideas, three tools</h2>
+      <p class="stage-lede">Stage B builds tables of numbers. The tables only make sense if three ideas are
+        clear first. Each tool below lets you move the parameter and watch the answer change. The numbers in
+        the tools are illustrative. They are teaching numbers, not Indonesian data.</p>
+    </div>
+
+    <h3>Idea 1. The module counts people and moves them</h3>
+    <p class="measure">At the start of a year, every working-age person sits in a <strong>category</strong>:
+      region, age, sex, health state, and what the person did last year. During the year each category makes
+      <strong>offers</strong>: to stay in the same occupation, to move to another, to be unemployed, or to
+      leave the labour force. Industries decide how many jobs there are. People who held a job last year keep
+      it first; what is left over is shared among the other offers. At the end of the year the
+      <strong>transition matrix</strong> moves everybody: one year older, some change health state, some die.
+      That gives next year's categories, and the cycle repeats.</p>
+    <p class="measure">Health enters in exactly one place: the transition matrix. Everything else follows.</p>
+
+    <div class="tool">
+      <span class="tool-tag">Teaching tool 1</span>
+      <h4>How an offer responds to wages and to health</h4>
+      <p class="tool-sub">A category divides its people between four destinations. The share going to each one
+        depends on the wage there, on a preference weight, and on one elasticity. Poor health lowers the
+        preference for every working destination at once, so the people move towards leaving the labour force.</p>
+      <div class="tool-grid">
+        <div class="tool-figure">
+          <svg id="ces-svg" viewBox="0 0 440 210" role="img" aria-label="Bar chart of offer shares by destination"></svg>
+          <p class="chart-note">The starting split matches the published assumptions: about 88 per cent stay,
+            7 per cent change occupation, 3 per cent go to unemployment. The health slider multiplies the
+            weight on all three working destinations at once.</p>
+        </div>
+        <div class="controls">
+          <div class="ctl">
+            <label for="ces-w">Wage in the other occupation<span id="ces-w-v">1.00</span></label>
+            <input type="range" id="ces-w" min="0.6" max="2" step="0.02" value="1">
+          </div>
+          <div class="ctl">
+            <label for="ces-s">Elasticity &sigma;<span id="ces-s-v">2.0</span></label>
+            <input type="range" id="ces-s" min="0.5" max="4" step="0.1" value="2">
+          </div>
+          <div class="ctl">
+            <label for="ces-h">Health: ability to work<span id="ces-h-v">100%</span></label>
+            <input type="range" id="ces-h" min="0.2" max="1" step="0.02" value="1">
+          </div>
+          <div class="readout" id="ces-read"></div>
+        </div>
+      </div>
+      <p class="chart-note"><strong>What to notice.</strong> Raise the wage in the other occupation and people
+        move to it, the more so the higher the elasticity. Now lower the health slider instead. Every working
+        destination falls together and the share leaving the labour force rises. That single gradient is what
+        carries the whole result of the study, and Susenas measures it directly. Task B5 is where you estimate it.</p>
+    </div>
+
+    <h3>Idea 2. A wage that moves slowly turns a supply change into unemployment first</h3>
+    <p class="measure">If better health puts more people into the labour market, the wage does not fall at once.
+      It falls by a fraction of the gap between labour demand and labour supply each year. Until it has fallen,
+      the extra people are unemployed. After about five years the wage has done its work and the extra people
+      are employed.</p>
+
+    <div class="tool">
+      <span class="tool-tag">Teaching tool 2</span>
+      <h4>What the sticky wage rule does over ten years</h4>
+      <p class="tool-sub">Labour supply rises permanently by one per cent in year 1. The lines show how far
+        employment and the real wage are from the baseline in each year after that.</p>
+      <div class="tool-grid">
+        <div class="tool-figure">
+          <svg id="wage-svg" viewBox="0 0 440 244" role="img" aria-label="Line chart of employment and real wage deviation over ten years"></svg>
+          <div class="legend">
+            <span><i style="background:#2a78d6"></i>Employment</span>
+            <span><i style="background:#eb6834"></i>Real wage</span>
+          </div>
+          <p class="chart-note">Deviation from baseline, per cent. Illustrative labour demand elasticity of 1.0.</p>
+        </div>
+        <div class="controls">
+          <div class="ctl">
+            <label for="wage-a">Adjustment speed &alpha;<span id="wage-a-v">0.60</span></label>
+            <input type="range" id="wage-a" min="0.1" max="1.2" step="0.05" value="0.6">
+          </div>
+          <div class="ctl">
+            <label for="wage-e">Labour demand elasticity<span id="wage-e-v">1.0</span></label>
+            <input type="range" id="wage-e" min="0.3" max="2.5" step="0.1" value="1">
+          </div>
+          <div class="readout" id="wage-read"></div>
+        </div>
+      </div>
+      <p class="chart-note"><strong>What to notice.</strong> The end point does not depend on &alpha;. Only the
+        speed does. A slow adjustment means several years of higher unemployment before the gain appears as
+        employment. That transition, not the final number, is what a just transition study is about. Published
+        work uses &alpha; between 0.5 and 0.6; you test both in task E8.</p>
+    </div>
+
+    <h3>Idea 3. You do not need to follow people over time to build a transition matrix</h3>
+    <p class="measure">This is the objection you will hear most often, and the answer is the heart of the
+      method. You need two rates: how many healthy people fall ill each year, and how many ill people recover.
+      Indonesia has no survey that follows the same person from year to year. But the <em>share of people who
+      are ill at each age</em> is the accumulated result of both rates acting over a lifetime. Eight annual
+      surveys of that share are enough to recover both rates together.</p>
+
+    <div class="tool">
+      <span class="tool-tag">Teaching tool 3</span>
+      <h4>Find the two rates from the age profile alone</h4>
+      <p class="tool-sub">The dots are a target age profile produced by a known pair of rates. Move the two
+        sliders until the line passes through the dots. When it does, you have recovered both rates without
+        following a single person. That is task B8.</p>
+      <div class="tool-grid">
+        <div class="tool-figure">
+          <svg id="prev-svg" viewBox="0 0 440 244" role="img" aria-label="Line chart of the share of people with difficulty by age, model against target"></svg>
+          <div class="legend">
+            <span><i style="background:#2a78d6"></i>Your rates</span>
+            <span><i style="background:#eb6834"></i>Target profile</span>
+          </div>
+          <p class="chart-note">Share of people with a functional difficulty, per cent, by single year of age.
+            Illustrative shape, not Susenas data.</p>
+        </div>
+        <div class="controls">
+          <div class="ctl">
+            <label for="prev-o">Onset at age 15, per cent a year<span id="prev-o-v">0.30</span></label>
+            <input type="range" id="prev-o" min="0.05" max="1.2" step="0.01" value="0.3">
+          </div>
+          <div class="ctl">
+            <label for="prev-r">Recovery, per cent a year<span id="prev-r-v">12.0</span></label>
+            <input type="range" id="prev-r" min="1" max="40" step="0.5" value="12">
+          </div>
+          <div class="readout" id="prev-read"></div>
+        </div>
+      </div>
+      <p class="chart-note"><strong>What to notice.</strong> A high onset rate with a high recovery rate can
+        give almost the same profile as a low onset rate with a low recovery rate, at young ages. The two rates
+        separate at older ages, where the profile bends. That bend is the information. It is also why you must
+        use the whole age range and not only working ages, and why the level is then scaled to an external
+        total from the Global Burden of Disease study.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE B ================= -->
+<section class="stage" id="stage-b">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage B</span>
+      <h2>Build the labour database</h2>
+      <p class="stage-lede">This is the long stage and the one that does not wait for anything else. You turn
+        three data sources into six tables. The method is the one Roos used for South Africa: assume the shape
+        of a rate, then scale its level to a total you trust.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> Susenas, Sakernas, GBD, BPS</span>
+        <span class="chip"><b>Output</b> six tables in one model data file</span>
+        <span class="chip"><b>Effort</b> months, one research assistant</span>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-t">The rule for this whole stage</span>
+      <p>Every number that is not measured must be written down in a register with its value, where it came
+        from, and which total it was scaled to. The register is a deliverable, not a note to yourself. It is
+        what lets a reviewer accept the module. Task B10 builds it, but you fill it in as you go.</p>
+    </div>
+
+    <div class="step" data-step="B1">
+      <input class="step-check" type="checkbox" aria-label="Mark task B1 done">
+      <div>
+        <p class="step-id">TASK B1</p>
+        <p class="step-title">Fix the five sets, and write the reason for each choice</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Decide the dimensions now. Changing them later means
+            rebuilding every table.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Set</th><th>Choice</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td>Region</td><td>About 10, matching the economic database exactly</td><td>The coal, nickel and Java regions must stay separate. Stage C creates them.</td></tr>
+                <tr><td>Age</td><td>Five groups</td><td>Same as both published applications. Enough for the participation gradient.</td></tr>
+                <tr><td>Sex</td><td>Two</td><td>Participation by health differs sharply by sex in Indonesia.</td></tr>
+                <tr><td>Health state</td><td>Three: no difficulty, some difficulty, a lot of difficulty</td><td>Straight from the Susenas functional-difficulty block, which is on every March form since 2018.</td></tr>
+                <tr><td>Activity</td><td>About 15</td><td>The four occupations the model demands, split formal and informal, plus short-term unemployed, long-term unemployed, new entrant, and out of the labour force.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="line"><span class="label warn">Watch out</span>The activity set must contain every
+            occupation the economic model demands labour for, and no more. If the model has four occupations,
+            the module must supply those same four. Check the occupation set in the database before you write
+            any survey code.</p>
+          <details class="why"><summary>Why informal work needs its own status</summary><div class="why-body">
+            <p>About half of Indonesian workers are informal. When an informal worker becomes ill, the usual
+              response is to work fewer hours, not to stop being employed. If informal workers are counted the
+              same way as formal workers, the health effect on half the workforce cannot be seen at all. This
+              is the main addition to the published specification.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B2">
+      <input class="step-check" type="checkbox" aria-label="Mark task B2 done">
+      <div>
+        <p class="step-id">TASK B2</p>
+        <p class="step-title">Request the data in the form you will actually use</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Send three specific requests. Vague requests come back
+            as the wrong file.</p>
+          <ul>
+            <li><strong>Susenas March core, 2018 to 2025, at person level.</strong> Needed blocks: the
+              functional-difficulty block, the health-complaint block, and the labour block. Ask for the
+              variables to be made consistent across years, because names and block numbers change.</li>
+            <li><strong>Susenas March core, 2013 to 2017.</strong> These are the last rounds that record the
+              number of days of activity lost to illness. You need them once, for task B9.</li>
+            <li><strong>Sakernas</strong>, for occupation, wages, when the current job started, and whether the
+              person stopped working in the last year and why.</li>
+          </ul>
+          <p class="line"><span class="label check">Check</span>Open one year and count the people. A March core
+            file holds roughly 1.1 million persons. If your file has a few hundred thousand, you have been sent
+            the September module by mistake, and its sample is about four times smaller.</p>
+          <div class="callout rule">
+            <span class="callout-t">The change in 2018 that decides your design</span>
+            <p>Until 2017 the questionnaire asked how many days of activity were lost to illness. From 2018 that
+              question was dropped and a block of eight graded functional-difficulty questions was added, asked
+              of everyone aged two and over. So the health <em>state</em> comes from 2018 onward, and the
+              <em>hours lost</em> parameter has to be taken from 2013 to 2017 and carried forward.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B3">
+      <input class="step-check" type="checkbox" aria-label="Mark task B3 done">
+      <div>
+        <p class="step-id">TASK B3</p>
+        <p class="step-title">Build the activities table from one Susenas year</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Produce one weighted table: people by region, age,
+            sex, health state and activity. This single table is the backbone of the module.</p>
+          <p class="line">Two coding decisions inside it:</p>
+          <ul>
+            <li><strong>Health state.</strong> The block has eight domains, each with a graded answer. Reduce
+              them to three states with one rule and write the rule down. The usual rule is the worst answer
+              across the eight domains.</li>
+            <li><strong>Activity.</strong> From the labour block: employed, and if so in which occupation and
+              whether formal or informal; unemployed, and if so short or long term; out of the labour force;
+              new entrant.</li>
+          </ul>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">* Outline only. Variable names change every year:</span>
+<span class="cmt">* read the codebook for the year you are processing.</span>
+
+<span class="cmt">* 1. health state: worst answer across the eight domains</span>
+egen  worst = rowmax(diff1 diff2 diff3 diff4 diff5 diff6 diff7 diff8)
+recode worst (1=1 "no difficulty") (2=2 "some difficulty") ///
+             (3/4=3 "a lot of difficulty"), gen(h)
+
+<span class="cmt">* 2. activity from the labour block</span>
+gen     act = .
+replace act = occ_group  if employed==1 &amp; formal==1
+replace act = occ_group+4 if employed==1 &amp; formal==0
+replace act = 9  if unemployed==1 &amp; months_searching&lt;=12
+replace act = 10 if unemployed==1 &amp; months_searching&gt;12
+replace act = 11 if new_entrant==1
+replace act = 12 if not_in_labour_force==1
+
+<span class="cmt">* 3. the table, weighted</span>
+collapse (sum) people=weight, by(region age sex h act)</pre></div>
+          <p class="line"><span class="label check">Check</span>Sum the table over health and activity and
+            compare with the published BPS population for that year by province. Sum over health only and
+            compare employment and unemployment with the published labour figures. If they do not match, the
+            weight variable or the activity coding is wrong.</p>
+          <p class="line"><span class="label warn">Watch out</span>Some cells will be nearly empty: young people
+            with severe difficulty in a specific occupation, for instance. Note them now. In task B5 you will
+            pool them rather than let a handful of observations drive a rate.</p>
+          <details class="why"><summary>Why this table is better than what South Africa had</summary><div class="why-body">
+            <p>Roos could not observe health status and work status for the same person. She had to take
+              national health prevalence from an outside model and spread it across occupations using assumed
+              percentages. Susenas records both for the same person, in the same survey, with region and age.
+              The one table you build here replaces her hardest and least defensible step.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B4">
+      <input class="step-check" type="checkbox" aria-label="Mark task B4 done">
+      <div>
+        <p class="step-id">TASK B4</p>
+        <p class="step-title">Make last year's table, this year's categories, and the new entrants</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Three small steps, in this order.</p>
+          <ol>
+            <li>Last year's activities: divide the activities table by one plus the labour-force growth rate.</li>
+            <li>This year's categories: multiply last year's activities by the transition matrix. You cannot
+              finish this until task B8 produces the matrix, so leave it as a placeholder and come back.</li>
+            <li>New entrants: take the number of 15-year-olds by province from the BPS population projections.
+              This is cleaner than taking them as a residual.</li>
+          </ol>
+          <p class="line"><span class="label check">Check</span>Categories summed over all categories, plus new
+            entrants, must equal activities summed over all activities. If they do not, the transition matrix
+            rows do not sum correctly, and you will find the error in task B8, not here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B5">
+      <input class="step-check" type="checkbox" aria-label="Mark task B5 done">
+      <div>
+        <p class="step-id">TASK B5</p>
+        <p class="step-title">Build the offers table, and calibrate the health gradient</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Offers are what people would like to do, before jobs
+            are rationed. Build the table by rule, not by estimation. Four rules cover it.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Flow</th><th>Rule</th><th>Source, or the published assumption</th></tr></thead>
+              <tbody>
+                <tr><td>Stay in the same occupation</td><td>The residual after the other three</td><td>&mdash;</td></tr>
+                <tr><td>Move to another occupation</td><td>A fixed share of the category, spread over occupations of similar skill</td><td>Sakernas job-start date; otherwise 7 per cent</td></tr>
+                <tr><td>Leave a job for unemployment by choice</td><td>A fixed share</td><td>Sakernas stopped-work question; otherwise 3 per cent</td></tr>
+                <tr><td>Unemployed and new entrants offering to work</td><td>Offer strength, which falls with poor health</td><td><strong>Calibrate from Susenas</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="line"><span class="label do">Do</span>The last row is the one that matters. Roos had to
+            assume the offer strength by health state. You can measure it: compute the employment rate by
+            health state, age, sex and region from the table you built in B3, and set the offer strengths so
+            that the module reproduces those employment rates.</p>
+          <p class="line"><span class="label check">Check</span>Each row of the offers table sums to the size of
+            the category. Offers are wishes, so their column totals will <em>not</em> match observed
+            employment. That comes next.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B6">
+      <input class="step-check" type="checkbox" aria-label="Mark task B6 done">
+      <div>
+        <p class="step-id">TASK B6</p>
+        <p class="step-title">Turn offers into actual flows by the vacancy loop</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Jobs are limited, so most offers are refused. Work out
+            how many jobs are open, then share them out. The calculation is circular, so it is solved by
+            repeating it until the numbers stop moving.</p>
+          <ol>
+            <li>Start by assuming a share of workers is dismissed, three per cent unless Sakernas tells you
+              otherwise.</li>
+            <li>Count the people who keep their job from last year.</li>
+            <li>Vacancies are the jobs the industries want, minus the people who kept theirs.</li>
+            <li>Share the vacancies among the other offers, in proportion to those offers.</li>
+            <li>Recompute who kept a job now that some have moved, and repeat from step 2.</li>
+          </ol>
+          <p class="line"><span class="label check">Check</span>Two conditions. The loop must stop moving, and
+            the column totals of the flows table must reproduce the observed employment, unemployment and
+            non-participation totals from B3. If the loop does not settle, the offer strengths in B5 are
+            inconsistent with the number of jobs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B7">
+      <input class="step-check" type="checkbox" aria-label="Mark task B7 done">
+      <div>
+        <p class="step-id">TASK B7</p>
+        <p class="step-title">Build the ageing and death part of the transition matrix</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>This part is a lookup, not a calibration. With
+            ten-year age groups, about ten per cent of each group moves up each year. Death rates come from the
+            BPS life tables, by age, sex and province, checked against the Global Burden of Disease figures.</p>
+          <p class="line"><span class="label check">Check</span>Apply the ageing and death matrix to the current
+            population and compare the result with the BPS population projection for the next year. The two
+            should agree closely. If they do not, your age groups and the life table's age groups are not
+            aligned.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B8">
+      <input class="step-check" type="checkbox" aria-label="Mark task B8 done">
+      <div>
+        <p class="step-id">TASK B8</p>
+        <p class="step-title">Build the health part of the transition matrix by calibration</p>
+        <div class="step-body">
+          <p class="line">This is the hardest task on the page. Teaching tool 3 above is the same problem in
+            miniature. Work through it before starting.</p>
+          <p class="line"><span class="label do">Do</span>In four steps.</p>
+          <ol>
+            <li><strong>Shape of onset.</strong> Take new cases by cause, age and sex from the Global Burden of
+              Disease study for Indonesia. Map the causes onto the three difficulty states. Respiratory and
+              cardiovascular disease matter most here, because they are the causes that air pollution changes.</li>
+            <li><strong>Recovery is unknown.</strong> Nothing measures it directly. Treat it as the parameter to
+              be found.</li>
+            <li><strong>Calibrate.</strong> Choose recovery, and adjust onset, so that the share of people with
+              a difficulty at each age that the module implies matches what Susenas shows, in each of the eight
+              years from 2018 to 2025.</li>
+            <li><strong>Scale the level.</strong> Multiply both rates by a common factor so that the national
+              number of cases by cause matches the Global Burden of Disease total. This is the step that
+              anchors the level; the calibration only fixed the shape.</li>
+          </ol>
+          <p class="line"><span class="label do">Do</span>Allow the rates to differ by activity. Roos made
+            progression slower for skilled workers by assumption. You can take the gradient from the survey
+            instead: compute how the share with difficulty varies by work status at each age, and impose that
+            as a scaling, holding the national total fixed.</p>
+          <p class="line"><span class="label check">Check</span>Four checks, all of them cheap.</p>
+          <ul>
+            <li>Every row of the matrix sums to one minus the death rate. This is arithmetic, not judgement.</li>
+            <li>The implied age profile matches Susenas in all eight years, not just the year you fitted.</li>
+            <li>The implied prevalence matches the Global Burden of Disease prevalence, which you did not use
+              in the fitting.</li>
+            <li>Running the module forward for ten years with no shock leaves the health distribution stable.
+              A drift means onset and recovery are not consistent with each other.</li>
+          </ul>
+          <p class="line"><span class="label warn">Watch out</span>Do not report a single calibrated pair of
+            rates as if it were measured. Record the range of pairs that fit the age profile about equally
+            well. That range becomes a sensitivity test in task E8, and it is the honest statement of what the
+            data can and cannot tell you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B9">
+      <input class="step-check" type="checkbox" aria-label="Mark task B9 done">
+      <div>
+        <p class="step-id">TASK B9</p>
+        <p class="step-title">Build wages by occupation, and effective labour by health state</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Two small tables.</p>
+          <ul>
+            <li><strong>Wages.</strong> Susenas has no wage question. Take the relative wages between
+              occupations from Sakernas, and take the overall level from the wage bill already in the economic
+              database. The relativities come from the survey; the level comes from the national accounts.</li>
+            <li><strong>Effective labour.</strong> One number per health state, saying how much work a person in
+              that state does compared with a healthy person. Take it from the days of activity lost per
+              illness in the 2013 to 2017 surveys, and from the number of days spent in hospital, which is on
+              every form.</li>
+          </ul>
+          <p class="line"><span class="label check">Check</span>Multiply employment by occupation by the wage
+            and compare with the wage bill in the economic database. The two must agree, because the second is
+            where your level came from.</p>
+          <details class="why"><summary>Why effective labour is worth the trouble</summary><div class="why-body">
+            <p>In both published health studies, better health raised output only by putting more people into
+              work. Nobody became more productive. In Indonesia, where half the workforce is informal, that
+              leaves out the main effect: an ill informal worker usually keeps working and works fewer hours.
+              One number per health state repairs it.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B10">
+      <input class="step-check" type="checkbox" aria-label="Mark task B10 done">
+      <div>
+        <p class="step-id">TASK B10</p>
+        <p class="step-title">Write the assumption register</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>One table. Every number in the database that was not
+            measured gets a row: what it is, the value you used, where the value came from, and which external
+            total you scaled it to. Roos's register has eighteen rows; yours will have fewer, because Susenas
+            measures several things she had to assume.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Object</th><th>Value</th><th>Basis</th><th>Scaled to</th></tr></thead>
+              <tbody>
+                <tr><td>Share wanting to change occupation</td><td>7 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                <tr><td>Voluntary moves to unemployment</td><td>3 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                <tr><td>Share dismissed each year</td><td>3 per cent, or from Sakernas</td><td>Published assumption</td><td>&mdash;</td></tr>
+                <tr><td>Offer strength by health state</td><td>Your calibrated values</td><td>Susenas employment rates</td><td>Observed employment</td></tr>
+                <tr><td>Age progression</td><td>10 per cent a year</td><td>Approximation for ten-year groups</td><td>BPS projection</td></tr>
+                <tr><td>Onset and recovery</td><td>Your calibrated values, with the range that also fits</td><td>GBD shape, Susenas profile</td><td>GBD national totals</td></tr>
+                <tr><td>Wage adjustment speed &alpha;</td><td>0.6, tested at 0.5</td><td>Published value</td><td>&mdash;</td></tr>
+                <tr><td>Offer elasticity &sigma;</td><td>2</td><td>Published value</td><td>&mdash;</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="line"><span class="label check">Check</span>Give the register to someone who did not build
+            the database and ask them to find a number in it that has no basis. If they can, the register is
+            not finished.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="B11">
+      <input class="step-check" type="checkbox" aria-label="Mark task B11 done">
+      <div>
+        <p class="step-id">TASK B11</p>
+        <p class="step-title">Write the tables into a model data file</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The model reads binary data files, not survey files.
+            Write each table to its own named piece of one data file: activities, last year's activities,
+            categories, offers, actual flows, the transition matrix, and wages.</p>
+          <p class="line"><span class="label check">Check</span>Open the file with the data viewer that comes
+            with the modelling software and read each table's dimensions out loud against your set definitions
+            from B1. A transposed dimension here will produce a model that compiles, runs, and is wrong.</p>
+          <p class="line"><span class="label warn">Watch out</span>The whole module is small. About eight
+            regions, fifteen activities, five ages, two sexes and three health states is roughly 3,600
+            category cells. Size is not the problem in this project; it never will be. Clarity is.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE C ================= -->
+<section class="stage" id="stage-c">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage C</span>
+      <h2>Change the economic database</h2>
+      <p class="stage-lede">The existing database was built for an electricity study. It hides the things this
+        study is about: the ores, the smelters, the health sectors and the mining provinces. You change two
+        mapping files and let the data pipeline rebuild everything else.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> two mapping files</span>
+        <span class="chip"><b>Output</b> a rebuilt, checked database</span>
+        <span class="chip"><b>Effort</b> weeks</span>
+      </div>
+    </div>
+
+    <div class="callout rule">
+      <span class="callout-t">The rule that makes this stage safe</span>
+      <p>Never edit the model database by hand. Edit the files that feed it, and run the pipeline again. The
+        pipeline rebuilds trade flows, transport margins and balances, and then the checking program confirms
+        every accounting identity. If you edit the database directly, every one of those identities becomes
+        your personal responsibility, and nothing will tell you when you break one.</p>
+    </div>
+
+    <div class="step" data-step="C1">
+      <input class="step-check" type="checkbox" aria-label="Mark task C1 done">
+      <div>
+        <p class="step-id">TASK C1</p>
+        <p class="step-title">Write the new sector mapping</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The master database has 185 sectors. The mapping file
+            says which of them are grouped together. Five changes are needed.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Group</th><th>Now</th><th>Needed</th><th>Why</th></tr></thead>
+              <tbody>
+                <tr><td>Ores</td><td>All seven ore sectors in one "other mining" group</td><td>Nickel, copper, gold and bauxite separate</td><td>The mining policy is about these ores</td></tr>
+                <tr><td>Metals</td><td>Iron, steel and non-ferrous metals in one group</td><td>Both kept separate</td><td>Smelting drives its own coal-fired power</td></tr>
+                <tr><td>Health</td><td>Private health inside other services; government health inside government</td><td>Both separate</td><td>Health-service demand has to respond to illness</td></tr>
+                <tr><td>Transport</td><td>One transport sector</td><td>Land and sea separate</td><td>These carry the fuel-use change as margins</td></tr>
+                <tr><td>Energy</td><td>Coal, crude, gas, refining and seven electricity technologies</td><td>Unchanged</td><td>Already right for this study</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="line"><span class="label check">Check</span>The mapping must send every one of the 185
+            sectors to exactly one group. A sector sent to none, or to two, is the most common error and the
+            pipeline will stop on it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="C2">
+      <input class="step-check" type="checkbox" aria-label="Mark task C2 done">
+      <div>
+        <p class="step-id">TASK C2</p>
+        <p class="step-title">Write the new region mapping</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The master database has 34 provinces. The current
+            model groups them into six regions, which merges everything this study needs to keep apart. Split
+            them into about ten.</p>
+          <ul>
+            <li>Java in two: the western provinces around Jakarta, and the central and eastern provinces. They
+              have different pollution exposure.</li>
+            <li>East and South Kalimantan as their own region. This is where the coal is.</li>
+            <li>Central and Southeast Sulawesi as their own region. This is where the nickel is.</li>
+            <li>Papua kept separate. Sumatra, the rest of Kalimantan, the rest of Sulawesi, and the eastern
+              islands as before.</li>
+          </ul>
+          <p class="line"><span class="label check">Check</span>The region set in the module, from task B1, and
+            the region set here must be identical, in the same order. Write them side by side and compare
+            character by character.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="C3">
+      <input class="step-check" type="checkbox" aria-label="Mark task C3 done">
+      <div>
+        <p class="step-id">TASK C3</p>
+        <p class="step-title">Run the pipeline again</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The pipeline has four stages. The mapping files feed
+            the fourth. If you are not changing the base year, you only need the last two.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">:: Stage 1  national build, only if the base year changes</span>
+cd natdata
+mkdata.bat
+
+<span class="cmt">:: Stage 3  regional build: 185 sectors by 34 provinces</span>
+cd ..\regdata
+mkdata.bat
+
+<span class="cmt">:: Stage 4  aggregate with your two new mapping files</span>
+doagg.bat</pre></div>
+          <p class="line"><span class="label check">Check</span>The pipeline writes a log for every program in
+            the chain. Read the last one. It reports the number of sectors and regions in the result; they must
+            be the numbers you intended.</p>
+          <p class="line"><span class="label warn">Watch out</span>The regional build takes hours, not minutes.
+            Start it when you will not need the machine. Do not interrupt it; a half-written database looks
+            like a complete one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="C4">
+      <input class="step-check" type="checkbox" aria-label="Mark task C4 done">
+      <div>
+        <p class="step-id">TASK C4</p>
+        <p class="step-title">Run the database checks and require zero failures</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The pipeline ships a checking program. Run it. It
+            tests every accounting identity in the database: that what is supplied equals what is delivered,
+            that transport margins sit on real trade flows, that every balance closes.</p>
+          <p class="line"><span class="label check">Check</span>Zero failures. Not "a few small ones". A failure
+            here is an error in the database, and every simulation you run afterwards will carry it.</p>
+          <details class="why"><summary>Why this check is worth more than it looks</summary><div class="why-body">
+            <p>In an earlier study on this same pipeline, the checking program caught a change that had been
+              put into the quantity equation but not the price equation. The simulation had already solved
+              without complaint. The check was the only thing that noticed the accounts had drifted apart.
+              Treat a failure as information about your scenario, not as an obstacle.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="C5">
+      <input class="step-check" type="checkbox" aria-label="Mark task C5 done">
+      <div>
+        <p class="step-id">TASK C5</p>
+        <p class="step-title">Add emission factors for the pollutants that damage health</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The model already records carbon dioxide from each
+            fuel, burned by each user, in each region. Fine particles, sulphur dioxide and nitrogen oxides come
+            out of the same combustion. Add a table of emission factors with the same shape, and multiply.</p>
+          <p class="line"><span class="label check">Check</span>Multiply your factors by the base-year fuel use
+            and compare the national totals with a published Indonesian emissions inventory. Being within the
+            right order of magnitude is the test here; these factors are rough by nature.</p>
+          <p class="line"><span class="label warn">Watch out</span>This gives emissions by region, which is not
+            the same as pollution breathed by region. The step from one to the other is the source&ndash;receptor
+            matrix, and it is the one link in the whole chain with no owner in the team. Raise it at the next
+            meeting rather than quietly assuming that emissions and exposure are the same thing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="C6">
+      <input class="step-check" type="checkbox" aria-label="Mark task C6 done">
+      <div>
+        <p class="step-id">TASK C6</p>
+        <p class="step-title">Confirm the labour side of the new database</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Open the rebuilt database and confirm that the wage
+            bill by industry, occupation and region is present, and that the occupation set still has the four
+            occupations the module supplies.</p>
+          <p class="line"><span class="label check">Check</span>Total the wage bill across everything and
+            compare it with the same total in the old database. Your changes were about splitting groups apart,
+            so the total must be unchanged.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE D ================= -->
+<section class="stage" id="stage-d">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage D</span>
+      <h2>Write the model code</h2>
+      <p class="stage-lede">The module is about forty equations. They go into the model file alongside the
+        existing ones. Only the labour supply side changes; industries go on demanding labour by occupation
+        exactly as before.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> the module data file from B11</span>
+        <span class="chip"><b>Output</b> a model that compiles</span>
+        <span class="chip"><b>Effort</b> weeks, with review</span>
+      </div>
+    </div>
+
+    <div class="step" data-step="D1">
+      <input class="step-check" type="checkbox" aria-label="Mark task D1 done">
+      <div>
+        <p class="step-id">TASK D1</p>
+        <p class="step-title">Copy the model file before you touch it</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Copy <code>termener.tab</code> to
+            <code>termener0.tab</code> and leave the copy alone for good. Every later question of the form "did
+            I change that?" is answered by comparing the two files.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre>copy termener.tab termener0.tab
+<span class="cmt">:: and from now on, before every compile:</span>
+fc termener0.tab termener.tab &gt; changes.txt</pre></div>
+          <p class="line"><span class="label check">Check</span>The comparison at this point reports no
+            differences.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D2">
+      <input class="step-check" type="checkbox" aria-label="Mark task D2 done">
+      <div>
+        <p class="step-id">TASK D2</p>
+        <p class="step-title">Declare the sets and read the module tables</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Add the five sets from task B1 and read each table
+            from the data file you wrote in B11.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! ---- module sets ----</span>
+<span class="kw">Set</span> AGE  read elements from file MODDAT header "AGES";
+<span class="kw">Set</span> SEX  read elements from file MODDAT header "SEXS";
+<span class="kw">Set</span> HLT  read elements from file MODDAT header "HLTH";
+<span class="kw">Set</span> ACTV read elements from file MODDAT header "ACTV";
+<span class="cmt">! regions and occupations already exist in the model: use them,</span>
+<span class="cmt">! do not declare new ones, or the two will drift apart.</span>
+
+<span class="cmt">! ---- module data ----</span>
+<span class="kw">Coefficient</span> (<span class="kw">all</span>,o,ACTV)(<span class="kw">all</span>,a,AGE)(<span class="kw">all</span>,g,SEX)(<span class="kw">all</span>,d,DST)(<span class="kw">all</span>,h,HLT)
+  CAT(o,a,g,d,h) <span class="cmt"># people by category at the start of the year #</span>;
+<span class="kw">Read</span> CAT <span class="kw">from file</span> MODDAT <span class="kw">header</span> <span class="str">"CATG"</span>;</pre></div>
+          <p class="line"><span class="label check">Check</span>Compile. The model should compile with the new
+            data read in and nothing using it yet. A compile error here is a set-size mismatch, and it is far
+            easier to find now than after the equations are added.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D3">
+      <input class="step-check" type="checkbox" aria-label="Mark task D3 done">
+      <div>
+        <p class="step-id">TASK D3</p>
+        <p class="step-title">Add the equation that carries people from one year to the next</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>This is the first of the three equations. This year's
+            categories are last year's activities multiplied by the transition matrix. People keep their
+            activity label; only age and health change, and some die.</p>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! Categories this year = last year's activities moved by the transition matrix.</span>
+<span class="cmt">! d_transit is the change in a transition rate.</span>
+<span class="cmt">! It is the ONE place a health policy enters the module.</span>
+<span class="kw">Equation</span> E_cat
+  (<span class="kw">all</span>,o,ACTV)(<span class="kw">all</span>,a,AGE)(<span class="kw">all</span>,g,SEX)(<span class="kw">all</span>,d,DST)(<span class="kw">all</span>,h,HLT)
+  CAT(o,a,g,d,h) * cat(o,a,g,d,h)
+    = <span class="kw">sum</span>{aa,AGE, <span class="kw">sum</span>{hh,HLT,
+        ACTL(o,aa,g,d,hh) * TRAN(o,aa,g,d,hh,a,h)
+          * [actl(o,aa,g,d,hh) + d_transit(o,aa,g,d,hh,a,h)] }};</pre></div>
+          <p class="line"><span class="label check">Check</span>Run the model once with no shock at all. Every
+            result must be zero. If anything moves, the transition matrix rows do not sum to one minus the
+            death rate, and you must go back to task B8.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D4">
+      <input class="step-check" type="checkbox" aria-label="Mark task D4 done">
+      <div>
+        <p class="step-id">TASK D4</p>
+        <p class="step-title">Add the offer equations</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The second equation. Each category divides its people
+            between destinations according to the wage on offer and a preference weight. This is teaching tool
+            1, written as code.</p>
+          <p class="line">Two details that are easy to miss. People who are out of the labour force offer only
+            to stay there, unless you add the return flow described below. And offers are restricted to
+            occupations of similar skill, so a labourer does not offer to be a manager.</p>
+          <div class="callout">
+            <span class="callout-t">An addition the published version does not have</span>
+            <p>In the South African module, nobody returns from outside the labour force. In Indonesia most
+              people outside the labour force are women in home duties and students, and they do return. Allow
+              the return flow, with a low offer weight. Write the weight in the register from task B10.</p>
+          </div>
+          <p class="line"><span class="label check">Check</span>With a one per cent rise in one occupation's
+            wage and nothing else, offers to that occupation should rise and offers elsewhere should fall, and
+            the total across destinations should not change at all. The total is the category size, which this
+            equation cannot alter.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D5">
+      <input class="step-check" type="checkbox" aria-label="Mark task D5 done">
+      <div>
+        <p class="step-id">TASK D5</p>
+        <p class="step-title">Add vacancies and the sharing out of jobs</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Vacancies are the jobs industries want minus the
+            people who kept the job they held. Non-incumbent flows into an occupation are shared in proportion
+            to the offers made to it. Those who fail to get a job go to unemployment, and those who fail from
+            unemployment go to long-term unemployment.</p>
+          <p class="line"><span class="label check">Check</span>Sum the flows into each occupation and compare
+            with the labour demand from the industries. They must be equal. This is the equation block that
+            connects the module to the rest of the model, and an inequality here is the error that produces a
+            model which solves but drifts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D6">
+      <input class="step-check" type="checkbox" aria-label="Mark task D6 done">
+      <div>
+        <p class="step-id">TASK D6</p>
+        <p class="step-title">Connect the module where the old labour supply used to be</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Two replacements, and nothing else.</p>
+          <ol>
+            <li>The regional labour market equation currently sets labour supply from a wage elasticity.
+              Replace its supply side with the sum of accepted offers from the module.</li>
+            <li>The national wage adjustment rule is replaced by the sticky wage rule from teaching tool 2,
+              written by occupation and by region rather than nationally.</li>
+          </ol>
+          <div class="code"><button class="copy" type="button">Copy</button><pre><span class="cmt">! What is there now, in the labour market section:</span>
+<span class="kw">Equation</span> E_flab_i (<span class="kw">all</span>,o,OCC)(<span class="kw">all</span>,d,DST)
+  realwage_i(o,d) = [1/1.1]*xlab_i(o,d) + flabsupA(o,d) + labslack(o);
+
+<span class="cmt">! What it becomes: employment in an occupation and region is</span>
+<span class="cmt">! whatever the module's accepted offers deliver.</span>
+<span class="cmt">! Keep the shifter flabsupA so the closure can still be used.</span></pre></div>
+          <p class="line"><span class="label warn">Watch out</span>Do not touch industry labour demand, trade,
+            or household demand. If your file comparison from D1 shows changes anywhere except the labour
+            supply section and your new blocks, undo them.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D7">
+      <input class="step-check" type="checkbox" aria-label="Mark task D7 done">
+      <div>
+        <p class="step-id">TASK D7</p>
+        <p class="step-title">Add the two health hooks</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>The module needs two ways to receive health
+            information, and they are different.</p>
+          <ul>
+            <li><strong>In the baseline.</strong> You want the model to follow a path of illness that you
+              decide from outside. Add a shift variable on the onset rate, make it endogenous, and shock the
+              number of new cases to the path you want. Offset the shift in the stay-healthy rate so that the
+              rows of the matrix still sum correctly.</li>
+            <li><strong>In a policy run.</strong> You want a deviation from that baseline, coming from the
+              pollution calculation. The same shift variable is now exogenous, and you shock it directly with
+              the change in new cases by age, sex and region.</li>
+          </ul>
+          <p class="line"><span class="label check">Check</span>Shock the deviation by zero in a policy run.
+            Every result must be zero, and the run must reproduce the baseline exactly. If it does not, the
+            offsetting in the stay-healthy rate is wrong.</p>
+          <details class="why"><summary>Why this hook is the whole design</summary><div class="why-body">
+            <p>Everything upstream of the module, the fuel, the emissions, the concentrations, the
+              exposure&ndash;response curves, ends as one thing: a change in the number of new cases by age, sex
+              and region. The module receives that and asks no further questions. It works exactly the same way
+              whether the health change came from air pollution, from mining, or from spending the revenue on
+              clinics. That is what lets three very different channels share one piece of machinery.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D8">
+      <input class="step-check" type="checkbox" aria-label="Mark task D8 done">
+      <div>
+        <p class="step-id">TASK D8</p>
+        <p class="step-title">Add the two extensions</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Two small additions that the published versions do
+            not have.</p>
+          <ul>
+            <li><strong>Effective labour.</strong> Multiply each employed person by the effective-labour number
+              for their health state from task B9, so that healthier workers supply more labour and not only
+              more people.</li>
+            <li><strong>Health service demand.</strong> Make demand for the private and government health
+              sectors move with the number of people in poor health, at a cost per case. Then illness avoided
+              is also spending avoided, which is a real part of the benefit.</li>
+          </ul>
+          <p class="line"><span class="label warn">Watch out</span>A shift variable must enter the price
+            equation and the quantity equation together. A version that enters only the quantity equation will
+            solve, and will then fail the database check, because quantities that move without a price signal
+            drift away from purchases.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="D9">
+      <input class="step-check" type="checkbox" aria-label="Mark task D9 done">
+      <div>
+        <p class="step-id">TASK D9</p>
+        <p class="step-title">Compile, compare and get the code reviewed</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Compile until there are no errors. Then run the file
+            comparison from D1 and read every difference. Then send the module equations to a reviewer who knows
+            this family of models. The Wellcome project pays for that review; use it.</p>
+          <p class="line"><span class="label check">Check</span>Three things before you call Stage D finished:
+            the model compiles, the comparison shows only intended changes, and a run with no shock gives
+            exactly zero everywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE E ================= -->
+<section class="stage" id="stage-e">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage E</span>
+      <h2>Run the simulations</h2>
+      <p class="stage-lede">Every result in this kind of study is a difference between two runs of the same
+        model: one without the policy, one with it. So the baseline is not a warm-up. It is half of every
+        number you will publish.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> the finished model and database</span>
+        <span class="chip"><b>Output</b> one baseline, four policy runs, sensitivity</span>
+        <span class="chip"><b>Effort</b> weeks of machine time</span>
+      </div>
+    </div>
+
+    <div class="step" data-step="E1">
+      <input class="step-check" type="checkbox" aria-label="Mark task E1 done">
+      <div>
+        <p class="step-id">TASK E1</p>
+        <p class="step-title">Change the closure so the module supplies the labour</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Remove the swap you wrote down in task A5, the one
+            that made national labour supply follow the real wage. The module now does that job, by occupation
+            and region. Everything else in the closure stays as it was.</p>
+          <p class="line"><span class="label check">Check</span>Count the exogenous variables. The number must
+            equal the number of equations. The checking tool does this for you and takes seconds.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E2">
+      <input class="step-check" type="checkbox" aria-label="Mark task E2 done">
+      <div>
+        <p class="step-id">TASK E2</p>
+        <p class="step-title">Check every closure and every shock file before running anything</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Run the closure and shock check on the baseline
+            closure, on each policy closure, and on each shock file. It reads the model, applies each closure
+            and reports any variable that is shocked but not exogenous, or any count that does not add up.</p>
+          <p class="line"><span class="label check">Check</span>All files pass. An overnight run that dies at
+            year 4 on a closure error costs a day. This check costs a minute.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E3">
+      <input class="step-check" type="checkbox" aria-label="Mark task E3 done">
+      <div>
+        <p class="step-id">TASK E3</p>
+        <p class="step-title">Run the baseline to 2050 with the health path imposed</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Run the model year by year from 2023 to 2050 with the
+            existing baseline shocks, plus your imposed path of new cases from task D7.</p>
+          <p class="line"><span class="label check">Check</span>Four things in the baseline, in this order.</p>
+          <ul>
+            <li>The economic aggregates still follow the paths they followed in task A4. Adding a module should
+              not change the baseline economy.</li>
+            <li>The share of people in each health state follows the path you imposed.</li>
+            <li>Employment by occupation and region grows at a sensible rate, with no cliff in any year.</li>
+            <li>The database checks pass in every year, not only the first.</li>
+          </ul>
+          <p class="line"><span class="label warn">Watch out</span>If the economic baseline moved when you added
+            the module, the module is doing something in the baseline that it should not. Find it before going
+            any further. A contaminated baseline makes every policy result wrong by the same unknown amount.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E4">
+      <input class="step-check" type="checkbox" aria-label="Mark task E4 done">
+      <div>
+        <p class="step-id">TASK E4</p>
+        <p class="step-title">Policy run 1: remove the fossil fuel subsidy</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>A fuel subsidy is a negative tax on fuel purchases.
+            Removing it is a change in that tax, by fuel and by user. This is the same instrument the carbon tax
+            already uses, so the model needs nothing new for it.</p>
+          <p class="line">Then feed the health consequence in: less fuel burned gives lower emissions, lower
+            emissions give lower concentrations, lower concentrations give fewer new cases, and the change in
+            new cases is the shock to the module hook from task D7.</p>
+          <p class="line"><span class="label check">Check</span>Run it once with the health hook shocked to
+            zero, and once with the health effect in. The difference between those two runs is the health
+            benefit, cleanly separated from the direct effect of dearer fuel.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E5">
+      <input class="step-check" type="checkbox" aria-label="Mark task E5 done">
+      <div>
+        <p class="step-id">TASK E5</p>
+        <p class="step-title">Policy run 2: expand mining and smelting</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Shock the output of the ore and metal sectors you
+            separated out in task C1. The health consequence here runs the other way: more dust and more water
+            contamination in the mining regions, so more new cases, concentrated in a few regions.</p>
+          <p class="line"><span class="label check">Check</span>The regional pattern is the test. The health
+            loss should appear in the mining regions and not elsewhere, and the employment gain should appear in
+            the same regions. If the health effect is spread evenly across the country, your exposure step is
+            using national averages where it should be using regional ones.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E6">
+      <input class="step-check" type="checkbox" aria-label="Mark task E6 done">
+      <div>
+        <p class="step-id">TASK E6</p>
+        <p class="step-title">Policy run 3: spend the revenue on health</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Both policies raise revenue: the subsidy saved, and
+            the tax on minerals. Direct that revenue to health spending by region, and convert it into fewer
+            new cases or faster recovery using the elasticity that Work Package 2.2 provides.</p>
+          <p class="line"><span class="label warn">Watch out</span>Ask Work Package 2.2 for the elasticity in
+            the form you can use: the effect on annual new cases or on recovery, per rupiah of health spending
+            per person, by region. An elasticity expressed any other way will have to be converted, and the
+            conversion is where errors hide.</p>
+          <p class="line"><span class="label check">Check</span>The revenue spent here must be the same revenue
+            the government accounts of the model gained. Read both from the results and confirm they match. A
+            benefit financed twice is the easiest mistake to make and the hardest for a reader to spot.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E7">
+      <input class="step-check" type="checkbox" aria-label="Mark task E7 done">
+      <div>
+        <p class="step-id">TASK E7</p>
+        <p class="step-title">Run the control case with no health channel at all</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Run every policy again with the health hook switched
+            off. This is not a spare run. It is the only way to say how much of your result comes from health,
+            which is the question the project exists to answer.</p>
+          <p class="line"><span class="label check">Check</span>The control run should reproduce what a
+            conventional energy study would find. If it differs a lot, your module is affecting the results
+            through a route you have not intended.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="E8">
+      <input class="step-check" type="checkbox" aria-label="Mark task E8 done">
+      <div>
+        <p class="step-id">TASK E8</p>
+        <p class="step-title">Run the sensitivity tests, and report them with the results</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Four tests, chosen because each one is a number you
+            assumed rather than measured.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Test</th><th>Range</th><th>What it tells you</th></tr></thead>
+              <tbody>
+                <tr><td>Wage adjustment speed</td><td>0.5 and 0.6</td><td>How long the transition lasts</td></tr>
+                <tr><td>Offer elasticity</td><td>1 to 3, around 2</td><td>How easily people change occupation</td></tr>
+                <tr><td>Onset and recovery pair</td><td>The range that fits the age profile, from task B8</td><td>How much the health result depends on a rate you could not observe</td></tr>
+                <tr><td>Offer strength by health</td><td>Plus and minus a quarter</td><td>How much rests on the participation gradient</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="line"><span class="label check">Check</span>Every published number gets a range beside it.
+            A result that survives all four tests is a finding. A result that only holds at one set of
+            assumed values is a description of those assumptions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGE F ================= -->
+<section class="stage" id="stage-f">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Stage F</span>
+      <h2>Report the results</h2>
+      <p class="stage-lede">The output of a dynamic model is large: every variable, every year, every region.
+        Most of it is not a result. These four tasks turn the output into something a reader can use.</p>
+      <div class="stage-meta">
+        <span class="chip"><b>Input</b> the solved simulations</span>
+        <span class="chip"><b>Output</b> tables, charts and the register</span>
+        <span class="chip"><b>Effort</b> weeks</span>
+      </div>
+    </div>
+
+    <div class="step" data-step="F1">
+      <input class="step-check" type="checkbox" aria-label="Mark task F1 done">
+      <div>
+        <p class="step-id">TASK F1</p>
+        <p class="step-title">Extract the differences from baseline, not the levels</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>For each policy run, report the difference from the
+            baseline, year by year. Report it for output, employment by occupation and region, wages, the
+            number of people in each health state, and deaths.</p>
+          <p class="line"><span class="label warn">Watch out</span>When you draw the baseline and the policy as
+            two paths on one chart, draw them as two lines from a common start. Do not draw a vertical jump at
+            the policy year, and do not give the policy its own tick on the axis.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="F2">
+      <input class="step-check" type="checkbox" aria-label="Mark task F2 done">
+      <div>
+        <p class="step-id">TASK F2</p>
+        <p class="step-title">Separate the health effect from the direct effect</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Use the control runs from task E7. Every headline
+            number splits into three parts: what the energy or mining policy does directly, what the health
+            change adds, and what the two do together.</p>
+          <p class="line"><span class="label check">Check</span>The three parts must add up to the total. If
+            they do not, a channel is active in a run where you thought it was switched off.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="F3">
+      <input class="step-check" type="checkbox" aria-label="Mark task F3 done">
+      <div>
+        <p class="step-id">TASK F3</p>
+        <p class="step-title">Publish the assumption register next to the results</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>Put the register from task B10 in the paper, not in a
+            file on your machine. Every assumed number, its value, its basis, the total it was scaled to, and
+            the sensitivity range from task E8.</p>
+          <details class="why"><summary>Why this is the deliverable that makes the work usable</summary><div class="why-body">
+            <p>The South African documentation is still cited fifteen years on, not because the model was
+              unusual, but because every assumed number is in a table with a sentence saying where it came
+              from. A reader who disagrees with one of them can see exactly which result to distrust. That is
+              what makes a module something other people can build on.</p>
+          </div></details>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" data-step="F4">
+      <input class="step-check" type="checkbox" aria-label="Mark task F4 done">
+      <div>
+        <p class="step-id">TASK F4</p>
+        <p class="step-title">Package the work so someone else can run it</p>
+        <div class="step-body">
+          <p class="line"><span class="label do">Do</span>One folder containing: the model file and the original
+            it was copied from, the two mapping files, the module data file, every closure and shock file, the
+            command files for each run, and a plain text file saying what to run and in what order.</p>
+          <p class="line"><span class="label check">Check</span>Give the folder to a colleague who was not
+            involved and ask them to reproduce one number. Whatever they have to ask you is what is missing
+            from the text file.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GLOSSARY ================= -->
+<section class="stage" id="glossary">
+  <div class="shell">
+    <div class="stage-head">
+      <span class="stage-tag">Reference</span>
+      <h2>Words used on this page</h2>
+      <p class="stage-lede">Each term is explained once where it first appears. They are collected here so you
+        do not have to search for them.</p>
+    </div>
+    <dl class="gloss">
+      <dt>Baseline</dt><dd>A run of the model without the policy. Every result is the difference between a policy run and the baseline.</dd>
+      <dt>Category</dt><dd>A group of people defined by region, age, sex, health state, and what they did last year.</dd>
+      <dt>Activity</dt><dd>What a person does during the year: an occupation, unemployment, or being outside the labour force.</dd>
+      <dt>Transition matrix</dt><dd>A table of probabilities. For a person of a given age and health state, it gives the chance of being in each health state one year later, or of having died.</dd>
+      <dt>Onset rate</dt><dd>The chance that a healthy person becomes ill during a year.</dd>
+      <dt>Recovery rate</dt><dd>The chance that an ill person becomes healthy during a year. Not measured in Indonesia, so it is calibrated.</dd>
+      <dt>Vacancy</dt><dd>A job that the person who held it last year does not fill this year.</dd>
+      <dt>Incumbent</dt><dd>A person who keeps the job they held last year.</dd>
+      <dt>Sticky wage</dt><dd>A wage that moves only slowly, so for several years the number of jobs is set by demand rather than by the wage.</dd>
+      <dt>Elasticity</dt><dd>How strongly one thing responds to another, measured as a percentage change divided by a percentage change.</dd>
+      <dt>Closure</dt><dd>The list of variables held fixed from outside. The same model with a different closure is a different experiment.</dd>
+      <dt>Swap</dt><dd>Exchanging one fixed variable for another: the first becomes free, the second becomes fixed.</dd>
+      <dt>Shift variable</dt><dd>A variable added to an equation so that a shock can move that equation. It must be added to the price and the quantity equation together.</dd>
+      <dt>Calibration</dt><dd>Choosing a number you cannot observe so that the model reproduces something you can observe.</dd>
+      <dt>Emission factor</dt><dd>How much of a pollutant is released per unit of fuel burned.</dd>
+      <dt>Source&ndash;receptor matrix</dt><dd>A table saying how much of a tonne emitted in one province reaches the air of another.</dd>
+      <dt>Exposure&ndash;response curve</dt><dd>The relation between the pollution a population breathes and its rate of disease.</dd>
+      <dt>Functional difficulty</dt><dd>The Susenas block of eight graded questions on seeing, hearing, walking, using the hands, remembering, behaviour, speaking and self-care. It defines the health state used here.</dd>
+    </dl>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="shell">
+    <p><strong>Sources.</strong> The module specification and its database recipe are Roos (2014, working paper
+      G-241) and Roos (2013, working paper G-235), Centre of Policy Studies. The applied versions are Roos and
+      Giesecke (2014) for South Africa and Verikios, Dixon, Rimmer and Harris (2013) for Australia. The IndoTERM
+      database and its build pipeline are documented in Horridge, Roos, Yusuf and Suryana (2021). The host model
+      is the GMMI energy version of IndoTERM. Household data are the BPS Susenas March core questionnaires and
+      Sakernas; health rates are from the Global Burden of Disease study.</p>
+    <p><strong>The three teaching tools use illustrative numbers.</strong> They show how the mechanism behaves,
+      not what Indonesian data say. The target profile in tool 3 is generated from a known pair of rates so that
+      the exercise has an answer.</p>
+    <p>Work Package 2.3 of the Wellcome application 325496/Z/25/Z, <em>Financing a Just Green Transition</em>.
+      Page prepared September 2026 &middot; SDGs Center, Universitas Padjadjaran.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- progress ---------- */
+  var KEY = "wp23-build-progress-v1";
+  var boxes = Array.prototype.slice.call(document.querySelectorAll(".step-check"));
+  var fill = document.getElementById("barfill");
+  var ndone = document.getElementById("ndone");
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
+    catch(e){ return {}; }
+  }
+  function save(state){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  }
+  function paint(){
+    var n = 0;
+    boxes.forEach(function(b){
+      var card = b.closest(".step");
+      if (b.checked){ n++; card.classList.add("done"); }
+      else { card.classList.remove("done"); }
+    });
+    ndone.textContent = n;
+    fill.style.width = (boxes.length ? (100 * n / boxes.length) : 0) + "%";
+  }
+
+  var state = load();
+  boxes.forEach(function(b){
+    var card = b.closest(".step");
+    var id = card.getAttribute("data-step");
+    if (state[id]) b.checked = true;
+    b.addEventListener("change", function(){
+      state[id] = b.checked;
+      save(state); paint();
+    });
+  });
+  paint();
+
+  document.getElementById("resetbtn").addEventListener("click", function(){
+    state = {};
+    save(state);
+    boxes.forEach(function(b){ b.checked = false; });
+    paint();
+  });
+
+  /* ---------- copy buttons ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll(".copy"), function(btn){
+    btn.addEventListener("click", function(){
+      var pre = btn.parentNode.querySelector("pre");
+      var txt = pre.textContent;
+      var done = function(){ btn.textContent = "Copied"; setTimeout(function(){ btn.textContent = "Copy"; }, 1400); };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(txt).then(done, function(){});
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = txt; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
+  /* ---------- small svg helpers ---------- */
+  var NS = "http://www.w3.org/2000/svg";
+  function el(name, attrs, text){
+    var n = document.createElementNS(NS, name);
+    for (var k in attrs){ if (attrs.hasOwnProperty(k)) n.setAttribute(k, attrs[k]); }
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+  function clear(svg){ while (svg.firstChild) svg.removeChild(svg.firstChild); }
+  function fmt(x, d){ return x.toFixed(d === undefined ? 1 : d); }
+
+  /* ================= TOOL 1 : CES offer shares ================= */
+  var cesSvg = document.getElementById("ces-svg");
+  var cesW = document.getElementById("ces-w"),
+      cesS = document.getElementById("ces-s"),
+      cesH = document.getElementById("ces-h");
+
+  /* Illustrative weights, chosen so the default split matches the published
+     assumptions: about 88 per cent stay, 7 per cent move occupation,
+     3 per cent go to unemployment, 2 per cent leave the labour force. */
+  var CES_DEST = [
+    { name: "Stay in the same occupation", b: 1.00, w: 1.00, work: true },
+    { name: "Move to another occupation",  b: 0.28, w: null, work: true },
+    { name: "Unemployed",                  b: 0.34, w: 0.55, work: true },
+    { name: "Leave the labour force",      b: 0.33, w: 0.45, work: false }
+  ];
+
+  function drawCES(){
+    var wageOther = parseFloat(cesW.value),
+        sigma = parseFloat(cesS.value),
+        health = parseFloat(cesH.value);
+
+    document.getElementById("ces-w-v").textContent = fmt(wageOther, 2);
+    document.getElementById("ces-s-v").textContent = fmt(sigma, 1);
+    document.getElementById("ces-h-v").textContent = Math.round(health * 100) + "%";
+
+    var wages = CES_DEST.map(function(d){ return d.w === null ? wageOther : d.w; });
+    var num = CES_DEST.map(function(d, i){
+      var b = d.work ? d.b * health : d.b;
+      return Math.pow(b * wages[i], sigma);
+    });
+    var tot = num.reduce(function(a, b){ return a + b; }, 0);
+    var share = num.map(function(v){ return 100 * v / tot; });
+
+    var W = 440, H = 210, L = 168, R = 18, T = 8, rowH = 38, barMax = W - L - R - 34;
+    clear(cesSvg);
+
+    [0, 25, 50, 75, 100].forEach(function(g){
+      var x = L + barMax * g / 100;
+      cesSvg.appendChild(el("line", { x1: x, y1: T, x2: x, y2: T + rowH * 4 - 8, "class": "gridline" }));
+      cesSvg.appendChild(el("text", { x: x, y: H - 6, "class": "axistext", "text-anchor": "middle" }, g + "%"));
+    });
+
+    CES_DEST.forEach(function(d, i){
+      var y = T + i * rowH;
+      var w = Math.max(1.5, barMax * share[i] / 100);
+      cesSvg.appendChild(el("text", { x: L - 10, y: y + 17, "class": "axistext", "text-anchor": "end" }, d.name));
+      cesSvg.appendChild(el("rect", {
+        x: L, y: y + 4, width: w, height: 20, rx: 4,
+        fill: d.work ? "#2a78d6" : "#eb6834"
+      }));
+      cesSvg.appendChild(el("text", {
+        x: L + w + 7, y: y + 19, "class": "axistext serieslabel",
+        fill: "#52514e"
+      }, fmt(share[i], 1) + "%"));
+    });
+    cesSvg.appendChild(el("line", { x1: L, y1: T, x2: L, y2: T + rowH * 4 - 8, "class": "axisline" }));
+
+    var working = share[0] + share[1] + share[2];
+    document.getElementById("ces-read").innerHTML =
+      "Offers to any working destination: <b>" + fmt(working, 1) + "%</b><br>" +
+      "Offers to leave the labour force: <b>" + fmt(share[3], 1) + "%</b>";
+  }
+  [cesW, cesS, cesH].forEach(function(c){ c.addEventListener("input", drawCES); });
+  drawCES();
+
+  /* ================= TOOL 2 : sticky wage path ================= */
+  var wageSvg = document.getElementById("wage-svg");
+  var wageA = document.getElementById("wage-a"), wageE = document.getElementById("wage-e");
+
+  function drawWage(){
+    var alpha = parseFloat(wageA.value), eps = parseFloat(wageE.value);
+    document.getElementById("wage-a-v").textContent = fmt(alpha, 2);
+    document.getElementById("wage-e-v").textContent = fmt(eps, 1);
+
+    var s = 1.0, N = 11, w = 0, emp = [], wag = [];
+    for (var t = 0; t < N; t++){
+      if (t === 0){ emp.push(0); wag.push(0); continue; }
+      w = (w - alpha * s) / (1 + alpha * eps);
+      wag.push(w);
+      emp.push(-eps * w);
+    }
+
+    var W = 440, H = 244, L = 42, R = 66, T = 14, B = 48;
+    var pw = W - L - R, ph = H - T - B;
+    var lo = -1.25, hi = 1.25;
+    function X(i){ return L + pw * i / (N - 1); }
+    function Y(v){ return T + ph * (hi - v) / (hi - lo); }
+
+    clear(wageSvg);
+    [-1, -0.5, 0, 0.5, 1].forEach(function(g){
+      wageSvg.appendChild(el("line", { x1: L, y1: Y(g), x2: L + pw, y2: Y(g),
+        "class": "gridline", "stroke-dasharray": g === 0 ? "" : "3 3" }));
+      wageSvg.appendChild(el("text", { x: L - 7, y: Y(g) + 3.5, "class": "axistext", "text-anchor": "end" },
+        (g > 0 ? "+" : "") + fmt(g, 1)));
+    });
+    for (var i = 0; i < N; i += 2){
+      wageSvg.appendChild(el("text", { x: X(i), y: H - 27, "class": "axistext", "text-anchor": "middle" }, i));
+    }
+    wageSvg.appendChild(el("text", { x: L + pw / 2, y: H - 10, "class": "axistext", "text-anchor": "middle" },
+      "years after the change"));
+    wageSvg.appendChild(el("line", { x1: L, y1: T, x2: L, y2: T + ph, "class": "axisline" }));
+
+    function path(arr){
+      return arr.map(function(v, i){ return (i ? "L" : "M") + X(i) + " " + Y(v); }).join(" ");
+    }
+    wageSvg.appendChild(el("path", { d: path(emp), fill: "none", stroke: "#2a78d6", "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    wageSvg.appendChild(el("path", { d: path(wag), fill: "none", stroke: "#eb6834", "stroke-width": 2,
+      "stroke-linejoin": "round", "stroke-linecap": "round" }));
+
+    [[emp, "#2a78d6", "Employment"], [wag, "#eb6834", "Real wage"]].forEach(function(p){
+      var arr = p[0], last = arr[arr.length - 1];
+      arr.forEach(function(v, i){
+        wageSvg.appendChild(el("circle", { cx: X(i), cy: Y(v), r: 3, fill: p[1],
+          stroke: "#fffdf9", "stroke-width": 1.5 }));
+      });
+      wageSvg.appendChild(el("text", { x: L + pw + 7, y: Y(last) + 4, "class": "serieslabel", fill: p[1] },
+        (last > 0 ? "+" : "") + fmt(last, 2) + "%"));
+    });
+
+    var half = null;
+    for (var k = 0; k < emp.length; k++){ if (emp[k] >= 0.5 * s){ half = k; break; } }
+    document.getElementById("wage-read").innerHTML =
+      "After ten years employment is <b>" + fmt(emp[N - 1], 2) + "%</b> above baseline " +
+      "and the real wage is <b>" + fmt(Math.abs(wag[N - 1]), 2) + "%</b> below it.<br>" +
+      "Half the employment gain arrives in year <b>" + (half === null ? "after 10" : half) + "</b>." +
+      "<div class='verdict'>The end point is set by the elasticity. &alpha; only sets the speed.</div>";
+  }
+  [wageA, wageE].forEach(function(c){ c.addEventListener("input", drawWage); });
+  drawWage();
+
+  /* ================= TOOL 3 : prevalence calibration ================= */
+  var prevSvg = document.getElementById("prev-svg");
+  var prevO = document.getElementById("prev-o"), prevR = document.getElementById("prev-r");
+
+  var AGE0 = 15, AGE1 = 75;
+  var TRUE_ONSET = 0.45, TRUE_REC = 9.0;   /* the answer the sliders can find */
+
+  function profile(onsetPct, recPct){
+    /* onsetPct is the annual onset rate at age 15, in per cent.
+       Onset rises with age; recovery is constant. Prevalence is
+       accumulated year by year, which is what makes both rates
+       recoverable from the age profile alone. */
+    var p = 0.6, out = [];
+    for (var a = AGE0; a <= AGE1; a++){
+      out.push({ age: a, p: p });
+      var ageFactor = Math.pow(1 + (a - AGE0) / 22, 2.1);
+      var onset = (onsetPct / 100) * ageFactor;
+      var rec = recPct / 100;
+      var pf = p / 100;
+      pf = pf * (1 - rec) + (1 - pf) * onset;
+      p = Math.min(100, pf * 100);
+    }
+    return out;
+  }
+
+  var TARGET = profile(TRUE_ONSET, TRUE_REC).filter(function(d){ return (d.age - AGE0) % 6 === 0; });
+
+  function drawPrev(){
+    var onset = parseFloat(prevO.value), rec = parseFloat(prevR.value);
+    document.getElementById("prev-o-v").textContent = fmt(onset, 2);
+    document.getElementById("prev-r-v").textContent = fmt(rec, 1);
+
+    var mine = profile(onset, rec);
+    var W = 440, H = 244, L = 40, R = 20, T = 14, B = 48;
+    var pw = W - L - R, ph = H - T - B, hi = 50;
+    function X(a){ return L + pw * (a - AGE0) / (AGE1 - AGE0); }
+    function Y(v){ return T + ph * (1 - Math.min(v, hi) / hi); }
+
+    clear(prevSvg);
+    [0, 10, 20, 30, 40, 50].forEach(function(g){
+      prevSvg.appendChild(el("line", { x1: L, y1: Y(g), x2: L + pw, y2: Y(g), "class": "gridline" }));
+      prevSvg.appendChild(el("text", { x: L - 7, y: Y(g) + 3.5, "class": "axistext", "text-anchor": "end" }, g + "%"));
+    });
+    [15, 30, 45, 60, 75].forEach(function(a){
+      prevSvg.appendChild(el("text", { x: X(a), y: H - 27, "class": "axistext", "text-anchor": "middle" }, a));
+    });
+    prevSvg.appendChild(el("text", { x: L + pw / 2, y: H - 10, "class": "axistext", "text-anchor": "middle" }, "age"));
+    prevSvg.appendChild(el("line", { x1: L, y1: T, x2: L, y2: T + ph, "class": "axisline" }));
+
+    prevSvg.appendChild(el("path", {
+      d: mine.map(function(d, i){ return (i ? "L" : "M") + X(d.age) + " " + Y(d.p); }).join(" "),
+      fill: "none", stroke: "#2a78d6", "stroke-width": 2, "stroke-linejoin": "round"
+    }));
+    TARGET.forEach(function(d){
+      prevSvg.appendChild(el("circle", { cx: X(d.age), cy: Y(d.p), r: 4.5,
+        fill: "none", stroke: "#eb6834", "stroke-width": 2 }));
+    });
+
+    var ss = 0;
+    TARGET.forEach(function(d){
+      var m = mine[d.age - AGE0].p;
+      ss += (m - d.p) * (m - d.p);
+    });
+    var rms = Math.sqrt(ss / TARGET.length);
+    var hit = rms < 0.35;
+    document.getElementById("prev-read").innerHTML =
+      "Average gap from the target: <b>" + fmt(rms, 2) + "</b> percentage points." +
+      "<div class='verdict " + (hit ? "hit" : "miss") + "'>" +
+      (hit ? "Found. Both rates recovered from the age profile."
+           : "Keep going. Use the bend at older ages, not the level at young ages.") +
+      "</div>";
+  }
+  [prevO, prevR].forEach(function(c){ c.addEventListener("input", drawPrev); });
+  drawPrev();
+})();
+</script>
+</body>
+</html>
