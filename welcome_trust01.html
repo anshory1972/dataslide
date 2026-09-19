@@ -1351,15 +1351,18 @@ Indonesian economy. Each word in that description carries a specific meaning.</p
 <dt><span class="w">Model</span></dt>
 <dd>A model is a system of non-linear equations. It contains N equations and N&nbsp;+&nbsp;X
 variables. The model solves for the N endogenous variables. The user sets the X exogenous
-variables before solving.
+variables before solving. N is the number of individual equations, after every declared
+equation is expanded over its dimensions.
 <div class="count">
-N is large. Two blocks of equations dominate the count.<br>
-Intermediate demand: 50 &times; 50 &times; 34 &times; 2 = <b>170,000</b>
-<span class="s">commodities &times; industries &times; provinces &times; sources</span><br>
-Interregional trade: 50 &times; 34 &times; 34 &times; 2 = <b>115,600</b>
-<span class="s">commodities &times; origins &times; destinations &times; sources</span><br>
-Every quantity has a matching price. With 34 provinces and 50 sectors, N reaches
-<b>about one million</b>.
+The count is not the product of a few set sizes. Each declared variable carries its own
+dimensions, and the total is the sum across all of them.<br><br>
+GMMI, with 34 industries, 28 commodities and 6 regions, reports:<br>
+<b>320</b> variables, expanding to <b>150,297</b> components<br>
+<b>356</b> equation blocks, expanding to <b>129,073</b> equations<br>
+After substitution the solver handles <b>25,731</b> equations.<br><br>
+<span class="s">A version with 34 provinces and 50 sectors would be far larger. Variables
+carrying two region indices, such as interregional trade flows, grow with the square of the
+number of regions.</span>
 </div>
 </dd>
 
