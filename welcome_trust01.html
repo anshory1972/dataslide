@@ -1332,7 +1332,7 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 @media screen and (max-width: 999px) { .scope-slide2 .gwctx { display: block; } .scope-slide2 .gwctx img { width: 100%; max-width: 320px; margin-top: 18px; } }
 </style><style>
 /* ---- additions for this deck only ---- */
-.ds-map { width:100%; height:auto; display:block; }
+.ds-map { width:100%; height:auto; display:block; min-height:0; }
 .ds-map path { fill:color-mix(in srgb, var(--c1) 14%, var(--surface-1));
   stroke:var(--c1); stroke-width:1.1; stroke-linejoin:round; }
 .mapcap { color:var(--text-secondary); margin:clamp(6px,1vh,14px) 0 0;
@@ -1342,6 +1342,7 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
   color:var(--text-primary); display:block; margin:clamp(4px,0.8vh,10px) 0 0; }
 .eqn sub,.eqn sup { font-style:normal; font-size:0.7em; }
 .mapcard { grid-column:span 2; justify-content:center; }
+.mapcard .ds-map { flex:1 1 auto; height:100%; }
 .wtcards .mcard h4 { color:inherit; }
 @media screen and (max-width:1100px){
   .mgrid.c4.wtcards { grid-template-columns:repeat(2,1fr); }
@@ -1353,25 +1354,37 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 }
 
 @media screen and (min-width:1000px) {
-  /* the panel fills the screen instead of floating as a short card */
-  .row-single { padding-block:clamp(14px,2.2vh,30px); }
-  .row-single > .viz-root { display:flex; flex:1 1 auto; width:100%; }
-  .row-single > .viz-root > .wrap { display:flex; flex:1 1 auto; width:100%; }
-  .row-single > .viz-root > .wrap > section.panel { flex:1 1 auto; height:auto;
-    display:flex; flex-direction:column; }
-  .scope-slide2 .panel h2 { font-size:clamp(26px,4.4vh,58px); }
-  .scope-slide2 .panel-sub, .scope-slide2 .panel .panel-sub {
-    font-size:clamp(16px,2.6vh,34px); line-height:1.45; }
+  /* the slide is a 16:9 stage, centred in the window, never 4:3 */
+  .row-single { --mar-y:clamp(18px,4.2vh,56px); --mar-x:clamp(18px,3.4vw,68px);
+    padding:var(--mar-y) var(--mar-x); justify-content:center; }
+  .row-single > .viz-root { flex:0 0 auto; display:flex; margin-inline:auto;
+    aspect-ratio:16 / 9;
+    width:min(100%, calc((100vh - 2 * var(--mar-y)) * 16 / 9));
+    container-type:size; container-name:stage; }
+  .row-single > .viz-root > .wrap { display:flex; flex:1 1 auto;
+    width:100%; max-width:100%; }
+  .row-single > .viz-root > .wrap > section.panel { flex:1 1 auto; width:100%;
+    max-width:none; height:auto; display:flex; flex-direction:column;
+    overflow:hidden; }
+}
 
-  .mgrid.c4.wtcards { flex:1 1 auto; grid-template-rows:repeat(2,minmax(0,1fr));
-    gap:clamp(12px,1.8vh,26px); margin-top:clamp(12px,2.2vh,30px); }
-  .wtcards .mcard { min-height:0; padding:clamp(12px,2vh,26px) clamp(14px,1.4vw,28px);
-    justify-content:center; }
-  .wtcards .mcard h4 { font-size:clamp(16px,2.7vh,35px); margin:0 0 clamp(5px,0.9vh,12px); }
+/* everything below is measured against the 16:9 stage, not the window */
+@container stage (min-width: 0px) {
+  .scope-slide2 .panel h2 { font-size:clamp(24px,4.4cqh,46px); }
+  .scope-slide2 .panel-sub, .scope-slide2 .panel .panel-sub {
+    font-size:clamp(15px,2.6cqh,27px); line-height:1.45; }
+
+  .mgrid.c4.wtcards { flex:1 1 auto; min-height:0;
+    grid-template-rows:minmax(0,1.08fr) minmax(0,1fr);
+    gap:clamp(10px,1.8cqh,22px); margin-top:clamp(10px,2.2cqh,26px); }
+  .wtcards .mcard { min-height:0; overflow:hidden; justify-content:center;
+    padding:clamp(10px,2.0cqh,22px) clamp(12px,1.5cqw,26px); }
+  .wtcards .mcard h4 { font-size:clamp(15px,2.7cqh,28px);
+    margin:0 0 clamp(4px,0.9cqh,10px); }
   .wtcards .mcard p, .scope-slide2 .wtcards .mcard p {
-    font-size:clamp(14px,2.35vh,30px); line-height:1.42; }
-  .eqn { font-size:clamp(15px,2.5vh,32px); }
-  .mapcap { font-size:clamp(11px,1.65vh,21px); }
+    font-size:clamp(13px,2.35cqh,24px); line-height:1.42; }
+  .eqn { font-size:clamp(14px,2.5cqh,26px); margin-top:clamp(4px,0.8cqh,9px); }
+  .mapcap { font-size:clamp(11px,1.65cqh,18px); margin-top:clamp(5px,1.0cqh,12px); }
 }
 </style>
 
