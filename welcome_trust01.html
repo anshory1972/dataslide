@@ -1333,7 +1333,7 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 </style><style>
 /* ---- additions for this deck only ---- */
 .ds-map { width:100%; height:auto; display:block; min-height:0; }
-.ds-map path { fill:color-mix(in srgb, var(--c1) 14%, var(--surface-1));
+.mapcard.geo .ds-map path { fill:color-mix(in srgb, var(--c1) 14%, var(--surface-1));
   stroke:var(--c1); stroke-width:1.1; stroke-linejoin:round; }
 .mapcap { color:var(--text-secondary); margin:clamp(6px,1vh,14px) 0 0;
   font-size:clamp(11px,1.5vh,19px); line-height:1.4; }
@@ -1343,6 +1343,16 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .eqn sub,.eqn sup { font-style:normal; font-size:0.7em; }
 .mapcard { grid-column:span 2; justify-content:center; }
 .mapcard .ds-map { flex:1 1 auto; height:100%; }
+.chain .node { stroke-width:1.6; }
+.chain .nlab { font-family:inherit; font-weight:650; text-anchor:middle;
+  fill:var(--text-primary); }
+.chain .badge { fill:var(--surface-1); stroke:var(--text-secondary); stroke-width:1.4; }
+.chain .bnum { font-family:Georgia,serif; font-weight:700; text-anchor:middle;
+  fill:var(--text-primary); }
+.chain .arr { stroke:var(--text-secondary); stroke-width:1.6; fill:none; }
+.chain .llab { text-anchor:middle; fill:var(--text-secondary); }
+.chain .who { text-anchor:middle; fill:var(--muted); font-weight:650;
+  letter-spacing:.04em; }
 .wtcards .mcard h4 { color:inherit; }
 @media screen and (max-width:1100px){
   .mgrid.c4.wtcards { grid-template-columns:repeat(2,1fr); }
@@ -1400,6 +1410,84 @@ economy. The model is extended to represent health status and labour supply.</p>
 </div>
 </div>
 </header>
+
+<section class="row-single" aria-label="Objective of work package 2.3"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Work package 2.3</p>
+<h2>Objective</h2>
+<p class="panel-sub">Quantify the impact of alternative ways of raising and allocating
+revenue on health, equity, the environment and climate, using a computable general
+equilibrium model.</p>
+
+<div class="mgrid c4 wtcards">
+
+<div class="mcard" style="border-left:4px solid var(--c1)">
+<h4 style="color:var(--c1)">What the proposal states</h4>
+<p>WP2.2 estimates the causal effect of past reforms. WP2.3 simulates future reform
+scenarios: mining expansion, critical mineral taxation, and fossil fuel subsidy removal.
+The scenarios are co-developed with stakeholders in WP1.5.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--c2)">
+<h4 style="color:var(--c2)">Five steps</h4>
+<p class="steps"><b>1</b> Update and expand the Indonesia CGE model.<br>
+<b>2</b> Translate the scenarios into model inputs.<br>
+<b>3</b> Simulate each scenario.<br>
+<b>4</b> Review assumptions with stakeholders.<br>
+<b>5</b> Test sensitivity of the results.</p></div>
+
+<div class="mcard mapcard" style="border-left:4px solid var(--c3)">
+<svg viewBox="0 0 820 170" class="ds-map chain" role="img" aria-label="Policy changes health status, health status changes labour supply, labour supply changes economy-wide outcomes.">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+ orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="node" x="0" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--c1) 12%, var(--surface-1))" stroke="var(--c1)"/>
+<text class="nlab" x="80" y="61" font-size="21">Policy</text>
+<rect class="node" x="220" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--c5) 12%, var(--surface-1))" stroke="var(--c5)"/>
+<text class="nlab" x="300" y="61" font-size="21">Health status</text>
+<rect class="node" x="440" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--c4) 12%, var(--surface-1))" stroke="var(--c4)"/>
+<text class="nlab" x="520" y="61" font-size="21">Labour supply</text>
+<rect class="node" x="660" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--c2) 12%, var(--surface-1))" stroke="var(--c2)"/>
+<text class="nlab" x="740" y="48" font-size="21">Economy-wide</text>
+<text class="nlab" x="740" y="74" font-size="21">impact</text>
+<path class="arr" d="M164,54 L216,54" marker-end="url(#ah)" color="var(--text-secondary)"/>
+<circle class="badge" cx="190" cy="22" r="16"/>
+<text class="bnum" x="190" y="28" font-size="19">1</text>
+<text class="llab" x="190" y="124" font-size="19">dose&#8211;response</text>
+<text class="who" x="190" y="150" font-size="14">OTHER WORK PACKAGES</text>
+<path class="arr" d="M384,54 L436,54" marker-end="url(#ah)" color="var(--text-secondary)"/>
+<circle class="badge" cx="410" cy="22" r="16"/>
+<text class="bnum" x="410" y="28" font-size="19">2</text>
+<text class="llab" x="410" y="124" font-size="19">participation and hours</text>
+<text class="who" x="410" y="150" font-size="14">WP2.3</text>
+<path class="arr" d="M604,54 L656,54" marker-end="url(#ah)" color="var(--text-secondary)"/>
+<circle class="badge" cx="630" cy="22" r="16"/>
+<text class="bnum" x="630" y="28" font-size="19">3</text>
+<text class="llab" x="630" y="124" font-size="19">general equilibrium</text>
+<text class="who" x="630" y="150" font-size="14">WP2.3</text>
+</svg>
+<p class="mapcap">Link <b>1</b> is a dose&#8211;response relation. It has to come from the
+other work packages. WP2.3 builds links <b>2</b> and <b>3</b>.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--c4)">
+<h4 style="color:var(--c4)">What the model reports</h4>
+<p>Economy: GDP, employment. Environment: emissions, pollution. Health: mortality,
+morbidity. Each one by region, by household group, and year by year.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--c5)">
+<h4 style="color:var(--c5)">Question 1: are the scenarios fixed?</h4>
+<p>The proposal states that the scenarios come from WP1.5. Can WP2.3 adjust them, or add
+scenarios, once the model is built?</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--c6)">
+<h4 style="color:var(--c6)">What we need from other work packages</h4>
+<p>Link <b>1</b>: how much a policy changes health status. A dose&#8211;response estimate
+from WP2.1 data, from WP2.2 methods, or from the literature.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--c8)">
+<h4 style="color:var(--c8)">What WP2.3 contributes</h4>
+<p>Link <b>2</b>: health status to labour supply. Link <b>3</b>: labour supply to
+economy-wide outcomes. This is what a CGE model is suited to.</p></div>
+
+</div>
+</section></div></div></section>
 
 <section class="row-single" aria-label="What IndoTERM is"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">The model</p>
