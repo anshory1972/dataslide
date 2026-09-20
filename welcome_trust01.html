@@ -1356,6 +1356,12 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .worklist b { color:var(--text-primary); font-weight:650; }
 .worklist .fund { color:var(--muted); font-weight:700; letter-spacing:.04em;
   text-transform:uppercase; }
+.cardhd { display:flex; align-items:flex-start; justify-content:space-between;
+  gap:clamp(8px,1.1cqw,20px); }
+.cardhd h4 { flex:1 1 auto; min-width:0; }
+.scope-slide2 svg.ico, .viz-root svg.ico {
+  flex:none; display:block; min-width:0; margin:0;
+  width:clamp(40px,9.4cqh,98px); height:auto; }
 .appcard .cover { flex:0 0 auto; min-height:0; overflow:hidden; display:flex; align-items:center;
   justify-content:center; text-align:center; border-radius:6px; border:1px solid;
   margin:clamp(3px,0.7cqh,9px) 0 clamp(4px,0.9cqh,11px);
@@ -1728,29 +1734,29 @@ in. The literature covers some of them and not others.</p>
 does its work.</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t2)">
-<h4 style="color:var(--t2)">Morbidity: working time lost</h4>
+<div class="cardhd"><h4 style="color:var(--t2)">Morbidity: working time lost</h4><svg class="ico" style="color:var(--t2)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="3.5" width="17" height="16" rx="2.4" fill="currentColor" opacity=".13" stroke="none"/><rect x="1.5" y="3.5" width="17" height="16" rx="2.4"/><path d="M1.5 8.6h17M6 1.6v3.6M14 1.6v3.6"/><circle cx="6.2" cy="12.4" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="12.4" r="1" fill="currentColor" stroke="none"/><circle cx="6.2" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="20.6" cy="19.4" r="9.6" fill="var(--surface-1)"/><path d="M20.6 19.4V9.8a9.6 9.6 0 0 1 9.6 9.6z" fill="currentColor" opacity=".22" stroke="none"/><circle cx="20.6" cy="19.4" r="9.6"/><path d="M20.6 13.6v5.8l4.1 2.4"/><path d="M20.6 8.6v1.6M31.2 19.4h-1.6M20.6 30v-1.6M10 19.4h1.6"/></g></svg></div>
 <p>Sick workers lose days. Family members lose days caring for them. Both enter as assumed
 days per case.</p>
 <p class="ref">Dixon 2010 &middot; Verikios 2010</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t3)">
-<h4 style="color:var(--t3)">Mortality: a smaller labour force</h4>
+<div class="cardhd"><h4 style="color:var(--t3)">Mortality: a smaller labour force</h4><svg class="ico" style="color:var(--t3)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 27.6h30" opacity=".5"/><circle cx="6.6" cy="9.6" r="3.4" fill="currentColor" opacity=".16" stroke="none"/><circle cx="6.6" cy="9.6" r="3.4"/><path d="M1.4 22.8c0-2.9 2.3-5.2 5.2-5.2s5.2 2.3 5.2 5.2v4.8"/><circle cx="16.4" cy="9.6" r="3.4" fill="currentColor" opacity=".16" stroke="none"/><circle cx="16.4" cy="9.6" r="3.4"/><path d="M11.2 22.8c0-2.9 2.3-5.2 5.2-5.2s5.2 2.3 5.2 5.2v4.8"/><circle cx="26.2" cy="9.6" r="3.4" stroke-dasharray="2.4 2.4"/><path d="M21.6 22.8c0-2.9 2-5.2 4.6-5.2" stroke-dasharray="2.4 2.4"/><path d="M26.6 17.4v8.4M23.8 23.4l2.8 2.8 2.8-2.8"/></g></svg></div>
 <p>Deaths remove workers from every later year. This is the long-run channel.</p>
 <p class="ref">Verikios 2013 &middot; Roos &amp; Giesecke 2014</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t4)">
-<h4 style="color:var(--t4)">Productivity at work</h4>
+<div class="cardhd"><h4 style="color:var(--t4)">Productivity at work</h4><svg class="ico" style="color:var(--t4)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.4 23.2a13.6 13.6 0 0 1 27.2 0z" fill="currentColor" opacity=".13" stroke="none"/><path d="M2.4 23.2a13.6 13.6 0 0 1 27.2 0"/><path d="M4.6 15.9l2.3 1.3M9.6 10.6l1.3 2.3M16 8.6v2.6M22.4 10.6l-1.3 2.3M27.4 15.9l-2.3 1.3"/><path d="M16 23.2l6.6-7.2"/><circle cx="16" cy="23.2" r="2.1" fill="currentColor" stroke="none"/><path d="M2.4 26.6h27.2"/><path d="M25.4 27.4v3.2M22.9 28.9l2.5 2.5 2.5-2.5"/></g></svg></div>
 <p>A worker who is present but unwell produces less. Count each episode once: as time lost
 or as lower productivity, never both.</p>
 <p class="ref">Resosudarmo 2003</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t1)">
-<h4 style="color:var(--t1)">Medical spending</h4>
+<div class="cardhd"><h4 style="color:var(--t1)">Medical spending</h4><svg class="ico" style="color:var(--t1)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.4" y="5.4" width="21.4" height="13" rx="2.2" fill="currentColor" opacity=".13" stroke="none"/><rect x="1.4" y="5.4" width="21.4" height="13" rx="2.2"/><rect x="6.6" y="10.6" width="21.4" height="13" rx="2.2" fill="var(--surface-1)"/><rect x="6.6" y="10.6" width="21.4" height="13" rx="2.2"/><path d="M17.3 13.6v7M13.8 17.1h7"/><circle cx="10.4" cy="17.1" r="1.3" fill="currentColor" stroke="none"/><circle cx="24.2" cy="17.1" r="1.3" fill="currentColor" stroke="none"/><path d="M2.6 27.4h12.8l2-3.4 2.4 6 1.8-2.6h7.8"/></g></svg></div>
 <p>Households and government pay for treatment. That shifts demand and public budgets.</p>
 <p class="ref">Li 2003 &middot; Xie 2016</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t2)">
-<h4 style="color:var(--t2)">Found in the literature</h4>
+<div class="cardhd"><h4 style="color:var(--t2)">Found in the literature</h4><svg class="ico" style="color:var(--t2)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.6h12l6.4 6.4v18.4H5z" fill="currentColor" opacity=".13" stroke="none"/><path d="M5 1.6h12l6.4 6.4v18.4H5z"/><path d="M17 1.6v6.4h6.4"/><path d="M8.6 12.4h8M8.6 16h6M8.6 19.6h4.4"/><circle cx="23.4" cy="23.4" r="6.6" fill="var(--surface-1)"/><circle cx="23.4" cy="23.4" r="6.6"/><path d="M20.4 23.4l2.2 2.2 3.8-4.2"/></g></svg></div>
 <ul class="worklist">
 <li><b>Cause-specific mortality</b></li>
 <li><b>Morbidity as working time lost</b></li>
@@ -1759,7 +1765,7 @@ or as lower productivity, never both.</p>
 </ul></div>
 
 <div class="mcard" style="border-left:4px solid var(--t3)">
-<h4 style="color:var(--t3)">Not found in the literature</h4>
+<div class="cardhd"><h4 style="color:var(--t3)">Not found in the literature</h4><svg class="ico" style="color:var(--t3)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 1.6h12l6.4 6.4v18.4H5z" fill="currentColor" opacity=".13" stroke="none"/><path d="M5 1.6h12l6.4 6.4v18.4H5z"/><path d="M17 1.6v6.4h6.4"/><path d="M8.6 12.4h8M8.6 16h6M8.6 19.6h4.4"/><circle cx="23.4" cy="23.4" r="6.6" fill="var(--surface-1)"/><circle cx="23.4" cy="23.4" r="6.6"/><path d="M21 21l4.8 4.8M25.8 21L21 25.8"/></g></svg></div>
 <ul class="worklist">
 <li><b>Road traffic mortality and morbidity</b></li>
 <li><b>Infant mortality</b></li>
@@ -1778,41 +1784,41 @@ different amount of work.</p>
 <div class="mgrid c4 wtcards appgrid">
 
 <div class="mcard" style="border-left:4px solid var(--t1)">
-<h4 style="color:var(--t1)">A. Satellite health accounting</h4>
+<div class="cardhd"><h4 style="color:var(--t1)">A. Satellite health accounting</h4><svg class="ico" style="color:var(--t1)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4.4" y="2.6" width="18.4" height="24" rx="2.6" fill="currentColor" opacity=".13" stroke="none"/><rect x="4.4" y="2.6" width="18.4" height="24" rx="2.6"/><path d="M10.4 2.6V1h6.4v1.6"/><path d="M9 21.4v-5M13.6 21.4v-9.6M18.2 21.4v-6.6"/><path d="M7.4 23.6h12.4"/><circle cx="23.6" cy="20.4" r="6.2" fill="var(--surface-1)"/><circle cx="23.6" cy="20.4" r="6.2"/><path d="M28.2 25l3 3"/></g></svg></div>
 <p>Health outcomes reported after each run, with no link back to the economy. Low effort,
 and it gives a benchmark to check the rest against.</p>
 <p class="ref">Tian 2018 &middot; Xie 2019</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t2)">
-<h4 style="color:var(--t2)">B. Exposure&#8211;health feedback</h4>
+<div class="cardhd"><h4 style="color:var(--t2)">B. Exposure&#8211;health feedback</h4><svg class="ico" style="color:var(--t2)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="13.4" fill="currentColor" opacity=".1" stroke="none"/><path d="M3.6 16A12.4 12.4 0 0 1 24.8 7.2"/><path d="M28.4 16A12.4 12.4 0 0 1 7.2 24.8"/><path d="M25.6 2.6v5.6H20M6.4 29.4v-5.6H12"/><rect x="9.4" y="15.6" width="5.2" height="6.4" rx="0.8"/><path d="M11 15.6v-2.6M13 15.6v-2.6"/><path d="M21.6 12.4c1.6-1.7 4.2-.6 4.2 1.5 0 2-2.6 3.6-4.2 5-1.6-1.4-4.2-3-4.2-5 0-2.1 2.6-3.2 4.2-1.5z"/></g></svg></div>
 <p>Morbidity to working time. Medical costs to demand. Mortality to next year's labour.
 By province and by year.</p>
 <p class="ref">Li 2003 &middot; Xie 2016 &middot; Qu 2020</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t3)">
-<h4 style="color:var(--t3)">C. Health-state labour module</h4>
+<div class="cardhd"><h4 style="color:var(--t3)">C. Health-state labour module</h4><svg class="ico" style="color:var(--t3)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.4" cy="7.6" r="3.8" fill="currentColor" opacity=".16" stroke="none"/><circle cx="8.4" cy="7.6" r="3.8"/><path d="M2.4 22.4c0-3.3 2.7-6 6-6s6 2.7 6 6v6"/><path d="M15.4 11.4h2.4l2-4.2 2.8 8.6 2-4.4h2.8"/><path d="M17.6 28.4v-5.2M22 28.4v-8.6M26.4 28.4v-11.6"/><path d="M15.6 29.8h14"/></g></svg></div>
 <p>Health states drive labour supply by age and sex. This carries long-run mortality. It
 needs health transitions over time.</p>
 <p class="ref">Verikios 2013 &middot; Roos &amp; Giesecke 2014</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t4)">
-<h4 style="color:var(--t4)">D. Productive health spending</h4>
+<div class="cardhd"><h4 style="color:var(--t4)">D. Productive health spending</h4><svg class="ico" style="color:var(--t4)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="17.4" r="10.6" fill="currentColor" opacity=".13" stroke="none"/><circle cx="12" cy="17.4" r="10.6"/><path d="M12 23.2V11.6M8.2 15.4L12 11.6l3.8 3.8"/><circle cx="24.4" cy="8.2" r="6" fill="var(--surface-1)"/><circle cx="24.4" cy="8.2" r="6"/><path d="M24.4 4.8v6.8M21 8.2h6.8"/></g></svg></div>
 <p>Health spending raises effective labour. This matters for scenarios that allocate
 revenue to health.</p>
 <p class="ref">Rutten &amp; Reed 2009 &middot; Kabajulizi 2016</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t1)">
-<h4 style="color:var(--t1)">E. Household microsimulation</h4>
+<div class="cardhd"><h4 style="color:var(--t1)">E. Household microsimulation</h4><svg class="ico" style="color:var(--t1)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.4 14.6L9.4 7.8l8 6.8v12.4h-16z" fill="currentColor" opacity=".13" stroke="none"/><path d="M1.4 14.6L9.4 7.8l8 6.8v12.4h-16z"/><path d="M17.4 16.6l6.6-5.2 6.6 5.2v10.4h-13.2"/><circle cx="6.6" cy="19" r="1.4" fill="currentColor" stroke="none"/><circle cx="12.2" cy="19" r="1.4" fill="currentColor" stroke="none"/><rect x="21.2" y="19.4" width="5.6" height="7.6" rx="0.8"/><path d="M0.6 27h30.8"/><path d="M9.4 7.8V4.4"/></g></svg></div>
 <p>Prices and wages from the model into Susenas, for poverty and inequality.</p>
 <p class="ref">Yusuf 2008 &middot; Ahmed 2018</p></div>
 
 <div class="mcard" style="border-left:4px solid var(--t2)">
-<h4 style="color:var(--t2)">What IndoTERM already has</h4>
+<div class="cardhd"><h4 style="color:var(--t2)">What IndoTERM already has</h4><svg class="ico" style="color:var(--t2)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 1.8l12.8 6.9L16 15.6 3.2 8.7z" fill="currentColor" opacity=".14" stroke="none"/><path d="M16 1.8l12.8 6.9L16 15.6 3.2 8.7z"/><path d="M3.2 15.4L16 22.3l12.8-6.9"/><path d="M3.2 22.1L16 29l5.8-3.1"/><circle cx="26" cy="26" r="5.2" fill="var(--surface-1)"/><circle cx="26" cy="26" r="5.2"/><path d="M23.7 26l1.7 1.7 2.9-3.2"/></g></svg></div>
 <p>Labour-supply shifters, regional population, and wage adjustment. It has no health
 block, and no labour module by age and health state.</p></div>
 
 <div class="mcard wide2" style="border-left:4px solid var(--t3)">
-<h4 style="color:var(--t3)">The route we take: health status to labour supply</h4>
+<div class="cardhd"><h4 style="color:var(--t3)">The route we take: health status to labour supply</h4><svg class="ico" style="color:var(--t3)" viewBox="0 0 56 56" aria-hidden="true"><rect x="0.8" y="0.8" width="54.4" height="54.4" rx="13" fill="color-mix(in srgb, currentColor 9%, var(--surface-1))" stroke="color-mix(in srgb, currentColor 30%, transparent)" stroke-width="1.1"/><g transform="translate(12,12)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 28h28" opacity=".4"/><circle cx="5.4" cy="24.6" r="3.2" fill="currentColor" opacity=".16" stroke="none"/><circle cx="5.4" cy="24.6" r="3.2"/><path d="M8.6 24.6h5.8a5.6 5.6 0 0 0 5.6-5.6v-2.4a5.6 5.6 0 0 1 5.6-5.6h2"/><circle cx="19.8" cy="19" r="1.7" fill="currentColor" stroke="none"/><path d="M26.4 3.4v8.4"/><path d="M26.4 3.4h7.4" opacity="0"/><path d="M26.4 4h5.2l-1.6 2.4 1.6 2.4h-5.2z" fill="currentColor" opacity=".3" stroke="none"/><path d="M26.4 4h5.2l-1.6 2.4 1.6 2.4h-5.2z"/></g></svg></div>
 <p>Option <b>C</b>, fed by option <b>B</b>. Pollution changes health status. Health status
 changes participation and hours. The model turns that into economy-wide and regional
 results. Option <b>A</b> runs alongside as a check.</p>
