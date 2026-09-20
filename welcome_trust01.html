@@ -1344,6 +1344,8 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .eqn { font-family:Georgia,"Iowan Old Style",serif; font-style:italic;
   color:var(--text-primary); display:block; margin:clamp(4px,0.8vh,10px) 0 0; }
 .eqn sub,.eqn sup { font-style:normal; font-size:0.7em; }
+.deck-hero { flex:0 1 clamp(320px,40vw,760px) !important; }
+.deck-hero img { box-shadow:0 1px 3px rgba(0,0,0,.10); }
 .mapcard, .wide2 { grid-column:span 2; }
 .mapcard { justify-content:center; }
 .mapcard .ds-map { flex:1 1 auto; height:100%; }
@@ -1464,6 +1466,9 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 effects of fossil fuel subsidy reform and critical mineral taxation on the Indonesian
 economy. The model is extended to represent health status and labour supply.</p>
 </div>
+<figure class="deck-hero">
+<img src="img/cover-coast.jpg" alt="Gouache painting of an Indonesian coastline at dusk. A coal power station and a fishing village stand on the same shore.">
+</figure>
 </div>
 </header>
 
@@ -1684,6 +1689,138 @@ commissioned work that is not published.</p>
 <li><b>Free school meals</b> <span class="fund">NEC</span></li>
 </ul>
 <p class="ref">and others</p></div>
+
+</div>
+</section></div></div></section>
+
+<section class="row-single" aria-label="How health enters a CGE model"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Literature review</p>
+<h2>How health enters a CGE model</h2>
+<p class="panel-sub">Health does not sit outside the economy. Four channels carry it back
+in. The literature covers some of them and not others.</p>
+
+<div class="mgrid c4 wtcards appgrid">
+
+<div class="mcard mapcard" style="border-left:4px solid var(--t1)">
+<svg viewBox="0 0 820 170" class="ds-map chain" role="img" aria-label="Revenue policy changes emissions and pollution, which change mortality and morbidity, which feed back to the economy through four channels.">
+<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<rect class="node" x="0" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--t1) 12%, var(--surface-1))" stroke="var(--t1)"/>
+<text class="nlab" x="80" y="61" font-size="21">Revenue policy</text>
+<rect class="node" x="220" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--t2) 12%, var(--surface-1))" stroke="var(--t2)"/>
+<text class="nlab" x="300" y="48" font-size="21">Emissions</text>
+<text class="nlab" x="300" y="74" font-size="21">and pollution</text>
+<rect class="node" x="440" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--t3) 12%, var(--surface-1))" stroke="var(--t3)"/>
+<text class="nlab" x="520" y="48" font-size="21">Mortality and</text>
+<text class="nlab" x="520" y="74" font-size="21">morbidity</text>
+<rect class="node" x="660" y="16" width="160" height="76" rx="10" fill="color-mix(in srgb, var(--t4) 12%, var(--surface-1))" stroke="var(--t4)"/>
+<text class="nlab" x="740" y="61" font-size="21">Economy</text>
+<path class="arr" d="M164,54 L216,54" marker-end="url(#ah2)" color="var(--text-secondary)"/>
+<text class="llab" x="190" y="124" font-size="19">emission factors</text>
+<text class="who" x="190" y="150" font-size="14">ENERGY DATA</text>
+<path class="arr" d="M384,54 L436,54" marker-end="url(#ah2)" color="var(--text-secondary)"/>
+<text class="llab" x="410" y="124" font-size="19">exposure&#8211;response</text>
+<text class="who" x="410" y="150" font-size="14">GBD, COHORT STUDIES</text>
+<path class="arr" d="M604,54 L656,54" marker-end="url(#ah2)" color="var(--text-secondary)"/>
+<text class="llab" x="630" y="124" font-size="19">four channels</text>
+<text class="who" x="630" y="150" font-size="14">SEE THE BOXES BELOW</text>
+</svg>
+<p class="mapcap">Each step needs its own data. The last step is where the economic model
+does its work.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">Morbidity: working time lost</h4>
+<p>Sick workers lose days. Family members lose days caring for them. Both enter as assumed
+days per case.</p>
+<p class="ref">Dixon 2010 &middot; Verikios 2010</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t3)">
+<h4 style="color:var(--t3)">Mortality: a smaller labour force</h4>
+<p>Deaths remove workers from every later year. This is the long-run channel.</p>
+<p class="ref">Verikios 2013 &middot; Roos &amp; Giesecke 2014</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t4)">
+<h4 style="color:var(--t4)">Productivity at work</h4>
+<p>A worker who is present but unwell produces less. Count each episode once: as time lost
+or as lower productivity, never both.</p>
+<p class="ref">Resosudarmo 2003</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t1)">
+<h4 style="color:var(--t1)">Medical spending</h4>
+<p>Households and government pay for treatment. That shifts demand and public budgets.</p>
+<p class="ref">Li 2003 &middot; Xie 2016</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">Found in the literature</h4>
+<ul class="worklist">
+<li><b>Cause-specific mortality</b></li>
+<li><b>Morbidity as working time lost</b></li>
+<li><b>Hospitalisations</b> <span class="fund">rate &times; unit cost</span></li>
+<li><b>Medical spending</b></li>
+</ul></div>
+
+<div class="mcard" style="border-left:4px solid var(--t3)">
+<h4 style="color:var(--t3)">Not found in the literature</h4>
+<ul class="worklist">
+<li><b>Road traffic mortality and morbidity</b></li>
+<li><b>Infant mortality</b></li>
+</ul>
+<p class="ref">Deliver what is proven. Do not promise what no study has built.</p></div>
+
+</div>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Options and the route we take"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Literature review</p>
+<h2>Five options, and the route we take</h2>
+<p class="panel-sub">The options can be combined. Each one needs different data and a
+different amount of work.</p>
+
+<div class="mgrid c4 wtcards appgrid">
+
+<div class="mcard" style="border-left:4px solid var(--t1)">
+<h4 style="color:var(--t1)">A. Satellite health accounting</h4>
+<p>Health outcomes reported after each run, with no link back to the economy. Low effort,
+and it gives a benchmark to check the rest against.</p>
+<p class="ref">Tian 2018 &middot; Xie 2019</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">B. Exposure&#8211;health feedback</h4>
+<p>Morbidity to working time. Medical costs to demand. Mortality to next year's labour.
+By province and by year.</p>
+<p class="ref">Li 2003 &middot; Xie 2016 &middot; Qu 2020</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t3)">
+<h4 style="color:var(--t3)">C. Health-state labour module</h4>
+<p>Health states drive labour supply by age and sex. This carries long-run mortality. It
+needs health transitions over time.</p>
+<p class="ref">Verikios 2013 &middot; Roos &amp; Giesecke 2014</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t4)">
+<h4 style="color:var(--t4)">D. Productive health spending</h4>
+<p>Health spending raises effective labour. This matters for scenarios that allocate
+revenue to health.</p>
+<p class="ref">Rutten &amp; Reed 2009 &middot; Kabajulizi 2016</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t1)">
+<h4 style="color:var(--t1)">E. Household microsimulation</h4>
+<p>Prices and wages from the model into Susenas, for poverty and inequality.</p>
+<p class="ref">Yusuf 2008 &middot; Ahmed 2018</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">What IndoTERM already has</h4>
+<p>Labour-supply shifters, regional population, and wage adjustment. It has no health
+block, and no labour module by age and health state.</p></div>
+
+<div class="mcard wide2" style="border-left:4px solid var(--t3)">
+<h4 style="color:var(--t3)">The route we take: health status to labour supply</h4>
+<p>Option <b>C</b>, fed by option <b>B</b>. Pollution changes health status. Health status
+changes participation and hours. The model turns that into economy-wide and regional
+results. Option <b>A</b> runs alongside as a check.</p>
+<ul class="worklist">
+<li><b>Exposure&#8211;response functions</b> <span class="fund">GBD, cohort studies</span></li>
+<li><b>Health transitions over time</b> <span class="fund">the binding constraint</span></li>
+<li><b>Participation by age and sex</b> <span class="fund">Sakernas</span></li>
+</ul></div>
 
 </div>
 </section></div></div></section>
