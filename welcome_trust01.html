@@ -1354,10 +1354,10 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .worklist b { color:var(--text-primary); font-weight:650; }
 .worklist .fund { color:var(--muted); font-weight:700; letter-spacing:.04em;
   text-transform:uppercase; }
-.appcard .cover { flex:1 1 auto; min-height:0; overflow:hidden; display:flex; align-items:center;
+.appcard .cover { flex:0 0 auto; min-height:0; overflow:hidden; display:flex; align-items:center;
   justify-content:center; text-align:center; border-radius:6px; border:1px solid;
-  margin:clamp(5px,1.1cqh,12px) 0 clamp(6px,1.4cqh,16px);
-  padding:clamp(4px,1.2cqh,16px) clamp(7px,0.8cqw,16px); }
+  margin:clamp(3px,0.7cqh,9px) 0 clamp(4px,0.9cqh,11px);
+  padding:clamp(3px,0.85cqh,11px) clamp(7px,0.8cqw,16px); }
 .appcard .cover span { font-family:Georgia,"Iowan Old Style",serif; font-weight:600;
   line-height:1.2; }
 .appcard .ref { margin-top:0 !important; padding-top:clamp(5px,0.9vh,11px);
@@ -1422,22 +1422,34 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
   .scope-slide2 .worklist { font-size:clamp(9.5px,1.95cqh,20px); }
   .worklist .fund { font-size:0.82em; }
   .scope-slide2 .appcard .ref { font-size:clamp(8.5px,1.6cqh,17px); }
-  .appcard .cover span { font-size:clamp(8px,1.95cqh,22px); }
+  .appcard .cover span { font-size:clamp(11px,2.65cqh,31px); }
 }
 
 /* a short stage leaves the plate little room, so it takes less of it */
 @container stage (max-height: 830px) {
-  .appcard .cover span { font-size:clamp(7px,1.6cqh,15px); }
-  .appcard .cover { padding:clamp(3px,0.8cqh,9px) clamp(5px,0.6cqw,11px);
-    margin:clamp(4px,0.8cqh,9px) 0 clamp(5px,1cqh,11px); }
-  .appcard .cover span { font-size:clamp(8px,1.95cqh,22px); }
+  .appcard .cover span { font-size:clamp(9px,2.15cqh,21px); }
+  .appcard .cover { padding:clamp(2px,0.6cqh,7px) clamp(5px,0.6cqw,11px);
+    margin:clamp(3px,0.55cqh,7px) 0 clamp(3px,0.7cqh,8px); }
+}
+
+/* a very short stage, e.g. a 1280x720 projector */
+@container stage (max-height: 640px) {
+  .appcard .cover span { font-size:clamp(8px,1.85cqh,17px); }
+  .wtcards .mcard p, .scope-slide2 .wtcards .mcard p { font-size:clamp(9px,2.0cqh,20px); }
+  .appcard .cover span { font-size:clamp(11px,2.65cqh,31px); }
 }
 
 /* a short stage leaves the plate little room, so it takes less of it */
 @container stage (max-height: 830px) {
-  .appcard .cover span { font-size:clamp(7px,1.6cqh,15px); }
-  .appcard .cover { padding:clamp(3px,0.8cqh,9px) clamp(5px,0.6cqw,11px);
-    margin:clamp(4px,0.8cqh,9px) 0 clamp(5px,1cqh,11px); }
+  .appcard .cover span { font-size:clamp(9px,2.15cqh,21px); }
+  .appcard .cover { padding:clamp(2px,0.6cqh,7px) clamp(5px,0.6cqw,11px);
+    margin:clamp(3px,0.55cqh,7px) 0 clamp(3px,0.7cqh,8px); }
+}
+
+/* a very short stage, e.g. a 1280x720 projector */
+@container stage (max-height: 640px) {
+  .appcard .cover span { font-size:clamp(8px,1.85cqh,17px); }
+  .wtcards .mcard p, .scope-slide2 .wtcards .mcard p { font-size:clamp(9px,2.0cqh,20px); }
   .mapcap { font-size:clamp(9px,1.65cqh,18px); margin-top:clamp(5px,1.0cqh,12px); }
 }
 </style>
