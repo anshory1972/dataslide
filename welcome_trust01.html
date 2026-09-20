@@ -1343,6 +1343,17 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .eqn sub,.eqn sup { font-style:normal; font-size:0.7em; }
 .mapcard { grid-column:span 2; justify-content:center; }
 .mapcard .ds-map { flex:1 1 auto; height:100%; }
+.appcard { justify-content:flex-start !important; }
+.appcard .cover { flex:1 1 auto; min-height:0; display:flex; align-items:center;
+  justify-content:center; text-align:center; border-radius:6px; border:1px solid;
+  margin:clamp(6px,1vh,12px) 0 clamp(8px,1.3vh,16px);
+  padding:clamp(8px,1.4vh,18px) clamp(8px,0.8vw,16px); }
+.appcard .cover span { font-family:Georgia,"Iowan Old Style",serif; font-weight:600;
+  line-height:1.25; }
+.appcard .ref { margin-top:0 !important; padding-top:clamp(8px,1.4vh,16px);
+  color:var(--muted); line-height:1.4; }
+.appcard .ref .jnl { display:block; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; margin-bottom:clamp(2px,0.4vh,5px); }
 .chain .node { stroke-width:1.6; }
 .chain .nlab { font-family:inherit; font-weight:650; text-anchor:middle;
   fill:var(--text-primary); }
@@ -1384,16 +1395,20 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
   .scope-slide2 .panel-sub, .scope-slide2 .panel .panel-sub {
     font-size:clamp(15px,2.6cqh,27px); line-height:1.45; }
 
-  .mgrid.c4.wtcards { flex:1 1 auto; min-height:0;
-    grid-template-rows:minmax(0,1.08fr) minmax(0,1fr);
+  .mgrid.wtcards { flex:1 1 auto; min-height:0; }
+  .mgrid.c4.wtcards { grid-template-rows:minmax(0,1.08fr) minmax(0,1fr);
     gap:clamp(10px,1.8cqh,22px); margin-top:clamp(10px,2.2cqh,26px); }
   .wtcards .mcard { min-height:0; overflow:hidden; justify-content:center;
     padding:clamp(10px,2.0cqh,22px) clamp(12px,1.5cqw,26px); }
-  .wtcards .mcard h4 { font-size:clamp(15px,2.7cqh,28px);
+  .scope-slide2 .mgrid.wtcards .mcard h4 { font-size:clamp(15px,2.7cqh,28px);
     margin:0 0 clamp(4px,0.9cqh,10px); }
   .wtcards .mcard p, .scope-slide2 .wtcards .mcard p {
     font-size:clamp(13px,2.35cqh,24px); line-height:1.42; }
   .eqn { font-size:clamp(14px,2.5cqh,26px); margin-top:clamp(4px,0.8cqh,9px); }
+  .mgrid.c5.wtcards { grid-template-columns:repeat(5,minmax(0,1fr));
+    grid-template-rows:minmax(0,1fr); }
+  .scope-slide2 .appcard .ref { font-size:clamp(10px,1.75cqh,18px); }
+  .appcard .cover span { font-size:clamp(12px,2.3cqh,24px); }
   .mapcap { font-size:clamp(11px,1.65cqh,18px); margin-top:clamp(5px,1.0cqh,12px); }
 }
 </style>
@@ -1566,5 +1581,45 @@ model is large. The E in TERM stands for Enormous.</p></div>
 <h4 style="color:var(--c8)">Computable</h4>
 <p>Too large to solve by hand. A computer solves it.</p></div>
 
+</div>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Published applications of IndoTERM"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">The model in use</p>
+<h2>Five published applications</h2>
+<p class="panel-sub">These five studies use IndoTERM and the inter-regional CGE models it was built
+from. Each answers a policy question of the same type as WP2.3.</p>
+
+<div class="mgrid c5 wtcards">
+
+<div class="mcard appcard" style="border-left:4px solid var(--c1)">
+<h4 style="color:var(--c1)">Moratorium on palm oil expansion from natural forests</h4>
+<p>What does the ban cost the economy, and can international transfers cover that cost?</p>
+<div class="cover" style="border-color:color-mix(in srgb, var(--c1) 40%, transparent);background:color-mix(in srgb, var(--c1) 8%, transparent)"><span style="color:var(--c1)">Asian Development Review</span></div>
+<p class="ref">Yusuf, Roos &amp; Horridge &middot; 2018 &middot; 35(2), 85&#8211;112</p></div>
+
+<div class="mcard appcard" style="border-left:4px solid var(--c5)">
+<h4 style="color:var(--c5)">Industry 4.0 and the Indonesian economy</h4>
+<p>Which regions gain and which lose as automation spreads through production?</p>
+<div class="cover" style="border-color:color-mix(in srgb, var(--c5) 40%, transparent);background:color-mix(in srgb, var(--c5) 8%, transparent)"><span style="color:var(--c5)">Regional Science Policy &amp; Practice</span></div>
+<p class="ref">Yusuf &middot; 2021 &middot; 13(6), 1805&#8211;1824</p></div>
+
+<div class="mcard appcard" style="border-left:4px solid var(--c4)">
+<h4 style="color:var(--c4)">Reducing the petroleum subsidy</h4>
+<p>How does removing the fuel subsidy change output and welfare across regions?</p>
+<div class="cover" style="border-color:color-mix(in srgb, var(--c4) 40%, transparent);background:color-mix(in srgb, var(--c4) 8%, transparent)"><span style="color:var(--c4)">Regional Growth and Sustainable Development in Asia</span></div>
+<p class="ref">Yusuf, Patunru &amp; Resosudarmo &middot; 2017 &middot; 91&#8211;112</p></div>
+
+<div class="mcard appcard" style="border-left:4px solid var(--c2)">
+<h4 style="color:var(--c2)">Capital city relocation and the low-carbon transition</h4>
+<p>How does moving the capital change the destination region&#8217;s structure and its emissions?</p>
+<div class="cover" style="border-color:color-mix(in srgb, var(--c2) 40%, transparent);background:color-mix(in srgb, var(--c2) 8%, transparent)"><span style="color:var(--c2)">Japan &amp; The World Economy</span></div>
+<p class="ref">Yusuf, Roos, Horridge &amp; Hartono &middot; 2023 &middot; 68, 101212</p></div>
+
+<div class="mcard appcard" style="border-left:4px solid var(--c8)">
+<h4 style="color:var(--c8)">COVID-19, energy use and carbon dioxide emissions</h4>
+<p>How large was the fall in energy use and emissions, and how long did it last?</p>
+<div class="cover" style="border-color:color-mix(in srgb, var(--c8) 40%, transparent);background:color-mix(in srgb, var(--c8) 8%, transparent)"><span style="color:var(--c8)">Sustainable Production and Consumption</span></div>
+<p class="ref">Hartono, Yusuf, Hastuti, Saputri &amp; Syaifudin &middot; 2021 &middot; 28, 391&#8211;404</p></div>
 </div>
 </section></div></div></section>
