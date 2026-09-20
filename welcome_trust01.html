@@ -1386,6 +1386,38 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .eq3 .a1 { stroke:var(--t1); } .eq3 .a2 { stroke:var(--t2); }
 .eq3 .a3 { stroke:var(--t3); } .eq3 .a4 { stroke:var(--t4); }
 .eq3 .cell { font-variant-numeric:tabular-nums; }
+.cand table { width:100%; border-collapse:collapse; margin-top:clamp(2px,0.5cqh,6px);
+  font-size:clamp(10.5px,1.85cqh,19px); line-height:1.3; }
+.cand th { text-align:left; font-weight:700; color:var(--text-primary);
+  border-bottom:1px solid var(--border); padding:0 clamp(4px,0.5cqw,10px) clamp(2px,0.5cqh,6px) 0; }
+.cand td { vertical-align:top; color:var(--text-secondary);
+  padding:clamp(3px,0.7cqh,8px) clamp(4px,0.5cqw,10px) clamp(3px,0.7cqh,8px) 0;
+  border-bottom:1px solid color-mix(in srgb, var(--border) 60%, transparent); }
+.cand td:first-child { color:var(--text-primary); font-weight:650; }
+.cand tr:last-child td { border-bottom:none; }
+.hsdetail { flex:1 1 auto; min-height:0; margin-top:clamp(8px,1.4cqh,18px); }
+.hsdetail table { width:100%; border-collapse:collapse; table-layout:fixed;
+  font-size:clamp(9.5px,1.75cqh,18px); line-height:1.32; }
+.hsdetail th { text-align:left; font-weight:700; color:var(--text-primary);
+  border-bottom:1.5px solid var(--text-secondary);
+  padding:0 clamp(6px,0.6cqw,12px) clamp(3px,0.6cqh,7px) 0; vertical-align:bottom; }
+.hsdetail td { vertical-align:top; color:var(--text-secondary);
+  padding:clamp(4px,0.9cqh,10px) clamp(6px,0.6cqw,12px) clamp(4px,0.9cqh,10px) 0;
+  border-bottom:1px solid color-mix(in srgb, var(--border) 70%, transparent); }
+.hsdetail td b { color:var(--text-primary); font-weight:700; display:block; }
+.hsdetail .hs-sub { display:block; color:var(--muted); font-size:0.88em; margin-top:2px; }
+.hsdetail td.hs-dr { color:var(--t1); font-weight:600; }
+.hsdetail th:nth-child(1), .hsdetail td:nth-child(1) { width:14%; }
+.hsdetail th:nth-child(2), .hsdetail td:nth-child(2) { width:26%; }
+.hsdetail th:nth-child(3), .hsdetail td:nth-child(3) { width:14%; }
+.hsdetail th:nth-child(4), .hsdetail td:nth-child(4) { width:17%; }
+.hsdetail th:nth-child(5), .hsdetail td:nth-child(5) { width:14%; }
+.hsdetail th:nth-child(6), .hsdetail td:nth-child(6) { width:15%; }
+.hsband { margin-top:clamp(8px,1.6cqh,20px); padding:clamp(8px,1.4cqh,16px) clamp(12px,1.2cqw,22px);
+  border-radius:10px; border:1.3px solid var(--t2);
+  background:color-mix(in srgb, var(--t2) 7%, var(--surface-1));
+  color:var(--text-secondary); font-size:clamp(11px,2cqh,21px); line-height:1.4; }
+.hsband b { color:var(--t2); }
 .appcard .cover { flex:0 0 auto; min-height:0; overflow:hidden; display:flex; align-items:center;
   justify-content:center; text-align:center; border-radius:6px; border:1px solid;
   margin:clamp(3px,0.7cqh,9px) 0 clamp(4px,0.9cqh,11px);
@@ -1900,4 +1932,97 @@ results. Option <b>A</b> runs alongside as a check.</p>
 <p class="panel-sub">Supply and demand do not meet within the year. The wage closes part of the gap; a rule closes the rest.</p>
 
 <div class="strucwrap"><svg viewBox="0 0 1240 600" class="ds-map struc eq3" role="img" aria-label="Equation 4, the real wage moves by a fraction alpha of the gap between labour demand and supply, with Figure 3, the loop between labour supply, real wage, the CGE model and labour demand, and the rationing rule."><defs><marker id="ae4" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs><text class="eqm" x="246" y="112" font-size="46" style="text-anchor:start">RW<tspan class="eqi" dy="12" font-size="24">o,t</tspan></text><text class="eqm" x="386" y="112" font-size="46" style="text-anchor:middle">=</text><text class="eqm" x="410" y="112" font-size="46" style="text-anchor:start">RW<tspan class="eqi" dy="12" font-size="24">o,t&#8722;1</tspan></text><text class="eqm" x="582" y="112" font-size="46" style="text-anchor:middle">+</text><text class="eqm" x="622" y="112" font-size="46" style="text-anchor:middle">&#945;</text><text class="eqm" x="654" y="114" font-size="60" style="text-anchor:middle">[</text><text class="eqm" x="666" y="112" font-size="46" style="text-anchor:start">LD<tspan class="eqi" dy="12" font-size="24">o,t</tspan></text><text class="eqm" x="808" y="112" font-size="46" style="text-anchor:middle">&#8722;</text><text class="eqm" x="830" y="112" font-size="46" style="text-anchor:start">LS<tspan class="eqi" dy="12" font-size="24">o,t</tspan></text><text class="eqm" x="956" y="114" font-size="60" style="text-anchor:middle">]</text><path d="M246,134 L352,134" stroke="var(--t1)" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M606,134 L640,134" stroke="var(--t2)" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M666,134 L778,134" stroke="var(--t4)" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M830,134 L940,134" stroke="var(--t3)" stroke-width="2.4" stroke-linecap="round" fill="none"/><rect x="66" y="172" width="262" height="96" rx="9" fill="color-mix(in srgb, var(--t1) 8%, var(--surface-1))" stroke="var(--t1)" stroke-width="1.5"/><text class="bt" x="80" y="198" font-size="18" style="text-anchor:start" fill="var(--t1)">RW: the real wage</text><text class="bs" x="80" y="220" font-size="14" style="text-anchor:start">Real after-tax wage for occupation o</text><text class="bs" x="80" y="238.48" font-size="14" style="text-anchor:start">in year t. It starts from last year&#8217;s</text><text class="bs" x="80" y="256.96" font-size="14" style="text-anchor:start">level, and moves from there.</text><path class="a1" d="M196,172 L306,142" marker-end="url(#ae4)"/><rect x="344" y="172" width="262" height="96" rx="9" fill="color-mix(in srgb, var(--t2) 8%, var(--surface-1))" stroke="var(--t2)" stroke-width="1.5"/><text class="bt" x="358" y="198" font-size="18" style="text-anchor:start" fill="var(--t2)">&#945;: how fast wages respond</text><text class="bs" x="358" y="220" font-size="14" style="text-anchor:start">The paper uses 0.5. Half of the gap is</text><text class="bs" x="358" y="238.48" font-size="14" style="text-anchor:start">closed each year. A gap between</text><text class="bs" x="358" y="256.96" font-size="14" style="text-anchor:start">demand and supply remains.</text><path class="a2" d="M474,172 L622,142" marker-end="url(#ae4)"/><rect x="622" y="172" width="262" height="96" rx="9" fill="color-mix(in srgb, var(--t4) 8%, var(--surface-1))" stroke="var(--t4)" stroke-width="1.5"/><text class="bt" x="636" y="198" font-size="18" style="text-anchor:start" fill="var(--t4)">LD: labour demand</text><text class="bs" x="636" y="220" font-size="14" style="text-anchor:start">Demand for occupation o, added up</text><text class="bs" x="636" y="238.48" font-size="14" style="text-anchor:start">across industries. It comes from the</text><text class="bs" x="636" y="256.96" font-size="14" style="text-anchor:start">CGE core.</text><path class="a4" d="M752,172 L716,142" marker-end="url(#ae4)"/><rect x="900" y="172" width="274" height="96" rx="9" fill="color-mix(in srgb, var(--t3) 8%, var(--surface-1))" stroke="var(--t3)" stroke-width="1.5"/><text class="bt" x="914" y="198" font-size="18" style="text-anchor:start" fill="var(--t3)">LS: labour supply</text><text class="bs" x="914" y="220" font-size="14" style="text-anchor:start">Supply for occupation o, added up</text><text class="bs" x="914" y="238.48" font-size="14" style="text-anchor:start">across every age, health and work</text><text class="bs" x="914" y="256.96" font-size="14" style="text-anchor:start">category: equation 3.</text><path class="a3" d="M1030,172 L880,142" marker-end="url(#ae4)"/><rect x="66" y="292" width="626" height="274" rx="12" fill="none" stroke="var(--grid)" stroke-width="1.2"/><text class="frm" x="80" y="316" font-size="12" style="text-anchor:start">FIGURE 3 &#183; THE LOOP WITHIN A YEAR</text><rect x="106" y="332" width="150" height="46" rx="8" fill="color-mix(in srgb, var(--t3) 10%, var(--surface-1))" stroke="var(--t3)" stroke-width="1.5"/><text class="bt" x="181" y="360.25" font-size="15" style="text-anchor:middle">Labour supply</text><rect x="106" y="498" width="150" height="46" rx="8" fill="color-mix(in srgb, var(--t4) 10%, var(--surface-1))" stroke="var(--t4)" stroke-width="1.5"/><text class="bt" x="181" y="526.25" font-size="15" style="text-anchor:middle">Labour demand</text><circle cx="181" cy="438" r="36" fill="color-mix(in srgb, var(--t1) 10%, var(--surface-1))" stroke="var(--t1)" stroke-width="1.5"/><text class="bt" x="181" y="434" font-size="14" style="text-anchor:middle">Real</text><text class="bt" x="181" y="450" font-size="14" style="text-anchor:middle">wage</text><rect x="328" y="404" width="160" height="68" rx="8" fill="color-mix(in srgb, var(--t2) 10%, var(--surface-1))" stroke="var(--t2)" stroke-width="1.5"/><text class="bt" x="408" y="433.75" font-size="17" style="text-anchor:middle">CGE</text><text class="bt" x="408" y="454.15" font-size="17" style="text-anchor:middle">MODEL</text><ellipse cx="594" cy="438" rx="92" ry="58" fill="none" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 3"/><text class="bs" x="594" y="420" font-size="13" style="text-anchor:middle">Industry outputs</text><text class="bs" x="594" y="436" font-size="13" style="text-anchor:middle">Prices</text><text class="bs" x="594" y="452" font-size="13" style="text-anchor:middle">Household income</text><text class="bs" x="594" y="468" font-size="13" style="text-anchor:middle">GDP</text><path class="fl" d="M181,378 L181,398" marker-end="url(#ae4)"/><path class="fl" d="M181,498 L181,478" marker-end="url(#ae4)"/><path class="fl" d="M217,438 L324,438" marker-end="url(#ae4)"/><path class="fl" d="M488,438 L498,438" marker-end="url(#ae4)"/><path class="fl" d="M408,472 L408,521 L260,521" marker-end="url(#ae4)"/><text class="fll" x="271" y="397" font-size="12" style="text-anchor:middle">eq. 4</text><rect x="712" y="292" width="462" height="274" rx="9" fill="color-mix(in srgb, var(--t1) 8%, var(--surface-1))" stroke="var(--t1)" stroke-width="1.5"/><text class="bt" x="726" y="318" font-size="18" style="text-anchor:start" fill="var(--t1)">Who gets the jobs: the rationing rule</text><text class="bs" x="726" y="340" font-size="14" style="text-anchor:start">At the adjusted wage, supply normally exceeds demand.</text><text class="bs" x="726" y="358.48" font-size="14" style="text-anchor:start">So a rule decides who works:</text><text class="bs" x="726" y="376.96" font-size="14" style="text-anchor:start">1. Incumbents keep their jobs first: people who did</text><text class="bs" x="726" y="395.44" font-size="14" style="text-anchor:start">&#8195;occupation o last year.</text><text class="bs" x="726" y="413.92" font-size="14" style="text-anchor:start">2. The openings left over are shared among the others</text><text class="bs" x="726" y="432.4" font-size="14" style="text-anchor:start">&#8195;in proportion to how strongly they supplied</text><text class="bs" x="726" y="450.88" font-size="14" style="text-anchor:start">&#8195;(their F from equation 3).</text><text class="bs" x="726" y="469.36" font-size="14" style="text-anchor:start">3. The rest are unemployed this year, and that is the</text><text class="bs" x="726" y="487.84" font-size="14" style="text-anchor:start">&#8195;activity they carry into next year&#8217;s categories.</text><text class="bs" x="726" y="506.32" font-size="14" style="text-anchor:start">A health scenario therefore changes not only how much</text><text class="bs" x="726" y="524.8" font-size="14" style="text-anchor:start">is supplied, but who wins the rationing.</text></svg></div>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Constructing CAT and T for Indonesia"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Building the module for Indonesia</p>
+<h2>Constructing CAT and T</h2>
+<p class="panel-sub">What each object needs, where it could come from, and what has to be decided.</p>
+
+<div class="mgrid c4 wtcards appgrid">
+
+<div class="mcard" style="border-left:4px solid var(--t1)">
+<h4 style="color:var(--t1)">What CAT needs</h4>
+<p>One cross-section per year: region &#215; age group &#215; health status &#215; work
+status. Sakernas carries age, occupation, employment status, hours, and a functional-difficulty
+block. Cells will be thin at province level, so aggregate to model regions or pool survey
+rounds.</p></div>
+
+<div class="mcard wide2 cand" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">Health status: the candidate definitions</h4>
+<table>
+<thead><tr><th>Measure</th><th>Source</th><th>Levels</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Functional difficulty (Washington Group)</td><td>Susenas March, Sakernas</td>
+<td>none &#183; some &#183; a lot</td><td>A disability instrument. Using the middle grade is an assumption.</td></tr>
+<tr><td>Self-rated health</td><td>IFLS</td><td>four levels</td>
+<td>The construct the Australian model uses. Not in Susenas or Sakernas.</td></tr>
+<tr><td>Complaint or disrupted activity, last month</td><td>Susenas</td><td>yes / no</td>
+<td>An event, not a state. An outcome, not a category.</td></tr>
+<tr><td>Diagnosed chronic condition</td><td>Riskesdas / SKI, IFLS</td><td>by condition</td>
+<td>Cross-section only. Closest to a dose&#8211;response measure.</td></tr>
+</tbody></table></div>
+
+<div class="mcard" style="border-left:4px solid var(--t4)">
+<h4 style="color:var(--t4)">P&#8321; and D</h4>
+<p>Population projections and life tables by age, from BPS. No survey needed. D can carry
+health-specific mortality if a source such as GBD is used.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t3)">
+<h4 style="color:var(--t3)">Route A to T: a panel</h4>
+<p>IFLS observes the same person in two waves, with self-rated health. The waves are years
+apart, so the observed matrix has to be converted to annual moves. The health construct differs
+from the one used for CAT.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t1)">
+<h4 style="color:var(--t1)">Route B to T: repeated cross-sections</h4>
+<p>Treat Sakernas or Susenas rounds as a synthetic cohort. If health can move at most one grade
+a year, the matrix can be identified from the age profile alone. This assumes the profile is
+stable over time. Other data to explore: the Susenas panel rounds, BPJS records.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t2)">
+<h4 style="color:var(--t2)">Route C to T: borrow the structure</h4>
+<p>Take the Australian Table 1 as the shape and scale it to Indonesian prevalence by age, as
+Roos did for South Africa with ASSA totals. Fast, and labelled as borrowed. Useful as a check on
+A or B.</p></div>
+
+<div class="mcard" style="border-left:4px solid var(--t4)">
+<h4 style="color:var(--t4)">To decide</h4>
+<ul class="worklist">
+<li><b>The health measure</b> <span class="fund">must match the dose&#8211;response link</span></li>
+<li><b>Number of health states</b></li>
+<li><b>Working vs not working</b> <span class="fund">as the conditioning</span></li>
+<li><b>Occupations</b> <span class="fund">fewer than the paper&#8217;s eight</span></li>
+<li><b>Which route to T</b> <span class="fund">or two, one as a check</span></li>
+</ul></div>
+
+</div>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Health status: the candidate definitions in detail"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Building the module for Indonesia</p>
+<h2>Health status: the candidate definitions, spelled out</h2>
+<p class="panel-sub">The state used in CAT and T, and the dose&#8211;response function built in the
+other work packages, must use the same measure and the same levels.</p>
+
+<div class="hsdetail">
+<table>
+<thead><tr><th>Measure</th><th>The question asked</th><th>Response scale</th>
+<th>Survey, block, years, ages</th><th>Health states it can define</th>
+<th>What the dose&#8211;response must deliver</th></tr></thead>
+<tbody>
+<tr><td><b>Functional difficulty</b><span class="hs-sub">Washington Group short set &#183; the most feasible option today, not the final choice</span></td><td>Do you have difficulty: seeing, even with glasses &#183; hearing, even with a hearing aid &#183; walking or climbing steps &#183; remembering or concentrating &#183; self-care, such as washing or dressing &#183; communicating in your usual language. Susenas adds two domains: using hands and fingers, and anxiety or depression.</td><td>Four grades per domain: no difficulty &#183; some difficulty &#183; a lot of difficulty &#183; cannot do at all.</td><td>Sakernas, six domains, Feb and Aug rounds from 2016. Susenas March, eight domains, Block X, from 2018. All ages from 2.</td><td>Worst grade across domains. Three states: none &#183; some &#183; a lot or cannot. Five are possible.</td><td class="hs-dr">The share of people at each grade, by age group and region.</td></tr>
+<tr><td><b>Self-rated health</b><span class="hs-sub">the construct in the Australian model</span></td><td>In general, how is your health?</td><td>Four levels: very healthy &#183; somewhat healthy &#183; somewhat unhealthy &#183; unhealthy.</td><td>IFLS only. Waves 1993, 1997, 2000, 2007, 2014, adults 15 and over. The same people across waves. Not asked in Susenas or Sakernas.</td><td>Four states directly, as the Australian five.</td><td class="hs-dr">A shift in the distribution over the four levels. Not what epidemiology usually produces.</td></tr>
+<tr><td><b>Health complaint and disrupted activity</b><span class="hs-sub">an event in the last month</span></td><td>In the last month, did you have a health complaint: fever, cough, cold, asthma or breathlessness, diarrhoea, headache, toothache, other? Did it disrupt your daily activities?</td><td>Yes or no for each complaint; yes or no for disruption. Days disrupted were asked until 2017.</td><td>Susenas March, Block XI, every year. All ages.</td><td>None. It is an event, not a state. Usable as a morbidity outcome beside the model.</td><td class="hs-dr">Episodes per person per year, by cause. This is what air-pollution studies produce.</td></tr>
+<tr><td><b>Diagnosed chronic condition</b><span class="hs-sub">closest to a cause-specific measure</span></td><td>Has a doctor ever told you that you have: hypertension, diabetes, stroke, heart disease, asthma, chronic lung disease, cancer, kidney disease, and others.</td><td>Yes or no for each condition; age at diagnosis in some rounds.</td><td>Riskesdas 2013 and 2018, SKI 2023, cross-section. IFLS 2007 and 2014, panel.</td><td>None, one, two or more conditions; or a specific condition as its own state.</td><td class="hs-dr">New cases per year by cause: the natural output of exposure&#8211;response functions.</td></tr>
+<tr><td><b>Mortality</b><span class="hs-sub">enters D, not a health state</span></td><td>Death by cause, from registration or estimation.</td><td>Rates by age, sex and cause.</td><td>BPS life tables; GBD cause-specific estimates; Sample Registration System.</td><td>Not a state. It scales P&#8321; through survival.</td><td class="hs-dr">A change in the death rate by cause and age.</td></tr>
+</tbody></table>
+</div>
+
+<div class="hsband">
+<b>The requirement.</b> Whatever WP2.1 and WP2.2 estimate has to arrive as a change in the shares
+at each level of the measure chosen here, by age group. Only then can it enter P&#8322;. The measure
+is decided jointly, before either side builds. Functional difficulty is the most feasible
+option today; it is not the final choice.
+</div>
 </section></div></div></section>
