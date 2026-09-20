@@ -1356,12 +1356,13 @@ section.row-divider.divider-art { display: flex; flex-direction: row; align-item
 .worklist b { color:var(--text-primary); font-weight:650; }
 .worklist .fund { color:var(--muted); font-weight:700; letter-spacing:.04em;
   text-transform:uppercase; }
-.cardhd { display:flex; align-items:flex-start; justify-content:space-between;
-  gap:clamp(8px,1.1cqw,20px); }
-.cardhd h4 { flex:1 1 auto; min-width:0; }
+.scope-slide2 .wtcards .mcard { position:relative; }
+.cardhd { display:block; }
 .scope-slide2 svg.ico, .viz-root svg.ico {
-  flex:none; display:block; min-width:0; margin:0;
-  width:clamp(40px,9.4cqh,98px); height:auto; }
+  position:absolute; top:clamp(9px,1.8cqh,20px); right:clamp(9px,0.9cqw,20px);
+  width:clamp(36px,7.8cqh,82px); height:auto; min-width:0; margin:0;
+  display:block; pointer-events:none; }
+.scope-slide2 .wtcards .mcard h4 { padding-right:clamp(44px,9.4cqh,98px); }
 .appcard .cover { flex:0 0 auto; min-height:0; overflow:hidden; display:flex; align-items:center;
   justify-content:center; text-align:center; border-radius:6px; border:1px solid;
   margin:clamp(3px,0.7cqh,9px) 0 clamp(4px,0.9cqh,11px);
