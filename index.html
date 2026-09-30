@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dataslide</title>
+<meta name="description" content="Data pages on Indonesian development: social protection, growth and structural change, research and the SDGs, and economy-wide modelling.">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/">
+<style>
+  /* Palette follows the shell tokens used by the pages themselves. */
+  :root {
+    color-scheme: light dark;
+    --paper:   #f4f2ed;
+    --surface: #fffdf9;
+    --ink:     #14161c;
+    --muted:   #6d6a63;
+    --rule:    #dcd8ce;
+    --accent:  #b4451f;
+    --slate:   #1c4e73;
+    --shadow:  rgba(30,26,18,.07);
+    --lift:    rgba(30,26,18,.16);
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:   #0f1013;
+      --surface: #191a1e;
+      --ink:     #ece9e2;
+      --muted:   #9b978e;
+      --rule:    #2e3036;
+      --accent:  #e0875f;
+      --slate:   #7ea9cc;
+      --shadow:  rgba(0,0,0,.38);
+      --lift:    rgba(0,0,0,.55);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 17px/1.62 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; height: auto; }
+  .sans { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+  /* ---------- header ---------- */
+  header.top {
+    border-bottom: 1px solid var(--rule);
+    background: linear-gradient(170deg, var(--surface) 0%, var(--paper) 70%);
+  }
+  header.top .inner { max-width: 56rem; margin: 0 auto; padding: 4rem 1.5rem 2.8rem; }
+
+  .eyebrow {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: .2em;
+    font-size: .66rem; font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 1.1rem;
+  }
+  .eyebrow::before {
+    content: ""; display: inline-block;
+    width: 2rem; height: 1px; background: var(--accent);
+    vertical-align: .3em; margin-right: .7rem;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 4.2rem);
+    line-height: 1.02; font-weight: 400;
+    letter-spacing: -.025em; margin: 0 0 .8rem;
+  }
+  .lede { font-size: 1.1rem; color: var(--muted); max-width: 36rem; margin: 0; }
+
+  /* ---------- layout ---------- */
+  main { max-width: 56rem; margin: 0 auto; padding: 2.6rem 1.5rem 4rem; }
+
+  .section-head {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin: 2.6rem 0 1.2rem;
+  }
+  main > .section-head:first-child { margin-top: .6rem; }
+  .section-head h2 {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .74rem; font-weight: 600; margin: 0;
+    text-transform: uppercase; letter-spacing: .17em;
+    color: var(--muted); white-space: nowrap;
+  }
+  .section-head .fill { flex: 1; height: 1px; background: var(--rule); }
+
+  ul.cards { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+  @media screen and (min-width: 46rem) {
+    ul.cards { grid-template-columns: 1fr 1fr; }
+  }
+
+  li.card {
+    position: relative; overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px var(--shadow);
+    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  }
+  li.card::before {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--accent);
+    transition: width .16s ease;
+  }
+  li.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--lift);
+    border-color: var(--accent);
+  }
+  li.card:hover::before { width: 6px; }
+
+  /* The whole card is the target. */
+  li.card > a {
+    display: block; padding: 1.1rem 1.3rem 1.2rem 1.5rem;
+    text-decoration: none; color: inherit;
+  }
+  li.card h3 {
+    font-size: 1.13rem; font-weight: 400; line-height: 1.3;
+    letter-spacing: -.012em; margin: 0 0 .45rem;
+  }
+  li.card:hover h3 { color: var(--accent); }
+  li.card p {
+    margin: 0;
+    font-size: .93rem; line-height: 1.55;
+    color: var(--muted);
+  }
+  li.card .kind {
+    display: inline-block;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--slate);
+    border: 1px solid var(--rule); border-radius: 999px;
+    padding: .18rem .55rem; margin-bottom: .55rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 3.2rem; padding-top: 1.3rem;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .8rem; color: var(--muted);
+  }
+  footer a { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    li.card { transition: none; }
+  }
+  @media screen and (max-width: 34rem) {
+    header.top .inner { padding: 2.8rem 1.1rem 2.2rem; }
+    main { padding: 2rem 1.1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <p class="eyebrow">Arief Anshory Yusuf &middot; SDGs Center, Universitas Padjadjaran</p>
+    <h1>Dataslide</h1>
+    <p class="lede">Data pages on Indonesian development. Each one is a single self-contained page, built from primary sources, on social protection, growth, research, or economy-wide modelling.</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="section-head">
+    <h2>Social protection and poverty</h2><div class="fill"></div>
+  </div>
+  <ul class="cards">
+    <li class="card"><a href="dpi-smg.html">
+      <span class="kind">Data page</span>
+      <h3>Digitalising Social Protection</h3>
+      <p>How much of Indonesia's social assistance reaches the households it is meant for, why the gap exists, and what digitalisation can and cannot fix.</p>
+    </a></li>
+    <li class="card"><a href="mbg-poverty.html">
+      <span class="kind">Data page</span>
+      <h3>Fiscal Incidence of Free School Meals</h3>
+      <p>What Indonesia's free school meals programme is worth to the households that receive it, and how it sits against the transfers alongside it.</p>
+    </a></li>
+    <li class="card"><a href="micro-pmt.html">
+      <span class="kind">Teaching</span>
+      <h3>Predicting Welfare</h3>
+      <p>A teaching case in applied microeconometrics. One real targeting model, 1.02 million households, and what it shows about prediction versus inference.</p>
+    </a></li>
+    <li class="card"><a href="job-quality.html">
+      <span class="kind">Data page</span>
+      <h3>The Quality of Indonesia's New Jobs</h3>
+      <p>Indonesia added 1.9 million jobs in the year to August 2025 and 1.7 million were part-time. Four measures of job quality, straight from the BPS Web API.</p>
+    </a></li>
+  </ul>
+
+  <div class="section-head">
+    <h2>Growth and structural change</h2><div class="fill"></div>
+  </div>
+  <ul class="cards">
+    <li class="card"><a href="beyondgrowth.html">
+      <span class="kind">Data page</span>
+      <h3>The Growth We Want</h3>
+      <p>Why the old growth model stopped working for most people, and what a better one has to deliver. Charts built from primary sources.</p>
+    </a></li>
+    <li class="card"><a href="structural-transformation.html">
+      <span class="kind">Data page</span>
+      <h3>The Future of Regional Growth</h3>
+      <p>Where growth actually comes from, how far Indonesia's regions still have to travel, and what evidence from Aceh and Kepulauan Riau shows.</p>
+    </a></li>
+    <li class="card"><a href="transmigration-growth.html">
+      <span class="kind">Data page</span>
+      <h3>Where Indonesia's Next Growth Will Come From</h3>
+      <p>Evidence from three IndoTERM computable general equilibrium studies on growth strategy, downstreaming and regional structural transformation.</p>
+    </a></li>
+    <li class="card"><a href="bsk-gateway-method.html">
+      <span class="kind">Method</span>
+      <h3>The BSK Import Gateways, Simulated</h3>
+      <p>Nine solved scenarios in a 23-commodity, 7-region IndoTERM model, and what rerouting imports to Bitung, Sorong and Kupang costs.</p>
+    </a></li>
+  </ul>
+
+  <div class="section-head">
+    <h2>Research and the SDGs</h2><div class="fill"></div>
+  </div>
+  <ul class="cards">
+    <li class="card"><a href="sdgs-alignment.html">
+      <span class="kind">Data page</span>
+      <h3>SDGs Alignment of Research Strength</h3>
+      <p>Whether Indonesia's university research strengths line up with the SDG goals its provinces are failing.</p>
+    </a></li>
+    <li class="card"><a href="researchquality.html">
+      <span class="kind">Data page</span>
+      <h3>What the Quality Filter Reveals</h3>
+      <p>978,546 Indonesian journal articles ranked twice, all journals against Q1 only, across 26 subject fields, testing whether publication counts tell you who does good research.</p>
+    </a></li>
+  </ul>
+
+  <div class="section-head">
+    <h2>Health, energy and modelling</h2><div class="fill"></div>
+  </div>
+  <ul class="cards">
+    <li class="card"><a href="welcome_trust01.html">
+      <span class="kind">Project</span>
+      <h3>Health and Labour in the Energy Transition</h3>
+      <p>Work package 2.3 of Financing a Just Green Transition. An economy-wide model of Indonesia, extended to represent health status and labour supply.</p>
+    </a></li>
+    <li class="card"><a href="health-labour-module.html">
+      <span class="kind">Method</span>
+      <h3>Health and Labour Module for IndoTERM</h3>
+      <p>Implementation guide for the module. Three pieces of new work in six stages, each with a procedure, a verification condition and a completion gate.</p>
+    </a></li>
+    <li class="card"><a href="monash-health-study.html">
+      <span class="kind">Study guide</span>
+      <h3>MONASH-Health: A Study Guide</h3>
+      <p>Verikios, Dixon, Rimmer and Harris (2013) in twenty study steps with self-tests: the labour-supply specification, the HILDA transition matrix, the model core and the results.</p>
+    </a></li>
+  </ul>
+
+  <div class="section-head">
+    <h2>Lecture slides</h2><div class="fill"></div>
+  </div>
+  <ul class="cards">
+    <li class="card"><a href="miktrik/lpm_logit_probit_en.pdf">
+      <span class="kind">PDF &middot; English</span>
+      <h3>Linear Probability, Logit and Probit</h3>
+      <p>Eight true stories behind one S-shaped curve, ending with hands-on estimation in Stata.</p>
+    </a></li>
+    <li class="card"><a href="miktrik/lpm_logit_probit_id.pdf">
+      <span class="kind">PDF &middot; Bahasa Indonesia</span>
+      <h3>Model Probabilitas Linier, Logit, dan Probit</h3>
+      <p>Delapan kisah nyata di belakang satu kurva berbentuk S, ditutup dengan latihan Stata.</p>
+    </a></li>
+  </ul>
+
+  <footer>
+    Every page is self-contained and works offline once loaded.
+    Source at <a href="https://github.com/anshory1972/dataslide">github.com/anshory1972/dataslide</a>.
+  </footer>
+
+</main>
+
+</body>
+</html>
