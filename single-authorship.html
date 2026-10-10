@@ -172,6 +172,10 @@
   ol.sources { padding-left: 1.3rem; max-width: 50rem; font-size: .9rem; }
   ol.sources li { margin-bottom: .6rem; }
   td.ok { color: var(--ink); font-weight: 600; }
+  dl.defs { display: grid; grid-template-columns: 11rem 1fr; gap: .45rem 1rem; margin: 1rem 0 0; font-size: .85rem; max-width: 50rem; }
+  dl.defs dt { font-weight: 600; color: var(--ink); }
+  dl.defs dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
+  @media (max-width: 560px) { dl.defs { grid-template-columns: 1fr; gap: .1rem; } dl.defs dd { margin-bottom: .55rem; } }
 </style>
 </head>
 <body>
@@ -222,8 +226,16 @@
 <section>
   <p class="kicker">3 &middot; Checks</p>
   <h2>Above one half under each journal filter</h2>
+  <p class="claim" style="max-width:46rem;color:var(--ink-2)">Each percentage is the share of articles with exactly one author in <span class="win"></span>, measured on a different set of journals or articles. Each column is a separate test. In every row, every column is above one half, so the result does not depend on the filter.</p>
   <div class="tablewrap" id="t-rob"></div>
-  <p class="note" style="margin-top:.7rem">Share of articles with one author, <span class="win"></span>. All journals = every journal article. Top quarter = top 25% of journals in their subfield by citations. 5+ references = top quarter, articles with at least five references (removes most book reviews and editorials). Core = OpenAlex core journals (CWTS Leiden list).</p>
+  <dl class="defs">
+    <dt>Subfield</dt><dd>The research area of each article, from its OpenAlex topic. Articles are classified, not journals: a philosophy article in a general humanities journal counts as philosophy.</dd>
+    <dt>All journals</dt><dd>All articles in that subfield in any journal, good or weak.</dd>
+    <dt>Top quarter</dt><dd>Only journals in the top 25% of their subfield, ranked by average citations per article over the past two years. This is the main quality filter, similar to &ldquo;Q1&rdquo;.</dd>
+    <dt>5+ references</dt><dd>Top-quarter journals, only articles with at least five references. Book reviews, editorials and short notes are often labelled &ldquo;articles&rdquo; and are mostly written by one person; this filter removes them.</dd>
+    <dt>Core</dt><dd>Only OpenAlex &ldquo;core&rdquo; journals, a list of established international journals from CWTS, Leiden University. It is independent of the citation ranking. It holds few humanities articles (Classics: 560 in five years), because it mainly covers international, English-language journals.</dd>
+    <dt>Articles (top quarter)</dt><dd>The number of articles in top-quarter journals in <span class="win"></span> behind each share.</dd>
+  </dl>
 </section>
 
 <section>
