@@ -21,6 +21,7 @@
 <meta name="twitter:title" content="Single Authorship Is Still the Norm in the Humanities">
 <meta name="twitter:description" content="In ten subfields, most of them in the humanities, most articles in top-quarter journals have had one author in every year since 2000. OpenAlex data, reasons and sources, code to replicate. Arief Anshory Yusuf.">
 <meta name="twitter:image" content="https://anshory1972.github.io/dataslide/single-authorship-og-4d2503dd.jpg">
+<meta name="twitter:image:alt" content="Single Authorship Is Still the Norm in the Humanities - Socrates, an old bearded philosopher in a dark robe, stands alone on temple steps under a red sky, looking down; two small figures walk far away across the square">
 <style>
   /* Shell and chart tokens copied from the other Dataslide data pages. */
   :root {
@@ -172,6 +173,11 @@
   ol.sources { padding-left: 1.3rem; max-width: 50rem; font-size: .9rem; }
   ol.sources li { margin-bottom: .6rem; }
   td.ok { color: var(--ink); font-weight: 600; }
+  .share { display: flex; flex-wrap: wrap; gap: .7rem; }
+  .share-btn { display: inline-flex; align-items: center; gap: .55rem; padding: .65rem 1.05rem; border-radius: 6px;
+               border: 1px solid var(--rule); background: var(--surface); color: var(--ink); text-decoration: none;
+               font-weight: 600; font-size: .92rem; }
+  .share-btn:hover, .share-btn:focus-visible { border-color: var(--accent); color: var(--accent); }
   dl.defs { display: grid; grid-template-columns: 11rem 1fr; gap: .45rem 1rem; margin: 1rem 0 0; font-size: .85rem; max-width: 50rem; }
   dl.defs dt { font-weight: 600; color: var(--ink); }
   dl.defs dd { margin: 0; color: var(--ink-2); line-height: 1.5; }
@@ -316,6 +322,19 @@ python 04_reasons.py
 python 05_report.py</pre>
       About 2,200 credits in total; a free key has 10,000 a day. Queries are cached, so a stopped run continues.</li>
   </ol>
+</section>
+
+<section id="share">
+  <p class="kicker">Share</p>
+  <h2>Share this page</h2>
+  <div class="share">
+    <a class="share-btn" href="https://x.com/intent/post?url=https%3A%2F%2Fanshory1972.github.io%2Fdataslide%2Fsingle-authorship.html&text=Single%20authorship%20is%20still%20the%20norm%20in%20the%20humanities%3A%20OpenAlex%20data%2C%202000-2025" target="_blank" rel="noopener" aria-label="Share on X">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.8-6.3L6.4 22H3.3l7.3-8.3L1 2h6.3l4.4 5.8L18.9 2Zm-1.1 18.1h1.7L6.3 3.8H4.5l13.3 16.3Z"/></svg>
+      Share on X</a>
+    <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fanshory1972.github.io%2Fdataslide%2Fsingle-authorship.html" target="_blank" rel="noopener" aria-label="Share on Facebook">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.5c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.4v3.2h2.8V22h3.3Z"/></svg>
+      Share on Facebook</a>
+  </div>
 </section>
 
 </main>
