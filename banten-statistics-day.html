@@ -1282,6 +1282,9 @@ table.dtable th { text-align:left; border-bottom:2px solid var(--text-secondary)
 table.dtable td { border-bottom:1px solid var(--grid); padding:10px 10px; }
 table.dtable.big td { font-size:22px; padding:14px 10px; }
 table.dtable.big td:nth-child(n+2), table.dtable.big th:nth-child(n+2) { text-align:right; }
+table.dtable.reg td { font-size:18px; padding:9px 10px; }
+table.dtable.reg td:nth-child(n+2), table.dtable.reg th:nth-child(n+2) { text-align:right; font-variant-numeric:tabular-nums; }
+table.dtable.reg .se { color: var(--muted); font-size:15px; }
 table.dtable.wide td:first-child { font-weight:650; width:40%; }
 .cover h1.cover-title { font-size: clamp(36px, 5vw, 68px); line-height:1.08; margin: 18px 0 10px; font-weight:750; }
 .cover .cover-sub { font-size: clamp(20px, 2.2vw, 30px); color: var(--text-secondary); margin:0 0 40px; }
@@ -1797,6 +1800,40 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">SPTK 2021, household income class (R609a), survey weights. Banten respondents per class: 198, 252, 380, 479, 343.</div></details>
 </section></div></div></section>
 
+<section class="row-single" aria-label="Urbanisation"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Part 4 &middot; Why the people of Banten are unhappy</p>
+<h2>Banten is already urban, and will urbanise fastest</h2>
+<p class="takeaway">Two-thirds urban in 2010. From 2020 to 2035 BPS projects the largest rise of any province: from 70% to 85%.</p>
+<svg class="ds-chart" viewBox="0 0 1180 430" role="img" aria-label="Urban population, % of total (2010 census; 2015&amp;ndash;2035 BPS projection)">
+<text x="70" y="22" class="ph">Urban population, % of total (2010 census; 2015&ndash;2035 BPS projection)</text>
+<line x1="70" y1="384.0" x2="990" y2="384.0" class="g"/><text x="60" y="389.0" class="ax end">40</text>
+<line x1="70" y1="321.5" x2="990" y2="321.5" class="g"/><text x="60" y="326.5" class="ax end">50</text>
+<line x1="70" y1="258.9" x2="990" y2="258.9" class="g"/><text x="60" y="263.9" class="ax end">60</text>
+<line x1="70" y1="196.4" x2="990" y2="196.4" class="g"/><text x="60" y="201.4" class="ax end">70</text>
+<line x1="70" y1="133.8" x2="990" y2="133.8" class="g"/><text x="60" y="138.8" class="ax end">80</text>
+<line x1="70" y1="71.3" x2="990" y2="71.3" class="g"/><text x="60" y="76.3" class="ax end">90</text>
+<text x="70.0" y="410" class="ax mid">2010</text>
+<text x="252.0" y="410" class="ax mid">2015</text>
+<text x="434.0" y="410" class="ax mid">2020</text>
+<text x="616.0" y="410" class="ax mid">2025</text>
+<text x="798.0" y="410" class="ax mid">2030</text>
+<text x="980.0" y="410" class="ax mid">2035</text>
+<path d="M70.0,223.3 L252.0,178.2 L434.0,141.9 L616.0,114.4 L798.0,92.5 L980.0,75.7" fill="none" stroke="var(--baseline)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M70.0,218.9 L252.0,193.2 L434.0,167.6 L616.0,146.3 L798.0,125.7 L980.0,108.2" fill="none" stroke="var(--baseline)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M70.0,336.5 L252.0,314.6 L434.0,292.1 L616.0,267.7 L798.0,242.6 L980.0,217.0" fill="none" stroke="var(--baseline)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M70.0,348.3 L252.0,331.5 L434.0,313.3 L616.0,294.6 L798.0,274.5 L980.0,253.9" fill="none" stroke="var(--baseline)" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M70.0,322.7 L252.0,300.8 L434.0,279.5 L616.0,258.9 L798.0,237.6 L980.0,217.6" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round" stroke-dasharray="7 4"/>
+<path d="M70.0,215.1 L252.0,210.7 L434.0,197.0 L616.0,173.2 L798.0,141.3 L980.0,103.2" fill="none" stroke="var(--c8)" stroke-width="3.6" stroke-linejoin="round"/>
+<text x="990.0" y="80.7" class="lab" fill="var(--muted)">Jabar 89%</text>
+<text x="990.0" y="108.2" class="lab" fill="var(--c8)" font-weight="700">Banten 85%</text>
+<text x="990.0" y="126.2" class="lab" fill="var(--muted)">DIY 84%</text>
+<text x="990.0" y="222.0" class="lab" fill="var(--muted)">Jatim 67%</text>
+<text x="990.0" y="240.0" class="lab" fill="var(--c9)">Indonesia 67%</text>
+<text x="990.0" y="258.9" class="lab" fill="var(--muted)">Jateng 61%</text>
+</svg>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">BPS static table 1276, Persentase Penduduk Daerah Perkotaan Hasil Proyeksi Penduduk menurut Provinsi, 2010&ndash;2035 (2010 from the census; later years are projections based on SUPAS 2015). DKI Jakarta is 100% urban throughout. Change 2020&ndash;2035: Banten +15.0 points, the largest of 33 provinces (Indonesia +9.9). In SPTK 2021, 73% of Banten respondents live in urban areas.</div></details>
+</section></div></div></section>
+
 <section class="row-single" aria-label="Urban penalty"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part 4 &middot; Why the people of Banten are unhappy</p>
 <h2>City life costs happiness, most of all in Banten and Kepri</h2>
@@ -1864,6 +1901,14 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
 <circle cx="114.8" cy="247.6" r="5" fill="var(--baseline)"/>
 </svg></div>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">SPTK 2021. Left: coefficient on urban residence in survey-weighted regressions of happiness (0&ndash;10) on income class, education, age, sex, marital status and household size, estimated separately for each province (Indonesia: with province fixed effects). Right: province fixed effects from the national regression, against the urban share. Correlation &minus;0.47 across 34 provinces; in a regression with manufacturing share, PDRB per capita and growth, the urban share stays significant (p = 0.006), manufacturing share has no effect, and growth is positive.</div></details>
+</section></div></div></section>
+
+<section class="row-single" aria-label="Urban regression"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Part 4 &middot; Why the people of Banten are unhappy</p>
+<h2>The urban effect: regression results</h2>
+<p class="takeaway">Coefficient on living in an urban area, happiness 0&ndash;10.</p>
+<div class="dtable-wrap"><table class="dtable reg"><thead><tr><th>Controls added</th><th>Banten (n = 1,652)</th><th>Indonesia (n = 74,684)</th></tr></thead><tbody><tr><td>(1) Urban only</td><td>+0.05 <span class='se'>(0.07)</span></td><td>+0.07*** <span class='se'>(0.01)</span></td></tr><tr><td>(2) + household income class</td><td>&minus;0.36*** <span class='se'>(0.08)</span></td><td>&minus;0.04*** <span class='se'>(0.01)</span></td></tr><tr><td>(3) + age, sex, education, marital status, household size</td><td>&minus;0.43*** <span class='se'>(0.08)</span></td><td>&minus;0.08*** <span class='se'>(0.01)</span></td></tr><tr><td>(4) + work status</td><td>&minus;0.40*** <span class='se'>(0.08)</span></td><td>&minus;0.08*** <span class='se'>(0.01)</span></td></tr><tr><td>(5) + environment (air, water, flood)</td><td>&minus;0.40*** <span class='se'>(0.09)</span></td><td>&minus;0.08*** <span class='se'>(0.01)</span></td></tr><tr><td>Ordered probit (4 happiness groups), model (3)</td><td>&minus;0.22*** <span class='se'>(0.08)</span></td><td>&nbsp;</td></tr></tbody></table></div><p class="reveal">Without controls, urban and rural Bantenese are equally happy. Urban households are richer, and that hides the gap. <b>At the same income, urban Bantenese are 0.4 points less happy.</b> Adding work status and the environment barely changes this.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">SPTK 2021 microdata. Dependent variable: happiness, 0&ndash;10 (R1501). Coefficient on urban residence (BPS classification, R105). Weighted least squares with survey weights, robust standard errors in brackets; *** p &lt; 0.01, ** p &lt; 0.05, * p &lt; 0.1. Income: five household income classes (R609a). Work status: six employment statuses plus not working. Environment: polluted ground water, dusty or smoky air, flood in the past year (R1101). Indonesia includes province fixed effects. The ordered probit uses happiness grouped 0&ndash;3, 4&ndash;5, 6&ndash;8, 9&ndash;10 with the controls of model (3).</div></details>
 </section></div></div></section>
 
 <section class="row-single" aria-label="In the news and the data"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
