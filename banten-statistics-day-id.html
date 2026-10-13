@@ -1353,6 +1353,8 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
   .viz-root details.src { font-size:clamp(11px,1.2vh,12.5px); }
   .viz-root section.panel.fitted { display:flex; flex-direction:column; box-sizing:border-box; }
   .viz-root section.panel.fitted > details.src { margin-top:auto; }
+  .viz-root section.panel.fitted .sidegrid { grid-template-columns: minmax(0,1fr) auto; flex:1 1 auto; }
+  .viz-root section.panel.fitted .sideimg { max-width:none; object-fit:cover; }
   .viz-root section.panel.fitted > :is(svg, .ds-chart, .two, .qgrid, .dtable-wrap, table, .cards, .ngrid, .sidegrid, .reveal) { margin-block:auto; }
 }
 @media screen and (min-width:1000px) {
@@ -1944,6 +1946,35 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
       p.style.zoom = ''; p.style.width = ''; p.style.maxWidth = ''; p.style.minHeight = ''; p.classList.remove('fitted');
       if (!big || p.classList.contains('cover') || p.classList.contains('divider')) return;
       var r = p.closest('.row-single'), W = p.getBoundingClientRect().width;
+      var img = p.querySelector('.sideimg');
+      if (img) { img.style.height = ''; img.style.width = ''; }
+      var padOf = function () {
+        var pad = 0;
+        for (var e = p.parentElement; e && e !== r.parentElement; e = e.parentElement) {
+          var cs = getComputedStyle(e);
+          pad += parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth)
+               + (e === r ? 0: parseFloat(cs.marginTop) + parseFloat(cs.marginBottom));
+        }
+        return pad;
+      };
+      if (img) {
+        /* picture slides: no zoom; the picture fills the panel height on the right */
+        p.classList.add('fitted');
+        p.style.minHeight = Math.floor(window.innerHeight - padOf() - 2) + 'px';
+        img.style.height = '100px'; img.style.width = '80px';
+        for (var q = 0; q < 3; q++) {
+          var ov = r.offsetHeight - window.innerHeight;
+          if (ov <= 0) break;
+          p.style.minHeight = Math.floor(parseFloat(p.style.minHeight) - ov - 1) + 'px';
+        }
+        var ps = getComputedStyle(p);
+        var inner = parseFloat(p.style.minHeight) - parseFloat(ps.paddingTop) - parseFloat(ps.paddingBottom);
+        for (var hh = Math.min(inner, 0.40 * W / 0.8); hh > 160; hh *= 0.95) {
+          img.style.height = hh + 'px'; img.style.width = (hh * 0.8) + 'px';
+          if (r.offsetHeight <= window.innerHeight) break;
+        }
+        return;
+      }
       var ok = function (z) { p.style.width = (W / z) + 'px'; p.style.maxWidth = 'none'; p.style.zoom = z;
                               return r.offsetHeight <= window.innerHeight; };
       if (!ok(1)) { p.style.zoom = ''; p.style.width = ''; p.style.maxWidth = ''; return; }
