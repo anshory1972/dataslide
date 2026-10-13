@@ -1460,6 +1460,12 @@ table.dtable.peers .idn { color: var(--c8); }
 .pg-right .reveal { margin-top:10px; font-size: clamp(16px, 1.3vw, 20px); }
 .viz-root section.panel.fitted .pg-left .pgimg { object-fit:cover; object-position:center; }
 .card .big { white-space: nowrap; overflow: visible; }
+/* filled cards: a warm tint a step darker than the panel, so each card reads as a block */
+/* each card in a row gets its own tint from one warm family (same lightness and saturation): sand, blush, wheat, peach */
+.viz-root .card, .viz-root .cause, .viz-root .step { background: #f4e7d9 !important; border: 1px solid #e0ccb8 !important; }
+.viz-root :is(.card, .cause, .step):nth-child(4n+2) { background: #f4dfd9 !important; border-color: #e0c0b8 !important; }
+.viz-root :is(.card, .cause, .step):nth-child(4n+3) { background: #f4edd9 !important; border-color: #e0d6b8 !important; }
+.viz-root :is(.card, .cause, .step):nth-child(4n+4) { background: #f4e2d9 !important; border-color: #e0c5b8 !important; }
 .cards, .cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .cards.three.stack { grid-template-columns: minmax(0, 1fr); }
 .card { min-width: 0; }
