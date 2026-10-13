@@ -1296,9 +1296,9 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
 .cover .cover-sub { font-size: clamp(20px, 2.2vw, 30px); color: var(--text-secondary); margin:0 0 40px; }
 .cover .cover-by { font-size: 20px; line-height:1.5; }
 .cover .cover-date { font-size: 17px; color: var(--muted); }
-.sidegrid { display:grid; grid-template-columns: minmax(0,1fr) auto; gap:28px; align-items:center; }
+.sidegrid { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,24%); gap:28px; align-items:center; }
 .sidemain { min-width:0; }
-.sideimg { display:block; aspect-ratio:4/5; height:auto; width:clamp(220px, min(26vw, calc((100vh - 120px) * 0.8)), 520px); border-radius:8px; }
+.sideimg { display:block; aspect-ratio:4/5; height:auto; width:100%; border-radius:8px; }
 .coverrow, .divrow { display:grid; grid-template-columns: minmax(300px,0.75fr) 1.6fr; gap:40px; align-items:center; }
 .cover .sep { display:none; }
 .coverimg, .divimg { width:100%; aspect-ratio:1/1; height:auto; border-radius:10px; display:block; }
@@ -1349,6 +1349,9 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
   .ds-chart { max-height:62vh; }
   .two .ds-chart { max-height:56vh; }
   .viz-root details.src { font-size:clamp(11px,1.2vh,12.5px); }
+  .viz-root section.panel.fitted { display:flex; flex-direction:column; box-sizing:border-box; }
+  .viz-root section.panel.fitted > details.src { margin-top:auto; }
+  .viz-root section.panel.fitted > :is(svg, .ds-chart, .two, .qgrid, .dtable-wrap, table, .cards, .ngrid, .sidegrid, .reveal) { margin-top:auto; }
 }
 @media screen and (min-width:1000px) {
   .cover .sep { display:inline; }
@@ -1367,7 +1370,7 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
 }
 @media screen and (min-width:1000px) and (max-width:1199px) {
   .sidegrid { gap:16px; }
-  .sideimg { width:18vw; }
+  .sidegrid { grid-template-columns: minmax(0,1fr) minmax(0,20%); }
   .sidegrid table.dtable td, .sidegrid table.dtable th { font-size:13px; padding:6px 6px; }
 }
 @media screen and (min-width:1000px) and (max-height:820px) {
@@ -1941,3 +1944,39 @@ table.dtable.wide td:first-child { font-weight:650; width:40%; }
 <div class="dtable-wrap"><table class="dtable wide"><thead><tr><th>What we found</th><th>What SE2026 and BPS could measure next</th></tr></thead><tbody><tr><td>Output grows, but less reaches households; real wages fell</td><td>Where value added goes: wages, profits, owners outside Banten. Wages by place of residence and place of work</td></tr><tr><td>Formal jobs, but insecure</td><td>Contract type, outsourcing and job tenure by firm size and sector</td></tr><tr><td>The lower-middle is left behind</td><td>Income and job security of households just above the poverty line</td></tr><tr><td>Cities make people richer, not happier</td><td>Commuting time, housing cost, public transport, and well-being by district</td></tr></tbody></table></div><p class="reveal big">Growth is needed, but it is not enough. <b>Measure how people live, not only what the economy produces.</b></p>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Sensus Ekonomi 2026 results are not yet available. The SPTK microdata has no district code; a district-level release would allow these questions to be answered within Banten.</div></details>
 </section></div></div></section>
+
+<script>
+/* Desktop: enlarge each content panel so it fills the screen height. */
+(function () {
+  function fit() {
+    var big = window.innerWidth >= 1000;
+    document.querySelectorAll('.row-single section.panel').forEach(function (p) {
+      p.style.zoom = ''; p.style.width = ''; p.style.maxWidth = ''; p.style.minHeight = ''; p.classList.remove('fitted');
+      if (!big || p.classList.contains('cover') || p.classList.contains('divider')) return;
+      var r = p.closest('.row-single'), W = p.getBoundingClientRect().width;
+      var ok = function (z) { p.style.width = (W / z) + 'px'; p.style.maxWidth = 'none'; p.style.zoom = z;
+                              return r.offsetHeight <= window.innerHeight; };
+      if (!ok(1)) { p.style.zoom = ''; p.style.width = ''; p.style.maxWidth = ''; return; }
+      var lo = 1, hi = 1.45;
+      for (var i = 0; i < 10; i++) { var mid = (lo + hi) / 2; if (ok(mid)) lo = mid; else hi = mid; }
+      ok(lo);
+      var pad = 0;
+      for (var e = p.parentElement; e && e !== r.parentElement; e = e.parentElement) {
+        var cs = getComputedStyle(e);
+        pad += parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom) + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth)
+             + (e === r ? 0 : parseFloat(cs.marginTop) + parseFloat(cs.marginBottom));
+      }
+      p.style.minHeight = Math.floor((window.innerHeight - pad - 2) / lo) + 'px';
+      for (var k = 0; k < 3; k++) {
+        var over = r.offsetHeight - window.innerHeight;
+        if (over <= 0) break;
+        p.style.minHeight = Math.floor(parseFloat(p.style.minHeight) - (over + 1) / lo) + 'px';
+      }
+      p.classList.add('fitted');
+    });
+  }
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
+  if (document.readyState === 'complete') fit(); else window.addEventListener('load', fit);
+  document.addEventListener('toggle', function () { setTimeout(fit, 0); }, true);
+})();
+</script>
