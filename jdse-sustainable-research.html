@@ -1583,6 +1583,13 @@ table.dtable.meals td:nth-child(n+2), table.dtable.meals th:nth-child(n+2) { tex
 table.dtable.venues td, table.dtable.venues th { font-size:14px; padding:6px 8px; }
 table.dtable.venues td:nth-child(n+4), table.dtable.venues th:nth-child(n+4) { text-align:right; font-variant-numeric:tabular-nums; }
 table.dtable.venues td:nth-child(2), table.dtable.venues th:nth-child(2), table.dtable.venues td:nth-child(3), table.dtable.venues th:nth-child(3) { text-align:left; }
+table.dtable.tiers td, table.dtable.tiers th { font-size:15px; padding:7px 9px; }
+table.dtable.tiers td:nth-child(n+2), table.dtable.tiers th:nth-child(n+2) { text-align:right; font-variant-numeric:tabular-nums; }
+table.dtable.rank td:nth-child(n+2), table.dtable.rank th:nth-child(n+2) { text-align:left; }
+table.dtable.rank td, table.dtable.rank th { font-size:13.5px; padding:4px 8px; }
+.tlegend { display:flex; flex-wrap:wrap; gap:18px; font-size:14px; color: var(--text-secondary); margin:2px 0 6px; }
+.tlegend i { display:inline-block; width:22px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px; }
+.tnote { font-size:13px; color: var(--text-secondary); margin:8px 0 0; line-height:1.35; }
 table.dtable.cited td, table.dtable.cited th { font-size:15.5px; padding:8px 10px; }
 table.dtable.cited td:nth-child(n+3), table.dtable.cited th:nth-child(n+3) { text-align:right; }
 .two > .dtable-wrap { min-width:0; }
@@ -1616,161 +1623,225 @@ table.dtable.cited td:nth-child(n+3), table.dtable.cited th:nth-child(n+3) { tex
 <p class="panel-eyebrow">Three questions</p>
 <h2>What the bibliometrics can tell a journal that does not exist yet</h2>
 <div class="cards three"><div class="card"><div class="big">I</div><div class="small">Where is the field going?</div><div class="note">Which themes are growing, which are fading, and how fast the digital and sustainable literatures are meeting.</div></div><div class="card"><div class="big">II</div><div class="small">Who owns the conversation?</div><div class="note">Which journals carry the work, what they charge, how fast new entrants were indexed, and what a central-bank journal looks like today.</div></div><div class="card"><div class="big">III</div><div class="small">Where does Indonesia stand?</div><div class="note">How much Indonesia publishes on these themes, where it publishes, and how much of it the world can see.</div></div></div><p class="reveal">A journal&rsquo;s presence is decided by three choices: which conversation it joins, who it is for, and what it does that the incumbents do not. The first two are measurable. The third is a design decision, and the last slide proposes one.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex (works, topics, sources), October 2026; Scopus Search API; SCImago Journal Rank 2025; Scopus discontinued-title list, May 2026. All queries and outputs in E:/dataslide/jdse-sustainable-research.</div></details>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex (works, topics, sources, institutions), October 2026; Scopus Source List, September 2026; SCImago Journal Rank 2025; Scopus Search API. All queries and outputs in E:/dataslide/jdse-sustainable-research.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Part I"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel divider"><div class="divrow"><div class="covertext"><p class="panel-eyebrow">Part I</p><h2 class="divtitle">Where is the field going?</h2><p class="divq">Volume, themes, and the meeting point of digital and sustainable finance</p></div><img class="divimg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23e6d9ce'/><text x='200.0' y='200.0' font-family='system-ui' font-size='40' fill='%238b8480' text-anchor='middle'>div1 1:1</text></svg>" alt="A tree with a river-delta canopy, its newest tips lit"></div></section></div></div></section>
 <section class="row-single" aria-label="Method"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
 <h2>Method: how the field was measured</h2>
-<div class="ogrid stella3"><div class="otile "><p class="oname">1 &middot; Corpus</p><p class="oval">OpenAlex works, 2010&ndash;2026, articles and reviews. No keyword matching: papers are selected by the topic OpenAlex assigns to every work (the same taxonomy SCImago uses).</p></div><div class="otile "><p class="oname">2 &middot; Six sustainable topics</p><p class="oval">Sustainable finance and green bonds; climate-change policy and economics; sustainability and climate governance; sustainable development and environmental policy, and management; CSR and ESG reporting. 543,190 works carry at least one of them; 181,067 have one as primary topic, 2016&ndash;2026.</p></div><div class="otile "><p class="oname">3 &middot; Five digital topics</p><p class="oval">FinTech, crowdfunding and digital finance; digital transformation in financial services; microfinance and financial inclusion; blockchain; digital economy and transformation. 398,142 works.</p></div><div class="otile "><p class="oname">4 &middot; The intersection</p><p class="oval">Works that carry a topic from both sets: 5,143 works. This is the literature JDSE is named for.</p></div><div class="otile "><p class="oname">5 &middot; Themes</p><p class="oval">OpenAlex keywords within the sustainable-finance topic, 2015&ndash;2018 against 2023&ndash;2026, as shares of the topic&rsquo;s output.</p></div><div class="otile note"><p class="oname">6 &middot; Cross-check</p><p class="oval">Scopus Search API, a phrase set (sustainable finance, green finance, green bonds, climate finance, ESG investing, transition risk, carbon pricing, green credit), counts by year, world and Indonesia.</p></div></div>
+<div class="ogrid stella3"><div class="otile "><p class="oname">1 &middot; Corpus</p><p class="oval">OpenAlex works, 2010&ndash;2026, articles and reviews. No keyword matching: papers are selected by the topic OpenAlex assigns to every work (the same taxonomy SCImago uses).</p></div><div class="otile "><p class="oname">2 &middot; Six sustainable topics</p><p class="oval">Sustainable finance and green bonds; climate-change policy and economics; sustainability and climate governance; sustainable development and environmental policy, and management; CSR and ESG reporting. 543,190 works carry at least one of them; 181,067 have one as primary topic, 2016&ndash;2026.</p></div><div class="otile "><p class="oname">3 &middot; Five digital topics</p><p class="oval">FinTech, crowdfunding and digital finance; digital transformation in financial services; microfinance and financial inclusion; blockchain; digital economy and transformation. 398,142 works.</p></div><div class="otile "><p class="oname">4 &middot; The intersection</p><p class="oval">Works that carry a topic from both sets: 5,143 works. This is the literature JDSE is named for.</p></div><div class="otile "><p class="oname">5 &middot; Themes</p><p class="oval">OpenAlex keywords within the sustainable-finance topic, 2015&ndash;2018 against 2023&ndash;2026, as shares of the topic&rsquo;s output.</p></div><div class="otile note"><p class="oname">6 &middot; Four lenses</p><p class="oval">Every journal matched by ISSN to the Scopus Source List of September 2026 and to SCImago 2025. Each result is reported for all OpenAlex journals, all Scopus-listed journals, Scopus excluding discontinued titles, and Scopus Q1 excluding discontinued titles.</p></div></div>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex topic IDs: T13146, T10471, T10119, T12013, T12883, T10115 (sustainable); T11995, T13346, T10987, T10270, T12958 (digital). Filter-only queries with server-side group_by; no text search.</div></details>
+</section></div></div></section>
+<section class="row-single" aria-label="Four lenses"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
+<p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
+<h2>Four lenses on the same literature: all journals, and three Scopus filters</h2>
+<div class="dtable-wrap"><table class="dtable meals tiers"><thead><tr><th>Works 2016&ndash;2026</th><th>All OpenAlex journals</th><th>Scopus, all listed</th><th>Scopus, excl. discontinued</th><th>Scopus Q1, excl. discontinued</th></tr></thead><tbody><tr><td><b>Six sustainable topics (primary topic)</b></td><td>150,706</td><td>75,026 <span class='ns'>50%</span></td><td>71,447 <span class='ns'>47%</span></td><td>49,780 <span class='ns'>33%</span></td></tr><tr><td><b>Sustainable finance and green bonds</b></td><td>19,890</td><td>9,653 <span class='ns'>49%</span></td><td>9,095 <span class='ns'>46%</span></td><td>6,095 <span class='ns'>31%</span></td></tr><tr><td><b>Digital &times; sustainable intersection</b></td><td>4,640</td><td>2,757 <span class='ns'>59%</span></td><td>2,604 <span class='ns'>56%</span></td><td>1,977 <span class='ns'>43%</span></td></tr><tr><td><b>Six topics, an ASEAN-6 author</b></td><td>19,585</td><td>5,081 <span class='ns'>26%</span></td><td>4,418 <span class='ns'>23%</span></td><td>2,637 <span class='ns'>13%</span></td></tr><tr><td><b>Six topics, an Indonesian author</b></td><td>14,291</td><td>1,521 <span class='ns'>11%</span></td><td>1,186 <span class='ns'>8%</span></td><td>542 <span class='ns'>4%</span></td></tr><tr><td><b>Indonesian author, excl. CSR reporting</b></td><td>2,174</td><td>445 <span class='ns'>20%</span></td><td>373 <span class='ns'>17%</span></td><td>223 <span class='ns'>10%</span></td></tr></tbody></table></div><div class="cards three"><div class="card"><div class="big">4 lenses</div><div class="small">every result is computed four times</div><div class="note">each lens is a subset of the one before</div></div><div class="card"><div class="big">33%</div><div class="small">of the world&rsquo;s sustainable-topic papers are in Scopus Q1 journals</div><div class="note">47% are in a Scopus journal that was not discontinued</div></div><div class="card"><div class="big">4%</div><div class="small">of Indonesia&rsquo;s are in Scopus Q1</div><div class="note">8% in a Scopus journal that was not discontinued</div></div></div><p class="tnote">All OpenAlex journals: every source OpenAlex types as a journal; repositories, preprint servers and works without a source are excluded. Scopus, all listed: ISSN or EISSN on the official Scopus Source List, September 2026, including its discontinued titles. Scopus, excl. discontinued: listed and not discontinued by Scopus (active and inactive titles both kept). Scopus Q1, excl. discontinued: the same, and SCImago 2025 best quartile Q1. Matching is by ISSN.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Per-work OpenAlex downloads (248,756 sustainable-topic works and 398,142 digital-topic works, 2010-2026), each journal matched by ISSN to the Scopus Source List, September 2026, and to SCImago 2025 quartiles. Counts are works 2016-2026.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 1 growth"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
-<h2>Figure 1 &middot; The field is growing at its finance end, and fastest where digital meets sustainable</h2>
-<svg class="ds-chart" viewBox="0 0 1180 440" role="img" aria-label="Papers per year, index 2015 = 100 (2026 omitted: partial year)">
-<text x="70" y="22" class="ph">Papers per year, index 2015 = 100 (2026 omitted: partial year)</text>
-<line x1="70" y1="394.0" x2="860" y2="394.0" class="g"/><text x="60" y="399.0" class="ax end">0</text>
-<line x1="70" y1="349.8" x2="860" y2="349.8" class="g"/><text x="60" y="354.8" class="ax end">500</text>
-<line x1="70" y1="305.5" x2="860" y2="305.5" class="g"/><text x="60" y="310.5" class="ax end">1,000</text>
-<line x1="70" y1="261.2" x2="860" y2="261.2" class="g"/><text x="60" y="266.2" class="ax end">1,500</text>
-<line x1="70" y1="217.0" x2="860" y2="217.0" class="g"/><text x="60" y="222.0" class="ax end">2,000</text>
-<line x1="70" y1="172.8" x2="860" y2="172.8" class="g"/><text x="60" y="177.8" class="ax end">2,500</text>
-<line x1="70" y1="128.5" x2="860" y2="128.5" class="g"/><text x="60" y="133.5" class="ax end">3,000</text>
-<line x1="70" y1="84.2" x2="860" y2="84.2" class="g"/><text x="60" y="89.2" class="ax end">3,500</text>
-<text x="70.0" y="420" class="ax mid">2012</text>
-<text x="250.0" y="420" class="ax mid">2015</text>
-<text x="430.0" y="420" class="ax mid">2018</text>
-<text x="610.0" y="420" class="ax mid">2021</text>
-<text x="850.0" y="420" class="ax mid">2025</text>
-<path d="M70.0,386.9 L130.0,385.3 L190.0,385.8 L250.0,385.1 L310.0,385.3 L370.0,384.7 L430.0,382.8 L490.0,376.9 L550.0,369.5 L610.0,362.8 L670.0,358.7 L730.0,342.8 L790.0,321.7 L850.0,290.1" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M70.0,389.7 L130.0,387.3 L190.0,385.4 L250.0,385.1 L310.0,385.4 L370.0,384.1 L430.0,378.2 L490.0,372.8 L550.0,371.5 L610.0,360.3 L670.0,329.5 L730.0,269.0 L790.0,208.2 L850.0,74.8" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M70.0,388.7 L130.0,387.9 L190.0,386.3 L250.0,385.1 L310.0,385.3 L370.0,384.9 L430.0,381.9 L490.0,378.9 L550.0,376.8 L610.0,376.3 L670.0,374.8 L730.0,370.2 L790.0,364.1 L850.0,352.4" fill="none" stroke="var(--c1)" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M70.0,385.0 L130.0,385.3 L190.0,385.5 L250.0,385.1 L310.0,385.7 L370.0,386.3 L430.0,386.1 L490.0,385.4 L550.0,384.7 L610.0,384.2 L670.0,385.1 L730.0,383.6 L790.0,381.6 L850.0,378.1" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
-<text x="860.0" y="79.8" class="lab" fill="var(--c9)" font-weight="700">Digital &times; sustainable (both topics)</text>
-<text x="860.0" y="295.1" class="lab" fill="var(--c8)" font-weight="700">Sustainable finance and green bonds</text>
-<text x="860.0" y="357.4" class="lab" fill="var(--c1)">Digital finance set</text>
-<text x="860.0" y="383.1" class="lab" fill="var(--muted)">Sustainable set, excl. CSR reporting</text>
-</svg><div class="cards three"><div class="card"><div class="big">12x</div><div class="small">sustainable finance and green bonds, 2015 to 2025</div><div class="note">444 to 5,215 papers a year</div></div><div class="card"><div class="big">36x</div><div class="small">digital &times; sustainable, 2015 to 2025</div><div class="note">41 to 1,479 papers a year</div></div><div class="card"><div class="big">47x</div><div class="small">Scopus cross-check, same decade</div><div class="note">118 to 5,576 papers with the phrases in title, abstract or keywords</div></div></div><p class="reveal">The wider sustainability literature grew by half in a decade. Sustainable finance grew twelve times, and the digital-sustainable overlap thirty-six times. The growth is at the finance end, and at the intersection.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex works by publication year, primary topic (sustainable finance; sustainable set) or any topic (digital set; intersection). 2026 is a partial year and is not plotted. Scopus: TITLE-ABS-KEY phrase set, articles and reviews.</div></details>
+<h2>Figure 1 &middot; The finance end and the intersection grow fastest under every lens</h2>
+<div class="tlegend"><span><i style="background:var(--baseline)"></i>All OpenAlex journals</span><span><i style="background:var(--muted)"></i>Scopus, all listed</span><span><i style="background:var(--c9)"></i>Scopus, excl. discontinued</span><span><i style="background:var(--c8)"></i>Scopus Q1, excl. discontinued</span></div><div class="two"><svg class="ds-chart" viewBox="0 0 620 380" role="img" aria-label="Sustainable finance and green bonds, papers per year">
+<text x="70" y="22" class="ph">Sustainable finance and green bonds, papers per year</text>
+<line x1="70" y1="334.0" x2="600" y2="334.0" class="g"/><text x="60" y="339.0" class="ax end">0</text>
+<line x1="70" y1="260.5" x2="600" y2="260.5" class="g"/><text x="60" y="265.5" class="ax end">1,500</text>
+<line x1="70" y1="187.0" x2="600" y2="187.0" class="g"/><text x="60" y="192.0" class="ax end">3,000</text>
+<line x1="70" y1="113.5" x2="600" y2="113.5" class="g"/><text x="60" y="118.5" class="ax end">4,500</text>
+<line x1="70" y1="40.0" x2="600" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">6,000</text>
+<text x="70.0" y="360" class="ax mid">2010</text>
+<text x="243.3" y="360" class="ax mid">2015</text>
+<text x="416.7" y="360" class="ax mid">2020</text>
+<text x="590.0" y="360" class="ax mid">2025</text>
+<path d="M70.0,323.1 L104.7,322.3 L139.3,322.6 L174.0,321.8 L208.7,321.6 L243.3,321.9 L278.0,322.1 L312.7,321.1 L347.3,317.7 L382.0,306.2 L416.7,289.2 L451.3,270.8 L486.0,253.6 L520.7,216.8 L555.3,165.7 L590.0,102.7" fill="none" stroke="var(--baseline)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,332.8 L104.7,331.3 L139.3,331.0 L174.0,330.9 L208.7,330.1 L243.3,331.3 L278.0,330.4 L312.7,329.1 L347.3,327.3 L382.0,323.7 L416.7,315.7 L451.3,304.5 L486.0,289.7 L520.7,271.6 L555.3,247.7 L590.0,223.0" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,332.9 L104.7,331.4 L139.3,331.2 L174.0,331.2 L208.7,330.7 L243.3,331.5 L278.0,330.6 L312.7,329.4 L347.3,327.6 L382.0,323.9 L416.7,316.8 L451.3,305.7 L486.0,291.4 L520.7,274.4 L555.3,255.0 L590.0,231.9" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,333.4 L104.7,332.6 L139.3,332.3 L174.0,332.1 L208.7,332.2 L243.3,332.3 L278.0,332.1 L312.7,331.2 L347.3,329.8 L382.0,327.4 L416.7,324.0 L451.3,315.1 L486.0,304.7 L520.7,292.2 L555.3,280.9 L590.0,263.9" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
+</svg><svg class="ds-chart" viewBox="0 0 620 380" role="img" aria-label="Digital &amp;times; sustainable intersection, papers per year">
+<text x="70" y="22" class="ph">Digital &times; sustainable intersection, papers per year</text>
+<line x1="70" y1="334.0" x2="600" y2="334.0" class="g"/><text x="60" y="339.0" class="ax end">0</text>
+<line x1="70" y1="260.5" x2="600" y2="260.5" class="g"/><text x="60" y="265.5" class="ax end">400</text>
+<line x1="70" y1="187.0" x2="600" y2="187.0" class="g"/><text x="60" y="192.0" class="ax end">800</text>
+<line x1="70" y1="113.5" x2="600" y2="113.5" class="g"/><text x="60" y="118.5" class="ax end">1,200</text>
+<line x1="70" y1="40.0" x2="600" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">1,600</text>
+<text x="70.0" y="360" class="ax mid">2010</text>
+<text x="243.3" y="360" class="ax mid">2015</text>
+<text x="416.7" y="360" class="ax mid">2020</text>
+<text x="590.0" y="360" class="ax mid">2025</text>
+<path d="M70.0,333.4 L104.7,332.0 L139.3,331.8 L174.0,330.5 L208.7,330.9 L243.3,329.4 L278.0,329.8 L312.7,328.9 L347.3,324.4 L382.0,322.6 L416.7,317.5 L451.3,308.8 L486.0,281.1 L520.7,232.4 L555.3,180.9 L590.0,77.1" fill="none" stroke="var(--baseline)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,334.0 L104.7,333.6 L139.3,333.1 L174.0,333.1 L208.7,332.9 L243.3,332.0 L278.0,332.5 L312.7,331.8 L347.3,330.5 L382.0,328.3 L416.7,324.8 L451.3,320.0 L486.0,298.0 L520.7,265.1 L555.3,233.9 L590.0,189.0" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,334.0 L104.7,333.8 L139.3,333.3 L174.0,333.1 L208.7,332.9 L243.3,332.7 L278.0,332.9 L312.7,332.2 L347.3,330.9 L382.0,329.0 L416.7,325.4 L451.3,320.8 L486.0,298.4 L520.7,267.9 L555.3,239.6 L590.0,199.5" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,334.0 L104.7,333.8 L139.3,333.6 L174.0,333.3 L208.7,333.4 L243.3,333.3 L278.0,333.3 L312.7,332.7 L347.3,332.3 L382.0,330.7 L416.7,328.5 L451.3,324.3 L486.0,306.4 L520.7,276.1 L555.3,258.8 L590.0,233.5" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
+</svg></div><div class="dtable-wrap"><table class="dtable meals tiers"><thead><tr><th>Growth 2015 to 2025</th><th>All OpenAlex journals</th><th>Scopus, all listed</th><th>Scopus, excl. discontinued</th><th>Scopus Q1, excl. discontinued</th></tr></thead><tbody><tr><td>Sustainable finance and green bonds</td><td>19&times;</td><td>41&times;</td><td>41&times;</td><td>42&times;</td></tr><tr><td>Digital &times; sustainable intersection</td><td>56&times;</td><td>72&times;</td><td>105&times;</td><td>137&times;</td></tr><tr><td>Digital finance set</td><td>6&times;</td><td>11&times;</td><td>11&times;</td><td>16&times;</td></tr><tr><td>Sustainable set excl. CSR reporting</td><td>2&times;</td><td>3&times;</td><td>2&times;</td><td>3&times;</td></tr><tr><td>All six sustainable topics</td><td>3&times;</td><td>3&times;</td><td>3&times;</td><td>3&times;</td></tr></tbody></table></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Per-work OpenAlex data by publication year and journal tier. 2026 is partial and not plotted. Growth = papers in 2025 divided by papers in 2015.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 2 themes"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
-<h2>Figure 2 &middot; The themes moved from climate finance to climate risk, from public money to firms, banks and ratings</h2>
-<svg class="ds-chart" viewBox="0 0 1180 526" role="img" aria-label="Share of papers in the sustainable-finance topic carrying the keyword, %">
-<text x="10" y="22" class="ph">Share of papers in the sustainable-finance topic carrying the keyword, %</text>
-<line x1="250.0" y1="42" x2="250.0" y2="492" class="g"/><text x="250.0" y="514" class="ax mid">0%</text>
-<line x1="462.5" y1="42" x2="462.5" y2="492" class="g"/><text x="462.5" y="514" class="ax mid">10%</text>
-<line x1="675.0" y1="42" x2="675.0" y2="492" class="g"/><text x="675.0" y="514" class="ax mid">20%</text>
-<line x1="887.5" y1="42" x2="887.5" y2="492" class="g"/><text x="887.5" y="514" class="ax mid">30%</text>
-<line x1="1100.0" y1="42" x2="1100.0" y2="492" class="g"/><text x="1100.0" y="514" class="ax mid">40%</text>
-<text x="238" y="68.5" class="lab end" fill="var(--text-primary)">green finance</text>
-<rect x="250.0" y="53" width="459.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="63.5" width="762.9" height="9.5" fill="var(--c8)"/>
-<text x="715.0" y="62.5" class="ax" fill="var(--muted)">22</text><text x="1018.9" y="75.0" class="ax" font-weight="700" fill="var(--c8)">36</text>
-<text x="238" y="95.5" class="lab end" fill="var(--text-primary)">green bonds</text>
-<rect x="250.0" y="80" width="233.8" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="90.5" width="435.6" height="9.5" fill="var(--c8)"/>
-<text x="489.8" y="89.5" class="ax" fill="var(--muted)">11</text><text x="691.6" y="102.0" class="ax" font-weight="700" fill="var(--c8)">20</text>
-<text x="238" y="122.5" class="lab end" fill="var(--text-primary)">sustainable finance</text>
-<rect x="250.0" y="107" width="286.9" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="117.5" width="384.6" height="9.5" fill="var(--c8)"/>
-<text x="542.9" y="116.5" class="ax" fill="var(--muted)">14</text><text x="640.6" y="129.0" class="ax" font-weight="700" fill="var(--c8)">18</text>
-<text x="238" y="149.5" class="lab end" fill="var(--text-primary)">climate finance</text>
-<rect x="250.0" y="134" width="363.4" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="144.5" width="136.0" height="9.5" fill="var(--c8)"/>
-<text x="619.4" y="143.5" class="ax" fill="var(--muted)">17</text><text x="392.0" y="156.0" class="ax" font-weight="700" fill="var(--c8)">6</text>
-<text x="238" y="176.5" class="lab end" fill="var(--text-primary)">climate change mitigation</text>
-<rect x="250.0" y="161" width="163.6" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="171.5" width="76.5" height="9.5" fill="var(--c8)"/>
-<text x="419.6" y="170.5" class="ax" fill="var(--muted)">8</text><text x="332.5" y="183.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
-<text x="238" y="203.5" class="lab end" fill="var(--text-primary)">green banking</text>
-<rect x="250.0" y="188" width="150.9" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="198.5" width="102.0" height="9.5" fill="var(--c8)"/>
-<text x="406.9" y="197.5" class="ax" fill="var(--muted)">7</text><text x="358.0" y="210.0" class="ax" font-weight="700" fill="var(--c8)">5</text>
-<text x="238" y="230.5" class="lab end" fill="var(--text-primary)">climate risk</text>
-<rect x="250.0" y="215" width="76.5" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="225.5" width="142.4" height="9.5" fill="var(--c8)"/>
-<text x="332.5" y="224.5" class="ax" fill="var(--muted)">4</text><text x="398.4" y="237.0" class="ax" font-weight="700" fill="var(--c8)">7</text>
-<text x="238" y="257.5" class="lab end" fill="var(--text-primary)">transition risk</text>
-<rect x="250.0" y="242" width="1.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="252.5" width="70.1" height="9.5" fill="var(--c8)"/>
-<text x="256.0" y="251.5" class="ax" fill="var(--muted)">0</text><text x="326.1" y="264.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
-<text x="238" y="284.5" class="lab end" fill="var(--text-primary)">greenwashing</text>
-<rect x="250.0" y="269" width="14.9" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="279.5" width="93.5" height="9.5" fill="var(--c8)"/>
-<text x="270.9" y="278.5" class="ax" fill="var(--muted)">1</text><text x="349.5" y="291.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
-<text x="238" y="311.5" class="lab end" fill="var(--text-primary)">ESG ratings</text>
-<rect x="250.0" y="296" width="1.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="306.5" width="65.9" height="9.5" fill="var(--c8)"/>
-<text x="256.0" y="305.5" class="ax" fill="var(--muted)">0</text><text x="321.9" y="318.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
-<text x="238" y="338.5" class="lab end" fill="var(--text-primary)">green credit</text>
-<rect x="250.0" y="323" width="34.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="333.5" width="74.4" height="9.5" fill="var(--c8)"/>
-<text x="290.0" y="332.5" class="ax" fill="var(--muted)">2</text><text x="330.4" y="345.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
-<text x="238" y="365.5" class="lab end" fill="var(--text-primary)">financial stability</text>
-<rect x="250.0" y="350" width="29.8" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="360.5" width="65.9" height="9.5" fill="var(--c8)"/>
-<text x="285.8" y="359.5" class="ax" fill="var(--muted)">1</text><text x="321.9" y="372.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
-<text x="238" y="392.5" class="lab end" fill="var(--text-primary)">emerging markets</text>
-<rect x="250.0" y="377" width="25.5" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="387.5" width="76.5" height="9.5" fill="var(--c8)"/>
-<text x="281.5" y="386.5" class="ax" fill="var(--muted)">1</text><text x="332.5" y="399.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
-<text x="238" y="419.5" class="lab end" fill="var(--text-primary)">China</text>
-<rect x="250.0" y="404" width="48.9" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="414.5" width="142.4" height="9.5" fill="var(--c8)"/>
-<text x="304.9" y="413.5" class="ax" fill="var(--muted)">2</text><text x="398.4" y="426.0" class="ax" font-weight="700" fill="var(--c8)">7</text>
-<text x="238" y="446.5" class="lab end" fill="var(--text-primary)">environmental regulation</text>
-<rect x="250.0" y="431" width="17.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="441.5" width="63.8" height="9.5" fill="var(--c8)"/>
-<text x="273.0" y="440.5" class="ax" fill="var(--muted)">1</text><text x="319.8" y="453.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
-<text x="238" y="473.5" class="lab end" fill="var(--text-primary)">green innovation</text>
-<rect x="250.0" y="458" width="1.0" height="9.5" fill="var(--baseline)"/>
-<rect x="250.0" y="468.5" width="99.9" height="9.5" fill="var(--c8)"/>
-<text x="256.0" y="467.5" class="ax" fill="var(--muted)">0</text><text x="355.9" y="480.0" class="ax" font-weight="700" fill="var(--c8)">5</text>
-<rect x="870" y="20" width="12" height="12" fill="var(--baseline)"/><text x="886" y="30" class="ax">2015&ndash;2018</text><rect x="990" y="20" width="12" height="12" fill="var(--c8)"/><text x="1006" y="30" class="ax">2023&ndash;2026</text>
-</svg><div class="ogrid stella3"><div class="otile "><p class="oname">Fading</p><p class="oval">Climate finance (17% to 6%) and climate-change mitigation (8% to 4%): the public-finance and NDC framing of the 2015 Paris years has given way to markets and firms.</p></div><div class="otile bad"><p class="oname">Rising</p><p class="oval">Climate risk (4% to 7%), transition risk and ESG ratings (from nothing), greenwashing (1% to 4%), green credit (2% to 4%), financial stability (1% to 3%): the central-bank and supervisory agenda is now inside the topic.</p></div><div class="otile note"><p class="oname">Geography</p><p class="oval">China rose from 2% to 7% of the topic; emerging markets from 1% to 4%. The empirical centre of the field moved east and south.</p></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex keywords on works whose primary topic is Sustainable finance and green bonds: 1,908 works in 2015-2018, 16,265 in 2023-2026. A work can carry several keywords. Keyword assignment is less complete for older works, so early shares are lower bounds.</div></details>
+<h2>Figure 2 &middot; The themes moved from climate finance to climate risk, and the Q1 journals moved furthest</h2>
+<div class="two"><svg class="ds-chart" viewBox="0 0 580 419" role="img" aria-label="All OpenAlex journals (n = 1,084 and 14,640)">
+<text x="10" y="22" class="ph">All OpenAlex journals (n = 1,084 and 14,640)</text>
+<line x1="190.0" y1="42" x2="190.0" y2="385" class="g"/><text x="190.0" y="407" class="ax mid">0%</text>
+<line x1="277.5" y1="42" x2="277.5" y2="385" class="g"/><text x="277.5" y="407" class="ax mid">10%</text>
+<line x1="365.0" y1="42" x2="365.0" y2="385" class="g"/><text x="365.0" y="407" class="ax mid">20%</text>
+<line x1="452.5" y1="42" x2="452.5" y2="385" class="g"/><text x="452.5" y="407" class="ax mid">30%</text>
+<line x1="540.0" y1="42" x2="540.0" y2="385" class="g"/><text x="540.0" y="407" class="ax mid">40%</text>
+<text x="178" y="67.5" class="lab end" fill="var(--text-primary)">green finance</text>
+<rect x="190.0" y="53" width="201.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="62.5" width="312.4" height="8.5" fill="var(--c8)"/>
+<text x="397.2" y="61.5" class="ax" fill="var(--muted)">23</text><text x="508.4" y="73.0" class="ax" font-weight="700" fill="var(--c8)">36</text>
+<text x="178" y="92.5" class="lab end" fill="var(--text-primary)">green bonds</text>
+<rect x="190.0" y="78" width="96.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="87.5" width="176.8" height="8.5" fill="var(--c8)"/>
+<text x="292.2" y="86.5" class="ax" fill="var(--muted)">11</text><text x="372.8" y="98.0" class="ax" font-weight="700" fill="var(--c8)">20</text>
+<text x="178" y="117.5" class="lab end" fill="var(--text-primary)">sustainable finance</text>
+<rect x="190.0" y="103" width="102.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="112.5" width="154.0" height="8.5" fill="var(--c8)"/>
+<text x="298.4" y="111.5" class="ax" fill="var(--muted)">12</text><text x="350.0" y="123.0" class="ax" font-weight="700" fill="var(--c8)">18</text>
+<text x="178" y="142.5" class="lab end" fill="var(--text-primary)">climate finance</text>
+<rect x="190.0" y="128" width="88.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="137.5" width="52.5" height="8.5" fill="var(--c8)"/>
+<text x="284.4" y="136.5" class="ax" fill="var(--muted)">10</text><text x="248.5" y="148.0" class="ax" font-weight="700" fill="var(--c8)">6</text>
+<text x="178" y="167.5" class="lab end" fill="var(--text-primary)">climate mitigation</text>
+<rect x="190.0" y="153" width="48.1" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="162.5" width="30.6" height="8.5" fill="var(--c8)"/>
+<text x="244.1" y="161.5" class="ax" fill="var(--muted)">6</text><text x="226.6" y="173.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="192.5" class="lab end" fill="var(--text-primary)">climate risk</text>
+<rect x="190.0" y="178" width="32.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="187.5" width="59.5" height="8.5" fill="var(--c8)"/>
+<text x="228.4" y="186.5" class="ax" fill="var(--muted)">4</text><text x="255.5" y="198.0" class="ax" font-weight="700" fill="var(--c8)">7</text>
+<text x="178" y="217.5" class="lab end" fill="var(--text-primary)">transition risk</text>
+<rect x="190.0" y="203" width="4.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="212.5" width="30.6" height="8.5" fill="var(--c8)"/>
+<text x="200.4" y="211.5" class="ax" fill="var(--muted)">0</text><text x="226.6" y="223.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="242.5" class="lab end" fill="var(--text-primary)">greenwashing</text>
+<rect x="190.0" y="228" width="5.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="237.5" width="38.5" height="8.5" fill="var(--c8)"/>
+<text x="201.2" y="236.5" class="ax" fill="var(--muted)">1</text><text x="234.5" y="248.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="267.5" class="lab end" fill="var(--text-primary)">ESG ratings</text>
+<rect x="190.0" y="253" width="3.5" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="262.5" width="28.0" height="8.5" fill="var(--c8)"/>
+<text x="199.5" y="261.5" class="ax" fill="var(--muted)">0</text><text x="224.0" y="273.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
+<text x="178" y="292.5" class="lab end" fill="var(--text-primary)">green credit</text>
+<rect x="190.0" y="278" width="21.9" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="287.5" width="32.4" height="8.5" fill="var(--c8)"/>
+<text x="217.9" y="286.5" class="ax" fill="var(--muted)">2</text><text x="228.4" y="298.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="317.5" class="lab end" fill="var(--text-primary)">financial stability</text>
+<rect x="190.0" y="303" width="11.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="312.5" width="27.1" height="8.5" fill="var(--c8)"/>
+<text x="207.4" y="311.5" class="ax" fill="var(--muted)">1</text><text x="223.1" y="323.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
+<text x="178" y="342.5" class="lab end" fill="var(--text-primary)">emerging markets</text>
+<rect x="190.0" y="328" width="7.9" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="337.5" width="31.5" height="8.5" fill="var(--c8)"/>
+<text x="203.9" y="336.5" class="ax" fill="var(--muted)">1</text><text x="227.5" y="348.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="367.5" class="lab end" fill="var(--text-primary)">China</text>
+<rect x="190.0" y="353" width="25.4" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="362.5" width="63.9" height="8.5" fill="var(--c8)"/>
+<text x="221.4" y="361.5" class="ax" fill="var(--muted)">3</text><text x="259.9" y="373.0" class="ax" font-weight="700" fill="var(--c8)">7</text>
+<rect x="310" y="20" width="12" height="12" fill="var(--baseline)"/><text x="326" y="30" class="ax">2015&ndash;2018</text><rect x="430" y="20" width="12" height="12" fill="var(--c8)"/><text x="446" y="30" class="ax">2023&ndash;2026</text>
+</svg><svg class="ds-chart" viewBox="0 0 580 419" role="img" aria-label="Scopus Q1, excl. discontinued (n = 217 and 4,589)">
+<text x="10" y="22" class="ph">Scopus Q1, excl. discontinued (n = 217 and 4,589)</text>
+<line x1="190.0" y1="42" x2="190.0" y2="385" class="g"/><text x="190.0" y="407" class="ax mid">0%</text>
+<line x1="277.5" y1="42" x2="277.5" y2="385" class="g"/><text x="277.5" y="407" class="ax mid">10%</text>
+<line x1="365.0" y1="42" x2="365.0" y2="385" class="g"/><text x="365.0" y="407" class="ax mid">20%</text>
+<line x1="452.5" y1="42" x2="452.5" y2="385" class="g"/><text x="452.5" y="407" class="ax mid">30%</text>
+<line x1="540.0" y1="42" x2="540.0" y2="385" class="g"/><text x="540.0" y="407" class="ax mid">40%</text>
+<text x="178" y="67.5" class="lab end" fill="var(--text-primary)">green finance</text>
+<rect x="190.0" y="53" width="84.9" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="62.5" width="274.8" height="8.5" fill="var(--c8)"/>
+<text x="280.9" y="61.5" class="ax" fill="var(--muted)">10</text><text x="470.8" y="73.0" class="ax" font-weight="700" fill="var(--c8)">31</text>
+<text x="178" y="92.5" class="lab end" fill="var(--text-primary)">green bonds</text>
+<rect x="190.0" y="78" width="100.6" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="87.5" width="135.6" height="8.5" fill="var(--c8)"/>
+<text x="296.6" y="86.5" class="ax" fill="var(--muted)">12</text><text x="331.6" y="98.0" class="ax" font-weight="700" fill="var(--c8)">16</text>
+<text x="178" y="117.5" class="lab end" fill="var(--text-primary)">sustainable finance</text>
+<rect x="190.0" y="103" width="64.8" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="112.5" width="90.1" height="8.5" fill="var(--c8)"/>
+<text x="260.8" y="111.5" class="ax" fill="var(--muted)">7</text><text x="286.1" y="123.0" class="ax" font-weight="700" fill="var(--c8)">10</text>
+<text x="178" y="142.5" class="lab end" fill="var(--text-primary)">climate finance</text>
+<rect x="190.0" y="128" width="105.0" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="137.5" width="42.9" height="8.5" fill="var(--c8)"/>
+<text x="301.0" y="136.5" class="ax" fill="var(--muted)">12</text><text x="238.9" y="148.0" class="ax" font-weight="700" fill="var(--c8)">5</text>
+<text x="178" y="167.5" class="lab end" fill="var(--text-primary)">climate mitigation</text>
+<rect x="190.0" y="153" width="64.8" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="162.5" width="21.0" height="8.5" fill="var(--c8)"/>
+<text x="260.8" y="161.5" class="ax" fill="var(--muted)">7</text><text x="217.0" y="173.0" class="ax" font-weight="700" fill="var(--c8)">2</text>
+<text x="178" y="192.5" class="lab end" fill="var(--text-primary)">climate risk</text>
+<rect x="190.0" y="178" width="68.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="187.5" width="82.2" height="8.5" fill="var(--c8)"/>
+<text x="264.2" y="186.5" class="ax" fill="var(--muted)">8</text><text x="278.2" y="198.0" class="ax" font-weight="700" fill="var(--c8)">9</text>
+<text x="178" y="217.5" class="lab end" fill="var(--text-primary)">transition risk</text>
+<rect x="190.0" y="203" width="12.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="212.5" width="45.5" height="8.5" fill="var(--c8)"/>
+<text x="208.2" y="211.5" class="ax" fill="var(--muted)">1</text><text x="241.5" y="223.0" class="ax" font-weight="700" fill="var(--c8)">5</text>
+<text x="178" y="242.5" class="lab end" fill="var(--text-primary)">greenwashing</text>
+<rect x="190.0" y="228" width="12.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="237.5" width="34.1" height="8.5" fill="var(--c8)"/>
+<text x="208.2" y="236.5" class="ax" fill="var(--muted)">1</text><text x="230.1" y="248.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="267.5" class="lab end" fill="var(--text-primary)">ESG ratings</text>
+<rect x="190.0" y="253" width="1.0" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="262.5" width="28.0" height="8.5" fill="var(--c8)"/>
+<text x="196.0" y="261.5" class="ax" fill="var(--muted)">0</text><text x="224.0" y="273.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
+<text x="178" y="292.5" class="lab end" fill="var(--text-primary)">green credit</text>
+<rect x="190.0" y="278" width="12.2" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="287.5" width="31.5" height="8.5" fill="var(--c8)"/>
+<text x="208.2" y="286.5" class="ax" fill="var(--muted)">1</text><text x="227.5" y="298.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="317.5" class="lab end" fill="var(--text-primary)">financial stability</text>
+<rect x="190.0" y="303" width="20.1" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="312.5" width="30.6" height="8.5" fill="var(--c8)"/>
+<text x="216.1" y="311.5" class="ax" fill="var(--muted)">2</text><text x="226.6" y="323.0" class="ax" font-weight="700" fill="var(--c8)">4</text>
+<text x="178" y="342.5" class="lab end" fill="var(--text-primary)">emerging markets</text>
+<rect x="190.0" y="328" width="15.8" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="337.5" width="25.4" height="8.5" fill="var(--c8)"/>
+<text x="211.8" y="336.5" class="ax" fill="var(--muted)">2</text><text x="221.4" y="348.0" class="ax" font-weight="700" fill="var(--c8)">3</text>
+<text x="178" y="367.5" class="lab end" fill="var(--text-primary)">China</text>
+<rect x="190.0" y="353" width="24.5" height="8.5" fill="var(--baseline)"/>
+<rect x="190.0" y="362.5" width="122.5" height="8.5" fill="var(--c8)"/>
+<text x="220.5" y="361.5" class="ax" fill="var(--muted)">3</text><text x="318.5" y="373.0" class="ax" font-weight="700" fill="var(--c8)">14</text>
+<rect x="310" y="20" width="12" height="12" fill="var(--baseline)"/><text x="326" y="30" class="ax">2015&ndash;2018</text><rect x="430" y="20" width="12" height="12" fill="var(--c8)"/><text x="446" y="30" class="ax">2023&ndash;2026</text>
+</svg></div><div class="ogrid stella3"><div class="otile "><p class="oname">Same direction under both lenses</p><p class="oval">Climate finance falls (10% to 6% in all journals; 12% to 5% in Q1). Climate risk, transition risk, ESG ratings and greenwashing rise in both.</p></div><div class="otile bad"><p class="oname">Q1 is more about risk and markets</p><p class="oval">In Q1 journals climate risk is 9% of recent papers, against 7% overall; financial stability 4% against 3%.</p></div><div class="otile note"><p class="oname">Q1 is less about green finance as a label</p><p class="oval">Green finance carries 36% of recent papers overall but 31% in Q1: the label is most common where the review bar is lowest.</p></div></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex keywords on works whose primary topic is Sustainable finance and green bonds, share of works carrying the keyword, 2015-2018 against 2023-2026, by journal tier. Keyword assignment is thinner for older works.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 3 intersection"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
-<h2>Figure 3 &middot; The digital-sustainable intersection is small, fast and has no home journal</h2>
-<div class="two"><svg class="ds-chart" viewBox="0 0 620 360" role="img" aria-label="Papers per year with both a digital and a sustainable topic">
+<h2>Figure 3 &middot; The digital-sustainable intersection is small, fast and has no home journal, under every lens</h2>
+<div class="tlegend"><span><i style="background:var(--baseline)"></i>All OpenAlex journals</span><span><i style="background:var(--muted)"></i>Scopus, all listed</span><span><i style="background:var(--c9)"></i>Scopus, excl. discontinued</span><span><i style="background:var(--c8)"></i>Scopus Q1, excl. discontinued</span></div><div class="two"><svg class="ds-chart" viewBox="0 0 620 360" role="img" aria-label="Papers per year with both a digital and a sustainable topic">
 <text x="70" y="22" class="ph">Papers per year with both a digital and a sustainable topic</text>
 <line x1="70" y1="314.0" x2="600" y2="314.0" class="g"/><text x="60" y="319.0" class="ax end">0</text>
 <line x1="70" y1="245.5" x2="600" y2="245.5" class="g"/><text x="60" y="250.5" class="ax end">400</text>
 <line x1="70" y1="177.0" x2="600" y2="177.0" class="g"/><text x="60" y="182.0" class="ax end">800</text>
 <line x1="70" y1="108.5" x2="600" y2="108.5" class="g"/><text x="60" y="113.5" class="ax end">1,200</text>
 <line x1="70" y1="40.0" x2="600" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">1,600</text>
-<text x="70.0" y="340" class="ax mid">2012</text>
-<text x="230.0" y="340" class="ax mid">2016</text>
-<text x="390.0" y="340" class="ax mid">2020</text>
+<text x="70.0" y="340" class="ax mid">2010</text>
+<text x="243.3" y="340" class="ax mid">2015</text>
+<text x="416.7" y="340" class="ax mid">2020</text>
 <text x="590.0" y="340" class="ax mid">2025</text>
-<path d="M70.0,310.6 L110.0,308.7 L150.0,307.1 L190.0,307.0 L230.0,307.1 L270.0,306.1 L310.0,301.5 L350.0,297.2 L390.0,296.2 L430.0,287.3 L470.0,262.8 L510.0,214.8 L550.0,166.6 L590.0,60.7" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
-</svg><svg class="ds-chart " viewBox="0 0 560 358" role="img" aria-label="Primary topic of the 5,143 intersection papers">
-<text x="10" y="22" class="ph">Primary topic of the 5,143 intersection papers</text>
-<line x1="280.0" y1="38" x2="280.0" y2="324" class="g"/><text x="280.0" y="346" class="ax mid">0</text>
-<line x1="350.0" y1="38" x2="350.0" y2="324" class="g"/><text x="350.0" y="346" class="ax mid">400</text>
-<line x1="420.0" y1="38" x2="420.0" y2="324" class="g"/><text x="420.0" y="346" class="ax mid">800</text>
-<line x1="490.0" y1="38" x2="490.0" y2="324" class="g"/><text x="490.0" y="346" class="ax mid">1,200</text>
-<text x="268" y="68.0" class="lab end" font-weight="700" fill="var(--c8)">Sustainable finance, green bonds</text><rect x="280.0" y="51" width="193.9" height="24" rx="3" fill="var(--c8)"/>
-<text x="481.9" y="68.0" class="val" font-weight="700" fill="var(--c8)">1,108</text>
-<text x="268" y="102.0" class="lab end" fill="var(--text-primary)">Energy, environment, growth</text><rect x="280.0" y="85" width="158.9" height="24" rx="3" fill="var(--c9)"/>
-<text x="446.9" y="102.0" class="val" fill="var(--text-secondary)">908</text>
-<text x="268" y="136.0" class="lab end" fill="var(--text-primary)">FinTech, digital finance</text><rect x="280.0" y="119" width="109.9" height="24" rx="3" fill="var(--c9)"/>
-<text x="397.9" y="136.0" class="val" fill="var(--text-secondary)">628</text>
-<text x="268" y="170.0" class="lab end" fill="var(--text-primary)">Digital economy</text><rect x="280.0" y="153" width="106.1" height="24" rx="3" fill="var(--c9)"/>
-<text x="394.1" y="170.0" class="val" fill="var(--text-secondary)">606</text>
-<text x="268" y="204.0" class="lab end" fill="var(--text-primary)">CSR and ESG reporting</text><rect x="280.0" y="187" width="76.1" height="24" rx="3" fill="var(--c9)"/>
-<text x="364.1" y="204.0" class="val" fill="var(--text-secondary)">435</text>
-<text x="268" y="238.0" class="lab end" fill="var(--text-primary)">Blockchain</text><rect x="280.0" y="221" width="62.1" height="24" rx="3" fill="var(--c9)"/>
-<text x="350.1" y="238.0" class="val" fill="var(--text-secondary)">355</text>
-<text x="268" y="272.0" class="lab end" fill="var(--text-primary)">Financial inclusion</text><rect x="280.0" y="255" width="33.2" height="24" rx="3" fill="var(--c9)"/>
-<text x="321.2" y="272.0" class="val" fill="var(--text-secondary)">190</text>
-<text x="268" y="306.0" class="lab end" fill="var(--text-primary)">Digital financial services</text><rect x="280.0" y="289" width="33.1" height="24" rx="3" fill="var(--c9)"/>
-<text x="321.1" y="306.0" class="val" fill="var(--text-secondary)">189</text>
-</svg></div><div class="ogrid stella3"><div class="otile "><p class="oname">What it is</p><p class="oval">Green bonds and fintech; digital finance and the energy transition; blockchain for carbon markets and ESG data; financial inclusion and climate resilience. Still only 5,143 papers in sixteen years, 1,479 in 2025.</p></div><div class="otile bad"><p class="oname">Where it goes now</p><p class="oval">Its venues are the generalists: Sustainability, Finance Research Letters, Environmental Science and Pollution Research. No journal is built for it.</p></div><div class="otile note"><p class="oname">What that means</p><p class="oval">The intersection is small, growing at 30&ndash;40% a year, and homeless. That is the definition of a niche a new journal can own.</p></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex works carrying at least one topic from each set, 2010-2026. Venue list from the same query grouped by source.</div></details>
+<path d="M70.0,313.5 L104.7,312.1 L139.3,311.9 L174.0,310.7 L208.7,311.1 L243.3,309.7 L278.0,310.1 L312.7,309.2 L347.3,305.1 L382.0,303.4 L416.7,298.6 L451.3,290.5 L486.0,264.7 L520.7,219.3 L555.3,171.3 L590.0,74.6" fill="none" stroke="var(--baseline)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,314.0 L104.7,313.7 L139.3,313.1 L174.0,313.1 L208.7,313.0 L243.3,312.1 L278.0,312.6 L312.7,311.9 L347.3,310.7 L382.0,308.7 L416.7,305.4 L451.3,301.0 L486.0,280.4 L520.7,249.8 L555.3,220.7 L590.0,178.9" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,314.0 L104.7,313.8 L139.3,313.3 L174.0,313.1 L208.7,313.0 L243.3,312.8 L278.0,313.0 L312.7,312.3 L347.3,311.1 L382.0,309.4 L416.7,306.0 L451.3,301.7 L486.0,280.8 L520.7,252.3 L555.3,226.0 L590.0,188.6" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,314.0 L104.7,313.8 L139.3,313.7 L174.0,313.3 L208.7,313.5 L243.3,313.3 L278.0,313.3 L312.7,312.8 L347.3,312.5 L382.0,310.9 L416.7,308.9 L451.3,304.9 L486.0,288.3 L520.7,260.1 L555.3,244.0 L590.0,220.3" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
+</svg><svg class="ds-chart " viewBox="0 0 560 342" role="img" aria-label="Primary topic of the 1,977 intersection papers in Q1 journals">
+<text x="10" y="22" class="ph">Primary topic of the 1,977 intersection papers in Q1 journals</text>
+<line x1="300.0" y1="38" x2="300.0" y2="308" class="g"/><text x="300.0" y="330" class="ax mid">0</text>
+<line x1="327.1" y1="38" x2="327.1" y2="308" class="g"/><text x="327.1" y="330" class="ax mid">100</text>
+<line x1="354.3" y1="38" x2="354.3" y2="308" class="g"/><text x="354.3" y="330" class="ax mid">200</text>
+<line x1="381.4" y1="38" x2="381.4" y2="308" class="g"/><text x="381.4" y="330" class="ax mid">300</text>
+<text x="288" y="67.0" class="lab end" font-weight="700" fill="var(--c8)">Energy, environment, growth</text><rect x="300.0" y="51" width="173.9" height="22" rx="3" fill="var(--c8)"/>
+<text x="481.9" y="67.0" class="val" font-weight="700" fill="var(--c8)">641</text>
+<text x="288" y="99.0" class="lab end" fill="var(--text-primary)">Sustainable finance, green bonds</text><rect x="300.0" y="83" width="73.0" height="22" rx="3" fill="var(--c9)"/>
+<text x="381.0" y="99.0" class="val" fill="var(--text-secondary)">269</text>
+<text x="288" y="131.0" class="lab end" fill="var(--text-primary)">FinTech, digital finance</text><rect x="300.0" y="115" width="71.6" height="22" rx="3" fill="var(--c9)"/>
+<text x="379.6" y="131.0" class="val" fill="var(--text-secondary)">264</text>
+<text x="288" y="163.0" class="lab end" fill="var(--text-primary)">Digital economy</text><rect x="300.0" y="147" width="64.8" height="22" rx="3" fill="var(--c9)"/>
+<text x="372.8" y="163.0" class="val" fill="var(--text-secondary)">239</text>
+<text x="288" y="195.0" class="lab end" fill="var(--text-primary)">CSR and ESG reporting</text><rect x="300.0" y="179" width="61.3" height="22" rx="3" fill="var(--c9)"/>
+<text x="369.3" y="195.0" class="val" fill="var(--text-secondary)">226</text>
+<text x="288" y="227.0" class="lab end" fill="var(--text-primary)">Blockchain</text><rect x="300.0" y="211" width="30.1" height="22" rx="3" fill="var(--c9)"/>
+<text x="338.1" y="227.0" class="val" fill="var(--text-secondary)">111</text>
+<text x="288" y="259.0" class="lab end" fill="var(--text-primary)">Financial inclusion</text><rect x="300.0" y="243" width="9.5" height="22" rx="3" fill="var(--c9)"/>
+<text x="317.5" y="259.0" class="val" fill="var(--text-secondary)">35</text>
+<text x="288" y="291.0" class="lab end" fill="var(--text-primary)">Community development, social impact</text><rect x="300.0" y="275" width="6.5" height="22" rx="3" fill="var(--c9)"/>
+<text x="314.5" y="291.0" class="val" fill="var(--text-secondary)">24</text>
+</svg></div><div class="ogrid stella3"><div class="otile "><p class="oname">Size</p><p class="oval">4,640 papers in all journals, 2010-2026; 2,604 in non-discontinued Scopus journals; 1,977 in Q1.</p></div><div class="otile bad"><p class="oname">Where it goes in Q1</p><p class="oval">Sustainability, Finance research letters, Environmental Science and Pollution Research, International Review of Economics & Finance. General environmental and finance titles; none is built for the intersection.</p></div><div class="otile note"><p class="oname">What that means</p><p class="oval">Small, fast-growing under every lens, and without a home journal. That is a niche a new journal can own.</p></div></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex works carrying at least one topic from each set, by journal tier.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 4 top cited"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part I &middot; Where is the field going?</p>
@@ -1794,7 +1865,7 @@ table.dtable.cited td:nth-child(n+3), table.dtable.cited th:nth-child(n+3) { tex
 <section class="row-single" aria-label="Fig 7 launches"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part II &middot; Who owns the conversation?</p>
 <h2>Figure 7 &middot; New journals in this field were indexed within one to three years, when a publisher or an institution carried them</h2>
-<div class="dtable-wrap"><table class="dtable meals venues"><thead><tr><th>Journal launched since 2010</th><th>Publisher</th><th>First year</th><th>In Scopus from</th><th>Years to index</th><th>Status 2025</th><th>APC</th><th>h</th><th>2-yr cites</th></tr></thead><tbody><tr><td><b>Journal of Sustainable Finance & Investment</b></td><td>Taylor & Francis</td><td>2011</td><td>2011</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>66</td><td>5.1</td></tr><tr><td><b>Financial Innovation</b></td><td>Springer Nature</td><td>2012</td><td>2015</td><td><b>3</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>83</td><td>10.3</td></tr><tr><td><b>Borsa Istanbul Review</b></td><td>Elsevier BV</td><td>2013</td><td>2013</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,500</td><td>74</td><td>6.5</td></tr><tr><td><b>China Finance Review International</b></td><td>Emerald Publishing Limit</td><td>2010</td><td>2011</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>43</td><td>8.9</td></tr><tr><td><b>Sustainability Accounting Management and Polic</b></td><td>Emerald Publishing Limit</td><td>2010</td><td>2010</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>80</td><td>8.5</td></tr><tr><td><b>Climate Risk Management</b></td><td>Elsevier BV</td><td>2013</td><td>2014</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$3,130</td><td>79</td><td>5.1</td></tr><tr><td><b>Green Finance</b></td><td>American Institute of Ma</td><td>2019</td><td>2020</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>32</td><td>5.2</td></tr><tr><td><b>Discover Sustainability</b></td><td>Springer Nature</td><td>2020</td><td>2020</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,390</td><td>55</td><td>4.6</td></tr><tr><td><b>Journal of Climate Finance</b></td><td>Elsevier BV</td><td>2022</td><td>2022</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,470</td><td>18</td><td>7.5</td></tr><tr><td><b>PLOS Climate</b></td><td>Public Library of Scienc</td><td>2022</td><td>2022</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,496</td><td>36</td><td>4.1</td></tr><tr><td><b>Sustainable Futures</b></td><td>Elsevier BV</td><td>2014</td><td>2019</td><td><b>5</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,340</td><td>48</td><td>5.9</td></tr><tr><td><b>Earth System Governance</b></td><td>Elsevier BV</td><td>2014</td><td>2019</td><td><b>5</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,180</td><td>37</td><td>3.3</td></tr><tr><td><b>Humanities and Social Sciences Communications</b></td><td>Palgrave Macmillan</td><td>2015</td><td>2020</td><td><b>5</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,890</td><td>111</td><td>5.3</td></tr></tbody></table></div><div class="cards three"><div class="card"><div class="big">0&ndash;1 year</div><div class="small">to Scopus for journals launched by a large publisher</div><div class="note">Elsevier, Wiley, Emerald, Taylor &amp; Francis titles were indexed from their first or second volume</div></div><div class="card"><div class="big">3 years</div><div class="small">for Financial Innovation, hosted by a Chinese university, published by Springer, no APC</div><div class="note">now Q1, h 83, 2-year citedness 10.3: the model of an institution-hosted journal that made it</div></div><div class="card"><div class="big">5 years</div><div class="small">for journals that started without a publisher&rsquo;s indexing track</div><div class="note">Sustainable Futures, Earth System Governance, Humanities and Social Sciences Communications</div></div></div>
+<div class="dtable-wrap"><table class="dtable meals venues"><thead><tr><th>Journal launched since 2010</th><th>Publisher</th><th>First year</th><th>In Scopus from</th><th>Years to index</th><th>Status 2025</th><th>APC</th><th>h</th><th>2-yr cites</th></tr></thead><tbody><tr><td><b>Journal of Sustainable Finance & Investment</b></td><td>Taylor & Francis</td><td>2011</td><td>2011</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>66</td><td>5.1</td></tr><tr><td><b>Financial Innovation</b></td><td>Springer Nature</td><td>2012</td><td>2015</td><td><b>3</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>83</td><td>10.3</td></tr><tr><td><b>Borsa Istanbul Review</b></td><td>Elsevier BV</td><td>2013</td><td>2013</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,500</td><td>74</td><td>6.5</td></tr><tr><td><b>China Finance Review International</b></td><td>Emerald Publishing Limit</td><td>2010</td><td>2011</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>43</td><td>8.9</td></tr><tr><td><b>Sustainability Accounting Management and Polic</b></td><td>Emerald Publishing Limit</td><td>2010</td><td>2010</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>80</td><td>8.5</td></tr><tr><td><b>Climate Risk Management</b></td><td>Elsevier BV</td><td>2013</td><td>2014</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$3,130</td><td>79</td><td>5.1</td></tr><tr><td><b>Green Finance</b></td><td>American Institute of Ma</td><td>2019</td><td>2020</td><td><b>1</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>none</td><td>32</td><td>5.2</td></tr><tr><td><b>Discover Sustainability</b></td><td>Springer Nature</td><td>2020</td><td>2020</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,390</td><td>55</td><td>4.6</td></tr><tr><td><b>Journal of Climate Finance</b></td><td>Elsevier BV</td><td>2022</td><td>2022</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,470</td><td>18</td><td>7.5</td></tr><tr><td><b>PLOS Climate</b></td><td>Public Library of Scienc</td><td>2022</td><td>2022</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,496</td><td>36</td><td>4.1</td></tr><tr><td><b>Sustainable Futures</b></td><td>Elsevier BV</td><td>2014</td><td>2019</td><td><b>5</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,340</td><td>48</td><td>5.9</td></tr><tr><td><b>Earth System Governance</b></td><td>Elsevier BV</td><td>2014</td><td>2019</td><td><b>5</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$2,180</td><td>37</td><td>3.3</td></tr><tr><td><b>Humanities and Social Sciences Communications</b></td><td>Palgrave Macmillan</td><td>2015</td><td>2015</td><td><b>0</b></td><td><span style="color:var(--c2);font-weight:700">Scopus Q1</span></td><td>$1,890</td><td>111</td><td>5.3</td></tr></tbody></table></div><div class="cards three"><div class="card"><div class="big">0&ndash;1 year</div><div class="small">to Scopus for journals launched by a large publisher</div><div class="note">Elsevier, Wiley, Emerald, Taylor &amp; Francis titles were indexed from their first or second volume</div></div><div class="card"><div class="big">3 years</div><div class="small">for Financial Innovation, hosted by a Chinese university, published by Springer, no APC</div><div class="note">now Q1, h 83, 2-year citedness 10.3: the model of an institution-hosted journal that made it</div></div><div class="card"><div class="big">5 years</div><div class="small">for journals that started without a publisher&rsquo;s indexing track</div><div class="note">Sustainable Futures, Earth System Governance, Humanities and Social Sciences Communications</div></div></div>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Journals launched 2010 or later that appear in the venue lists of Figures 5-7 with at least 20 papers. First year = first year with works in OpenAlex; Scopus coverage start from SCImago 2025. Borsa Istanbul Review is hosted by the Istanbul stock exchange; Financial Innovation by Southwestern University of Finance and Economics, Chengdu.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 8 benchmarks"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
@@ -1828,235 +1899,217 @@ table.dtable.cited td:nth-child(n+3), table.dtable.cited th:nth-child(n+3) { tex
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 9 open access"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part II &middot; Who owns the conversation?</p>
-<h2>Figure 9 &middot; A diamond open-access journal on an indexing track does not exist in this field</h2>
-<svg class="ds-chart " viewBox="0 0 1180 326" role="img" aria-label="Open-access status of the sustainable set, % of 181,067 papers, 2016-2026">
-<text x="10" y="22" class="ph">Open-access status of the sustainable set, % of 181,067 papers, 2016-2026</text>
-<line x1="330.0" y1="38" x2="330.0" y2="292" class="g"/><text x="330.0" y="314" class="ax mid">0</text>
-<line x1="498.9" y1="38" x2="498.9" y2="292" class="g"/><text x="498.9" y="314" class="ax mid">10</text>
-<line x1="667.8" y1="38" x2="667.8" y2="292" class="g"/><text x="667.8" y="314" class="ax mid">20</text>
-<line x1="836.7" y1="38" x2="836.7" y2="292" class="g"/><text x="836.7" y="314" class="ax mid">30</text>
-<line x1="1005.6" y1="38" x2="1005.6" y2="292" class="g"/><text x="1005.6" y="314" class="ax mid">40</text>
-<text x="318" y="71.0" class="lab end" fill="var(--text-primary)">Closed</text><rect x="330.0" y="51" width="633.3" height="30" rx="3" fill="var(--c9)"/>
-<text x="971.3" y="71.0" class="val" fill="var(--text-secondary)">38%</text>
-<text x="318" y="111.0" class="lab end" font-weight="700" fill="var(--c8)">Diamond (free to read and publish)</text><rect x="330.0" y="91" width="390.1" height="30" rx="3" fill="var(--c8)"/>
-<text x="728.1" y="111.0" class="val" font-weight="700" fill="var(--c8)">23%</text>
-<text x="318" y="151.0" class="lab end" fill="var(--text-primary)">Hybrid</text><rect x="330.0" y="131" width="214.5" height="30" rx="3" fill="var(--c9)"/>
-<text x="552.5" y="151.0" class="val" fill="var(--text-secondary)">13%</text>
-<text x="318" y="191.0" class="lab end" fill="var(--text-primary)">Green (repository copy)</text><rect x="330.0" y="171" width="177.3" height="30" rx="3" fill="var(--c9)"/>
-<text x="515.3" y="191.0" class="val" fill="var(--text-secondary)">10%</text>
-<text x="318" y="231.0" class="lab end" fill="var(--text-primary)">Gold (APC)</text><rect x="330.0" y="211" width="175.6" height="30" rx="3" fill="var(--c9)"/>
-<text x="513.6" y="231.0" class="val" fill="var(--text-secondary)">10%</text>
-<text x="318" y="271.0" class="lab end" fill="var(--text-primary)">Bronze</text><rect x="330.0" y="251" width="94.6" height="30" rx="3" fill="var(--c9)"/>
-<text x="432.6" y="271.0" class="val" fill="var(--text-secondary)">6%</text>
-</svg><div class="cards three"><div class="card"><div class="big">38%</div><div class="small">of the field is behind a paywall</div><div class="note">mostly the Elsevier and Wiley Q1 titles</div></div><div class="card"><div class="big">23%</div><div class="small">is diamond open access: no fee to read, no fee to publish</div><div class="note">almost all of it in journals outside Scopus, which is why it is invisible</div></div><div class="card"><div class="big">0</div><div class="small">Q1 journals in Figures 5 and 6 that are diamond and specialist</div><div class="note">JSFI and Climate Policy charge no APC but are subscription titles</div></div></div><p class="reveal">The gap in the market is specific: a diamond open-access journal, on a Scopus track, for sustainable and digital finance in emerging markets. A central bank can afford to run one without an APC. Almost nobody else can.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex open_access.oa_status on works with a sustainable primary topic, 2016-2026.</div></details>
+<h2>Figure 9 &middot; Diamond open access is common outside Scopus and rare inside Q1</h2>
+<svg class="ds-chart" viewBox="0 0 1180 282" role="img" aria-label="Open-access status of the six-topic literature, 2016-2026, % of papers in each lens">
+<text x="10" y="22" class="ph">Open-access status of the six-topic literature, 2016-2026, % of papers in each lens</text>
+<rect x="260" y="28" width="12" height="12" fill="var(--c9)"/><text x="276" y="38" class="ax">closed</text>
+<rect x="332" y="28" width="12" height="12" fill="var(--muted)"/><text x="348" y="38" class="ax">hybrid</text>
+<rect x="404" y="28" width="12" height="12" fill="#c99a2e"/><text x="420" y="38" class="ax">gold</text>
+<rect x="460" y="28" width="12" height="12" fill="#7a9a6b"/><text x="476" y="38" class="ax">green</text>
+<rect x="524" y="28" width="12" height="12" fill="#b08060"/><text x="540" y="38" class="ax">bronze</text>
+<rect x="596" y="28" width="12" height="12" fill="var(--c8)"/><text x="612" y="38" class="ax">diamond</text>
+<text x="248" y="82.0" class="lab end" fill="var(--text-primary)">All OpenAlex journals</text>
+<rect x="260.0" y="62" width="290.9" height="30" fill="var(--c9)"/>
+<text x="405.5" y="82.0" class="ax mid" font-weight="700" fill="#fff">33%</text>
+<rect x="550.9" y="62" width="134.5" height="30" fill="var(--muted)"/>
+<text x="618.1" y="82.0" class="ax mid" font-weight="700" fill="#fff">15%</text>
+<rect x="685.4" y="62" width="102.7" height="30" fill="#c99a2e"/>
+<text x="736.7" y="82.0" class="ax mid" font-weight="700" fill="#fff">12%</text>
+<rect x="788.0" y="62" width="48.1" height="30" fill="#7a9a6b"/>
+<rect x="836.1" y="62" width="59.5" height="30" fill="#b08060"/>
+<text x="865.9" y="82.0" class="ax mid" font-weight="700" fill="#fff">7%</text>
+<rect x="895.6" y="62" width="244.4" height="30" fill="var(--c8)"/>
+<text x="1017.8" y="82.0" class="ax mid" font-weight="700" fill="#fff">28%</text>
+<text x="248" y="126.0" class="lab end" fill="var(--text-primary)">Scopus, all listed</text>
+<rect x="260.0" y="106" width="339.7" height="30" fill="var(--c9)"/>
+<text x="429.9" y="126.0" class="ax mid" font-weight="700" fill="#fff">39%</text>
+<rect x="599.7" y="106" width="157.2" height="30" fill="var(--muted)"/>
+<text x="678.3" y="126.0" class="ax mid" font-weight="700" fill="#fff">18%</text>
+<rect x="756.9" y="106" width="183.0" height="30" fill="#c99a2e"/>
+<text x="848.4" y="126.0" class="ax mid" font-weight="700" fill="#fff">21%</text>
+<rect x="939.9" y="106" width="69.8" height="30" fill="#7a9a6b"/>
+<text x="974.8" y="126.0" class="ax mid" font-weight="700" fill="#fff">8%</text>
+<rect x="1009.8" y="106" width="45.4" height="30" fill="#b08060"/>
+<rect x="1055.1" y="106" width="84.9" height="30" fill="var(--c8)"/>
+<text x="1097.6" y="126.0" class="ax mid" font-weight="700" fill="#fff">10%</text>
+<text x="248" y="170.0" class="lab end" fill="var(--text-primary)">Scopus, excl. discontinued</text>
+<rect x="260.0" y="150" width="351.1" height="30" fill="var(--c9)"/>
+<text x="435.5" y="170.0" class="ax mid" font-weight="700" fill="#fff">40%</text>
+<rect x="611.1" y="150" width="159.1" height="30" fill="var(--muted)"/>
+<text x="690.6" y="170.0" class="ax mid" font-weight="700" fill="#fff">18%</text>
+<rect x="770.1" y="150" width="186.0" height="30" fill="#c99a2e"/>
+<text x="863.1" y="170.0" class="ax mid" font-weight="700" fill="#fff">21%</text>
+<rect x="956.1" y="150" width="71.7" height="30" fill="#7a9a6b"/>
+<text x="992.0" y="170.0" class="ax mid" font-weight="700" fill="#fff">8%</text>
+<rect x="1027.8" y="150" width="44.8" height="30" fill="#b08060"/>
+<rect x="1072.7" y="150" width="67.3" height="30" fill="var(--c8)"/>
+<text x="1106.3" y="170.0" class="ax mid" font-weight="700" fill="#fff">8%</text>
+<text x="248" y="214.0" class="lab end" fill="var(--text-primary)">Scopus Q1, excl. discontinued</text>
+<rect x="260.0" y="194" width="344.1" height="30" fill="var(--c9)"/>
+<text x="432.0" y="214.0" class="ax mid" font-weight="700" fill="#fff">39%</text>
+<rect x="604.1" y="194" width="180.6" height="30" fill="var(--muted)"/>
+<text x="694.4" y="214.0" class="ax mid" font-weight="700" fill="#fff">21%</text>
+<rect x="784.7" y="194" width="217.0" height="30" fill="#c99a2e"/>
+<text x="893.2" y="214.0" class="ax mid" font-weight="700" fill="#fff">25%</text>
+<rect x="1001.7" y="194" width="83.7" height="30" fill="#7a9a6b"/>
+<text x="1043.6" y="214.0" class="ax mid" font-weight="700" fill="#fff">10%</text>
+<rect x="1085.4" y="194" width="41.0" height="30" fill="#b08060"/>
+<rect x="1126.4" y="194" width="13.6" height="30" fill="var(--c8)"/>
+</svg><div class="cards three"><div class="card"><div class="big">28%</div><div class="small">of papers in all journals are diamond: free to read, free to publish</div><div class="note">most of them in journals outside Scopus</div></div><div class="card"><div class="big">2%</div><div class="small">of papers in Q1 journals are diamond</div><div class="note">the top of the field is paywalled or paid by the author</div></div><div class="card"><div class="big">the gap</div><div class="small">a diamond journal on a Scopus track, for sustainable and digital finance</div><div class="note">a central bank can afford to run one without an APC; almost nobody else can</div></div></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex open_access.oa_status, works with a sustainable primary topic, by journal tier.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Part III"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel divider"><div class="divrow"><div class="covertext"><p class="panel-eyebrow">Part III</p><h2 class="divtitle">Where does Indonesia stand?</h2><p class="divq">How much it publishes, on what, where, and how much of it the world can see</p></div><img class="divimg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23e6d9ce'/><text x='200.0' y='200.0' font-family='system-ui' font-size='40' fill='%238b8480' text-anchor='middle'>div3 1:1</text></svg>" alt="An archipelago with paper boats sailing to a continent"></div></section></div></div></section>
 <section class="row-single" aria-label="Fig 10 share"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part III &middot; Where does Indonesia stand?</p>
-<h2>Figure 10 &middot; Indonesia is the world&rsquo;s second producer in the sustainable set, and most of it is one topic</h2>
-<svg class="ds-chart" viewBox="0 0 1180 420" role="img" aria-label="Share of the world&amp;rsquo;s papers with an author from the country, %">
-<text x="70" y="22" class="ph">Share of the world&rsquo;s papers with an author from the country, %</text>
-<line x1="70" y1="374.0" x2="890" y2="374.0" class="g"/><text x="60" y="379.0" class="ax end">0%</text>
-<line x1="70" y1="290.5" x2="890" y2="290.5" class="g"/><text x="60" y="295.5" class="ax end">4%</text>
-<line x1="70" y1="207.0" x2="890" y2="207.0" class="g"/><text x="60" y="212.0" class="ax end">8%</text>
-<line x1="70" y1="123.5" x2="890" y2="123.5" class="g"/><text x="60" y="128.5" class="ax end">12%</text>
-<line x1="70" y1="40.0" x2="890" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">16%</text>
-<text x="70.0" y="400" class="ax mid">2012</text>
-<text x="256.9" y="400" class="ax mid">2015</text>
-<text x="443.8" y="400" class="ax mid">2018</text>
-<text x="630.8" y="400" class="ax mid">2021</text>
-<text x="880.0" y="400" class="ax mid">2025</text>
-<path d="M70.0,365.6 L132.3,359.4 L194.6,357.3 L256.9,351.0 L319.2,336.4 L381.5,319.7 L443.8,311.4 L506.2,275.9 L568.5,269.6 L630.8,267.5 L693.1,219.5 L755.4,171.5 L817.7,138.1 L880.0,113.1" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M70.0,371.9 L132.3,371.9 L194.6,369.8 L256.9,369.8 L319.2,363.6 L381.5,365.6 L443.8,361.5 L506.2,365.6 L568.5,355.2 L630.8,361.5 L693.1,338.5 L755.4,319.7 L817.7,290.5 L880.0,282.1" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M70.0,248.8 L132.3,240.4 L194.6,257.1 L256.9,288.4 L319.2,315.6 L381.5,313.5 L443.8,288.4 L506.2,271.7 L568.5,255.0 L630.8,225.8 L693.1,104.7 L755.4,71.3 L817.7,48.4 L880.0,63.0" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round" stroke-dasharray="6 4"/>
-<text x="890.0" y="68.0" class="lab" fill="var(--muted)">China, all six topics</text>
-<text x="890.0" y="118.1" class="lab" fill="var(--c8)" font-weight="700">Indonesia, all six topics</text>
-<text x="890.0" y="287.1" class="lab" fill="var(--c9)" font-weight="700">Indonesia, excl. CSR reporting</text>
-</svg><div class="cards three"><div class="card"><div class="big">2nd</div><div class="small">Indonesia&rsquo;s rank in the world by papers in the six sustainable topics, 2016-2026</div><div class="note">181,067 papers worldwide; Indonesia 14,647, after China, ahead of the United States</div></div><div class="card"><div class="big">85%</div><div class="small">of Indonesia&rsquo;s papers are in one topic: CSR and ESG reporting</div><div class="note">12,418 of 14,647, mostly accounting studies of listed firms</div></div><div class="card"><div class="big">5th</div><div class="small">in sustainable finance and green bonds proper</div><div class="note">948 papers, 4.1% of the topic; China 3,959, India 1,194, US 1,040, UK 1,018</div></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex works with a sustainable primary topic and at least one author with an Indonesian (or Chinese) affiliation, by publication year, divided by the world total of the same topics. 2026 omitted.</div></details>
+<h2>Figure 10 &middot; Indonesia is a large producer in all journals and a small one in Q1</h2>
+<div class="tlegend"><span><i style="background:var(--baseline)"></i>All OpenAlex journals</span><span><i style="background:var(--muted)"></i>Scopus, all listed</span><span><i style="background:var(--c9)"></i>Scopus, excl. discontinued</span><span><i style="background:var(--c8)"></i>Scopus Q1, excl. discontinued</span></div><div class="two"><svg class="ds-chart" viewBox="0 0 600 360" role="img" aria-label="Indonesia&amp;rsquo;s share of the world, all six topics, %">
+<text x="70" y="22" class="ph">Indonesia&rsquo;s share of the world, all six topics, %</text>
+<line x1="70" y1="314.0" x2="580" y2="314.0" class="g"/><text x="60" y="319.0" class="ax end">0%</text>
+<line x1="70" y1="245.5" x2="580" y2="245.5" class="g"/><text x="60" y="250.5" class="ax end">4%</text>
+<line x1="70" y1="177.0" x2="580" y2="177.0" class="g"/><text x="60" y="182.0" class="ax end">8%</text>
+<line x1="70" y1="108.5" x2="580" y2="108.5" class="g"/><text x="60" y="113.5" class="ax end">12%</text>
+<line x1="70" y1="40.0" x2="580" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">16%</text>
+<text x="70.0" y="340" class="ax mid">2010</text>
+<text x="236.7" y="340" class="ax mid">2015</text>
+<text x="403.3" y="340" class="ax mid">2020</text>
+<text x="570.0" y="340" class="ax mid">2025</text>
+<path d="M70.0,308.9 L103.3,305.4 L136.7,305.4 L170.0,300.3 L203.3,296.9 L236.7,286.6 L270.0,271.2 L303.3,257.5 L336.7,245.5 L370.0,214.7 L403.3,211.2 L436.7,214.7 L470.0,178.7 L503.3,135.9 L536.7,108.5 L570.0,79.4" fill="none" stroke="var(--baseline)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,308.9 L103.3,310.6 L136.7,310.6 L170.0,310.6 L203.3,308.9 L236.7,307.1 L270.0,300.3 L303.3,300.3 L336.7,295.2 L370.0,295.2 L403.3,288.3 L436.7,293.5 L470.0,288.3 L503.3,276.3 L536.7,269.5 L570.0,262.6" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,308.9 L103.3,310.6 L136.7,310.6 L170.0,310.6 L203.3,308.9 L236.7,307.1 L270.0,302.0 L303.3,303.7 L336.7,296.9 L370.0,302.0 L403.3,300.3 L436.7,296.9 L470.0,291.7 L503.3,281.5 L536.7,279.8 L570.0,272.9" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,308.9 L103.3,308.9 L136.7,310.6 L170.0,308.9 L203.3,310.6 L236.7,307.1 L270.0,302.0 L303.3,307.1 L336.7,300.3 L370.0,305.4 L403.3,302.0 L436.7,300.3 L470.0,298.6 L503.3,295.2 L536.7,298.6 L570.0,288.3" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
+</svg><svg class="ds-chart" viewBox="0 0 600 360" role="img" aria-label="Indonesia&amp;rsquo;s share, excluding CSR and ESG reporting, %">
+<text x="70" y="22" class="ph">Indonesia&rsquo;s share, excluding CSR and ESG reporting, %</text>
+<line x1="70" y1="314.0" x2="580" y2="314.0" class="g"/><text x="60" y="319.0" class="ax end">0%</text>
+<line x1="70" y1="245.5" x2="580" y2="245.5" class="g"/><text x="60" y="250.5" class="ax end">4%</text>
+<line x1="70" y1="177.0" x2="580" y2="177.0" class="g"/><text x="60" y="182.0" class="ax end">8%</text>
+<line x1="70" y1="108.5" x2="580" y2="108.5" class="g"/><text x="60" y="113.5" class="ax end">12%</text>
+<line x1="70" y1="40.0" x2="580" y2="40.0" class="g"/><text x="60" y="45.0" class="ax end">16%</text>
+<text x="70.0" y="340" class="ax mid">2010</text>
+<text x="236.7" y="340" class="ax mid">2015</text>
+<text x="403.3" y="340" class="ax mid">2020</text>
+<text x="570.0" y="340" class="ax mid">2025</text>
+<path d="M70.0,312.3 L103.3,312.3 L136.7,312.3 L170.0,310.6 L203.3,308.9 L236.7,307.1 L270.0,300.3 L303.3,305.4 L336.7,298.6 L370.0,303.7 L403.3,296.9 L436.7,302.0 L470.0,283.2 L503.3,264.3 L536.7,240.4 L570.0,230.1" fill="none" stroke="var(--baseline)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,312.3 L103.3,312.3 L136.7,310.6 L170.0,310.6 L203.3,310.6 L236.7,308.9 L270.0,303.7 L303.3,307.1 L336.7,305.4 L370.0,308.9 L403.3,305.4 L436.7,307.1 L470.0,302.0 L503.3,295.2 L536.7,290.0 L570.0,286.6" fill="none" stroke="var(--muted)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,312.3 L103.3,312.3 L136.7,310.6 L170.0,310.6 L203.3,310.6 L236.7,308.9 L270.0,303.7 L303.3,308.9 L336.7,305.4 L370.0,310.6 L403.3,305.4 L436.7,307.1 L470.0,302.0 L503.3,298.6 L536.7,295.2 L570.0,291.7" fill="none" stroke="var(--c9)" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M70.0,310.6 L103.3,312.3 L136.7,310.6 L170.0,308.9 L203.3,310.6 L236.7,310.6 L270.0,303.7 L303.3,308.9 L336.7,307.1 L370.0,308.9 L403.3,305.4 L436.7,307.1 L470.0,305.4 L503.3,300.3 L536.7,305.4 L570.0,293.5" fill="none" stroke="var(--c8)" stroke-width="2.4" stroke-linejoin="round"/>
+</svg></div><div class="cards three"><div class="card"><div class="big">14% &rarr; 1.5%</div><div class="small">Indonesia&rsquo;s share of 2025 papers, all journals against Q1</div><div class="note">non-discontinued Scopus: 2.4%</div></div><div class="card"><div class="big">2 &rarr; 32</div><div class="small">Indonesia&rsquo;s world rank, six topics, all journals against Q1</div><div class="note">non-discontinued Scopus: 20</div></div><div class="card"><div class="big">5 &rarr; 35</div><div class="small">rank in sustainable finance and green bonds proper</div><div class="note">non-discontinued Scopus: 22</div></div></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Works with a sustainable primary topic and at least one Indonesian author, divided by the world total of the same lens and year. 2026 omitted.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 11 countries"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part III &middot; Where does Indonesia stand?</p>
-<h2>Figure 11 &middot; Two league tables: in sustainable finance Indonesia is fifth, in the wider set second</h2>
-<div class="two"><svg class="ds-chart " viewBox="0 0 580 536" role="img" aria-label="Sustainable finance and green bonds, papers 2016-2026, by author country">
-<text x="10" y="22" class="ph">Sustainable finance and green bonds, papers 2016-2026, by author country</text>
-<line x1="200.0" y1="38" x2="200.0" y2="502" class="g"/><text x="200.0" y="524" class="ax mid">0</text>
-<line x1="273.8" y1="38" x2="273.8" y2="502" class="g"/><text x="273.8" y="524" class="ax mid">1,000</text>
-<line x1="347.6" y1="38" x2="347.6" y2="502" class="g"/><text x="347.6" y="524" class="ax mid">2,000</text>
-<line x1="421.4" y1="38" x2="421.4" y2="502" class="g"/><text x="421.4" y="524" class="ax mid">3,000</text>
-<line x1="495.2" y1="38" x2="495.2" y2="502" class="g"/><text x="495.2" y="524" class="ax mid">4,000</text>
-<text x="188" y="66.0" class="lab end" fill="var(--text-primary)">China</text><rect x="200.0" y="51" width="292.2" height="20" rx="3" fill="var(--c9)"/>
-<text x="500.2" y="66.0" class="val" fill="var(--text-secondary)">3,959</text>
-<text x="188" y="96.0" class="lab end" fill="var(--text-primary)">India</text><rect x="200.0" y="81" width="88.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="296.1" y="96.0" class="val" fill="var(--text-secondary)">1,194</text>
-<text x="188" y="126.0" class="lab end" fill="var(--text-primary)">United States</text><rect x="200.0" y="111" width="76.8" height="20" rx="3" fill="var(--c9)"/>
-<text x="284.8" y="126.0" class="val" fill="var(--text-secondary)">1,040</text>
-<text x="188" y="156.0" class="lab end" fill="var(--text-primary)">United Kingdom</text><rect x="200.0" y="141" width="75.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="283.1" y="156.0" class="val" fill="var(--text-secondary)">1,018</text>
-<text x="188" y="186.0" class="lab end" fill="var(--text-primary)">Indonesia</text><rect x="200.0" y="171" width="70.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="278.0" y="186.0" class="val" fill="var(--text-secondary)">948</text>
-<text x="188" y="216.0" class="lab end" fill="var(--text-primary)">France</text><rect x="200.0" y="201" width="46.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="254.0" y="216.0" class="val" fill="var(--text-secondary)">623</text>
-<text x="188" y="246.0" class="lab end" fill="var(--text-primary)">Russia</text><rect x="200.0" y="231" width="43.7" height="20" rx="3" fill="var(--c9)"/>
-<text x="251.7" y="246.0" class="val" fill="var(--text-secondary)">592</text>
-<text x="188" y="276.0" class="lab end" fill="var(--text-primary)">Italy</text><rect x="200.0" y="261" width="41.6" height="20" rx="3" fill="var(--c9)"/>
-<text x="249.6" y="276.0" class="val" fill="var(--text-secondary)">564</text>
-<text x="188" y="306.0" class="lab end" fill="var(--text-primary)">Germany</text><rect x="200.0" y="291" width="39.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="247.0" y="306.0" class="val" fill="var(--text-secondary)">529</text>
-<text x="188" y="336.0" class="lab end" fill="var(--text-primary)">Ukraine</text><rect x="200.0" y="321" width="38.2" height="20" rx="3" fill="var(--c9)"/>
-<text x="246.2" y="336.0" class="val" fill="var(--text-secondary)">518</text>
-<text x="188" y="366.0" class="lab end" fill="var(--text-primary)">Pakistan</text><rect x="200.0" y="351" width="34.5" height="20" rx="3" fill="var(--c9)"/>
-<text x="242.5" y="366.0" class="val" fill="var(--text-secondary)">467</text>
-<text x="188" y="396.0" class="lab end" fill="var(--text-primary)">Australia</text><rect x="200.0" y="381" width="28.3" height="20" rx="3" fill="var(--c9)"/>
-<text x="236.3" y="396.0" class="val" fill="var(--text-secondary)">384</text>
-<text x="188" y="426.0" class="lab end" fill="var(--text-primary)">Turkey</text><rect x="200.0" y="411" width="27.8" height="20" rx="3" fill="var(--c9)"/>
-<text x="235.8" y="426.0" class="val" fill="var(--text-secondary)">376</text>
-<text x="188" y="456.0" class="lab end" fill="var(--text-primary)">Malaysia</text><rect x="200.0" y="441" width="26.9" height="20" rx="3" fill="var(--c9)"/>
-<text x="234.9" y="456.0" class="val" fill="var(--text-secondary)">364</text>
-<text x="188" y="486.0" class="lab end" fill="var(--text-primary)">Spain</text><rect x="200.0" y="471" width="24.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="232.1" y="486.0" class="val" fill="var(--text-secondary)">326</text>
-</svg><svg class="ds-chart " viewBox="0 0 580 536" role="img" aria-label="All six sustainable topics, papers 2016-2026, by author country">
-<text x="10" y="22" class="ph">All six sustainable topics, papers 2016-2026, by author country</text>
-<line x1="200.0" y1="38" x2="200.0" y2="502" class="g"/><text x="200.0" y="524" class="ax mid">0</text>
-<line x1="277.5" y1="38" x2="277.5" y2="502" class="g"/><text x="277.5" y="524" class="ax mid">5,000</text>
-<line x1="355.0" y1="38" x2="355.0" y2="502" class="g"/><text x="355.0" y="524" class="ax mid">10,000</text>
-<line x1="432.5" y1="38" x2="432.5" y2="502" class="g"/><text x="432.5" y="524" class="ax mid">15,000</text>
-<line x1="510.0" y1="38" x2="510.0" y2="502" class="g"/><text x="510.0" y="524" class="ax mid">20,000</text>
-<text x="188" y="66.0" class="lab end" fill="var(--text-primary)">China</text><rect x="200.0" y="51" width="285.4" height="20" rx="3" fill="var(--c9)"/>
-<text x="493.4" y="66.0" class="val" fill="var(--text-secondary)">18,416</text>
-<text x="188" y="96.0" class="lab end" fill="var(--text-primary)">Indonesia</text><rect x="200.0" y="81" width="227.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="435.0" y="96.0" class="val" fill="var(--text-secondary)">14,647</text>
-<text x="188" y="126.0" class="lab end" fill="var(--text-primary)">United States</text><rect x="200.0" y="111" width="188.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="396.1" y="126.0" class="val" fill="var(--text-secondary)">12,138</text>
-<text x="188" y="156.0" class="lab end" fill="var(--text-primary)">United Kingdom</text><rect x="200.0" y="141" width="141.5" height="20" rx="3" fill="var(--c9)"/>
-<text x="349.5" y="156.0" class="val" fill="var(--text-secondary)">9,127</text>
-<text x="188" y="186.0" class="lab end" fill="var(--text-primary)">Germany</text><rect x="200.0" y="171" width="86.3" height="20" rx="3" fill="var(--c9)"/>
-<text x="294.3" y="186.0" class="val" fill="var(--text-secondary)">5,570</text>
-<text x="188" y="216.0" class="lab end" fill="var(--text-primary)">India</text><rect x="200.0" y="201" width="79.2" height="20" rx="3" fill="var(--c9)"/>
-<text x="287.2" y="216.0" class="val" fill="var(--text-secondary)">5,108</text>
-<text x="188" y="246.0" class="lab end" fill="var(--text-primary)">Australia</text><rect x="200.0" y="231" width="68.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="276.1" y="246.0" class="val" fill="var(--text-secondary)">4,392</text>
-<text x="188" y="276.0" class="lab end" fill="var(--text-primary)">Italy</text><rect x="200.0" y="261" width="64.4" height="20" rx="3" fill="var(--c9)"/>
-<text x="272.4" y="276.0" class="val" fill="var(--text-secondary)">4,158</text>
-<text x="188" y="306.0" class="lab end" fill="var(--text-primary)">France</text><rect x="200.0" y="291" width="62.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="270.0" y="306.0" class="val" fill="var(--text-secondary)">3,998</text>
-<text x="188" y="336.0" class="lab end" fill="var(--text-primary)">Brazil</text><rect x="200.0" y="321" width="55.2" height="20" rx="3" fill="var(--c9)"/>
-<text x="263.2" y="336.0" class="val" fill="var(--text-secondary)">3,562</text>
-<text x="188" y="366.0" class="lab end" fill="var(--text-primary)">Netherlands</text><rect x="200.0" y="351" width="55.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="263.1" y="366.0" class="val" fill="var(--text-secondary)">3,558</text>
-<text x="188" y="396.0" class="lab end" fill="var(--text-primary)">Spain</text><rect x="200.0" y="381" width="54.7" height="20" rx="3" fill="var(--c9)"/>
-<text x="262.7" y="396.0" class="val" fill="var(--text-secondary)">3,532</text>
-<text x="188" y="426.0" class="lab end" fill="var(--text-primary)">Russia</text><rect x="200.0" y="411" width="54.1" height="20" rx="3" fill="var(--c9)"/>
-<text x="262.1" y="426.0" class="val" fill="var(--text-secondary)">3,489</text>
-<text x="188" y="456.0" class="lab end" fill="var(--text-primary)">Canada</text><rect x="200.0" y="441" width="48.0" height="20" rx="3" fill="var(--c9)"/>
-<text x="256.0" y="456.0" class="val" fill="var(--text-secondary)">3,094</text>
-<text x="188" y="486.0" class="lab end" fill="var(--text-primary)">Ukraine</text><rect x="200.0" y="471" width="46.8" height="20" rx="3" fill="var(--c9)"/>
-<text x="254.8" y="486.0" class="val" fill="var(--text-secondary)">3,019</text>
-</svg></div><p class="reveal">In the finance topic Indonesia sits with India, the US and the UK, well behind China. In the wider set it is second only to China. The difference between the two charts is the CSR-reporting literature.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex, authorships.countries, works with the stated primary topic, 2016-2026. A paper counts once per country.</div></details>
+<h2>Figure 11 &middot; The league table changes with the lens</h2>
+<div class="dtable-wrap"><table class="dtable meals tiers rank"><thead><tr><th>Rank, six topics</th><th>All OpenAlex journals</th><th>Scopus, all listed</th><th>Scopus, excl. discontinued</th><th>Scopus Q1, excl. discontinued</th></tr></thead><tbody><tr><td>1</td><td>China 18,288</td><td>China 15,520</td><td>China 15,251</td><td>China 12,677</td></tr><tr><td>2</td><td><b style="color:var(--c8)">Indonesia 14,291</b></td><td>United States 10,093</td><td>United States 10,033</td><td>United States 8,163</td></tr><tr><td>3</td><td>United States 11,753</td><td>United Kingdom 8,058</td><td>United Kingdom 8,028</td><td>United Kingdom 6,837</td></tr><tr><td>4</td><td>United Kingdom 8,851</td><td>Germany 4,829</td><td>Germany 4,806</td><td>Germany 3,941</td></tr><tr><td>5</td><td>Germany 5,343</td><td>Australia 3,994</td><td>Australia 3,968</td><td>Australia 3,275</td></tr><tr><td>6</td><td>India 4,783</td><td>Italy 3,629</td><td>Italy 3,579</td><td>Italy 2,954</td></tr><tr><td>7</td><td>Australia 4,296</td><td>Netherlands 3,230</td><td>Netherlands 3,224</td><td>Netherlands 2,920</td></tr><tr><td>8</td><td>Italy 3,997</td><td>France 2,997</td><td>France 2,969</td><td>Spain 2,264</td></tr><tr><td>9</td><td>France 3,583</td><td>Spain 2,945</td><td>Spain 2,892</td><td>Canada 2,186</td></tr><tr><td>10</td><td>Netherlands 3,470</td><td>India 2,903</td><td>Canada 2,642</td><td>France 2,176</td></tr></tbody></table></div><div class="dtable-wrap"><table class="dtable meals tiers rank"><thead><tr><th>Rank, sustainable finance and green bonds</th><th>All OpenAlex journals</th><th>Scopus, all listed</th><th>Scopus, excl. discontinued</th><th>Scopus Q1, excl. discontinued</th></tr></thead><tbody><tr><td>1</td><td>China 3,943</td><td>China 3,174</td><td>China 3,114</td><td>China 2,560</td></tr><tr><td>2</td><td>India 1,106</td><td>United Kingdom 845</td><td>United Kingdom 839</td><td>United Kingdom 708</td></tr><tr><td>3</td><td>United States 998</td><td>United States 715</td><td>United States 705</td><td>United States 513</td></tr><tr><td>4</td><td>United Kingdom 986</td><td>India 599</td><td>India 516</td><td>Italy 390</td></tr><tr><td>5</td><td><b style="color:var(--c8)">Indonesia 936</b></td><td>Italy 502</td><td>Italy 501</td><td>France 352</td></tr><tr><td>6</td><td>Russia 569</td><td>France 467</td><td>France 464</td><td>Germany 316</td></tr><tr><td>7</td><td>France 561</td><td>Germany 425</td><td>Germany 423</td><td>Australia 261</td></tr><tr><td>8</td><td>Italy 544</td><td>Australia 333</td><td>Australia 330</td><td>India 254</td></tr></tbody></table></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex authorships.countries; a paper counts once per country; works 2016-2026 with the stated primary topic, by journal tier.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 12 Indonesian venues"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part III &middot; Where does Indonesia stand?</p>
-<h2>Figure 12 &middot; Nine in ten Indonesian papers on these themes are invisible to Scopus</h2>
-<div class="two"><svg class="ds-chart" viewBox="0 0 600 420" role="img" aria-label="Where the papers are published, % of output in the 200 largest venues">
-<text x="60" y="24" class="ph">Where the papers are published, % of output in the 200 largest venues</text>
-<line x1="60" y1="360.0" x2="580" y2="360.0" class="g"/><text x="50" y="365.0" class="ax end">0</text>
-<line x1="60" y1="282.5" x2="580" y2="282.5" class="g"/><text x="50" y="287.5" class="ax end">25</text>
-<line x1="60" y1="205.0" x2="580" y2="205.0" class="g"/><text x="50" y="210.0" class="ax end">50</text>
-<line x1="60" y1="127.5" x2="580" y2="127.5" class="g"/><text x="50" y="132.5" class="ax end">75</text>
-<line x1="60" y1="50.0" x2="580" y2="50.0" class="g"/><text x="50" y="55.0" class="ax end">100</text>
-<rect x="72.8" y="173.7" width="19.5" height="186.3" rx="3" fill="var(--c2)"/><text x="82.5" y="165.7" class="val mid" font-weight="700" fill="var(--c2)">60</text>
-<rect x="98.2" y="340.2" width="19.5" height="19.8" rx="3" fill="var(--c1)"/><text x="108.0" y="332.2" class="val mid" font-weight="700" fill="var(--c1)">6</text>
-<rect x="123.8" y="356.3" width="19.5" height="3.7" rx="3" fill="var(--c8)"/><text x="133.5" y="348.3" class="val mid" font-weight="700" fill="var(--c8)">1</text>
-<rect x="149.2" y="315.7" width="19.5" height="44.3" rx="3" fill="var(--muted)"/><text x="159.0" y="307.7" class="val mid" font-weight="700" fill="var(--muted)">14</text>
-<text x="123.8" y="386" class="lab mid">World</text>
-<rect x="200.2" y="296.8" width="19.5" height="63.2" rx="3" fill="var(--c2)"/><text x="210.0" y="288.8" class="val mid" font-weight="700" fill="var(--c2)">20</text>
-<rect x="225.8" y="338.3" width="19.5" height="21.7" rx="3" fill="var(--c1)"/><text x="235.5" y="330.3" class="val mid" font-weight="700" fill="var(--c1)">7</text>
-<rect x="251.2" y="347.6" width="19.5" height="12.4" rx="3" fill="var(--c8)"/><text x="261.0" y="339.6" class="val mid" font-weight="700" fill="var(--c8)">4</text>
-<rect x="276.8" y="156.3" width="19.5" height="203.7" rx="3" fill="var(--muted)"/><text x="286.5" y="148.3" class="val mid" font-weight="700" fill="var(--muted)">66</text>
-<text x="251.2" y="386" class="lab mid">ASEAN-6</text>
-<rect x="327.8" y="320.6" width="19.5" height="39.4" rx="3" fill="var(--c2)"/><text x="337.5" y="312.6" class="val mid" font-weight="700" fill="var(--c2)">13</text>
-<rect x="353.2" y="337.7" width="19.5" height="22.3" rx="3" fill="var(--c1)"/><text x="363.0" y="329.7" class="val mid" font-weight="700" fill="var(--c1)">7</text>
-<rect x="378.8" y="344.8" width="19.5" height="15.2" rx="3" fill="var(--c8)"/><text x="388.5" y="336.8" class="val mid" font-weight="700" fill="var(--c8)">5</text>
-<rect x="404.2" y="134.6" width="19.5" height="225.4" rx="3" fill="var(--muted)"/><text x="414.0" y="126.6" class="val mid" font-weight="700" fill="var(--muted)">73</text>
-<text x="378.8" y="386" class="lab mid">Indonesia, excl. CSR</text>
-<rect x="455.2" y="350.1" width="19.5" height="9.9" rx="3" fill="var(--c2)"/><text x="465.0" y="342.1" class="val mid" font-weight="700" fill="var(--c2)">3</text>
-<rect x="480.8" y="351.9" width="19.5" height="8.1" rx="3" fill="var(--c1)"/><text x="490.5" y="343.9" class="val mid" font-weight="700" fill="var(--c1)">3</text>
-<rect x="506.2" y="354.4" width="19.5" height="5.6" rx="3" fill="var(--c8)"/><text x="516.0" y="346.4" class="val mid" font-weight="700" fill="var(--c8)">2</text>
-<rect x="531.8" y="82.2" width="19.5" height="277.8" rx="3" fill="var(--muted)"/><text x="541.5" y="74.2" class="val mid" font-weight="700" fill="var(--muted)">90</text>
-<text x="506.2" y="386" class="lab mid">Indonesia, all</text>
-<rect x="60" y="402" width="14" height="14" rx="2" fill="var(--c2)"/><text x="80" y="414" class="ax">Scopus Q1</text>
-<rect x="171" y="402" width="14" height="14" rx="2" fill="var(--c1)"/><text x="191" y="414" class="ax">Scopus Q2-Q4</text>
-<rect x="309" y="402" width="14" height="14" rx="2" fill="var(--c8)"/><text x="329" y="414" class="ax">Delisted</text>
-<rect x="411" y="402" width="14" height="14" rx="2" fill="var(--muted)"/><text x="431" y="414" class="ax">Not in Scopus</text>
-</svg><div class="dtable-wrap"><table class="dtable meals venues"><thead><tr><th>Indonesia&rsquo;s largest venues, sustainable set</th><th>Index status</th><th>Publisher</th><th>Papers</th></tr></thead><tbody><tr><td><b>E-Jurnal Akuntansi</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Udayana University</td><td>236</td></tr><tr><td><b>Owner</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Politeknik Ganesha Medan</td><td>149</td></tr><tr><td><b>Journal of Economic Bussines and Accounting </b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td></td><td>142</td></tr><tr><td><b>Jurnal Ekonomi Trisakti</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Universitas Trisakti</td><td>119</td></tr><tr><td><b>RIGGS Journal of Artificial Intelligence and</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Universitas Pahlawan Tua</td><td>92</td></tr><tr><td><b>International Journal of Energy Economics an</b></td><td><span style="color:var(--c8);font-weight:700">Delisted by Scopus</span></td><td>EconJournals</td><td>82</td></tr><tr><td><b>JURNAL EKSPLORASI AKUNTANSI</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Padang State University</td><td>72</td></tr><tr><td><b>KnE Social Sciences</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Knowledge E</td><td>69</td></tr><tr><td><b>Indonesian Journal of Sustainability Account</b></td><td><span style="color:var(--muted);font-weight:700">Not in Scopus</span></td><td>Universitas Pasundan</td><td>62</td></tr><tr><td><b>Cogent Business & Management</b></td><td><span style="color:var(--c1);font-weight:700">Scopus Q2</span></td><td>Cogent OA</td><td>59</td></tr></tbody></table></div></div><div class="ogrid stella3"><div class="otile bad"><p class="oname">The 90%</p><p class="oval">Nine in ten Indonesian papers on these themes are in journals Scopus does not index: university accounting journals, Owner, COSTING, KnE proceedings. Correct for the CSR topic and it is still seven in ten.</p></div><div class="otile "><p class="oname">The Scopus view</p><p class="oval">Scopus itself sees 176 Indonesian papers in 2025 for the phrase set, 3.2% of the world; ASEAN-6 481, 8.6%.</p></div><div class="otile note"><p class="oname">The implication</p><p class="oval">The authors exist and are productive. What they lack is a venue that is both reachable and indexed. That is the author base JDSE can serve, if it holds the line on quality.</p></div></div>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">Same venue classification as Figure 5, applied to works with an Indonesian author (all six topics; and excluding CSR and ESG reporting) and to ASEAN-6 (Indonesia, Malaysia, Thailand, Vietnam, Philippines, Singapore). Scopus cross-check: TITLE-ABS-KEY phrase set with AFFILCOUNTRY.</div></details>
+<h2>Figure 12 &middot; Most of Indonesia&rsquo;s papers on these themes are outside Scopus</h2>
+<div class="two"><svg class="ds-chart" viewBox="0 0 660 420" role="img" aria-label="Share of the papers in all journals that each Scopus lens keeps, %">
+<text x="60" y="24" class="ph">Share of the papers in all journals that each Scopus lens keeps, %</text>
+<line x1="60" y1="360.0" x2="640" y2="360.0" class="g"/><text x="50" y="365.0" class="ax end">0</text>
+<line x1="60" y1="282.5" x2="640" y2="282.5" class="g"/><text x="50" y="287.5" class="ax end">25</text>
+<line x1="60" y1="205.0" x2="640" y2="205.0" class="g"/><text x="50" y="210.0" class="ax end">50</text>
+<line x1="60" y1="127.5" x2="640" y2="127.5" class="g"/><text x="50" y="132.5" class="ax end">75</text>
+<line x1="60" y1="50.0" x2="640" y2="50.0" class="g"/><text x="50" y="55.0" class="ax end">100</text>
+<rect x="74.2" y="205.6" width="32.0" height="154.4" rx="3" fill="var(--muted)"/><text x="90.2" y="197.6" class="val mid" font-weight="700" fill="var(--muted)">50</text>
+<rect x="112.2" y="213.1" width="32.0" height="146.9" rx="3" fill="var(--c9)"/><text x="128.2" y="205.1" class="val mid" font-weight="700" fill="var(--c9)">47</text>
+<rect x="150.2" y="257.7" width="32.0" height="102.3" rx="3" fill="var(--c8)"/><text x="166.2" y="249.7" class="val mid" font-weight="700" fill="var(--c8)">33</text>
+<text x="131.2" y="386" class="lab mid">World</text>
+<rect x="216.8" y="279.7" width="32.0" height="80.3" rx="3" fill="var(--muted)"/><text x="232.8" y="271.7" class="val mid" font-weight="700" fill="var(--muted)">26</text>
+<rect x="254.8" y="289.9" width="32.0" height="70.1" rx="3" fill="var(--c9)"/><text x="270.8" y="281.9" class="val mid" font-weight="700" fill="var(--c9)">23</text>
+<rect x="292.8" y="318.1" width="32.0" height="41.9" rx="3" fill="var(--c8)"/><text x="308.8" y="310.1" class="val mid" font-weight="700" fill="var(--c8)">14</text>
+<text x="273.8" y="386" class="lab mid">ASEAN-6</text>
+<rect x="359.2" y="327.1" width="32.0" height="32.9" rx="3" fill="var(--muted)"/><text x="375.2" y="319.1" class="val mid" font-weight="700" fill="var(--muted)">11</text>
+<rect x="397.2" y="334.3" width="32.0" height="25.7" rx="3" fill="var(--c9)"/><text x="413.2" y="326.3" class="val mid" font-weight="700" fill="var(--c9)">8</text>
+<rect x="435.2" y="348.2" width="32.0" height="11.8" rx="3" fill="var(--c8)"/><text x="451.2" y="340.2" class="val mid" font-weight="700" fill="var(--c8)">4</text>
+<text x="416.2" y="386" class="lab mid">Indonesia</text>
+<rect x="501.8" y="296.5" width="32.0" height="63.5" rx="3" fill="var(--muted)"/><text x="517.8" y="288.5" class="val mid" font-weight="700" fill="var(--muted)">20</text>
+<rect x="539.8" y="306.7" width="32.0" height="53.3" rx="3" fill="var(--c9)"/><text x="555.8" y="298.7" class="val mid" font-weight="700" fill="var(--c9)">17</text>
+<rect x="577.8" y="328.1" width="32.0" height="31.9" rx="3" fill="var(--c8)"/><text x="593.8" y="320.1" class="val mid" font-weight="700" fill="var(--c8)">10</text>
+<text x="558.8" y="386" class="lab mid">Indonesia, excl. CSR</text>
+<rect x="60" y="402" width="14" height="14" rx="2" fill="var(--muted)"/><text x="80" y="414" class="ax">Scopus, all listed</text>
+<rect x="252" y="402" width="14" height="14" rx="2" fill="var(--c9)"/><text x="272" y="414" class="ax">Scopus, excl. discontinued</text>
+<rect x="516" y="402" width="14" height="14" rx="2" fill="var(--c8)"/><text x="536" y="414" class="ax">Scopus Q1</text>
+</svg><div class="dtable-wrap"><table class="dtable meals venues"><thead><tr><th>Indonesia&rsquo;s largest Q1 venues, six topics</th><th>Publisher</th><th>Papers</th></tr></thead><tbody><tr><td><b>Sustainability</b></td><td>Multidisciplinary Digital </td><td>48</td></tr><tr><td><b>Business Strategy & Development</b></td><td>Wiley</td><td>33</td></tr><tr><td><b>Social Responsibility Journal</b></td><td>Emerald Publishing Limited</td><td>27</td></tr><tr><td><b>Corporate Social Responsibility and Environmen</b></td><td>Wiley</td><td>27</td></tr><tr><td><b>Discover Sustainability</b></td><td>Springer Nature</td><td>21</td></tr><tr><td><b>Business Strategy and the Environment</b></td><td>Wiley</td><td>13</td></tr><tr><td><b>Journal of Cleaner Production</b></td><td>Elsevier BV</td><td>12</td></tr><tr><td><b>Corporate Governance</b></td><td>Emerald Publishing Limited</td><td>10</td></tr><tr><td><b>Journal of Accounting & Organizational Change</b></td><td>Emerald Publishing Limited</td><td>10</td></tr></tbody></table></div></div><div class="ogrid stella3"><div class="otile bad"><p class="oname">The gap</p><p class="oval">An non-discontinued Scopus journal holds 47% of the world&rsquo;s papers on these themes and 8% of Indonesia&rsquo;s. Remove CSR reporting and Indonesia rises to 17%.</p></div><div class="otile "><p class="oname">Where Indonesia&rsquo;s Q1 work goes</p><p class="oval">The same international titles the world uses: no Indonesian journal appears among them.</p></div><div class="otile note"><p class="oname">The implication</p><p class="oval">The authors exist and are productive. What they lack is a venue that is both reachable and indexed. That is the author base JDSE can serve, if it holds the line on quality.</p></div></div>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">Per-work data, works 2016-2026 with a sustainable primary topic; the base (100%) is papers in all OpenAlex journals for each group.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Fig 13 institutions"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Part III &middot; Where does Indonesia stand?</p>
-<h2>Figure 13 &middot; Who writes it in Indonesia: a broad base outside the top five, almost all on CSR reporting</h2>
-<div class="two"><svg class="ds-chart " viewBox="0 0 620 470" role="img" aria-label="Indonesian institutions, papers in the six sustainable topics, 2016-2026">
-<text x="10" y="22" class="ph">Indonesian institutions, papers in the six sustainable topics, 2016-2026</text>
-<line x1="270.0" y1="38" x2="270.0" y2="436" class="g"/><text x="270.0" y="458" class="ax mid">0</text>
-<line x1="356.2" y1="38" x2="356.2" y2="436" class="g"/><text x="356.2" y="458" class="ax mid">200</text>
-<line x1="442.3" y1="38" x2="442.3" y2="436" class="g"/><text x="442.3" y="458" class="ax mid">400</text>
-<line x1="528.5" y1="38" x2="528.5" y2="436" class="g"/><text x="528.5" y="458" class="ax mid">600</text>
-<text x="258" y="67.0" class="lab end" fill="var(--text-primary)">Universitas Trisakti</text><rect x="270.0" y="51" width="249.0" height="22" rx="3" fill="var(--c9)"/>
-<text x="527.0" y="67.0" class="val" fill="var(--text-secondary)">578</text>
-<text x="258" y="99.0" class="lab end" fill="var(--text-primary)">University of Indonesia</text><rect x="270.0" y="83" width="149.0" height="22" rx="3" fill="var(--c9)"/>
-<text x="427.0" y="99.0" class="val" fill="var(--text-secondary)">346</text>
-<text x="258" y="131.0" class="lab end" fill="var(--text-primary)">Udayana University</text><rect x="270.0" y="115" width="147.3" height="22" rx="3" fill="var(--c9)"/>
-<text x="425.3" y="131.0" class="val" fill="var(--text-secondary)">342</text>
-<text x="258" y="163.0" class="lab end" fill="var(--text-primary)">University of Brawijaya</text><rect x="270.0" y="147" width="143.4" height="22" rx="3" fill="var(--c9)"/>
-<text x="421.4" y="163.0" class="val" fill="var(--text-secondary)">333</text>
-<text x="258" y="195.0" class="lab end" fill="var(--text-primary)">Universitas Airlangga</text><rect x="270.0" y="179" width="142.6" height="22" rx="3" fill="var(--c9)"/>
-<text x="420.6" y="195.0" class="val" fill="var(--text-secondary)">331</text>
-<text x="258" y="227.0" class="lab end" fill="var(--text-primary)">Sebelas Maret University</text><rect x="270.0" y="211" width="128.4" height="22" rx="3" fill="var(--c9)"/>
-<text x="406.4" y="227.0" class="val" fill="var(--text-secondary)">298</text>
-<text x="258" y="259.0" class="lab end" fill="var(--text-primary)">Diponegoro University</text><rect x="270.0" y="243" width="125.8" height="22" rx="3" fill="var(--c9)"/>
-<text x="403.8" y="259.0" class="val" fill="var(--text-secondary)">292</text>
-<text x="258" y="291.0" class="lab end" fill="var(--text-primary)">State University of Semarang</text><rect x="270.0" y="275" width="94.3" height="22" rx="3" fill="var(--c9)"/>
-<text x="372.3" y="291.0" class="val" fill="var(--text-secondary)">219</text>
-<text x="258" y="323.0" class="lab end" fill="var(--text-primary)">Lampung University</text><rect x="270.0" y="307" width="91.3" height="22" rx="3" fill="var(--c9)"/>
-<text x="369.3" y="323.0" class="val" fill="var(--text-secondary)">212</text>
-<text x="258" y="355.0" class="lab end" fill="var(--text-primary)">Univ. Muhammadiyah Surakarta</text><rect x="270.0" y="339" width="90.0" height="22" rx="3" fill="var(--c9)"/>
-<text x="368.0" y="355.0" class="val" fill="var(--text-secondary)">209</text>
-<text x="258" y="387.0" class="lab end" fill="var(--text-primary)">UPN Veteran Jawa Timur</text><rect x="270.0" y="371" width="89.2" height="22" rx="3" fill="var(--c9)"/>
-<text x="367.2" y="387.0" class="val" fill="var(--text-secondary)">207</text>
-<text x="258" y="419.0" class="lab end" fill="var(--text-primary)">Telkom University</text><rect x="270.0" y="403" width="87.9" height="22" rx="3" fill="var(--c9)"/>
-<text x="365.9" y="419.0" class="val" fill="var(--text-secondary)">204</text>
-</svg><svg class="ds-chart " viewBox="0 0 540 302" role="img" aria-label="Indonesia&amp;rsquo;s papers by primary topic">
-<text x="10" y="22" class="ph">Indonesia&rsquo;s papers by primary topic</text>
-<line x1="290.0" y1="38" x2="290.0" y2="268" class="g"/><text x="290.0" y="290" class="ax mid">0</text>
-<line x1="342.3" y1="38" x2="342.3" y2="268" class="g"/><text x="342.3" y="290" class="ax mid">4,000</text>
-<line x1="394.6" y1="38" x2="394.6" y2="268" class="g"/><text x="394.6" y="290" class="ax mid">8,000</text>
-<line x1="446.9" y1="38" x2="446.9" y2="268" class="g"/><text x="446.9" y="290" class="ax mid">12,000</text>
-<text x="278" y="69.0" class="lab end" font-weight="700" fill="var(--c8)">CSR and ESG reporting</text><rect x="290.0" y="51" width="162.4" height="26" rx="3" fill="var(--c8)"/>
-<text x="460.4" y="69.0" class="val" font-weight="700" fill="var(--c8)">12,418</text>
-<text x="278" y="105.0" class="lab end" fill="var(--text-primary)">Sustainable finance, green bonds</text><rect x="290.0" y="87" width="12.4" height="26" rx="3" fill="var(--c9)"/>
-<text x="310.4" y="105.0" class="val" fill="var(--text-secondary)">948</text>
-<text x="278" y="141.0" class="lab end" fill="var(--text-primary)">Climate policy and economics</text><rect x="290.0" y="123" width="8.2" height="26" rx="3" fill="var(--c9)"/>
-<text x="306.2" y="141.0" class="val" fill="var(--text-secondary)">624</text>
-<text x="278" y="177.0" class="lab end" fill="var(--text-primary)">Sustainable development, management</text><rect x="290.0" y="159" width="4.1" height="26" rx="3" fill="var(--c9)"/>
-<text x="302.1" y="177.0" class="val" fill="var(--text-secondary)">312</text>
-<text x="278" y="213.0" class="lab end" fill="var(--text-primary)">Climate governance</text><rect x="290.0" y="195" width="2.3" height="26" rx="3" fill="var(--c9)"/>
-<text x="300.3" y="213.0" class="val" fill="var(--text-secondary)">174</text>
-<text x="278" y="249.0" class="lab end" fill="var(--text-primary)">Sustainable development, policy</text><rect x="290.0" y="231" width="2.2" height="26" rx="3" fill="var(--c9)"/>
-<text x="300.2" y="249.0" class="val" fill="var(--text-secondary)">171</text>
-</svg></div><p class="reveal">The producers are not the usual top five. Trisakti leads; Udayana, Brawijaya, Sebelas Maret, Diponegoro and the regional universities follow. This is a broad base of applied researchers writing about listed firms&rsquo; disclosures, in Indonesian, for local journals. The journal&rsquo;s job is to pull the best of this toward finance questions a central bank cares about.</p>
-<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex authorships.institutions.lineage and primary_topic for works with an Indonesian author, 2016-2026.</div></details>
+<h2>Figure 13 &middot; Two different lists of who writes it in Indonesia</h2>
+<div class="two"><svg class="ds-chart " viewBox="0 0 580 446" role="img" aria-label="Indonesian institutions, papers in all journals">
+<text x="10" y="22" class="ph">Indonesian institutions, papers in all journals</text>
+<line x1="270.0" y1="38" x2="270.0" y2="412" class="g"/><text x="270.0" y="434" class="ax mid">0</text>
+<line x1="345.7" y1="38" x2="345.7" y2="412" class="g"/><text x="345.7" y="434" class="ax mid">200</text>
+<line x1="421.5" y1="38" x2="421.5" y2="412" class="g"/><text x="421.5" y="434" class="ax mid">400</text>
+<line x1="497.2" y1="38" x2="497.2" y2="412" class="g"/><text x="497.2" y="434" class="ax mid">600</text>
+<text x="258" y="66.0" class="lab end" fill="var(--text-primary)">Universitas Trisakti</text><rect x="270.0" y="51" width="217.4" height="20" rx="3" fill="var(--baseline)"/>
+<text x="495.4" y="66.0" class="val" fill="var(--text-secondary)">574</text>
+<text x="258" y="96.0" class="lab end" fill="var(--text-primary)">Udayana University</text><rect x="270.0" y="81" width="128.0" height="20" rx="3" fill="var(--baseline)"/>
+<text x="406.0" y="96.0" class="val" fill="var(--text-secondary)">338</text>
+<text x="258" y="126.0" class="lab end" fill="var(--text-primary)">University of Brawijaya</text><rect x="270.0" y="111" width="125.4" height="20" rx="3" fill="var(--baseline)"/>
+<text x="403.4" y="126.0" class="val" fill="var(--text-secondary)">331</text>
+<text x="258" y="156.0" class="lab end" fill="var(--text-primary)">University of Indonesia</text><rect x="270.0" y="141" width="123.8" height="20" rx="3" fill="var(--baseline)"/>
+<text x="401.8" y="156.0" class="val" fill="var(--text-secondary)">327</text>
+<text x="258" y="186.0" class="lab end" fill="var(--text-primary)">Universitas Airlangga</text><rect x="270.0" y="171" width="123.1" height="20" rx="3" fill="var(--baseline)"/>
+<text x="401.1" y="186.0" class="val" fill="var(--text-secondary)">325</text>
+<text x="258" y="216.0" class="lab end" fill="var(--text-primary)">Sebelas Maret University</text><rect x="270.0" y="201" width="110.6" height="20" rx="3" fill="var(--baseline)"/>
+<text x="388.6" y="216.0" class="val" fill="var(--text-secondary)">292</text>
+<text x="258" y="246.0" class="lab end" fill="var(--text-primary)">Diponegoro University</text><rect x="270.0" y="231" width="107.6" height="20" rx="3" fill="var(--baseline)"/>
+<text x="385.6" y="246.0" class="val" fill="var(--text-secondary)">284</text>
+<text x="258" y="276.0" class="lab end" fill="var(--text-primary)">Lampung University</text><rect x="270.0" y="261" width="79.5" height="20" rx="3" fill="var(--baseline)"/>
+<text x="357.5" y="276.0" class="val" fill="var(--text-secondary)">210</text>
+<text x="258" y="306.0" class="lab end" fill="var(--text-primary)">UPN Veteran Jawa Timur</text><rect x="270.0" y="291" width="77.6" height="20" rx="3" fill="var(--baseline)"/>
+<text x="355.6" y="306.0" class="val" fill="var(--text-secondary)">205</text>
+<text x="258" y="336.0" class="lab end" fill="var(--text-primary)">Telkom University</text><rect x="270.0" y="321" width="77.3" height="20" rx="3" fill="var(--baseline)"/>
+<text x="355.3" y="336.0" class="val" fill="var(--text-secondary)">204</text>
+<text x="258" y="366.0" class="lab end" fill="var(--text-primary)">State University of Semarang</text><rect x="270.0" y="351" width="76.1" height="20" rx="3" fill="var(--baseline)"/>
+<text x="354.1" y="366.0" class="val" fill="var(--text-secondary)">201</text>
+<text x="258" y="396.0" class="lab end" fill="var(--text-primary)">Univ. Muhammadiyah Surakarta</text><rect x="270.0" y="381" width="74.2" height="20" rx="3" fill="var(--baseline)"/>
+<text x="352.2" y="396.0" class="val" fill="var(--text-secondary)">196</text>
+</svg><svg class="ds-chart " viewBox="0 0 580 446" role="img" aria-label="Indonesian institutions, papers in Scopus Q1 journals">
+<text x="10" y="22" class="ph">Indonesian institutions, papers in Scopus Q1 journals</text>
+<line x1="270.0" y1="38" x2="270.0" y2="412" class="g"/><text x="270.0" y="434" class="ax mid">0</text>
+<line x1="336.9" y1="38" x2="336.9" y2="412" class="g"/><text x="336.9" y="434" class="ax mid">20</text>
+<line x1="403.8" y1="38" x2="403.8" y2="412" class="g"/><text x="403.8" y="434" class="ax mid">40</text>
+<line x1="470.7" y1="38" x2="470.7" y2="412" class="g"/><text x="470.7" y="434" class="ax mid">60</text>
+<line x1="537.6" y1="38" x2="537.6" y2="412" class="g"/><text x="537.6" y="434" class="ax mid">80</text>
+<text x="258" y="66.0" class="lab end" fill="var(--text-primary)">Universitas Airlangga</text><rect x="270.0" y="51" width="217.4" height="20" rx="3" fill="var(--c8)"/>
+<text x="495.4" y="66.0" class="val" fill="var(--text-secondary)">65</text>
+<text x="258" y="96.0" class="lab end" fill="var(--text-primary)">University of Indonesia</text><rect x="270.0" y="81" width="210.7" height="20" rx="3" fill="var(--c8)"/>
+<text x="488.7" y="96.0" class="val" fill="var(--text-secondary)">63</text>
+<text x="258" y="126.0" class="lab end" fill="var(--text-primary)">Sebelas Maret University</text><rect x="270.0" y="111" width="180.6" height="20" rx="3" fill="var(--c8)"/>
+<text x="458.6" y="126.0" class="val" fill="var(--text-secondary)">54</text>
+<text x="258" y="156.0" class="lab end" fill="var(--text-primary)">Universitas Gadjah Mada</text><rect x="270.0" y="141" width="107.0" height="20" rx="3" fill="var(--c8)"/>
+<text x="385.0" y="156.0" class="val" fill="var(--text-secondary)">32</text>
+<text x="258" y="186.0" class="lab end" fill="var(--text-primary)">Islamic University of Indonesia</text><rect x="270.0" y="171" width="83.6" height="20" rx="3" fill="var(--c8)"/>
+<text x="361.6" y="186.0" class="val" fill="var(--text-secondary)">25</text>
+<text x="258" y="216.0" class="lab end" fill="var(--text-primary)">IPB University</text><rect x="270.0" y="201" width="80.3" height="20" rx="3" fill="var(--c8)"/>
+<text x="358.3" y="216.0" class="val" fill="var(--text-secondary)">24</text>
+<text x="258" y="246.0" class="lab end" fill="var(--text-primary)">BRIN</text><rect x="270.0" y="231" width="70.2" height="20" rx="3" fill="var(--c8)"/>
+<text x="348.2" y="246.0" class="val" fill="var(--text-secondary)">21</text>
+<text x="258" y="276.0" class="lab end" fill="var(--text-primary)">Diponegoro University</text><rect x="270.0" y="261" width="66.9" height="20" rx="3" fill="var(--c8)"/>
+<text x="344.9" y="276.0" class="val" fill="var(--text-secondary)">20</text>
+<text x="258" y="306.0" class="lab end" fill="var(--text-primary)">Padjadjaran University</text><rect x="270.0" y="291" width="66.9" height="20" rx="3" fill="var(--c8)"/>
+<text x="344.9" y="306.0" class="val" fill="var(--text-secondary)">20</text>
+<text x="258" y="336.0" class="lab end" fill="var(--text-primary)">Bandung Institute of Technology</text><rect x="270.0" y="321" width="63.5" height="20" rx="3" fill="var(--c8)"/>
+<text x="341.5" y="336.0" class="val" fill="var(--text-secondary)">19</text>
+<text x="258" y="366.0" class="lab end" fill="var(--text-primary)">Binus University</text><rect x="270.0" y="351" width="56.9" height="20" rx="3" fill="var(--c8)"/>
+<text x="334.9" y="366.0" class="val" fill="var(--text-secondary)">17</text>
+<text x="258" y="396.0" class="lab end" fill="var(--text-primary)">State University of Semarang</text><rect x="270.0" y="381" width="43.5" height="20" rx="3" fill="var(--c8)"/>
+<text x="321.5" y="396.0" class="val" fill="var(--text-secondary)">13</text>
+</svg></div><p class="reveal">Count everything and the leaders are the large private and regional universities writing CSR-disclosure studies. Count Q1 only and the list is the research universities. The two lists are the two halves of JDSE&rsquo;s author base: the volume it can raise, and the quality it must recruit.</p>
+<details class="src"><summary>Source &amp; method</summary><div class="src-body">OpenAlex authorships.institutions.lineage for works with an Indonesian author, 2016-2026, by journal tier. A paper counts once per institution.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Implications"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Implications</p>
 <h2>What the evidence implies for JDSE</h2>
-<div class="ogrid stella3"><div class="otile "><p class="oname">1 &middot; Position at the intersection</p><p class="oval">Digital and sustainable finance together is a 5,000-paper literature growing 35% a year with no home journal (Figure 3). Claim it in the title, the aims and the first call.</p></div><div class="otile "><p class="oname">2 &middot; Follow the themes that rose</p><p class="oval">Climate and transition risk, green credit, financial stability, ESG ratings and greenwashing, carbon pricing (Figure 2). These are supervisory questions; a central bank is the natural host.</p></div><div class="otile "><p class="oname">3 &middot; Serve the emerging-market author</p><p class="oval">Indonesia is second in the world by count and 90% invisible (Figures 10 and 12). ASEAN-6 is the first author base; India, Pakistan and Vietnam are where Borsa Istanbul Review and Financial Innovation found theirs (Figure 8).</p></div><div class="otile bad"><p class="oname">4 &middot; Be diamond, and be indexed</p><p class="oval">No fee to read or publish, on a Scopus track from the first issue (Figure 9). The institution-hosted models reached Q1 in three years; DOAJ in year one, Scopus application after two years of regular issues (Figure 7).</p></div><div class="otile "><p class="oname">5 &middot; Require data and code, publish briefs</p><p class="oval">Every empirical paper with replication files; a two-page policy brief alongside. Few journals in the field do either. It is cheap for a host that already has analysts.</p></div><div class="otile note"><p class="oname">6 &middot; Measure from day one</p><p class="oval">Citations, author countries, topic mix and index status, from OpenAlex, on a public page. BMEB&rsquo;s h 33 and two citations per paper in two years is the baseline to beat, and the number to report against.</p></div></div>
+<div class="ogrid stella3"><div class="otile "><p class="oname">1 &middot; Position at the intersection</p><p class="oval">Digital and sustainable finance together: 4,640 papers in all journals, 1,977 in Q1, growing faster than anything else under every lens (Figures 1 and 3), and no home journal. Claim it in the title, the aims and the first call.</p></div><div class="otile "><p class="oname">2 &middot; Follow the themes that rose in Q1</p><p class="oval">Climate and transition risk, financial stability, ESG ratings and greenwashing, green credit (Figure 2). These are supervisory questions and they rose most in the Q1 journals; a central bank is the natural host.</p></div><div class="otile "><p class="oname">3 &middot; Serve the emerging-market author</p><p class="oval">Indonesia is 2nd in the world by papers in all journals and 32th in Q1 (Figures 10 to 12). The authors exist; the venue is missing. ASEAN-6 is the first author base; India, Pakistan and Vietnam are where the institution-hosted journals found theirs (Figure 8).</p></div><div class="otile bad"><p class="oname">4 &middot; Be diamond, and be indexed</p><p class="oval">No fee to read or publish, on a Scopus track from the first issue: 28% of the field is diamond but 2% of Q1 is (Figure 9). Institution-hosted journals reached Q1 in zero to three years; DOAJ in year one, Scopus application after two years of regular issues (Figure 7).</p></div><div class="otile "><p class="oname">5 &middot; Require data and code, publish briefs</p><p class="oval">Every empirical paper with replication files; a two-page policy brief alongside. Few journals in the field do either. It is cheap for a host that already has analysts.</p></div><div class="otile note"><p class="oname">6 &middot; Measure from day one, under the Q1 lens</p><p class="oval">Citations, author countries, topic mix and index status, from OpenAlex, on a public page. BMEB&rsquo;s h-index of 33 and two citations per paper in two years is the baseline to beat, and the number to report against.</p></div></div>
 <details class="src"><summary>Source &amp; method</summary><div class="src-body">Each card points to the figure that supports it.</div></details>
 </section></div></div></section>
 <section class="row-single" aria-label="Sources"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel">
 <p class="panel-eyebrow">Sources</p>
 <h2>Sources and limits</h2>
-<p class="srcs">OpenAlex works, topics, keywords and sources, retrieved 14 October 2026 with the filter-only API; six sustainable and five digital topic IDs listed on the method slide. Scopus Search API (Elsevier), 14 October 2026, phrase set in TITLE-ABS-KEY. SCImago Journal Rank 2025 for quartiles and coverage years; Scopus discontinued-source list, May 2026. Method follows the Indonesian research-quality study (anshory1972.github.io/dataslide/researchquality.html): classification by assigned topic, not keyword matching; journal status by ISSN; repositories separated from journals.</p><p class="srcs">Limits. OpenAlex is a reliable census of the literature and less reliable on who wrote it; institution counts are indicative. Topic assignment is probabilistic. Keyword coverage is thinner before 2020, so early-period shares are lower bounds. 2026 is a partial year. Index status is as of May 2026.</p>
+<p class="srcs">OpenAlex works, topics, keywords, sources and institutions, retrieved 14 October 2026: 248,756 works with a sustainable primary topic and 398,142 with a digital topic, 2010-2026, downloaded one by one so that every journal could be classified. Journal status from the official Scopus Source List, September 2026 (sources sheet and discontinued-titles sheet), matched by ISSN and EISSN; quartiles from SCImago Journal Rank 2025. Scopus Search API (Elsevier), 14 October 2026, phrase set in TITLE-ABS-KEY, for the cross-check. Method follows the Indonesian research-quality study (anshory1972.github.io/dataslide/researchquality.html): classification by assigned topic, not keyword matching; journal status by ISSN; repositories separated from journals; every result reported under four lenses.</p><p class="srcs">Limits. OpenAlex is a reliable census of the literature and less reliable on who wrote it; institution counts are indicative. Topic assignment is probabilistic. Keyword coverage is thinner before 2020, so early-period shares are lower bounds. 2026 is a partial year. A journal is matched to Scopus only if its ISSN is in the list, which undercounts by a few per cent. Figures 4 to 8 use the 200 largest venues of each group; Figures 1 to 3 and 9 to 13 use every paper.</p>
 </section></div></div></section>
 <section class="row-single" aria-label="Thank you"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel divider"><div class="divrow"><div class="covertext"><p class="panel-eyebrow"></p><h2 class="divtitle">Thank you</h2><p class="divq">Arief Anshory Yusuf &middot; Universitas Padjadjaran &middot; Dewan Ekonomi Nasional</p></div><img class="divimg" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23e6d9ce'/><text x='200.0' y='200.0' font-family='system-ui' font-size='40' fill='%238b8480' text-anchor='middle'>thanks 1:1</text></svg>" alt="A figure placing the first volume on an empty shelf"></div></section></div></div></section>
 <script>
