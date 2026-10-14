@@ -1509,10 +1509,10 @@ table.dtable.peers .idn { color: var(--c8); }
 }
 
 .picgrid .pgimg { aspect-ratio:auto; }
-.takes { display:flex; flex-direction:column; gap:16px; margin-top:26px; }
-.take { display:flex; align-items:center; gap:18px; background:#f4e7d9; border:1px solid #e0ccb8; border-radius:12px; padding:18px 20px; }
-.take:nth-child(2) { background:#f4dfd9; border-color:#e0c0b8; } .take:nth-child(3) { background:#f4edd9; border-color:#e0d6b8; }
-.take .tn { flex:0 0 54px; height:54px; font-size:26px !important; border-radius:50%; background: var(--c8); color:#fff; font-size:28px; font-weight:750; display:flex; align-items:center; justify-content:center; }
+.takes { display:flex; flex-direction:column; gap:6px; margin-top:22px; }
+.take { display:flex; align-items:flex-start; gap:14px; background:transparent; border:0; border-top:2px solid var(--c8); border-radius:0; padding:14px 4px 10px 0; }
+.take:nth-child(2), .take:nth-child(3) { background:transparent; border-color: var(--c8); }
+.take .tn { flex:0 0 auto; width:auto; height:auto; border-radius:0; background:transparent; color: var(--c8); font-family: Georgia, 'Iowan Old Style', serif; font-size: clamp(44px, 4.6vw, 84px) !important; font-weight:400; line-height:0.85; margin-top:-2px; margin-right:6px; display:block; }
 .take p { margin:0; font-family: Georgia, 'Iowan Old Style', serif; font-size: clamp(26px, 2.7vw, 48px); line-height:1.2; color: var(--text-primary); }
 .closing .divtitle { margin-bottom:0; }
 .two.rep { grid-template-columns: minmax(0,0.8fr) minmax(0,1.2fr); gap:26px; align-items:start; }
