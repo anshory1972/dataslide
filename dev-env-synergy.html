@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Development and Environment Synergy</title>
+<meta name="description" content="Indonesian policies that reduced poverty and improved the environment at the same time, and what the peer-reviewed evidence says about each. Note for the ESCAP Committee on Social Development, ninth session, Bangkok, 11 November 2026.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Dataslide">
+<meta property="og:title" content="Development and Environment Synergy">
+<meta property="og:description" content="Indonesian policies that reduced poverty and improved the environment at the same time, and what the peer-reviewed evidence says about each. ESCAP Committee on Social Development, Bangkok, 11 November 2026.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/dev-env-synergy.html">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/dev-env-synergy.html">
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:   #f4f2ed;
+    --surface: #fffdf9;
+    --ink:     #14161c;
+    --muted:   #6d6a63;
+    --rule:    #dcd8ce;
+    --accent:  #b4451f;
+    --slate:   #1c4e73;
+    --tint:    #fbf3ee;
+    --shadow:  rgba(30,26,18,.07);
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:   #0f1013;
+      --surface: #191a1e;
+      --ink:     #ece9e2;
+      --muted:   #9b978e;
+      --rule:    #2e3036;
+      --accent:  #e0875f;
+      --slate:   #7ea9cc;
+      --tint:    #1f1a18;
+      --shadow:  rgba(0,0,0,.38);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 17px/1.62 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sans { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  a { color: var(--accent); }
+  a:hover { text-decoration-thickness: 2px; }
+
+  header.top { border-bottom: 1px solid var(--rule); background: linear-gradient(170deg, var(--surface) 0%, var(--paper) 70%); }
+  header.top .inner { max-width: 46rem; margin: 0 auto; padding: 3.6rem 1.5rem 2.4rem; }
+  .eyebrow {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: .18em; font-size: .66rem; font-weight: 600;
+    color: var(--accent); margin: 0 0 1rem;
+  }
+  .eyebrow::before { content: ""; display: inline-block; width: 2rem; height: 1px; background: var(--accent); vertical-align: .3em; margin-right: .7rem; }
+  h1 { font-size: clamp(2.1rem, 6.5vw, 3.3rem); line-height: 1.05; font-weight: 400; letter-spacing: -.02em; margin: 0 0 .8rem; text-wrap: balance; }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 38rem; margin: 0 0 1rem; }
+  .byline { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .82rem; color: var(--muted); margin: 0; }
+  .byline a { color: var(--muted); }
+
+  main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+  h2 {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .17em; color: var(--muted);
+    margin: 2.8rem 0 .3rem; display: flex; align-items: baseline; gap: 1rem;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  h2 + h3 { margin-top: .4rem; }
+  h3 { font-size: 1.45rem; font-weight: 400; line-height: 1.25; letter-spacing: -.012em; margin: 1.6rem 0 .6rem; text-wrap: balance; }
+  h4 { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .9rem; font-weight: 600; margin: 1.4rem 0 .3rem; }
+  p { margin: 0 0 1rem; }
+  ul, ol { padding-left: 1.3rem; margin: 0 0 1rem; }
+  li { margin-bottom: .35rem; }
+  li::marker { color: var(--accent); }
+  blockquote {
+    margin: 1.2rem 0; padding: .2rem 0 .2rem 1.1rem; border-left: 3px solid var(--accent);
+    color: var(--ink); font-style: italic;
+  }
+  blockquote cite { display: block; font-style: normal; font-size: .85rem; color: var(--muted); margin-top: .3rem; font-family: system-ui, sans-serif; }
+  .ref { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .78rem; color: var(--muted); }
+  .note {
+    background: var(--tint); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    border-radius: 4px; padding: .9rem 1.1rem; margin: 1.2rem 0; font-size: .95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .verdict {
+    display: inline-block; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--slate);
+    border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .6rem; margin: 0 0 .5rem;
+  }
+
+  table { border-collapse: collapse; width: 100%; margin: .8rem 0 1.4rem; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  caption { text-align: left; font-family: system-ui, sans-serif; font-size: .78rem; color: var(--muted); padding: 0 0 .4rem; }
+  th, td { text-align: left; vertical-align: top; padding: .45rem .6rem .45rem 0; border-bottom: 1px solid var(--rule); }
+  th { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+  td.n { text-align: right; white-space: nowrap; }
+  th.n { text-align: right; }
+  .tablewrap { overflow-x: auto; }
+
+  .cards { display: grid; gap: .8rem; margin: 1rem 0 1.4rem; }
+  @media screen and (min-width: 40rem) { .cards { grid-template-columns: 1fr 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 1px 2px var(--shadow); padding: .9rem 1.1rem; }
+  .card .big { font-size: 1.9rem; line-height: 1.1; letter-spacing: -.02em; display: block; margin-bottom: .25rem; }
+  .card .what { font-size: .9rem; color: var(--ink); display: block; }
+  .card .src { font-family: system-ui, sans-serif; font-size: .74rem; color: var(--muted); display: block; margin-top: .35rem; }
+
+  ol.refs { padding-left: 1.6rem; font-size: .92rem; }
+  ol.refs li { margin-bottom: .55rem; }
+  .pdf {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+    border: 1px solid var(--rule); border-radius: 999px; padding: .1rem .5rem; margin-left: .35rem; text-decoration: none; color: var(--slate); white-space: nowrap;
+  }
+  .pdf.locked { color: var(--accent); }
+  details { margin: 1rem 0; }
+  summary { cursor: pointer; font-family: system-ui, sans-serif; font-size: .9rem; color: var(--slate); }
+  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .8rem; color: var(--muted); }
+
+  @media screen and (max-width: 34rem) {
+    header.top .inner { padding: 2.6rem 1.1rem 1.8rem; }
+    main { padding: 1.8rem 1.1rem 3rem; }
+    body { font-size: 16px; }
+  }
+  @media print {
+    body { font-size: 11pt; background: #fff; color: #000; }
+    header.top { background: none; }
+    .pdf { display: none; }
+    details { display: block; } details > summary { display: none; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="inner">
+    <p class="eyebrow">Note &middot; English</p>
+    <h1>Development and Environment Synergy</h1>
+    <p class="lede">Indonesian policies that reduced poverty and improved the environment at the same time, and what the peer-reviewed evidence says about each.</p>
+    <p class="byline">Arief Anshory Yusuf &middot; SDGs Center, Universitas Padjadjaran, and member of the National Economic Council (DEN), in a personal capacity. Prepared for the panel <em>Pathways to Ending Poverty in Asia and the Pacific</em>, ESCAP Committee on Social Development, ninth session, Bangkok, 11 November 2026.</p>
+  </div>
+</header>
+
+<main>
+
+<h2>The question</h2>
+<p>The panel asked: <em>What examples can you share of policies or programmes that have successfully delivered both poverty reduction and environmental outcomes?</em> This note gives the Indonesian answer with the evidence behind each example. It ranks the examples by the strength of the evidence, not by their size.</p>
+
+<p>The relationship between poverty, inequality, growth and the environment is complex. The complexity itself is not the main problem. The problem is what complexity does to decisions. When a question is hard, governments and voters answer an easier one instead. Growth is chosen over welfare, because growth is measured every quarter. The least ambitious climate target is chosen, because it is the easiest to meet. A trade-off can be stated in one sentence. A synergy needs a paragraph, and no election campaign is run on paragraphs. So trade-offs are seen everywhere and synergies almost nowhere.</p>
+
+<p>The examples below show that synergies exist and have been measured. They also show a pattern. In every case the economics was settled before the politics. In two cases the reform was reversed or stopped. In most cases nobody evaluated the policy until years later, and in some cases nobody has evaluated it at all.</p>
+
+<div class="note">
+  <p><strong>How to read the evidence labels.</strong> <em>Causal</em> means a study with a credible comparison group: staggered roll-out, matching, a randomised trial or a panel with instruments. <em>Descriptive</em> means the numbers are facts, but no study has measured what the policy changed. Page numbers refer to the journal pages. Figures taken from press or budget sources, not from papers, are marked.</p>
+</div>
+
+<h2>1 &middot; Kerosene to LPG, 2007</h2>
+<span class="verdict">Causal evidence &middot; strongest case</span>
+<h3>A fiscal reform that delivered a health reform and a gender reform</h3>
+
+<p>In 2007 Indonesia decided to move households from kerosene to liquefied petroleum gas (LPG) for cooking. The reason was fiscal. Kerosene was subsidised, the subsidy had grown from USD 1.96 billion in 2005 to USD 5.24 billion in 2008, and kerosene took 57 per cent of the petroleum subsidy in 2006 (Budya and Arofat 2011, p. 7575&ndash;7576). Health was not an objective. Thoday et al. (2018, p. 71) state this directly:</p>
+
+<blockquote>Addressing HAP and the health impacts associated with kerosene and biomass use was never an objective of the program.<cite>Thoday, Benjamin, Gan and Puzzolo (2018), Energy for Sustainable Development 46, p. 71. HAP is household air pollution.</cite></blockquote>
+
+<h4>Design</h4>
+<ul>
+  <li>Each household received a free starter kit: a 3 kg cylinder, a one-burner stove, a hose and a regulator. The kit cost about IDR 300,000, or USD 33, in 2007 (Thoday et al. 2018, p. 73).</li>
+  <li>Kerosene supply was then withdrawn district by district. When 80 per cent of the kits had been delivered, kerosene supply was cut by half, then by at least 10 per cent a week (Budya and Arofat 2011, p. 7579). Kerosene prices rose 150&ndash;200 per cent between May and December 2007 (p. 7580).</li>
+  <li>The programme started in Jakarta in May 2007. The Presidential Decree (104/2007) came seven months later, in December 2007 (Budya and Arofat 2011, p. 7578, 7584).</li>
+</ul>
+
+<h4>Scale</h4>
+<div class="cards">
+  <div class="card"><span class="big">&gt;50 million</span><span class="what">households converted, about two-thirds of all households, in five years</span><span class="src">Imelda 2020, p. 1, 3. Packages: 3.7 m (2007), 15.8 m (2008), 24.2 m (2009), 54.1 m by 2012, over 57 m by 2015: Thoday et al. 2018, p. 73&ndash;74</span></div>
+  <div class="card"><span class="big">&minus;92%</span><span class="what">kerosene use, from 10 million kilolitres in 2006 to 0.8 million in 2015</span><span class="src">Thoday et al. 2018, p. 73</span></div>
+  <div class="card"><span class="big">37% &rarr; 4.4%</span><span class="what">households with kerosene as main cooking fuel, 2007 to 2015; LPG 68.8% in 2015</span><span class="src">Thoday et al. 2018, p. 72, 76</span></div>
+  <div class="card"><span class="big">USD 1.0 bn</span><span class="what">total programme cost 2007&ndash;2016 (IDR 13.63 trillion), against a cumulative subsidy saving of USD 15.6 bn (IDR 216.4 trillion), 2006&ndash;2016</span><span class="src">Thoday et al. 2018, p. 75, Ministry of Energy figures</span></div>
+</div>
+
+<p>Imelda (2020, p. 1) calls it &ldquo;the largest household energy transition project ever attempted in the developing world&rdquo;. The World Health Organization still classed kerosene as a clean cooking fuel in 2007. It moved kerosene to the polluting list only in its 2014 guidelines (Imelda 2020, p. 1, footnote 2). Indonesia removed kerosene from fifty million kitchens for a fiscal reason, seven years before the health community agreed it was harmful.</p>
+
+<h4>Health: the strongest evidence</h4>
+<p>Imelda (2020) uses the staggered roll-out across districts as a natural experiment, with the Indonesian Demographic and Health Survey.</p>
+<ul>
+  <li>Infant mortality fell by 16&ndash;34 per cent in converted districts. The most conservative estimate is about 25 per cent (standard error 9 per cent). In the districts converted in 2009&ndash;2011 alone, 137&ndash;293 infant deaths were averted among 19,571 live births (Imelda 2020, p. 2, 9, 14).</li>
+  <li>Low birth weight fell by 8&ndash;25 per cent. The effect is concentrated in the perinatal period (p. 2, 10).</li>
+  <li>Switching a household from kerosene to LPG cuts fine particulate matter (PM2.5) by about 149 micrograms per cubic metre and carbon monoxide by 22 ppm (p. 12). Twenty-four-hour PM2.5: kerosene 123, LPG 56, wood 160 micrograms per cubic metre (Verma and Imelda 2023, p. 850, footnote 10).</li>
+  <li>For comparison, the PKH conditional cash transfer, worth up to 20 per cent of poor households&rsquo; consumption, had no significant effect on infant mortality in three years (Imelda 2020, p. 13).</li>
+</ul>
+<blockquote>The fact that the program was not aimed at improving health made it a suitable policy experiment.<cite>Imelda (2020), Journal of Development Economics 147, p. 3</cite></blockquote>
+
+<h4>Women&rsquo;s health and paid work</h4>
+<p>Verma and Imelda (2023) use the same roll-out with the Indonesia Family Life Survey, which measures lung function.</p>
+<ul>
+  <li>Women&rsquo;s lung capacity rose by 11.22 litres per minute, about 4 per cent. The authors compare this to a smoker quitting for five pack-years. There was no significant effect for men (p. 857).</li>
+  <li>Women who kept house and also worked at baseline worked about one hour more a day for pay, a 20 per cent increase (p. 861). Men in the same households worked about 0.9 hour more a day, 13 per cent, and were 13 percentage points more likely to hold a second job (p. 847, 861, 865).</li>
+  <li>Labour force participation did not change. The gain is in hours (p. 862).</li>
+  <li>The money saving was small: about USD 1.2 a month (Verma and Imelda 2023, p. 859) or USD 2.7, about 2 per cent of spending (Imelda 2020, p. 13). The benefit came through health, not through cash.</li>
+</ul>
+
+<h4>Distribution: not pro-poor</h4>
+<ul>
+  <li>In a Central Java survey of 550 households, LPG users rose from 6.4 to 91.1 per cent and kerosene users fell from 87.5 to 8.2 per cent. Firewood use did not change: 43.6 before, 42.2 after (Andadari, Mulder and Rietveld 2014, p. 439).</li>
+  <li>&ldquo;Medium and higher income households in suburban areas benefitted most&rdquo; (Andadari et al. 2014, p. 436, 447). Expenditure-based energy poverty fell from 87 to 65 per cent, but quality-adjusted energy poverty fell by only 2 points (Table 12, p. 445).</li>
+  <li>Biomass users, who face the highest health risk, were never a target. Firewood was still the main fuel for 24.4 per cent of households in 2015 (Thoday et al. 2018, p. 75&ndash;76). In peri-urban Yogyakarta, 50 per cent of the poorest quintile cooked only with firewood against 5 per cent of the richest (Thoday et al. 2018, Fig. 7, p. 78).</li>
+</ul>
+<p>The poverty case for the programme therefore rests on health and on women&rsquo;s work, not on money transfers.</p>
+
+<h4>Environment: cleaner per meal, small in total</h4>
+<ul>
+  <li>Stove efficiency is 40 per cent for kerosene and 53 per cent for LPG (Budya and Arofat 2011, Table 2, p. 7576). With the lower carbon content of LPG, emissions per meal fall by about one-third.</li>
+  <li>Permadi, Sofyan and Kim Oanh (2017) estimate that 4.9 Tg of kerosene was replaced by 2.6 Tg of LPG by 2010. Net CO2 emissions fell by 7.6 Mt by 2010, 31 per cent of 2007 kerosene-plus-LPG cooking emissions, and by 10.3 Mt at completion (p. 87, 92).</li>
+  <li>This is only 0.01&ndash;2 per cent of national emissions, because firewood produces 60&ndash;93 per cent of cooking emissions and firewood use did not fall (p. 92&ndash;93). The authors recommend that &ldquo;future fuel switching should primarily focus on solid fuels, i.e. fuelwood and charcoal&rdquo; (p. 93).</li>
+</ul>
+
+<h4>Problems and the new burden</h4>
+<ul>
+  <li>Reported LPG accidents rose from 9 in 2007 to 352 in 2010, then fell to 8 in 2012 after cylinder and regulator standards were enforced (Thoday et al. 2018, Table 3, p. 76).</li>
+  <li>The LPG subsidy replaced the kerosene subsidy: IDR 48.9 trillion (USD 4 billion) in 2014, IDR 46.87 trillion in 2018. LPG imports rose from 11 per cent of supply in 2007 to 64 per cent in 2015 (Thoday et al. 2018, p. 74&ndash;75, 79). &ldquo;LPG subsidies have replaced kerosene subsidies as a budgetary burden to the Government&rdquo; (p. 80).</li>
+  <li>&ldquo;Successive Indonesian Governments have focused subsidy reform on fiscal concerns rather than articulated clear social concerns&rdquo; (Thoday et al. 2018, p. 79).</li>
+</ul>
+
+<div class="note">
+  <p><strong>Numbers differ by source and year.</strong> Households reached: 42 million target (2007), 44 million by 2009, 54 million by 2012, 57 million by 2015. Kerosene reduction: 70 per cent by 2010 (Permadi), 80 per cent in four years (Imelda), 92 per cent by 2015 (Thoday). Fiscal saving: USD 2.94 billion gross by May 2010 (Pertamina, Budya and Arofat 2011, Fig. 5, p. 7582), USD 15.6 billion cumulative 2006&ndash;2016 (Ministry of Energy, Thoday et al. 2018, p. 75). Always give the year with the number.</p>
+</div>
+
+<p>India applied the same design nine years later. The Ujjwala programme (2016 onward) gave free LPG connections to about 100 million poor households and then phased out the kerosene subsidy. Verma and Imelda (2023, p. 868) end by presenting the Indonesian programme as a model for South Asia and sub-Saharan Africa.</p>
+
+<h2>2 &middot; Village forests (Hutan Desa), since 2009</h2>
+<span class="verdict">Causal evidence &middot; matched villages</span>
+<h3>Where villages received tenure, deforestation fell and well-being rose. Not everywhere.</h3>
+
+<p>Hutan Desa gives a village a long-term right to manage state forest. The first permit was issued in 2009 at Lubuk Beringin, Jambi. The area grew from 750 km&sup2; in 2012 to 2,500 km&sup2; in 2016 (Santika et al. 2017, p. 60&ndash;61). The national social forestry target was 12.7 million hectares by 2019, and about 2.3 million hectares had been assigned by 2018 (Santika et al. 2019, p. 205).</p>
+
+<p>Santika et al. (2019) study 41 village forests in Kalimantan, 1,300 km&sup2; in total, with permits issued 2009&ndash;2014. They match these to control villages and compare deforestation (2010&ndash;2014) and a village well-being index built from 16 indicators in the Podes village census (2008 and 2014) (p. 206&ndash;211).</p>
+
+<div class="cards">
+  <div class="card"><span class="big">0.8 vs 1.0</span><span class="what">hectares deforested per km&sup2; per year inside village forests against matched controls, about one-fifth lower</span><span class="src">Santika et al. 2019, Fig. 2a, read from the chart</span></div>
+  <div class="card"><span class="big">+0.12 vs +0.06</span><span class="what">change in the well-being index 2008&ndash;2014, village forests against controls, about twice as fast</span><span class="src">Santika et al. 2019, Fig. 2c, read from the chart</span></div>
+</div>
+
+<ul>
+  <li>Avoided deforestation was largest in production forest zones (about 0.8 ha per km&sup2;) and smallest in watershed protection zones (about 0.16) (2019, p. 213&ndash;214). The well-being gain was largest in watershed protection zones, where the main benefit was secure tenure (Fig. 3a).</li>
+  <li>In Sumatra and Kalimantan 2012&ndash;2016, avoided deforestation was 0.6&ndash;0.9 ha per km&sup2; per year in protection and limited production forest. There was no leakage to surrounding areas (2017, p. 66, 68).</li>
+  <li>Losers: in limited production zones, financial well-being fell because logging was restricted. In production zones, living conditions and environmental quality fell as farming intensified on less land (2019, p. 205, 212, 214).</li>
+  <li>Failure case: in the 2015 El Ni&ntilde;o fires, village forests on peat in Kalimantan lost 5&ndash;10 ha per km&sup2; more than controls (2017, p. 66&ndash;67).</li>
+</ul>
+
+<p>The authors report that 51 per cent of cases were &ldquo;win-win&rdquo;. That figure needs care. Only 18 per cent had both outcomes improving. A further 24 per cent improved on one outcome with the other neutral, and 9 per cent gained well-being where the forest was already gone. Trade-offs were 17 per cent, mostly well-being gains at the forest&rsquo;s expense (13 per cent). Only 4 per cent had forest gains at the villagers&rsquo; expense. In 18 per cent of cases the result was negative (2019, p. 212&ndash;213, Fig. 4). The study measures a village well-being index, not the poverty rate or household income.</p>
+
+<blockquote>We found that Hutan Desa was associated with reduced deforestation and poverty.<cite>Santika et al. (2019), People and Nature 1, p. 204</cite></blockquote>
+
+<h2>3 &middot; Fuel subsidy reform, 2005 and 2014&ndash;2015</h2>
+<span class="verdict">Partly evaluated &middot; reversed</span>
+<h3>The economics was settled twenty years ago. The reform was done, then undone.</h3>
+
+<p>Indonesia&rsquo;s vehicle fuel subsidy was regressive: most of it went to the richest households, because they buy most of the fuel. Dartanto (2013, p. 117) calculates that almost 72 per cent of fuel subsidies went to the richest 30 per cent of households; the top decile received IDR 111,533 a month per person in gasoline subsidy against IDR 10,787 for the poorest decile (Table 1, p. 118). Yusuf and Resosudarmo (2008), with a general equilibrium model with 200 household groups, found that &ldquo;cutting the subsidy on these vehicle fuels would be a progressive reform&rdquo; (p. 40), that the kerosene price rise made the 2005 package regressive in cities, where the poorest fifth lost 5&ndash;7 per cent of real spending against 2&ndash;4 per cent for the richest fifth (p. 41), and that the full 2005 package without compensation would have put about 5 million people into poverty, while a uniform cash transfer turned the net effect into a poverty reduction (Table 5, p. 40).</p>
+
+<h4>2005: two price rises, cash transfer late</h4>
+<ul>
+  <li>Regulated fuel prices rose by a weighted average of 29 per cent in February 2005 and 114 per cent in September 2005; in October gasoline rose 87.5 per cent, diesel 104.7 per cent and kerosene 185.7 per cent (Bazzi, Sumarto and Suryahadi 2015, p. 270; Yusuf and Resosudarmo 2008, p. 33, 36). The fuel subsidy was IDR 89.2 trillion in 2005, 21.67 per cent of government spending (Yusuf and Resosudarmo 2008, Table 1, p. 33).</li>
+  <li>The compensating cash transfer (BLT) paid IDR 300,000 a quarter to 19 million households, about 15 per cent of a recipient&rsquo;s spending (Bazzi et al. 2015, p. 268, 270). Nearly 30 per cent of recipients were still waiting for the second payment in early 2006 (p. 268). Households paid on time showed no fall in spending relative to non-recipients; households paid late had spending growth 7.5 percentage points lower (p. 267, Table 5, p. 278). Timing decided whether the compensation worked.</li>
+  <li>The poverty rate rose from 16.0 per cent in 2005 to 17.8 per cent in 2006, about 4 million people (BPS; Dartanto attributes a large part of the rise to the October 2005 price increase). The sentence &ldquo;poverty did not rise&rdquo; is wrong for 2005.</li>
+</ul>
+
+<h4>2014&ndash;2015: compensation first, subsidy removed when oil fell</h4>
+<ul>
+  <li>November 2014: the price of Premium gasoline rose from IDR 6,500 to 8,500 a litre. January 2015: the gasoline subsidy was removed and the diesel subsidy fixed at IDR 1,000 a litre. Brent had fallen from about USD 110 in mid-2014 to about USD 50, so the reform locked in a saving the oil price had created (press and budget sources).</li>
+  <li>Energy subsidies fell from about IDR 350 trillion in the 2014 revised budget to about IDR 138 trillion in 2015. Central government infrastructure spending rose from about IDR 155&ndash;180 trillion in 2014 to about IDR 290 trillion in 2015 (budget documents). Pradiptyo et al. (2016) trace the 2015 revised budget: the saving was IDR 211 trillion, 10.6 per cent of state expenditure; ministry budgets rose by IDR 148 trillion, capital injections to state enterprises by IDR 61 trillion, transfers to regions and villages by IDR 34 trillion; the Public Works budget rose 40 per cent and Transport 45 per cent (p. 2, 5, 8&ndash;9). The authors add that it is &ldquo;impossible to determine exactly how savings were reallocated&rdquo; because budgets are not earmarked (p. 7).</li>
+  <li>The national poverty rate did not rise: 11.25 per cent in March 2014, 10.86 per cent in September 2016 (BPS). This is a trend, not an evaluation with a comparison group.</li>
+  <li>The only causal study of an environmental outcome is Burke, Batsuuri and Yudhistira (2017), with data from 19 toll roads 2008&ndash;2015: the fuel price elasticity of vehicle flows was &minus;0.10 at once and about &minus;0.2 after a year, and the 2013 and 2014 reforms &ldquo;reduced vehicle flows by approximately 10%&rdquo; in the second half of 2015 relative to no reform, more than halving traffic growth (p. 172, 175). Motorcycles are not in the data (p. 172).</li>
+  <li>Then oil prices rose. From 2018 pump prices were frozen and Pertamina and PLN were paid &ldquo;compensation&rdquo;. By 2022 subsidy plus compensation was about IDR 500 trillion, more than before the reform (budget and press sources, not a paper). Dartanto (2013) shows why reallocation matters: removing 25 per cent of the subsidy raises the poverty headcount by 0.259 percentage points, but the same cut with the savings spent on government programmes and transfers lowers it by 0.27 points (p. 117, 127&ndash;128). Renner, Lay and Schleicher (2019) find with household demand data that price rises for electricity and gasoline are progressive, kerosene and LPG roughly neutral, and that a lump-sum return of the revenue lowers poverty (p. 191, 197, Table 5, p. 194). Kyle (2018) adds the political constraint: in villages where part of the rice subsidy was skimmed, poor households were 38 per cent less likely to support fuel subsidy reform, because they did not trust the compensation (p. 1474, 1489).</li>
+</ul>
+
+<p>Nobody has measured the emissions effect of the 2014&ndash;2015 reform, its poverty effect with a credible comparison group, or the outcomes of the spending it financed. What exists is a price-elasticity study of driving, a budget trace of the reallocation, and the national poverty trend.</p>
+
+<h2>4 &middot; Electricity subsidy reform, 2017</h2>
+<span class="verdict">Descriptive &middot; no evaluation of the targeting &middot; stopped</span>
+<h3>The social registry carried the reform. The next step was never taken.</h3>
+
+<ul>
+  <li>From 1 January 2017 the subsidy was removed for 900 VA household customers who were not in the poverty database (Basis Data Terpadu 2015, now DTKS). PLN matched its customer list against the registry (SEforALL 2020).</li>
+  <li>About 18.2&ndash;18.9 million customers moved to the normal tariff. About 4.1 million poor customers kept the subsidy (sources differ on the count: <a href="https://katadata.co.id/amp/berita/energi/5e9a56db03f98/pemerintah-cabut-subsidi-18-juta-pelanggan-pln">Katadata</a>, <a href="https://industri.kontan.co.id/news/subsidi-dicabut-tarif-listrik-900-va-naik">Kontan</a>).</li>
+  <li>For the affected households the tariff rose in three steps, from IDR 585 to 774 per kWh in January, about 1,034 in March and 1,352 in May 2017. The planned fourth step in July 2017 was cancelled (IISD 2018). This was a large price rise for those households, more than double in five months, but there was no nationwide price rise and the poor were exempt.</li>
+  <li>The 450 VA group, about 23 million customers, was never touched. There were about 54,000 complaints and questions in parliament, and no unrest that this note could find (<a href="https://industri.kontan.co.id/news/54000-warga-komplain-subsidi-listrik-dicabut">Kontan</a>).</li>
+  <li>Burke and Kurniawati (2018), with a panel of customer groups in 16 regions 1992&ndash;2015, estimate the demand-side effect of the subsidy cuts that began in 2013. The same-year price elasticity is &minus;0.15 to &minus;0.2 and about &minus;0.4 after four years; the reforms cut electricity use by about 7 per cent in 2015 relative to no reform, about 16 TWh, and averted about 13 million tonnes of CO2 a year (p. 411, 416&ndash;417). Their data end in 2015, before the 900 VA step, which they describe but do not estimate (p. 417). Subsidy spending had been IDR 95 trillion in 2012, and in 2016 more than 70 per cent of households still received subsidised electricity while the poverty rate was 11 per cent (p. 410, 412).</li>
+</ul>
+
+<p>No study has measured what happened to the 18 million households that lost the subsidy: not their consumption, their spending or their poverty status. The registry cut-off would allow such a study with the Susenas household survey. It has not been done.</p>
+
+<h2>5 &middot; Jakarta&rsquo;s electric commuter rail</h2>
+<span class="verdict">Descriptive &middot; not evaluated</span>
+<h3>A small subsidy on the good with the positive externality</h3>
+
+<ul>
+  <li>Since 2013&ndash;2016 the Jabodetabek commuter rail (KRL) has one low flat fare, IDR 3,000 for the first 25 km plus IDR 1,000 per 10 km, with electronic ticketing and new rolling stock. The gap is paid by a public service obligation of roughly IDR 2 trillion a year (press reports; figures range from IDR 1.6 trillion for KRL alone to IDR 4.8 trillion for all state railway services in 2024).</li>
+  <li>Ridership rose from about 350,000 a day in 2013 to about 1 million a day (press reports). Riders are mostly lower-middle-income commuters, not households below the poverty line. Jakarta&rsquo;s poverty rate is under 5 per cent; poverty here is relative.</li>
+  <li>In August 2024 the government proposed a higher fare for riders who are not poor, identified by the national ID number. The proposal was dropped within a week after public protest (<a href="https://ekonomi.bisnis.com/read/20240830/98/1795590/heboh-subsidi-krl-pakai-nik-tuai-protes-jokowi-saya-ndak-tahu">Bisnis</a>).</li>
+</ul>
+
+<p>The comparison is the point. Indonesia spends about IDR 500 trillion a year subsidising fuel, which harms the environment, and about IDR 2 trillion subsidising an electric commuter system, which helps it. The one attempt to target the smaller subsidy failed in a week. Economics says: subsidise the good with the positive externality, not the one with the negative externality. Politics has produced the opposite.</p>
+
+<p>Two cautions. No causal study of the KRL reform exists. And the one rigorous study of Jakarta transit, Gaduh, Gra&#269;ner and Rothenberg (2022) on the TransJakarta bus rapid transit, is negative. With commuting surveys of 2002 and 2010 and a difference-in-differences design, they find that living within 1 km of a busway station did not reduce motorcycle ownership, which rose citywide from 37 to 75.8 per cent of households, did not raise commuter flows, and that travel times along the corridors rose 9.9 per cent because the busways took road lanes (p. 1&ndash;2, 7, 11). The system&rsquo;s mode share was 4.3 per cent in 2010 (p. 2). Rail is different because it takes no road space, but the claim &ldquo;public transport reduced congestion in Jakarta&rdquo; should not be made.</p>
+
+<h2>6 &middot; Other evaluated programmes</h2>
+<span class="verdict">Causal evidence &middot; smaller scale</span>
+<h3>Three programmes with both a welfare and an environmental outcome measured, and one trade-off</h3>
+<h4>Household biogas, East Java, from 2009</h4>
+<p>The BIRU programme, run by Hivos with the Ministry of Energy through dairy cooperatives, had built over 8,000 digesters by the end of 2012, 62 per cent of them in East Java, with a flat subsidy of IDR 2 million per digester (Bedi, Sparrow and Tasciotti 2017, p. 68). A panel of 677 dairy households, difference-in-differences with matching (p. 69&ndash;70, 72):</p>
+<ul>
+  <li>Monthly energy spending fell by IDR 47,000&ndash;65,000, about 45 per cent of energy spending and 3.5 per cent of total household spending (p. 72&ndash;73, 75).</li>
+  <li>Households were about 55 percentage points less likely to buy LPG, an 80 per cent reduction, and used 6.1 kg less LPG a month. Time collecting firewood fell by about 4 hours a week, an 85 per cent reduction (p. 72).</li>
+  <li>Caveat: without the subsidy and without credit the payback period is 30 years; with the subsidy, 10&ndash;14 years, which the authors call &ldquo;perhaps too long to justify the investment&rdquo; (p. 66, 74&ndash;75). Of about 33,000 dairy farmers in the region, 4,500 had a digester (p. 75). No health effect was found (p. 74).</li>
+</ul>
+
+<h4>Community-led total sanitation, East Java, 2008&ndash;2011</h4>
+<p>A randomised trial in 160 villages across 8 districts, 80 treated and 80 control, about 2,000 households, with no hardware subsidy (Cameron, Olivia and Shah 2019, p. 3):</p>
+<ul>
+  <li>Toilet construction rose by 2.4 percentage points, a 19 per cent increase; tolerance of open defecation fell; roundworm infestation fell by about 46 per cent (p. 4, Table 2, p. 6).</li>
+  <li>No effect on haemoglobin, weight or height of children (p. 4). The gains went to non-poor households in villages where a contracted agency ran the programme; &ldquo;the poorest households did not build toilets&rdquo; and local-government implementation &ldquo;produced no discernible benefits&rdquo; (p. 2, 7, 11). Cost was the obstacle for 47 per cent of households; a latrine cost about USD 46 (p. 7).</li>
+</ul>
+
+<h4>Marine protected areas with livelihood support, North Sulawesi, 1997&ndash;2002</h4>
+<p>A USAID&ndash;Bappenas project in four villages, costing over USD 1.4 million, compared with four matched control villages in 1997, 2000, 2002 and 2012 (Gurney et al. 2014, p. 99):</p>
+<ul>
+  <li>Material wealth rose significantly more in project villages during implementation; households were 80 per cent more likely to have a main livelihood other than fishing by 2002, and fisheries dependence did not return to baseline (p. 101&ndash;102).</li>
+  <li>&ldquo;These improvements occurred mostly during the implementation period&rdquo;; after support ended in 2002, poverty reduction stopped accruing, empowerment grew faster in control villages, and no village still enforces the reserve rules (p. 98&ndash;99, 102). No reef data were collected (p. 105).</li>
+</ul>
+
+<h4>The trade-off case: smallholder oil palm</h4>
+<p>Edwards (2026) studies 133 rural outer-island districts, 2000&ndash;2015, with agro-climatic potential yield as an instrument. A 10 percentage point increase in the share of district land under oil palm brought 6.1 percentage points more poverty reduction and 9 per cent faster spending growth (p. 2, Table 3, p. 12). The cost: each percentage point of poverty reduction through palm oil &ldquo;cost around 3 percent of district area in tree cover and around 10 percent more fire&rdquo;, with more malaria and respiratory outbreaks and more village conflict (p. 18&ndash;19). The author calls it &ldquo;a striking modern illustration of some of the trade-offs inherent in large changes in trade and land use&rdquo; (p. 1). The village forest results above show the same land delivering both outcomes when tenure, not conversion, is the instrument.</p>
+
+<p>Programmes with no impact evaluation found: ecological fiscal transfers in several districts and provinces, peat restoration villages, mangrove rehabilitation, village-fund environmental spending, and off-grid solar and micro-hydro electrification. They can be presented as promising, not as evidence.</p>
+
+<h2>What follows</h2>
+<h3>The tools exist. The decision does not.</h3>
+
+<ul>
+  <li><strong>Synergies are real and have been measured.</strong> The LPG programme, planned to save money, cut infant mortality by about a quarter and raised women&rsquo;s paid work by a fifth. Village forests cut deforestation by about a fifth and raised well-being about twice as fast as elsewhere.</li>
+  <li><strong>The gain was usually unplanned and found late.</strong> The LPG health effect was measured thirteen years after the programme began, by researchers, in Indonesia&rsquo;s own survey data. The 2017 electricity reform has not been evaluated at all. Evaluation should be designed into a reform, not added afterwards.</li>
+  <li><strong>Reforms were reversed when the politics turned.</strong> Fuel subsidies came back after 2018. The electricity reform stopped at the 900 VA group. The economics of each was settled; the politics was not.</li>
+  <li><strong>What is new is the capacity to target.</strong> One social registry (DTSEN since 2025), near-universal national ID numbers, and bank or e-wallet accounts make it possible to set one market price for energy and send cash to the bottom 40 per cent. This was not possible in 2005. The 2017 electricity reform showed it working at the scale of 18 million households, and the 2013&ndash;2015 electricity reforms alone averted about 13 million tonnes of CO2 a year (Burke and Kurniawati 2018, p. 417).</li>
+  <li><strong>The remaining step is a political decision,</strong> to move the subsidy from the good to the person. The regional priority that follows is to share what makes that decision easier: registries, payment systems and evaluation designs that let a government show its voters the synergy within one term, not one decade.</li>
+</ul>
+
+<details>
+  <summary>Spoken version for the panel (about three minutes)</summary>
+  <p>Thank you. You said the relationship between poverty, inequality, growth and the environment is complex. It is. But I&rsquo;ve come to think complexity itself isn&rsquo;t the problem. The problem is what it does to us. When something is hard to understand, we take shortcuts. We chase growth instead of welfare, because growth is easier to measure. We pick the least ambitious climate target, because we can&rsquo;t see that far ahead. And because we can&rsquo;t hold the whole picture in our head, we see trade-offs everywhere and synergies almost nowhere.</p>
+  <p>So I think you asked the right question. Show me the synergies. They exist. There are many. And there&rsquo;d be many more if political choices were made with the full picture, not a shortcut.</p>
+  <p>The strongest one first, because the evidence is strongest. In 2007, Indonesia moved households from kerosene to LPG for cooking. A free kit for every household, then kerosene withdrawn district by district. Five years later, more than fifty million households had switched. Kerosene use down ninety-two percent. Cost: about a billion dollars. Subsidy saving over the next decade: about fifteen billion. And here&rsquo;s the point. The programme was designed to save money. Nothing else. But the causal studies found infant mortality in converted districts fell by about a quarter, and women worked about an hour more a day for pay, because they were breathing clean air in the kitchen. A fiscal reform gave us a health reform and a gender reform. Nobody planned it.</p>
+  <p>A smaller one, on the environment side. Village forests. Where villages got tenure over their forest, deforestation fell and poverty fell at the same time. Not everywhere; it depends on what the forest was used for before. But both moved together.</p>
+  <p>Now the unfinished ones. Energy subsidies. Twenty years ago my own work showed the vehicle fuel subsidy was regressive; the richest households took most of it. Remove it, compensate in cash, and it&rsquo;s progressive. In 2014 and 2015 we did exactly that. Compensation first, poverty didn&rsquo;t rise, driving fell by about ten percent. Then oil prices went up and the subsidy came back. By 2022, subsidy plus compensation was about five hundred trillion rupiah. More than before the reform.</p>
+  <p>Electricity shows the other way to do it. In 2017 we took the subsidy away from eighteen million households, kept it for four million poor ones, and we did it with the social registry, not with a nationwide price rise. No unrest. It worked. And then it stopped. The next step, the 450 VA group, was never taken.</p>
+  <p>So in both cases the economics was settled. The politics wasn&rsquo;t.</p>
+  <p>One comparison to finish. We spend about five hundred trillion a year subsidising fuel, which harms the environment. We spend about two trillion subsidising Jakarta&rsquo;s electric commuter rail, which helps it, and carries a million lower-middle-class people a day.</p>
+  <p>The synergies are there. What&rsquo;s new is that we now have the tools to act on them: one social registry, digital payments. What we don&rsquo;t have yet is the political decision. Thank you.</p>
+</details>
+
+<h2>References</h2>
+<p class="ref">Journal articles are provided as full-text PDFs for the panel&rsquo;s reference only. They are password-protected because the publishers hold the copyright. The password is available from the author. Reports and working papers link to the publisher&rsquo;s own open copy. All journals listed are indexed in Scopus except where noted.</p>
+
+<h4>Kerosene-to-LPG conversion</h4>
+<ol class="refs">
+  <li>Imelda (2020). Cooking that kills: Cleaner energy access, indoor air pollution, and health. <em>Journal of Development Economics</em> 147, 102548. <a class="pdf locked" href="dev-env-synergy/refs/Imelda2020_JDE.pdf">PDF &middot; locked</a></li>
+  <li>Verma, A. P. and Imelda (2023). Clean energy access: Gender disparity, health and labour supply. <em>Economic Journal</em> 133, 845&ndash;871. <a class="pdf locked" href="dev-env-synergy/refs/VermaImelda2023_EJ.pdf">PDF &middot; locked</a> <a class="pdf" href="https://repository.graduateinstitute.ch/record/300018/files/HEIDWP11-2022.pdf">Working paper</a></li>
+  <li>Thoday, K., Benjamin, P., Gan, M. and Puzzolo, E. (2018). The Mega Conversion Program from kerosene to LPG in Indonesia: Lessons learned and recommendations for future clean cooking energy expansion. <em>Energy for Sustainable Development</em> 46, 71&ndash;81. <a class="pdf locked" href="dev-env-synergy/refs/Thoday2018_ESD.pdf">PDF &middot; locked</a> <a class="pdf" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6186446">Open access</a></li>
+  <li>Budya, H. and Arofat, M. Y. (2011). Providing cleaner energy access in Indonesia through the megaproject of kerosene conversion to LPG. <em>Energy Policy</em> 39, 7575&ndash;7586. <a class="pdf locked" href="dev-env-synergy/refs/Budya2011_EnergyPolicy.pdf">PDF &middot; locked</a></li>
+  <li>Andadari, R. K., Mulder, P. and Rietveld, P. (2014). Energy poverty reduction by fuel switching: Impact evaluation of the LPG conversion program in Indonesia. <em>Energy Policy</em> 66, 436&ndash;449. <a class="pdf locked" href="dev-env-synergy/refs/Andadari2014_EnergyPolicy.pdf">PDF &middot; locked</a></li>
+  <li>Permadi, D. A., Sofyan, A. and Kim Oanh, N. T. (2017). Assessment of emissions of greenhouse gases and air pollutants in Indonesia and impacts of national policy for elimination of kerosene use in cooking. <em>Atmospheric Environment</em> 154, 82&ndash;94. <a class="pdf locked" href="dev-env-synergy/refs/Permadi2017_AtmosEnv.pdf">PDF &middot; locked</a></li>
+  <li>World Bank and ESMAP (2013). <em>Indonesia: Toward Universal Access to Clean Cooking</em>. Report. <a class="pdf" href="https://openknowledge.worldbank.org/server/api/core/bitstreams/d7944d2e-2e11-56b6-aabe-a55f4adb6c7c/content">PDF</a></li>
+</ol>
+
+<h4>Village forests and other programmes</h4>
+<ol class="refs" start="8">
+  <li>Santika, T. et al. (2019). Heterogeneous impacts of community forestry on forest conservation and poverty alleviation: Evidence from Indonesia. <em>People and Nature</em> 1, 204&ndash;219. <a class="pdf locked" href="dev-env-synergy/refs/Santika2019_PeopleNature.pdf">PDF &middot; locked</a> <a class="pdf" href="https://gala.gre.ac.uk/id/eprint/28369/">Open access</a></li>
+  <li>Santika, T. et al. (2017). Community forest management in Indonesia: Avoided deforestation in the context of anthropogenic and climate complexities. <em>Global Environmental Change</em> 46, 60&ndash;71. <a class="pdf locked" href="dev-env-synergy/refs/Santika2017_GEC.pdf">PDF &middot; locked</a></li>
+  <li>Bedi, A. S., Sparrow, R. and Tasciotti, L. (2017). The impact of a household biogas programme on energy use and expenditure in East Java. <em>Energy Economics</em> 68, 66&ndash;76. <a class="pdf locked" href="dev-env-synergy/refs/Bedi2017_EnergyEconomics.pdf">PDF &middot; locked</a> <a class="pdf" href="https://repub.eur.nl/pub/104217/">Open access</a></li>
+  <li>Cameron, L., Olivia, S. and Shah, M. (2019). Scaling up sanitation: Evidence from an RCT in Indonesia. <em>Journal of Development Economics</em> 138, 1&ndash;16. <a class="pdf locked" href="dev-env-synergy/refs/Cameron2019_JDE.pdf">PDF &middot; locked</a> <a class="pdf" href="https://docs.iza.org/dp10619.pdf">Working paper</a></li>
+  <li>Gurney, G. G. et al. (2014). Poverty and protected areas: An evaluation of a marine integrated conservation and development project in Indonesia. <em>Global Environmental Change</em> 26, 98&ndash;107. <a class="pdf locked" href="dev-env-synergy/refs/Gurney2014_GEC.pdf">PDF &middot; locked</a></li>
+  <li>Edwards, R. B. (2026). Export agriculture and rural poverty: Evidence from Indonesian palm oil. <em>Journal of International Economics</em> 159, 104209. <a class="pdf locked" href="dev-env-synergy/refs/Edwards2026_JIE.pdf">PDF &middot; locked</a></li>
+</ol>
+
+<h4>Fuel and electricity subsidy reform</h4>
+<ol class="refs" start="14">
+  <li>Yusuf, A. A. and Resosudarmo, B. P. (2008). Mitigating distributional impact of fuel pricing reform: The Indonesian experience. <em>ASEAN Economic Bulletin</em> 25(1), 32&ndash;47. <a class="pdf locked" href="dev-env-synergy/refs/YusufResosudarmo2008_AEB.pdf">PDF &middot; locked</a> <a class="pdf" href="https://mpra.ub.uni-muenchen.de/2350/1/MPRA_paper_2350.pdf">Working paper</a></li>
+  <li>Bazzi, S., Sumarto, S. and Suryahadi, A. (2015). It&rsquo;s all in the timing: Cash transfers and consumption smoothing in a developing country. <em>Journal of Economic Behavior and Organization</em> 119, 267&ndash;288. <a class="pdf locked" href="dev-env-synergy/refs/Bazzi2015_JEBO.pdf">PDF &middot; locked</a></li>
+  <li>Clements, B., Jung, H.-S. and Gupta, S. (2007). Real and distributive effects of petroleum price liberalization: The case of Indonesia. <em>The Developing Economies</em> 45(2), 220&ndash;237. <a class="pdf locked" href="dev-env-synergy/refs/Clements2007_DevEcon.pdf">PDF &middot; locked</a></li>
+  <li>Olivia, S. and Gibson, J. (2008). Household energy demand and the equity and efficiency aspects of subsidy reform in Indonesia. <em>The Energy Journal</em> 29(1). <a class="pdf locked" href="dev-env-synergy/refs/OliviaGibson2008_EnergyJ.pdf">PDF &middot; locked</a></li>
+  <li>Dartanto, T. (2013). Reducing fuel subsidies and the implication on fiscal balance and poverty in Indonesia: A simulation analysis. <em>Energy Policy</em> 58, 117&ndash;134. <a class="pdf locked" href="dev-env-synergy/refs/Dartanto2013_EnergyPolicy.pdf">PDF &middot; locked</a></li>
+  <li>Renner, S., Lay, J. and Schleicher, M. (2019). The effects of energy price changes: heterogeneous welfare impacts and energy poverty in Indonesia. <em>Environment and Development Economics</em> 24, 180&ndash;200. <a class="pdf locked" href="dev-env-synergy/refs/Renner2019_EDE.pdf">PDF &middot; locked</a></li>
+  <li>Burke, P. J., Batsuuri, T. and Yudhistira, M. H. (2017). Easing the traffic: The effects of Indonesia&rsquo;s fuel subsidy reforms on toll-road travel. <em>Transportation Research Part A</em> 105, 167&ndash;180. <a class="pdf locked" href="dev-env-synergy/refs/Burke2017_TRA.pdf">PDF &middot; locked</a></li>
+  <li>Kyle, J. (2018). Local corruption and popular support for fuel subsidy reform in Indonesia. <em>Comparative Political Studies</em> 51(11), 1472&ndash;1503. <a class="pdf locked" href="dev-env-synergy/refs/Kyle2018_CPS.pdf">PDF &middot; locked</a></li>
+  <li>Burke, P. J. and Kurniawati, S. (2018). Electricity subsidy reform in Indonesia: Demand-side effects on electricity use. <em>Energy Policy</em> 116, 410&ndash;421. <a class="pdf locked" href="dev-env-synergy/refs/BurkeKurniawati2018_EnergyPolicy.pdf">PDF &middot; locked</a> <a class="pdf" href="https://crawford.anu.edu.au/sites/default/files/2025-02/2018-01_burke_and_kurniawati_wp_0.pdf">Working paper</a></li>
+  <li>Equity and efficiency: An examination of Indonesia&rsquo;s energy subsidy policy and pathways to inclusive reform (2024). <em>Sustainability</em> 16(1), 407. <a class="pdf locked" href="dev-env-synergy/refs/Sustainability2024_EquityEfficiency.pdf">PDF &middot; locked</a> <a class="pdf" href="https://www.mdpi.com/2071-1050/16/1/407">Open access</a></li>
+  <li>Murjani, A. (2020). Assessing the energy subsidy reform in Indonesia through different scenarios. <em>International Journal of Energy Economics and Policy</em>. Scopus status to be checked. <a class="pdf locked" href="dev-env-synergy/refs/Murjani2020_IJEEP.pdf">PDF &middot; locked</a></li>
+  <li>Dartanto, T. (2017). Fuel subsidy reforms: Lessons learned from Indonesia&rsquo;s experiences. <em>Asia-Pacific Social Science Review</em> 17(1). Full text not obtained. <a class="pdf" href="https://www.dlsu.edu.ph/wp-content/uploads/pdf/research/journals/apssr/2017-June-vol17-1/13-fuel-subsidy-reforms-lessons-learned-from-indonesias-experiences.pdf">Publisher</a></li>
+  <li>Chelminski, K. (2018). Fossil fuel subsidy reform in Indonesia. In Skovgaard, J. and van Asselt, H. (eds), <em>The Politics of Fossil Fuel Subsidies and their Reform</em>. Cambridge University Press, 193&ndash;211. <a class="pdf locked" href="dev-env-synergy/refs/Chelminski2018_CUP_chapter.pdf">PDF &middot; locked</a></li>
+  <li>Pradiptyo, R. et al. (2016). <em>Financing Development with Fossil Fuel Subsidies: The reallocation of Indonesia&rsquo;s gasoline and diesel subsidies in 2015</em>. IISD. <a class="pdf" href="https://www.iisd.org/system/files/publications/financing-development-with-fossil-fuel-subsidies-indonesia.pdf">PDF</a></li>
+  <li>Beaton, C. and Lontoh, L. (2010). <em>Lessons Learned from Indonesia&rsquo;s Attempts to Reform Fossil-Fuel Subsidies</em>. IISD. <a class="pdf" href="https://www.iisd.org/sites/default/files/gsi/ffs_indonesia_review_i1v1.pdf">PDF</a></li>
+  <li>IISD (2018). <em>Indonesia Energy Subsidy News Briefing</em>, January 2018. <a class="pdf" href="https://www.iisd.org/system/files/publications/gsi-indonesia-news-briefing-january-2018-en.pdf">PDF</a></li>
+  <li>Durand-Lasserve, O., Campagnolo, L., Chateau, J. and Dellink, R. (2015). <em>Modelling of distributional impacts of energy subsidy reforms: An illustration with Indonesia</em>. OECD Environment Working Paper 86. <a class="pdf" href="https://www.oecd-ilibrary.org/docserver/5js4k0scrqq5-en.pdf">PDF</a></li>
+  <li>World Bank (2025). <em>Fuel Subsidies and Reforms</em>. Note. <a class="pdf" href="https://documents1.worldbank.org/curated/en/099748505212431959/pdf/IDU1e31e5e531f16114baa1b62c1b3201c9c2e68.pdf">PDF</a></li>
+  <li>SEforALL (2020). <em>Indonesia: Energy Safety Nets, policy brief</em>. <a class="pdf" href="https://www.seforall.org/system/files/2020-04/ESN_Indonesia_Policy-SEforALL.pdf">PDF</a></li>
+  <li>IEA. <em>Electricity price reform in Indonesia</em>. Presentation. <a class="pdf" href="https://iea.blob.core.windows.net/assets/imports/events/239/ElectricityPriceReforminIndonesia.pdf">PDF</a></li>
+  <li>CASE (2025). <em>Rethinking Electricity Subsidies</em>. <a class="pdf" href="https://caseforsea.org/wp-content/uploads/2025/11/24.09.25-English-Final-CASE-Rethinking-Electricity-Subsidies.pdf">PDF</a></li>
+</ol>
+
+<h4>Jakarta transport</h4>
+<ol class="refs" start="36">
+  <li>Gaduh, A., Gra&#269;ner, T. and Rothenberg, A. D. (2022). Life in the slow lane: Unintended consequences of public transit in Jakarta. <em>Journal of Urban Economics</em> 128, 103411. <a class="pdf locked" href="dev-env-synergy/refs/Gaduh2022_JUE.pdf">PDF &middot; locked</a> <a class="pdf" href="https://gaduh.hosted.uark.edu/papers/GaduhEtAl%20-%202021%20-%20Life%20in%20the%20Slow%20Lane.pdf">Working paper</a></li>
+  <li>Shimizutani, S., Suzuki, Y. and Yamada, H. (2025). The impact of urban transportation investment on property values: Evidence from the Jakarta Mass Rapid Transit. <em>Asian Development Review</em>. <a class="pdf locked" href="dev-env-synergy/refs/Shimizutani2025_ADR.pdf">PDF &middot; locked</a> <a class="pdf" href="https://www.adb.org/sites/default/files/publication/1134786/adr-vol43no1-3-transportation-property-values-jakarta.pdf">Open access</a></li>
+  <li>Urban environmental factors influencing commuter line ridership in the Jakarta Metropolitan Area, Indonesia (2025). <em>Journal of Transport Geography</em> 128, 104336. <a class="pdf locked" href="dev-env-synergy/refs/JTG2025_CommuterRidership.pdf">PDF &middot; locked</a></li>
+  <li>World Bank (2023). <em>Policy Research Working Paper 10640</em>: mass rapid transit and ride-hailing in Jakarta. <a class="pdf" href="https://documents1.worldbank.org/curated/en/099322112122328638/pdf/IDU04517b3d3012db04c4d08eb603acc2bb9d18f.pdf">PDF</a></li>
+</ol>
+
+<h4>Framework document</h4>
+<ol class="refs" start="40">
+  <li>United Nations General Assembly (2025). <em>Doha Political Declaration of the Second World Summit for Social Development</em>. A/RES/80/5. <a class="pdf" href="https://digitallibrary.un.org/record/4093123/files/A_RES_80_5-EN.pdf">PDF</a></li>
+</ol>
+
+<footer>
+  Page figures were copied from the papers listed above. Figures marked as press or budget sources were not taken from a paper and should be checked before quotation.
+  Part of <a href="index.html">Dataslide</a>. Source at <a href="https://github.com/anshory1972/dataslide">github.com/anshory1972/dataslide</a>.
+</footer>
+
+</main>
+</body>
+</html>
