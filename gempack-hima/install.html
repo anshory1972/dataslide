@@ -1,186 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Install GEMPACK | GEMPACK for Students</title>
-<meta name="description" content="How to download and install the free trial of GEMPACK before the ESPoir II online session, Hima ESP FEB Unpad, 22 November 2026.">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Dataslide">
-<meta property="og:title" content="GEMPACK for Students: Install the Software">
-<meta property="og:description" content="Download and install the free trial of GEMPACK before the ESPoir II session, 22 November 2026.">
-<meta property="og:url" content="https://anshory1972.github.io/dataslide/gempack-hima/install.html">
-<link rel="canonical" href="https://anshory1972.github.io/dataslide/gempack-hima/install.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>GEMPACK for Students</title>
 <style>
-  :root {
-    color-scheme: light dark;
-    --paper:   #f4f2ed;
-    --surface: #fffdf9;
-    --ink:     #14161c;
-    --muted:   #6d6a63;
-    --rule:    #dcd8ce;
-    --accent:  #b4451f;
-    --slate:   #1c4e73;
-    --tint:    #fbf3ee;
-    --shadow:  rgba(30,26,18,.07);
-  }
-  @media screen and (prefers-color-scheme: dark) {
-    :root {
-      --paper:   #0f1013;
-      --surface: #191a1e;
-      --ink:     #ece9e2;
-      --muted:   #9b978e;
-      --rule:    #2e3036;
-      --accent:  #e0875f;
-      --slate:   #7ea9cc;
-      --tint:    #1f1a18;
-      --shadow:  rgba(0,0,0,.38);
-    }
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 17px/1.62 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); }
-  header.top { border-bottom: 1px solid var(--rule); background: linear-gradient(170deg, var(--surface) 0%, var(--paper) 70%); }
-  header.top .inner { max-width: 46rem; margin: 0 auto; padding: 3.6rem 1.5rem 2.4rem; }
-  .eyebrow {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    text-transform: uppercase; letter-spacing: .18em; font-size: .66rem; font-weight: 600;
-    color: var(--accent); margin: 0 0 1rem;
-  }
-  .eyebrow::before { content: ""; display: inline-block; width: 2rem; height: 1px; background: var(--accent); vertical-align: .3em; margin-right: .7rem; }
-  h1 { font-size: clamp(2.1rem, 6.5vw, 3.1rem); line-height: 1.05; font-weight: 400; letter-spacing: -.02em; margin: 0 0 .8rem; }
-  .lede { font-size: 1.12rem; color: var(--muted); max-width: 38rem; margin: 0 0 1rem; }
-  .byline { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .82rem; color: var(--muted); margin: 0; }
-  main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
-  h2 {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .17em; color: var(--muted);
-    margin: 2.8rem 0 .8rem; display: flex; align-items: baseline; gap: 1rem;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-  main > h2:first-child { margin-top: .4rem; }
-  p { margin: 0 0 1rem; }
-  ol, ul { padding-left: 1.4rem; margin: 0 0 1rem; }
-  li { margin-bottom: .45rem; }
-  li::marker { color: var(--accent); }
-  code {
-    font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .88em;
-    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .05rem .3rem;
-  }
-  pre {
-    font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .85rem; line-height: 1.5;
-    background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
-    padding: .8rem 1rem; overflow-x: auto; margin: .4rem 0 1.2rem;
-  }
-  .note {
-    background: var(--tint); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
-    border-radius: 4px; padding: .9rem 1.1rem; margin: 1.2rem 0; font-size: .95rem;
-  }
-  .note p:last-child { margin-bottom: 0; }
-  .dl { display: grid; gap: .8rem; margin: 1rem 0 1.4rem; }
-  @media screen and (min-width: 40rem) { .dl { grid-template-columns: 1fr 1fr; } }
-  .dl a {
-    display: block; text-decoration: none; color: var(--ink);
-    background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
-    border-radius: 4px; box-shadow: 0 1px 2px var(--shadow); padding: .8rem 1rem;
-  }
-  .dl a:hover { border-color: var(--accent); }
-  .dl .t { display: block; font-size: 1.02rem; }
-  .dl .s { display: block; font-family: system-ui, sans-serif; font-size: .76rem; color: var(--muted); margin-top: .2rem; }
-  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .8rem; color: var(--muted); }
+  :root { color-scheme: light dark; --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce; --accent:#b4451f; }
+  @media (prefers-color-scheme: dark) { :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036; --accent:#e0875f; } }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--paper); color:var(--ink);
+         font:17px/1.6 Georgia, "Palatino Linotype", serif; }
+  .box { max-width:26rem; margin:1.5rem; padding:2rem 1.8rem; background:var(--surface); border:1px solid var(--rule); border-top:3px solid var(--accent); border-radius:4px; }
+  .eyebrow { font:600 .66rem system-ui, sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin:0 0 .8rem; }
+  h1 { font-size:1.7rem; font-weight:400; line-height:1.15; margin:0 0 .8rem; }
+  p { margin:0 0 1rem; font-size:.95rem; }
+  label { display:block; font:600 .8rem system-ui, sans-serif; color:var(--muted); margin-bottom:.3rem; }
+  input { width:100%; box-sizing:border-box; font-size:1rem; padding:.55rem .7rem; border:1px solid var(--rule); border-radius:3px; background:var(--paper); color:var(--ink); }
+  button { margin-top:.8rem; width:100%; font:600 .95rem system-ui, sans-serif; padding:.6rem; border:0; border-radius:3px; background:var(--accent); color:#fff; cursor:pointer; }
+  .err { color:var(--accent); font:.85rem system-ui, sans-serif; min-height:1.2rem; margin:.5rem 0 0; }
+  .reg { font:.88rem system-ui, sans-serif; color:var(--muted); border-top:1px solid var(--rule); padding-top:1rem; margin:1.2rem 0 0; }
 </style>
 </head>
 <body>
-<header class="top"><div class="inner">
-  <p class="eyebrow"><a href="./" style="color:inherit;text-decoration:none">GEMPACK for Students</a> &middot; ESPoir II 2026</p>
-  <h1>Install GEMPACK</h1>
-  <p class="lede">Please install GEMPACK on your laptop before the session on Sunday, 22 November 2026. This page gives the download links and the steps.</p>
-  <p class="byline">Arief Anshory Yusuf, Faculty of Economics and Business, Universitas Padjadjaran</p>
-</div></header>
-
-<main>
-
-<h2>What you need</h2>
-<ul>
-  <li>A laptop with Windows 7 or later. GEMPACK does not run on macOS or Linux unless Windows is installed.</li>
-  <li>At least 4 GB of free disk space on drive C, and at least 4 GB of memory.</li>
-  <li>Administrator rights on the laptop. Windows asks for them during the installation.</li>
-</ul>
-
-<h2>Downloads</h2>
-<p>The free version is the trial of the <em>Limited Executable-Image Version</em> of GEMPACK, release 12.2.001. It is published by the Centre of Policy Studies, Victoria University, Melbourne.</p>
-<div class="dl">
-  <a href="https://www.copsmodels.com/ftp/ei12dl/gpei-12.2.001-install.exe">
-    <span class="t">GEMPACK installer (.exe)</span>
-    <span class="s">gpei-12.2.001-install.exe &middot; about 100 MB</span>
-  </a>
-  <a href="https://www.copsmodels.com/ftp/ei12dl/gpei-12.2.001-install.zip">
-    <span class="t">Same installer in a .zip file</span>
-    <span class="s">Use this if your browser or network blocks .exe files</span>
-  </a>
-  <a href="https://www.copsmodels.com/pdf/quickinst.pdf">
-    <span class="t">Short install guide (PDF)</span>
-    <span class="s">quickinst.pdf &middot; 6 pages &middot; the steps below follow it</span>
-  </a>
-  <a href="https://www.copsmodels.com/gpeidl.htm">
-    <span class="t">Official download page</span>
-    <span class="s">copsmodels.com/gpeidl.htm</span>
-  </a>
+<div class="box">
+  <p class="eyebrow">ESPoir II 2026 &middot; Hima ESP FEB Unpad</p>
+  <h1>GEMPACK for Students</h1>
+  <p>Halaman ini hanya untuk peserta workshop yang sudah mendaftar.</p>
+  <form id="f">
+    <label for="pw">Kata sandi</label>
+    <input id="pw" type="password" autocomplete="current-password" required autofocus>
+    <button type="submit">Buka</button>
+    <p class="err" id="err"></p>
+  </form>
+  <p class="reg">Belum punya kata sandi? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKVuCE1Z8xaXh4oW4kHdOSMvJ8MdBCwz_yGdoU0AeUsEF7uw/viewform">Daftar di sini</a>. Kata sandi muncul setelah Anda mengirim formulir.</p>
 </div>
-
-<div class="note">
-  <p><strong>The licence lasts 6 months from the day you download.</strong> It is free and the installer creates it. You do not need to register. After 6 months, ViewHAR and ViewSOL still open files, but you cannot run new simulations.</p>
-</div>
-
-<h2>Install in five steps</h2>
-<ol>
-  <li><strong>Check for an old copy.</strong> If the folder <code>C:\GP</code> already exists, rename it to <code>C:\GPOLD</code>.</li>
-  <li><strong>Download the installer.</strong> Save <code>gpei-12.2.001-install.exe</code>. If you downloaded the .zip file, extract the .exe from it first.</li>
-  <li><strong>Run the installer.</strong> Double-click the .exe file. If Windows asks for permission, click <em>Yes</em>.</li>
-  <li><strong>Accept the default settings.</strong>
-    <ul>
-      <li>Licence agreement: click <em>I agree</em>, then <em>Next</em>.</li>
-      <li>Destination folder: keep <code>C:\GP</code>.</li>
-      <li>Changes to PATH and GPDIR: accept them.</li>
-      <li>Licence file: you have none, so click <em>Next</em>. The installer creates the 6-month licence.</li>
-    </ul>
-  </li>
-  <li><strong>Finish.</strong> Click <em>Finish</em>. If Windows says the program might not have installed correctly, choose <em>This program installed correctly</em>.</li>
-</ol>
-
-<h2>Test the installation</h2>
-<p>This test takes about 5 minutes. It runs a small model that comes with GEMPACK. Please do it before the session.</p>
-<ol>
-  <li>Open <strong>WinGEM</strong> from the desktop icon. It appears as a menu bar at the top of the screen.</li>
-  <li>Choose <em>Options &rarr; Check GEMPACK licence</em>. A window should show your licence details.</li>
-  <li>Choose <em>File &rarr; Change both default directories</em>. Go to <code>C:\GP\examples</code> and click <em>Select Folder</em>.</li>
-  <li>Choose <em>Simulation &rarr; TABLO Implement</em>. Make sure <em>GEMSIM</em> is selected. Click <em>Select</em>, open <code>SJ.TAB</code>, and click <em>Run</em>.</li>
-  <li>Click <em>Go to GEMSIM</em>. Click <em>Select</em>, open <code>SJLB.CMF</code>, and click <em>Run</em>.</li>
-  <li>A small window with a bar chart and two smiling faces should appear. This means your installation works.</li>
-</ol>
-<p>You can also run the same test in the Command Prompt:</p>
-<pre>cd C:\GP\examples
-tablo -pgs sj
-gemsim -cmf sjlb.cmf</pre>
-<p>Both programs should end with the line <code>(The program has completed without error.)</code></p>
-
-<h2>If something goes wrong</h2>
-<ul>
-  <li><strong>Your Windows user name has spaces or non-English letters.</strong> This often causes errors. Create the folders <code>C:\TEMP</code> and <code>C:\GPKEEP</code>. In <em>Environment Variables</em>, set the user variables <code>TMP</code> and <code>TEMP</code> to <code>C:\TEMP</code>. Add a user variable <code>GPKEEP</code> with the value <code>C:\GPKEEP</code>. Then restart the laptop.</li>
-  <li><strong>Your antivirus deletes or blocks GEMPACK programs.</strong> Mark the folder <code>C:\GP</code> as safe in the antivirus settings. See <a href="https://www.copsmodels.com/gpconfav.htm">copsmodels.com/gpconfav.htm</a>.</li>
-  <li><strong>It still does not work.</strong> Read section 4 of the <a href="https://www.copsmodels.com/pdf/quickinst.pdf">short install guide</a> or the <a href="https://www.copsmodels.com/gpinstall.pdf">full install guide</a>. Then contact the committee before the session.</li>
-</ul>
-
-<footer>
-  Session: ESPoir II (Online), "Economic Policy Analysis and Simulation Using GEMPACK Software", Sunday 22 November 2026, 13.30&ndash;15.45 WIB, Zoom.<br>
-  Software and install guides: Centre of Policy Studies, <a href="https://www.copsmodels.com/gempack.htm">copsmodels.com</a>. Links checked on 12 November 2026.
-</footer>
-
-</main>
+<script>
+(function () {
+  var D = { salt: "ks8EBLdgrJTPX141N3ZQ2g==", iv: "B/ElobjI7TH/r5Ok", ct: "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", it: 200000 };
+  var KEY = "gempack-hima-pw";
+  function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
+  async function open(pw) {
+    var base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+    var key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(D.salt), iterations: D.it, hash: "SHA-256" },
+                                           base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    var plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(D.iv) }, key, b64(D.ct));
+    return new TextDecoder().decode(plain);
+  }
+  function show(page) { document.open(); document.write(page); document.close(); }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (saved) { open(saved).then(show, function () { try { localStorage.removeItem(KEY); } catch (e) {} }); }
+  document.getElementById("f").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById("pw").value.trim();
+    open(pw).then(function (page) {
+      try { localStorage.setItem(KEY, pw); } catch (e) {}
+      show(page);
+    }, function () { document.getElementById("err").textContent = "Kata sandi salah. Coba lagi."; });
+  });
+})();
+</script>
+<noscript><p>Aktifkan JavaScript untuk membuka halaman ini.</p></noscript>
 </body>
 </html>
