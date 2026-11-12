@@ -1,108 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
 <title>GEMPACK for Students</title>
-<meta name="description" content="Course pages for the ESPoir II online session on economic policy analysis and simulation with GEMPACK, Hima ESP FEB Unpad, 22 November 2026.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Dataslide">
-<meta property="og:title" content="GEMPACK for Students">
-<meta property="og:description" content="Course pages for the ESPoir II session on GEMPACK, 22 November 2026.">
-<meta property="og:url" content="https://anshory1972.github.io/dataslide/gempack-hima/">
-<link rel="canonical" href="https://anshory1972.github.io/dataslide/gempack-hima/">
 <style>
-  :root {
-    color-scheme: light dark;
-    --paper:   #f4f2ed;
-    --surface: #fffdf9;
-    --ink:     #14161c;
-    --muted:   #6d6a63;
-    --rule:    #dcd8ce;
-    --accent:  #b4451f;
-    --slate:   #1c4e73;
-    --shadow:  rgba(30,26,18,.07);
-    --lift:    rgba(30,26,18,.16);
-  }
-  @media screen and (prefers-color-scheme: dark) {
-    :root {
-      --paper:   #0f1013;
-      --surface: #191a1e;
-      --ink:     #ece9e2;
-      --muted:   #9b978e;
-      --rule:    #2e3036;
-      --accent:  #e0875f;
-      --slate:   #7ea9cc;
-      --shadow:  rgba(0,0,0,.38);
-      --lift:    rgba(0,0,0,.55);
-    }
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font: 17px/1.62 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--accent); }
-  header.top { border-bottom: 1px solid var(--rule); background: linear-gradient(170deg, var(--surface) 0%, var(--paper) 70%); }
-  header.top .inner { max-width: 46rem; margin: 0 auto; padding: 3.6rem 1.5rem 2.4rem; }
-  .eyebrow {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    text-transform: uppercase; letter-spacing: .18em; font-size: .66rem; font-weight: 600;
-    color: var(--accent); margin: 0 0 1rem;
-  }
-  .eyebrow::before { content: ""; display: inline-block; width: 2rem; height: 1px; background: var(--accent); vertical-align: .3em; margin-right: .7rem; }
-  h1 { font-size: clamp(2.3rem, 7vw, 3.4rem); line-height: 1.05; font-weight: 400; letter-spacing: -.02em; margin: 0 0 .8rem; }
-  .lede { font-size: 1.12rem; color: var(--muted); max-width: 38rem; margin: 0 0 1rem; }
-  .byline { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .82rem; color: var(--muted); margin: 0; }
-  main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
-  h2 {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .17em; color: var(--muted);
-    margin: .4rem 0 1rem; display: flex; align-items: baseline; gap: 1rem;
-  }
-  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-  ol.parts { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; counter-reset: part; }
-  ol.parts li {
-    counter-increment: part; position: relative;
-    background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
-    box-shadow: 0 1px 2px var(--shadow);
-    transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
-  }
-  ol.parts li:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--lift); border-color: var(--accent); }
-  ol.parts a { display: block; padding: 1rem 1.3rem 1.1rem 3.4rem; text-decoration: none; color: inherit; }
-  ol.parts li::before {
-    content: counter(part); position: absolute; left: 1.2rem; top: 1rem;
-    font-family: system-ui, sans-serif; font-size: .9rem; font-weight: 600; color: var(--accent);
-  }
-  ol.parts h3 { font-size: 1.15rem; font-weight: 400; margin: 0 0 .3rem; }
-  ol.parts li:hover h3 { color: var(--accent); }
-  ol.parts p { margin: 0; font-size: .93rem; color: var(--muted); }
-  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .8rem; color: var(--muted); }
-  @media (prefers-reduced-motion: reduce) { ol.parts li { transition: none; } }
+  :root { color-scheme: light dark; --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce; --accent:#b4451f; }
+  @media (prefers-color-scheme: dark) { :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036; --accent:#e0875f; } }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--paper); color:var(--ink);
+         font:17px/1.6 Georgia, "Palatino Linotype", serif; }
+  .box { max-width:26rem; margin:1.5rem; padding:2rem 1.8rem; background:var(--surface); border:1px solid var(--rule); border-top:3px solid var(--accent); border-radius:4px; }
+  .eyebrow { font:600 .66rem system-ui, sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin:0 0 .8rem; }
+  h1 { font-size:1.7rem; font-weight:400; line-height:1.15; margin:0 0 .8rem; }
+  p { margin:0 0 1rem; font-size:.95rem; }
+  label { display:block; font:600 .8rem system-ui, sans-serif; color:var(--muted); margin-bottom:.3rem; }
+  input { width:100%; box-sizing:border-box; font-size:1rem; padding:.55rem .7rem; border:1px solid var(--rule); border-radius:3px; background:var(--paper); color:var(--ink); }
+  button { margin-top:.8rem; width:100%; font:600 .95rem system-ui, sans-serif; padding:.6rem; border:0; border-radius:3px; background:var(--accent); color:#fff; cursor:pointer; }
+  .err { color:var(--accent); font:.85rem system-ui, sans-serif; min-height:1.2rem; margin:.5rem 0 0; }
+  .reg { font:.88rem system-ui, sans-serif; color:var(--muted); border-top:1px solid var(--rule); padding-top:1rem; margin:1.2rem 0 0; }
 </style>
 </head>
 <body>
-<header class="top"><div class="inner">
+<div class="box">
   <p class="eyebrow">ESPoir II 2026 &middot; Hima ESP FEB Unpad</p>
   <h1>GEMPACK for Students</h1>
-  <p class="lede">Economic policy analysis and simulation using GEMPACK software. Online session, Sunday 22 November 2026, 13.30&ndash;15.45 WIB, on Zoom.</p>
-  <p class="byline">Arief Anshory Yusuf, Faculty of Economics and Business, Universitas Padjadjaran</p>
-</div></header>
-
-<main>
-<h2>Contents</h2>
-<ol class="parts">
-  <li><a href="install.html">
-    <h3>Install GEMPACK</h3>
-    <p>Download the free trial, install it, and test it. Please do this before the session.</p>
-  </a></li>
-</ol>
-
-<footer>
-  Part of <a href="../">Dataslide</a>.
-</footer>
-</main>
+  <p>Halaman ini hanya untuk peserta workshop yang sudah mendaftar.</p>
+  <form id="f">
+    <label for="pw">Kata sandi</label>
+    <input id="pw" type="password" autocomplete="current-password" required autofocus>
+    <button type="submit">Buka</button>
+    <p class="err" id="err"></p>
+  </form>
+  <p class="reg">Belum punya kata sandi? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKVuCE1Z8xaXh4oW4kHdOSMvJ8MdBCwz_yGdoU0AeUsEF7uw/viewform">Daftar di sini</a>. Kata sandi muncul setelah Anda mengirim formulir.</p>
+</div>
+<script>
+(function () {
+  var D = { salt: "WgFfgumAFGD2UnXIKB0yzQ==", iv: "5eaqBqrbzkak+Izr", ct: "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", it: 200000 };
+  var KEY = "gempack-hima-pw";
+  function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
+  async function open(pw) {
+    var base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+    var key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(D.salt), iterations: D.it, hash: "SHA-256" },
+                                           base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    var plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(D.iv) }, key, b64(D.ct));
+    return new TextDecoder().decode(plain);
+  }
+  function show(page) { document.open(); document.write(page); document.close(); }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  if (saved) { open(saved).then(show, function () { try { localStorage.removeItem(KEY); } catch (e) {} }); }
+  document.getElementById("f").addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var pw = document.getElementById("pw").value.trim();
+    open(pw).then(function (page) {
+      try { localStorage.setItem(KEY, pw); } catch (e) {}
+      show(page);
+    }, function () { document.getElementById("err").textContent = "Kata sandi salah. Coba lagi."; });
+  });
+})();
+</script>
+<noscript><p>Aktifkan JavaScript untuk membuka halaman ini.</p></noscript>
 </body>
 </html>
