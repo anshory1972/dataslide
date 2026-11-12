@@ -1,65 +1,219 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Model B: income and rainfall | GEMPACK for Students</title>
 <meta name="robots" content="noindex">
-<title>GEMPACK for Students</title>
 <style>
-  :root { color-scheme: light dark; --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce; --accent:#b4451f; }
-  @media (prefers-color-scheme: dark) { :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036; --accent:#e0875f; } }
-  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--paper); color:var(--ink);
-         font:17px/1.6 Georgia, "Palatino Linotype", serif; }
-  .box { max-width:26rem; margin:1.5rem; padding:2rem 1.8rem; background:var(--surface); border:1px solid var(--rule); border-top:3px solid var(--accent); border-radius:4px; }
-  .eyebrow { font:600 .66rem system-ui, sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin:0 0 .8rem; }
-  h1 { font-size:1.7rem; font-weight:400; line-height:1.15; margin:0 0 .8rem; }
-  p { margin:0 0 1rem; font-size:.95rem; }
-  label { display:block; font:600 .8rem system-ui, sans-serif; color:var(--muted); margin-bottom:.3rem; }
-  input { width:100%; box-sizing:border-box; font-size:1rem; padding:.55rem .7rem; border:1px solid var(--rule); border-radius:3px; background:var(--paper); color:var(--ink); }
-  button { margin-top:.8rem; width:100%; font:600 .95rem system-ui, sans-serif; padding:.6rem; border:0; border-radius:3px; background:var(--accent); color:#fff; cursor:pointer; }
-  .err { color:var(--accent); font:.85rem system-ui, sans-serif; min-height:1.2rem; margin:.5rem 0 0; }
-  .reg { font:.88rem system-ui, sans-serif; color:var(--muted); border-top:1px solid var(--rule); padding-top:1rem; margin:1.2rem 0 0; }
+  :root {
+    color-scheme: light dark;
+    --paper:   #f4f2ed;
+    --surface: #fffdf9;
+    --ink:     #14161c;
+    --muted:   #6d6a63;
+    --rule:    #dcd8ce;
+    --accent:  #b4451f;
+    --slate:   #1c4e73;
+    --tint:    #fbf3ee;
+    --shadow:  rgba(30,26,18,.07);
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:   #0f1013;
+      --surface: #191a1e;
+      --ink:     #ece9e2;
+      --muted:   #9b978e;
+      --rule:    #2e3036;
+      --accent:  #e0875f;
+      --slate:   #7ea9cc;
+      --tint:    #1f1a18;
+      --shadow:  rgba(0,0,0,.38);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 17px/1.62 Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  header.top { border-bottom: 1px solid var(--rule); background: linear-gradient(170deg, var(--surface) 0%, var(--paper) 70%); }
+  header.top .inner { max-width: 46rem; margin: 0 auto; padding: 3.6rem 1.5rem 2.4rem; }
+  .eyebrow {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-transform: uppercase; letter-spacing: .18em; font-size: .66rem; font-weight: 600;
+    color: var(--accent); margin: 0 0 1rem;
+  }
+  .eyebrow::before { content: ""; display: inline-block; width: 2rem; height: 1px; background: var(--accent); vertical-align: .3em; margin-right: .7rem; }
+  h1 { font-size: clamp(2.1rem, 6.5vw, 3.1rem); line-height: 1.05; font-weight: 400; letter-spacing: -.02em; margin: 0 0 .8rem; }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 38rem; margin: 0 0 1rem; }
+  .byline { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .82rem; color: var(--muted); margin: 0; }
+  main { max-width: 46rem; margin: 0 auto; padding: 2.2rem 1.5rem 4rem; }
+  h2 {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .17em; color: var(--muted);
+    margin: 2.8rem 0 .8rem; display: flex; align-items: baseline; gap: 1rem;
+  }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  main > h2:first-child { margin-top: .4rem; }
+  p { margin: 0 0 1rem; }
+  ol, ul { padding-left: 1.4rem; margin: 0 0 1rem; }
+  li { margin-bottom: .45rem; }
+  li::marker { color: var(--accent); }
+  code {
+    font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .88em;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; padding: .05rem .3rem;
+  }
+  pre {
+    font-family: ui-monospace, Consolas, "Courier New", monospace; font-size: .85rem; line-height: 1.5;
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 4px;
+    padding: .8rem 1rem; overflow-x: auto; margin: .4rem 0 1.2rem;
+  }
+  .note {
+    background: var(--tint); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    border-radius: 4px; padding: .9rem 1.1rem; margin: 1.2rem 0; font-size: .95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .dl { display: grid; gap: .8rem; margin: 1rem 0 1.4rem; }
+  @media screen and (min-width: 40rem) { .dl { grid-template-columns: 1fr 1fr; } }
+  .dl a {
+    display: block; text-decoration: none; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    border-radius: 4px; box-shadow: 0 1px 2px var(--shadow); padding: .8rem 1rem;
+  }
+  .dl a:hover { border-color: var(--accent); }
+  .dl .t { display: block; font-size: 1.02rem; }
+  .dl .s { display: block; font-family: system-ui, sans-serif; font-size: .76rem; color: var(--muted); margin-top: .2rem; }
+  footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding-top: 1.2rem; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: .8rem; color: var(--muted); }
+
+  table { border-collapse: collapse; margin: .4rem 0 1.2rem; font-size: .92rem; background: var(--surface); }
+  th, td { border: 1px solid var(--rule); padding: .35rem .7rem; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-family: system-ui, sans-serif; font-size: .8rem; font-weight: 600; color: var(--muted); }
+  .wrap { overflow-x: auto; }
+  .nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; font-family: system-ui, sans-serif; font-size: .9rem; }
 </style>
 </head>
 <body>
-<div class="box">
-  <p class="eyebrow">ESPoir II 2026 &middot; Hima ESP FEB Unpad</p>
-  <h1>GEMPACK for Students</h1>
-  <p>Halaman ini hanya untuk peserta workshop yang sudah mendaftar.</p>
-  <form id="f">
-    <label for="pw">Kata sandi</label>
-    <input id="pw" type="password" autocomplete="current-password" required autofocus>
-    <button type="submit">Buka</button>
-    <p class="err" id="err"></p>
-  </form>
-  <p class="reg">Belum punya kata sandi? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKVuCE1Z8xaXh4oW4kHdOSMvJ8MdBCwz_yGdoU0AeUsEF7uw/viewform">Daftar di sini</a>. Kata sandi muncul setelah Anda mengirim formulir.</p>
-</div>
-<script>
-(function () {
-  var D = { salt: "wvxWLDSlBdyRUAQ1wQExaw==", iv: "B4+2AMjzu59BgbLv", ct: "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", it: 200000 };
-  var KEY = "gempack-hima-pw";
-  function b64(s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); }
-  async function open(pw) {
-    var base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
-    var key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64(D.salt), iterations: D.it, hash: "SHA-256" },
-                                           base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-    var plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(D.iv) }, key, b64(D.ct));
-    return new TextDecoder().decode(plain);
-  }
-  function show(page) { document.open(); document.write(page); document.close(); }
-  var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (saved) { open(saved).then(show, function () { try { localStorage.removeItem(KEY); } catch (e) {} }); }
-  document.getElementById("f").addEventListener("submit", function (ev) {
-    ev.preventDefault();
-    var pw = document.getElementById("pw").value.trim();
-    open(pw).then(function (page) {
-      try { localStorage.setItem(KEY, pw); } catch (e) {}
-      show(page);
-    }, function () { document.getElementById("err").textContent = "Kata sandi salah. Coba lagi."; });
-  });
-})();
-</script>
-<noscript><p>Aktifkan JavaScript untuk membuka halaman ini.</p></noscript>
+<header class="top"><div class="inner">
+  <p class="eyebrow"><a href="./" style="color:inherit;text-decoration:none">GEMPACK for Students</a> &middot; Part 3</p>
+  <h1>Model B: income and rainfall</h1>
+  <p class="lede">Model A with household income in demand and rainfall in supply. You learn to choose which exogenous variable to shock, and to run two simulations with one model.</p>
+  <p class="byline">Arief Anshory Yusuf, Faculty of Economics and Business, Universitas Padjadjaran</p>
+</div></header>
+<main>
+
+<h2>The model</h2>
+<pre>Demand:  Q = DSHIFT &times; P^(&minus;EPSD) &times; INC^EPSY
+Supply:  Q = SSHIFT &times; P^EPSS &times; RAIN^EPSR
+Value:   VALUE = P &times; Q</pre>
+<p>INC is household income and EPSY is the income elasticity of demand. RAIN is rainfall and EPSR is the rainfall elasticity of supply. VALUE is now a variable, so the model also reports the change in the value of transactions.</p>
+
+<h2>The data</h2>
+<div class="wrap"><table><thead><tr><th>Item</th><th>Value</th><th>Header</th></tr></thead><tbody><tr><td>Price, Rp per kg</td><td>12,000</td><td>PRIC</td></tr><tr><td>Value of transactions, Rp billion</td><td>360,000</td><td>VAL</td></tr><tr><td>Household income, Rp trillion</td><td>12,000</td><td>INC</td></tr><tr><td>Rainfall, mm per year</td><td>2,500</td><td>RAIN</td></tr><tr><td>Price elasticity of demand</td><td>0.5</td><td>EPSD</td></tr><tr><td>Income elasticity of demand</td><td>0.2</td><td>EPSY</td></tr><tr><td>Price elasticity of supply</td><td>0.3</td><td>EPSS</td></tr><tr><td>Rainfall elasticity of supply</td><td>0.3</td><td>EPSR</td></tr></tbody></table></div>
+
+<h2>Files</h2>
+<div class="dl"><a download="model-b.zip" href="data:application/zip;base64,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"><span class="t">Download model-b.zip</span><span class="s">dryyear.cmf, income5.cmf, marketb.har, marketb.tab</span></a></div>
+<p>Unzip the file. It creates a folder <code>model-b</code>.</p>
+<p><code>marketb.tab</code></p>
+<pre>! Model B: one market, demand depends on income, supply on rainfall !
+!   Demand:  Q = DSHIFT * P^(-EPSD) * INC^EPSY                        !
+!   Supply:  Q = SSHIFT * P^EPSS * RAIN^EPSR                          !
+
+EQUATION (DEFAULT = LEVELS) ;
+VARIABLE (DEFAULT = LEVELS) ;
+FORMULA (DEFAULT = INITIAL) ;
+COEFFICIENT (DEFAULT = PARAMETER) ;
+
+File DATA # Transaction data, income, rainfall and elasticities # ;
+
+! Elasticities !
+Coefficient EPSD # Price elasticity of demand, as a positive number # ;
+Coefficient EPSY # Income elasticity of demand # ;
+Coefficient EPSS # Price elasticity of supply # ;
+Coefficient EPSR # Rainfall elasticity of supply # ;
+Read EPSD from file DATA header &quot;EPSD&quot; ;
+Read EPSY from file DATA header &quot;EPSY&quot; ;
+Read EPSS from file DATA header &quot;EPSS&quot; ;
+Read EPSR from file DATA header &quot;EPSR&quot; ;
+
+! Variables !
+Variable P      # Price, Rp per kg # ;
+Variable Q      # Quantity, billion kg # ;
+Variable VALUE  # Value of transactions, Rp billion # ;
+Variable INC    # Household income, Rp trillion # ;
+Variable RAIN   # Rainfall, mm per year # ;
+Variable DSHIFT # Other demand factors # ;
+Variable SSHIFT # Other supply factors # ;
+
+! Observed data !
+Read P     from file DATA header &quot;PRIC&quot; ;
+Read VALUE from file DATA header &quot;VAL&quot; ;
+Read INC   from file DATA header &quot;INC&quot; ;
+Read RAIN  from file DATA header &quot;RAIN&quot; ;
+
+! Quantity follows from value and price !
+Formula Q = VALUE / P ;
+
+! Calibration: choose the shifters so that both curves pass through the data !
+Formula DSHIFT = Q / [P^(-EPSD) * INC^EPSY] ;
+Formula SSHIFT = Q / [P^EPSS * RAIN^EPSR] ;
+
+! Equations !
+Equation E_DEMAND # Demand curve # Q = DSHIFT * P^(-EPSD) * INC^EPSY ;
+Equation E_SUPPLY # Supply curve # Q = SSHIFT * P^EPSS * RAIN^EPSR ;
+Equation E_VALUE  # Value of transactions # VALUE = P * Q ;</pre>
+<p><code>income5.cmf</code></p>
+<pre>! Household income rises by 5 percent !
+auxiliary files = marketb ;
+file DATA = marketb.har ;
+updated file DATA = &lt;cmf&gt;.upd ;
+exogenous p_INC p_RAIN p_DSHIFT p_SSHIFT ;
+rest endogenous ;
+shock p_INC = 5 ;
+method = gragg ;
+steps = 2 4 6 ;
+verbal description = Household income rises by 5 percent ;
+log file = yes ;</pre>
+<p><code>dryyear.cmf</code></p>
+<pre>! Rainfall falls by 20 percent !
+auxiliary files = marketb ;
+file DATA = marketb.har ;
+updated file DATA = &lt;cmf&gt;.upd ;
+exogenous p_INC p_RAIN p_DSHIFT p_SSHIFT ;
+rest endogenous ;
+shock p_RAIN = -20 ;
+method = gragg ;
+steps = 2 4 6 ;
+verbal description = Rainfall falls by 20 percent ;
+log file = yes ;</pre>
+<p>The two command files have the same closure. Only the shock is different. You compile the model once with TABLO and run GEMSIM once for each command file.</p>
+
+<h2>Run it</h2>
+<p><strong>In WinGEM.</strong> Choose <em>File &rarr; Change both default directories</em> and select the folder of this exercise.
+Choose <em>Simulation &rarr; TABLO Implement</em>, keep <em>GEMSIM</em> selected, open <code>marketb.tab</code> and click <em>Run</em>.
+Click <em>Go to GEMSIM</em>, open <code>income5.cmf</code> and click <em>Run</em>. Then click <em>Go to ViewSOL</em> to see the results.</p>
+<p><strong>In the Command Prompt.</strong> Go to the folder of this exercise and type:</p>
+<pre>tablo -pgs marketb
+gemsim -cmf income5.cmf
+gemsim -cmf dryyear.cmf</pre>
+<p>Each program should end with <code>(The program has completed without error.)</code></p>
+
+<h2>Results</h2>
+<div class="wrap"><table><thead><tr><th>Variable</th><th>Income +5%</th><th>Rainfall &minus;20%</th></tr></thead><tbody><tr><td>Price, p_P</td><td>1.23</td><td>8.73</td></tr><tr><td>Quantity, p_Q</td><td>0.37</td><td>&minus;4.10</td></tr><tr><td>Value, p_VALUE</td><td>1.60</td><td>4.27</td></tr></tbody></table></div>
+<p><strong>Check by hand.</strong> When income rises by 5%, the price changes by the factor 1.05^(0.2/0.8) = 1.0123. When rainfall falls by 20%, the price changes by the factor 0.8^(&minus;0.3/0.8) = 1.0873.</p>
+<p>Higher income moves the demand curve, so price and quantity both rise. Lower rainfall moves the supply curve, so the price rises and the quantity falls.</p>
+
+<h2>Try this</h2>
+<ol>
+  <li>Write a third command file that shocks income by 5% and rainfall by &minus;20% together.</li>
+  <li>Change the closure so that the price is exogenous and DSHIFT is endogenous. Shock the price by 10%. The result for DSHIFT is the shift in demand that would explain a 10% higher price.</li>
+</ol>
+
+<div class="nav"><span><a href="model-a.html">&larr; Model A: one market</a></span><span><a href="model-c.html">Model C: five farm products &rarr;</a></span></div>
+<footer>ESPoir II (Online), Hima ESP FEB Unpad, Sunday 22 November 2026. All results on this page were produced by running the files in the download.</footer>
+</main>
 </body>
 </html>
