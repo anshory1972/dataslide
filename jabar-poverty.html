@@ -1462,8 +1462,9 @@ table.dtable.wide td, table.dtable.wide th { font-size:17px; padding:12px 12px; 
 table.dtable.closing td { font-size:18px; padding:16px 14px; } table.dtable.closing td:first-child { width:30%; }
 table.dtable.reloc td:nth-child(2) { white-space:nowrap; color: var(--text-secondary); }
 /* online presentation: the presenter's video covers the right third of the screen, so that area stays empty */
-@media screen and (min-width:1000px) { html.cam .row-single { padding-right: 34vw !important; }
-  html.cam .viz-root section.panel h2 { font-size: clamp(20px, 1.75vw, 30px) !important; line-height:1.18 !important; max-width:none !important; } }
+@media screen and (min-width:1000px) { html.cam .viz-root section.panel:not(.cover) > *:not(h2):not(.panel-eyebrow) { max-width: 65% !important; margin-right: auto !important; }
+  html.cam .viz-root section.panel.cover { max-width: 65% !important; margin-left: 0 !important; }
+  html.cam .viz-root.viz-root section.panel:not(.cover) h2 { font-size: clamp(20px, 1.62vw, 32px) !important; line-height:1.18 !important; max-width:none !important; width:100% !important; text-wrap:wrap !important; } }
 @media screen and (min-width:1000px) and (max-height:820px) { table.dtable.wide td, table.dtable.wide th { font-size:13.5px; padding:7px 10px; } table.dtable.closing td { font-size:14px; padding:9px 10px; } }
 </style>
 <style>
