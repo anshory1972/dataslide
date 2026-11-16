@@ -1556,7 +1556,17 @@ table.dtable.reloc td:nth-child(2) { white-space:nowrap; color: var(--text-secon
   --c9:#262a33 !important; }
 </style>
 
-<script>if (!/[?&]full\b/.test(location.search)) document.documentElement.classList.add('cam');</script>
+<script>document.documentElement.classList.add('cam','dist');</script><style>
+@media screen and (min-width:1000px) {
+  html.cam.dist body::before { display:none !important; }
+  html.cam.dist .viz-root section.panel:not(.cover) > *:not(h2):not(.panel-eyebrow) { max-width:var(--cw, 100%) !important; }
+  html.cam.dist .viz-root.viz-root section.panel:not(.cover) h2 { font-size:calc(clamp(22px, 1.9vw, 38px) * var(--iz, 1)) !important; }
+  html.cam.dist .viz-root section.panel:not(.cover) .panel-eyebrow, html.cam.dist .viz-root details.src summary { font-size:calc(clamp(12px, 0.95vw, 18px) * var(--iz, 1)) !important; }
+  html.cam.dist .viz-root section.panel.cover { width:100% !important; max-width:100% !important; }
+  html.cam.dist .viz-root section.panel.cover .covertext { max-width:37%; top:50%; transform:translateY(-50%); }
+  html.cam.dist .viz-root section.panel.cover .coverimg { left:auto; right:0; top:50%; bottom:auto; transform:translateY(-50%); width:60% !important; height:auto !important; max-height:none; aspect-ratio:3/2 !important; object-fit:contain; -webkit-mask-image:none; mask-image:none; }
+}
+</style>
 
 <section class="row-single" aria-label="Cover"><div class="viz-root scope-slide2"><div class="wrap"><section class="panel cover">
 <div class="coverrow"><div class="covertext">
@@ -1739,12 +1749,12 @@ table.dtable.reloc td:nth-child(2) { white-space:nowrap; color: var(--text-secon
         }
         return;
       }
-      var ok = function (z) { p.style.width = (W / z) + 'px'; p.style.maxWidth = 'none'; p.style.zoom = z;
+      var ok = function (z) { p.style.width = (W / z) + 'px'; p.style.maxWidth = 'none'; p.style.zoom = z; p.style.setProperty('--iz', 1 / z);
                               return r.offsetHeight <= window.innerHeight; };
-      var lo = 1, hi = 1.45;
+      p.style.removeProperty('--cw'); var lo = 1, hi = 1.45;
       if (!ok(1)) { lo = 0.55; hi = 1; }   /* too tall for this screen: shrink instead */
       for (var i = 0; i < 10; i++) { var mid = (lo + hi) / 2; if (ok(mid)) lo = mid; else hi = mid; }
-      ok(lo);
+      ok(lo); for (var cw = 98; cw >= 60 && r.offsetHeight > window.innerHeight; cw -= 2) p.style.setProperty('--cw', cw + '%');
       var pad = 0;
       for (var e = p.parentElement; e && e !== r.parentElement; e = e.parentElement) {
         var cs = getComputedStyle(e);
@@ -1763,5 +1773,31 @@ table.dtable.reloc td:nth-child(2) { white-space:nowrap; color: var(--text-secon
   var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(fit, 120); });
   if (document.readyState === 'complete') fit(); else window.addEventListener('load', fit);
   document.addEventListener('toggle', function () { setTimeout(fit, 0); }, true);
+})();
+</script>
+<script>
+/* distribution version: centre the chart or table block of each slide on the screen (the title stays at the left margin) */
+(function () {
+  var LEAF = 'text, path, rect, circle, line, polyline, polygon, ellipse, image, img, td, th, p, li';
+  function centre() {
+    if (window.innerWidth < 1000) return;
+    document.querySelectorAll('.row-single section.panel:not(.cover)').forEach(function (p) {
+      var kids = Array.prototype.filter.call(p.children, function (c) { return !c.matches('h2, .panel-eyebrow, details, script, style'); });
+      kids.forEach(function (c) { c.style.transform = ''; });
+      var L = 1e9, R = -1e9;
+      kids.forEach(function (c) { c.querySelectorAll(LEAF).forEach(function (e) {
+        var r = e.getBoundingClientRect(); if (r.width < 1 && r.height < 1) return;
+        var cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') return;
+        if (e.tagName === 'rect' && (e.getAttribute('fill') === 'none' || cs.fill === 'none') && cs.stroke === 'none') return;
+        L = Math.min(L, r.left); R = Math.max(R, r.right); }); });
+      if (R < L) return;
+      var z = parseFloat(p.style.zoom || 1) || 1, W = window.innerWidth;
+      var dx = ((W - R) - L) / 2;
+      if (dx > 4) kids.forEach(function (c) { c.style.transform = 'translateX(' + (dx / z) + 'px)'; });
+    });
+  }
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(centre, 400); });
+  window.addEventListener('load', function () { setTimeout(centre, 60); });
+  document.addEventListener('toggle', function () { setTimeout(centre, 80); }, true);
 })();
 </script>
