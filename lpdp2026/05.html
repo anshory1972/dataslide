@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/05.html">
+<meta name="robots" content="noindex">
+<title>What is DPI? Foundational, digital building blocks for the public benefit</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --tint:#fbf3ee; --soft:#e7e3da; --slate:#1c4e73; --slatebg:#eaf0f5;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+      --accent:#e0875f; --tint:#1f1a18; --soft:#2a2c31; --slate:#7ea9cc; --slatebg:#18212a;
+    }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
+  svg#art { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; pointer-events:none; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:34px; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .eyebrow { font: 600 12.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.18em; color:var(--muted); }
+  .sans { font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+
+  /* the stack */
+  .layer { position:absolute; left:40px; width:716px; border-radius:14px; }
+  .layer .lab { position:absolute; left:18px; top:14px; width:134px; }
+  .layer .lab .d { font: 13px/1.38 system-ui,sans-serif; color:var(--muted); margin-top:6px; }
+  .services { top:104px; height:156px; background:var(--surface); border:1px solid var(--rule); }
+  .dpi { top:274px; height:208px; background:var(--tint); border:2px solid var(--accent); }
+  .dpi .lab .eyebrow { color:var(--accent); }
+  .dpi .lab .big { font-size:27px; color:var(--accent); line-height:1.08; margin-top:4px; }
+  .physical { top:496px; height:94px; background:var(--soft); border:1px solid var(--rule); }
+
+  .tiles { position:absolute; left:160px; top:14px; right:14px; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+  .tile { background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:9px 9px 8px; height:126px; }
+  .tile b { display:block; font: 600 15px/1.2 Georgia,serif; margin-bottom:5px; }
+  .tile span { font: 12.5px/1.35 system-ui,sans-serif; color:var(--muted); }
+
+  .blocks { position:absolute; left:160px; top:16px; right:14px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .block { background:var(--surface); border:1.5px solid var(--accent); border-radius:12px; height:172px; padding:64px 10px 10px; text-align:center; }
+  .block b { display:block; font: 600 17px/1.2 Georgia,serif; }
+  .block .id { font: 13px/1.38 system-ui,sans-serif; color:var(--muted); margin-top:6px; }
+
+  .phys { position:absolute; left:160px; top:14px; right:14px; display:grid; grid-template-columns:1fr 1fr; gap:6px 20px;
+          font: 14.5px system-ui,sans-serif; color:var(--ink); }
+  .phys span::before { content:""; display:inline-block; width:8px; height:8px; border-radius:2px; background:var(--muted); margin-right:8px; vertical-align:1px; }
+
+  /* enablers & safeguards column */
+  .safe { position:absolute; left:770px; top:104px; width:226px; height:486px; border-radius:14px;
+          background:var(--slatebg); border:1.5px dashed var(--slate); padding:16px 16px; }
+  .safe .eyebrow { color:var(--slate); }
+  .safe .t { font-size:20px; line-height:1.2; margin:4px 0 4px; }
+  .safe .d { font: 12.5px/1.4 system-ui,sans-serif; color:var(--muted); margin-bottom:10px; }
+  .safe ul { list-style:none; margin:0; padding:0; }
+  .safe li { font: 15px/1.38 system-ui,sans-serif; padding:14px 0 14px 26px; border-top:1px solid var(--rule); position:relative; }
+  .safe li::before { content:""; position:absolute; left:2px; top:18px; width:12px; height:12px; border-radius:3px; border:2px solid var(--slate); }
+
+  /* right: silo vs shared, benefits and risks */
+  .why { position:absolute; left:1012px; top:104px; width:548px; height:486px; background:var(--surface);
+         border:1px solid var(--rule); border-radius:14px; padding:16px 22px; }
+  .why .t { font-size:21px; margin-top:3px; }
+  .cap { position:absolute; left:22px; width:504px; font: 14px/1.35 system-ui,sans-serif; }
+  .cap b { font-weight:650; }
+  .br { position:absolute; left:22px; right:22px; top:322px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .br .h { font: 600 12.5px system-ui,sans-serif; letter-spacing:.16em; margin-bottom:6px; }
+  .br ul { list-style:none; margin:0; padding:0; }
+  .br li { font: 13.5px/1.35 system-ui,sans-serif; padding:4px 0 4px 18px; position:relative; }
+  .br .ben li::before { content:"+"; position:absolute; left:0; top:3px; font-weight:700; color:var(--accent); }
+  .br .risk li::before { content:"!"; position:absolute; left:3px; top:3px; font-weight:700; color:var(--slate); }
+
+  /* bottom: the three words */
+  .words { position:absolute; left:40px; top:610px; width:1520px; height:226px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .word { background:var(--surface); border:1px solid var(--rule); border-top:4px solid var(--accent); border-radius:12px; padding:18px 24px; }
+  .word .k { font: 600 13px system-ui,sans-serif; letter-spacing:.18em; color:var(--accent); }
+  .word .w { font-size:30px; margin:4px 0 8px; }
+  .word .x { font: 16.5px/1.5 system-ui,sans-serif; }
+  .word .x i { font-style:normal; color:var(--muted); }
+  .sources { position:absolute; left:40px; right:40px; top:852px; font: 12.5px/1.45 system-ui,sans-serif; color:var(--muted); }
+  .sources b { font-weight:600; color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1><em>What is DPI?</em> Foundational, digital building blocks for the public benefit</h1>
+
+  <!-- the stack -->
+  <section class="layer services">
+    <div class="lab"><span class="eyebrow">SERVICES</span><div class="d">sector systems and apps, public and private, built on the blocks</div></div>
+    <div class="tiles">
+      <div class="tile"><b>Social protection</b><span>registries, eligibility, cash transfers</span></div>
+      <div class="tile"><b>Health</b><span>health records, insurance, telemedicine</span></div>
+      <div class="tile"><b>Finance</b><span>accounts, credit, e&#8209;wallets</span></div>
+      <div class="tile"><b>Agriculture</b><span>farmer registers, inputs, markets</span></div>
+      <div class="tile"><b>Tax &amp; e&#8209;gov</b><span>filing, portals, service centres</span></div>
+    </div>
+  </section>
+
+  <section class="layer dpi">
+    <div class="lab"><span class="eyebrow">THE DPI LAYER</span><div class="big">Built once, used by all</div>
+      <div class="d" style="color:var(--ink)">core building blocks; others can be added</div></div>
+    <div class="blocks">
+      <div class="block"><b>Identity &amp; e&#8209;signatures</b><div class="id">prove who you are and sign documents online</div></div>
+      <div class="block"><b>Payments</b><div class="id">send and receive money directly, in real time</div></div>
+      <div class="block"><b>Data sharing</b><div class="id">exchange records between agencies and firms, with consent</div></div>
+    </div>
+  </section>
+
+  <section class="layer physical">
+    <div class="lab" style="top:16px"><span class="eyebrow">TECHNOLOGY</span><div class="d" style="margin-top:4px">enablers below DPI</div></div>
+    <div class="phys"><span>Broadband &amp; devices</span><span>Data centres &amp; cloud</span><span>AI &amp; big data</span><span>Energy</span></div>
+  </section>
+
+  <!-- enablers and safeguards, around all layers -->
+  <aside class="safe">
+    <div class="eyebrow">AROUND ALL LAYERS</div>
+    <div class="t">Enablers &amp; safeguards</div>
+    <div class="d">non-technical conditions; DPI is more than technology</div>
+    <ul>
+      <li>Laws, regulation and institutions for DPI</li>
+      <li>Data protection and data governance</li>
+      <li>Cybersecurity</li>
+      <li>Public oversight, accountability, feedback</li>
+      <li>Digital skills and literacy</li>
+    </ul>
+  </aside>
+
+  <!-- right: separate vs shared; benefits and risks -->
+  <section class="why">
+    <div class="eyebrow" style="color:var(--accent)">WHY IT MATTERS</div>
+    <div class="t">Four services, two ways to build</div>
+    <div class="cap" style="top:156px"><b>Separate systems:</b> 12 systems, records that do not match</div>
+    <div class="cap" style="top:282px"><b>DPI:</b> 3 shared blocks, one record per person</div>
+    <div class="br">
+      <div class="ben"><div class="h" style="color:var(--accent)">POTENTIAL BENEFITS</div><ul>
+        <li>Government: faster, cheaper services</li>
+        <li>Firms: more competition and innovation</li>
+        <li>People: easier access, more control</li></ul></div>
+      <div class="risk"><div class="h" style="color:var(--slate)">RISKS TO MANAGE</div><ul>
+        <li>Exclusion of people with low digital access or skills</li>
+        <li>Misuse of personal data</li>
+        <li>Lock-in, poor-quality systems; weak capacity</li></ul></div>
+    </div>
+  </section>
+
+  <!-- the three words of the definition -->
+  <section class="words">
+    <div class="word"><div class="k">1 · FOUNDATIONAL</div><div class="w">Essential, for everyone</div>
+      <div class="x">Basic functions at the scale of the whole society, used across sectors and population groups. <i>Can be built or run by the government, by firms, or both.</i></div></div>
+    <div class="word"><div class="k">2 · BUILDING BLOCKS</div><div class="w">Reused, not rebuilt</div>
+      <div class="x">Interoperable and based on open standards and open APIs, so many services plug into the same block. <i>Modular and minimal: no more central data than needed.</i></div></div>
+    <div class="word"><div class="k">3 · PUBLIC BENEFIT</div><div class="w">Safe and inclusive by design</div>
+      <div class="x">Inclusion and user choice, privacy by design, and strong governance with public oversight. <i>Built into the technical design, not added later.</i></div></div>
+  </section>
+
+  <div class="sources"><b>Source:</b> World Bank (2025), <i>Digital Public Infrastructure and Development: A World Bank Group Approach</i>, Digital Transformation White Paper Vol. 1: definition, characteristics and ecosystem pp. 7–10 (Figures 2–4); benefits and risks pp. 5, 9, 29 (Figures 1, 3, 13).</div>
+
+  <svg id="art" viewBox="0 0 1600 900"></svg>
+</div>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg', art = document.getElementById('art');
+const el = (tag, a, p = art) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+const tx = (x, y, s, a = {}, p = art) => { const t = el('text', {x, y, ...a}, p); t.textContent = s; return t; };
+const S = {fill:'none', stroke:'var(--accent)', 'stroke-width':2.6, 'stroke-linecap':'round', 'stroke-linejoin':'round'};
+
+// ---- icons on the three DPI blocks ----
+const bw = (716 - 160 - 14 - 20) / 3, bx0 = 40 + 160, by = 324;
+const bcx = i => bx0 + i * (bw + 10) + bw / 2;
+{ const g = el('g', {transform:`translate(${bcx(0)},${by})`});              // ID card
+  el('rect', {x:-26, y:-17, width:52, height:34, rx:5, ...S}, g); el('circle', {cx:-12, cy:-2, r:6, ...S}, g);
+  el('path', {d:'M2,-6 L18,-6 M2,3 L14,3 M-21,11 L-3,11', ...S}, g); }
+{ const g = el('g', {transform:`translate(${bcx(1)},${by})`});              // payment
+  el('circle', {cx:-14, cy:0, r:12, ...S}, g);
+  el('path', {d:'M-18,-4 L-10,-4 M-18,4 L-10,4 M-14,-8 L-14,8', ...S, 'stroke-width':2}, g);
+  el('path', {d:'M4,-6 L28,-6 M22,-12 L28,-6 L22,0 M28,8 L4,8 M10,2 L4,8 L10,14', ...S}, g); }
+{ const g = el('g', {transform:`translate(${bcx(2)},${by})`});              // data sharing
+  [[-22, -10], [22, -10], [0, 14]].forEach(([a, b]) => el('rect', {x:a - 9, y:b - 7, width:18, height:14, rx:3, ...S}, g));
+  el('path', {d:'M-13,-10 L13,-10 M-17,-3 L-5,9 M17,-3 L5,9', ...S}, g); }
+
+// ---- right panel: separate systems vs shared blocks ----
+const progs = ['Social aid', 'Health', 'Tax', 'Bank'], px0 = 1034, pw = 117, mini = ['ID', 'Pay', 'Data'];
+const Y1 = 182;
+progs.forEach((p, i) => {
+  const x = px0 + i * (pw + 10);
+  el('rect', {x, y:Y1, width:pw, height:28, rx:6, fill:'var(--paper)', stroke:'var(--ink)', 'stroke-width':1.4});
+  tx(x + pw / 2, Y1 + 19, p, {'text-anchor':'middle', 'font-size':14.5, 'font-weight':600, fill:'var(--ink)'});
+  mini.forEach((m, j) => {
+    const w = (pw - 8) / 3, mx = x + j * (w + 4);
+    el('rect', {x:mx, y:Y1 + 33, width:w, height:30, rx:4, fill:'none', stroke:'var(--accent)', 'stroke-width':1.4, 'stroke-dasharray':'3 2.5'});
+    tx(mx + w / 2, Y1 + 52, m, {'text-anchor':'middle', class:'sans', 'font-size':10.5, 'font-weight':600, fill:'var(--accent)'});
+  });
+});
+el('line', {x1:1034, y1:290, x2:1538, y2:290, stroke:'var(--rule)', 'stroke-width':1.2, 'stroke-dasharray':'4 6'});
+const Y2 = 302;
+progs.forEach((p, i) => {
+  const x = px0 + i * (pw + 10);
+  el('rect', {x, y:Y2, width:pw, height:28, rx:6, fill:'var(--paper)', stroke:'var(--ink)', 'stroke-width':1.4});
+  tx(x + pw / 2, Y2 + 19, p, {'text-anchor':'middle', 'font-size':14.5, 'font-weight':600, fill:'var(--ink)'});
+  el('path', {d:`M${x + pw / 2},${Y2 + 28} L${x + pw / 2},${Y2 + 36}`, stroke:'var(--ink)', 'stroke-width':1.6});
+});
+const sw = 4 * pw + 30, segw = (sw - 8) / 3;
+['Identity', 'Payments', 'Data sharing'].forEach((m, j) => {
+  const mx = px0 + j * (segw + 4);
+  el('rect', {x:mx, y:Y2 + 38, width:segw, height:32, rx:5, fill:'var(--accent)'});
+  tx(mx + segw / 2, Y2 + 59, m, {'text-anchor':'middle', class:'sans', 'font-size':13.5, 'font-weight':700, fill:'var(--surface)'});
+});
+
+// scale the 1600 x 900 stage to the window
+const st = document.getElementById('stage');
+const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+  st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+addEventListener('resize', fit); fit();
+</script>
+<script id="deck-nav">
+  // move between slides with the keyboard
+  document.addEventListener('keydown', e => {
+    const prev = '04.html', next = '';
+    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+  });
+</script>
+</body>
+</html>
