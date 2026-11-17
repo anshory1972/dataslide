@@ -1,344 +1,197 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/11.html">
 <meta name="robots" content="noindex">
-<title>Peran DPI dalam proses pensasaran penerima bansos</title>
+<title>Still off target: errors remain high, for three reasons</title>
 <style>
-  /* palette: change colours here */
   :root {
     color-scheme: light dark;
-    --paper:#f4f2ed; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce; --surface:#fffdf9;
-    --accent:#b4451f; --accent-dark:#8a3416; --impact:#f6e6dc;
-    --core:#1c4e73; --core-line:#1c4e73; --core-sub:#d5e3ef; --result:#dde8f1;
-    --colA:#ebe7df; --colB:#e3e9ee; --line:#55534e;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --tint:#fbf3ee; --soft:#e7e3da; --slate:#1c4e73; --slatebg:#eaf0f5; --bar2:#b9b4aa;
   }
   @media screen and (prefers-color-scheme: dark) {
     :root {
-      --paper:#0f1013; --ink:#ece9e2; --muted:#9b978e; --rule:#3a3c42; --surface:#191a1e;
-      --accent:#e0875f; --accent-dark:#f0a882; --impact:#2b211c;
-      --core:#2c6a99; --core-line:#7ea9cc; --core-sub:#d5e3ef; --result:#1d2c38;
-      --colA:#17181c; --colB:#141a20; --line:#a8a49b;
+      --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+      --accent:#e0875f; --tint:#1f1a18; --soft:#2a2c31; --slate:#7ea9cc; --slatebg:#18212a; --bar2:#5a5d63;
     }
   }
+  *, *::before, *::after { box-sizing:border-box; }
   html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
-  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; }
-  svg { position:absolute; left:0; top:0; width:1600px; height:900px; font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
-  .colA { fill:var(--colA); } .colB { fill:var(--colB); } .pagebg { fill:var(--paper); }
-  .num { fill:var(--core); } .numt { fill:#fff; }
-  .hd { fill:var(--core-line); } .mut { fill:var(--muted); } .ink { fill:var(--ink); }
-  .acc2 { fill:var(--core-line); }
-  .bx { fill:var(--surface); stroke:var(--core-line); stroke-width:1.2; }
-  .core { fill:var(--core); } .coret { fill:#fff; } .coresub { fill:var(--core-sub); }
-  .res { fill:var(--result); stroke:var(--core-line); stroke-width:1.2; }
-  .chip { fill:var(--surface); stroke:var(--rule); stroke-width:.9; }
-  .imp { fill:var(--impact); } .impl { fill:var(--impact); stroke:var(--accent); stroke-width:.9; }
-  .impt { fill:var(--accent-dark); }
-  .tag { fill:var(--accent); } .tagt { fill:#fff; }
-  .icbg { fill:var(--result); } .icbgd { fill:rgba(255,255,255,.16); }
-  .ic { fill:none; stroke:var(--core-line); stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
-  .icd { fill:none; stroke:#fff; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
-  .ics { fill:none; stroke:var(--core-line); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
-  .imp + path.ic { stroke:var(--accent); }
-  .ln { fill:none; stroke:var(--line); stroke-width:1.6; stroke-linejoin:round; }
-  .dash { stroke-dasharray:6.4 4.8; }
-  #ah path { fill:var(--line); }
-  .t1 { font-family: Georgia,"Iowan Old Style",serif; fill:var(--ink); }
-  .t1 tspan.em { fill:var(--accent); font-style:italic; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
+  svg#art { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; pointer-events:none; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:34px; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .eyebrow { font: 600 12.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.18em; color:var(--accent); }
+
+  .left { position:absolute; left:40px; top:100px; width:736px; height:736px; background:var(--surface);
+          border:1px solid var(--rule); border-radius:14px; padding:18px 24px; }
+  .left .h { font-size:22px; margin-top:3px; }
+  .legend { font: 13.5px system-ui,sans-serif; margin-top:6px; display:flex; gap:18px; }
+  .sub2 { font: 600 12px system-ui,sans-serif; letter-spacing:.14em; color:var(--muted); margin-top:16px; }
+  .legend i { display:inline-block; width:22px; height:3px; border-radius:2px; vertical-align:4px; margin-right:7px; }
+  .note { position:absolute; left:24px; right:24px; bottom:16px; border-top:1px solid var(--rule); padding-top:9px;
+          font: 13px/1.4 system-ui,sans-serif; color:var(--muted); }
+  .note b { color:var(--ink); font-weight:600; }
+
+  .cause { position:absolute; left:800px; width:760px; background:var(--surface); border:1px solid var(--rule);
+           border-radius:14px; padding:14px 100px 14px 84px; }
+  .cause .num { position:absolute; left:20px; top:16px; width:46px; height:46px; border-radius:50%; background:var(--paper);
+                border:1.5px solid var(--ink); font: 600 22px Georgia,serif; display:flex; align-items:center; justify-content:center; }
+  .cause.dpi { border:1.5px solid var(--accent); }
+  .cause.dpi .num { background:var(--accent); color:var(--surface); border-color:var(--accent); }
+  .cause .t { font: 600 21px Georgia,serif; }
+  .cause .d { font: 15px/1.42 system-ui,sans-serif; margin-top:4px; }
+  .cause .d b { font-weight:650; }
+  .tag { position:absolute; right:16px; top:16px; font: 600 11.5px system-ui,sans-serif; letter-spacing:.12em;
+         padding:4px 9px; border-radius:6px; }
+  .tag.fund { background:var(--soft); color:var(--ink); }
+  .tag.d { background:var(--accent); color:var(--surface); }
+
+  .eq { display:flex; align-items:center; gap:22px; margin:10px 0 8px; }
+  .eqbox { font: italic 30px Georgia,"Times New Roman",serif; background:var(--tint); border:1px solid var(--rule);
+           border-radius:10px; padding:8px 18px; white-space:nowrap; }
+  .eqbox .up { font-style:normal; }
+  .eqx { font: 14.5px/1.42 system-ui,sans-serif; }
+  .eqx i, .cause i.v { font: italic 17px Georgia,serif; }
+  .err { display:flex; gap:10px; margin-top:4px; }
+  .err div { flex:1; background:var(--paper); border-radius:8px; padding:6px 10px; font: 13px/1.3 system-ui,sans-serif; color:var(--muted); }
+  .err b { display:block; font: 24px Georgia,serif; color:var(--accent); }
+
+  .ex { position:absolute; left:84px; top:246px; width:350px; }
+  .exh { font: 600 12.5px system-ui,sans-serif; color:var(--ink); margin-bottom:5px; }
+  .exh i.v { font: italic 15px Georgia,serif; }
+  .chips { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+  .chips span { font: 12.5px system-ui,sans-serif; text-align:center; padding:3px 4px; border-radius:6px;
+                background:var(--tint); border:1px solid var(--accent); color:var(--ink); white-space:nowrap; }
+  .sources { position:absolute; left:40px; right:40px; top:848px; font: 11.5px/1.45 system-ui,sans-serif; color:var(--muted); }
+  .sources b { font-weight:600; color:var(--ink); }
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
-<svg viewBox="0 0 1456 819" role="img" aria-label="Theory of change: the role of DPI in targeting social assistance recipients">
-<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0,0 L10,5 L0,10 z"/></marker></defs>
-<text class="t1" x="34.3" y="44" font-size="30.9"><tspan class="em">Peran DPI</tspan> dalam proses pensasaran penerima bansos</text>
-<text x="34.3" y="68.6" font-size="12.4" fill="var(--muted)">Theory of Change — titik intervensi <tspan font-weight="700" fill="var(--accent)">Digital Public Infrastructure (DPI)</tspan> dari pendaftaran hingga penyaluran bantuan</text>
-<rect class="colA" x="34.3" y="96.8" width="197.0" height="666.4" rx="12"/>
-<rect class="colA" x="239.8" y="96.8" width="256.9" height="666.4" rx="12"/>
-<rect class="colA" x="505.3" y="96.8" width="291.2" height="666.4" rx="12"/>
-<rect class="colB" x="805.1" y="96.8" width="222.7" height="666.4" rx="12"/>
-<rect class="colA" x="1036.3" y="96.8" width="188.4" height="666.4" rx="12"/>
-<rect class="colB" x="1233.3" y="96.8" width="188.4" height="666.4" rx="12"/>
-<rect class="num" x="46.4" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="63.1" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">1</text>
-<text class="hd" x="87.4" y="119.4" font-size="13.5" font-weight="700" text-anchor="start">PENDAFTARAN</text>
-<text class="mut" x="87.4" y="137.6" font-size="10.4" font-weight="400" text-anchor="start">Masyarakat mendaftar</text>
-<text class="mut" x="87.4" y="149.9" font-size="10.4" font-weight="400" text-anchor="start">sendiri atau dibantu untuk</text>
-<text class="mut" x="87.4" y="162.2" font-size="10.4" font-weight="400" text-anchor="start">masuk dan memperbarui</text>
-<text class="mut" x="87.4" y="174.4" font-size="10.4" font-weight="400" text-anchor="start">data.</text>
-<rect class="num" x="251.9" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="268.6" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">2</text>
-<text class="hd" x="292.9" y="119.7" font-size="13.5" font-weight="700" text-anchor="start">PEMUTAKHIRAN &amp;</text>
-<text class="hd" x="292.9" y="135.7" font-size="13.5" font-weight="700" text-anchor="start">INTEGRASI DATA</text>
-<text class="mut" x="292.9" y="153.8" font-size="10.4" font-weight="400" text-anchor="start">Status kesejahteraan diimputasi; data</text>
-<text class="mut" x="292.9" y="166.1" font-size="10.4" font-weight="400" text-anchor="start">lintas instansi ditarik lewat SPLP.</text>
-<rect class="num" x="517.5" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="534.2" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">3</text>
-<text class="hd" x="558.5" y="119.4" font-size="13.5" font-weight="700" text-anchor="start">SOCIAL REGISTRY &amp; PMT</text>
-<text class="mut" x="558.5" y="137.6" font-size="10.4" font-weight="400" text-anchor="start">Basis data terpadu dinamis dan model PMT untuk</text>
-<text class="mut" x="558.5" y="149.9" font-size="10.4" font-weight="400" text-anchor="start">klasifikasi kesejahteraan.</text>
-<rect class="num" x="817.2" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="833.9" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">4</text>
-<text class="hd" x="858.3" y="119.7" font-size="13.5" font-weight="700" text-anchor="start">KEPUTUSAN</text>
-<text class="hd" x="858.3" y="135.7" font-size="13.5" font-weight="700" text-anchor="start">KELAYAKAN</text>
-<text class="mut" x="858.3" y="153.8" font-size="10.4" font-weight="400" text-anchor="start">Desil dan kriteria tambahan</text>
-<text class="mut" x="858.3" y="166.1" font-size="10.4" font-weight="400" text-anchor="start">menentukan siapa yang layak</text>
-<text class="mut" x="858.3" y="178.4" font-size="10.4" font-weight="400" text-anchor="start">menerima.</text>
-<rect class="num" x="1048.5" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="1065.2" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">5</text>
-<text class="hd" x="1089.6" y="119.7" font-size="13.5" font-weight="700" text-anchor="start">PENGADUAN &amp;</text>
-<text class="hd" x="1089.6" y="135.7" font-size="13.5" font-weight="700" text-anchor="start">REGISTRI</text>
-<text class="mut" x="1089.6" y="153.8" font-size="10.4" font-weight="400" text-anchor="start">Sanggahan memperbaiki</text>
-<text class="mut" x="1089.6" y="166.1" font-size="10.4" font-weight="400" text-anchor="start">data; status graduasi</text>
-<text class="mut" x="1089.6" y="178.4" font-size="10.4" font-weight="400" text-anchor="start">dicatat.</text>
-<rect class="num" x="1245.5" y="108.9" width="33.4" height="33.4" rx="16.7"/>
-<text class="numt" x="1262.2" y="131.3" font-size="19.7" font-weight="700" text-anchor="middle">6</text>
-<text class="hd" x="1286.6" y="119.7" font-size="13.5" font-weight="700" text-anchor="start">PEMBAYARAN</text>
-<text class="hd" x="1286.6" y="135.7" font-size="13.5" font-weight="700" text-anchor="start">DIGITAL (G2P)</text>
-<text class="mut" x="1286.6" y="153.8" font-size="10.4" font-weight="400" text-anchor="start">NIK dipetakan ke rekening;</text>
-<text class="mut" x="1286.6" y="166.1" font-size="10.4" font-weight="400" text-anchor="start">bantuan disalurkan</text>
-<text class="mut" x="1286.6" y="178.4" font-size="10.4" font-weight="400" text-anchor="start">langsung.</text>
-<path class="ln" d="M214.1,236.2 L254.5,236.2" marker-end="url(#ah)"/>
-<path class="ln" d="M479.6,236.2 L520.0,236.2" marker-end="url(#ah)"/>
-<path class="ln" d="M541.2,292.5 L541.2,474.0" marker-end="url(#ah)"/>
-<path class="ln" d="M541.2,474.5 L541.2,293.0" marker-end="url(#ah)"/>
-<path class="ln" d="M522.4,256.9 L501.0,256.9 L501.0,493.1 L482.0,493.1" marker-end="url(#ah)"/>
-<path class="ln" d="M308.4,440.0 L308.4,463.0" marker-end="url(#ah)"/>
-<path class="ln" d="M424.0,440.0 L424.0,463.0" marker-end="url(#ah)"/>
-<path class="ln" d="M479.6,526.6 L520.0,526.6" marker-end="url(#ah)"/>
-<path class="ln" d="M629.5,509.5 L652.8,509.5" marker-end="url(#ah)"/>
-<path class="ln" d="M479.6,545.0 L495.0,545.0 L495.0,722.4 L819.8,722.4" marker-end="url(#ah)"/>
-<path class="ln" d="M779.4,509.5 L819.8,509.5" marker-end="url(#ah)"/>
-<path class="ln" d="M914.8,550.2 L914.8,572.4" marker-end="url(#ah)"/>
-<path class="ln" d="M914.8,695.4 L914.8,645.7" marker-end="url(#ah)"/>
-<path class="ln" d="M1010.6,609.0 L1032.0,609.0 L1032.0,236.2 L1051.1,236.2" marker-end="url(#ah)"/>
-<path class="ln" d="M1032.0,422.3 L1051.1,422.3" marker-end="url(#ah)"/>
-<path class="ln" d="M1128.9,387.2 L1128.9,277.9" marker-end="url(#ah)"/>
-<path class="ln" d="M1207.6,236.2 L1248.0,236.2" marker-end="url(#ah)"/>
-<path class="ln" d="M1325.9,275.5 L1325.9,299.1" marker-end="url(#ah)"/>
-<path class="ln dash" d="M1207.6,440.8 L1229.0,440.8 L1229.0,783.3 L18.8,783.3 L18.8,236.2 L49.0,236.2" marker-end="url(#ah)"/>
-<rect class="pagebg" x="522.4" y="775.1" width="411.1" height="16.4" rx="0"/>
-<text class="mut" x="727.9" y="785.8" font-size="8.2" font-weight="700" letter-spacing="1.6" text-anchor="middle">UMPAN BALIK SANGGAHAN → PENDAFTARAN &amp; PEMUTAKHIRAN DATA</text>
-<text class="mut" x="650.8" y="712.2" font-size="8.9" font-weight="400" font-style="italic" text-anchor="middle">data administratif untuk kriteria lain</text>
-<rect class="bx" x="51.4" y="193.6" width="162.7" height="81.9" rx="8"/>
-<rect class="icbg" x="64.0" y="221.6" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(68.5,226.2) scale(0.704)" d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M2 21v-1a6 6 0 0 1 12 0v1 M19 8v6 M16 11h6"/>
-<text class="hd" x="103.0" y="216.8" font-size="14.0" font-weight="700" text-anchor="start">On-Demand</text>
-<text class="hd" x="103.0" y="233.0" font-size="14.0" font-weight="700" text-anchor="start">Application</text>
-<text class="mut" x="103.0" y="248.1" font-size="11.5" font-weight="400" text-anchor="start">Self registration or</text>
-<text class="mut" x="103.0" y="261.6" font-size="11.5" font-weight="400" text-anchor="start">assisted</text>
-<rect class="bx" x="256.9" y="193.6" width="222.7" height="81.9" rx="8"/>
-<rect class="icbg" x="270.0" y="221.6" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(274.6,226.2) scale(0.704)" d="M5 2h14v20H5z M8 6h8 M8 11h2 M14 11h2 M8 15h2 M14 15h2 M8 19h2 M14 19h2"/>
-<text class="hd" x="308.6" y="231.6" font-size="14.1" font-weight="700" text-anchor="start">PMT PREDICTOR</text>
-<text class="mut" x="308.6" y="246.3" font-size="11.5" font-weight="400" text-anchor="start">Imputation · Pembentuk desil</text>
-<rect class="core" x="522.4" y="193.6" width="256.9" height="96.8" rx="8"/>
-<rect class="icbgd" x="535.0" y="229.0" width="26.0" height="26.0" rx="13"/>
-<path class="icd" transform="translate(539.5,233.6) scale(0.704)" d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6 M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>
-<text class="coresub" x="574.1" y="222.9" font-size="8.8" font-weight="700" letter-spacing="2.2" text-anchor="start">SOCIAL REGISTRY</text>
-<text class="coret" x="574.1" y="247.3" font-size="24.6" font-weight="700" text-anchor="start">DTSEN</text>
-<text class="coresub" x="574.1" y="265.3" font-size="11.5" font-weight="400" text-anchor="start">Data Tunggal Sosial Ekonomi Nasional</text>
-<text class="mut" x="257.0" y="301.1" font-size="8.7" font-weight="700" letter-spacing="2.4" text-anchor="start">SUMBER DATA ADMINISTRATIF</text>
-<rect class="chip" x="256.9" y="309.0" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(265.9,317.1) scale(0.500)" d="M3 5h18v14H3z M9 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M5 16a4 4 0 0 1 8 0 M15 9h4 M15 13h3"/>
-<text class="ink" x="284.3" y="326.2" font-size="10.4" font-weight="700" text-anchor="start">DUKCAPIL</text>
-<rect class="chip" x="372.6" y="309.0" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(381.6,317.1) scale(0.500)" d="M3 13l2-5h14l2 5v5H3z M3 13h18 M7 18v2 M17 18v2 M7 15h1 M16 15h1"/>
-<text class="ink" x="400.0" y="326.2" font-size="10.4" font-weight="700" text-anchor="start">KORLANTAS</text>
-<rect class="chip" x="256.9" y="343.2" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(265.9,351.3) scale(0.500)" d="M12 3l4 6h-3l3 5H8l3-5H8z M12 14v4 M3 21h18"/>
-<text class="ink" x="284.3" y="360.4" font-size="10.4" font-weight="700" text-anchor="start">ATR/BPN</text>
-<rect class="chip" x="372.6" y="343.2" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(381.6,351.3) scale(0.500)" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z M9 12l2 2 4-4"/>
-<text class="ink" x="400.0" y="360.4" font-size="10.4" font-weight="700" text-anchor="start">BPJS-TK</text>
-<rect class="chip" x="256.9" y="377.5" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(265.9,385.6) scale(0.500)" d="M13 2L4 14h7l-1 8 9-12h-7z"/>
-<text class="ink" x="284.3" y="394.7" font-size="10.4" font-weight="700" text-anchor="start">PLN</text>
-<rect class="chip" x="372.6" y="377.5" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(381.6,385.6) scale(0.500)" d="M4 21V7l8-4 8 4v14 M9 21v-6h6v6 M8 10h1 M15 10h1"/>
-<text class="ink" x="400.0" y="394.7" font-size="10.4" font-weight="700" text-anchor="start">BKN</text>
-<rect class="chip" x="256.9" y="411.7" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(265.9,419.8) scale(0.500)" d="M12 20v-6 M8 9a6 6 0 0 1 8 0 M5 6a10 10 0 0 1 14 0 M10 12a2 2 0 0 1 4 0"/>
-<text class="ink" x="284.3" y="428.9" font-size="10.4" font-weight="700" text-anchor="start">TELCO</text>
-<rect class="chip" x="372.6" y="411.7" width="107.1" height="28.3" rx="6"/>
-<path class="ics" transform="translate(381.6,419.8) scale(0.500)" d="M3 9l9-6 9 6 M5 10v8 M10 10v8 M14 10v8 M19 10v8 M3 21h18"/>
-<text class="ink" x="400.0" y="428.9" font-size="10.4" font-weight="700" text-anchor="start">SLIK/OJK</text>
-<rect class="bx" x="256.9" y="465.3" width="222.7" height="87.9" rx="8"/>
-<rect class="icbg" x="270.0" y="496.2" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(274.6,500.8) scale(0.704)" d="M7 4L3 8l4 4 M3 8h14 M17 12l4 4-4 4 M21 16H7"/>
-<text class="acc2" x="308.6" y="478.3" font-size="8.7" font-weight="700" letter-spacing="2.2" text-anchor="start">INTEROPERABLE DATA</text>
-<text class="acc2" x="308.6" y="488.5" font-size="8.7" font-weight="700" letter-spacing="2.2" text-anchor="start">EXCHANGE</text>
-<text class="hd" x="308.6" y="512.9" font-size="24.6" font-weight="700" text-anchor="start">SPLP</text>
-<text class="mut" x="308.6" y="531.3" font-size="11.5" font-weight="400" text-anchor="start">Sistem Penghubung Layanan</text>
-<text class="mut" x="308.6" y="544.8" font-size="11.5" font-weight="400" text-anchor="start">Pemerintah</text>
-<rect class="bx" x="522.4" y="476.5" width="107.1" height="62.5" rx="8"/>
-<text class="hd" x="575.9" y="511.4" font-size="12.4" font-weight="700" text-anchor="middle">PMT predictors</text>
-<rect class="bx" x="655.2" y="465.3" width="124.2" height="84.9" rx="8"/>
-<rect class="icbg" x="668.0" y="494.8" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(672.5,499.4) scale(0.704)" d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1z M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/>
-<text class="hd" x="706.9" y="493.6" font-size="14.0" font-weight="700" text-anchor="start">PMT</text>
-<text class="hd" x="706.9" y="509.8" font-size="14.0" font-weight="700" text-anchor="start">Model</text>
-<text class="mut" x="706.9" y="522.1" font-size="8.7" font-weight="400" text-anchor="start">DECILE</text>
-<text class="mut" x="706.9" y="532.3" font-size="8.7" font-weight="400" text-anchor="start">CLASSIFICATION</text>
-<rect class="res" x="822.2" y="465.3" width="188.4" height="84.9" rx="8"/>
-<rect class="icbg" x="835.0" y="494.8" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(839.5,499.4) scale(0.704)" d="M12 3l9 5-9 5-9-5 9-5z M3 13l9 5 9-5 M3 17l9 5 9-5"/>
-<text class="hd" x="873.9" y="490.1" font-size="14.0" font-weight="700" text-anchor="start">Decile</text>
-<text class="hd" x="873.9" y="506.3" font-size="14.0" font-weight="700" text-anchor="start">classification*</text>
-<text class="mut" x="873.9" y="521.4" font-size="11.5" font-weight="400" text-anchor="start">Desil kesejahteraan</text>
-<text class="mut" x="873.9" y="534.9" font-size="11.5" font-weight="400" text-anchor="start">rumah tangga</text>
-<rect class="core" x="822.2" y="574.8" width="188.4" height="68.5" rx="8"/>
-<rect class="icbgd" x="835.0" y="596.0" width="26.0" height="26.0" rx="13"/>
-<path class="icd" transform="translate(839.5,600.5) scale(0.704)" d="M12 2l2.4 2.2 3.2-.4.8 3.1 2.8 1.6-1.3 3 1.3 3-2.8 1.6-.8 3.1-3.2-.4L12 22l-2.4-2.2-3.2.4-.8-3.1-2.8-1.6 1.3-3-1.3-3 2.8-1.6.8-3.1 3.2.4z M8.5 12l2.4 2.4 4.6-4.8"/>
-<text class="coret" x="873.9" y="598.3" font-size="14.0" font-weight="700" text-anchor="start">ELIGIBILITY</text>
-<text class="coret" x="873.9" y="614.5" font-size="14.0" font-weight="700" text-anchor="start">DECISION</text>
-<text class="coresub" x="873.9" y="629.2" font-size="11.5" font-weight="400" text-anchor="start">Penetapan kelayakan</text>
-<rect class="bx" x="822.2" y="695.4" width="188.4" height="50.6" rx="8"/>
-<rect class="icbg" x="835.0" y="707.7" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(839.5,712.2) scale(0.704)" d="M3 6l2 2 3-3 M3 13l2 2 3-3 M11 7h10 M11 14h10 M11 20h10"/>
-<text class="hd" x="873.9" y="710.7" font-size="11.5" font-weight="700" text-anchor="start">Additional eligibility</text>
-<text class="hd" x="873.9" y="724.2" font-size="11.5" font-weight="700" text-anchor="start">criteria</text>
-<text class="mut" x="873.9" y="738.0" font-size="11.5" font-weight="400" text-anchor="start">Kriteria lain (non-desil)</text>
-<text class="mut" x="822.3" y="352.5" font-size="9.8" font-weight="400" font-style="italic" text-anchor="start">* Desil bukan satu-satunya penentu</text>
-<text class="mut" x="822.3" y="364.3" font-size="9.8" font-weight="400" font-style="italic" text-anchor="start">kelayakan, tetapi umumnya dominan</text>
-<text class="mut" x="822.3" y="376.0" font-size="9.8" font-weight="400" font-style="italic" text-anchor="start">(prasyarat eligibilitas).</text>
-<rect class="core" x="1053.5" y="193.6" width="154.2" height="81.9" rx="8"/>
-<rect class="icbgd" x="1066.0" y="221.6" width="26.0" height="26.0" rx="13"/>
-<path class="icd" transform="translate(1070.5,226.2) scale(0.704)" d="M2 9l10-5 10 5-10 5-10-5z M6 11v5c3 2 9 2 12 0v-5 M22 9v6"/>
-<text class="coret" x="1105.2" y="224.4" font-size="11.5" font-weight="700" text-anchor="start">BENEFICIARY</text>
-<text class="coret" x="1105.2" y="237.9" font-size="11.5" font-weight="700" text-anchor="start">REGISTRY</text>
-<text class="coresub" x="1105.2" y="251.8" font-size="11.5" font-weight="400" text-anchor="start">graduation status</text>
-<rect class="bx" x="1053.5" y="387.2" width="154.2" height="67.0" rx="8"/>
-<rect class="icbg" x="1066.0" y="407.7" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(1070.5,412.2) scale(0.704)" d="M4 4h12v9H8l-4 3V4z M18 8h2v10l-3-2h-7v-3"/>
-<text class="hd" x="1105.2" y="417.3" font-size="12.4" font-weight="700" text-anchor="start">Grievance /</text>
-<text class="hd" x="1105.2" y="431.7" font-size="12.4" font-weight="700" text-anchor="start">Sanggah</text>
-<rect class="bx" x="1250.4" y="193.6" width="154.2" height="81.9" rx="8"/>
-<rect class="icbg" x="1263.0" y="221.6" width="26.0" height="26.0" rx="13"/>
-<path class="ic" transform="translate(1267.5,226.2) scale(0.704)" d="M12 4a8 8 0 0 0-8 8v2 M20 12a8 8 0 0 0-3-6 M12 8a4 4 0 0 0-4 4v5 M16 12v2a8 8 0 0 1-2 5 M12 12v4a6 6 0 0 1-2 4"/>
-<text class="hd" x="1302.2" y="217.4" font-size="12.4" font-weight="700" text-anchor="start">Central Mapper</text>
-<text class="mut" x="1302.2" y="231.8" font-size="11.5" font-weight="400" text-anchor="start">NIK ↔ rekening</text>
-<text class="mut" x="1302.2" y="245.4" font-size="11.5" font-weight="400" text-anchor="start">keuangan, real</text>
-<text class="mut" x="1302.2" y="259.0" font-size="11.5" font-weight="400" text-anchor="start">time</text>
-<rect class="core" x="1250.4" y="301.5" width="154.2" height="81.9" rx="8"/>
-<rect class="icbgd" x="1263.0" y="329.4" width="26.0" height="26.0" rx="13"/>
-<path class="icd" transform="translate(1267.5,333.9) scale(0.704)" d="M14 6a3 3 0 1 1 0 .1z M2 15h4l5 2h5a2 2 0 0 0 0-4h-4 M6 21l-4-2 M2 15v6 M16 13l4-2a2 2 0 0 1 2 3l-6 5"/>
-<text class="coret" x="1302.2" y="318.4" font-size="12.4" font-weight="700" text-anchor="start">G2P PAYMENT</text>
-<text class="coresub" x="1302.2" y="332.9" font-size="11.5" font-weight="400" text-anchor="start">Penyaluran</text>
-<text class="coresub" x="1302.2" y="346.5" font-size="11.5" font-weight="400" text-anchor="start">bantuan digital ke</text>
-<text class="coresub" x="1302.2" y="360.1" font-size="11.5" font-weight="400" text-anchor="start">rekening</text>
-<text class="coresub" x="1302.2" y="373.6" font-size="11.5" font-weight="400" text-anchor="start">penerima</text>
-<rect class="imp" x="51.4" y="305.3" width="162.7" height="99.8" rx="6"/>
-<rect class="icbg" x="61.9" y="344.7" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(65.6,348.4) scale(0.569)" d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M2 20a7 7 0 0 1 14 0 M17 4a3.5 3.5 0 0 1 0 7 M22 20a7 7 0 0 0-4-6"/>
-<text class="impt" x="92.4" y="328.7" font-size="11.1" font-weight="700" text-anchor="start">Self-targeting</text>
-<text class="ink" x="92.4" y="341.4" font-size="9.8" font-weight="400" text-anchor="start">Mengurangi</text>
-<text class="ink" x="92.4" y="352.9" font-size="9.8" font-weight="400" text-anchor="start">inclusion &amp;</text>
-<text class="ink" x="92.4" y="364.3" font-size="9.8" font-weight="400" text-anchor="start">exclusion error</text>
-<text class="ink" x="92.4" y="375.8" font-size="9.8" font-weight="400" text-anchor="start">(Alatas et al.,</text>
-<text class="ink" x="92.4" y="387.3" font-size="9.8" font-weight="400" text-anchor="start">2017)</text>
-<rect class="tag" x="179.2" y="347.9" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="192.8" y="358.6" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="256.9" y="595.6" width="222.7" height="43.2" rx="6"/>
-<rect class="icbg" x="267.4" y="606.7" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(271.1,610.4) scale(0.569)" d="M6 13c-2 0-3-2-3-5s1-5 3-5 3 2 3 5-1 5-3 5z M4 16h4v3a2 2 0 0 1-4 0z M18 9c2 0 3 2 3 5s-1 5-3 5-3-2-3-5 1-5 3-5z M16 6h4V3"/>
-<text class="impt" x="297.9" y="616.1" font-size="11.1" font-weight="700" text-anchor="start">Ground check</text>
-<text class="ink" x="297.9" y="628.8" font-size="9.8" font-weight="400" text-anchor="start">Home visit berkurang</text>
-<rect class="tag" x="444.7" y="610.0" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="458.3" y="620.7" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="256.9" y="647.8" width="222.7" height="43.2" rx="6"/>
-<rect class="icbg" x="267.4" y="658.9" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(271.1,662.6) scale(0.569)" d="M10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14z M21 21l-6-6 M7 10l2 2 4-4"/>
-<text class="impt" x="297.9" y="668.3" font-size="11.1" font-weight="700" text-anchor="start">Direct pull / verification</text>
-<text class="ink" x="297.9" y="681.0" font-size="9.8" font-weight="400" text-anchor="start">Data lebih akurat</text>
-<rect class="tag" x="444.7" y="662.1" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="458.3" y="672.8" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="256.9" y="699.9" width="222.7" height="43.2" rx="6"/>
-<rect class="icbg" x="267.4" y="711.0" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(271.1,714.7) scale(0.569)" d="M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M18 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M9 18h6a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6"/>
-<text class="impt" x="297.9" y="714.6" font-size="11.1" font-weight="700" text-anchor="start">Cross-validation</text>
-<text class="ink" x="297.9" y="727.3" font-size="9.8" font-weight="400" text-anchor="start">Validasi silang antar sumber</text>
-<text class="ink" x="297.9" y="738.8" font-size="9.8" font-weight="400" text-anchor="start">data</text>
-<rect class="tag" x="444.7" y="714.3" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="458.3" y="725.0" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="561.0" y="311.2" width="218.4" height="41.7" rx="6"/>
-<rect class="icbg" x="571.5" y="321.6" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(575.2,325.2) scale(0.569)" d="M20 11a8 8 0 0 0-14-5L4 8 M4 3v5h5 M4 13a8 8 0 0 0 14 5l2-2 M20 21v-5h-5"/>
-<text class="impt" x="602.0" y="336.8" font-size="11.1" font-weight="700" text-anchor="start">Dynamic Social Registry</text>
-<rect class="tag" x="744.5" y="324.9" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="758.1" y="335.6" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="561.0" y="361.8" width="218.4" height="52.1" rx="6"/>
-<rect class="icbg" x="571.5" y="377.4" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(575.2,381.0) scale(0.569)" d="M3 17l6-6 4 4 8-8 M15 7h6v6"/>
-<text class="impt" x="602.0" y="380.2" font-size="11.1" font-weight="700" text-anchor="start">Status kesejahteraan</text>
-<text class="impt" x="602.0" y="393.2" font-size="11.1" font-weight="700" text-anchor="start">lebih mutakhir</text>
-<text class="ink" x="602.0" y="405.8" font-size="9.8" font-weight="400" text-anchor="start">dibandingkan hasil sensus</text>
-<rect class="tag" x="744.5" y="380.7" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="758.1" y="391.4" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="522.4" y="588.2" width="256.9" height="43.2" rx="6"/>
-<rect class="icbg" x="532.9" y="599.3" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(536.6,603.0) scale(0.569)" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-<text class="impt" x="563.4" y="608.7" font-size="11.1" font-weight="700" text-anchor="start">Misclassification berkurang</text>
-<text class="ink" x="563.4" y="621.4" font-size="9.8" font-weight="400" text-anchor="start">Klasifikasi desil lebih tepat</text>
-<rect class="tag" x="744.4" y="602.6" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="758.0" y="613.3" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="1053.5" y="484.0" width="154.2" height="56.6" rx="6"/>
-<rect class="icbg" x="1064.0" y="501.8" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(1067.7,505.5) scale(0.569)" d="M14 3H6v18h12V9z M14 3v6h6 M9 15l6-6 2 2-6 6H9z"/>
-<text class="impt" x="1094.5" y="498.8" font-size="11.1" font-weight="700" text-anchor="start">Grievance</text>
-<text class="impt" x="1094.5" y="511.8" font-size="11.1" font-weight="700" text-anchor="start">update</text>
-<text class="ink" x="1094.5" y="524.5" font-size="9.8" font-weight="400" text-anchor="start">Perbaikan data</text>
-<text class="ink" x="1094.5" y="536.0" font-size="9.8" font-weight="400" text-anchor="start">admin</text>
-<rect class="tag" x="1172.8" y="505.0" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="1186.5" y="515.7" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="1250.4" y="405.8" width="154.2" height="59.6" rx="6"/>
-<rect class="icbg" x="1260.9" y="425.1" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(1264.6,428.8) scale(0.569)" d="M3 7h16v13H3z M3 7l12-4v4 M15 13h4"/>
-<text class="impt" x="1291.4" y="422.1" font-size="11.1" font-weight="700" text-anchor="start">Seamless</text>
-<text class="impt" x="1291.4" y="435.1" font-size="11.1" font-weight="700" text-anchor="start">payment</text>
-<text class="ink" x="1291.4" y="447.8" font-size="9.8" font-weight="400" text-anchor="start">Efisien &amp;</text>
-<text class="ink" x="1291.4" y="459.3" font-size="9.8" font-weight="400" text-anchor="start">tertelusur</text>
-<rect class="tag" x="1369.7" y="428.4" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="1383.4" y="439.1" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="imp" x="1250.4" y="476.5" width="154.2" height="59.6" rx="6"/>
-<rect class="icbg" x="1260.9" y="495.8" width="21.0" height="21.0" rx="10.5"/>
-<path class="ic" transform="translate(1264.6,499.5) scale(0.569)" d="M9 2v5 M15 2v5 M6 7h12v4a6 6 0 0 1-12 0z M12 17v5"/>
-<text class="impt" x="1291.4" y="492.8" font-size="11.1" font-weight="700" text-anchor="start">Payment</text>
-<text class="impt" x="1291.4" y="505.8" font-size="11.1" font-weight="700" text-anchor="start">readiness</text>
-<text class="ink" x="1291.4" y="518.5" font-size="9.8" font-weight="400" text-anchor="start">Interoperabilitas</text>
-<text class="ink" x="1291.4" y="530.0" font-size="9.8" font-weight="400" text-anchor="start">sistem</text>
-<rect class="tag" x="1369.7" y="499.1" width="27.3" height="14.4" rx="3"/>
-<text class="tagt" x="1383.4" y="509.8" font-size="8.9" font-weight="700" letter-spacing="1.2" text-anchor="middle">DPI</text>
-<rect class="chip" x="51.4" y="595.6" width="162.7" height="151.9" rx="8"/>
-<text class="mut" x="60.5" y="611.9" font-size="8.8" font-weight="700" letter-spacing="2.2" text-anchor="start">KETERANGAN</text>
-<rect class="tag" x="60.5" y="626.7" width="21.2" height="12.1" rx="3"/>
-<text class="tagt" x="71.1" y="635.8" font-size="7.6" font-weight="700" letter-spacing=".4" text-anchor="middle">DPI</text>
-<text class="ink" x="87.0" y="630.2" font-size="9.5" font-weight="400" text-anchor="start">Titik intervensi Digital Public</text>
-<text class="ink" x="87.0" y="641.3" font-size="9.5" font-weight="400" text-anchor="start">Infrastructure</text>
-<rect class="core" x="60.5" y="650.2" width="19.7" height="10.6" rx="3"/>
-<text class="ink" x="87.0" y="658.4" font-size="9.5" font-weight="400" text-anchor="start">Sistem inti (backbone data)</text>
-<rect class="res" x="60.5" y="673.0" width="19.7" height="10.6" rx="3"/>
-<text class="ink" x="87.0" y="675.7" font-size="9.5" font-weight="400" text-anchor="start">Hasil klasifikasi</text>
-<text class="ink" x="87.0" y="686.8" font-size="9.5" font-weight="400" text-anchor="start">kesejahteraan</text>
-<rect class="impl" x="60.5" y="695.7" width="19.7" height="10.6" rx="3"/>
-<text class="ink" x="87.0" y="703.9" font-size="9.5" font-weight="400" text-anchor="start">Dampak intervensi DPI</text>
-<path class="ln dash" d="M60.5,723.8 L80.2,723.8"/>
-<text class="ink" x="87.0" y="721.2" font-size="9.5" font-weight="400" text-anchor="start">Umpan balik: sanggahan →</text>
-<text class="ink" x="87.0" y="732.3" font-size="9.5" font-weight="400" text-anchor="start">pendaftaran ulang</text>
-</svg>
+  <h1><em>Still off target:</em> targeting errors are high, for three reasons</h1>
+
+  <section class="left">
+    <div class="eyebrow">TARGETING, MARCH 2025</div>
+    <div class="h">Most of the poor receive nothing; many non-poor do</div>
+    <div class="sub2">LATEST TARGETING ERRORS</div>
+    <div class="legend"><span><i style="background:var(--accent)"></i><b>Exclusion error</b>: target group receiving nothing</span>
+      <span><i style="background:var(--slate)"></i><b>Inclusion error</b>: recipients outside it</span></div>
+    <div class="sub2" style="position:absolute; top:312px; margin:0">SHARE RECEIVING, BY WELFARE DECILE <span style="font-weight:400; letter-spacing:0; text-transform:none">(1 = poorest; rust = target deciles)</span></div>
+    <div class="note"><b>Targets:</b> PKH deciles 1–4 with programme conditions; BPNT and PBI deciles 1–5; PIP deciles 1–4 and school age. PKH and BPNT per household, PBI per person, PIP per school-age person. March 2026 data not yet released.</div>
+  </section>
+
+  <section class="cause" style="top:100px; height:120px; padding-right:20px">
+    <div class="num">1</div><span class="tag fund">A FUNDING DECISION</span>
+    <div class="t">Budget: fewer places than eligible households</div>
+    <div class="d">The quota is set before eligibility. <b>PKH:</b> about 20 m households potentially eligible, 10 m places. <b>Sembako:</b> 26 m eligible, 18.3 m places. Those left out count as exclusion error.</div>
+  </section>
+
+  <section class="cause dpi" style="top:234px; height:112px">
+    <div class="num">2</div><span class="tag d">DPI</span>
+    <div class="t">Business process: the money does not arrive cleanly</div>
+    <div class="d">Payment problems · hard-to-reach areas · leakage and corruption · <b>elite capture</b> of who gets listed.</div>
+  </section>
+
+  <section class="cause dpi" style="top:360px; height:476px">
+    <div class="num">3</div><span class="tag d">DPI</span>
+    <div class="t">Wrong deciles: the PMT formula misclassifies</div>
+    <div class="d" style="width:350px">Welfare <i class="v">y</i> is not observed, so a proxy means test (PMT) predicts it from household characteristics <i class="v">x</i>.</div>
+    <div class="eqbox" style="margin-top:8px; display:inline-block; font-size:27px; padding:6px 16px">y = ŷ + e = f(x) + e</div>
+    <div class="eqx" style="width:340px; margin-top:8px; font-size:14px">Households are ranked by <i>ŷ</i> alone. But <i>x</i> is <b>old</b> (Regsosek 2022) and <b>inaccurate</b>, and <i>e</i>, what <i>x</i> cannot explain, moves households across the cut-off.</div>
+    <div class="ex">
+      <div class="exh">What <i class="v">e</i> includes: unobserved factors that shape welfare</div>
+      <div class="chips"><span>online loans (pinjol)</span><span>lottery prizes</span><span>illness</span>
+        <span>disasters</span><span>inheritance</span><span>remittances</span>
+        <span>charity received</span><span>remote location</span><span>accidents</span></div>
+    </div>
+    <div class="err" style="position:absolute; left:84px; right:24px; top:356px">
+      <div><b>70%</b>misplaced among 10 deciles</div>
+      <div><b>50%</b>misplaced among 5 groups</div>
+      <div><b>20%</b>misplaced between 2 groups</div>
+    </div>
+    <div class="d" style="position:absolute; left:84px; right:24px; top:430px; color:var(--accent)"><b>DPI answer:</b> current, verified <i class="v">x</i> from administrative data through SPLP.</div>
+  </section>
+
+  <div class="sources"><b>Sources:</b> errors and incidence: DEN Social Protection Targeting Monitor, Susenas March 2025 (BPS). Quotas: World Bank, 360 Targeting Review of Social Assistance (forthcoming). PMT error rates and causes: DEN.</div>
+
+  <svg id="art" viewBox="0 0 1600 900"></svg>
 </div>
+
 <script>
-  // icons inside the impact boxes use the accent colour
-  document.querySelectorAll('rect.imp').forEach(r => { let n = r.nextElementSibling;
-    while (n && !(n.tagName === 'path' && n.classList.contains('ic'))) n = n.nextElementSibling;
-    if (n) { n.style.stroke = 'var(--accent)'; n.previousElementSibling.style.fill = 'var(--paper)'; } });
-  // scale the 1600 x 900 stage to the window
-  const st = document.getElementById('stage');
-  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
-    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
-  addEventListener('resize', fit); fit();
+const NS = 'http://www.w3.org/2000/svg', art = document.getElementById('art');
+const el = (tag, a, p = art) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+const tx = (x, y, s, a = {}, p = art) => { const t = el('text', {x, y, ...a}, p); t.textContent = s; return t; };
+
+// DEN Social Protection Targeting Monitor, Susenas March 2025
+const PROG = [
+  {n:'PKH',  ee:76.6, ie:46.0, tgt:4, inc:[26.3, 24.1, 21.5, 18.4, 15.9, 13.9, 11.4, 8.9, 5.9, 2.6]},
+  {n:'BPNT', ee:74.4, ie:36.1, tgt:5, inc:[30.5, 28.7, 25.9, 23.2, 20.9, 19.1, 16.0, 12.4, 9.2, 4.1]},
+  {n:'PBI',  ee:42.6, ie:40.9, tgt:5, inc:[58.8, 59.4, 57.8, 57.0, 54.2, 51.7, 48.0, 42.7, 35.4, 20.9]},
+  {n:'PIP',  ee:82.1, ie:44.2, tgt:4, inc:[19.4, 18.4, 17.3, 16.3, 14.7, 13.2, 11.5, 9.8, 7.7, 3.9]},
+];
+const sys = {'font-family':'system-ui,sans-serif'};
+// part A: latest errors, one row per programme, two bars each
+{ const x0 = 150, w = 520, top = 252, step = 34;
+  [0, 25, 50, 75, 100].forEach(v => { const x = x0 + w * v / 100;
+    el('line', {x1:x, y1:top - 8, x2:x, y2:top + 4 * step - 6, stroke:'var(--rule)', 'stroke-width':1});
+    tx(x, top + 4 * step + 8, v + '%', {...sys, 'text-anchor':'middle', 'font-size':11.5, fill:'var(--muted)'}); });
+  PROG.forEach((P, i) => { const y = top + i * step;
+    tx(x0 - 14, y + 13, P.n, {'text-anchor':'end', 'font-family':'Georgia,serif', 'font-size':17, 'font-weight':700, fill:'var(--ink)'});
+    el('rect', {x:x0, y:y - 2, width:w * P.ee / 100, height:12, rx:3, fill:'var(--accent)'});
+    tx(x0 + w * P.ee / 100 + 6, y + 9, P.ee.toFixed(1) + '%', {...sys, 'font-size':13, 'font-weight':700, fill:'var(--accent)'});
+    el('rect', {x:x0, y:y + 12, width:w * P.ie / 100, height:12, rx:3, fill:'var(--slate)'});
+    tx(x0 + w * P.ie / 100 + 6, y + 23, P.ie.toFixed(1) + '%', {...sys, 'font-size':13, 'font-weight':700, fill:'var(--slate)'}); });
+}
+// part B: four small decile charts on one 0-60% scale
+{ const cw = 318, ch = 106, gx = 40, L0 = 82, T0 = 466, gy = 162, max = 70;
+  PROG.forEach((P, k) => {
+    const L = L0 + (k % 2) * (cw + gx), T = T0 + Math.floor(k / 2) * gy, bw = cw / 10;
+    tx(L, T - 8, P.n, {'font-family':'Georgia,serif', 'font-size':16, 'font-weight':700, fill:'var(--ink)'});
+    [0, 30, 60].forEach(v => { const y = T + ch - ch * v / max;
+      el('line', {x1:L, y1:y, x2:L + cw, y2:y, stroke:'var(--rule)', 'stroke-width':1});
+      tx(L - 6, y + 4, v + '%', {...sys, 'text-anchor':'end', 'font-size':10.5, fill:'var(--muted)'}); });
+    P.inc.forEach((v, d) => { const h = ch * v / max, x = L + d * bw + 3, tg = d < P.tgt;
+      el('rect', {x, y:T + ch - h, width:bw - 6, height:h, rx:2, fill: tg ? 'var(--accent)' : 'var(--bar2)'});
+      tx(x + (bw - 6) / 2, T + ch + 13, d + 1, {...sys, 'text-anchor':'middle', 'font-size':10.5, fill:'var(--muted)'});
+      if (d === 0 || d === 9) tx(x + (bw - 6) / 2, T + ch - h - 5, Math.round(v) + '%', {...sys, 'text-anchor':'middle', 'font-size':12,
+         'font-weight':700, fill: tg ? 'var(--accent)' : 'var(--ink)'}); });
+  });
+}
+
+// ---- card 3: scatter of true welfare y against predicted yhat ----
+{ const L = 1262, T = 446, S = 236, cut = .4;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const gauss = () => { let u = 0; for (let k = 0; k < 6; k++) u += rnd(); return (u - 3) / Math.sqrt(.5); };
+  el('rect', {x:L, y:T, width:S, height:S, fill:'var(--paper)', stroke:'var(--rule)', 'stroke-width':1});
+  // eligible zone: true y below the cut-off (left/bottom quadrants)
+  el('line', {x1:L + S * cut, y1:T, x2:L + S * cut, y2:T + S, stroke:'var(--ink)', 'stroke-width':1.3, 'stroke-dasharray':'4 4'});
+  el('line', {x1:L, y1:T + S * (1 - cut), x2:L + S, y2:T + S * (1 - cut), stroke:'var(--ink)', 'stroke-width':1.3, 'stroke-dasharray':'4 4'});
+  el('line', {x1:L, y1:T + S, x2:L + S, y2:T, stroke:'var(--muted)', 'stroke-width':1});
+  for (let i = 0; i < 170; i++) {
+    const yh = .03 + .94 * rnd(), y = Math.min(.98, Math.max(.02, yh + .17 * gauss()));
+    const exc = y < cut && yh >= cut, inc = y >= cut && yh < cut;
+    el('circle', {cx:L + S * yh, cy:T + S * (1 - y), r: exc || inc ? 4 : 3,
+                  fill: exc ? 'var(--accent)' : inc ? 'var(--slate)' : 'var(--soft)', stroke: exc || inc ? 'none' : 'var(--muted)', 'stroke-width':.6});
+  }
+  const lab = (x, y, s, c, a = 'start') => tx(x, y, s, {'text-anchor':a, 'font-family':'system-ui,sans-serif', 'font-size':11.5, 'font-weight':600, fill:c});
+  lab(L + S - 6, T + S - 8, 'excluded', 'var(--accent)', 'end');
+  lab(L + 6, T + 16, 'wrongly included', 'var(--slate)');
+  tx(L + S / 2, T + S + 18, 'predicted welfare  ŷ = f(x)', {'text-anchor':'middle', 'font-family':'Georgia,serif', 'font-style':'italic', 'font-size':13.5, fill:'var(--ink)'});
+  tx(L - 10, T + S / 2, 'true welfare  y', {'text-anchor':'middle', 'font-family':'Georgia,serif', 'font-style':'italic', 'font-size':13.5, fill:'var(--ink)',
+     transform:`rotate(-90 ${L - 10} ${T + S / 2})`});
+  tx(L + S * cut + 4, T + S - 8, 'cut-off', {'font-family':'system-ui,sans-serif', 'font-size':11, fill:'var(--muted)'});
+}
+
+// scale the 1600 x 900 stage to the window
+const st = document.getElementById('stage');
+const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+  st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+addEventListener('resize', fit); fit();
 </script>
 <script id="deck-nav">
   // move between slides with the keyboard
