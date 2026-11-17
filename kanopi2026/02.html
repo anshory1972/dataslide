@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growth needs talent from every family</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce; --grid:#e6e1d6;
+    --accent:#b4451f; --slate:#1c4e73; --tint:#fbf3ee; --stint:#eef3f7; --desk:#e6e1d6;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036; --grid:#2a2c31;
+            --accent:#e0875f; --slate:#7ea9cc; --tint:#1f1a18; --stint:#18222c; --desk:#1d1e22; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font: 400 40px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .sub { position:absolute; left:40px; top:80px; font: italic 21px Georgia,serif; color:var(--muted); }
+
+  /* ---- the printout ---- */
+  .desk { position:absolute; left:40px; top:126px; width:440px; height:690px; border-radius:16px;
+          background: radial-gradient(120% 90% at 30% 20%, var(--surface) 0%, var(--desk) 100%); overflow:hidden; }
+  .sheet { position:absolute; width:356px; height:461px; background:#fcfaf4; }
+  .sheet img { display:block; width:100%; height:100%; }
+  .sheet.under { left:66px; top:136px; transform:rotate(5deg);
+                 box-shadow: 0 1px 2px rgba(0,0,0,.18), 0 10px 22px rgba(0,0,0,.14); }
+  .sheet.under::before { content:""; position:absolute; inset:28px 24px; background:
+      repeating-linear-gradient(#0000 0 8px, rgba(60,60,60,.14) 8px 10px); }
+  .sheet.top { left:30px; top:102px; transform:rotate(-3.5deg);
+               box-shadow: 0 1px 2px rgba(0,0,0,.22), 0 18px 40px rgba(0,0,0,.24), 0 3px 8px rgba(0,0,0,.12); }
+  .sheet.top::after { content:""; position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(115deg, rgba(255,255,255,.18) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,.05) 100%),
+                  linear-gradient(315deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0) 7%); }
+  .clip { position:absolute; left:84px; top:86px; width:30px; height:72px; transform:rotate(-3.5deg); z-index:3; }
+  .tag { position:absolute; left:40px; top:826px; width:440px; font-size:13px; line-height:1.4; color:var(--muted); }
+  .tag b { color:var(--ink); }
+
+  /* ---- middle panel ---- */
+  .panel { position:absolute; background:var(--surface); border:1px solid var(--rule); border-radius:14px; }
+  #mid { left:504px; top:126px; width:624px; height:690px; }
+  .mh { position:absolute; left:528px; top:142px; width:580px; font: 400 25px/1.2 Georgia,serif; }
+  .mh em { color:var(--accent); }
+  .who { position:absolute; left:528px; top:200px; width:124px; font-size:14px; line-height:1.4; color:var(--muted); }
+  .who b { color:var(--ink); }
+  .photo { position:absolute; top:192px; width:200px; height:240px; margin:0; border-radius:10px; overflow:hidden; background:var(--paper); }
+  .photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:40% 30%; }
+  .photo .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center;
+               padding:0 18px 60px; font-size:13px; color:var(--muted); border:2px dashed var(--rule); border-radius:10px; }
+  .photo figcaption { position:absolute; left:0; right:0; bottom:0; padding:28px 12px 10px; color:#fff;
+       background:linear-gradient(transparent, rgba(0,0,0,.72)); font-size:12.5px; line-height:1.3; }
+  .photo figcaption b { display:block; font-size:13.5px; letter-spacing:.06em; text-transform:uppercase; }
+  .photo.r { outline:3px solid var(--accent); outline-offset:-3px; }
+  .photo.b { outline:3px solid var(--slate); outline-offset:-3px; }
+  .eq { position:absolute; left:868px; top:290px; width:28px; text-align:center; font: 700 26px system-ui,sans-serif; color:var(--muted); }
+  #einstein { position:absolute; left:520px; top:446px; width:596px; height:300px; overflow:visible; }
+  .gain { position:absolute; left:528px; top:756px; width:580px; padding:9px 14px; border-radius:10px; background:var(--stint);
+          font-size:14.5px; line-height:1.35; }
+  .gain b { color:var(--slate); }
+
+  /* ---- right column ---- */
+  .side { position:absolute; left:1152px; width:408px; }
+  .side h3 { margin:0 0 14px; font: 700 13px system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .side ul { list-style:none; margin:0; padding:0; }
+  .side li { display:flex; gap:12px; margin-bottom:20px; font-size:15px; line-height:1.4; }
+  .side li b { display:block; }
+  .ic { width:28px; height:28px; flex:0 0 28px; color:var(--slate); }
+  .big { background:var(--tint); border-radius:12px; padding:16px 18px; display:flex; gap:14px; align-items:center; }
+  .big .n { font: 400 44px/1 Georgia,serif; color:var(--accent); flex:0 0 auto; }
+  .big b { font-size:18px; display:block; margin-bottom:4px; }
+  .big span { font-size:14px; line-height:1.45; color:var(--muted); }
+  .take { position:absolute; left:1152px; top:676px; width:408px; height:140px; padding:16px 18px; border-radius:12px;
+          background:var(--accent); color:#fffdf9; display:flex; gap:14px; align-items:center; }
+  .take .ic { color:#fffdf9; width:36px; height:36px; flex-basis:36px; }
+  .take b { display:block; font-size:20px; margin-bottom:4px; }
+  .take span { font-size:14.5px; line-height:1.4; }
+  .foot { position:absolute; left:504px; right:40px; top:826px; font-size:12.5px; line-height:1.45; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1><em>Growth</em> needs talent from every family</h1>
+  <div class="sub">Growth comes from innovation, and innovation needs a wide pool of talent.</div>
+
+  <!-- printout of the paper -->
+  <div class="desk">
+    <div class="sheet under"></div>
+    <div class="sheet top"><img src="bell_printout-fac410db.jpg" alt="Printed title page of Bell, Chetty, Jaravel, Petkova and Van Reenen, Who Becomes an Inventor in America?, with the lost Einsteins sentence highlighted in yellow"></div>
+    <svg class="clip" viewBox="0 0 34 82" aria-hidden="true">
+      <path d="M11 70 V14 a6 6 0 0 1 12 0 V62 a9 9 0 0 1 -18 0 V20" fill="none" stroke="#8d939b" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M11 70 V14 a6 6 0 0 1 12 0 V62 a9 9 0 0 1 -18 0 V20" fill="none" stroke="#e9ecef" stroke-width="1.1" stroke-linecap="round" transform="translate(-.8 -.8)"/>
+    </svg>
+  </div>
+  <div class="tag"><b>Quarterly Journal of Economics, 2019.</b> Bell, Chetty, Jaravel, Petkova and Van Reenen, “Who Becomes an Inventor in America?”. Highlighted: the “lost Einsteins”.</div>
+
+  <!-- middle panel -->
+  <div class="panel" id="mid"></div>
+  <div class="mh"><em>Same maths score,</em> half the chance of inventing</div>
+  <div class="who">New York City public schools, children born 1979–85.<br><br>Both children: <b>top 5% in maths</b> at age 8.</div>
+
+  <figure class="photo r" style="left:668px">
+    <img src="child_poor-ca6ee51d.jpg" alt="AI-generated photo: a child doing maths homework at a kitchen table in a crowded apartment">
+    <figcaption><b>Poorer family</b>below 80th income percentile</figcaption></figure>
+  <div class="eq">=</div>
+  <figure class="photo b" style="left:896px">
+    <img src="child_rich-43cd5a63.jpg" alt="AI-generated photo: a child building an electronics kit with an adult, a telescope in the background">
+    <figcaption><b>Richer family</b>above 80th income percentile</figcaption></figure>
+
+  <svg id="einstein" viewBox="0 0 596 300" role="img" aria-label="Inventors per 1,000 by 3rd-grade maths score, for children from richer and poorer families. The lines are close at low scores and far apart at the top: 6.9 versus 3.2 per 1,000."></svg>
+  <div class="gain">Among children in the top 5% in maths, those from richer families become inventors <b>2.1 times</b> as often.</div>
+
+  <!-- right column -->
+  <div class="side" style="top:146px">
+    <h3>Why this matters for growth</h3>
+    <ul>
+      <li><svg class="ic" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg><div><b>Growth comes from innovation</b>Innovation is a central source of economic growth (p. 1).</div></li>
+      <li><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M6 21v-4a6 6 0 0 1 12 0v4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><div><b>Ability at birth is similar</b>Maths ability at birth would explain only 5.7% of the gap in inventing between rich and poor children. The gap grows during childhood (p. 16).</div></li>
+    </ul>
+    <div class="big"><span class="n">4×</span><div><b>Four times as many inventors</b>
+      <span>If women, minorities and children from low-income families invented at the rate of white men from high-income families, the US would have four times as many inventors (p. 34).</span></div></div>
+  </div>
+  <div class="take"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 20 5v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b>Social protection is an investment in future growth</b>
+    <span>It gives children from poor families an equal chance to develop their talent.</span></div></div>
+
+  <div class="foot">Source: Bell, A., Chetty, R., Jaravel, X., Petkova, N. and Van Reenen, J. (2019). Who becomes an inventor in America? The importance of exposure to innovation. Quarterly Journal of Economics 134(2): 647–713. Chart points read from Figure IVa. Pages refer to the accepted manuscript (LSE Research Online).
+    Photos are AI-generated illustrations (Midjourney), not study participants.</div>
+</div>
+<script>
+(function(){
+  var D={"below":[[-1.8547,.2286],[-1.2783,.328],[-1.0218,.3241],[-.8184,.1301],[-.6548,.6503],[-.5169,.2449],[-.3935,.2353],[-.275,.7703],[-.1466,.2271],[-.0305,.4903],[.0868,.3477],[.2186,.363],[.343,.4759],[.4776,.3698],[.6347,.5936],[.7974,1.0777],[.9813,1.582],[1.2231,1.6147],[1.5527,2.0215],[2.3159,3.2136]],
+         "above":[[-1.8491,1.0562],[-1.2769,.0932],[-1.0161,1.7695],[-.8191,2.9894],[-.6546,.0932],[-.5189,1.6081],[-.3936,1.3924],[-.2753,1.3031],[-.1459,.0932],[-.0296,1.768],[.089,.9818],[.2199,.5471],[.344,.9136],[.4791,1.2046],[.6377,1.3401],[.7997,1.0778],[.9874,.8766],[1.2255,1.3141],[1.5567,3.4928],[2.3814,6.8519]]};
+  var ns="http://www.w3.org/2000/svg", svg=document.getElementById("einstein");
+  var cs=getComputedStyle(document.documentElement), v=function(n){return cs.getPropertyValue(n).trim();};
+  var red=v("--accent"), blue=v("--slate"), muted=v("--muted"), ink=v("--ink"), grid=v("--grid");
+  function el(t,a,txt){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;svg.appendChild(e);return e;}
+  var W=596,H=300,L=46,R=124,T=14,B=40,pw=W-L-R,ph=H-T-B,x0=-2.1,x1=2.6,ym=7.4;
+  var X=function(x){return L+(x-x0)/(x1-x0)*pw;}, Y=function(y){return T+ph-y/ym*ph;};
+  [0,2,4,6].forEach(function(g){el("line",{x1:L,x2:L+pw,y1:Y(g),y2:Y(g),stroke:grid,"stroke-width":1});
+    el("text",{x:L-8,y:Y(g)+4,"text-anchor":"end","font-size":12,fill:muted},g);});
+  [-2,-1,0,1,2].forEach(function(g){el("text",{x:X(g),y:T+ph+18,"text-anchor":"middle","font-size":12,fill:muted},(g>0?"+":"")+g);});
+  el("text",{x:L+pw/2,y:H-2,"text-anchor":"middle","font-size":12.5,"font-weight":600,fill:ink},"Maths test score at age 8 (standard deviations)");
+  el("text",{x:12,y:T+ph/2,"text-anchor":"middle","font-size":12.5,"font-weight":600,fill:ink,transform:"rotate(-90 12 "+(T+ph/2)+")"},"Inventors per 1,000");
+  // shade the top-5% bin
+  el("rect",{x:X(2.0),y:T,width:X(2.6)-X(2.0),height:ph,fill:grid,opacity:.6});
+  el("text",{x:X(2.3),y:T+ph-6,"text-anchor":"middle","font-size":11,fill:muted},"top 5%");
+  function line(p,c){el("path",{d:p.map(function(q,i){return (i?"L":"M")+X(q[0]).toFixed(1)+" "+Y(q[1]).toFixed(1);}).join(" "),fill:"none",stroke:c,"stroke-width":2.2,"stroke-linejoin":"round"});
+    p.forEach(function(q){el("circle",{cx:X(q[0]),cy:Y(q[1]),r:2.8,fill:c});});}
+  line(D.below,red); line(D.above,blue);
+  var a=D.above[19], b=D.below[19], xr=X(2.6)+10, xt=xr+12;
+  el("line",{x1:xr,x2:xr,y1:Y(a[1]),y2:Y(b[1]),stroke:muted,"stroke-width":1.5});
+  el("line",{x1:xr-4,x2:xr+4,y1:Y(a[1]),y2:Y(a[1]),stroke:muted,"stroke-width":1.5});
+  el("line",{x1:xr-4,x2:xr+4,y1:Y(b[1]),y2:Y(b[1]),stroke:muted,"stroke-width":1.5});
+  el("text",{x:xt,y:Y(a[1])+4,"font-size":13,"font-weight":700,fill:blue},"Richer: 6.9");
+  el("text",{x:xt,y:(Y(a[1])+Y(b[1]))/2+6,"font-size":18,"font-weight":700,fill:ink},"2.1×");
+  el("text",{x:xt,y:Y(b[1])+4,"font-size":13,"font-weight":700,fill:red},"Poorer: 3.2");
+})();
+const st = document.getElementById('stage');
+const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+  st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="index.html" class="" aria-label="Previous slide">&#8249;</a><a href="" class="off" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = 'index.html', next = '';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
