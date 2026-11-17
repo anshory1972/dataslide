@@ -87,6 +87,8 @@
 <text class="note n2" x="40" y="226">Up to a turning point, higher income</text>
 <text class="note n2" x="40" y="256">comes with <tspan font-weight="700">lower equality</tspan> and a</text>
 <text class="note n2" x="40" y="286"><tspan font-weight="700">worse environment</tspan>.</text>
+<text class="note n3" x="40" y="336">Beyond the turning points,</text>
+<text class="note n3" x="40" y="366">both can improve.</text>
 
 <!-- portraits -->
 <g transform="translate(1440,250)">
@@ -205,10 +207,10 @@ function go(s, instant) {
     cur = from + (to - from) * e; place(cur); if (u < 1) anim = requestAnimationFrame(tick); };
   anim = requestAnimationFrame(tick);
 }
-// single view: draw the path up to the turning point on load; click to replay
-const play = () => { cur = Y0; go(2); };
+// single view: draw the full path on load; click to replay
+const play = () => { cur = Y0; go(3); };
 document.addEventListener('click', play);
-if (location.hash === '#static') go(2, true); else setTimeout(play, 500);
+if (location.hash === '#static') go(3, true); else setTimeout(play, 500);
 </script>
 </body>
 </html>
