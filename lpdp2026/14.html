@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/14.html">
+<meta name="robots" content="noindex">
+<title>A dynamic DTSEN could cut inclusion error by half</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --slate:#1c4e73; --good:#4a7aa3; --bad:#b4451f; --start:#9aa1a4; --hl:#f8ece4;
+    --chip-r:#f6e2da; --chip-b:#e1eaf2; --chip-g:#e9e7e2;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+      --accent:#e0875f; --slate:#7ea9cc; --good:#5d8bb3; --bad:#e0875f; --start:#6c7275; --hl:#262019;
+      --chip-r:#2b1f1b; --chip-b:#18232d; --chip-g:#222327;
+    }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:34px; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .sub { position:absolute; left:40px; top:80px; width:1500px; font: 18px/1.45 system-ui,sans-serif; color:var(--muted); }
+  .panel { position:absolute; left:40px; top:168px; width:1520px; height:646px; background:var(--surface);
+            border:1px solid var(--rule); border-radius:14px; }
+  .badge { position:absolute; left:64px; top:150px; padding:6px 16px; border-radius:999px; font: 600 14px system-ui,sans-serif;
+            background:var(--slate); color:var(--surface); z-index:2; }
+  .badge.dyn { background:var(--accent); }
+  .why { position:absolute; left:1150px; top:22px; width:410px; background:var(--slate); color:#fff; border-radius:12px; padding:12px 16px; }
+  .why .wk { font: 700 12px system-ui,sans-serif; letter-spacing:.18em; opacity:.85; }
+  .why .wt { font: 14.5px/1.4 system-ui,sans-serif; margin-top:4px; }
+  .foot { position:absolute; left:40px; right:40px; top:826px; font: 12.5px/1.45 system-ui,sans-serif; color:var(--muted); }
+  svg { position:absolute; left:0; top:0; width:1600px; height:900px; font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .hlbg { fill:var(--hl); }
+  .bstart { fill:var(--start); } .bend { fill:var(--slate); } .bdown { fill:var(--good); } .bup { fill:var(--bad); }
+  .vbig { font: 700 22px system-ui,sans-serif; fill:var(--ink); }
+  .dfin { font: 700 17px system-ui,sans-serif; fill:var(--good); } .dfin2 { font: 12px system-ui,sans-serif; fill:var(--muted); }
+  .tdown { font: 700 17px system-ui,sans-serif; fill:var(--good); } .tup { font: 700 17px system-ui,sans-serif; fill:var(--bad); }
+  .vlab { font: 700 15px system-ui,sans-serif; fill:var(--ink); }
+  .conn { stroke:var(--muted); stroke-width:1; opacity:.6; }
+  .info { font: 700 14px system-ui,sans-serif; fill:var(--ink); } .info2 { font: 12px system-ui,sans-serif; fill:var(--muted); }
+  .chip.r { fill:var(--chip-r); } .chip.b { fill:var(--chip-b); } .chip.g { fill:var(--chip-g); }
+  .cn { font: 700 15px system-ui,sans-serif; } .ct { font: 11.5px system-ui,sans-serif; }
+  .cn.r, .ct.r { fill:var(--accent); } .cn.b, .ct.b { fill:var(--slate); } .cn.g, .ct.g { fill:var(--muted); }
+  .axis { stroke:var(--rule); stroke-width:1.5; }
+  .sname { font: 700 12.5px system-ui,sans-serif; letter-spacing:.06em; fill:var(--ink); }
+  .srule { font: 12px system-ui,sans-serif; fill:var(--muted); }
+  .note { font: 700 14px system-ui,sans-serif; fill:var(--ink); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1><em>A dynamic DTSEN</em> could cut inclusion error by half</h1>
+  <div class="sub">In the pilot, applicants enter their data only when they file a grievance. For a dynamic DTSEN, data entry should happen at registration, with a much shorter list of variables.</div>
+  
+  <div class="panel"></div>
+  <div class="badge dyn">Dynamic DTSEN decile (upper bound)</div>
+  <svg viewBox="0 0 1600 900"><rect class="hlbg" x="488.6" y="226" width="202.3" height="514" rx="12"/>
+<rect class="bstart" x="122.9" y="295.4" width="92.5" height="252.6" rx="3"/>
+<text class="vbig" x="169.1" y="283.4" text-anchor="middle">51.2%</text>
+<line class="conn" x1="215.4" y1="295.4" x2="333.2" y2="295.4"/>
+<rect class="chip g" x="79.0" y="560.0" width="180.3" height="40" rx="7"/>
+<text class="cn g" x="169.1" y="578.0" text-anchor="middle">63K</text>
+<text class="ct g" x="169.1" y="593.0" text-anchor="middle">receiving</text>
+<rect class="chip r" x="79.0" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="169.1" y="624.0" text-anchor="middle">33K</text>
+<text class="ct r" x="169.1" y="639.0" text-anchor="middle">decile 5–10</text>
+<rect class="chip b" x="79.0" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="169.1" y="670.0" text-anchor="middle">31K</text>
+<text class="ct b" x="169.1" y="685.0" text-anchor="middle">decile 1–4</text>
+<line class="axis" x1="72.0" y1="708.0" x2="266.3" y2="708.0"/>
+<text class="sname" x="169.1" y="728.0" text-anchor="middle">FACTUAL</text>
+<text class="srule" x="169.1" y="746.0" text-anchor="middle">BPNT recipients in Susenas</text>
+<rect class="bdown" x="333.2" y="295.4" width="92.5" height="32.9" rx="2"/>
+<text class="tdown" x="379.4" y="285.4" text-anchor="middle">▼ −6.7</text>
+<text class="vlab" x="379.4" y="348.3" text-anchor="middle">IE 44.5%</text>
+<line class="conn" x1="425.7" y1="328.3" x2="543.5" y2="328.3"/>
+<text class="info" x="379.4" y="574.0" text-anchor="middle">−7.6K removed</text>
+<text class="info2" x="379.4" y="592.0" text-anchor="middle">coverage: 56K</text>
+<rect class="chip r" x="289.3" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="379.4" y="624.0" text-anchor="middle">7.6K</text>
+<text class="ct r" x="379.4" y="639.0" text-anchor="middle">decile 5–10 (100%)</text>
+<rect class="chip b" x="289.3" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="379.4" y="670.0" text-anchor="middle">0K</text>
+<text class="ct b" x="379.4" y="685.0" text-anchor="middle">decile 1–4 (0%)</text>
+<line class="axis" x1="282.3" y1="708.0" x2="476.6" y2="708.0"/>
+<text class="sname" x="379.4" y="728.0" text-anchor="middle">SELF-REGISTRATION</text>
+<text class="srule" x="379.4" y="746.0" text-anchor="middle">1 Not registered, decile 5–10: out</text>
+<rect class="bdown" x="543.5" y="328.3" width="92.5" height="70.3" rx="2"/>
+<text class="tdown" x="589.7" y="318.3" text-anchor="middle">▼ −14.3</text>
+<text class="vlab" x="589.7" y="418.6" text-anchor="middle">IE 30.3%</text>
+<line class="conn" x1="636.0" y1="398.6" x2="753.7" y2="398.6"/>
+<text class="info" x="589.7" y="574.0" text-anchor="middle">+133K added</text>
+<text class="info2" x="589.7" y="592.0" text-anchor="middle">coverage: 189K</text>
+<rect class="chip r" x="499.6" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="589.7" y="624.0" text-anchor="middle">32K</text>
+<text class="ct r" x="589.7" y="639.0" text-anchor="middle">decile 5–10 (24%)</text>
+<rect class="chip b" x="499.6" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="589.7" y="670.0" text-anchor="middle">101K</text>
+<text class="ct b" x="589.7" y="685.0" text-anchor="middle">decile 1–4 (76%)</text>
+<line class="axis" x1="492.6" y1="708.0" x2="686.9" y2="708.0"/>
+<text class="sname" x="589.7" y="728.0" text-anchor="middle">DECILE INCLUSION</text>
+<text class="srule" x="589.7" y="746.0" text-anchor="middle">2 Registrants in decile 1–4: in</text>
+<rect class="bdown" x="753.7" y="398.6" width="92.5" height="30.8" rx="2"/>
+<text class="tdown" x="800.0" y="388.6" text-anchor="middle">▼ −6.2</text>
+<text class="vlab" x="800.0" y="449.4" text-anchor="middle">IE 24.0%</text>
+<line class="conn" x1="846.3" y1="429.4" x2="964.0" y2="429.4"/>
+<text class="info" x="800.0" y="574.0" text-anchor="middle">−24K removed</text>
+<text class="info2" x="800.0" y="592.0" text-anchor="middle">coverage: 165K</text>
+<rect class="chip r" x="709.9" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="800.0" y="624.0" text-anchor="middle">18K</text>
+<text class="ct r" x="800.0" y="639.0" text-anchor="middle">decile 5–10 (73%)</text>
+<rect class="chip b" x="709.9" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="800.0" y="670.0" text-anchor="middle">6.5K</text>
+<text class="ct b" x="800.0" y="685.0" text-anchor="middle">decile 1–4 (27%)</text>
+<line class="axis" x1="702.9" y1="708.0" x2="897.1" y2="708.0"/>
+<text class="sname" x="800.0" y="728.0" text-anchor="middle">DECILE EXCLUSION</text>
+<text class="srule" x="800.0" y="746.0" text-anchor="middle">3 Registrants not in decile 1–4: out</text>
+<rect class="bdown" x="964.0" y="429.4" width="92.5" height="6.0" rx="2"/>
+<text class="tdown" x="1010.3" y="419.4" text-anchor="middle">▼ −1.2</text>
+<text class="vlab" x="1010.3" y="455.4" text-anchor="middle">IE 22.8%</text>
+<line class="conn" x1="1056.5" y1="435.4" x2="1174.3" y2="435.4"/>
+<text class="info" x="1010.3" y="574.0" text-anchor="middle">−41K removed</text>
+<text class="info2" x="1010.3" y="592.0" text-anchor="middle">coverage: 124K</text>
+<rect class="chip r" x="920.1" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="1010.3" y="624.0" text-anchor="middle">11K</text>
+<text class="ct r" x="1010.3" y="639.0" text-anchor="middle">decile 5–10 (28%)</text>
+<rect class="chip b" x="920.1" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="1010.3" y="670.0" text-anchor="middle">30K</text>
+<text class="ct b" x="1010.3" y="685.0" text-anchor="middle">decile 1–4 (72%)</text>
+<line class="axis" x1="913.1" y1="708.0" x2="1107.4" y2="708.0"/>
+<text class="sname" x="1010.3" y="728.0" text-anchor="middle">ADMIN FILTER</text>
+<text class="srule" x="1010.3" y="746.0" text-anchor="middle">4 Failed a filter: out</text>
+<rect class="bup" x="1174.3" y="423.8" width="92.5" height="11.7" rx="2"/>
+<text class="tup" x="1220.6" y="413.8" text-anchor="middle">▲ +2.4</text>
+<text class="vlab" x="1220.6" y="455.4" text-anchor="middle">IE 25.2%</text>
+<line class="conn" x1="1266.8" y1="423.8" x2="1384.6" y2="423.8"/>
+<text class="info" x="1220.6" y="574.0" text-anchor="middle">+6.2K added</text>
+<text class="info2" x="1220.6" y="592.0" text-anchor="middle">coverage: 130K</text>
+<rect class="chip r" x="1130.4" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="1220.6" y="624.0" text-anchor="middle">4.5K</text>
+<text class="ct r" x="1220.6" y="639.0" text-anchor="middle">decile 5–10 (73%)</text>
+<rect class="chip b" x="1130.4" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="1220.6" y="670.0" text-anchor="middle">1.7K</text>
+<text class="ct b" x="1220.6" y="685.0" text-anchor="middle">decile 1–4 (27%)</text>
+<line class="axis" x1="1123.4" y1="708.0" x2="1317.7" y2="708.0"/>
+<text class="sname" x="1220.6" y="728.0" text-anchor="middle">HARD INCLUSION</text>
+<text class="srule" x="1220.6" y="746.0" text-anchor="middle">5 Hard inclusion: in</text>
+<rect class="bend" x="1384.6" y="423.8" width="92.5" height="124.2" rx="3"/>
+<text class="vbig" x="1430.9" y="411.8" text-anchor="middle">25.2%</text>
+<text class="dfin" x="1430.9" y="363.8" text-anchor="middle">−26.0 points</text>
+<text class="dfin2" x="1430.9" y="381.8" text-anchor="middle">from factual</text>
+<rect class="chip g" x="1340.7" y="560.0" width="180.3" height="40" rx="7"/>
+<text class="cn g" x="1430.9" y="578.0" text-anchor="middle">130K</text>
+<text class="ct g" x="1430.9" y="593.0" text-anchor="middle">receiving</text>
+<rect class="chip r" x="1340.7" y="606.0" width="180.3" height="40" rx="7"/>
+<text class="cn r" x="1430.9" y="624.0" text-anchor="middle">33K</text>
+<text class="ct r" x="1430.9" y="639.0" text-anchor="middle">decile 5–10</text>
+<rect class="chip b" x="1340.7" y="652.0" width="180.3" height="40" rx="7"/>
+<text class="cn b" x="1430.9" y="670.0" text-anchor="middle">97K</text>
+<text class="ct b" x="1430.9" y="685.0" text-anchor="middle">decile 1–4</text>
+<line class="axis" x1="1333.7" y1="708.0" x2="1528.0" y2="708.0"/>
+<text class="sname" x="1430.9" y="728.0" text-anchor="middle">WITH DPI</text>
+<text class="srule" x="1430.9" y="746.0" text-anchor="middle">After the pilot</text>
+<text class="note" x="498.6" y="450.6">Only 32K decile 5–10</text>
+<text class="note" x="498.6" y="469.6">households classified</text>
+<text class="note" x="498.6" y="488.6">as decile 1–4.</text></svg>
+  <div class="foot">IE = households receiving BPNT that are in Susenas decile 5–10 ÷ all households receiving. Weighted household counts. BPNT, Bali, Susenas March 2025; the pilot is treated as if run in March 2025. Source: KPTDP Targeting Team, DPI pilot evaluation (draft, preliminary). Dynamic DTSEN decile: a short proxy means test (8 variables, district effects) on current Susenas data, an upper bound.</div>
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<script id="deck-nav">
+  document.addEventListener('keydown', e => {
+    const prev = '13.html', next = '';
+    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+  });
+</script>
+</body>
+</html>
