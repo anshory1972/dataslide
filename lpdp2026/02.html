@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/02.html">
+<meta name="robots" content="noindex">
+<title>Old arguments for the trade-off, and why each one fails</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --tint:#fbf3ee;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+      --accent:#e0875f; --tint:#1f1a18;
+    }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
+  svg.layer { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; }
+
+  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:36px; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .side { position:absolute; top:92px; }
+  .side .eyebrow { font: 600 15px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.2em; color:var(--accent); }
+  .side .sub { font-style:italic; color:var(--muted); font-size:17px; margin-top:2px; }
+  .side.l { left:40px; } .side.r { right:40px; text-align:right; }
+
+  /* centre claim */
+  .hub { position:absolute; width:250px; height:250px; left:675px; top:355px; border-radius:50%;
+         background:var(--tint); border:2px dashed var(--accent);
+         display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .hub .kick { font: 600 12px system-ui,sans-serif; letter-spacing:.2em; color:var(--muted); margin-bottom:6px; }
+  .hub .claim { font-size:23px; line-height:1.22; padding:0 26px; text-decoration:line-through; text-decoration-color:var(--accent); text-decoration-thickness:2px; }
+  .hub .verdict { margin-top:10px; font: 600 14px system-ui,sans-serif; color:var(--accent); }
+
+  /* old-argument boxes */
+  .box { position:absolute; width:262px; padding:10px 14px 11px; background:var(--surface);
+         border:1.5px solid var(--rule); border-radius:10px; box-shadow:0 1px 3px rgba(30,26,18,.06);
+         font-style:italic; font-size:19.5px; line-height:1.28; }
+  .box small { display:block; font-style:normal; font-size:13.5px; color:var(--muted); margin-top:2px; }
+  .box .x { position:absolute; top:-12px; width:24px; height:24px; border-radius:50%; background:var(--accent);
+            color:var(--surface); font: 700 13px system-ui,sans-serif; display:flex; align-items:center; justify-content:center; }
+  .box.l .x { left:-12px; } .box.r .x { right:-12px; }
+  .box s { text-decoration-color:var(--accent); text-decoration-thickness:1.5px; }
+
+  /* rebuttals */
+  .why { position:absolute; width:282px; text-wrap:balance; font: 16.5px/1.38 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .why b { font-weight:700; color:var(--accent); }
+  .why.r { text-align:left; } .why.l { text-align:right; }
+
+  .legend { position:absolute; left:600px; top:830px; width:400px; text-align:center;
+            font: 14px system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--muted); }
+  .legend svg { vertical-align:middle; margin:0 6px 0 16px; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <svg class="layer" id="lines" viewBox="0 0 1600 900">
+    <defs>
+      <marker id="hSup" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,1 L9,5 L0,9" fill="none" stroke="var(--muted)" stroke-width="1.6"/></marker>
+      <marker id="hHit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+    </defs>
+  </svg>
+
+  <h1><em>Old arguments for the trade-off,</em> and why each one fails</h1>
+  <div class="side l"><div class="eyebrow">EQUALITY</div><div class="sub">growth was said to require inequality</div></div>
+  <div class="side r"><div class="eyebrow">ENVIRONMENT</div><div class="sub">growth was said to require environmental damage</div></div>
+
+  <div class="hub" id="hub">
+    <div class="kick">OLD CLAIM</div>
+    <div class="claim">Growth requires a trade-off</div>
+    <div class="verdict">the arguments do not hold</div>
+  </div>
+
+  <div id="items"></div>
+
+  <div class="legend">
+    <svg width="34" height="10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 5"/></svg>argument offered in support
+    <svg width="34" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="var(--accent)" stroke-width="2"/><path d="M24,1 L32,5 L24,9 z" fill="var(--accent)"/></svg>evidence against
+  </div>
+</div>
+
+<script>
+const ITEMS = {
+  l: [
+    ['Growth depends mainly on capital and saving', '', 'Returns to capital diminish. Growth comes from <b>innovation</b>, which needs broad-based human capital.'],
+    ['The gains will trickle down to the poor', '', '<b>This rarely happens.</b> Redistribution is a policy choice, and elites often block it.'],
+    ['Growth is always good for the poor', '', '<b>Not always.</b> Growth can leave the poor worse off (immiserizing growth).'],
+    ['Leave it to the market', 'Thatcherism, Reaganomics, 1980s', 'Inequality rose, with its social costs, and <b>support for the far right</b> grew.'],
+    ['Efficiency first, minimum government', 'structural reform', 'A simple view of markets. Many countries implemented <b>Washington Consensus</b> reforms in the 1990s, and growth was disappointing.'],
+  ],
+  r: [
+    ['Countries must industrialize first', '', 'Industry without controls creates <b>external costs</b>, and these reduce growth.'],
+    ['Urbanize first, manage later', '', 'Unmanaged urbanization <b>lowers labour productivity</b>.'],
+    ['The environment is a luxury', '', 'Pollution damages health, and <b>health is not a luxury</b>.'],
+    ['Poor countries lack the regulation', '', 'Rules fail because <b>interest groups block them</b>.'],
+    ['Poor countries lack the resources', '', 'Not when the <b>full cost</b> of the damage is counted.'],
+    ['Rich countries polluted first; now it is our turn', '', 'Our goals can match: <b>energy security</b> through renewable energy, as China shows.'],
+  ]
+};
+const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('lines'), host = document.getElementById('items');
+const HX = 800, HY = 480, HR = 125;                       // hub centre and radius
+const el = (tag, a, p = svg) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+
+function place(side, list, y0, y1) {
+  const n = list.length;
+  list.forEach(([claim, note, why], i) => {
+    const cy = n === 1 ? (y0 + y1) / 2 : y0 + (y1 - y0) * i / (n - 1);
+    const d = (cy - HY) / 330;                            // gentle arc: boxes further from the hub at top and bottom
+    const inner = side === 'l' ? 40 + 282 + 42 + 262 : 1600 - (40 + 282 + 42 + 262);   // edge of the box facing the hub
+    const box = document.createElement('div');
+    box.className = 'box ' + side;
+    box.innerHTML = `<span class="x">✕</span>“${claim}”` + (note ? `<small>${note}</small>` : '');
+    host.appendChild(box);
+    const h = box.offsetHeight;
+    const left = side === 'l' ? inner - 262 : inner;
+    box.style.left = left + 'px'; box.style.top = (cy - h / 2) + 'px';
+
+    const w = document.createElement('div');
+    w.className = 'why ' + side; w.innerHTML = why; host.appendChild(w);
+    const wh = w.offsetHeight, gap = 42;
+    const wl = side === 'l' ? left - gap - 282 : left + 262 + gap;
+    w.style.left = wl + 'px'; w.style.top = (cy - wh / 2) + 'px';
+
+    // support arrow: box -> hub (dashed, faint: the support has been cut)
+    const ang = Math.atan2(cy - HY, inner - HX), hx = HX + (HR + 8) * Math.cos(ang), hy = HY + (HR + 8) * Math.sin(ang);
+    const mx = (inner + hx) / 2, my = (cy + hy) / 2 + (cy - HY) * 0.08;
+    const x0 = inner + (side === 'l' ? 4 : -4);
+    el('path', {d:`M${x0},${cy} Q${mx},${my} ${hx},${hy}`, fill:'none', stroke:'var(--muted)',
+                'stroke-width':1.5, 'stroke-dasharray':'3 5', 'marker-end':'url(#hSup)'});
+    // break mark at the middle of the support arrow, perpendicular to it
+    const bx = 0.25 * x0 + 0.5 * mx + 0.25 * hx, by = 0.25 * cy + 0.5 * my + 0.25 * hy;
+    const tx = hx - x0, ty = hy - cy, tl = Math.hypot(tx, ty), px = -ty / tl * 8, py = tx / tl * 8;
+    el('path', {d:`M${bx - px},${by - py} L${bx + px},${by + py}`, stroke:'var(--accent)', 'stroke-width':2.2, 'stroke-linecap':'round'});
+
+    // evidence arrow: rebuttal -> box (solid, accent)
+    const outer = side === 'l' ? left : left + 262;
+    const from = side === 'l' ? wl + 282 + 6 : wl - 6;
+    el('line', {x1:from, y1:cy, x2:outer + (side === 'l' ? -6 : 6), y2:cy, stroke:'var(--accent)', 'stroke-width':2.2, 'marker-end':'url(#hHit)'});
+  });
+}
+place('l', ITEMS.l, 210, 760);
+place('r', ITEMS.r, 196, 776);
+
+// scale the 1600 x 900 stage to the window
+const st = document.getElementById('stage');
+const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+  st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+addEventListener('resize', fit); fit();
+</script>
+<script id="deck-nav">
+  // move between slides with the keyboard
+  document.addEventListener('keydown', e => {
+    const prev = 'index.html', next = '';
+    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+  });
+</script>
+</body>
+</html>
