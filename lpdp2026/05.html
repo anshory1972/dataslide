@@ -5,212 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/05.html">
 <meta name="robots" content="noindex">
-<title>What is DPI? Foundational, digital building blocks for the public benefit</title>
+<title>Today's agenda: subsidize people, not the cylinder</title>
 <style>
   :root {
     color-scheme: light dark;
     --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
-    --accent:#b4451f; --tint:#fbf3ee; --soft:#e7e3da; --slate:#1c4e73; --slatebg:#eaf0f5;
+    --accent:#b4451f; --tint:#fbf3ee; --lpg:#6f9a5c; --lpg2:#4f7a3e; --soft:#e7e3da;
   }
   @media screen and (prefers-color-scheme: dark) {
     :root {
       --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
-      --accent:#e0875f; --tint:#1f1a18; --soft:#2a2c31; --slate:#7ea9cc; --slatebg:#18212a;
+      --accent:#e0875f; --tint:#1f1a18; --lpg:#8fb07c; --lpg2:#6f9a5c; --soft:#34363c;
     }
   }
   *, *::before, *::after { box-sizing:border-box; }
   html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
   .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
            font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
-  svg#art { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; pointer-events:none; }
+  svg#art { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; }
+  .key svg { flex:none; }
   h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:34px; letter-spacing:-.01em; }
   h1 em { color:var(--accent); }
-  .eyebrow { font: 600 12.5px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.18em; color:var(--muted); }
-  .sans { font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
 
-  /* the stack */
-  .layer { position:absolute; left:40px; width:716px; border-radius:14px; }
-  .layer .lab { position:absolute; left:18px; top:14px; width:134px; }
-  .layer .lab .d { font: 13px/1.38 system-ui,sans-serif; color:var(--muted); margin-top:6px; }
-  .services { top:104px; height:156px; background:var(--surface); border:1px solid var(--rule); }
-  .dpi { top:274px; height:208px; background:var(--tint); border:2px solid var(--accent); }
-  .dpi .lab .eyebrow { color:var(--accent); }
-  .dpi .lab .big { font-size:27px; color:var(--accent); line-height:1.08; margin-top:4px; }
-  .physical { top:496px; height:94px; background:var(--soft); border:1px solid var(--rule); }
+  .half { position:absolute; top:100px; width:740px; height:500px; }
+  .half.l { left:40px; } .half.r { left:820px; }
+  .eyebrow { font: 600 14px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.2em; color:var(--accent); }
+  .say { position:absolute; left:392px; top:30px; width:345px; }
+  .term { display:inline-block; font: 700 17px system-ui,sans-serif; color:var(--accent); border:2px solid var(--accent);
+          border-radius:999px; padding:3px 14px; margin-bottom:4px; }
+  .def { font: italic 14.5px/1.35 system-ui,sans-serif; color:var(--muted); margin:0 0 6px; }
+  .say .n { font-size:80px; line-height:.95; color:var(--accent); letter-spacing:-.02em; }
+  .say .n small { font-size:30px; color:var(--muted); letter-spacing:0; }
+  .say .t { font-size:21px; line-height:1.32; margin-top:8px; }
+  .say .t b { font-weight:700; }
+  .key { position:absolute; left:392px; top:300px; width:345px; font: 14.5px/1.5 system-ui,sans-serif; color:var(--muted); }
+  .key span { display:inline-flex; align-items:center; gap:8px; margin-right:16px; }
+  .others { position:absolute; left:392px; top:368px; width:345px; }
+  .others .h { font: 600 12px system-ui,sans-serif; letter-spacing:.14em; color:var(--muted); margin-bottom:6px; }
+  .row { display:grid; grid-template-columns:125px 1fr 34px; align-items:center; gap:10px; height:30px;
+         font: 15px system-ui,sans-serif; }
+  .bar { height:10px; border-radius:5px; background:var(--soft); position:relative; overflow:hidden; }
+  .bar i { position:absolute; left:0; top:0; bottom:0; border-radius:5px; }
+  .row .v { font-weight:700; text-align:right; }
+  .divider { position:absolute; left:799px; top:112px; width:1px; height:470px; background:var(--rule); }
 
-  .tiles { position:absolute; left:160px; top:14px; right:14px; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
-  .tile { background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:9px 9px 8px; height:126px; }
-  .tile b { display:block; font: 600 15px/1.2 Georgia,serif; margin-bottom:5px; }
-  .tile span { font: 12.5px/1.35 system-ui,sans-serif; color:var(--muted); }
-
-  .blocks { position:absolute; left:160px; top:16px; right:14px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-  .block { background:var(--surface); border:1.5px solid var(--accent); border-radius:12px; height:172px; padding:64px 10px 10px; text-align:center; }
-  .block b { display:block; font: 600 17px/1.2 Georgia,serif; }
-  .block .id { font: 13px/1.38 system-ui,sans-serif; color:var(--muted); margin-top:6px; }
-
-  .phys { position:absolute; left:160px; top:14px; right:14px; display:grid; grid-template-columns:1fr 1fr; gap:6px 20px;
-          font: 14.5px system-ui,sans-serif; color:var(--ink); }
-  .phys span::before { content:""; display:inline-block; width:8px; height:8px; border-radius:2px; background:var(--muted); margin-right:8px; vertical-align:1px; }
-
-  /* enablers & safeguards column */
-  .safe { position:absolute; left:770px; top:104px; width:226px; height:486px; border-radius:14px;
-          background:var(--slatebg); border:1.5px dashed var(--slate); padding:16px 16px; }
-  .safe .eyebrow { color:var(--slate); }
-  .safe .t { font-size:20px; line-height:1.2; margin:4px 0 4px; }
-  .safe .d { font: 12.5px/1.4 system-ui,sans-serif; color:var(--muted); margin-bottom:10px; }
-  .safe ul { list-style:none; margin:0; padding:0; }
-  .safe li { font: 15px/1.38 system-ui,sans-serif; padding:14px 0 14px 26px; border-top:1px solid var(--rule); position:relative; }
-  .safe li::before { content:""; position:absolute; left:2px; top:18px; width:12px; height:12px; border-radius:3px; border:2px solid var(--slate); }
-
-  /* right: silo vs shared, benefits and risks */
-  .why { position:absolute; left:1012px; top:104px; width:548px; height:486px; background:var(--surface);
-         border:1px solid var(--rule); border-radius:14px; padding:16px 22px; }
-  .why .t { font-size:21px; margin-top:3px; }
-  .cap { position:absolute; left:22px; width:504px; font: 14px/1.35 system-ui,sans-serif; }
-  .cap b { font-weight:650; }
-  .br { position:absolute; left:22px; right:22px; top:322px; display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .br .h { font: 600 12.5px system-ui,sans-serif; letter-spacing:.16em; margin-bottom:6px; }
-  .br ul { list-style:none; margin:0; padding:0; }
-  .br li { font: 13.5px/1.35 system-ui,sans-serif; padding:4px 0 4px 18px; position:relative; }
-  .br .ben li::before { content:"+"; position:absolute; left:0; top:3px; font-weight:700; color:var(--accent); }
-  .br .risk li::before { content:"!"; position:absolute; left:3px; top:3px; font-weight:700; color:var(--slate); }
-
-  /* bottom: the three words */
-  .words { position:absolute; left:40px; top:610px; width:1520px; height:226px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  .word { background:var(--surface); border:1px solid var(--rule); border-top:4px solid var(--accent); border-radius:12px; padding:18px 24px; }
-  .word .k { font: 600 13px system-ui,sans-serif; letter-spacing:.18em; color:var(--accent); }
-  .word .w { font-size:30px; margin:4px 0 8px; }
-  .word .x { font: 16.5px/1.5 system-ui,sans-serif; }
-  .word .x i { font-style:normal; color:var(--muted); }
+  .band { position:absolute; left:40px; top:620px; width:1520px; height:216px; background:var(--surface);
+          border:1px solid var(--rule); border-radius:14px; }
+  .band .eyebrow { position:absolute; left:28px; top:20px; }
+  .money { position:absolute; left:28px; top:52px; width:250px; }
+  .money .n { font-size:56px; line-height:1; color:var(--accent); }
+  .money .t { font: 15px/1.4 system-ui,sans-serif; margin-top:8px; }
+  .step { position:absolute; top:150px; width:230px; text-align:center; font: 15px/1.35 system-ui,sans-serif; }
+  .step b { display:block; font: 600 16px Georgia,serif; margin-bottom:2px; color:var(--ink); }
+  .next { position:absolute; right:26px; top:44px; width:220px; height:96px; border-radius:12px; background:var(--accent);
+          color:var(--surface); padding:14px 18px; font: 600 13px system-ui,sans-serif; letter-spacing:.12em; }
+  .next div { font: 400 23px/1.2 Georgia,serif; letter-spacing:0; margin-top:6px; }
   .sources { position:absolute; left:40px; right:40px; top:852px; font: 12.5px/1.45 system-ui,sans-serif; color:var(--muted); }
   .sources b { font-weight:600; color:var(--ink); }
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
-  <h1><em>What is DPI?</em> Foundational, digital building blocks for the public benefit</h1>
+  <h1><em>Today's agenda:</em> subsidize people, not the cylinder</h1>
 
-  <!-- the stack -->
-  <section class="layer services">
-    <div class="lab"><span class="eyebrow">SERVICES</span><div class="d">sector systems and apps, public and private, built on the blocks</div></div>
-    <div class="tiles">
-      <div class="tile"><b>Social protection</b><span>registries, eligibility, cash transfers</span></div>
-      <div class="tile"><b>Health</b><span>health records, insurance, telemedicine</span></div>
-      <div class="tile"><b>Finance</b><span>accounts, credit, e&#8209;wallets</span></div>
-      <div class="tile"><b>Agriculture</b><span>farmer registers, inputs, markets</span></div>
-      <div class="tile"><b>Tax &amp; e&#8209;gov</b><span>filing, portals, service centres</span></div>
+  <section class="half l">
+    <div class="eyebrow">THE SUBSIDY LEAKS TO THE BETTER-OFF</div>
+    <div class="say">
+      <div class="term">Inclusion error</div>
+      <div class="def">recipients who are outside the target group</div>
+      <div class="n">65 <small>of 100</small></div>
+      <div class="t">households that receive the <b>LPG&nbsp;3&nbsp;kg subsidy</b> are outside the target group</div>
+    </div>
+    <div class="key" id="keyL"></div>
+    <div class="others">
+      <div class="h">INCLUSION ERROR, OTHER ENERGY SUBSIDIES</div>
+      <div class="row"><span>Fuel (Pertalite)</span><div class="bar"><i style="width:66.9%;background:var(--accent)"></i></div><span class="v" style="color:var(--accent)">67</span></div>
+      <div class="row"><span>Electricity</span><div class="bar"><i style="width:62.9%;background:var(--accent)"></i></div><span class="v" style="color:var(--accent)">63</span></div>
     </div>
   </section>
 
-  <section class="layer dpi">
-    <div class="lab"><span class="eyebrow">THE DPI LAYER</span><div class="big">Built once, used by all</div>
-      <div class="d" style="color:var(--ink)">core building blocks; others can be added</div></div>
-    <div class="blocks">
-      <div class="block"><b>Identity &amp; e&#8209;signatures</b><div class="id">prove who you are and sign documents online</div></div>
-      <div class="block"><b>Payments</b><div class="id">send and receive money directly, in real time</div></div>
-      <div class="block"><b>Data sharing</b><div class="id">exchange records between agencies and firms, with consent</div></div>
+  <div class="divider"></div>
+
+  <section class="half r">
+    <div class="eyebrow">THE TRANSFER MISSES THE POOR</div>
+    <div class="say">
+      <div class="term">Exclusion error</div>
+      <div class="def">target households that receive nothing</div>
+      <div class="n">77 <small>of 100</small></div>
+      <div class="t">households that <b>PKH</b> should reach receive nothing</div>
+    </div>
+    <div class="key" id="keyR"></div>
+    <div class="others">
+      <div class="h">EXCLUSION ERROR, OTHER SOCIAL ASSISTANCE</div>
+      <div class="row"><span>BPNT (Sembako)</span><div class="bar"><i style="width:74.4%;background:var(--accent)"></i></div><span class="v" style="color:var(--accent)">74</span></div>
+      <div class="row"><span>PIP</span><div class="bar"><i style="width:82.1%;background:var(--accent)"></i></div><span class="v" style="color:var(--accent)">82</span></div>
+      <div class="row"><span>PBI JKN</span><div class="bar"><i style="width:42.6%;background:var(--accent)"></i></div><span class="v" style="color:var(--accent)">43</span></div>
     </div>
   </section>
 
-  <section class="layer physical">
-    <div class="lab" style="top:16px"><span class="eyebrow">TECHNOLOGY</span><div class="d" style="margin-top:4px">enablers below DPI</div></div>
-    <div class="phys"><span>Broadband &amp; devices</span><span>Data centres &amp; cloud</span><span>AI &amp; big data</span><span>Energy</span></div>
+  <section class="band">
+    <div class="eyebrow">THE REFORM</div>
+    <div class="money"><div class="n">Rp277 T</div>
+      <div class="t">a year in price subsidies (2026), 55% of the social protection budget, with no named recipient</div></div>
+    <div class="step" style="left:330px"><b>Economic price</b>for everyone who buys LPG</div>
+    <div class="step" style="left:620px"><b>Cash, by name</b>to eligible households only</div>
+    <div class="step" style="left:900px; width:250px"><b>A correct list</b>of who is eligible</div>
+    <div class="next">NEXT<div>Digital public infrastructure →</div></div>
   </section>
 
-  <!-- enablers and safeguards, around all layers -->
-  <aside class="safe">
-    <div class="eyebrow">AROUND ALL LAYERS</div>
-    <div class="t">Enablers &amp; safeguards</div>
-    <div class="d">non-technical conditions; DPI is more than technology</div>
-    <ul>
-      <li>Laws, regulation and institutions for DPI</li>
-      <li>Data protection and data governance</li>
-      <li>Cybersecurity</li>
-      <li>Public oversight, accountability, feedback</li>
-      <li>Digital skills and literacy</li>
-    </ul>
-  </aside>
+  <div class="sources"><b>Sources:</b> author's calculation from Susenas March 2025, following the definitions of the DEN Social Protection Targeting Monitor (inclusion error for energy subsidies; exclusion error for social assistance). Target groups: LPG and fuel, deciles 1–4; electricity (450 and 900 VA), deciles 1–3; PKH, deciles 1–4 with programme conditions; BPNT and PBI, deciles 1–5; PIP, deciles 1–4 and age 6–27. Budget: Nota Keuangan RAPBN 2026 (grouping by the author). Policy direction: RPJMN 2025–2029.</div>
 
-  <!-- right: separate vs shared; benefits and risks -->
-  <section class="why">
-    <div class="eyebrow" style="color:var(--accent)">WHY IT MATTERS</div>
-    <div class="t">Four services, two ways to build</div>
-    <div class="cap" style="top:156px"><b>Separate systems:</b> 12 systems, records that do not match</div>
-    <div class="cap" style="top:282px"><b>DPI:</b> 3 shared blocks, one record per person</div>
-    <div class="br">
-      <div class="ben"><div class="h" style="color:var(--accent)">POTENTIAL BENEFITS</div><ul>
-        <li>Government: faster, cheaper services</li>
-        <li>Firms: more competition and innovation</li>
-        <li>People: easier access, more control</li></ul></div>
-      <div class="risk"><div class="h" style="color:var(--slate)">RISKS TO MANAGE</div><ul>
-        <li>Exclusion of people with low digital access or skills</li>
-        <li>Misuse of personal data</li>
-        <li>Lock-in, poor-quality systems; weak capacity</li></ul></div>
-    </div>
-  </section>
-
-  <!-- the three words of the definition -->
-  <section class="words">
-    <div class="word"><div class="k">1 · FOUNDATIONAL</div><div class="w">Essential, for everyone</div>
-      <div class="x">Basic functions at the scale of the whole society, used across sectors and population groups. <i>Can be built or run by the government, by firms, or both.</i></div></div>
-    <div class="word"><div class="k">2 · BUILDING BLOCKS</div><div class="w">Reused, not rebuilt</div>
-      <div class="x">Interoperable and based on open standards and open APIs, so many services plug into the same block. <i>Modular and minimal: no more central data than needed.</i></div></div>
-    <div class="word"><div class="k">3 · PUBLIC BENEFIT</div><div class="w">Safe and inclusive by design</div>
-      <div class="x">Inclusion and user choice, privacy by design, and strong governance with public oversight. <i>Built into the technical design, not added later.</i></div></div>
-  </section>
-
-  <div class="sources"><b>Source:</b> World Bank (2025), <i>Digital Public Infrastructure and Development: A World Bank Group Approach</i>, Digital Transformation White Paper Vol. 1: definition, characteristics and ecosystem pp. 7–10 (Figures 2–4); benefits and risks pp. 5, 9, 29 (Figures 1, 3, 13).</div>
-
-  <svg id="art" viewBox="0 0 1600 900"></svg>
+  <svg id="art" viewBox="0 0 1600 900">
+    <defs>
+      <symbol id="hs" viewBox="0 0 20 20"><path d="M2.5,9 L10,2.5 L17.5,9 L17.5,17.5 L2.5,17.5 Z"/></symbol>
+      <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker>
+      <marker id="tipA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+    </defs>
+  </svg>
 </div>
 
 <script>
 const NS = 'http://www.w3.org/2000/svg', art = document.getElementById('art');
 const el = (tag, a, p = art) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
 const tx = (x, y, s, a = {}, p = art) => { const t = el('text', {x, y, ...a}, p); t.textContent = s; return t; };
-const S = {fill:'none', stroke:'var(--accent)', 'stroke-width':2.6, 'stroke-linecap':'round', 'stroke-linejoin':'round'};
 
-// ---- icons on the three DPI blocks ----
-const bw = (716 - 160 - 14 - 20) / 3, bx0 = 40 + 160, by = 324;
-const bcx = i => bx0 + i * (bw + 10) + bw / 2;
-{ const g = el('g', {transform:`translate(${bcx(0)},${by})`});              // ID card
-  el('rect', {x:-26, y:-17, width:52, height:34, rx:5, ...S}, g); el('circle', {cx:-12, cy:-2, r:6, ...S}, g);
-  el('path', {d:'M2,-6 L18,-6 M2,3 L14,3 M-21,11 L-3,11', ...S}, g); }
-{ const g = el('g', {transform:`translate(${bcx(1)},${by})`});              // payment
-  el('circle', {cx:-14, cy:0, r:12, ...S}, g);
-  el('path', {d:'M-18,-4 L-10,-4 M-18,4 L-10,4 M-14,-8 L-14,8', ...S, 'stroke-width':2}, g);
-  el('path', {d:'M4,-6 L28,-6 M22,-12 L28,-6 L22,0 M28,8 L4,8 M10,2 L4,8 L10,14', ...S}, g); }
-{ const g = el('g', {transform:`translate(${bcx(2)},${by})`});              // data sharing
-  [[-22, -10], [22, -10], [0, 14]].forEach(([a, b]) => el('rect', {x:a - 9, y:b - 7, width:18, height:14, rx:3, ...S}, g));
-  el('path', {d:'M-13,-10 L13,-10 M-17,-3 L-5,9 M17,-3 L5,9', ...S}, g); }
+// ---- two grids of 100 houses ----
+const STY = {
+  leak:   {fill:'var(--accent)', stroke:'var(--accent)', 'stroke-width':1},          // recipient outside the target group
+  right:  {fill:'none', stroke:'var(--muted)', 'stroke-width':1.4},                  // recipient inside the target group
+  missed: {fill:'var(--tint)', stroke:'var(--accent)', 'stroke-width':2, 'stroke-dasharray':'3 2.2'},  // target household with nothing
+  reached:{fill:'var(--muted)', stroke:'var(--muted)', 'stroke-width':1},           // target household that receives it
+};
+function grid(x0, y0, n, a, b) {                 // first n houses styled a, rest b; filled row by row from the top
+  for (let i = 0; i < 100; i++) {
+    const r = Math.floor(i / 10), c = i % 10;
+    el('use', {href:'#hs', x:x0 + c * 34, y:y0 + r * 35, width:29, height:29, ...(i < n ? STY[a] : STY[b])});
+  }
+}
+grid(40, 140, 65, 'leak', 'right');              // LPG: 64.5 of 100 recipients outside the target group
+grid(820, 140, 77, 'missed', 'reached');         // PKH: 76.6 of 100 target households receive nothing
 
-// ---- right panel: separate systems vs shared blocks ----
-const progs = ['Social aid', 'Health', 'Tax', 'Bank'], px0 = 1034, pw = 117, mini = ['ID', 'Pay', 'Data'];
-const Y1 = 182;
-progs.forEach((p, i) => {
-  const x = px0 + i * (pw + 10);
-  el('rect', {x, y:Y1, width:pw, height:28, rx:6, fill:'var(--paper)', stroke:'var(--ink)', 'stroke-width':1.4});
-  tx(x + pw / 2, Y1 + 19, p, {'text-anchor':'middle', 'font-size':14.5, 'font-weight':600, fill:'var(--ink)'});
-  mini.forEach((m, j) => {
-    const w = (pw - 8) / 3, mx = x + j * (w + 4);
-    el('rect', {x:mx, y:Y1 + 33, width:w, height:30, rx:4, fill:'none', stroke:'var(--accent)', 'stroke-width':1.4, 'stroke-dasharray':'3 2.5'});
-    tx(mx + w / 2, Y1 + 52, m, {'text-anchor':'middle', class:'sans', 'font-size':10.5, 'font-weight':600, fill:'var(--accent)'});
-  });
-});
-el('line', {x1:1034, y1:290, x2:1538, y2:290, stroke:'var(--rule)', 'stroke-width':1.2, 'stroke-dasharray':'4 6'});
-const Y2 = 302;
-progs.forEach((p, i) => {
-  const x = px0 + i * (pw + 10);
-  el('rect', {x, y:Y2, width:pw, height:28, rx:6, fill:'var(--paper)', stroke:'var(--ink)', 'stroke-width':1.4});
-  tx(x + pw / 2, Y2 + 19, p, {'text-anchor':'middle', 'font-size':14.5, 'font-weight':600, fill:'var(--ink)'});
-  el('path', {d:`M${x + pw / 2},${Y2 + 28} L${x + pw / 2},${Y2 + 36}`, stroke:'var(--ink)', 'stroke-width':1.6});
-});
-const sw = 4 * pw + 30, segw = (sw - 8) / 3;
-['Identity', 'Payments', 'Data sharing'].forEach((m, j) => {
-  const mx = px0 + j * (segw + 4);
-  el('rect', {x:mx, y:Y2 + 38, width:segw, height:32, rx:5, fill:'var(--accent)'});
-  tx(mx + segw / 2, Y2 + 59, m, {'text-anchor':'middle', class:'sans', 'font-size':13.5, 'font-weight':700, fill:'var(--surface)'});
-});
+// keys under the big numbers (drawn as small house + text)
+function key(id, items) { const k = document.getElementById(id);
+  k.innerHTML = items.map(([s, txt]) => `<span><svg width="16" height="16" viewBox="0 0 20 20">` +
+    `<path d="M2.5,9 L10,2.5 L17.5,9 L17.5,17.5 L2.5,17.5 Z" ${Object.entries(STY[s]).map(([p, v]) => `${p}="${v}"`).join(' ')}/></svg>${txt}</span>`).join(''); }
+key('keyL', [['leak', 'inclusion error'], ['right', 'in the target group']]);
+key('keyR', [['missed', 'exclusion error'], ['reached', 'receives PKH']]);
+
+// ---- reform band: three drawn steps joined by arrows ----
+const cx = [445, 735, 1025], cy = 712;
+// 1. cylinder with a price tag
+{ const g = el('g', {transform:`translate(${cx[0] - 14},${cy})`});
+  el('rect', {x:-8, y:-44, width:16, height:8, rx:2, fill:'var(--lpg2)'}, g);
+  el('rect', {x:-24, y:-37, width:48, height:62, rx:21, fill:'var(--lpg)'}, g);
+  el('path', {d:'M-24,-6 L24,-6', stroke:'var(--lpg2)', 'stroke-width':2}, g);
+  el('rect', {x:-18, y:24, width:36, height:5, rx:1.5, fill:'var(--lpg2)'}, g);
+  el('path', {d:'M30,-30 L62,-30 L72,-20 L62,-10 L30,-10 Z', fill:'var(--surface)', stroke:'var(--ink)', 'stroke-width':1.6}, g);
+  tx(46, -16, 'Rp', {'text-anchor':'middle', 'font-family':'system-ui,sans-serif', 'font-size':12, 'font-weight':700, fill:'var(--ink)'}, g); }
+// 2. ID card with cash
+{ const g = el('g', {transform:`translate(${cx[1]},${cy - 6})`});
+  el('rect', {x:-40, y:-26, width:62, height:42, rx:5, fill:'var(--surface)', stroke:'var(--accent)', 'stroke-width':2}, g);
+  el('circle', {cx:-24, cy:-6, r:8, fill:'var(--accent)'}, g);
+  el('path', {d:'M-10,-12 L12,-12 M-10,-3 L8,-3 M-10,6 L4,6', stroke:'var(--accent)', 'stroke-width':2}, g);
+  tx(-9, 30, 'NIK', {'font-family':'system-ui,sans-serif', 'font-size':11, 'font-weight':700, fill:'var(--accent)', 'text-anchor':'middle'}, g);
+  el('rect', {x:10, y:-2, width:44, height:26, rx:3, fill:'var(--lpg)', stroke:'var(--lpg2)', 'stroke-width':1.5}, g);
+  el('circle', {cx:32, cy:11, r:7, fill:'none', stroke:'var(--surface)', 'stroke-width':1.6}, g); }
+// 3. list with a question mark
+{ const g = el('g', {transform:`translate(${cx[2]},${cy - 6})`});
+  el('rect', {x:-28, y:-36, width:56, height:68, rx:6, fill:'var(--surface)', stroke:'var(--ink)', 'stroke-width':1.8}, g);
+  [-20, -6, 8, 22].forEach((y, i) => { el('path', {d:`M-18,${y} L-12,${y + 5} L-4,${y - 4}`, fill:'none', stroke: i === 2 ? 'var(--soft)' : 'var(--lpg2)', 'stroke-width':2}, g);
+    el('path', {d:`M2,${y} L18,${y}`, stroke:'var(--muted)', 'stroke-width':2}, g); });
+  el('circle', {cx:26, cy:-34, r:14, fill:'var(--accent)'}, g);
+  tx(26, -28, '?', {'text-anchor':'middle', 'font-family':'Georgia,serif', 'font-size':18, 'font-weight':700, fill:'var(--surface)'}, g); }
+// joining symbols
+tx(590, cy + 10, '+', {'text-anchor':'middle', 'font-family':'Georgia,serif', 'font-size':44, fill:'var(--muted)'});
+el('path', {d:`M820,${cy} L930,${cy}`, stroke:'var(--muted)', 'stroke-width':2, 'marker-end':'url(#tip)'});
+tx(875, cy - 10, 'needs', {'text-anchor':'middle', 'font-family':'system-ui,sans-serif', 'font-size':13, 'font-style':'italic', fill:'var(--muted)'});
+el('path', {d:`M1110,${cy} L1306,${cy}`, stroke:'var(--accent)', 'stroke-width':2.4, 'marker-end':'url(#tipA)'});
 
 // scale the 1600 x 900 stage to the window
 const st = document.getElementById('stage');
