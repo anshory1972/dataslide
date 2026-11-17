@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/">
+<meta name="robots" content="noindex">
+<title>The old paradigm: grow first, fix equality and the environment later</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --slate:#1c4e73;
+    --r0:#ecc7b0; --r1:#b4451f; --r2:#5a1d0a;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root {
+      --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+      --accent:#e0875f; --slate:#7ea9cc;
+      --r0:#5a2a1a; --r1:#d0683e; --r2:#f6c9a8;
+    }
+  }
+  html,body { margin:0; height:100%; background:var(--paper); }
+  body { display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  svg { width:100vw; height:100vh; max-width:calc(100vh*16/9); max-height:calc(100vw*9/16); display:block;
+        font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .card { fill:var(--surface); stroke:var(--rule); stroke-width:1.5; }
+  .title { fill:var(--ink); font: 400 36px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  .title .old { fill:var(--accent); font-style:italic; }
+  .eyebrow { fill:var(--accent); font-size:15px; font-weight:600; letter-spacing:.2em; }
+  .qsub { fill:var(--muted); font: italic 19px Georgia,serif; }
+  .axis { stroke:var(--ink); stroke-width:1.6; }
+  .tick { fill:var(--ink); }
+  .axl { fill:var(--ink); font-size:20px; font-weight:600; }
+  .axs { fill:var(--muted); font-size:15px; }
+  .curve { fill:none; stroke:var(--ink); stroke-width:3.2; stroke-linecap:round; opacity:.85; }
+  .l45 { stroke:var(--muted); stroke-width:1.6; stroke-dasharray:2 7; stroke-linecap:round; }
+  .clab { fill:var(--ink); font: 600 23px Georgia,serif; }
+  .csub { fill:var(--muted); font: 18px Georgia,serif; }
+  .guide { fill:none; stroke:var(--muted); stroke-width:1.2; stroke-dasharray:4 5; opacity:0; }
+  .dot { stroke:var(--surface); stroke-width:3; opacity:0; }
+  .trail { stroke-width:6; stroke-linecap:round; }
+  .tp { fill:none; stroke:var(--ink); stroke-width:1.4; opacity:0; transition:opacity .4s; }
+  .tpg { fill:none; stroke:var(--ink); stroke-width:1.3; stroke-dasharray:1.5 4; stroke-linecap:round; opacity:0; transition:opacity .4s; }
+  body.s3 .tpg { opacity:.75; }
+  .grow { fill:var(--muted); font: italic 17px Georgia,serif; }
+  .growl { fill:none; stroke:var(--muted); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .tpl { fill:var(--muted); font: italic 16px Georgia,serif; opacity:0; transition:opacity .4s; }
+  .note { fill:var(--ink); font: 24px Georgia,serif; opacity:0; transition:opacity .5s; }
+  .note b { font-weight:700; }
+  .ring { fill:none; stroke:var(--rule); stroke-width:3; }
+  .gray { filter: grayscale(1) contrast(1.05); }
+  .cap { fill:var(--ink); font: 600 18px Georgia,serif; }
+  .capy { fill:var(--muted); font: 16px Georgia,serif; }
+  .legend { fill:var(--muted); font-size:14px; }
+  body.s2 .n2, body.s3 .n2, body.s3 .n3 { opacity:1; }
+  body.s2 .tp1, body.s3 .tp1, body.s3 .tp2 { opacity:1; }
+  .hint { position:fixed; right:14px; bottom:10px; font:12px system-ui,sans-serif; color:var(--muted); }
+</style>
+</head>
+<body>
+<svg id="fig" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img"
+ aria-label="Conceptual framework: the Kuznets curve and the environmental Kuznets curve linked through income per capita">
+<defs>
+  <linearGradient id="ramp" x1="0" x2="1" y1="0" y2="0">
+    <stop offset="0" stop-color="var(--r0)"/><stop offset=".55" stop-color="var(--r1)"/><stop offset="1" stop-color="var(--r2)"/>
+  </linearGradient>
+  <clipPath id="c1"><circle cx="0" cy="0" r="62"/></clipPath>
+  <clipPath id="c2"><circle cx="0" cy="0" r="50"/></clipPath>
+</defs>
+
+<!-- quadrant names -->
+<text class="eyebrow" x="1560" y="62" text-anchor="end">SOCIAL</text>
+<text class="qsub" x="1560" y="88" text-anchor="end">equality and income</text>
+<text class="eyebrow" x="1560" y="806" text-anchor="end">ECONOMY</text>
+<text class="qsub" x="1560" y="832" text-anchor="end">links the two income axes</text>
+<text class="eyebrow" x="40" y="806">ENVIRONMENT</text>
+<text class="qsub" x="40" y="832">environmental quality and income</text>
+<text class="title" x="40" y="66"><tspan class="old">The old paradigm:</tspan> grow first, fix equality and the environment later</text>
+<text class="eyebrow" x="40" y="136">BOTH OUTCOMES</text>
+<text class="qsub" x="40" y="162">equality and environment, at each income level</text>
+
+<g id="axes"></g>
+<g id="curves"></g>
+<g id="trail"></g>
+<path id="guide" class="guide"/>
+<g id="dots"></g>
+<g id="marks"></g>
+
+<!-- notes -->
+<text class="note n2" x="40" y="226">Up to a turning point, higher income</text>
+<text class="note n2" x="40" y="256">comes with <tspan font-weight="700">lower equality</tspan> and a</text>
+<text class="note n2" x="40" y="286"><tspan font-weight="700">worse environment</tspan>.</text>
+<text class="note n3" x="40" y="336">Beyond the turning points,</text>
+<text class="note n3" x="40" y="366">both can improve.</text>
+
+<!-- portraits -->
+<g transform="translate(1440,250)">
+  <g clip-path="url(#c1)"><image href="kuznets-56a07057.jpg" x="-62" y="-66" width="124" height="126" preserveAspectRatio="xMidYMid slice"/></g>
+  <circle class="ring" r="62"/>
+  <text class="cap" y="92" text-anchor="middle">Simon Kuznets</text>
+  <text class="capy" y="114" text-anchor="middle">(1955)</text>
+</g>
+<g transform="translate(150,560)">
+  <g clip-path="url(#c2)"><image class="gray" href="grossman-deff5017.jpg" x="-50" y="-56" width="100" height="148" preserveAspectRatio="xMidYMin slice"/></g>
+  <circle class="ring" r="50"/>
+  <g transform="translate(110,0)">
+    <g clip-path="url(#c2)"><image class="gray" href="krueger-0eab0000.jpg" x="-50" y="-56" width="100" height="150" preserveAspectRatio="xMidYMin slice"/></g>
+    <circle class="ring" r="50"/>
+  </g>
+  <text class="cap" x="55" y="80" text-anchor="middle">Grossman and Krueger</text>
+  <text class="capy" x="55" y="102" text-anchor="middle">(1991)</text>
+</g>
+
+<!-- income legend -->
+<g transform="translate(1180,862)">
+  <text class="legend" x="-12" y="5" text-anchor="end">GDP per capita</text>
+  <rect width="200" height="9" rx="4.5" fill="url(#ramp)" y="-4"/>
+  <text class="legend" x="0" y="26">low</text>
+  <text class="legend" x="200" y="26" text-anchor="end">high</text>
+</g>
+</svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const CX = 800, CY = 440, S = 330;
+const Y0 = 0.08, YT = 0.41, YE = 0.55, Y1 = 1.0;     // start, KC turning point, EKC turning point, end
+const E = y => 0.17 + (y < YT ? 3.6 : 1.2) * (y - YT) ** 2;    // equality
+const N = y => 0.18 + (y < YE ? 1.76 : 2.96) * (y - YE) ** 2;  // environmental quality
+const q1 = y => [CX + S*y, CY - S*E(y)];
+const q4 = y => [CX + S*y, CY + S*y];
+const q3 = y => [CX - S*N(y), CY + S*y];
+const q2 = y => [CX - S*N(y), CY - S*E(y)];
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+const pathOf = (fn, a, b, n=160) => 'M' + Array.from({length:n+1}, (_, i) => fn(a + (b-a)*i/n).map(v => v.toFixed(1)).join(',')).join(' L');
+
+// income colour ramp (read from CSS so dark mode works)
+const css = getComputedStyle(document.documentElement);
+const hex = v => { v = css.getPropertyValue(v).trim(); return [1,3,5].map(i => parseInt(v.slice(i, i+2), 16)); };
+const R = [hex('--r0'), hex('--r1'), hex('--r2')];
+const ramp = t => { const [a, b, u] = t < .55 ? [R[0], R[1], t/.55] : [R[1], R[2], (t-.55)/.45];
+  return 'rgb(' + a.map((c, i) => Math.round(c + (b[i]-c)*u)).join(',') + ')'; };
+const tOf = y => (y - Y0) / (Y1 - Y0);
+
+// axes
+const ax = document.getElementById('axes');
+el('line', {class:'axis', x1:CX-S*0.95, y1:CY, x2:CX+S*1.12, y2:CY}, ax);
+el('line', {class:'axis', x1:CX, y1:CY-S*0.82, x2:CX, y2:CY+S*1.12}, ax);
+const lab = (x, y, t, a, cls='axl') => { const e = el('text', {class:cls, x, y, 'text-anchor':a}, ax); e.textContent = t; };
+lab(CX+S*1.12+12, CY+7, 'GDP per capita', 'start');
+lab(CX+S*1.12+12, CY+28, 'higher →', 'start', 'axs');
+lab(CX, CY-S*0.82-30, 'Equality', 'middle');
+lab(CX, CY-S*0.82-11, 'higher ↑', 'middle', 'axs');
+lab(CX-S*0.95-12, CY+7, 'Environmental quality', 'end');
+lab(CX-S*0.95-12, CY+28, '← better', 'end', 'axs');
+lab(CX+12, CY+S*1.12-6, 'GDP per capita', 'start');
+lab(CX+12, CY+S*1.12+14, 'higher ↓', 'start', 'axs');
+
+// curves, coloured faintly by income underneath, ink on top
+const cv = document.getElementById('curves');
+el('line', {class:'l45', x1:CX, y1:CY, x2:CX+S*1.05, y2:CY+S*1.05}, cv);
+const t45 = el('text', {class:'csub', x:CX+S*1.05+10, y:CY+S*1.05+4}, cv); t45.textContent = '45° line';
+el('path', {class:'curve', d:pathOf(q1, Y0, Y1)}, cv);
+el('path', {class:'curve', d:pathOf(q3, Y0, Y1)}, cv);
+const [kx, ky] = q1(Y1), [ex, ey] = q3(Y1);
+const t1 = el('text', {class:'clab', x:kx+26, y:ky+8}, cv); t1.textContent = 'Kuznets curve';
+const t2 = el('text', {class:'clab', x:ex-28, y:ey-14, 'text-anchor':'end'}, cv); t2.textContent = 'Environmental';
+const t3 = el('text', {class:'clab', x:ex-28, y:ey+14, 'text-anchor':'end'}, cv); t3.textContent = 'Kuznets curve';
+
+// growth arrow from the origin along the 45-degree line (early growth), kept subtle
+{ const off = 0, [ax0, ay0] = q4(0.0), [ax1, ay1] = q4(0.27);
+  const x0 = ax0 + off, y0 = ay0 - off, x1 = ax1 + off, y1 = ay1 - off, u = Math.SQRT1_2;
+  el('line', {class:'growl', x1:x0, y1:y0, x2:x1, y2:y1}, cv);
+  el('path', {class:'growl', d:`M${x1 - 9*u - 6*u},${y1 - 9*u + 6*u} L${x1},${y1} L${x1 - 9*u + 6*u},${y1 - 9*u - 6*u}`}, cv);
+  const [mx, my] = q4(0.145), lx = mx + 7, ly = my - 7;           // just above the arrow, parallel to it
+  const lt = el('text', {class:'grow', x:lx, y:ly, 'text-anchor':'middle', transform:`rotate(45 ${lx} ${ly})`}, cv);
+  lt.textContent = 'growth';
+}
+
+// turning-point marks
+const mk = document.getElementById('marks');
+const mark = (pt, cls, txt, dx, dy, a) => { el('circle', {class:'tp '+cls, cx:pt[0], cy:pt[1], r:13}, mk);
+  const t = el('text', {class:'tpl '+cls, x:pt[0]+dx, y:pt[1]+dy, 'text-anchor':a}, mk); t.textContent = txt; };
+mark(q1(YT), 'tp1', 'turning point', 60, 34, 'start');
+mark(q3(YE), 'tp2', 'turning point', -24, 6, 'end');
+// connect each turning point through the four quadrants to the combined path
+[YT, YE].forEach(y => {
+  const P = [q1(y), q4(y), q3(y), q2(y)];
+  el('path', {class:'tpg', d:`M${P[0][0]},${P[0][1]} V${P[1][1]} H${P[2][0]} V${P[3][1]} H${P[0][0]}`}, mk);
+  [P[1], P[3]].forEach(pt => el('circle', {class:'tp tp2', cx:pt[0], cy:pt[1], r:9}, mk));
+});
+{ const [x, y] = q2(YT); const t = el('text', {class:'tpl tp2', x:x-18, y:y+40, 'text-anchor':'end'}, mk);
+  t.textContent = 'both turning points'; }
+
+// trail in the BOTH OUTCOMES quadrant: one short segment per income step
+const tr = document.getElementById('trail'), STEPS = 240, segs = [];
+for (let i = 0; i < STEPS; i++) {
+  const ya = Y0 + (Y1-Y0)*i/STEPS, yb = Y0 + (Y1-Y0)*(i+1)/STEPS;
+  const [x1, y1] = q2(ya), [x2, y2] = q2(yb);
+  segs.push(el('line', {class:'trail', x1, y1, x2, y2, stroke:ramp(tOf(yb)), visibility:'hidden'}, tr));
+}
+
+// moving guide rectangle and the four points
+const guide = document.getElementById('guide'), dg = document.getElementById('dots');
+const dots = [0,1,2,3].map(() => el('circle', {class:'dot', r:9}, dg));
+function place(y) {
+  const P = [q1(y), q4(y), q3(y), q2(y)];
+  guide.setAttribute('d', `M${P[0][0]},${P[0][1]} V${P[1][1]} H${P[2][0]} V${P[3][1]} H${P[0][0]}`);
+  const c = ramp(tOf(y));
+  dots.forEach((d, i) => { d.setAttribute('cx', P[i][0]); d.setAttribute('cy', P[i][1]); d.setAttribute('fill', c); });
+  const k = Math.floor(tOf(y) * STEPS + 1e-9);
+  segs.forEach((s, i) => s.setAttribute('visibility', i < k ? 'visible' : 'hidden'));
+}
+const show = on => { guide.style.opacity = on ? 1 : 0; dots.forEach(d => d.style.opacity = on ? 1 : 0); };
+
+// steps: 1 curves only; 2 grow to the KC turning point; 3 grow to the end
+let step = 1, anim = null, cur = Y0;
+const TARGET = {1: Y0, 2: YT, 3: Y1};
+function go(s, instant) {
+  step = Math.max(1, Math.min(3, s));
+  document.body.className = 's' + step;
+  cancelAnimationFrame(anim);
+  const to = TARGET[step];
+  show(step > 1);
+  if (instant || to <= cur) { cur = to; place(cur); return; }
+  const from = cur, dur = 2600 * (to - from) / (Y1 - Y0) + 400, t0 = performance.now();
+  const tick = now => { const u = Math.min(1, (now - t0) / dur), e = u < .5 ? 2*u*u : 1 - (-2*u+2)**2/2;
+    cur = from + (to - from) * e; place(cur); if (u < 1) anim = requestAnimationFrame(tick); };
+  anim = requestAnimationFrame(tick);
+}
+// single view: draw the full path on load; click to replay
+const play = () => { cur = Y0; go(3); };
+document.addEventListener('click', play);
+if (location.hash === '#static') go(3, true); else setTimeout(play, 500);
+</script>
+<script id="deck-nav">
+  // move between slides with the keyboard
+  document.addEventListener('keydown', e => {
+    const prev = '', next = '02.html';
+    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+  });
+</script>
+</body>
+</html>
