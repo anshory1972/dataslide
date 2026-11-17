@@ -5,181 +5,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/03.html">
 <meta name="robots" content="noindex">
-<title>Kerosene to LPG, 2007: one reform that served the economy, the environment and society</title>
+<title>Old arguments for the trade-off, and why each one fails</title>
 <style>
   :root {
     color-scheme: light dark;
     --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
-    --accent:#b4451f; --tint:#fbf3ee; --lpg:#6f9a5c; --lpg2:#4f7a3e;
+    --accent:#b4451f; --tint:#fbf3ee;
   }
   @media screen and (prefers-color-scheme: dark) {
     :root {
       --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
-      --accent:#e0875f; --tint:#1f1a18; --lpg:#8fb07c; --lpg2:#6f9a5c;
+      --accent:#e0875f; --tint:#1f1a18;
     }
   }
   *, *::before, *::after { box-sizing:border-box; }
   html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
   .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
            font-family: Georgia,"Iowan Old Style","Palatino Linotype",serif; }
-  svg.layer { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; z-index:2; pointer-events:none; }
-  .sans { font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  svg.layer { position:absolute; left:0; top:0; width:1600px; height:900px; overflow:visible; }
 
-  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:34px; letter-spacing:-.01em; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font-weight:400; font-size:36px; letter-spacing:-.01em; }
   h1 em { color:var(--accent); }
-  .eyebrow { font: 600 14px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.2em; color:var(--accent); }
+  .side { position:absolute; top:92px; }
+  .side .eyebrow { font: 600 15px system-ui,-apple-system,"Segoe UI",sans-serif; letter-spacing:.2em; color:var(--accent); }
+  .side .sub { font-style:italic; color:var(--muted); font-size:17px; margin-top:2px; }
+  .side.l { left:40px; } .side.r { right:40px; text-align:right; }
 
-  /* left: the reform */
-  .reform { position:absolute; left:40px; top:104px; width:540px; height:732px; background:var(--surface);
-            border:1px solid var(--rule); border-radius:14px; padding:22px 28px; }
-  .fuel { position:absolute; top:182px; font: 15px system-ui,sans-serif; color:var(--muted); text-align:center; width:120px; }
-  .big { position:absolute; left:28px; top:222px; font-size:96px; line-height:1; color:var(--accent); letter-spacing:-.02em; }
-  .big small { font-size:48px; vertical-align:.62em; margin-left:2px; }
-  .bigcap { position:absolute; left:30px; top:326px; width:480px; font-size:21px; line-height:1.35; }
-  .waffle-cap { position:absolute; left:30px; top:532px; font: 15px system-ui,sans-serif; color:var(--muted); }
-  .facts { position:absolute; left:28px; right:28px; top:596px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .fact { border-top:1px solid var(--rule); padding-top:10px; }
-  .fact .n { font-size:30px; color:var(--ink); }
-  .fact .t { font: 14.5px/1.35 system-ui,sans-serif; color:var(--muted); }
+  /* centre claim */
+  .hub { position:absolute; width:250px; height:250px; left:675px; top:355px; border-radius:50%;
+         background:var(--tint); border:2px dashed var(--accent);
+         display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .hub .kick { font: 600 12px system-ui,sans-serif; letter-spacing:.2em; color:var(--muted); margin-bottom:6px; }
+  .hub .claim { font-size:23px; line-height:1.22; padding:0 26px; text-decoration:line-through; text-decoration-color:var(--accent); text-decoration-thickness:2px; }
+  .hub .verdict { margin-top:10px; font: 600 14px system-ui,sans-serif; color:var(--accent); }
 
-  /* right: results */
-  .band { position:absolute; left:668px; width:892px; background:var(--surface); border:1px solid var(--rule);
-          border-left:4px solid var(--accent); border-radius:12px; padding:16px 22px 14px 112px; }
-  .band .eyebrow { margin-bottom:4px; }
-  .band .num { font-size:46px; line-height:1.05; letter-spacing:-.01em; }
-  .band .num small { font-size:24px; color:var(--muted); }
-  .band .txt { font: 17px/1.4 system-ui,sans-serif; margin-top:4px; }
-  .band .src { font: 13px system-ui,sans-serif; color:var(--muted); margin-top:6px; }
-  .band .src i { font-style:italic; }
-  .split { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
-  .split > div + div { border-left:1px solid var(--rule); padding-left:24px; }
-  .calc { font: 13.5px/1.4 system-ui,sans-serif; color:var(--muted); margin-top:4px; }
+  /* old-argument boxes */
+  .box { position:absolute; width:262px; padding:10px 14px 11px; background:var(--surface);
+         border:1.5px solid var(--rule); border-radius:10px; box-shadow:0 1px 3px rgba(30,26,18,.06);
+         font-style:italic; font-size:19.5px; line-height:1.28; }
+  .box small { display:block; font-style:normal; font-size:13.5px; color:var(--muted); margin-top:2px; }
+  .box .x { position:absolute; top:-12px; width:24px; height:24px; border-radius:50%; background:var(--accent);
+            color:var(--surface); font: 700 13px system-ui,sans-serif; display:flex; align-items:center; justify-content:center; }
+  .box.l .x { left:-12px; } .box.r .x { right:-12px; }
+  .box s { text-decoration-color:var(--accent); text-decoration-thickness:1.5px; }
 
-  .sources { position:absolute; left:40px; right:40px; top:852px; font: 13px/1.45 system-ui,sans-serif; color:var(--muted); }
-  .sources b { font-weight:600; color:var(--ink); }
+  /* rebuttals */
+  .why { position:absolute; width:282px; text-wrap:balance; font: 16.5px/1.38 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); }
+  .why b { font-weight:700; color:var(--accent); }
+  .why.r { text-align:left; } .why.l { text-align:right; }
+
+  .legend { position:absolute; left:600px; top:830px; width:400px; text-align:center;
+            font: 14px system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--muted); }
+  .legend svg { vertical-align:middle; margin:0 6px 0 16px; }
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
-  <svg class="layer" id="art" viewBox="0 0 1600 900">
+  <svg class="layer" id="lines" viewBox="0 0 1600 900">
     <defs>
-      <marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <marker id="hSup" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+        <path d="M0,1 L9,5 L0,9" fill="none" stroke="var(--muted)" stroke-width="1.6"/></marker>
+      <marker id="hHit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
         <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
-      <symbol id="house" viewBox="0 0 20 20"><path d="M2,9 L10,2 L18,9 L18,18 L2,18 Z"/></symbol>
     </defs>
   </svg>
 
-  <h1><em>Kerosene to LPG, 2007:</em> one reform that served the economy, the environment and society</h1>
+  <h1><em>Old arguments for the trade-off,</em> and why each one fails</h1>
+  <div class="side l"><div class="eyebrow">EQUALITY</div><div class="sub">growth was said to require inequality</div></div>
+  <div class="side r"><div class="eyebrow">ENVIRONMENT</div><div class="sub">growth was said to require environmental damage</div></div>
 
-  <!-- the reform -->
-  <section class="reform">
-    <div class="eyebrow">THE REFORM</div>
-    <div class="fuel" style="left:58px">kerosene</div>
-    <div class="fuel" style="left:352px">LPG, 3 kg cylinder</div>
-    <div class="big">50 million<small>+</small></div>
-    <div class="bigcap">households moved from kerosene to LPG for cooking in about five years, with a free stove and cylinder for each</div>
-    <div class="waffle-cap">each house = 1/30 of Indonesian households</div>
-    <div class="facts">
-      <div class="fact"><div class="n">≈ 2/3</div><div class="t">of all households reached</div></div>
-      <div class="fact"><div class="n">&gt; 90%</div><div class="t">fall in the use of subsidized kerosene</div></div>
-    </div>
-  </section>
+  <div class="hub" id="hub">
+    <div class="kick">OLD CLAIM</div>
+    <div class="claim">Growth requires a trade-off</div>
+    <div class="verdict">the arguments do not hold</div>
+  </div>
 
-  <!-- results -->
-  <section class="band" id="b1" style="top:104px">
-    <div class="eyebrow">ECONOMY</div>
-    <div class="num">USD 15.6 billion <small>saved, 2006–2016</small></div>
-    <div class="txt">Net saving in fuel subsidies after the cost of the starter kits. The aim of the reform was fiscal.</div>
-    <div class="src">Government figure (Ministry of Energy), reported in Thoday et al. (2018), <i>Energy for Sustainable Development</i>.</div>
-  </section>
+  <div id="items"></div>
 
-  <section class="band" id="b2" style="top:282px">
-    <div class="eyebrow">ENVIRONMENT</div>
-    <div class="num">≈ 10 million tonnes <small>of CO₂ avoided a year</small></div>
-    <div class="txt">At full conversion. LPG burns more efficiently and with less carbon than kerosene.</div>
-    <div class="src">Author's calculation from fuel volumes in Permadi et al. (2017), <i>Atmospheric Environment</i>.</div>
-  </section>
-
-  <section class="band" id="b3" style="top:452px; height:384px; display:flex; flex-direction:column; justify-content:center;">
-    <div class="eyebrow">SOCIAL</div>
-    <div class="split">
-      <div>
-        <div class="num">−25%</div>
-        <div class="txt"><b>infant mortality</b> in converted districts</div>
-        <div class="num" style="margin-top:14px">≈ 26,000 <small>a year</small></div>
-        <div class="txt">infant deaths avoided nationally</div>
-        <div class="calc">4.6 m births × 34 per 1,000 × 2/3 converted × 25%</div>
-        <div class="src"><i>Journal of Development Economics</i>: Imelda (2020), Table 5; national figure: author's calculation.</div>
-      </div>
-      <div>
-        <div class="num">+1 hour <small>a day</small></div>
-        <div class="txt"><b>paid work of women</b> who did the cooking and already worked, about +20%</div>
-        <div class="num" style="margin-top:14px">+4%</div>
-        <div class="txt">women's lung capacity; no change for men</div>
-        <div class="calc">the gain in work comes through better health</div>
-        <div class="src"><i>Economic Journal</i>: Verma and Imelda (2023), pp. 857, 861.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="sources"><b>Sources:</b> Imelda (2020), <i>Journal of Development Economics</i> 147; Verma and Imelda (2023), <i>Economic Journal</i> 133; Thoday et al. (2018), <i>Energy for Sustainable Development</i> 46 (Ministry of Energy figures); Permadi et al. (2017), <i>Atmospheric Environment</i> 154; author's calculation.</div>
+  <div class="legend">
+    <svg width="34" height="10"><line x1="0" y1="5" x2="30" y2="5" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="3 5"/></svg>argument offered in support
+    <svg width="34" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="var(--accent)" stroke-width="2"/><path d="M24,1 L32,5 L24,9 z" fill="var(--accent)"/></svg>evidence against
+  </div>
 </div>
 
 <script>
-const NS = 'http://www.w3.org/2000/svg', art = document.getElementById('art');
-const el = (tag, a, p = art) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+const ITEMS = {
+  l: [
+    ['Growth depends mainly on capital and saving', '', 'Returns to capital diminish. Growth comes from <b>innovation</b>, which needs broad-based human capital.'],
+    ['The gains will trickle down to the poor', '', '<b>This rarely happens.</b> Redistribution is a policy choice, and elites often block it.'],
+    ['Growth is always good for the poor', '', '<b>Not always.</b> Growth can leave the poor worse off (immiserizing growth).'],
+    ['Leave it to the market', 'Thatcherism, Reaganomics, 1980s', 'Inequality rose, with its social costs, and <b>support for the far right</b> grew.'],
+    ['Efficiency first, minimum government', 'structural reform', 'A simple view of markets. Many countries implemented <b>Washington Consensus</b> reforms in the 1990s, and growth was disappointing.'],
+  ],
+  r: [
+    ['Countries must industrialize first', '', 'Industry without controls creates <b>external costs</b>, and these reduce growth.'],
+    ['Urbanize first, manage later', '', 'Unmanaged urbanization <b>lowers labour productivity</b>.'],
+    ['The environment is a luxury', '', 'Pollution damages health, and <b>health is not a luxury</b>.'],
+    ['Poor countries lack the regulation', '', 'Rules fail because <b>interest groups block them</b>.'],
+    ['Poor countries lack the resources', '', 'Not when the <b>full cost</b> of the damage is counted.'],
+    ['Rich countries polluted first; now it is our turn', '', 'Our goals can match: <b>energy security</b> through renewable energy, as China shows.'],
+  ]
+};
+const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('lines'), host = document.getElementById('items');
+const HX = 800, HY = 480, HR = 125;                       // hub centre and radius
+const el = (tag, a, p = svg) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
 
-// ---- illustration: kerosene can -> LPG cylinder (inside the reform panel) ----
-{ const g = el('g', {transform:'translate(128,226)'});
-  // kerosene jerrycan (faded)
-  const k = el('g', {opacity:.55}, g);
-  el('rect', {x:-38, y:-46, width:76, height:86, rx:8, fill:'none', stroke:'var(--muted)', 'stroke-width':3}, k);
-  el('path', {d:'M-20,-46 L-20,-60 L8,-60 L8,-46', fill:'none', stroke:'var(--muted)', 'stroke-width':3}, k);
-  el('path', {d:'M14,-46 L26,-62 L34,-56 L24,-46', fill:'none', stroke:'var(--muted)', 'stroke-width':3}, k);
-  el('path', {d:'M-24,-20 L24,24 M24,-20 L-24,24', stroke:'var(--muted)', 'stroke-width':2, opacity:.6}, k);
-  // arrow
-  el('path', {d:'M70,-4 L222,-4', stroke:'var(--accent)', 'stroke-width':3, 'marker-end':'url(#tip)'}, g);
-  const t = el('text', {x:146, y:-16, 'text-anchor':'middle', class:'sans', fill:'var(--accent)', 'font-size':14, 'font-weight':600, 'letter-spacing':'.08em'}, g);
-  t.textContent = '2007–2012';
-  // 3 kg LPG cylinder
-  const c = el('g', {transform:'translate(316,0)'}, g);
-  el('rect', {x:-12, y:-70, width:24, height:12, rx:3, fill:'var(--lpg2)'}, c);
-  el('path', {d:'M-26,-58 L26,-58', stroke:'var(--lpg2)', 'stroke-width':6, 'stroke-linecap':'round'}, c);
-  el('rect', {x:-40, y:-56, width:80, height:100, rx:34, fill:'var(--lpg)'}, c);
-  el('path', {d:'M-40,-6 L40,-6', stroke:'var(--lpg2)', 'stroke-width':2.5}, c);
-  el('rect', {x:-30, y:40, width:60, height:8, rx:2, fill:'var(--lpg2)'}, c);
-  const kg = el('text', {x:0, y:26, 'text-anchor':'middle', class:'sans', fill:'#fff', 'font-size':15, 'font-weight':700}, c);
-  kg.textContent = '3 kg';
+function place(side, list, y0, y1) {
+  const n = list.length;
+  list.forEach(([claim, note, why], i) => {
+    const cy = n === 1 ? (y0 + y1) / 2 : y0 + (y1 - y0) * i / (n - 1);
+    const d = (cy - HY) / 330;                            // gentle arc: boxes further from the hub at top and bottom
+    const inner = side === 'l' ? 40 + 282 + 42 + 262 : 1600 - (40 + 282 + 42 + 262);   // edge of the box facing the hub
+    const box = document.createElement('div');
+    box.className = 'box ' + side;
+    box.innerHTML = `<span class="x">✕</span>“${claim}”` + (note ? `<small>${note}</small>` : '');
+    host.appendChild(box);
+    const h = box.offsetHeight;
+    const left = side === 'l' ? inner - 262 : inner;
+    box.style.left = left + 'px'; box.style.top = (cy - h / 2) + 'px';
+
+    const w = document.createElement('div');
+    w.className = 'why ' + side; w.innerHTML = why; host.appendChild(w);
+    const wh = w.offsetHeight, gap = 42;
+    const wl = side === 'l' ? left - gap - 282 : left + 262 + gap;
+    w.style.left = wl + 'px'; w.style.top = (cy - wh / 2) + 'px';
+
+    // support arrow: box -> hub (dashed, faint: the support has been cut)
+    const ang = Math.atan2(cy - HY, inner - HX), hx = HX + (HR + 8) * Math.cos(ang), hy = HY + (HR + 8) * Math.sin(ang);
+    const mx = (inner + hx) / 2, my = (cy + hy) / 2 + (cy - HY) * 0.08;
+    const x0 = inner + (side === 'l' ? 4 : -4);
+    el('path', {d:`M${x0},${cy} Q${mx},${my} ${hx},${hy}`, fill:'none', stroke:'var(--muted)',
+                'stroke-width':1.5, 'stroke-dasharray':'3 5', 'marker-end':'url(#hSup)'});
+    // break mark at the middle of the support arrow, perpendicular to it
+    const bx = 0.25 * x0 + 0.5 * mx + 0.25 * hx, by = 0.25 * cy + 0.5 * my + 0.25 * hy;
+    const tx = hx - x0, ty = hy - cy, tl = Math.hypot(tx, ty), px = -ty / tl * 8, py = tx / tl * 8;
+    el('path', {d:`M${bx - px},${by - py} L${bx + px},${by + py}`, stroke:'var(--accent)', 'stroke-width':2.2, 'stroke-linecap':'round'});
+
+    // evidence arrow: rebuttal -> box (solid, accent)
+    const outer = side === 'l' ? left : left + 262;
+    const from = side === 'l' ? wl + 282 + 6 : wl - 6;
+    el('line', {x1:from, y1:cy, x2:outer + (side === 'l' ? -6 : 6), y2:cy, stroke:'var(--accent)', 'stroke-width':2.2, 'marker-end':'url(#hHit)'});
+  });
 }
-
-// ---- house grid: 30 houses, 20 reached (two-thirds) ----
-for (let i = 0; i < 30; i++) {
-  const col = i % 15, row = Math.floor(i / 15), on = i < 20;
-  el('use', {href:'#house', x:72 + col * 31, y:556 + row * 32, width:24, height:24,
-             fill: on ? 'var(--accent)' : 'none', stroke: on ? 'var(--accent)' : 'var(--muted)', 'stroke-width': on ? 0 : 1.6});
-}
-
-// ---- spokes from the reform panel to each result band ----
-const sx = 580, sy = 470;
-el('circle', {cx:sx, cy:sy, r:7, fill:'var(--accent)'});
-['b1', 'b2', 'b3'].forEach(id => {
-  const b = document.getElementById(id), ty = b.offsetTop + b.offsetHeight / 2, tx = b.offsetLeft - 6;
-  el('path', {d:`M${sx},${sy} C${sx + 50},${sy} ${tx - 50},${ty} ${tx},${ty}`, fill:'none', stroke:'var(--accent)', 'stroke-width':2.2, 'marker-end':'url(#tip)'});
-});
-
-// ---- icons in each band (drawn at the band's left) ----
-function icon(id, draw) { const b = document.getElementById(id);
-  const g = el('g', {transform:`translate(${b.offsetLeft + 56},${b.offsetTop + b.offsetHeight / 2})`});
-  el('circle', {r:34, fill:'var(--tint)', stroke:'var(--accent)', 'stroke-width':1.5}, g); draw(g); }
-const S = {fill:'none', stroke:'var(--accent)', 'stroke-width':2.4, 'stroke-linecap':'round', 'stroke-linejoin':'round'};
-icon('b1', g => {                                   // stacked coins
-  [10, 2, -6].forEach(y => el('ellipse', {cx:0, cy:y, rx:15, ry:5, ...S}, g));
-  el('path', {d:'M-15,10 L-15,-6 M15,10 L15,-6', ...S}, g); el('path', {d:'M-15,10 Q0,20 15,10', ...S}, g); });
-icon('b2', g => {                                   // cloud with CO2
-  el('path', {d:'M-16,8 Q-24,8 -22,-1 Q-20,-9 -11,-7 Q-8,-17 2,-15 Q11,-14 12,-5 Q21,-6 21,2 Q21,9 13,8 Z', ...S}, g);
-  const t = el('text', {x:0, y:5, 'text-anchor':'middle', class:'sans', fill:'var(--accent)', 'font-size':11, 'font-weight':700}, g); t.textContent = 'CO₂'; });
-icon('b3', g => {                                   // heart
-  el('path', {d:'M0,13 C-20,0 -18,-14 -8,-14 C-3,-14 0,-10 0,-7 C0,-10 3,-14 8,-14 C18,-14 20,0 0,13 Z', ...S}, g); });
+place('l', ITEMS.l, 210, 760);
+place('r', ITEMS.r, 196, 776);
 
 // scale the 1600 x 900 stage to the window
 const st = document.getElementById('stage');
