@@ -27,6 +27,16 @@
          font: 15px system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--muted); }
   .cap b { color:var(--ink); font-weight:600; }
   .cap .play { color:var(--accent); font-weight:600; letter-spacing:.06em; }
+  .printcard { display:none; }
+  @media print {
+    .frame iframe, .cap .play { display:none; }
+    .frame { background:#1c4e73; }
+    .printcard { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; color:#fffdf9; text-align:center;
+                 font-family: system-ui,sans-serif; gap:14px; }
+    .printcard .pl { width:96px; height:96px; border-radius:50%; border:3px solid #fffdf9; display:flex; align-items:center; justify-content:center; font-size:40px; }
+    .printcard b { font: 400 30px Georgia,serif; max-width:900px; }
+    .printcard span { font-size:20px; opacity:.85; }
+  }
 </style>
 </head>
 <body>
@@ -37,6 +47,7 @@
             title="Digitalisasi Perlinsos untuk Perbaiki Data Penerima Bansos (CNN Indonesia)"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="printcard"><div class="pl">&#9654;</div><b>Digitalisasi Perlinsos untuk Perbaiki Data Penerima Bansos</b><span>CNN Indonesia · youtube.com/watch?v=UHUqFtKDXRg</span></div>
   </div>
   <div class="cap"><span><b>Video:</b> CNN Indonesia, “Digitalisasi Perlinsos untuk Perbaiki Data Penerima Bansos”</span>
     <span class="play">▶ CLICK TO PLAY · F FOR FULL SCREEN</span></div>
