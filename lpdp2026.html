@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Digital transformation, green economy and inclusive development</title>
 <link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026.html">
 <meta name="robots" content="noindex">
+<title>The old paradigm: grow first, fix equality and the environment later</title>
 <style>
   :root {
     color-scheme: light dark;
@@ -25,6 +25,8 @@
   svg { width:100vw; height:100vh; max-width:calc(100vh*16/9); max-height:calc(100vw*9/16); display:block;
         font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
   .card { fill:var(--surface); stroke:var(--rule); stroke-width:1.5; }
+  .title { fill:var(--ink); font: 400 36px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  .title .old { fill:var(--accent); font-style:italic; }
   .eyebrow { fill:var(--accent); font-size:15px; font-weight:600; letter-spacing:.2em; }
   .qsub { fill:var(--muted); font: italic 19px Georgia,serif; }
   .axis { stroke:var(--ink); stroke-width:1.6; }
@@ -70,8 +72,9 @@
 <text class="qsub" x="1560" y="832" text-anchor="end">links the two income axes</text>
 <text class="eyebrow" x="40" y="806">ENVIRONMENT</text>
 <text class="qsub" x="40" y="832">environmental quality and income</text>
-<text class="eyebrow" x="40" y="62">BOTH OUTCOMES</text>
-<text class="qsub" x="40" y="88">equality and environment, at each income level</text>
+<text class="title" x="40" y="66"><tspan class="old">The old paradigm:</tspan> grow first, fix equality and the environment later</text>
+<text class="eyebrow" x="40" y="136">BOTH OUTCOMES</text>
+<text class="qsub" x="40" y="162">equality and environment, at each income level</text>
 
 <g id="axes"></g>
 <g id="curves"></g>
@@ -81,11 +84,9 @@
 <g id="marks"></g>
 
 <!-- notes -->
-<text class="note n2" x="40" y="168">Up to a turning point, higher income</text>
-<text class="note n2" x="40" y="198">comes with <tspan font-weight="700">lower equality</tspan> and a</text>
-<text class="note n2" x="40" y="228"><tspan font-weight="700">worse environment</tspan>.</text>
-<text class="note n3" x="40" y="278">Beyond the turning points,</text>
-<text class="note n3" x="40" y="308">both can improve.</text>
+<text class="note n2" x="40" y="226">Up to a turning point, higher income</text>
+<text class="note n2" x="40" y="256">comes with <tspan font-weight="700">lower equality</tspan> and a</text>
+<text class="note n2" x="40" y="286"><tspan font-weight="700">worse environment</tspan>.</text>
 
 <!-- portraits -->
 <g transform="translate(1440,250)">
@@ -113,7 +114,6 @@
   <text class="legend" x="200" y="26" text-anchor="end">high</text>
 </g>
 </svg>
-<div class="hint" id="hint">1 / 3</div>
 
 <script>
 const NS = 'http://www.w3.org/2000/svg';
@@ -166,7 +166,7 @@ const t3 = el('text', {class:'clab', x:ex-28, y:ey+14, 'text-anchor':'end'}, cv)
 const mk = document.getElementById('marks');
 const mark = (pt, cls, txt, dx, dy, a) => { el('circle', {class:'tp '+cls, cx:pt[0], cy:pt[1], r:13}, mk);
   const t = el('text', {class:'tpl '+cls, x:pt[0]+dx, y:pt[1]+dy, 'text-anchor':a}, mk); t.textContent = txt; };
-mark(q1(YT), 'tp1', 'turning point', 0, 38, 'middle');
+mark(q1(YT), 'tp1', 'turning point', 20, 34, 'start');
 mark(q3(YE), 'tp2', 'turning point', -24, 6, 'end');
 
 // trail in the BOTH OUTCOMES quadrant: one short segment per income step
@@ -196,7 +196,6 @@ const TARGET = {1: Y0, 2: YT, 3: Y1};
 function go(s, instant) {
   step = Math.max(1, Math.min(3, s));
   document.body.className = 's' + step;
-  document.getElementById('hint').textContent = step + ' / 3';
   cancelAnimationFrame(anim);
   const to = TARGET[step];
   show(step > 1);
@@ -206,12 +205,10 @@ function go(s, instant) {
     cur = from + (to - from) * e; place(cur); if (u < 1) anim = requestAnimationFrame(tick); };
   anim = requestAnimationFrame(tick);
 }
-document.addEventListener('keydown', e => {
-  if (['ArrowRight','PageDown',' ','Enter'].includes(e.key)) go(step + 1);
-  if (['ArrowLeft','PageUp','Backspace'].includes(e.key)) go(step - 1); });
-document.addEventListener('click', () => go(step < 3 ? step + 1 : 1));
-const fromHash = () => { const h = parseInt(location.hash.slice(1)) || 1; go(h, true); };
-window.addEventListener('hashchange', fromHash); fromHash();
+// single view: draw the path up to the turning point on load; click to replay
+const play = () => { cur = Y0; go(2); };
+document.addEventListener('click', play);
+if (location.hash === '#static') go(2, true); else setTimeout(play, 500);
 </script>
 </body>
 </html>
