@@ -133,11 +133,13 @@ function place(side, list, y0, y1) {
     // support arrow: box -> hub (dashed, faint: the support has been cut)
     const ang = Math.atan2(cy - HY, inner - HX), hx = HX + (HR + 8) * Math.cos(ang), hy = HY + (HR + 8) * Math.sin(ang);
     const mx = (inner + hx) / 2, my = (cy + hy) / 2 + (cy - HY) * 0.08;
-    el('path', {d:`M${inner + (side === 'l' ? 4 : -4)},${cy} Q${mx},${my} ${hx},${hy}`, fill:'none', stroke:'var(--muted)',
+    const x0 = inner + (side === 'l' ? 4 : -4);
+    el('path', {d:`M${x0},${cy} Q${mx},${my} ${hx},${hy}`, fill:'none', stroke:'var(--muted)',
                 'stroke-width':1.5, 'stroke-dasharray':'3 5', 'marker-end':'url(#hSup)'});
-    // break mark on the support arrow
-    const bx = 0.25 * (inner) + 0.5 * mx + 0.25 * hx, by = 0.25 * cy + 0.5 * my + 0.25 * hy;
-    el('path', {d:`M${bx - 6},${by - 7} L${bx + 6},${by + 7}`, stroke:'var(--accent)', 'stroke-width':2.2, 'stroke-linecap':'round'});
+    // break mark at the middle of the support arrow, perpendicular to it
+    const bx = 0.25 * x0 + 0.5 * mx + 0.25 * hx, by = 0.25 * cy + 0.5 * my + 0.25 * hy;
+    const tx = hx - x0, ty = hy - cy, tl = Math.hypot(tx, ty), px = -ty / tl * 8, py = tx / tl * 8;
+    el('path', {d:`M${bx - px},${by - py} L${bx + px},${by + py}`, stroke:'var(--accent)', 'stroke-width':2.2, 'stroke-linecap':'round'});
 
     // evidence arrow: rebuttal -> box (solid, accent)
     const outer = side === 'l' ? left : left + 262;
