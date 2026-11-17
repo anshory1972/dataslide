@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/19.html">
+<meta name="robots" content="noindex">
+<title>Why the climate agenda is likely to fail, and how to change the incentives</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#b4451f; --slate:#1c4e73; --ochre:#c3893f; --tint:#fbf3ee; --stint:#e6eef5; --stint2:#cbdbe9;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+            --accent:#e0875f; --slate:#7ea9cc; --ochre:#d9a865; --tint:#1f1a18; --stint:#18222c; --stint2:#22344a; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  h1 { position:absolute; left:40px; top:24px; margin:0; font: 400 36px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .sub { position:absolute; left:40px; top:74px; width:1520px; font-size:17px; line-height:1.4; color:var(--muted); }
+  .panel { position:absolute; top:140px; height:676px; background:var(--surface); border:1px solid var(--rule); border-radius:14px; }
+  .eb { font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .ph { font: 400 23px/1.25 Georgia,serif; margin-top:4px; }
+  .hd { position:absolute; left:26px; top:18px; right:26px; }
+  .scope-catgap { --grid:var(--rule); --baseline:var(--muted); --text-primary:var(--ink); --c1:var(--accent); --c4:var(--ochre); --c2:var(--slate); }
+  .lg { position:absolute; left:26px; top:458px; font-size:14px; color:var(--muted); display:flex; gap:20px; flex-wrap:wrap; width:660px; }
+  .lg i { display:inline-block; width:18px; height:4px; border-radius:2px; vertical-align:middle; margin-right:7px; }
+  .why { position:absolute; left:26px; right:26px; top:506px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .why div { background:var(--tint); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.4; }
+  .why b { display:block; font-size:22px; color:var(--accent); }
+
+  .grid { position:absolute; }
+  .cell { position:absolute; width:196px; height:112px; border-radius:10px; padding:10px 12px; background:var(--paper); }
+  .cell b { display:block; font-size:14.5px; line-height:1.25; }
+  .cell span { display:block; font-size:12.5px; line-height:1.35; color:var(--muted); margin-top:4px; }
+  .cell.g1 { background:var(--stint); } .cell.g2 { background:var(--stint2); }
+  .cell.g3 { background:var(--slate); } .cell.g3 b, .cell.g3 span { color:var(--surface); }
+  .cell.gcdm { background:var(--tint); outline:2px dashed var(--accent); outline-offset:-2px; }
+  .cell .tag { position:absolute; left:12px; bottom:9px; font-style:normal; font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:9px;
+               background:var(--accent); color:#fff; }
+  .cell .tag.r { background:none; color:var(--accent); padding:0; }
+  .ax { position:absolute; font-size:12.5px; color:var(--muted); }
+  .notes { position:absolute; left:26px; right:26px; top:488px; display:grid; grid-template-columns:1fr 1fr; gap:14px; font-size:14px; line-height:1.42; }
+  .notes div { border-top:2px solid var(--rule); padding-top:9px; }
+  .notes b { color:var(--slate); }
+  .key { position:absolute; left:26px; right:26px; top:582px; padding:12px 16px; border-radius:10px; background:var(--slate); color:var(--surface);
+          font: 400 17px/1.4 Georgia,serif; }
+  .foot { position:absolute; left:40px; right:40px; top:828px; font-size:12px; line-height:1.45; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1><em>Why the climate agenda is likely to fail,</em> and how to change the incentives</h1>
+  <div class="sub">The benefits of cutting emissions are global and long term, but the costs are local and immediate. Each country is better off if others act,
+    a prisoner's dilemma (Yusuf 2025, p. 4). To change the outcome, the payoffs must change.</div>
+
+  <div class="panel viz-root scope-catgap" style="left:40px; width:720px">
+    <div class="hd"><div class="eb">Climate Action Tracker, November 2025</div>
+      <div class="ph">Pledges and policies fall far short of the 1.5°C path</div>
+      <div style="font-size:14px; color:var(--muted); margin-top:4px">Global greenhouse gas emissions, GtCO₂e a year</div></div>
+    <svg id="catGapChart" viewBox="0 0 900 430" width="668" height="319" style="position:absolute; left:20px; top:110px; overflow:visible"></svg>
+    <div class="lg"><span><i style="background:var(--ink)"></i>Historical</span><span><i style="background:var(--accent)"></i>Current policies</span>
+      <span><i style="background:var(--ochre)"></i>Pledges and targets</span><span><i style="background:var(--slate)"></i>1.5°C compatible</span>
+      </div>
+    <div class="why">
+      <div><b>31–37 Gt</b>Gap in 2035 between current policies and the 1.5°C path (bars at right).</div>
+      <div><b>2.6% vs 43%</b>Cut from 2019 levels under all national pledges, against the 43% needed (UNEP 2024, cited p. 3).</div>
+    </div>
+  </div>
+
+  <div class="panel" style="left:784px; width:776px">
+    <div class="hd"><div class="eb" style="color:var(--accent)">A way out: Yusuf (2025), Fig. 1</div>
+      <div class="ph">Map policies by climate relevance and by development urgency</div></div>
+    <div class="ax" style="left:26px; top:116px; width:104px">High development priority ↑</div>
+    <div class="ax" style="left:26px; top:426px; width:104px">Low development priority</div>
+    <div class="ax" style="left:140px; top:466px">Low climate integration</div>
+    <div class="ax" style="left:580px; top:466px; width:160px; text-align:right">Full integration →</div>
+    <div class="cell g1" style="left:140px; top:112px"><b>Development-focused priorities</b><span>High development priority, low climate relevance</span></div><div class="cell g2" style="left:342px; top:112px"><b>Balanced growth priorities</b><span>High development priority, moderate climate relevance</span></div><div class="cell g3" style="left:544px; top:112px"><b>Synergistic priorities</b><span>High development priority, high climate relevance</span><em class="tag">Energy subsidy reform + DPI</em></div><div class="cell g0" style="left:140px; top:230px"><b>Development-oriented areas</b><span>Moderate priority, low climate relevance</span></div><div class="cell g1" style="left:342px; top:230px"><b>Integrated progress areas</b><span>Moderate priority, moderate climate relevance</span></div><div class="cell g2" style="left:544px; top:230px"><b>Climate-driven opportunities</b><span>Moderate priority, high climate relevance</span></div><div class="cell g0" style="left:140px; top:348px"><b>Peripheral focus areas</b><span>Low priority, low climate relevance</span></div><div class="cell g0" style="left:342px; top:348px"><b>Potential co-benefit areas</b><span>Low priority, moderate climate relevance</span></div><div class="cell gcdm" style="left:544px; top:348px"><b>Climate-centric initiatives</b><span>Low priority, high climate relevance</span><em class="tag r">Typical of CDM projects</em></div>
+    <div class="notes">
+      <div><b>China and Vietnam</b> cut emissions mainly for domestic reasons: clean air, energy security and modernisation (pp. 4–5).</div>
+      <div><b>Climate-centric aid</b>, such as many CDM projects, puts host-country priorities second (p. 7).</div>
+    </div>
+    <div class="key">For Indonesia, energy subsidy reform made fair by DPI is a synergistic priority: fiscal space, protection of the poor, and lower emissions.</div>
+  </div>
+
+  <div class="foot">Sources: Yusuf, A.A. (2025), A climate-relevant development or development-relevant climate agenda? European Journal of Development Research, pp. 3–7, Fig. 1;
+    Climate Action Tracker (Climate Analytics and NewClimate Institute), Nov 2025 update, chart as redrawn in anshory1972.github.io/dataslide/beyondgrowth.html.
+    Placing energy subsidy reform in the matrix is this talk's example.</div>
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<script>(function(){var DATA={"historical": {"1990": 37.644227376348525, "1991": 38.56567686295878, "1992": 38.171228914194025, "1993": 37.886828570939954, "1994": 37.91487580697131, "1995": 38.64767175214605, "1996": 39.50953109673045, "1997": 42.35285028507404, "1998": 40.09567225777068, "1999": 39.839589501809776, "2000": 41.75170738716686, "2001": 41.59903942361897, "2002": 41.91205845129364, "2003": 43.21706633726343, "2004": 44.15318548574087, "2005": 45.0866559308481, "2006": 46.2148821969909, "2007": 47.17285527427322, "2008": 47.83937586924711, "2009": 47.29679707169551, "2010": 49.08578286188633, "2011": 50.51128381384099, "2012": 51.031945966584814, "2013": 51.454216243964964, "2014": 51.793299342495914, "2015": 52.21974787432683, "2016": 52.47712798605716, "2017": 53.390253158536076, "2018": 54.15229233406717, "2019": 54.16872086811085, "2020": 52.04280635968361, "2021": 54.14059108643923, "2022": 54.83775277131783, "2023": 55.59171359147483}, "policy_high": {"2023": 55.59171359147483, "2024": 56.42786869685873, "2025": 57.065764314223614, "2026": 57.53704932588091, "2027": 58.00572779841425, "2028": 58.33205809540525, "2029": 58.73507148701444, "2030": 59.051822503311165, "2031": 58.768465805570735, "2032": 58.55335248354951, "2033": 58.222158794811364, "2034": 57.94641945504618, "2035": 57.64813012514783}, "policy_low": {"2023": 55.58665896363592, "2024": 56.304979496889175, "2025": 56.41487200396346, "2026": 56.380089140543184, "2027": 56.342489975968185, "2028": 56.21121124713836, "2029": 56.08898518502754, "2030": 55.944820063190974, "2031": 55.215305824134624, "2032": 54.51428079057578, "2033": 53.802888241925714, "2034": 53.09577782655996, "2035": 52.38469770527068}, "pledge_high": {"2023": 55.52162298284935, "2024": 55.70082274009505, "2025": 55.8345822821157, "2026": 55.95556313135812, "2027": 56.19744531783271, "2028": 56.472042187609865, "2029": 56.63336896369865, "2030": 56.66505136769384, "2031": 55.84404499694613, "2032": 54.92246307725017, "2033": 54.11015259213913, "2034": 53.324837754418596, "2035": 52.49965446584985}, "pledge_low": {"2023": 55.4841400878147, "2024": 55.28814757059368, "2025": 54.854590441670446, "2026": 54.573304344313144, "2027": 54.29530314434163, "2028": 53.943574294720264, "2029": 53.49976783085972, "2030": 53.04038223243915, "2031": 52.114545806575094, "2032": 50.97361683187832, "2033": 49.85009899278011, "2034": 48.72719463718272, "2035": 47.56475911419372}, "c15_high": {"2020": 53.65, "2021": 50.87, "2022": 48.09, "2023": 45.32, "2024": 42.54, "2025": 39.76, "2026": 37.83, "2027": 35.9, "2028": 33.97, "2029": 32.04, "2030": 30.11, "2031": 28.82, "2032": 27.52, "2033": 26.23, "2034": 24.93, "2035": 23.64}, "c15_median": {"2020": 52.49, "2021": 49.63, "2022": 46.77, "2023": 43.91, "2024": 41.05, "2025": 38.19, "2026": 36, "2027": 33.8, "2028": 31.6, "2029": 29.4, "2030": 27.2, "2031": 25.98, "2032": 24.76, "2033": 23.54, "2034": 22.32, "2035": 21.1}, "c15_low": {"2020": 52, "2021": 48.99, "2022": 45.98, "2023": 42.97, "2024": 39.96, "2025": 36.95, "2026": 34.59, "2027": 32.24, "2028": 29.88, "2029": 27.53, "2030": 25.18, "2031": 23.95, "2032": 22.72, "2033": 21.49, "2034": 20.27, "2035": 19.04}};var svgNS="http://www.w3.org/2000/svg";function el(t,a){var e=document.createElementNS(svgNS,t);for(var k in a)e.setAttribute(k,a[k]);return e;}var rs=getComputedStyle(document.querySelector(".viz-root.scope-catgap"));var gridColor=rs.getPropertyValue("--grid").trim();var baseline=rs.getPropertyValue("--baseline").trim();var muted=rs.getPropertyValue("--muted").trim();var ink=rs.getPropertyValue("--text-primary").trim();var policyColor=rs.getPropertyValue("--c1").trim();var pledgeColor=rs.getPropertyValue("--c4").trim();var c15Color=rs.getPropertyValue("--c2").trim();var W=900,H=430,M={top:24,bottom:50,left:44};var plotRight=560,barsLeft=716;var plotW=plotRight-M.left,plotH=H-M.top-M.bottom;var xMin=1990,xMax=2035,yMin=18,yMax=60;function xScale(v){return M.left+((v-xMin)/(xMax-xMin))*plotW;}function yScale(v){return M.top+plotH-((v-yMin)/(yMax-yMin))*plotH;}var svg=document.getElementById("catGapChart");for(var i=0;i<=4;i++){var v=20+i*10,y=yScale(v);svg.appendChild(el("line",{x1:M.left,x2:plotRight,y1:y,y2:y,stroke:gridColor,"stroke-width":1}));var t=el("text",{x:M.left-7,y:y+4,"text-anchor":"end","font-size":16,fill:muted,"font-family":"system-ui, sans-serif"});t.textContent=v.toFixed(0);svg.appendChild(t);}for(var yr=1990;yr<=xMax;yr+=5){var x=xScale(yr);var t2=el("text",{x:x,y:H-M.bottom+18,"text-anchor":"middle","font-size":16,fill:muted,"font-family":"system-ui, sans-serif"});t2.textContent=yr;svg.appendChild(t2);}svg.appendChild(el("line",{x1:M.left,x2:M.left,y1:M.top,y2:M.top+plotH,stroke:baseline,"stroke-width":1}));function band(hiKey,loKey,color,opac){var years=Object.keys(DATA[hiKey]).map(Number).sort(function(a,b){return a-b;});var d="";years.forEach(function(yr,j){d+=(j===0?"M":"L")+" "+xScale(yr).toFixed(1)+" "+yScale(DATA[hiKey][yr]).toFixed(1)+" ";});for(var j2=years.length-1;j2>=0;j2--){var yr2=years[j2];d+="L "+xScale(yr2).toFixed(1)+" "+yScale(DATA[loKey][yr2]).toFixed(1)+" ";}d+="Z";svg.appendChild(el("path",{d:d,fill:color,opacity:opac,stroke:"none"}));}band("policy_high","policy_low",policyColor,0.28);band("pledge_high","pledge_low",pledgeColor,0.30);band("c15_high","c15_low",c15Color,0.22);function line(key,color,dashed,width){var years=Object.keys(DATA[key]).map(Number).sort(function(a,b){return a-b;});var d=years.map(function(yr,j){return (j===0?"M":"L")+" "+xScale(yr).toFixed(1)+" "+yScale(DATA[key][yr]).toFixed(1);}).join(" ");var attrs={d:d,fill:"none",stroke:color,"stroke-width":width};if(dashed)attrs["stroke-dasharray"]="5,4";svg.appendChild(el("path",attrs));}line("c15_median",c15Color,true,2);line("historical",ink,false,2.4);var lastYr=2035;var labelTargets=[{name:"Current policies",color:policyColor,y:yScale(DATA.policy_high[lastYr])},{name:"Pledges & targets",color:pledgeColor,y:yScale(DATA.pledge_high[lastYr])},{name:"1.5\u00b0C compatible",color:c15Color,y:yScale(DATA.c15_median[lastYr])}];labelTargets.sort(function(a,b){return a.y-b.y;});var minGap=19;for(var k=1;k<labelTargets.length;k++){if(labelTargets[k].y-labelTargets[k-1].y<minGap)labelTargets[k].y=labelTargets[k-1].y+minGap;}labelTargets.forEach(function(t3){var lab=el("text",{x:xScale(lastYr)+8,y:t3.y+4,"text-anchor":"start","font-size":17,"font-weight":700,fill:t3.color,"font-family":"system-ui, sans-serif"});lab.textContent=t3.name;svg.appendChild(lab);});var pledgeMed2035=(DATA.pledge_high[2035]+DATA.pledge_low[2035])/2;var policyMed2035=(DATA.policy_high[2035]+DATA.policy_low[2035])/2;var c15Med2035=DATA.c15_median[2035];svg.appendChild(el("line",{x1:barsLeft-14,x2:W-8,y1:yScale(c15Med2035),y2:yScale(c15Med2035),stroke:c15Color,"stroke-width":1.5,"stroke-dasharray":"4,3",opacity:0.75}));function gapBar(x,w,topVal,botVal,color,rangeLabel,captionLabel){var yTop=yScale(topVal),yBot=yScale(botVal);svg.appendChild(el("rect",{x:x,y:yTop,width:w,height:(yBot-yTop),fill:color,opacity:0.55,rx:3}));var lab=el("text",{x:x+w/2,y:yTop-9,"text-anchor":"middle","font-size":20,"font-weight":700,fill:color,"font-family":"system-ui, sans-serif"});lab.textContent=rangeLabel;svg.appendChild(lab);var words=captionLabel.split(" ");words.forEach(function(word,wi){var capt=el("text",{x:x+w/2,y:H-M.bottom+18+wi*17,"text-anchor":"middle","font-size":16,"font-weight":600,fill:muted,"font-family":"system-ui, sans-serif"});capt.textContent=word;svg.appendChild(capt);});}gapBar(barsLeft,68,pledgeMed2035,c15Med2035,pledgeColor,"26\u201331","Target gap");gapBar(barsLeft+98,68,policyMed2035,c15Med2035,policyColor,"31\u201337","Implementation gap");})();</script>
+<script id="deck-nav">
+  document.addEventListener('keydown', e => {
+    const prev = '18.html', next = '20.html';
+    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+  });
+</script>
+</body>
+</html>
