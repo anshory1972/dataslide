@@ -12,6 +12,16 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script id="phone-redirect">
+  // phones (touch screen, short side under 600 px) go to the reading version, unless the visitor chose the slides
+  (function () {
+    var q = new URLSearchParams(location.search);
+    try { if (q.get('view') === 'slides') { sessionStorage.setItem('lpdpSlides', '1'); return; }
+          if (sessionStorage.getItem('lpdpSlides')) return; } catch (e) {}
+    var phone = matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 600;
+    if (phone) location.replace('read.html');
+  })();
+</script>
 <link rel="canonical" href="https://anshory1972.github.io/dataslide/lpdp2026/">
 <meta name="robots" content="noindex">
 <title>Making development more inclusive through digitalization of social protection</title>
