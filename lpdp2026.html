@@ -41,6 +41,8 @@
   .dot { stroke:var(--surface); stroke-width:3; opacity:0; }
   .trail { stroke-width:6; stroke-linecap:round; }
   .tp { fill:none; stroke:var(--ink); stroke-width:1.4; opacity:0; transition:opacity .4s; }
+  .tpg { fill:none; stroke:var(--ink); stroke-width:1.3; stroke-dasharray:1.5 4; stroke-linecap:round; opacity:0; transition:opacity .4s; }
+  body.s3 .tpg { opacity:.75; }
   .tpl { fill:var(--muted); font: italic 16px Georgia,serif; opacity:0; transition:opacity .4s; }
   .note { fill:var(--ink); font: 24px Georgia,serif; opacity:0; transition:opacity .5s; }
   .note b { font-weight:700; }
@@ -168,8 +170,16 @@ const t3 = el('text', {class:'clab', x:ex-28, y:ey+14, 'text-anchor':'end'}, cv)
 const mk = document.getElementById('marks');
 const mark = (pt, cls, txt, dx, dy, a) => { el('circle', {class:'tp '+cls, cx:pt[0], cy:pt[1], r:13}, mk);
   const t = el('text', {class:'tpl '+cls, x:pt[0]+dx, y:pt[1]+dy, 'text-anchor':a}, mk); t.textContent = txt; };
-mark(q1(YT), 'tp1', 'turning point', 20, 34, 'start');
+mark(q1(YT), 'tp1', 'turning point', 60, 34, 'start');
 mark(q3(YE), 'tp2', 'turning point', -24, 6, 'end');
+// connect each turning point through the four quadrants to the combined path
+[YT, YE].forEach(y => {
+  const P = [q1(y), q4(y), q3(y), q2(y)];
+  el('path', {class:'tpg', d:`M${P[0][0]},${P[0][1]} V${P[1][1]} H${P[2][0]} V${P[3][1]} H${P[0][0]}`}, mk);
+  [P[1], P[3]].forEach(pt => el('circle', {class:'tp tp2', cx:pt[0], cy:pt[1], r:9}, mk));
+});
+{ const [x, y] = q2(YT); const t = el('text', {class:'tpl tp2', x:x-18, y:y+40, 'text-anchor':'end'}, mk);
+  t.textContent = 'both turning points'; }
 
 // trail in the BOTH OUTCOMES quadrant: one short segment per income step
 const tr = document.getElementById('trail'), STEPS = 240, segs = [];
