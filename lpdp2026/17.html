@@ -87,12 +87,37 @@
     st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
   addEventListener('resize', fit); fit();
 </script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="16.html" class="" aria-label="Previous slide">&#8249;</a><a href="18.html" class="" aria-label="Next slide">&#8250;</a></div>
 <script id="deck-nav">
-  document.addEventListener('keydown', e => {
+  (function () {
     const prev = '16.html', next = '18.html';
-    if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
-    if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
-  });
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>
