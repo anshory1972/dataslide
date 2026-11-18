@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instrumental variable: does finance cause growth?</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f2f4fa; --surface:#ffffff; --ink:#0f1a36; --muted:#5a6483; --rule:#dde2ee; --grid:#e6e9f3;
+    --accent:#4f46e0; --slate:#0a8f7c; --amber:#ee9f27; --mid:#c3c9da; --tint:#edecfd; --band:#eef1f8; --takebg:#edecfd;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0b1124; --surface:#141b35; --ink:#eef0fa; --muted:#9aa3c0; --rule:#27304f; --grid:#212947;
+            --accent:#928bff; --slate:#3fd0b5; --amber:#f6b95a; --mid:#3b4365; --tint:#1b2046; --band:#182040; --takebg:#1b2046; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink); font-family:var(--sans); overflow:hidden;
+           background-color:var(--paper);
+           background-image:radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 1px, transparent 1.3px); background-size:24px 24px; }
+  .stage svg text, .stage svg text.ser { font-family:var(--sans); }
+  .stage svg text.ser { font-weight:700; letter-spacing:-.01em; }
+  .stage em { font-style:normal; font-weight:700; }
+  h1 { position:absolute; left:40px; top:26px; width:1290px; margin:0; font:800 39px/1.15 var(--sans); letter-spacing:-.022em; }
+  h1 em { font-weight:800; color:inherit; padding:0 .1em; margin:0 -.04em;
+          background:linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 62%, transparent) 58%, color-mix(in srgb, var(--amber) 62%, transparent) 94%, transparent 94%); }
+  .sub { position:absolute; left:40px; top:84px; width:1400px; font:400 22px/1.3 var(--sans); color:var(--muted); }
+  .eye { position:absolute; right:40px; top:30px; font:700 13px/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+         color:var(--paper); background:var(--ink); padding:9px 15px; border-radius:99px; }
+  .bar { position:absolute; left:0; top:0; width:1600px; height:7px; background:var(--rule); }
+  .bar i { display:block; height:7px; background:linear-gradient(90deg, var(--accent), var(--slate)); border-radius:0 7px 7px 0; }
+  .pg { position:absolute; right:40px; top:846px; font:700 14px/1 var(--sans); color:var(--muted); letter-spacing:.06em; }
+  .panel { position:absolute; background:var(--surface); border:0 solid transparent; border-radius:20px;
+           box-shadow:0 1px 2px rgba(15,26,54,.07), 0 10px 28px rgba(15,26,54,.07); }
+  .abs { position:absolute; }
+  .ph { position:absolute; font:700 26px/1.2 var(--sans); letter-spacing:-.012em; }
+  .ph em { color:var(--accent); }
+  .ph small { display:block; margin-top:6px; font:400 17px/1.35 var(--sans); color:var(--muted); letter-spacing:0; }
+  .kick { font:700 13px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .big { font:800 64px/1 var(--sans); letter-spacing:-.035em; color:var(--accent); }
+  .big.b { color:var(--slate); } .big.a { color:var(--amber); }
+  .t { font-size:20px; line-height:1.35; }
+  .t.m { color:var(--muted); }
+  .t b { font-weight:700; }
+  .take { position:absolute; padding:16px 22px 16px 28px; border-radius:16px; background:var(--takebg); color:var(--ink); font-size:22px; line-height:1.35;
+          border-left:8px solid var(--accent); }
+  .take b { font-weight:700; }
+  .foot { position:absolute; left:40px; right:150px; top:838px; font-size:13px; line-height:1.4; color:var(--muted); }
+  .chip { display:inline-block; padding:5px 12px; border-radius:99px; background:var(--surface); font-size:16px; margin:0 6px 6px 0; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1>Instrumental variable: does <em>finance</em> cause growth?</h1>
+  <div class="sub">A cousin of the institutions paper, with law and accounting in the chain.</div>
+  <div class="eye">2 · Why credibility</div>
+<div class="panel" style="left:40px; top:150px; width:400px; height:600px; "></div><div class="abs kick" style="left:66px; top:172px; width:350px; color:var(--slate)">1 · The question</div><div class="abs" style="left:66px; top:202px; width:350px; font:700 30px/1.2 var(--sans); letter-spacing:-.015em">Do banks <em style='color:var(--accent)'>cause</em> growth, or does growth create banks?</div><div class="abs t" style="left:66px; top:388px; width:350px; font-size:21px; color:var(--muted)">Countries with deeper banking systems grow faster. If finance is a cause, better law and accounting can raise growth.</div><div class="abs big b" style="left:66px; top:568px; width:350px; font-size:60px">71</div><div class="abs t" style="left:66px; top:640px; width:350px; font-size:19px; color:var(--muted)">countries, averages for 1960 to 1995</div><div class="panel" style="left:460px; top:150px; width:660px; height:600px; border:2.5px solid var(--accent)"></div><div class="abs kick" style="left:486px; top:172px; width:600px; color:var(--accent)">2 · The design</div><div class="abs t" style="left:486px; top:200px; width:610px; font-size:20px; color:var(--muted)">The same idea as settler deaths: history decided part of X.</div><svg class="abs" style="left:480px; top:250px; width:620px; height:490px; overflow:visible" viewBox="0 0 620 490" role="img" aria-label="Design: legal origin, received through colonisation, shapes financial rules and banking depth; it is used as an instrument for financial development in a growth regression."><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs><rect x="90" y="0" width="400" height="66" rx="12" fill="var(--tint)" stroke="var(--amber)" stroke-width="2.5"/><text x="290.0" y="29.0" font-size="22" fill="var(--ink)" text-anchor="middle" font-weight="400" class="ser" >Legal tradition of a country</text><text x="290.0" y="55.0" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >brought by colonisers or conquest, long ago</text><rect x="6" y="92" width="134" height="40" rx="20" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/><text x="73" y="118" font-size="18" fill="var(--ink)" text-anchor="middle" font-weight="400" >English</text><rect x="152" y="92" width="134" height="40" rx="20" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/><text x="219" y="118" font-size="18" fill="var(--ink)" text-anchor="middle" font-weight="400" >French</text><rect x="298" y="92" width="134" height="40" rx="20" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/><text x="365" y="118" font-size="18" fill="var(--ink)" text-anchor="middle" font-weight="400" >German</text><rect x="444" y="92" width="134" height="40" rx="20" fill="var(--surface)" stroke="var(--amber)" stroke-width="2"/><text x="511" y="118" font-size="18" fill="var(--ink)" text-anchor="middle" font-weight="400" >Scandinavian</text><line x1="290.0" y1="68.0" x2="290.0" y2="88.0" stroke="var(--muted)" stroke-width="3" marker-end="url(#ar)"/><line x1="290.0" y1="136.0" x2="290.0" y2="158.0" stroke="var(--muted)" stroke-width="3" marker-end="url(#ar)"/><rect x="40" y="162" width="500" height="70" rx="12" fill="var(--surface)" stroke="var(--rule)" stroke-width="2"/><text x="290.0" y="193.0" font-size="22" fill="var(--ink)" text-anchor="middle" font-weight="400" class="ser" >Rules for finance</text><text x="290.0" y="219.0" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >creditor rights, contract enforcement, accounting standards</text><line x1="290.0" y1="236.0" x2="290.0" y2="258.0" stroke="var(--muted)" stroke-width="3" marker-end="url(#ar)"/><rect x="110" y="262" width="360" height="62" rx="12" fill="var(--tint)" stroke="var(--accent)" stroke-width="2.5"/><text x="290.0" y="301.0" font-size="22" fill="var(--ink)" text-anchor="middle" font-weight="400" class="ser" >Depth of the banking system</text><line x1="290.0" y1="328.0" x2="290.0" y2="350.0" stroke="var(--muted)" stroke-width="3" marker-end="url(#ar)"/><rect x="110" y="354" width="360" height="62" rx="12" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.5"/><text x="290.0" y="393.0" font-size="22" fill="var(--ink)" text-anchor="middle" font-weight="400" class="ser" >Economic growth, 1960–1995</text><path d="M494 30 C 650 40, 660 340, 474 388" fill="none" stroke="var(--mid)" stroke-width="3" stroke-dasharray="7 7"/><text x="606" y="206" font-size="30" fill="var(--amber)" text-anchor="middle" font-weight="700" >✕</text><text x="290" y="446" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >Assumed: an old legal tradition affects growth</text><text x="290" y="470" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >only through finance.</text></svg><div class="panel" style="left:1140px; top:150px; width:420px; height:600px; "></div><div class="abs kick" style="left:1166px; top:172px; width:370px; color:var(--slate)">3 · The result</div><svg class="abs" style="left:1160px; top:210px; width:380px; height:400px; overflow:visible" viewBox="0 0 380 400" role="img" aria-label=""><text x="190" y="26" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >Growth of income per person,</text><text x="190" y="48" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >per year</text><text x="190" y="150" font-size="110" fill="var(--accent)" text-anchor="middle" font-weight="400" class="ser" >+1</text><text x="190" y="196" font-size="22" fill="var(--ink)" text-anchor="middle" font-weight="400" >percentage point</text><line x1="40.0" y1="232.0" x2="340.0" y2="232.0" stroke="var(--grid)" stroke-width="1.5" /><text x="190" y="268" font-size="19" fill="var(--muted)" text-anchor="middle" font-weight="400" >if Argentina had the banking depth</text><text x="190" y="292" font-size="19" fill="var(--muted)" text-anchor="middle" font-weight="400" >of an average developing country</text><text x="190" y="344" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >Law and accounting rules explain</text><text x="190" y="366" font-size="18" fill="var(--muted)" text-anchor="middle" font-weight="400" >much of the difference in banking depth.</text></svg><div class="abs" style="left:1166px; top:624px; width:370px; font:700 24px/1.25 var(--sans); letter-spacing:-.015em">The part of finance that comes from legal tradition goes with <em style='color:var(--accent)'>faster</em> growth.</div>
+  <div class="foot">Source: Levine, Loayza and Beck (2000), “Financial intermediation and growth: Causality and causes”, <i>Journal of Monetary Economics</i> 46(1): 31–77, abstract, introduction and section 2.2. Legal origin follows La Porta and co-authors (1997, 1998).</div>
+  <div class="bar"><i style="width:54.8%"></i></div><div class="pg">17 / 31</div>
+
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="16.html" class="" aria-label="Previous slide">&#8249;</a><a href="18.html" class="" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '16.html', next = '18.html';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

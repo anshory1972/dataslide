@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How do we know? Research methods in the era of data and AI</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f2f4fa; --surface:#ffffff; --ink:#0f1a36; --muted:#5a6483; --rule:#dde2ee; --grid:#e6e9f3;
+    --accent:#4f46e0; --slate:#0a8f7c; --amber:#ee9f27; --mid:#c3c9da; --tint:#edecfd; --band:#eef1f8; --takebg:#edecfd;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0b1124; --surface:#141b35; --ink:#eef0fa; --muted:#9aa3c0; --rule:#27304f; --grid:#212947;
+            --accent:#928bff; --slate:#3fd0b5; --amber:#f6b95a; --mid:#3b4365; --tint:#1b2046; --band:#182040; --takebg:#1b2046; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink); font-family:var(--sans); overflow:hidden;
+           background-color:var(--paper);
+           background-image:radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 1px, transparent 1.3px); background-size:24px 24px; }
+  .stage svg text, .stage svg text.ser { font-family:var(--sans); }
+  .stage svg text.ser { font-weight:700; letter-spacing:-.01em; }
+  .stage em { font-style:normal; font-weight:700; }
+  h1 { position:absolute; left:40px; top:26px; width:1290px; margin:0; font:800 39px/1.15 var(--sans); letter-spacing:-.022em; }
+  h1 em { font-weight:800; color:inherit; padding:0 .1em; margin:0 -.04em;
+          background:linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 62%, transparent) 58%, color-mix(in srgb, var(--amber) 62%, transparent) 94%, transparent 94%); }
+  .sub { position:absolute; left:40px; top:84px; width:1400px; font:400 22px/1.3 var(--sans); color:var(--muted); }
+  .eye { position:absolute; right:40px; top:30px; font:700 13px/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+         color:var(--paper); background:var(--ink); padding:9px 15px; border-radius:99px; }
+  .bar { position:absolute; left:0; top:0; width:1600px; height:7px; background:var(--rule); }
+  .bar i { display:block; height:7px; background:linear-gradient(90deg, var(--accent), var(--slate)); border-radius:0 7px 7px 0; }
+  .pg { position:absolute; right:40px; top:846px; font:700 14px/1 var(--sans); color:var(--muted); letter-spacing:.06em; }
+  .panel { position:absolute; background:var(--surface); border:0 solid transparent; border-radius:20px;
+           box-shadow:0 1px 2px rgba(15,26,54,.07), 0 10px 28px rgba(15,26,54,.07); }
+  .abs { position:absolute; }
+  .ph { position:absolute; font:700 26px/1.2 var(--sans); letter-spacing:-.012em; }
+  .ph em { color:var(--accent); }
+  .ph small { display:block; margin-top:6px; font:400 17px/1.35 var(--sans); color:var(--muted); letter-spacing:0; }
+  .kick { font:700 13px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .big { font:800 64px/1 var(--sans); letter-spacing:-.035em; color:var(--accent); }
+  .big.b { color:var(--slate); } .big.a { color:var(--amber); }
+  .t { font-size:20px; line-height:1.35; }
+  .t.m { color:var(--muted); }
+  .t b { font-weight:700; }
+  .take { position:absolute; padding:16px 22px 16px 28px; border-radius:16px; background:var(--takebg); color:var(--ink); font-size:22px; line-height:1.35;
+          border-left:8px solid var(--accent); }
+  .take b { font-weight:700; }
+  .foot { position:absolute; left:40px; right:150px; top:838px; font-size:13px; line-height:1.4; color:var(--muted); }
+  .chip { display:inline-block; padding:5px 12px; border-radius:99px; background:var(--surface); font-size:16px; margin:0 6px 6px 0; }
+
+  .stage { background-image:none; background:#0f1a36; color:#f4f5fb; }
+  .art { position:absolute; left:700px; top:0; width:900px; height:900px; background:url('cover-97f91284.jpg') 50% 50% / cover no-repeat; }
+  .art::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg, #0f1a36 0%, rgba(15,26,54,.72) 22%, rgba(15,26,54,0) 58%); }
+  .cbar { position:absolute; left:0; top:0; width:14px; height:900px; background:linear-gradient(180deg, #4f46e0, #0a8f7c 55%, #ee9f27); }
+  .event { position:absolute; left:84px; top:92px; width:700px; font:700 15px/1.6 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#b9b5ff; }
+  h1.c { left:84px; top:176px; width:760px; font:800 74px/1.03 var(--sans); letter-spacing:-.035em; color:#ffffff; }
+  h1.c em { background:none; color:#f6b95a; padding:0; margin:0; }
+  .lede { position:absolute; left:84px; top:300px; width:640px; font:400 27px/1.3 var(--sans); color:#d7dbee; }
+  .theme { position:absolute; left:84px; top:404px; width:640px; font:400 17px/1.45 var(--sans); color:#98a2c6; }
+  .who { position:absolute; left:84px; top:628px; width:660px; }
+  .who b { display:block; font:700 30px var(--sans); letter-spacing:-.015em; color:#ffffff; }
+  .who span { display:block; font-size:17px; line-height:1.5; color:#b6bdd8; margin-top:8px; }
+  .when { position:absolute; left:84px; top:782px; width:520px; font-size:16px; line-height:1.55; color:#98a2c6; }
+  .when b { color:#ffffff; font-weight:700; }
+  .pdf { position:absolute; left:560px; top:792px; font:700 14px/1 var(--sans); letter-spacing:.1em; text-transform:uppercase; text-decoration:none;
+         color:#0f1a36; background:#f6b95a; padding:12px 18px; border-radius:99px; }
+  .credit { position:absolute; right:16px; bottom:12px; font-size:12px; color:rgba(255,255,255,.75); }
+  @media print { .pdf { display:none; } }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <div class="art" role="img" aria-label="AI-generated illustration for the cover"></div>
+  <div class="cbar"></div>
+  <div class="credit">AI-generated illustration</div>
+  <div class="event">Mini Workshop Metodologi Riset<br>Bursa Efek Indonesia · KPEI · KSEI</div>
+  <h1 class="c">How do we <em>know</em>?</h1>
+  <div class="lede">Research methods in the era of data and AI: from correlation to a fair comparison.</div>
+  <div class="theme">Topic given: “Perkembangan Metodologi Riset Ekonomi di Era Data dan Digitalisasi”</div>
+  <div class="who"><b>Arief Anshory Yusuf</b>
+    <span>Member, National Economic Council (Dewan Ekonomi Nasional)<br>Professor of Economics, Universitas Padjadjaran</span></div>
+  <div class="when"><b>Thursday, 19 November 2026</b><br>Gedung Bursa Efek Indonesia, Jakarta</div>
+  <a class="pdf" href="Yusuf_BEI2026_research_methods-a3e22fb0.pdf">Download PDF</a>
+
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="" class="off" aria-label="Previous slide">&#8249;</a><a href="02.html" class="" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '', next = '02.html';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
