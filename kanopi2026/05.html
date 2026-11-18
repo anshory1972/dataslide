@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why targeting misses, and how DPI can help</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#209993; --slate:#4567a8; --amber:#ce9a43; --tint:#f1ede6; --stint:#eef0f2; --takebg:#ece6da;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+            --accent:#2fb3ac; --slate:#7f9fd8; --amber:#e0b060; --tint:#1d2222; --stint:#1c2230; --takebg:#24221f; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font: 400 40px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .sub { position:absolute; left:40px; top:80px; font: italic 22px Georgia,serif; color:var(--muted); }
+
+  .panel { position:absolute; top:126px; height:690px; background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:20px 26px; }
+  #why { left:40px; width:740px; }
+  #dpi { left:804px; width:756px; }
+  .ph { font: 400 26px/1.2 Georgia,serif; margin:0 0 4px; }
+  .ph em { color:var(--accent); }
+  .ps { font-size:16px; color:var(--muted); margin:0 0 14px; }
+
+  /* three causes */
+  .cause { display:grid; grid-template-columns:44px 1fr; column-gap:14px; padding:12px 0; border-top:1px solid var(--rule); }
+  .num { width:40px; height:40px; border-radius:50%; background:var(--tint); display:flex; align-items:center; justify-content:center;
+         font: 700 20px system-ui,sans-serif; color:var(--ink); }
+  .cause h3 { margin:2px 0 4px; font-size:19px; display:flex; align-items:center; gap:10px; }
+  .tag { font: 700 12px system-ui,sans-serif; letter-spacing:.08em; padding:3px 8px; border-radius:4px; color:#fff; }
+  .tag.dpi { background:var(--slate); } .tag.bud { background:var(--amber); color:#1a1a1a; }
+  .cause p { margin:0; font-size:15.5px; line-height:1.42; }
+  .cause p b { font-weight:600; }
+  .pmt { display:grid; grid-template-columns:1fr 210px; column-gap:16px; margin-top:6px; }
+  .eq { font: italic 21px Georgia,serif; margin:4px 0 6px; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .chips span { font-size:14px; padding:3px 9px; border-radius:12px; background:var(--tint); }
+  .mis div { display:flex; align-items:baseline; gap:10px; padding:5px 0; border-bottom:1px solid var(--rule); font-size:15px; }
+  .mis b { font-size:26px; color:var(--accent); min-width:62px; text-align:right; }
+
+  /* DPI steps */
+  .steps { list-style:none; margin:0; padding:0; }
+  .steps li { display:grid; grid-template-columns:40px 182px 1fr; column-gap:14px; align-items:center; padding:9px 0; border-top:1px solid var(--rule); }
+  .steps .n { width:34px; height:34px; border-radius:50%; background:var(--slate); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:17px; }
+  .steps .what b { display:block; font-size:18px; }
+  .steps .what span { font-size:14.5px; color:var(--muted); line-height:1.3; display:block; }
+  .steps .gain { font-size:15.5px; line-height:1.38; padding-left:14px; border-left:3px solid var(--accent); }
+  .src { display:flex; flex-wrap:wrap; gap:5px; margin-top:4px; }
+  .src span { font: 600 12.5px system-ui,sans-serif; padding:2px 7px; border-radius:4px; background:var(--stint); color:var(--slate); }
+
+  .take { position:absolute; left:804px; top:704px; width:756px; height:112px; border-radius:0 0 14px 14px; padding:16px 26px;
+          background:var(--takebg); border:1px solid var(--rule); display:flex; gap:22px; align-items:center; }
+  .take .big { font: 400 40px/1 Georgia,serif; color:var(--ink); white-space:nowrap; }
+  .take b { display:block; font-size:18px; margin-bottom:3px; }
+  .take span { font-size:15px; line-height:1.4; }
+  .foot { position:absolute; left:40px; right:40px; top:828px; font-size:13px; line-height:1.45; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1>Why targeting <em>misses</em>, and how DPI can help</h1>
+  <div class="sub">Three causes of error. Digital public infrastructure (DPI) acts on two of them.</div>
+
+  <div class="panel" id="why">
+    <div class="ph">Why targeting is <em>inaccurate</em></div>
+    <div class="ps">Exclusion and inclusion errors have three main causes.</div>
+
+    <div class="cause"><div class="num">1</div><div>
+      <h3>The quota is smaller than the eligible group <span class="tag bud">BUDGET</span></h3>
+      <p>The number of places is set before eligibility. <b>PKH:</b> about 20 m households eligible, 10 m places. <b>Sembako:</b> 26 m eligible, 18.3 m places. Households left out count as exclusion error.</p></div></div>
+
+    <div class="cause"><div class="num">2</div><div>
+      <h3>The process is slow and leaks <span class="tag dpi">DPI</span></h3>
+      <p>Nomination through village meetings, verification by many offices, payment problems, hard-to-reach areas, leakage and elite capture of who gets listed.</p></div></div>
+
+    <div class="cause"><div class="num">3</div><div>
+      <h3>The formula puts households in the wrong decile <span class="tag dpi">DPI</span></h3>
+      <div class="pmt"><div>
+        <p>Welfare <i>y</i> is not observed. A proxy means test (PMT) predicts it from household characteristics <i>x</i>:</p>
+        <div class="eq">y = f(x) + e</div>
+        <p><i>x</i> is old (Regsosek 2022) and often inaccurate. The error <i>e</i> moves households across the cut-off:</p>
+        <div class="chips"><span>online loans</span><span>illness</span><span>disasters</span><span>remittances</span><span>inheritance</span><span>accidents</span><span>remote location</span></div>
+      </div>
+      <div class="mis">
+        <div><b>70%</b>misplaced among 10 deciles</div>
+        <div><b>50%</b>among 5 groups</div>
+        <div><b>20%</b>between 2 groups</div>
+      </div></div></div></div>
+    <div style="position:absolute; left:26px; right:26px; bottom:20px; padding:14px 18px; border-radius:10px; background:var(--takebg); font-size:16px; line-height:1.4">
+      <b>Cause 1 needs a budget decision, not technology:</b> the number of places should follow eligibility.</div>
+  </div>
+
+  <div class="panel" id="dpi">
+    <div class="ph">How <em>DPI</em> helps, from registration to payment</div>
+    <div class="ps">One record and one process for every programme.</div>
+    <ul class="steps">
+      <li><div class="n">1</div><div class="what"><b>Register</b><span>on demand, alone or with an agent</span></div>
+        <div class="gain">Households apply when their situation changes, not only at a census.</div></li>
+      <li><div class="n">2</div><div class="what"><b>Verify</b><span>through SPLP data exchange</span></div>
+        <div class="gain">Answers checked against administrative data.
+          <div class="src"><span>Dukcapil</span><span>PLN</span><span>BPJS</span><span>ATR/BPN</span><span>Korlantas</span><span>SLIK/OJK</span></div></div></li>
+      <li><div class="n">3</div><div class="what"><b>Update</b><span>DTSEN becomes dynamic</span></div>
+        <div class="gain">The decile is recomputed from current data, so <i>x</i> is no longer old.</div></li>
+      <li><div class="n">4</div><div class="what"><b>Rank</b><span>short formula, 8–9 variables</span></div>
+        <div class="gain">Variables that can be verified, so fewer households are misclassified.</div></li>
+      <li><div class="n">5</div><div class="what"><b>Decide and appeal</b><span>one eligibility record</span></div>
+        <div class="gain">A complaint corrects the record for every programme.</div></li>
+      <li><div class="n">6</div><div class="what"><b>Pay</b><span>G2P, to an account by NIK</span></div>
+        <div class="gain">Payment reaches the person named, and every transfer can be traced.</div></li>
+    </ul>
+  </div>
+  <div class="take"><span class="big">41.5% → 25.9%</span><div><b>Inclusion error with a short formula on administrative data</b>
+    <span>Compared with the current machine-learning PMT (simulation, bottom 40%).</span></div></div>
+
+  <div class="foot">Sources: quotas and the short-formula simulation, World Bank, 360 Targeting Review of Social Assistance (forthcoming), Susenas March 2025; PMT misplacement and causes, DEN; DPI process, DEN theory of change for DPI in social protection. Adapted from Yusuf, LPDP Career Monitoring, 18 November 2026.</div>
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="04.html" class="" aria-label="Previous slide">&#8249;</a><a href="06.html" class="" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '04.html', next = '06.html';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

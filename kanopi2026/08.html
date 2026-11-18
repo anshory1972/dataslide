@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refocus and integrate: subsidise people, not products</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f4f2ed; --surface:#fffdf9; --ink:#14161c; --muted:#6d6a63; --rule:#dcd8ce;
+    --accent:#209993; --slate:#4567a8; --amber:#ce9a43; --tint:#f1ede6; --stint:#eef0f2; --takebg:#ece6da; --track:#efebe3;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0f1013; --surface:#191a1e; --ink:#ece9e2; --muted:#9b978e; --rule:#2e3036;
+            --accent:#2fb3ac; --slate:#7f9fd8; --amber:#e0b060; --tint:#1d2222; --stint:#1c2230; --takebg:#24221f; --track:#24262b; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink);
+           font-family: system-ui,-apple-system,"Segoe UI",sans-serif; }
+  h1 { position:absolute; left:40px; top:26px; margin:0; font: 400 40px Georgia,"Iowan Old Style",serif; letter-spacing:-.01em; }
+  h1 em { color:var(--accent); }
+  .sub { position:absolute; left:40px; top:80px; font: italic 22px Georgia,serif; color:var(--muted); }
+
+  .panel { position:absolute; top:126px; height:600px; background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:20px 24px; }
+  #a { left:40px; width:492px; } #b { left:554px; width:492px; } #c { left:1068px; width:492px; }
+  .ph { font: 400 24px/1.2 Georgia,serif; margin:0 0 4px; }
+  .ph em { color:var(--accent); }
+  .ps { font-size:15.5px; color:var(--muted); margin:0 0 14px; line-height:1.35; }
+  .k { display:inline-block; width:13px; height:13px; border-radius:3px; vertical-align:-1px; margin-right:5px; }
+
+  /* horizontal bars */
+  .hb { margin:0 0 14px; }
+  .hb .lab { display:flex; justify-content:space-between; font-size:16px; margin-bottom:4px; }
+  .hb .lab b { font-size:20px; }
+  .hb .tr { position:relative; height:26px; background:var(--track); border-radius:4px; overflow:hidden; display:flex; }
+  .hb .tr i { display:block; height:100%; }
+  .hatch { background: repeating-linear-gradient(45deg, var(--amber) 0 4px, color-mix(in srgb, var(--amber) 35%, transparent) 4px 9px); }
+  .sep { border-top:1px dashed var(--rule); margin:16px 0 14px; }
+  .h4 { font: 700 13px system-ui,sans-serif; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); margin:6px 0 10px; }
+
+  /* error rows */
+  .er { display:grid; grid-template-columns:150px 1fr 44px; align-items:center; column-gap:10px; margin:0 0 9px; font-size:16px; }
+  .er .tr { height:22px; background:var(--track); border-radius:4px; overflow:hidden; }
+  .er .tr i { display:block; height:100%; }
+  .er b { font-size:19px; text-align:right; }
+  .er small { display:block; font-size:13px; color:var(--muted); }
+
+  /* steps */
+  .st { display:grid; grid-template-columns:36px 1fr; column-gap:12px; padding:9px 0; border-top:1px solid var(--rule); }
+  .st .n { width:32px; height:32px; border-radius:50%; background:var(--slate); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; }
+  .st b { display:block; font-size:17px; }
+  .st span { font-size:15px; line-height:1.38; color:var(--ink); }
+  .st.last .n { background:var(--accent); }
+  .stat { margin-top:12px; padding:12px 16px; border-radius:10px; background:var(--tint); display:flex; gap:14px; align-items:center; }
+  .stat .big { font: 400 36px/1 Georgia,serif; white-space:nowrap; }
+  .stat span { font-size:15px; line-height:1.38; }
+
+  .take { position:absolute; left:40px; top:740px; width:1520px; height:76px; border-radius:12px; padding:0 26px;
+          background:var(--takebg); border:1px solid var(--rule); display:flex; gap:18px; align-items:center; }
+  .take .ic { width:34px; height:34px; color:var(--slate); flex:0 0 34px; }
+  .take b { font-size:20px; } .take span { font-size:17px; }
+  .foot { position:absolute; left:40px; right:40px; top:828px; font-size:13px; line-height:1.45; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1><em>Refocus</em> and integrate: subsidise people, not products</h1>
+  <div class="sub">Indonesia has the money for social assistance. Most of it is spent on energy subsidies.</div>
+
+  <!-- A: spending -->
+  <div class="panel" id="a">
+    <div class="ph">Spending, <em>% of GDP</em></div>
+    <div class="ps"><span class="k" style="background:var(--accent)"></span>social assistance &nbsp; <span class="k" style="background:var(--amber)"></span>energy subsidies and compensation &nbsp; <span class="k" style="background:var(--slate)"></span>peers</div>
+    <div class="hb"><div class="lab"><span>Indonesia today</span><b>0.7%</b></div>
+      <div class="tr"><i style="width:23.3%; background:var(--accent)"></i></div></div>
+    <div class="hb"><div class="lab"><span>East Asia and Pacific</span><b>2.2%</b></div>
+      <div class="tr"><i style="width:73.3%; background:var(--slate)"></i></div></div>
+    <div class="hb"><div class="lab"><span>Upper-middle-income countries</span><b>2.0%</b></div>
+      <div class="tr"><i style="width:66.7%; background:var(--slate)"></i></div></div>
+    <div class="sep"></div>
+    <div class="hb"><div class="lab"><span>Indonesia, if energy subsidies<br>went to social assistance</span><b>2.4–2.7%</b></div>
+      <div class="tr"><i style="width:23.3%; background:var(--accent)"></i><i style="width:56.7%; background:var(--amber)"></i><i class="hatch" style="width:10%"></i></div></div>
+    <div class="stat" style="margin-top:22px"><span class="big">Rp277 T</span><span>a year in price subsidies (2026): 55% of the social protection budget, with no named recipient.</span></div>
+  </div>
+
+  <!-- B: errors -->
+  <div class="panel" id="b">
+    <div class="ph">The subsidy <em>leaks</em>, the transfer <em>misses</em></div>
+    <div class="ps">Per 100 households, Susenas March 2025.</div>
+    <div class="h4">Energy subsidies: recipients outside the target</div>
+    <div class="er"><span>LPG 3 kg</span><div class="tr"><i style="width:65%; background:var(--amber)"></i></div><b>65</b></div>
+    <div class="er"><span>Fuel (Pertalite)</span><div class="tr"><i style="width:67%; background:var(--amber)"></i></div><b>67</b></div>
+    <div class="er"><span>Electricity</span><div class="tr"><i style="width:63%; background:var(--amber)"></i></div><b>63</b></div>
+    <div class="sep"></div>
+    <div class="h4">Social assistance: target households missed</div>
+    <div class="er"><span>PKH</span><div class="tr"><i style="width:77%; background:var(--accent)"></i></div><b>77</b></div>
+    <div class="er"><span>BPNT (Sembako)</span><div class="tr"><i style="width:74%; background:var(--accent)"></i></div><b>74</b></div>
+    <div class="er"><span>PIP</span><div class="tr"><i style="width:82%; background:var(--accent)"></i></div><b>82</b></div>
+    <div class="er"><span>PBI JKN</span><div class="tr"><i style="width:43%; background:var(--accent)"></i></div><b>43</b></div>
+  </div>
+
+  <!-- C: reform path -->
+  <div class="panel" id="c">
+    <div class="ph">The reform path</div>
+    <div class="ps">Pay poor households directly and accurately first. Then move subsidies from products to people.</div>
+    <div class="st"><div class="n">1</div><div><b>DPI in place</b><span>Digital ID, data exchange (SPLP) and digital payments.</span></div></div>
+    <div class="st"><div class="n">2</div><div><b>Know who needs help</b><span>One dynamic registry; fewer exclusion and inclusion errors.</span></div></div>
+    <div class="st"><div class="n">3</div><div><b>Integrate the programmes</b><span>PKH, Sembako and PIP as one family benefit, one rule, one payment.</span></div></div>
+    <div class="st"><div class="n">4</div><div><b>Compensate directly</b><span>Cash by name to eligible households when energy prices change.</span></div></div>
+    <div class="st last"><div class="n">5</div><div><b>Reform energy subsidies</b><span>LPG 3 kg, fuel and electricity move towards cost; the poor are protected. Kerosene to LPG (2007) shows it can be done.</span></div></div>
+  </div>
+
+  <div class="take"><svg class="ic" viewBox="0 0 24 24"><path d="M4 8h13l-3-3M20 16H7l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div><b>Refocus and integrate.</b> <span>Move price subsidies to named households, on one registry and one payment channel. This is how social protection becomes inclusive and fiscally sustainable.</span></div></div>
+
+  <div class="foot">Sources: spending shares, World Bank, 360 Targeting Review of Social Assistance (forthcoming), ASPIRE 2024; errors, author's calculation from Susenas March 2025 following the DEN Social Protection Targeting Monitor (energy targets: LPG and fuel deciles 1–4, electricity 450 and 900 VA deciles 1–3); Rp277 T, Nota Keuangan RAPBN 2026, grouping by the author; one family benefit, World Bank simulation; policy direction, RPJMN 2025–2029. Adapted from Yusuf, LPDP Career Monitoring, 18 November 2026.</div>
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="07.html" class="" aria-label="Previous slide">&#8249;</a><a href="09.html" class="" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '07.html', next = '09.html';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
