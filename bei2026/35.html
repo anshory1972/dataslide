@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not many. Not fast. Careful.</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f2f4fa; --surface:#ffffff; --ink:#0f1a36; --muted:#5a6483; --rule:#dde2ee; --grid:#e6e9f3;
+    --accent:#4f46e0; --slate:#0a8f7c; --amber:#ee9f27; --mid:#c3c9da; --tint:#edecfd; --band:#eef1f8; --takebg:#edecfd;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0b1124; --surface:#141b35; --ink:#eef0fa; --muted:#9aa3c0; --rule:#27304f; --grid:#212947;
+            --accent:#928bff; --slate:#3fd0b5; --amber:#f6b95a; --mid:#3b4365; --tint:#1b2046; --band:#182040; --takebg:#1b2046; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink); font-family:var(--sans); overflow:hidden;
+           background-color:var(--paper);
+           background-image:radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 1px, transparent 1.3px); background-size:24px 24px; }
+  .stage svg text, .stage svg text.ser { font-family:var(--sans); }
+  .stage svg text.ser { font-weight:700; letter-spacing:-.01em; }
+  .stage em { font-style:normal; font-weight:700; }
+  h1 { position:absolute; left:40px; top:26px; width:1290px; margin:0; font:800 39px/1.15 var(--sans); letter-spacing:-.022em; }
+  h1 em { font-weight:800; color:inherit; padding:0 .1em; margin:0 -.04em;
+          background:linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 62%, transparent) 58%, color-mix(in srgb, var(--amber) 62%, transparent) 94%, transparent 94%); }
+  .sub { position:absolute; left:40px; top:84px; width:1400px; font:400 22px/1.3 var(--sans); color:var(--muted); }
+  .eye { position:absolute; right:40px; top:30px; font:700 13px/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+         color:var(--paper); background:var(--ink); padding:9px 15px; border-radius:99px; }
+  .bar { position:absolute; left:0; top:0; width:1600px; height:7px; background:var(--rule); }
+  .bar i { display:block; height:7px; background:linear-gradient(90deg, var(--accent), var(--slate)); border-radius:0 7px 7px 0; }
+  .pg { position:absolute; right:40px; top:846px; font:700 14px/1 var(--sans); color:var(--muted); letter-spacing:.06em; }
+  .panel { position:absolute; background:var(--surface); border:0 solid transparent; border-radius:20px;
+           box-shadow:0 1px 2px rgba(15,26,54,.07), 0 10px 28px rgba(15,26,54,.07); }
+  .abs { position:absolute; }
+  .ph { position:absolute; font:700 26px/1.2 var(--sans); letter-spacing:-.012em; }
+  .ph em { color:var(--accent); }
+  .ph small { display:block; margin-top:6px; font:400 17px/1.35 var(--sans); color:var(--muted); letter-spacing:0; }
+  .kick { font:700 13px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .big { font:800 64px/1 var(--sans); letter-spacing:-.035em; color:var(--accent); }
+  .big.b { color:var(--slate); } .big.a { color:var(--amber); }
+  .t { font-size:20px; line-height:1.35; }
+  .t.m { color:var(--muted); }
+  .t b { font-weight:700; }
+  .take { position:absolute; padding:16px 22px 16px 28px; border-radius:16px; background:var(--takebg); color:var(--ink); font-size:22px; line-height:1.35;
+          border-left:8px solid var(--accent); }
+  .take b { font-weight:700; }
+  .foot { position:absolute; left:40px; right:150px; top:838px; font-size:13px; line-height:1.4; color:var(--muted); }
+  .chip { display:inline-block; padding:5px 12px; border-radius:99px; background:var(--surface); font-size:16px; margin:0 6px 6px 0; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1>Not many. Not fast. <em>Careful.</em></h1>
+  <div class="sub">Four answers to the four questions in the terms of reference.</div>
+  <div class="eye">Close</div>
+<div class="panel" style="left:40px; top:150px; width:700px; height:590px; "></div><div class="abs" style="left:40px; top:250px; width:700px; font:700 88px/1 var(--sans); letter-spacing:-.015em; text-align:center">penelitian</div><div class="abs t m" style="left:40px; top:360px; width:700px; text-align:center; font-size:24px">from</div><div class="abs" style="left:40px; top:410px; width:700px; font:700 120px/1 var(--sans); letter-spacing:-.015em; text-align:center"><em style='color:var(--accent); font-style:normal'>teliti</em></div><div class="abs t m" style="left:40px; top:570px; width:700px; text-align:center; font-size:27px">careful · exact · thorough</div><div class="panel" style="left:764px; top:150px; width:796px; height:136px; "></div><div class="abs kick" style="left:792px; top:172px; width:740px; color:var(--accent)">1 · Methods</div><div class="abs" style="left:792px; top:204px; width:740px; font:700 31px/1.2 var(--sans); letter-spacing:-.015em">Ask first: describe, correlate, or cause?</div><div class="panel" style="left:764px; top:300px; width:796px; height:136px; "></div><div class="abs kick" style="left:792px; top:322px; width:740px; color:var(--accent)">2 · Credibility</div><div class="abs" style="left:792px; top:354px; width:740px; font:700 31px/1.2 var(--sans); letter-spacing:-.015em">A causal claim needs a fair comparison.</div><div class="panel" style="left:764px; top:450px; width:796px; height:136px; "></div><div class="abs kick" style="left:792px; top:472px; width:740px; color:var(--accent)">3 · Data and AI</div><div class="abs" style="left:792px; top:504px; width:740px; font:700 31px/1.2 var(--sans); letter-spacing:-.015em">They improve prediction. They do not replace design.</div><div class="panel" style="left:764px; top:600px; width:796px; height:136px; "></div><div class="abs kick" style="left:792px; top:622px; width:740px; color:var(--accent)">4 · Integrity</div><div class="abs" style="left:792px; top:654px; width:740px; font:700 31px/1.2 var(--sans); letter-spacing:-.015em">Writing is now cheap. Checking is the work.</div><div class="abs" style="left:40px; top:760px; width:1520px; "></div>
+  <div class="foot">Terima kasih. Slides and sources: anshory1972.github.io/dataslide/bei2026/</div>
+  <div class="bar"><i style="width:100.0%"></i></div><div class="pg">35 / 35</div>
+
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="34.html" class="" aria-label="Previous slide">&#8249;</a><a href="" class="off" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '34.html', next = '';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
