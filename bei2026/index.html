@@ -52,8 +52,14 @@
   .chip { display:inline-block; padding:5px 12px; border-radius:99px; background:var(--surface); font-size:16px; margin:0 6px 6px 0; }
 
   .stage { background-image:none; background:#0f1a36; color:#f4f5fb; }
-  .art { position:absolute; left:700px; top:0; width:900px; height:900px; background:url('cover-97f91284.jpg') 50% 50% / cover no-repeat; }
-  .art::before { content:''; position:absolute; inset:0; background:linear-gradient(90deg, #0f1a36 0%, rgba(15,26,54,.72) 22%, rgba(15,26,54,0) 58%); }
+  .ppl { position:absolute; left:790px; top:0; width:810px; height:900px; background:#14204a;
+         background-image:radial-gradient(rgba(255,255,255,.07) 1.2px, transparent 1.2px); background-size:22px 22px; }
+  .row { position:absolute; left:830px; width:740px; font:700 14px/1 var(--sans); letter-spacing:.12em; text-transform:uppercase; color:#f6b95a; }
+  .row span { color:#98a2c6; font-weight:400; letter-spacing:.04em; text-transform:none; font-size:16px; margin-left:10px; }
+  .face { position:absolute; width:170px; text-align:center; }
+  .face img { display:block; width:150px; height:150px; margin:0 auto; border-radius:50%; border:3px solid rgba(246,185,90,.9); }
+  .face b { display:block; margin-top:10px; font:700 18px/1.2 var(--sans); color:#ffffff; }
+  .pcred { position:absolute; left:830px; top:846px; width:740px; font-size:11px; line-height:1.45; color:rgba(255,255,255,.62); }
   .cbar { position:absolute; left:0; top:0; width:14px; height:900px; background:linear-gradient(180deg, #4f46e0, #0a8f7c 55%, #ee9f27); }
   .event { position:absolute; left:84px; top:92px; width:700px; font:700 15px/1.6 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:#b9b5ff; }
   h1.c { left:84px; top:176px; width:760px; font:800 74px/1.03 var(--sans); letter-spacing:-.035em; color:#ffffff; }
@@ -71,9 +77,21 @@
 <body>
 <div class="stage" id="stage">
 
-  <div class="art" role="img" aria-label="AI-generated illustration for the cover"></div>
+  <div class="ppl"></div>
+  <div class="row" style="top:64px">Nobel 2019<span>Field experiments</span></div>
+  <div class="face" style="left:850px; top:94px"><img src="banerjee-6dad93c3.jpg" alt="Abhijit Banerjee"><b>Abhijit Banerjee</b></div>
+  <div class="face" style="left:1095px; top:94px"><img src="duflo-0b6ac9f8.jpg" alt="Esther Duflo"><b>Esther Duflo</b></div>
+  <div class="face" style="left:1340px; top:94px"><img src="kremer-a6f94057.jpg" alt="Michael Kremer"><b>Michael Kremer</b></div>
+  <div class="row" style="top:330px">Nobel 2021<span>Natural experiments and their analysis</span></div>
+  <div class="face" style="left:850px; top:360px"><img src="card-f191a491.jpg" alt="David Card"><b>David Card</b></div>
+  <div class="face" style="left:1095px; top:360px"><img src="angrist-36496816.jpg" alt="Joshua Angrist"><b>Joshua Angrist</b></div>
+  <div class="face" style="left:1340px; top:360px"><img src="imbens-1e74c672.jpg" alt="Guido Imbens"><b>Guido Imbens</b></div>
+  <div class="row" style="top:596px">Nobel 2024<span>Institutions and prosperity</span></div>
+  <div class="face" style="left:850px; top:626px"><img src="acemoglu-766e3a08.jpg" alt="Daron Acemoglu"><b>Daron Acemoglu</b></div>
+  <div class="face" style="left:1095px; top:626px"><img src="johnson-776f942f.jpg" alt="Simon Johnson"><b>Simon Johnson</b></div>
+  <div class="face" style="left:1340px; top:626px"><img src="robinson-d51157d0.jpg" alt="James Robinson"><b>James Robinson</b></div>
+  <div class="pcred">Photos from Wikimedia Commons, colours changed: Sriya Sarkar (CC BY 4.0); US Embassy Sweden (CC BY 2.0); Harvard University (CC BY-SA 4.0); University of California, Berkeley (CC BY 3.0); MeJudice (CC BY 3.0, Angrist and Acemoglu); Cmichel67 (CC BY-SA 4.0); John Sears (CC BY-SA 4.0, Johnson and Robinson).</div>
   <div class="cbar"></div>
-  <div class="credit">AI-generated illustration</div>
   <div class="event">Mini Workshop Metodologi Riset<br>Bursa Efek Indonesia · KPEI · KSEI</div>
   <h1 class="c">The <em>Credibility</em> Revolution</h1>
   <div class="lede">Understanding and anticipating recent developments in research methods in economics and finance</div>
