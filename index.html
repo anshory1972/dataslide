@@ -152,6 +152,15 @@
     header.top .inner { padding: 2.8rem 1.1rem 2.2rem; }
     main { padding: 2rem 1.1rem 3rem; }
   }
+  /* ---------- order switch ---------- */
+  .sortbar { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin:0 0 .4rem; font-size:.85rem; color:var(--muted); }
+  .sortbar button { font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--rule);
+    border-radius:999px; padding:.35rem .95rem; cursor:pointer; }
+  .sortbar button:hover { border-color:var(--accent); }
+  .sortbar button[aria-pressed="true"] { background:var(--slate); border-color:var(--slate); color:var(--surface); }
+  .view > .section-head:first-child { margin-top: 1.4rem; }
+  li.card .date { display:none; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.75rem; color:var(--muted); margin-left:.5rem; }
+  #by-date li.card .date { display:inline; }
 </style>
 </head>
 <body>
@@ -165,72 +174,73 @@
 </header>
 
 <main>
+<div class="sortbar sans" role="group" aria-label="Order the pages">
+  <span>Order:</span>
+  <button type="button" data-view="topic" aria-pressed="true">By topic</button>
+  <button type="button" data-view="date" aria-pressed="false">By date, newest first</button>
+</div>
+<div class="view" id="by-topic">
 
   <div class="section-head">
     <h2>Social protection and poverty</h2><div class="fill"></div>
   </div>
   <ul class="cards">
-    <li class="card"><a href="lpdp2026/">
-      <span class="kind">Talk &middot; English</span>
-      <h3>Making Development More Inclusive through Digitalization of Social Protection</h3>
-      <p>From the old grow-first view to digital public infrastructure: the kerosene-to-LPG reform, targeting errors in social assistance, the Bali pilot evaluation, energy subsidy reform and the climate dilemma. Slides with a phone reading version and PDF. LPDP Career Monitoring, Kementerian Keuangan, 18 November 2026.</p>
-    </a></li>
-    <li class="card"><a href="kanopi2026/">
+    <li class="card" data-date="2026-11-18"><a href="kanopi2026/">
       <span class="kind">Keynote &middot; English</span>
       <h3>Making Social Protection Inclusive and Sustainable</h3>
       <p>Social protection as an investment in growth, Indonesia&rsquo;s low spending on social assistance, targeting errors of PKH, BPNT, PBI and PIP, how digital public infrastructure can help, and moving energy subsidies to direct assistance. Nine slides. KANOPI FEB Universitas Indonesia, 18 November 2026.</p>
     </a></li>
-    <li class="card"><a href="dev-env-synergy.html">
+    <li class="card" data-date="2026-11-11"><a href="dev-env-synergy.html">
       <span class="kind">Note &middot; English</span>
       <h3>Development and Environment Synergy</h3>
       <p>Indonesian policies that reduced poverty and improved the environment at the same time, from the 2007 kerosene-to-LPG conversion to village forests and energy subsidy reform, with the peer-reviewed evidence behind each. ESCAP Committee on Social Development, Bangkok, 11 November 2026.</p>
     </a></li>
-    <li class="card"><a href="jdse-sustainable-research.html">
+    <li class="card" data-date="2026-10-15"><a href="jdse-sustainable-research.html">
       <span class="kind">Talk &middot; English</span>
       <h3>Sustainable Economy and Finance Research: Trends, Journals, and a Place for JDSE</h3>
       <p>Research trends, the main journals, and Indonesia&rsquo;s position in sustainable economy and finance research, measured on OpenAlex and Scopus, for the Bank Indonesia Institute workshop on the new JDSE journal, 15 October 2026.</p>
     </a></li>
-    <li class="card"><a href="me-missing-arrow.html">
+    <li class="card" data-date="2026-10-14"><a href="me-missing-arrow.html">
       <span class="kind">Discussant notes &middot; English</span>
       <h3>Before Monitoring: the Missing Arrow from Idea to Programme</h3>
       <p>What the UK Green and Magenta Books require before a programme exists, three MBG claims and what the evidence says, and the DPI pilot in Bali. DEN brownbag on M&amp;E strategy, 14 October 2026.</p>
     </a></li>
-    <li class="card"><a href="satu-dana-perlinsos.html">
+    <li class="card" data-date="2026-10-14"><a href="satu-dana-perlinsos.html">
       <span class="kind">Talk &middot; English</span>
       <h3>Consolidating and Integrating Social Protection</h3>
       <p>Rp508 trillion a year, but three of four target households miss out and most of the money is price subsidies. What integration and consolidation mean for Satu Dana. BP Taskin coordination meeting, 14 October 2026.</p>
     </a></li>
-    <li class="card"><a href="satu-dana-perlinsos-id.html">
+    <li class="card" data-date="2026-10-14"><a href="satu-dana-perlinsos-id.html">
       <span class="kind">Paparan &middot; Bahasa Indonesia</span>
       <h3>Konsolidasi dan Integrasi Perlindungan Sosial</h3>
       <p>Rp508 triliun per tahun, tetapi tiga dari empat rumah tangga sasaran tidak menerima dan sebagian besar dana berupa subsidi harga. Arti integrasi dan konsolidasi bagi Satu Dana. Rapat Koordinasi BP Taskin, 14 Oktober 2026.</p>
     </a></li>
-    <li class="card"><a href="jabar-poverty.html">
+    <li class="card" data-date="2026-11-15"><a href="jabar-poverty.html">
       <span class="kind">Talk &middot; English</span>
       <h3>Poverty in West Java: Current Issues</h3>
       <p>Growth and official poverty since 2000, West Java on the World Bank income scale, poverty at the $4.20 and $8.30 lines, sector growth, falling formal employment, minimum wages and social protection. BPS Jawa Barat, November 2026.</p>
     </a></li>
-    <li class="card"><a href="jabar-poverty-id.html">
+    <li class="card" data-date="2026-11-15"><a href="jabar-poverty-id.html">
       <span class="kind">Talk &middot; Bahasa Indonesia</span>
       <h3>Kemiskinan di Jawa Barat: Isu-Isu Terkini</h3>
       <p>Pertumbuhan dan kemiskinan resmi sejak 2000, Jawa Barat pada skala pendapatan Bank Dunia, kemiskinan pada garis $4.20 dan $8.30, pertumbuhan sektor, penurunan pekerja formal, upah minimum, dan perlindungan sosial. BPS Jawa Barat, November 2026.</p>
     </a></li>
-    <li class="card"><a href="dpi-smg.html">
+    <li class="card" data-date="2026-08-13"><a href="dpi-smg.html">
       <span class="kind">Data page</span>
       <h3>Digitalising Social Protection</h3>
       <p>How much of Indonesia's social assistance reaches the households it is meant for, why the gap exists, and what digitalisation can and cannot fix.</p>
     </a></li>
-    <li class="card"><a href="mbg-poverty.html">
+    <li class="card" data-date="2026-08-23"><a href="mbg-poverty.html">
       <span class="kind">Data page</span>
       <h3>Fiscal Incidence of Free School Meals</h3>
       <p>What Indonesia's free school meals programme is worth to the households that receive it, and how it sits against the transfers alongside it.</p>
     </a></li>
-    <li class="card"><a href="micro-pmt.html">
+    <li class="card" data-date="2026-08-22"><a href="micro-pmt.html">
       <span class="kind">Teaching</span>
       <h3>Predicting Welfare</h3>
       <p>A teaching case in applied microeconometrics. One real targeting model, 1.02 million households, and what it shows about prediction versus inference.</p>
     </a></li>
-    <li class="card"><a href="job-quality.html">
+    <li class="card" data-date="2026-09-23"><a href="job-quality.html">
       <span class="kind">Data page</span>
       <h3>The Quality of Indonesia's New Jobs</h3>
       <p>Indonesia added 1.9 million jobs in the year to August 2025 and 1.7 million were part-time. Four measures of job quality, straight from the BPS Web API.</p>
@@ -241,37 +251,37 @@
     <h2>Growth and structural change</h2><div class="fill"></div>
   </div>
   <ul class="cards">
-    <li class="card"><a href="beyondgrowth.html">
+    <li class="card" data-date="2026-07-31"><a href="beyondgrowth.html">
       <span class="kind">Data page</span>
       <h3>The Growth We Want</h3>
       <p>Why the old growth model stopped working for most people, and what a better one has to deliver. Charts built from primary sources.</p>
     </a></li>
-    <li class="card"><a href="structural-transformation.html">
+    <li class="card" data-date="2026-08-23"><a href="structural-transformation.html">
       <span class="kind">Data page</span>
       <h3>The Future of Regional Growth</h3>
       <p>Where growth actually comes from, how far Indonesia's regions still have to travel, and what evidence from Aceh and Kepulauan Riau shows.</p>
     </a></li>
-    <li class="card"><a href="transmigration-growth.html">
+    <li class="card" data-date="2026-08-22"><a href="transmigration-growth.html">
       <span class="kind">Data page</span>
       <h3>Where Indonesia's Next Growth Will Come From</h3>
       <p>Evidence from three IndoTERM computable general equilibrium studies on growth strategy, downstreaming and regional structural transformation.</p>
     </a></li>
-    <li class="card"><a href="banten-statistics-day.html">
+    <li class="card" data-date="2026-10-13"><a href="banten-statistics-day.html">
       <span class="kind">Talk &middot; English</span>
       <h3>Banten's Economy Is Growing. Are Its People Better Off?</h3>
       <p>Fast growth, low poverty and low inequality, but the lowest happiness in Indonesia. Falling real wages, insecure jobs and cities that make people richer but not happier. BPS Banten, National Statistics Day 2026.</p>
     </a></li>
-    <li class="card"><a href="banten-statistics-day-id.html">
+    <li class="card" data-date="2026-10-13"><a href="banten-statistics-day-id.html">
       <span class="kind">Talk &middot; Bahasa Indonesia</span>
       <h3>Ekonomi Banten Tumbuh. Apakah Warganya Tambah Sejahtera?</h3>
       <p>Pertumbuhan pesat, kemiskinan dan ketimpangan rendah, tetapi kebahagiaan terendah di Indonesia. BPS Provinsi Banten, Hari Statistik Nasional 2026.</p>
     </a></li>
-    <li class="card"><a href="indonesia-year-of-shocks.html">
+    <li class="card" data-date="2026-10-28"><a href="indonesia-year-of-shocks.html">
       <span class="kind">Talk &middot; English</span>
       <h3>Indonesia in a Year of Shocks</h3>
       <p>The 2026 shocks to Indonesia's economy, from oil prices and the rupiah to El Ni&ntilde;o, how the National Economic Council responded, and the no-regrets reforms it pushes. IDDRI, Paris, October 2026.</p>
     </a></li>
-    <li class="card"><a href="bsk-gateway-method.html">
+    <li class="card" data-date="2026-08-19"><a href="bsk-gateway-method.html">
       <span class="kind">Method</span>
       <h3>The BSK Import Gateways, Simulated</h3>
       <p>Nine solved scenarios in a 23-commodity, 7-region IndoTERM model, and what rerouting imports to Bitung, Sorong and Kupang costs.</p>
@@ -282,17 +292,17 @@
     <h2>Research and the SDGs</h2><div class="fill"></div>
   </div>
   <ul class="cards">
-    <li class="card"><a href="sdgs-alignment.html">
+    <li class="card" data-date="2026-08-12"><a href="sdgs-alignment.html">
       <span class="kind">Data page</span>
       <h3>SDGs Alignment of Research Strength</h3>
       <p>Whether Indonesia's university research strengths line up with the SDG goals its provinces are failing.</p>
     </a></li>
-    <li class="card"><a href="researchquality.html">
+    <li class="card" data-date="2026-08-11"><a href="researchquality.html">
       <span class="kind">Data page</span>
       <h3>What the Quality Filter Reveals</h3>
       <p>978,546 Indonesian journal articles ranked twice, all journals against Q1 only, across 26 subject fields, testing whether publication counts tell you who does good research.</p>
     </a></li>
-    <li class="card"><a href="single-authorship.html">
+    <li class="card" data-date="2026-10-10"><a href="single-authorship.html">
       <span class="kind">Data page</span>
       <h3>Single Authorship Is Still the Norm in the Humanities</h3>
       <p>In ten subfields, most articles in top-quarter journals have had one author in every year since 2000. OpenAlex data, three reasons with sources, and code to replicate.</p>
@@ -303,17 +313,17 @@
     <h2>Health, energy and modelling</h2><div class="fill"></div>
   </div>
   <ul class="cards">
-    <li class="card"><a href="welcome_trust01.html">
+    <li class="card" data-date="2026-09-20"><a href="welcome_trust01.html">
       <span class="kind">Project</span>
       <h3>Health and Labour in the Energy Transition</h3>
       <p>Work package 2.3 of Financing a Just Green Transition. An economy-wide model of Indonesia, extended to represent health status and labour supply.</p>
     </a></li>
-    <li class="card"><a href="health-labour-module.html">
+    <li class="card" data-date="2026-09-17"><a href="health-labour-module.html">
       <span class="kind">Method</span>
       <h3>Health and Labour Module for IndoTERM</h3>
       <p>Implementation guide for the module. Three pieces of new work in six stages, each with a procedure, a verification condition and a completion gate.</p>
     </a></li>
-    <li class="card"><a href="monash-health-study.html">
+    <li class="card" data-date="2026-09-18"><a href="monash-health-study.html">
       <span class="kind">Study guide</span>
       <h3>MONASH-Health: A Study Guide</h3>
       <p>Verikios, Dixon, Rimmer and Harris (2013) in twenty study steps with self-tests: the labour-supply specification, the HILDA transition matrix, the model core and the results.</p>
@@ -324,17 +334,20 @@
     <h2>Lecture slides</h2><div class="fill"></div>
   </div>
   <ul class="cards">
-    <li class="card"><a href="miktrik/lpm_logit_probit_en.pdf">
+    <li class="card" data-date="2026-09-25"><a href="miktrik/lpm_logit_probit_en.pdf">
       <span class="kind">PDF &middot; English</span>
       <h3>Linear Probability, Logit and Probit</h3>
       <p>Eight true stories behind one S-shaped curve, ending with hands-on estimation in Stata.</p>
     </a></li>
-    <li class="card"><a href="miktrik/lpm_logit_probit_id.pdf">
+    <li class="card" data-date="2026-09-25"><a href="miktrik/lpm_logit_probit_id.pdf">
       <span class="kind">PDF &middot; Bahasa Indonesia</span>
       <h3>Model Probabilitas Linier, Logit, dan Probit</h3>
       <p>Delapan kisah nyata di belakang satu kurva berbentuk S, ditutup dengan latihan Stata.</p>
     </a></li>
   </ul>
+
+</div>
+<div class="view" id="by-date" hidden></div>
 
   <footer>
     Every page is self-contained and works offline once loaded.
@@ -343,5 +356,44 @@
 
 </main>
 
+<script>
+(function () {
+  var MON = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var topic = document.getElementById('by-topic'), byDate = document.getElementById('by-date');
+  // date label on each card, shown only in the date view
+  topic.querySelectorAll('li.card').forEach(function (li) {
+    var d = li.dataset.date.split('-'), sp = document.createElement('span');
+    sp.className = 'date'; sp.textContent = (+d[2]) + ' ' + MON[+d[1] - 1] + ' ' + d[0];
+    li.querySelector('.kind').after(sp);
+  });
+  function buildDate() {
+    var cards = Array.prototype.slice.call(topic.querySelectorAll('li.card'));
+    cards.sort(function (a, b) { return a.dataset.date < b.dataset.date ? 1 : a.dataset.date > b.dataset.date ? -1 : 0; });
+    var html = '', cur = '';
+    cards.forEach(function (li) {
+      var d = li.dataset.date.split('-'), m = MON[+d[1] - 1] + ' ' + d[0];
+      if (m !== cur) {
+        if (cur) html += '</ul>';
+        html += '<div class="section-head"><h2>' + m + '</h2><div class="fill"></div></div><ul class="cards">';
+        cur = m;
+      }
+      html += li.outerHTML;
+    });
+    byDate.innerHTML = html + '</ul>';
+  }
+  function show(v) {
+    if (v === 'date' && !byDate.innerHTML) buildDate();
+    topic.hidden = v === 'date'; byDate.hidden = v !== 'date';
+    document.querySelectorAll('.sortbar button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.view === v); });
+  }
+  document.querySelectorAll('.sortbar button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      show(b.dataset.view);
+      history.replaceState(null, '', b.dataset.view === 'date' ? '#date' : location.pathname);
+    });
+  });
+  if (location.hash === '#date') show('date');
+})();
+</script>
 </body>
 </html>
