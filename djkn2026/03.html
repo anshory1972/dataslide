@@ -15,14 +15,10 @@
 <title>Why use a model: to compare with and without the policy</title>
 <style>
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
     --paper:#f3f1e8; --surface:#fffdf7; --ink:#1c2a20; --muted:#646b5c; --rule:#dedacb; --grid:#e7e3d6;
     --accent:#1f5a44; --slate:#5e9433; --amber:#c4692b; --mid:#cdc7b4; --tint:#e5ecdc; --band:#efece1; --takebg:#e6eddc;
     --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-  }
-  @media screen and (prefers-color-scheme: dark) {
-    :root { --paper:#0f1912; --surface:#17241b; --ink:#eef1e7; --muted:#a2aa96; --rule:#2c3a2f; --grid:#223025;
-            --accent:#7cc4a2; --slate:#a8cf64; --amber:#e8935a; --mid:#45503f; --tint:#1e2d22; --band:#1c2a20; --takebg:#1e2d22; }
   }
   *, *::before, *::after { box-sizing:border-box; }
   html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
@@ -85,7 +81,6 @@
             opacity:.55; -webkit-tap-highlight-color:transparent; }
   .dnav a:hover { opacity:1; }
   .dnav a.off { visibility:hidden; }
-  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
   @media print { .dnav { display:none; } }
 </style>
 <div class="dnav"><a href="02.html" class="" aria-label="Previous slide">&#8249;</a><a href="04.html" class="" aria-label="Next slide">&#8250;</a></div>
