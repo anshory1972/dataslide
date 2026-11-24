@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Land, ecosystem values and CGE models">
+<meta property="og:description" content="Introduction to CGE models, GTAP-AEZ, InVEST, GTAP-InVEST, the oil palm moratorium (IndoTERM) and INDONESIA E3-L. Arief Anshory Yusuf, DJKN webinar, 25 November 2026.">
+<meta property="og:url" content="https://anshory1972.github.io/dataslide/djkn2026/">
+<meta property="og:image" content="https://anshory1972.github.io/dataslide/djkn2026/preview-b223cb4f.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three runs: baseline, moratorium, moratorium with payment</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper:#f3f1e8; --surface:#fffdf7; --ink:#1c2a20; --muted:#646b5c; --rule:#dedacb; --grid:#e7e3d6;
+    --accent:#1f5a44; --slate:#5e9433; --amber:#c4692b; --mid:#cdc7b4; --tint:#e5ecdc; --band:#efece1; --takebg:#e6eddc;
+    --sans:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media screen and (prefers-color-scheme: dark) {
+    :root { --paper:#0f1912; --surface:#17241b; --ink:#eef1e7; --muted:#a2aa96; --rule:#2c3a2f; --grid:#223025;
+            --accent:#7cc4a2; --slate:#a8cf64; --amber:#e8935a; --mid:#45503f; --tint:#1e2d22; --band:#1c2a20; --takebg:#1e2d22; }
+  }
+  *, *::before, *::after { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:var(--paper); overflow:hidden; }
+  .stage { position:absolute; left:0; top:0; width:1600px; height:900px; transform-origin:0 0; color:var(--ink); font-family:var(--sans); overflow:hidden;
+           background-color:var(--paper);
+           background-image:radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 1px, transparent 1.3px); background-size:24px 24px; }
+  .stage svg text, .stage svg text.ser { font-family:var(--sans); }
+  .stage svg text.ser { font-weight:700; letter-spacing:-.01em; }
+  .stage em { font-style:normal; font-weight:700; }
+  h1 { position:absolute; left:40px; top:26px; width:1290px; margin:0; font:800 39px/1.15 var(--sans); letter-spacing:-.022em; }
+  h1 em { font-weight:800; color:inherit; padding:0 .1em; margin:0 -.04em;
+          background:linear-gradient(transparent 58%, color-mix(in srgb, var(--amber) 62%, transparent) 58%, color-mix(in srgb, var(--amber) 62%, transparent) 94%, transparent 94%); }
+  .sub { position:absolute; left:40px; top:84px; width:1400px; font:400 22px/1.3 var(--sans); color:var(--muted); }
+  .eye { position:absolute; right:40px; top:30px; font:700 13px/1 var(--sans); letter-spacing:.13em; text-transform:uppercase;
+         color:var(--paper); background:var(--ink); padding:9px 15px; border-radius:99px; }
+  .bar { position:absolute; left:0; top:0; width:1600px; height:7px; background:var(--rule); }
+  .bar i { display:block; height:7px; background:linear-gradient(90deg, var(--accent), var(--slate)); border-radius:0 7px 7px 0; }
+  .pg { position:absolute; right:40px; top:846px; font:700 14px/1 var(--sans); color:var(--muted); letter-spacing:.06em; }
+  .panel { position:absolute; background:var(--surface); border:0 solid transparent; border-radius:20px;
+           box-shadow:0 1px 2px rgba(28,42,32,.07), 0 10px 28px rgba(28,42,32,.08); }
+  .abs { position:absolute; }
+  .ph { position:absolute; font:700 26px/1.2 var(--sans); letter-spacing:-.012em; }
+  .ph em { color:var(--accent); }
+  .ph small { display:block; margin-top:6px; font:400 17px/1.35 var(--sans); color:var(--muted); letter-spacing:0; }
+  .kick { font:700 13px/1.2 var(--sans); letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .big { font:800 64px/1 var(--sans); letter-spacing:-.035em; color:var(--accent); }
+  .big.b { color:var(--slate); } .big.a { color:var(--amber); }
+  .t { font-size:20px; line-height:1.35; }
+  .t.m { color:var(--muted); }
+  .t b { font-weight:700; }
+  .take { position:absolute; padding:16px 22px 16px 28px; border-radius:16px; background:var(--takebg); color:var(--ink); font-size:22px; line-height:1.35;
+          border-left:8px solid var(--accent); }
+  .take b { font-weight:700; }
+  .foot { position:absolute; left:40px; right:150px; top:838px; font-size:13px; line-height:1.4; color:var(--muted); }
+  .chip { display:inline-block; padding:5px 12px; border-radius:99px; background:var(--surface); font-size:16px; margin:0 6px 6px 0; }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <h1>Three runs: <em>baseline</em>, moratorium, moratorium with payment</h1>
+  <div class="sub">Same economy, same assumptions; only the land rule and the payment change</div>
+  <div class="eye">C · Land-cover change</div>
+<div class="panel" style="left:40px; top:200px; width:486px; height:236px; border-top:7px solid var(--accent);"></div><div class="ph" style="left:64px; top:220px; width:438px; font-size:23px">SIM0 &middot; Baseline</div><div class="abs" style="left:64px; top:264px; width:442px; "><ul style="margin:0; padding-left:20px; font-size:16.5px; line-height:1.38"><li>GDP growth about 6% a year</li><li>Labour force +2.5%, population +1.5% a year</li><li>Land productivity +3% a year in agriculture</li><li>Oil palm land +8% a year in Kalimantan and Papua, +4% East Sumatra and Sulawesi, +3% West Sumatra</li><li>Half of new oil palm land comes from natural forest</li></ul></div><div class="panel" style="left:557px; top:200px; width:486px; height:236px; border-top:7px solid var(--slate);"></div><div class="ph" style="left:581px; top:220px; width:438px; font-size:23px">SIM1 &middot; Moratorium</div><div class="abs" style="left:581px; top:264px; width:442px; "><ul style="margin:0; padding-left:20px; font-size:16.5px; line-height:1.38"><li>Same as the baseline until 2015</li><li>From 2015, new oil palm land comes only from managed forest</li><li>No natural forest is converted</li><li>Oil palm land grows half as fast</li></ul></div><div class="panel" style="left:1074px; top:200px; width:486px; height:236px; border-top:7px solid var(--amber);"></div><div class="ph" style="left:1098px; top:220px; width:438px; font-size:23px">SIM2 &middot; Moratorium + payment</div><div class="abs" style="left:1098px; top:264px; width:442px; "><ul style="margin:0; padding-left:20px; font-size:16.5px; line-height:1.38"><li>Same as SIM1</li><li>Payment of US$10 per t CO<sub>2</sub> avoided</li><li>Each region gets money in proportion to its emission cut</li><li>Paid to households, as a transfer from abroad</li><li>Trade balance plus transfers, as a share of GDP, held fixed</li></ul></div><div class="panel" style="left:40px; top:458px; width:1003px; height:276px; "></div><div class="ph" style="left:64px; top:476px; width:900px; font-size:22px">Oil palm land in 2030<small>million hectares</small></div><div class="panel" style="left:1063px; top:458px; width:497px; height:276px; "></div><div class="ph" style="left:1087px; top:476px; width:450px; font-size:22px">How results are read</div><div class="abs" style="left:1087px; top:520px; width:450px; "><ul style="margin:0; padding-left:20px; font-size:16.5px; line-height:1.42"><li>Each policy run is compared with the baseline, year by year, as % deviation</li><li>Long run: national employment fixed, wages adjust</li><li>Capital moves until rates of return are back at baseline</li></ul></div><svg class="abs" style="left:0px; top:0px; width:1600px; height:900px; overflow:visible" viewBox="0 0 1600 900" role="img" aria-label="three runs"><defs><marker id="ah" viewBox="0 0 10 10" refX="10" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs><line x1="80" y1="168" x2="1520" y2="168" stroke="var(--rule)" stroke-width="6" stroke-linecap="round"/><line x1="656.0" y1="168" x2="1520" y2="168" stroke="var(--slate)" stroke-width="6" stroke-linecap="round"/><circle cx="80.0" cy="168" r="9" style="fill:var(--surface)" stroke="var(--ink)" stroke-width="3"/><text x="80.0" y="150" font-size="16" fill="var(--ink)" text-anchor="start" font-weight="800" >2005 base year</text><circle cx="656.0" cy="168" r="9" style="fill:var(--surface)" stroke="var(--ink)" stroke-width="3"/><text x="656.0" y="150" font-size="16" fill="var(--ink)" text-anchor="middle" font-weight="800" >2015 moratorium starts</text><circle cx="1520.0" cy="168" r="9" style="fill:var(--surface)" stroke="var(--ink)" stroke-width="3"/><text x="1520.0" y="150" font-size="16" fill="var(--ink)" text-anchor="middle" font-weight="800" >2030</text><path d="M526 318.0 L557 318.0" stroke="var(--muted)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/><path d="M1043 318.0 L1074 318.0" stroke="var(--muted)" stroke-width="2.5" fill="none" marker-end="url(#ah)"/><rect x="250" y="568" width="620.0" height="38" rx="6" style="fill:var(--accent)"/><text x="236" y="593" font-size="17" fill="var(--ink)" text-anchor="end" font-weight="700" >Baseline</text><text x="858.0" y="593" font-size="17" fill="var(--surface)" text-anchor="end" font-weight="800" >18.6</text><text x="882.0" y="593" font-size="15" fill="var(--muted)" text-anchor="start" font-weight="700" >4.9% a year</text><rect x="250" y="628" width="446.7" height="38" rx="6" style="fill:var(--slate)"/><text x="236" y="653" font-size="17" fill="var(--ink)" text-anchor="end" font-weight="700" >Moratorium</text><text x="684.6666666666666" y="653" font-size="17" fill="var(--surface)" text-anchor="end" font-weight="800" >13.4</text><text x="708.6666666666666" y="653" font-size="15" fill="var(--muted)" text-anchor="start" font-weight="700" >2.9% a year</text><path d="M696.6666666666666 694 L870.0 694" stroke="var(--slate)" stroke-width="2"/><path d="M696.6666666666666 688 L696.6666666666666 700 M870.0 688 L870.0 700" stroke="var(--slate)" stroke-width="2"/><text x="783.3333333333333" y="718" font-size="15" fill="var(--slate)" text-anchor="middle" font-weight="800" >5.2 = natural forest kept</text></svg><div class="take" style="left:40px; top:754px; width:1520px; font-size:20px; padding:12px 22px 12px 26px">SIM1 measures the cost of the moratorium. <b>SIM2 asks whether a carbon payment can cover that cost.</b></div>
+  <div class="foot">Source: Yusuf, Roos and Horridge (2018), <i>Asian Development Review</i> 35(2): 85-112 (journal). Design pp. 98-101; oil palm land in 2030 p. 102.</div>
+  <div class="bar"><i style="width:84.0%"></i></div><div class="pg">21 / 25</div>
+
+</div>
+<script>
+  const st = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / 1600, innerHeight / 900);
+    st.style.transform = `translate(${(innerWidth - 1600 * k) / 2}px, ${(innerHeight - 900 * k) / 2}px) scale(${k})`; };
+  addEventListener('resize', fit); fit();
+</script>
+<style id="deck-nav-css">
+  html, body { width:100%; height:100%; overflow:hidden; }
+  .stage { position:fixed !important; }
+  .dnav { position:fixed; right:14px; bottom:14px; display:flex; gap:8px; z-index:50; }
+  .dnav a { width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none;
+            font: 400 26px/1 system-ui,sans-serif; color:#6d6a63; background:rgba(255,253,249,.72); border:1px solid rgba(109,106,99,.35);
+            opacity:.55; -webkit-tap-highlight-color:transparent; }
+  .dnav a:hover { opacity:1; }
+  .dnav a.off { visibility:hidden; }
+  @media (prefers-color-scheme: dark) { .dnav a { color:#9b978e; background:rgba(25,26,30,.72); } }
+  @media print { .dnav { display:none; } }
+</style>
+<div class="dnav"><a href="20.html" class="" aria-label="Previous slide">&#8249;</a><a href="22.html" class="" aria-label="Next slide">&#8250;</a></div>
+<script id="deck-nav">
+  (function () {
+    const prev = '20.html', next = '22.html';
+    document.addEventListener('keydown', e => {
+      if (next && ['ArrowRight','PageDown',' '].includes(e.key)) location.href = next;
+      if (prev && ['ArrowLeft','PageUp','Backspace'].includes(e.key)) location.href = prev;
+    });
+    let x0 = null, y0 = null, x1 = null, y1 = null;
+    document.addEventListener('touchstart', e => { x0 = x1 = e.touches[0].clientX; y0 = y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchmove', e => { x1 = e.touches[0].clientX; y1 = e.touches[0].clientY; }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (x0 === null) return;
+      const dx = x1 - x0, dy = y1 - y0; x0 = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      if (dx < 0 && next) location.href = next;
+      if (dx > 0 && prev) location.href = prev;
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
